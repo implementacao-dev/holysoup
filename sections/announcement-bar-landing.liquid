@@ -1,0 +1,201 @@
+<style>
+  {{ 'announcement-bar-landing.css' | inline_asset_content }}
+</style>
+<script src="{{ 'announcement-bar-landing.js' | asset_url }}" defer></script>
+
+{% if section.settings.enable_section %}
+  <style>
+    #shopify-section-{{ section.id }} .clock-item {
+      background-color: {{ section.settings.countdown_bg_color }} !important;
+    }
+    #shopify-section-{{ section.id }} .clock-item .num {
+      color: {{ section.settings.countdown_number_color }} !important;
+    }
+    #shopify-section-{{ section.id }} .coupon-code {
+      color: {{ section.settings.coupon_text_color }} !important;
+    }
+  </style>
+  <div
+    class="announcement-bar-landing"
+    style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};"
+  >
+    <div class="announcement-top-line" style="background-color: {{ section.settings.top_line_color }};"></div>
+    <div class="announcement-bar-landing-container">
+      {% if section.settings.show_countdown %}
+        <div class="announcement-countdown-wrapper">
+          <div
+            class="announcement-countdown landing-countdown"
+            data-landing-countdown
+            data-countdown-type="{{ section.settings.countdown_type }}"
+            {% if section.settings.countdown_type == 'custom' and section.settings.countdown_date != blank %}
+              data-countdown-date="{{ section.settings.countdown_date }}"
+            {% endif %}
+          >
+            <div class="clock-item-wrapper">
+              <div class="clock-item">
+                <span class="num">00</span>
+              </div>
+              <span class="text">dias</span>
+            </div>
+            <div class="clock-item-wrapper">
+              <div class="clock-item">
+                <span class="num">00</span>
+              </div>
+              <span class="text">hrs</span>
+            </div>
+            <div class="clock-item-wrapper">
+              <div class="clock-item">
+                <span class="num">00</span>
+              </div>
+              <span class="text">min</span>
+            </div>
+            <div class="clock-item-wrapper">
+              <div class="clock-item">
+                <span class="num">00</span>
+              </div>
+              <span class="text">seg</span>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="announcement-text-wrapper">
+        {% if section.settings.offer_text != blank %}
+          <div class="announcement-offer-text">
+            {{ section.settings.offer_text }}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if section.settings.coupon_code != blank %}
+        <div class="announcement-coupon-wrapper" data-coupon-code="{{ section.settings.coupon_code }}">
+          <span class="coupon-code">{{ section.settings.coupon_code }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Barra de Anúncios Landing",
+  "tag": "section",
+  "class": "announcement-bar-landing-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_section",
+      "label": "Habilitar Seção",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Cor de Fundo",
+      "default": "#F45218"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Cor do Texto",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "top_line_color",
+      "label": "Cor da Linha Superior",
+      "default": "#FFB6C1"
+    },
+    {
+      "type": "header",
+      "content": "Texto da Oferta"
+    },
+    {
+      "type": "richtext",
+      "id": "offer_text",
+      "label": "Texto da Oferta",
+      "default": "<p><strong>Oferta Relâmpago</strong></p><p>CARNAVAL 2026</p><p><strong>+15% OFF</strong> cupom</p>"
+    },
+    {
+      "type": "header",
+      "content": "Temporizador de Contagem Regressiva"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Mostrar Contagem Regressiva",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "countdown_type",
+      "label": "Tipo de Contador",
+      "options": [
+        {
+          "value": "random",
+          "label": "Aleatório (1-3 horas)"
+        },
+        {
+          "value": "custom",
+          "label": "Data Personalizada"
+        }
+      ],
+      "default": "random"
+    },
+    {
+      "type": "text",
+      "id": "countdown_date",
+      "label": "Data da Contagem Regressiva",
+      "info": "Format: YYYY-MM-DD HH:MM:SS (e.g., 2024-12-31 23:59:59). Apenas usado quando Tipo de Contador é 'Data Personalizada'",
+      "default": "2024-12-31 23:59:59"
+    },
+    {
+      "type": "color",
+      "id": "countdown_bg_color",
+      "label": "Fundo do Contador",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "countdown_number_color",
+      "label": "Cor dos Números",
+      "default": "#f45218"
+    },
+    {
+      "type": "color",
+      "id": "coupon_text_color",
+      "label": "Cor do Texto do Cupom",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Cupom"
+    },
+    {
+      "type": "text",
+      "id": "coupon_code",
+      "label": "Código do Cupom",
+      "default": "CARNA15"
+    },
+    {
+      "type": "image_picker",
+      "id": "copy_icon",
+      "label": "Ícone de Copiar"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Barra de Anúncios Landing",
+      "settings": {
+        "enable_section": true,
+        "show_countdown": true,
+        "countdown_type": "random",
+        "countdown_date": "2024-12-31 23:59:59",
+        "coupon_code": "CARNA15",
+        "offer_text": "<p><strong>Oferta Relâmpago</strong></p><p>CARNAVAL 2026</p><p><strong>+15% OFF</strong> cupom</p>",
+        "countdown_number_color": "#f45218"
+      }
+    }
+  ]
+}
+{% endschema %}

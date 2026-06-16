@@ -1,0 +1,169 @@
+<div
+  x-data="
+    {
+      show: false,
+      message: {
+        type: '',
+        title: '',
+        description: ''
+      }
+    }
+  "
+  x-init="
+    $watch('show', (value) => {
+      if (!value) return;
+      setTimeout(() => show = false, 3000);
+    });
+  "
+  class="notification"
+  @show-notification.window="show = true; message = $event.detail;"
+>
+  <div
+    x-cloak
+    x-show="show"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 transform translate-full"
+    x-transition:enter-end="opacity-100 transform translate-0"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100 transform translate-0"
+    x-transition:leave-end="opacity-0 transform translate-full"
+    class="notification-message opacity-transition translate-transition"
+    role="alert"
+  >
+    <div>
+      <div>
+        <!-- <template x-if="message.type === 'info'">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon text-info-700"
+          >
+            <path d="M11.25 11.25L11.2915 11.2293C11.8646 10.9427 12.5099 11.4603 12.3545 12.082L11.6455 14.918C11.4901 15.5397 12.1354 16.0573 12.7085 15.7707L12.75 15.75M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12ZM12 8.25H12.0075V8.2575H12V8.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </template>
+        <template x-if="message.type === 'success'">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon text-success-700"
+          >
+            <path d="M9 12.75L11.25 15L15 9.75M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </template>
+        <template x-if="message.type === 'warning'">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon text-warning-700"
+          >
+            <path d="M9.75 9.75L14.25 14.25M14.25 9.75L9.75 14.25M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </template>
+        <template x-if="message.type === 'error'">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon text-critical-700"
+          >
+            <path d="M9.75 9.75L14.25 14.25M14.25 9.75L9.75 14.25M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </template> -->
+
+        <div class="flex flex-1 flex-col gap-1">
+          <strong
+            x-text="message.title"
+            :class="
+              {
+                'text-info-700': message.type === 'info',
+                'text-success-700': message.type === 'success',
+                'text-warning-700': message.type === 'warning',
+                'text-critical-700': message.type === 'error'
+              }
+            "
+          ></strong>
+          <p x-text="message.description" class="text-body-sm text-neutral-700"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% style %}
+  .opacity-transition {
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 500ms;
+  }
+
+  .translate-transition {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 500ms;
+  }
+
+  .opacity-0 {
+    opacity: 0;
+  }
+
+  .opacity-100 {
+    opacity: 1;
+  }
+
+  .translate-full {
+    transform: translate(0, 100%);
+  }
+
+  .translate-0 {
+    transform: translate(0, 0%);
+  }
+
+  @media (min-width: 768px) {
+    .translate-full {
+      transform: translate(100%);
+    }
+
+    .translate-0 {
+      transform: translate(0%);
+    }
+  }
+  
+  .notification-message {
+    position: fixed;
+    right: 0px;
+    top: 16px;
+    padding: 8px 16px;
+    background: #fff;
+    z-index: 9999;
+    border: 1px solid #00b45a;
+    color: #00b45a;
+  }
+  
+  .notification-message p {
+    margin: 0;
+  }
+  
+  .notification-message > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .notification-message > div > div {
+    display: flex;
+    gap: 4px;
+    width: 384px;
+  }
+{% endstyle %}

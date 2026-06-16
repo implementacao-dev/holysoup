@@ -1,0 +1,666 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "announcement_bar": {
+      "type": "announcement-bar-landing",
+      "settings": {
+        "enable_section": true,
+        "bg_color": "#e52e89",
+        "text_color": "#ffffff",
+        "top_line_color": "#ffb6c1",
+        "offer_text": "<p><strong>Oferta Relâmpago<br/></strong>com até 15<strong>% OFF</strong></p>",
+        "show_countdown": true,
+        "countdown_type": "random",
+        "countdown_date": "2024-12-31 23:59:59",
+        "countdown_bg_color": "#ffffff",
+        "countdown_number_color": "#e52e89",
+        "coupon_text_color": "#ffffff",
+        "coupon_code": ""
+      }
+    },
+    "header_landing": {
+      "type": "header-landing",
+      "settings": {
+        "bg_color": "#203e89",
+        "show_cart": false,
+        "cart_color": "#1b8ace"
+      }
+    },
+    "hero_section": {
+      "type": "hero-landing",
+      "blocks": {
+        "image_XkNbdJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/HolyMac_MacQueijo_HolyFoods_-_01_1_8d420b14-51ce-471e-b7a4-84bc927d7fb4.png"
+          }
+        },
+        "image_j4dYjm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/HolyMac_MacQueijo_HolyFoods_-_03_1_ccd77d1c-6a87-41d9-828d-374334ff868a.png"
+          }
+        },
+        "image_WWRqVz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/HolyMac_MacQueijo_HolyFoods_-_02_1_b09b3c86-e6aa-465c-89f4-665ec2afb023.png"
+          }
+        },
+        "image_Vtg4JF": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/HolyMac_MacQueijo_HolyFoods_-_06_1_68ae7809-0cf6-482d-b1c6-74efe276d711.png"
+          }
+        },
+        "image_9y34Te": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/HolyMac_MacQueijo_HolyFoods_-_04_1_b0987edf-d95f-4a50-a168-ff9ed8e544df.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_XkNbdJ",
+        "image_j4dYjm",
+        "image_WWRqVz",
+        "image_Vtg4JF",
+        "image_9y34Te"
+      ],
+      "settings": {
+        "social_proof": "4.8 de +50.000 avaliações",
+        "star_color": "#1b8ace",
+        "social_proof_2": "<p><strong>+8.000.000</strong> de refeições vendidas</p>",
+        "headline": "Existe macarrão saudável, proteico e muuuito gostoso:",
+        "title_color": "#203e89",
+        "subheadline": "o Mac Queijo é a prova disso!",
+        "subtitle_color": "#1b8ace",
+        "description": "<p>A versão saudável do Mac n' cheese cremoso, queijudo e com 20g de proteína por porção que transforma sua meta de proteína em puro prazer, sem culpa e sem complicação.</p>",
+        "benefits": "20g de Proteína\n100% Natural\nZero Glúten\nGarantia de 30 dias",
+        "tag_bg_color": "#daecf7",
+        "tag_text_color": "#203e89",
+        "primary_button_text": "Garantir Meu Mac Agora",
+        "primary_button_url": "",
+        "button_bg_color": "#e52e89",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#203e89",
+        "button_hover_bg_color": "#1b8ace",
+        "button_hover_text_color": "#ffffff",
+        "button_hover_shadow_color": "#203e89",
+        "cta_text": "Garantir Meu Mac Agora",
+        "cta_url": "",
+        "mobile_button_text": "Garantir Meu Mac Agora",
+        "mobile_guarantee_text": "Garantia De Satisfação Total 30 Dias",
+        "guarantee_bg_color": "#daecf7",
+        "guarantee_text_color": "#203e89",
+        "swiper_border_color": "#1b8ace"
+      }
+    },
+    "product_flavors": {
+      "type": "product-flavors-landing",
+      "blocks": {
+        "block_3": {
+          "type": "product_flavor",
+          "settings": {
+            "title": "Mac Queijo",
+            "subtitle": "1 Pacote Rende 1 porção de 380g",
+            "badge_1_text": "103 Kcal em 100g",
+            "badge_2_text": "20 de proteína",
+            "benefits": "Queijo provolone de verdade\nFonte de Vitaminas e Minerais\nSaciedade duradoura \nPronto em 15 minutinhos\nPreparo no micro-ondas",
+            "image": "shopify://shop_images/mac_queijo_prato_crop_4d2da3e0-49d2-422b-b6d9-fedf0f20ead6.png",
+            "product": "novo-mac-queijo-lp",
+            "button_text": "Ver Tabela Nutricional",
+            "button_url": ""
+          }
+        },
+        "block_1": {
+          "type": "product_flavor",
+          "disabled": true,
+          "settings": {
+            "title": "Sopa Detox",
+            "subtitle": "1 Pacote Rende 4 porções (1 Litro)",
+            "badge_1_text": "27 Kcal",
+            "badge_2_text": "9% Fibras",
+            "benefits": "Macarrão sem glúten mantém saciedade\nCúrcuma + gengibre aceleram metabolismo\nQuinoa fornece proteína completa",
+            "image": "shopify://shop_images/sopa_detox_foto_prato_1.png",
+            "product": "sopa-detox",
+            "button_text": "Ver Tabela Nutricional",
+            "button_url": ""
+          }
+        },
+        "block_4": {
+          "type": "product_flavor",
+          "disabled": true,
+          "settings": {
+            "title": "Canja da Mamãe",
+            "subtitle": "1 Pacote Rende 4 porções (1 Litro)",
+            "badge_1_text": "40 Kcal",
+            "badge_2_text": "22g de Proteína",
+            "benefits": "Proteína de ervilha: absorção rápida\nArroz + quinoa: energia limpa\nSabor nostálgico: com frango",
+            "image": "shopify://shop_images/canja_da_mamae_foto_prato_1.png",
+            "product": "canja-da-mamae",
+            "button_text": "Ver Tabela Nutricional",
+            "button_url": ""
+          }
+        },
+        "block_2": {
+          "type": "product_flavor",
+          "disabled": true,
+          "settings": {
+            "title": "Sopa Low Carb",
+            "subtitle": "1 Pacote Rende 4 porções (1 Litro)",
+            "badge_1_text": "53 Kcal",
+            "badge_2_text": "30 g de Proteína",
+            "benefits": "Maior proteína: preserva massa magra\nLentilha + quinoa = proteína completa\n23% fibras aceleram intestino",
+            "image": "shopify://shop_images/sopa_low_carb_foto_prato_1.png",
+            "product": "sopa-low-carb",
+            "button_text": "Ver Tabela Nutricional",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_3",
+        "block_1",
+        "block_4",
+        "block_2"
+      ],
+      "settings": {
+        "title": "<p>Conheça o melhor macarrão com queijo de todos</p>",
+        "subtitle": "Por que Mac Queijo é diferente",
+        "benefits": "Preparo no micro-ondas ou fogão\nPronto em 15 minutos\nLivre de aditivos e conservantes\nSem sódio e sal adicionado\nZero Glúten\n20g de proteína\nAjuda ganhar massa muscular",
+        "cta_text": "Garantir Meu Mac Agora",
+        "cta_url": "",
+        "guarantee_text": "Garantia De Satisfação Total 30 Dias",
+        "bg_color": "#ffffff",
+        "title_color": "#203e89",
+        "tag_bg_color": "#daecf7",
+        "tag_text_color": "#203e89",
+        "check_icon_color": "#1b8ace",
+        "card_shadow_color": "#203e89",
+        "card_button_bg_color": "#ffffff",
+        "card_button_text_color": "#203e89",
+        "card_button_shadow_color": "#203e89",
+        "card_button_hover_bg_color": "#1b8ace",
+        "card_button_hover_text_color": "#203e89",
+        "card_button_hover_shadow_color": "#1b8ace",
+        "cta_button_bg_color": "#e52e89",
+        "cta_button_text_color": "#ffffff",
+        "cta_button_shadow_color": "#203e89",
+        "cta_button_hover_bg_color": "#1b8ace",
+        "cta_button_hover_text_color": "#ffffff",
+        "cta_button_hover_shadow_color": "#203e89"
+      }
+    },
+    "kit_selection_faq": {
+      "type": "kit-selection-faq-landing",
+      "blocks": {
+        "kit_option_2": {
+          "type": "kit_option",
+          "settings": {
+            "product": "novo-mac-queijo-lp",
+            "yampi_url": "https://seguro.holyfoods.com.br/b/AADJWZB414GS",
+            "name": "Pack Bronze (4UN)",
+            "original_price": "79.60",
+            "current_price": "75.64",
+            "discount_badge": "5% off",
+            "free_shipping_text": "",
+            "quantity_price_text": "economize R$3.96",
+            "quantity_yield_text": "Rende 4 Refeições"
+          }
+        },
+        "kit_option_L8EkfP": {
+          "type": "kit_option",
+          "settings": {
+            "product": "novo-mac-queijo-lp",
+            "yampi_url": "https://seguro.holyfoods.com.br/b/LAT3YLYF1K0G",
+            "name": "Pack Prata (6UN)",
+            "original_price": "119.40",
+            "current_price": "107.46",
+            "discount_badge": "10% off",
+            "free_shipping_text": "",
+            "quantity_price_text": "economize R$11.94",
+            "quantity_yield_text": "Rende 6 Refeições"
+          }
+        },
+        "kit_option_1": {
+          "type": "kit_option",
+          "settings": {
+            "product": "novo-mac-queijo-lp",
+            "yampi_url": "https://seguro.holyfoods.com.br/b/G8OPX4IBDTS0",
+            "name": "Pack Ouro (10UN)",
+            "original_price": "199.00",
+            "current_price": "169.15",
+            "discount_badge": "15% off",
+            "free_shipping_text": "⭐Mais Vendido",
+            "quantity_price_text": "Economize R$29,85",
+            "quantity_yield_text": "Rende 10 Refeições"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Mac Queijo é saudável mesmo?",
+            "answer": "<p>Sim! E podemos provar:</p><p>O rótulo é limpo: queijo provolone, macarrão sem glúten, proteína vegetal, temperos naturais. Nada de nomes complicados ou ingredientes que você não reconhece.</p><p>É fonte de vitaminas A, B6, B12, C e D, além de zinco e ferro. Nutrição completa em uma refeição que parece indulgência.</p><p>Compare o rótulo do Mac Queijo com qualquer macarrão instantâneo do mercado. A diferença é gritante.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "question": "Como Mac Queijo dura sem conservantes?",
+            "answer": "<p>Cada pacote dura 8 meses. Para garantir que nossos produtos cheguem fresquinhos e sem conservantes, adotamos um cuidadoso processo de desidratação em todos os ingredientes das receitas.</p><p>Este método retira toda a água enquanto preserva os nutrientes essenciais, eliminando a necessidade de aditivos químicos.</p><p>Estamos comprometidos em enviar para a sua casa apenas lotes recém-produzidos, assegurando que cada refeição seja tão fresca e saborosa quanto saudável.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Mac Queijo contém glúten?",
+            "answer": "<p>Não! Garantimos uma alimentação saudável e segura para pessoas celíacas, o Mac Queijo é totalmente livre de glúten e contaminação cruzada.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Como Mac Queijo ajuda na dieta?",
+            "answer": "<p>A proteína aumenta a saciedade além de ajudar a manter a massa muscular, fazendo o corpo gastar mais energia ao longo do dia e com 20g por porção, você bate sua meta sem forçar.</p><p>Já as fibras retardam a digestão e controlam a fome, mantendo você satisfeito por bastante horas, evitando beliscos e exageros.</p><p>O resultado é dieta que você consegue seguir porque é gostosa, prática e que realmente funciona.</p>"
+          }
+        },
+        "faq_7": {
+          "type": "faq",
+          "settings": {
+            "question": "Tem muito sódio?",
+            "answer": "<p>O único sódio que você encontra são dos próprios alimentos. Não adicionamos sódio em nenhuma sopa.</p>"
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Por que Mac Queijo da HolyFoods?",
+            "answer": "<p>É simples: a Holy entrega nutrição de verdade pro seu dia inteiro, sem você precisar pedir delivery ou passar horas na cozinha.</p><p>E não é comida de dieta sem graça. Os Macs são cremosos, os risoto são dignos de  restaurante, e as sopas que confortam e saciam. </p><p>Você vai querer comer todo dia e cabe na sua rotina corrida porque o preparo é rápido no fogão ou micro-ondas. </p><p>Sem ir ao mercado, sem sujar panelas, sem complicação e sem pagar caro por isso. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "kit_option_2",
+        "kit_option_L8EkfP",
+        "kit_option_1",
+        "faq_3",
+        "faq_6",
+        "faq_5",
+        "faq_2",
+        "faq_7",
+        "faq_1"
+      ],
+      "settings": {
+        "bg_color": "#f7f6f1",
+        "action_type": "redirect_yampi",
+        "kit_title": "Escolha seu Kit",
+        "benefits": "Saciedade duradoura e garantida\nRefeição completa em 15 minutos\n20g de proteína por porção\nLivre de aditivos, conservantes e 100% natural",
+        "button_text": "Comprar Agora",
+        "guarantee_text": "Garantia De Satisfação Total 30 Dias",
+        "title_color": "#203e89",
+        "tag_color": "#203e89",
+        "check_icon_color": "#1b8ace",
+        "button_bg_color": "#1b8ace",
+        "button_text_color": "#ffffff",
+        "button_shadow_color": "#203e89",
+        "button_hover_bg_color": "#e52e89",
+        "button_hover_text_color": "#ffffff",
+        "button_hover_shadow_color": "#203e89",
+        "shadow_color": "#203e89",
+        "discount_badge_color": "#1991e2",
+        "discount_badge_active_color": "#e52e89",
+        "meal_price_color": "#1b8ace",
+        "guarantee_bg_color": "#daecf7",
+        "guarantee_text_color": "#203e89",
+        "faq_title": "Você pode querer saber:"
+      }
+    },
+    "strategic_ingredients": {
+      "type": "strategic-ingredients-landing",
+      "blocks": {
+        "block_1": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "shopify://shop_images/muscle_d7cd3f48-6865-4f9c-93c6-2006778df5ce.svg",
+            "icon_svg": "",
+            "title": "<p>Proteína<br/>Completa</p>",
+            "description": "<p>20g por porção que ajudam a ganhar massa muscular.</p>"
+          }
+        },
+        "block_3": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "shopify://shop_images/cheese_1.svg",
+            "icon_svg": "",
+            "title": "<p>Queijo <br/>de Verdade</p>",
+            "description": "<p>Provolone de verdade que garante a cremosidade natural e sabor irresistível.</p>"
+          }
+        },
+        "block_2": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "shopify://shop_images/intestine.svg",
+            "icon_svg": "",
+            "title": "<p>Fibras<br/>Inteligentes</p>",
+            "description": "<p>5,1g mantêm saciedade duradoura e regulam o intestino.</p>"
+          }
+        },
+        "block_4": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "shopify://shop_images/vitamin-c.svg",
+            "icon_svg": "",
+            "title": "<p>Vitaminas<br/>& Minerais</p>",
+            "description": "<p>A, B6, B12, C, D + zinco e ferro completam sua nutrição.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_3",
+        "block_2",
+        "block_4"
+      ],
+      "settings": {
+        "title": "Ingredientes estratégicos para resultados reais.",
+        "bg_color": "#ffffff",
+        "title_color": "#203e89",
+        "card_title_color": "#1991e2",
+        "icon_bg_color": "#203e89",
+        "icon_color": "#1b8ace"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials-landing",
+      "blocks": {
+        "video_qMdEQi": {
+          "type": "video",
+          "disabled": true,
+          "settings": {
+            "video": "shopify://files/videos/copy_078D4019-EAF0-4675-B5EF-39D31B1EF796.MOV"
+          }
+        },
+        "video_pPdFk9": {
+          "type": "video",
+          "disabled": true,
+          "settings": {
+            "video": "shopify://files/videos/holy-soup.mp4"
+          }
+        },
+        "video_UFCU3t": {
+          "type": "video",
+          "disabled": true,
+          "settings": {
+            "video": "shopify://files/videos/tolstoy_79921b6e-6b7d-445a-9ff2-f39cc0e8579c.mp4"
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Salvou meu almoço",
+            "text": "15 minutos no microondas e tá pronto. Cremoso de verdade, não é aquele macarrão seco de pacote. Virou meu almoço de escritório fixo.",
+            "author_name": "Camila R."
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "title": "20g de proteína que seguram a fome",
+            "text": "O que me ganhou foi a saciedade. Como no almoço e não fico beliscando até a janta. E ainda é gostoso, sério.",
+            "author_name": "Rafael M."
+          }
+        },
+        "testimonial_4": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Queijo de verdade",
+            "text": "Achei que ia ser sem graça por ser fit. Errei feio. É queijudo, encorpado, lembra o mac and cheese da gringa só que não pesa.",
+            "author_name": "Larissa F."
+          }
+        },
+        "testimonial_5": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Prático demais pra quem não cozinha",
+            "text": "Sou péssimo na cozinha, mas esse macarrão resolveu minha vida. E o melhor dá pra fazer no microondas, mexe e come.",
+            "author_name": "Bruno T."
+          }
+        },
+        "testimonial_6": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Meu filho nem percebeu que era fit",
+            "text": "Fiz pra ele achando que ia reclamar. Repetiu o prato. Ter 20g de proteína e ser natural é o que eu mais prezo.",
+            "author_name": "Patrícia L."
+          }
+        },
+        "testimonial_7": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Cremosidade nível restaurante",
+            "text": "A textura é o ponto alto. Cremoso, encorpado, sem aquele gosto artificial.",
+            "author_name": "Diego A."
+          }
+        },
+        "testimonial_8": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Saciedade que dura",
+            "text": "O segredo aqui é que enche de verdade. Comi no almoço e cheguei na janta sem aquela fome desesperada.",
+            "author_name": "Fernanda O."
+          }
+        },
+        "testimonial_9": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Virou item fixo da despensa",
+            "text": "Compro sempre em quantidade. Prático, queijudo, com 20g de proteína e segura a fome. Pra correria do dia a dia não tem igual.",
+            "author_name": "Marcos V."
+          }
+        }
+      },
+      "block_order": [
+        "video_qMdEQi",
+        "video_pPdFk9",
+        "video_UFCU3t",
+        "testimonial_2",
+        "testimonial_3",
+        "testimonial_4",
+        "testimonial_5",
+        "testimonial_6",
+        "testimonial_7",
+        "testimonial_8",
+        "testimonial_9"
+      ],
+      "settings": {
+        "rating": "4.8 estrelas",
+        "headline": "<p>Seja um dos 650.000+<br/>Clientes Satisfeitos</p>",
+        "disclaimer": "<p>Avaliações e experiências reais de pessoas reais,<br/>disponíveis em nossa loja e redes sociais</p>",
+        "bg_color": "#d7edfa",
+        "headline_color": "#203e89",
+        "rating_color": "#203e89",
+        "star_color": "#203e89",
+        "card_star_color": "#1991e2",
+        "card_shadow_color": "rgba(0,0,0,0)"
+      }
+    },
+    "cta_section": {
+      "type": "cta-landing",
+      "settings": {
+        "headline": "<p>Quer Se Juntar a Quem<br/>Já Descomplica a Alimentação?</p>",
+        "cta_text": "Sim Eu Quero",
+        "cta_url": "",
+        "bg_color": "#203e89",
+        "text_color": "#ffffff",
+        "button_bg_color": "#ffb90b",
+        "button_text_color": "#000000",
+        "button_shadow_color": "#232323",
+        "button_hover_bg_color": "#00814e",
+        "button_hover_text_color": "#ffffff",
+        "button_hover_shadow_color": "#004028"
+      }
+    },
+    "product_comparison": {
+      "type": "product-comparison-landing",
+      "settings": {
+        "bg_color": "#ffffff",
+        "title": "Holy vs. Outros",
+        "title_color": "#203e89",
+        "subtitle": "<p>Nada de milagres ou mentiras.<br/>Apenas nutrição de verdade.</p>",
+        "table_image": "shopify://shop_images/comparativo_mac_queijo.png",
+        "product_image": "shopify://shop_images/Grupo_330.png",
+        "cta_text": "Garantir Meu Kit Agora",
+        "cta_url": "",
+        "button_bg_color": "#1b8ace",
+        "button_text_color": "#ffffff",
+        "button_shadow_color": "#203e89",
+        "button_hover_bg_color": "#e52e89",
+        "button_hover_text_color": "#ffffff",
+        "button_hover_shadow_color": "#203e89",
+        "guarantee_text": "Garantia De Satisfação Total 30 Dias",
+        "tag_bg_color": "#daecf7",
+        "tag_text_color": "#203e89"
+      }
+    },
+    "expert_endorsement": {
+      "type": "expert-endorsement-landing",
+      "settings": {
+        "person_image": "shopify://shop_images/Captura_de_tela_2026-01-14_211055.png",
+        "quote": "<p>Eu amo que seja prático<br/>sem abrir mão da<br/>qualidade</p>",
+        "testimonial_text": "<p>Como nutricionista, sempre busco opções que combinem praticidade com ingredientes de verdade. A HolyFoods entrega exatamente isso: produtos com bom valor nutricional, feitos com ingredientes limpos, que facilitam a rotina sem comprometer os objetivos. Seja pra quem treina pesado ou pra quem só quer fazer escolhas mais inteligentes no dia a dia, é uma solução que realmente funciona.</p>",
+        "author_name": "Larissa Montijo",
+        "author_title": "Nutricionista e Digital Creator, Alimentação e Lifestyle",
+        "bg_color": "#f5f5f5",
+        "quote_color": "#1991e2",
+        "text_color": "#1a1a1a",
+        "author_name_color": "#1a1a1a",
+        "author_title_color": "#1a1a1a"
+      }
+    },
+    "flash_sale_bar": {
+      "type": "flash-sale-bar-landing",
+      "disabled": true,
+      "settings": {
+        "enable_section": true,
+        "flash_sale_type": "svg",
+        "flash_sale_text": "",
+        "flash_sale_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"151.141\" height=\"83.524\" viewbox=\"0 0 151.141 83.524\">\n  <g id=\"Grupo_306\" data-name=\"Grupo 306\" transform=\"translate(-0.672)\">\n    <path id=\"Caminho_139\" data-name=\"Caminho 139\" d=\"M-16052.129,597.975q-3.437-3.612-3.432-9.913,0-6.274,3.415-10.023a11.849,11.849,0,0,1,9.206-3.744,11.869,11.869,0,0,1,9.057,3.562q3.369,3.57,3.371,9.548v2.173h-18.044v.439a6.348,6.348,0,0,0,1.649,4.552,5.7,5.7,0,0,0,4.357,1.746,6.209,6.209,0,0,0,3.37-.889,4.371,4.371,0,0,0,1.905-2.4h6.542a9.1,9.1,0,0,1-3.846,6.213,13.471,13.471,0,0,1-8.094,2.355Q-16048.7,601.589-16052.129,597.975Zm5.393-16.821a6.313,6.313,0,0,0-1.746,4.053h11.111a6.092,6.092,0,0,0-1.625-4.077,5.125,5.125,0,0,0-3.87-1.563A5.186,5.186,0,0,0-16046.736,581.154Zm-70.812,18.141a8.109,8.109,0,0,1-3.4-6.177h6.961a3.751,3.751,0,0,0,1.523,2.563,5.7,5.7,0,0,0,3.383.9,5.878,5.878,0,0,0,3.188-.743,2.31,2.31,0,0,0,1.157-2.039,1.963,1.963,0,0,0-.73-1.6,6.413,6.413,0,0,0-2.489-1.011l-4.837-1.076q-7.493-1.706-7.493-7.566a7.124,7.124,0,0,1,3-5.994,13.042,13.042,0,0,1,8.033-2.258,12.571,12.571,0,0,1,7.887,2.294,7.514,7.514,0,0,1,3.05,6.1h-6.566a3.3,3.3,0,0,0-1.3-2.489,5.073,5.073,0,0,0-3.164-.906,5.141,5.141,0,0,0-2.969.768,2.376,2.376,0,0,0-1.108,2.039q0,1.907,3.42,2.713l5,1.072a11.842,11.842,0,0,1,5.653,2.55,6.14,6.14,0,0,1,1.722,4.605,7.313,7.313,0,0,1-3.225,6.2,14.006,14.006,0,0,1-8.423,2.343A13.615,13.615,0,0,1-16117.549,599.295Zm24.951-.073a7.308,7.308,0,0,1-2.489-5.714,6.662,6.662,0,0,1,2.636-5.592q2.637-2.022,7.545-2.319l6.592-.39v-1.734a3.541,3.541,0,0,0-1.187-2.831,4.719,4.719,0,0,0-3.208-1.027,5.349,5.349,0,0,0-3.187.881,3.58,3.58,0,0,0-1.5,2.368h-6.522a7.981,7.981,0,0,1,3.3-6.213,13.248,13.248,0,0,1,8.228-2.355,12.63,12.63,0,0,1,8.058,2.392,7.687,7.687,0,0,1,3.025,6.347v17.995h-6.884v-4h-.146a7.694,7.694,0,0,1-3.273,3.233,9.743,9.743,0,0,1-4.711,1.186A9.09,9.09,0,0,1-16092.6,599.221Zm8.764-9.353a5.539,5.539,0,0,0-3.086,1,2.708,2.708,0,0,0-1.089,2.246,2.776,2.776,0,0,0,1.1,2.319,4.649,4.649,0,0,0,2.928.853,6.058,6.058,0,0,0,4.017-1.377,4.357,4.357,0,0,0,1.649-3.48v-1.9Zm17.288,11.16V565.8h7.127v35.23Zm-81.388-33.126a7.46,7.46,0,0,1-2.542-5.828,6.786,6.786,0,0,1,2.692-5.7q2.687-2.071,7.691-2.368l6.726-.4v-1.767a3.626,3.626,0,0,0-1.207-2.891,4.851,4.851,0,0,0-3.276-1.044,5.45,5.45,0,0,0-3.249.9,3.659,3.659,0,0,0-1.531,2.412h-6.648a8.108,8.108,0,0,1,3.363-6.335,13.494,13.494,0,0,1,8.39-2.4,12.878,12.878,0,0,1,8.22,2.441,7.841,7.841,0,0,1,3.087,6.473v18.356h-7.022v-4.085h-.149a7.858,7.858,0,0,1-3.339,3.3,9.937,9.937,0,0,1-4.8,1.21A9.254,9.254,0,0,1-16147.934,567.9Zm8.938-9.539a5.7,5.7,0,0,0-3.147,1.023,2.772,2.772,0,0,0-1.108,2.29,2.834,2.834,0,0,0,1.12,2.364,4.737,4.737,0,0,0,2.985.873,6.171,6.171,0,0,0,4.1-1.409,4.424,4.424,0,0,0,1.682-3.545v-1.945Zm55.535,11.383V554.107a5.968,5.968,0,0,0-1.283-4.073,4.7,4.7,0,0,0-3.725-1.458,5.081,5.081,0,0,0-4,1.633,6.21,6.21,0,0,0-1.458,4.3v15.241h-7.269V533.81h7.147V547.8h.146a8.244,8.244,0,0,1,3.225-3.895,9.5,9.5,0,0,1,5.17-1.36,8.828,8.828,0,0,1,6.859,2.68,10.427,10.427,0,0,1,2.452,7.33v17.186Zm-78.172,0V533.81h7.273v35.936Zm-16.382,0V548.527h-3.639v-5.352h3.639v-2.018q0-3.984,2.051-5.828t6.737-1.844a18.633,18.633,0,0,1,3.712.325v4.808a10.774,10.774,0,0,0-1.97-.15q-3.437,0-3.436,2.936v1.771h5.3v5.352h-5.13v21.219Z\" transform=\"translate(16182.324 -518.065)\" fill=\"#fff\"></path>\n    <path id=\"Caminho_50\" data-name=\"Caminho 50\" d=\"M3.236,38.847H16.18L8.09,62.793c-.647,1.294,1.294,2.589,2.589,1.618l27.506-33.33A3.236,3.236,0,0,0,35.6,25.9H22.652l8.09-23.946C31.389.663,29.447-.632,28.153.339L.647,33.669a3.236,3.236,0,0,0,2.589,5.178Z\" transform=\"matrix(0.995, 0.105, -0.105, 0.995, 56.099, 0)\" fill=\"#ffc51d\"></path>\n  </g>\n</svg>",
+        "content_text": "<p>Garanta [DESCONTO]</p><p>usando o cupom:</p>",
+        "discount_percentage": "10",
+        "copy_button_text": "Copiar Cupom",
+        "coupon_code": "CARNA10",
+        "bg_color": "#e52e89",
+        "text_color": "#ffffff",
+        "fs_button_bg_color": "#ffb90b",
+        "fs_button_text_color": "#232323",
+        "fs_button_shadow_color": "#203e89",
+        "fs_button_hover_bg_color": "#1b8ace",
+        "fs_button_hover_text_color": "#ffffff",
+        "fs_button_hover_shadow_color": "#203e89"
+      }
+    },
+    "final_faq": {
+      "type": "final-faq-landing",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        "faq_7": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Ainda tem dúvidas?",
+        "cta_text": "Não? Experimente Holy Agora",
+        "cta_url": "",
+        "allow_multiple_open": false,
+        "bg_color": "#ffffff",
+        "title_color": "#203e89",
+        "question_color": "#203e89",
+        "divider_color": "#203e89",
+        "cta_bg_color": "#ffb90b",
+        "cta_text_color": "#232323",
+        "cta_shadow_color": "#203e89",
+        "cta_hover_bg_color": "#1b8ace",
+        "cta_hover_text_color": "#ffffff",
+        "cta_hover_shadow_color": "#005234"
+      }
+    }
+  },
+  "order": [
+    "announcement_bar",
+    "header_landing",
+    "hero_section",
+    "product_flavors",
+    "kit_selection_faq",
+    "strategic_ingredients",
+    "testimonials",
+    "cta_section",
+    "product_comparison",
+    "expert_endorsement",
+    "flash_sale_bar",
+    "final_faq"
+  ]
+}

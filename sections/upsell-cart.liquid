@@ -1,0 +1,78 @@
+{% layout 'none' %}
+{% assign cartIds = cart.items | map: 'product_id' | join: ',' %}
+{% assign limitUpsell = 0 %}
+  {% assign count_recomendados = 0 %}
+  {% assign products_ids = cart.items | map: 'product_id' | join: ',' %}
+  <div class="swiper recommend-slider">
+    <div class="swiper-wrapper">
+    {% for item in cart.items %}
+        {% assign handle = item.url | split: "/products/" | last | split: "?" | first  %}
+        {% assign produtoTrigger = all_products[handle] %}
+      
+        {% assign produtoUpsell = produtoTrigger.metafields.shopify--discovery--product_recommendation.complementary_products.value %}
+
+        {% for relatted in produtoUpsell %}
+          {% assign show = true %}
+          {% assign productId = relatted.id %}
+
+          {% if cartIds contains productId %}
+            {% assign show = false %}
+          {% endif %}
+
+          {% if show %}
+          {% assign variantColor = relatted.options_with_values | where: 'name', 'Cor'  %}
+          {% unless products_ids contains relatted.id %}
+            {% if relatted.available and count_recomendados < 7 %}
+                {% assign count_recomendados = count_recomendados | plus: 1 %}
+                <div class="item-recommend swiper-slide" data-handle="{{ relatted.url }}">
+                  <a class="image" href="{{ relatted.url }}" title="{{ relatted.title }}">
+                    <img src="{{ relatted.featured_image | image_url: width: 107 }}" width="107" height="154" alt="{{ relatted.title }}" class="recommend-item-image">
+                  </a>
+                  <div class="infoProduct">
+                    {% comment %}
+                     <span class="color-selected">{% if variantColor.size < 2 %}{{ variantColor[0].values }}{% endif %}</span>
+                    {% endcomment %}
+                     <div class="info-product-upsell">
+                       <h4><a href="{{ relatted.url }}" title="{{ relatted.title }}">{{ relatted.title }}</a></h4>
+                       <span class="price">{{ relatted.price | money }}</span>
+                     </div>
+                    
+                     {% comment %}
+                     <div class="variants-product-selects">
+                      {% if relatted.variants.size > 1 %}
+                        {% for option in relatted.options_with_values %}
+                         <select {% unless option.values.size > 1 %}style="display: none"{% endunless %} id="ProductSelect-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+                            {% if option.values.size < 2 %}
+                              {% for value in option.values %}
+                                <option value="{{ value }}" {% if forloop.first %}selected="selected"{% endif %}>
+                                   {{ value }}
+                                </option>
+                              {% endfor %}
+                            {% else %}
+                             <option disabled selected>{{ option.name }}</option>
+                              {% for value in option.values %}
+                              <option value="{{ value }}">
+                                 {{ value }}
+                              </option>
+                              {% endfor %}
+                            {% endif %}
+                         </select>
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+                    {% endcomment %}
+                     <!--add to cart-->
+                     <form class="upsell-form" method="post" action="/cart/add">
+                        <input type="hidden" name="id" class="variantIdAddCart" value="{{ relatted.selected_or_first_available_variant.id }}">
+                        <input type="hidden" min="1" id="quantity" name="quantity" value="1">
+                        <input type="submit" add-cart-upsell value="ADICIONAR" class="recommend-btn-add" {% if relatted.variants.size > 1 %}disabled="disabled"{% endif %}>
+                     </form>
+                  </div>
+               </div>
+            {% endif %}
+          {% endunless %}
+          {% endif %}
+      {% endfor %}
+    {% endfor %}
+    </div>
+ </div>

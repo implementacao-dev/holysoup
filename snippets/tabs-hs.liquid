@@ -1,0 +1,308 @@
+{% assign datadescription = product.metafields.custom.descri_o_personalizada.value %}
+<style>
+  .description-content h4 {
+    color: {{ colorFont | default: "#fff" }};
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  .description-content p {
+    color: {{ colorFont | default: "#fff" }};
+    line-height: 1.6;
+  }
+  .tijela-container {
+    position: relative;
+    padding: 0;
+  }
+  
+  .tijela-container .tijela {
+    display: block;
+  }
+  
+  .tijela-container::after {
+    width: 100%;
+    height: calc(100% - 250px);
+    display: block;
+    content: '';
+    position: absolute;
+    top: 250px;
+    background-color: {{ datadescription.cor_destaque | default: "#ff7a50" }};
+    border-radius: 27px;
+    z-index: -1;
+    left: 0;
+  }
+
+  .tabs-content ul {
+    list-style: none;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f7f7;
+    width: fit-content;
+    margin: 0 auto;
+    border-radius: 30px;
+    margin-top: 20px;
+  }
+
+  .tabs-header > ul {  
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE e Edge */
+    -webkit-overflow-scrolling: touch; /* iOS smooth scrolling */
+  }
+
+  .tabs-header > ul::-webkit-scrollbar {
+    display: none; /* Chrome, Safari e Opera */
+  }
+
+  .tabs-header ul li p{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tabs-header button {
+    background: #f6f6f6;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    white-space: nowrap;
+  }
+
+  .header-tab {
+    text-align: center;
+    margin: 30px 0;
+  }
+  
+  .header-tab h3 {
+    margin: 10px 0;
+    color: {{ product.metafields.custom.cor_de_destaque.value | default: '#ff7a50' }};
+    font-weight: 400;
+    font-size: 22px;
+  }
+  
+  .header-tab p {
+    margin: 0;
+  }  
+
+  .tijela-container > img {
+    width: 350px;
+    margin: 0;
+    display: block;
+    max-width: 30%;
+  }
+
+  .description-content {
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .tijela-container-texts .description-content + img {
+    border-bottom-left-radius: 27px;
+    border-bottom-right-radius: 27px;
+    margin-top: 25px;
+    max-width: 48%;
+  }
+
+  @media (min-width: 1024px){
+    .tijela-container {
+      display: flex;
+    }
+
+    .tijela-container::after {
+        width: calc(100% - 250px);
+        height: 100%;
+        top: 0;
+        left: 200px;
+        right: 0;
+    }
+
+    .tijela-container-texts {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      max-width: calc(100% - 460px);
+      margin-right: auto;
+      margin-left: 20px;
+    }
+    
+    .description-content h4 {
+      margin: 0;
+    }
+
+    .tijela-container-texts .description-content + img {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      margin-top: 0;
+    }
+
+    .nice-select.open .list {
+      box-shadow: 6px 7px 12px 1px #00000012 !important;
+    }
+  }
+
+  @media (max-width: 1024px){
+    .tabs-content ul {
+      grid-template-columns: 1fr;
+      gap: 5px;
+    }
+
+    .tab-description-content .header-tab {
+      margin-bottom: 0;
+    }
+
+    .tijela-container-texts .description-content + img{
+      min-width: 100%
+    }
+    .tijela-container > img{
+      margin: 0 auto;
+      max-width: 350px;
+      margin-bottom: -30px;
+      margin-top: 20px;
+    }
+  }
+
+  .tabs-header button {
+    color: #000;
+    font-size: 12px;
+  }
+
+  .tabs-header button.active {
+    font-weight: 600;
+    background: #ff7a50;
+    color: #FFF;
+  }
+
+  .tab-info-content h3 {
+    color: #3c3c3c;
+    font-size: 18px;
+    letter-spacing: 0;
+  }
+
+  .tab-info-content img {
+    margin: 0 auto;
+  }
+
+  .productView-bottom .divider.top {
+    z-index: 0;
+  }
+
+  .tab-info-content img {
+    width: 800px;
+    max-width: 100%;
+  }
+
+  .content-tab.tab-info-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px 0 40px;
+  }
+
+  .image-ingredientes {
+    width: 650px;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 5px !important;
+    overflow: hidden;
+  }
+</style>
+
+<div class="tabs-hs-product">
+  <div class="tabs-header">
+      <ul>
+        <li><button class="active" data-tab data-target="#description-tab">Descrição</button></li>
+        {% if product.metafields.disco.tablepress %}<li><button data-tab data-target="#info-tab">Info. Nutricional</button></li>{% endif %}
+        {% if product.metafields.custom.ingredientes %}<li><button data-tab data-target="#ingredient-tab">Ingredientes</button></li>{% endif %}
+      </ul>
+      <div class="tabs-content">
+        <div class="tab-item" id="description-tab">
+          <div class="content-tab tab-description-content">
+            {% if datadescription.titulo != blank %}
+              <div class="header-tab">
+                <h3>{{ datadescription.titulo }}</h3>
+                <p>{{ datadescription.subtitulo }}</p>
+              </div>
+            {% endif %}
+
+            <div class="tijela-container">
+              {% if datadescription.imagem_destaque %}
+              <img src="{{ datadescription.imagem_destaque | image_url: width: 400 }}">
+              {% endif %}
+              <div class="tijela-container-texts">
+                {% unless datadescription.descricao %}
+                  <style>
+                    .tijela-container::after {
+                      display: none;
+                    }
+
+                    .tijela-container-texts {
+                      margin: 0 auto;
+                      margin-bottom: 40px;
+                    }
+
+                    .description-content p {
+                      color: #000;
+                    }
+                  </style>
+                {% endunless %}
+                <div class="description-content">
+                  {% if datadescription.titulo_chamada %}<h4>{{ datadescription.titulo_chamada }}</h4>{% endif %}
+                  <p>{{ datadescription.descricao | default: product.description }}</p>
+                </div>
+                {% if datadescription.imagem_ingredientes %}
+                <img src="{{ datadescription.imagem_ingredientes | image_url: width: 900 }}">
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% if product.metafields.disco.tablepress %}
+        <div class="tab-item" id="info-tab" style="display: none">
+          <div class="content-tab tab-info-content">
+            <div class='TablePress' data-table='{{ product.metafields.disco.tablepress }}'></div>
+            <p><b>{{ product.metafields.custom.alergenos.value }}</b></p>
+            <p>{{ product.metafields.custom.modo_de_conservacao.value }}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% if product.metafields.custom.ingredientes %}
+        <div class="tab-item" id="ingredient-tab" style="display: none">
+          <div class="content-tab tab-info-content">
+            <p>{{ product.metafields.custom.ingredientes.value | replace: "Ingredientes:", "<b>Ingredientes: </b>" }}</p>
+            <p><b>{{ product.metafields.custom.alergenos.value }}</b></p>
+            <p>{{ product.metafields.custom.modo_de_conservacao.value }}</p>
+            <div class="image-ingredientes"><img src="{{ product.metafields.custom.imagem_aba_ingredientes | image_url: width: 900 }}"/></div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('[data-tab]').click(function(){
+      var target = $(this).data('target');
+      var buttons = $('.tabs-header').find('button');
+      var tabs = $('.tab-item');
+
+      tabs.hide();
+      buttons.removeClass('active')
+      $(target).show();
+      $(this).addClass('active')
+    })
+  })
+</script>

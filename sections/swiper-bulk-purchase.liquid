@@ -1,0 +1,2632 @@
+{%- style -%}
+  .swiper-bulk-purchase {
+    padding: 60px 0;
+    overflow: hidden;
+    border-radius: 30px;
+  }
+
+  @media (max-width: 767px) {
+    .swiper-bulk-purchase {
+      border-radius: 0;
+    }
+  }
+
+  .swiper-bulk-purchase .section-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .swiper-bulk-purchase .swiper-container {
+    padding: 0 15px;
+  }
+
+  .swiper-bulk-purchase .swiper-wrapper {
+    display: flex;
+    gap: 15px;
+  }
+
+  .swiper-bulk-purchase .swiper-container.swiper-initialized .swiper-wrapper {
+    gap: 0;
+  }
+
+
+  @media (min-width: 768px) {
+    .swiper-bulk-purchase .swiper-wrapper {
+      gap: 20px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .swiper-bulk-purchase .swiper-wrapper {
+      gap: 25px;
+    }
+  }
+
+  .swiper-bulk-purchase .swiper-slide {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    width: calc(90% - 10px);
+  }
+
+  @media (min-width: 480px) {
+    .swiper-bulk-purchase .swiper-slide {
+      max-width: calc(50% - 10px);
+    }
+  }
+  @media (min-width: 768px) {
+    .swiper-bulk-purchase .swiper-slide {
+      max-width: calc(33.333% - 10px);
+    }
+  }
+  @media (min-width: 1024px) {
+    .swiper-bulk-purchase .swiper-slide {
+      max-width: calc(25% - 15px);
+    }
+  }
+
+  @media (min-width: 968px) {
+    .swiper-bulk-purchase .swiper-slide:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .swiper-bulk-purchase .slide-image {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    height: auto;
+  }
+
+  .bulk-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  .bulk-modal-overlay.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: all;
+  }
+
+  .bulk-modal-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    background: #fffef5;
+    z-index: 100000;
+    border-radius: 21px;
+    transform: translateY(100%);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+    font-family: 'SF Pro Display', sans-serif;
+  }
+
+  .bulk-modal-container.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .bulk-product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  @media (min-width: 500px) {
+    .bulk-product-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .bulk-modal-container {
+      max-width: 900px;
+      width: 90%;
+      height: 95dvh;
+      bottom: auto;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -40%);
+      border-radius: 21px;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .bulk-modal-container.active {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .bulk-product-grid {
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (min-width: 991px) {
+    .bulk-product-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .bulk-collection-title {
+    font-family: 'HatchwayUltraCondensed', sans-serif;
+    font-weight: 600;
+    font-size: 21px;
+    color: #afaa7a;
+    border: 1px solid #afaa7a;
+    border-radius: 21px;
+    text-align: center;
+    padding: 10px 20px;
+    display: block;
+    margin: 0 0 10px 0;
+    width: 100%;
+    text-transform: uppercase;
+  }
+
+  .bulk-collection-title-container {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .bulk-modal-close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    z-index: 100;
+    width: 30px;
+    height: 30px;
+    background: #005234;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bulk-modal-close svg {
+    width: 13px;
+    height: 13px;
+    fill: currentColor;
+  }
+
+  .bulk-modal-header {
+    padding: 20px 20px 0 20px;
+    z-index: 60;
+  }
+
+  .bulk-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 20px 20px 20px;
+    background: #fffef5;
+    position: relative;
+  }
+
+  /* Progress Bar */
+  .bulk-progress-bar-container {
+    width: 100%;
+    margin: 0;
+  }
+
+  .bulk-next-tier-info {
+    font-size: 19px; /* 14pt */
+    font-family: 'SF Pro Display', sans-serif;
+  }
+
+  .bulk-next-tier-info strong {
+    text-transform: none;
+    font-weight: 900;
+  }
+
+  .bulk-progress-bar {
+    height: 10px;
+    background: rgba(175, 170, 122, 0.37); 
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    margin: 5px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bulk-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #afaa7a;
+    transition: width 0.3s ease, background-color 0.3s ease;
+  }
+
+  .bulk-progress-wrapper {
+    position: relative;
+    z-index: 50;
+  }
+
+  .bulk-savings-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f9f8ea;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: none;
+    transition: all 0.3s ease;
+    height: 90px;
+  }
+
+  .bulk-savings-content {
+    width: 500px;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: left;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 5px;
+  }
+
+  .bulk-active-wrapper {
+    flex: 1;
+  }
+
+  .bulk-savings-text {
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+  }
+
+  .level-zero-msg,
+  .level-max-msg {
+    text-align: center;
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    color: #1a1a1a;
+    width: 100%;
+    padding: 30px 0;
+  }
+
+  .level-max-msg,
+  .level-max-msg .bulk-savings-amount,
+  .level-max-msg .savings-prefix {
+    color: #344f53;
+  }
+
+  .level-max-msg .bulk-tier-badge-gem {
+    background-position: left top;
+    background-size: initial;
+  }
+
+  .bulk-savings-header.is-max-tier {
+    background-size: cover;
+  }
+
+  .bulk-savings-amount {
+    font-size: 23px;
+    font-weight: 900;
+    display: inline-block;
+    margin-left: 3.5px;
+  }
+
+  .savings-prefix {
+    font-size: 19px; 
+  }
+
+  .bulk-tier-badge-gem {
+    --s: 76px; 
+    width: var(--s);
+    height: var(--s);
+    transform: rotate(8deg);
+    background-color: #c15c30;
+    --g: /calc(var(--s) * 0.279) calc(var(--s) * 0.279) radial-gradient(50% 50%, #000 99%, #0000 101%) no-repeat;
+    -webkit-mask: calc(50% + var(--s) * 0.26) calc(50% + var(--s) * 0.204) var(--g),
+      calc(50% + var(--s) * 0.003) calc(50% + var(--s) * 0.33) var(--g),
+      calc(50% + var(--s) * -0.256) calc(50% + var(--s) * 0.208) var(--g),
+      calc(50% + var(--s) * -0.323) calc(50% + var(--s) * -0.071) var(--g),
+      calc(50% + var(--s) * -0.146) calc(50% + var(--s) * -0.296) var(--g),
+      calc(50% + var(--s) * 0.141) calc(50% + var(--s) * -0.299) var(--g),
+      calc(50% + var(--s) * 0.321) calc(50% + var(--s) * -0.076) var(--g),
+      radial-gradient(calc(var(--s) * 0.423), #000 99%, #0000 101%) subtract,
+      calc(50% + var(--s) * 0.237) calc(50% + var(--s) * 0.481) var(--g),
+      calc(50% + var(--s) * -0.229) calc(50% + var(--s) * 0.486) var(--g),
+      calc(50% + var(--s) * -0.522) calc(50% + var(--s) * 0.124) var(--g),
+      calc(50% + var(--s) * -0.423) calc(50% + var(--s) * -0.331) var(--g),
+      calc(50% + var(--s) * -0.005) calc(50% + var(--s) * -0.537) var(--g),
+      calc(50% + var(--s) * 0.417) calc(50% + var(--s) * -0.338) var(--g),
+      calc(50% + var(--s) * 0.524) calc(50% + var(--s) * 0.115) var(--g);
+    mask: calc(50% + var(--s) * 0.26) calc(50% + var(--s) * 0.204) var(--g),
+      calc(50% + var(--s) * 0.003) calc(50% + var(--s) * 0.33) var(--g),
+      calc(50% + var(--s) * -0.256) calc(50% + var(--s) * 0.208) var(--g),
+      calc(50% + var(--s) * -0.323) calc(50% + var(--s) * -0.071) var(--g),
+      calc(50% + var(--s) * -0.146) calc(50% + var(--s) * -0.296) var(--g),
+      calc(50% + var(--s) * 0.141) calc(50% + var(--s) * -0.299) var(--g),
+      calc(50% + var(--s) * 0.321) calc(50% + var(--s) * -0.076) var(--g),
+      radial-gradient(calc(var(--s) * 0.423), #000 99%, #0000 101%) subtract,
+      calc(50% + var(--s) * 0.237) calc(50% + var(--s) * 0.481) var(--g),
+      calc(50% + var(--s) * -0.229) calc(50% + var(--s) * 0.486) var(--g),
+      calc(50% + var(--s) * -0.522) calc(50% + var(--s) * 0.124) var(--g),
+      calc(50% + var(--s) * -0.423) calc(50% + var(--s) * -0.331) var(--g),
+      calc(50% + var(--s) * -0.005) calc(50% + var(--s) * -0.537) var(--g),
+      calc(50% + var(--s) * 0.417) calc(50% + var(--s) * -0.338) var(--g),
+      calc(50% + var(--s) * 0.524) calc(50% + var(--s) * 0.115) var(--g);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'HatchwayUltraCondensed', sans-serif;
+    font-weight: 400;
+    font-size: 28px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .bulk-tier-badge-gem strong {
+    font-weight: 600;
+  }
+
+  .bulk-modal-footer {
+    padding: 10px 24px 24px 24px;
+    background: #f9f8ea;
+    border-top: 1px solid #eee;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+    font-family: 'SF Pro Display', sans-serif;
+  }
+
+  .bulk-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    white-space: nowrap;
+  }
+
+  .bulk-summary-total {
+    font-size: 16px;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .bulk-old-price {
+    text-decoration: line-through;
+    color: #1a1a1a;
+    opacity: 0.6;
+    font-size: 16px;
+  }
+
+  .bulk-summary-prices {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .bulk-total-price {
+    font-size: 24px;
+    font-weight: 900;
+    color: #1a1a1a;
+  }
+
+  .bulk-summary-right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .bulk-summary-items {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  .bulk-view-list {
+    background: transparent;
+    border: 1px solid #7d8b5c;
+    color: #1a1a1a;
+    padding: 8px 15px;
+    border-radius: 999px;
+    font-size: 17px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+  }
+
+  .bulk-continue-shopping {
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    color: #ff5017;
+    display: block;
+    width: 100%;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+
+  .bulk-continue-shopping:hover {
+    opacity: 1;
+  }
+
+  .bulk-view-list .bulk-arrow-icon {
+    width: 15.33px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: -3px;
+  }
+
+  .bulk-view-list .bulk-arrow-icon::after {
+    content: '';
+    margin-top: -3px;
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid rgb(123, 202, 12);
+    border-bottom: 2px solid rgb(123, 202, 12);
+    transform: rotate(45deg);
+  }
+
+  .bulk-buy-btn {
+    width: 100%;
+    height: 80px; 
+    background: #ff5017;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-size: 32px; 
+    font-weight: 400;
+    font-family: 'HatchwayUltraCondensed', sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 80, 23, 0.3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 767px) {
+    .bulk-buy-btn {
+      height: 50px;
+      font-size: 24px;
+    }
+  }
+
+  .bulk-buy-btn .bulk-btn-text {
+    transition: opacity 0.3s ease;
+  }
+
+  .bulk-buy-btn .bulk-btn-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bulk-buy-btn.loading {
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .bulk-buy-btn.loading .bulk-btn-text {
+    opacity: 0;
+  }
+
+  .bulk-buy-btn.loading .bulk-btn-loader {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .bulk-buy-btn.loading svg {
+    width: 28px;
+    height: 28px;
+    color: #fff;
+    animation: bulk-spin 2s linear infinite;
+  }
+  .bulk-buy-btn.loading svg circle {
+    stroke: currentColor;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: bulk-dash 1.5s ease-in-out infinite;
+    stroke-linecap: round;
+  }
+  @keyframes bulk-spin {
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes bulk-dash {
+    0% { stroke-dasharray: 1, 200; stroke-dashoffset: 0; }
+    50% { stroke-dasharray: 90, 200; stroke-dashoffset: -35px; }
+    100% { stroke-dasharray: 90, 200; stroke-dashoffset: -124px; }
+  }
+
+  .bulk-buy-btn:hover {
+    background: #e64514;
+    transform: translateY(-2px);
+  }
+
+  .bulk-buy-btn:disabled,
+  .bulk-buy-btn[disabled] {
+    box-shadow: none;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  .bulk-tier-badge-gem.fallback {
+    background: #f0f0f0;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .bulk-next-tier-info {
+    font-size: 13px;
+    color: #1a1a1a;
+    font-weight: 500;
+  }
+
+  .bulk-current-tier-display {
+    text-align: center;
+    padding: 30px 20px 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 31px;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-family: 'HatchwayUltraCondensed', sans-serif;
+    color: #1a1a1a;
+    background: #fffef5;
+  }
+
+  .bulk-current-tier-display strong {
+    font-weight: 600;
+  }
+
+  .bulk-pct-badge {
+    background-color: transparent;
+    color: #1a1a1a;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 31px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .bulk-gift-card {
+    background: #005234;
+    border-radius: 21px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    border: 4px solid #005234;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  }
+  .bulk-gift-card.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .bulk-gift-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    padding: 0;
+    transition: background 0.2s;
+  }
+  .bulk-gift-close:hover {
+    background: rgba(0, 0, 0, 0.4);
+  }
+  .bulk-gift-close svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2.5;
+  }
+
+  .bulk-inline-gift {
+    display: none; 
+    background: #005234;
+    border-radius: 21px;
+    padding: 5px;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+    border: 4px solid #005234;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    margin: 0 0 10px 0;
+  }
+  .bulk-inline-gift.show {
+    display: flex;
+  }
+  .bulk-inline-gift .bulk-gift-image {
+    width: 80px;
+    height: 80px;
+  }
+  .bulk-inline-gift .bulk-gift-status {
+    font-size: 21px;
+  }
+  .bulk-inline-gift .bulk-gift-name {
+    font-size: 21px;
+  }
+  .bulk-inline-gift .bulk-gift-icon {
+    --s: 70px;
+  }
+
+  .bulk-gift-image {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 5px;
+    flex-shrink: 0;
+  }
+
+  .bulk-gift-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .bulk-gift-info {
+    flex: 1;
+  }
+
+  .bulk-gift-status {
+    font-weight: 600;
+    color: #7bca0c;
+    font-size: 21px;
+    font-family: 'HatchwayUltraCondensed', sans-serif;
+    margin-bottom: 2px;
+  }
+
+  .bulk-gift-name {
+    font-size: 21px;
+    font-weight: 600;
+    color: #fff;
+    font-family: 'HatchwayUltraCondensed', sans-serif;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+
+  .bulk-gift-icon {
+    --s: 70px;
+    width: var(--s);
+    height: var(--s);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .bulk-gift-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: none;
+  }
+  .bulk-product-item {
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 207.5px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  @media (hover: hover) {
+    .bulk-product-item:hover {
+      border-color: #ff5017;
+    }
+  }
+  .bulk-product-item.is-hover,
+  .bulk-product-item.qty-active {
+    border-color: #ff5017;
+  }
+  .bulk-product-info {
+    padding: 8px 12px;
+    display: flex;
+    gap: 5px;
+    transition: all 0.3s ease;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    background: #f2f1da;
+    align-items: center;
+  }
+  .bulk-product-info h4 {
+    font-family: 'SF Pro Display', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.2;
+    padding: 0;
+    display: inline-block;
+    width: 50%;
+  }
+  .swiper-bulk-purchase .kit-selection-title {
+    font-size: 30px;
+    font-weight: 900;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    text-align: center;
+    margin-bottom: 24px;
+    color: #686868;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .bulk-product-price {
+    font-size: 16px;
+    font-weight: 900;
+    color: #1a1a1a;
+    margin: 0;
+    flex-shrink: 1;
+    width: 50%;
+    text-align: right;
+  }
+
+  @media (max-width: 767px) {
+    .bulk-gift-icon svg {
+      width: 60px;
+      height: 60px;
+    }
+    .bulk-gift-name,
+    .bulk-gift-status {
+      font-size: 21px;
+    }
+    .bulk-product-info h4 {
+      font-size: 13px;
+    }
+    .bulk-product-price {
+      font-size: 14px;
+    }
+    .bulk-current-tier-display {
+      font-size: 22px;
+      gap: 5px;
+      padding-top: 15px;
+    }
+    .bulk-pct-badge {
+      font-size: 22px;
+      padding: 7.5px 15px;
+    }
+    .bulk-summary-total,
+    .bulk-old-price,
+    .bulk-summary-items,
+    .bulk-view-list {
+      font-size: 14px; 
+    }
+    .bulk-total-price {
+      font-size: 18px;
+    }
+    .bulk-summary-prices {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+    .bulk-summary-total {
+      gap: 5px;
+    }
+    .bulk-summary,
+    .bulk-summary-right {
+      gap: 5px;
+    }
+    .bulk-summary {
+      margin-bottom: 10px;
+    }
+    .bulk-modal-header {
+      padding: 10px 10px 0 10px;
+    }
+    .bulk-modal-body {
+      padding: 0 10px 10px 10px;
+    }
+    .bulk-modal-footer {
+      padding: 10px;
+    }
+    .bulk-savings-amount {
+      font-size: 18px;
+    }
+    .savings-prefix {
+      font-size: 14px;
+    }
+    .level-zero-msg,
+    .level-max-msg {
+      font-size: 14px;
+    }
+    .bulk-selected-list.active {
+      padding: 0 0 5px 0;
+    }
+  }
+  .bulk-product-image {
+    width: 100%;
+    background: #f0f0f0;
+    overflow: hidden;
+    margin: 0;
+    flex-shrink: 0;
+  }
+  .bulk-product-image img {
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+
+  .bulk-product-info h4,
+  .bulk-product-info .bulk-product-price {
+    transition: opacity 0.3s ease;
+  }
+  .bulk-qty-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    z-index: 5;
+    width: 100%;
+  }
+
+  .bulk-product-item.is-hover .bulk-qty-selector,
+  .bulk-product-item.qty-active .bulk-qty-selector {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%);
+  }
+  .bulk-product-item.is-hover .bulk-product-info h4,
+  .bulk-product-item.is-hover .bulk-product-info .bulk-product-price,
+  .bulk-product-item.qty-active .bulk-product-info h4,
+  .bulk-product-item.qty-active .bulk-product-info .bulk-product-price {
+    opacity: 0;
+  }
+
+  .bulk-qty-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #1a1a1a;
+    background: transparent;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a1a1a;
+    transition: all 0.2s ease;
+  }
+  @media (min-width: 968px) {
+    .bulk-qty-btn:hover {
+      background-color: #ff5017;
+      border-color: #ff5017;
+      color: #fff;
+    }
+    .bulk-qty-btn:hover svg {
+      color: #fff;
+    }
+  }
+  .bulk-qty-btn svg {
+    color: #1a1a1a;
+    fill: currentColor;
+    width: 14px;
+    height: 14px;
+    transition: color 0.2s ease;
+  }
+  .bulk-qty-input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    font-weight: 700;
+    font-size: 18px;
+    background: transparent;
+  }
+
+  .bulk-selected-list {
+    display: flex; 
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    gap: 12px;
+    align-items: center;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  }
+  .bulk-selected-list.active {
+    max-height: 100px; 
+    opacity: 1;
+    pointer-events: auto;
+    padding: 0 0 10px 0;
+    overflow-x: auto;
+  }
+  .bulk-selected-list::-webkit-scrollbar {
+    height: 4px;
+  }
+  .bulk-selected-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .bulk-selected-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+  .bulk-selected-item {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    background: #fff;
+    border-radius: 100%;
+    border: 1px solid #eee;
+    padding: 2px;
+    overflow: visible;
+  }
+  .bulk-selected-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+  .bulk-selected-qty {
+    position: absolute;
+    top: 0px;
+    left: 0px; 
+    background: #ff5017;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fffef5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+  .bulk-selected-remove {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: rgba(128, 128, 128, 0.6);
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    z-index: 2;
+    transition: background 0.2s;
+  }
+  .bulk-selected-remove:hover {
+    background: rgba(128, 128, 128, 0.9);
+  }
+  .bulk-selected-remove svg {
+    width: 10px;
+    height: 10px;
+    stroke: currentColor;
+    stroke-width: 2.5;
+  }
+  .swiper-bulk-purchase-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #005234;
+    text-align: center;
+    font-family: 'HatchwayUltraCondensed', sans-serif;
+  }
+  .swiper-bulk-purchase-title p {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  @media (min-width: 768px) {
+    .swiper-bulk-purchase-title {
+      font-size: 36px;
+    }
+  }
+
+  .gift-progress-badges-modal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .bulk-gift-card-progress-modal {
+    background: #fffef5;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1a1a1a;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    border: 1px solid #7bca0c;
+    border-radius: 12px;
+    padding: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .bulk-gift-card-progress-modal.is-locked {
+    background: #fafafa;
+    border-color: transparent;
+  }
+
+  .bulk-gift-image-progress-modal {
+    width: 48px;
+    height: 48px;
+    background: #7bca0c;
+    border-radius: 8px;
+    flex-shrink: 0;
+    position: relative;
+    transition: background 0.3s ease;
+  }
+
+  .bulk-gift-card-progress-modal.is-locked .bulk-gift-image-progress-modal {
+    background: transparent;
+  }
+
+  .bulk-gift-image-progress-modal img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+  }
+
+  .bulk-gift-card-progress-modal.is-locked .bulk-gift-image-progress-modal img {
+    filter: blur(.5px);
+  }
+
+  .bulk-gift-image-progress-modal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ccc79b;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    pointer-events: none;
+  }
+
+  .bulk-gift-card-progress-modal.is-locked .bulk-gift-image-progress-modal::after {
+    opacity: 0.7;
+  }
+
+  .bulk-gift-info-progress-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .bulk-gift-card-progress-modal.is-unlocked .bulk-gift-info-progress-modal {
+      flex-direction: row;
+      align-items: center;
+      gap: 3px;
+    }
+  }
+
+  .bulk-gift-status-progress-modal {
+    font-size: 16px;
+    line-height: 1.1;
+    color: #1a1a1a;
+  }
+
+  .status-txt strong {
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
+  .bulk-gift-name-progress-modal {
+    font-size: 16px;
+    line-height: 1.1;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 767px) {
+    .bulk-gift-status-progress-modal {
+      font-size: 13px;
+    }
+    .bulk-gift-name-progress-modal {
+      font-size: 13px;
+    }
+  }
+
+  .bulk-gift-progress-bar-modal {
+    width: 100%;
+    height: 10px;
+    background: #cccccc;
+    border-radius: 5px;
+    margin-top: 2px;
+    overflow: hidden;
+    display: none;
+  }
+
+  .bulk-gift-card-progress-modal.is-locked .bulk-gift-progress-bar-modal {
+    display: block;
+  }
+
+  .bulk-gift-progress-fill-modal {
+    height: 100%;
+    width: 0%;
+    background-color: #7bca0c;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+  }
+
+  .bulk-gift-lock-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .bulk-gift-card-progress-modal.is-locked .bulk-gift-lock-icon {
+    opacity: 1;
+  }
+
+  .bulk-gift-lock-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    stroke: transparent;
+  }
+
+    color: #1a1a1a;
+    line-height: 1.1;
+  }
+
+  @media (max-width: 767px) {
+    .gift-progress-badges-modal {
+      gap: 6px;
+      margin-bottom: 15px;
+    }
+    .bulk-gift-card-progress-modal {
+      padding: 5px;
+    }
+    .bulk-gift-info-progress-modal {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      white-space: normal;
+    }
+    .bulk-gift-status-progress-modal,
+    .bulk-gift-name-progress-modal {
+      font-size: 13px;
+    }
+    .bulk-gift-image-progress-modal {
+      width: 40px;
+      height: 40px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="swiper-bulk-purchase container container-1370">
+  {%- if section.settings.rich_title != blank -%}
+    <div class="swiper-bulk-purchase-title">
+      {{ section.settings.rich_title }}
+    </div>
+  {%- endif -%}
+
+  <div class="swiper-container swiper-bulk">
+    <div class="swiper-wrapper">
+      {%- for block in section.blocks -%}
+        <div class="swiper-slide" data-index="{{ block.settings.collection_index }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 600 | image_tag: class: 'slide-image', loading: 'lazy' }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'slide-image' }}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <div class="bulk-modal-overlay"><span></span></div>
+  <div class="bulk-modal-container">
+    <div class="bulk-modal-close">{% render 'icon-close' %}</div>
+
+    <div class="bulk-modal-header">
+      <div class="bulk-progress-wrapper" id="bulk-progress-root">
+        <div class="bulk-savings-header">
+          <span class="bulk-savings-text level-zero-msg" style="display: none;"
+            ><strong>Adicione o primeiro item</strong> no carrinho para começar</span
+          >
+          <div class="bulk-savings-content">
+            <div class="bulk-active-wrapper">
+              <span class="bulk-savings-text savings-active-msg" style="display: none;">
+                <span class="savings-prefix">Já economizou</span>
+                <span class="bulk-savings-amount">R$ 0,00</span>
+              </span>
+              <div class="bulk-progress-bar-container">
+                <div class="bulk-progress-bar">
+                  <div class="bulk-progress-fill"><span></span></div>
+                </div>
+              </div>
+              <div class="bulk-next-tier-info">
+                Faltam <strong class="next-level-qty-text">3 itens</strong> para desbloquear NÍVEL
+                <span class="next-level-num">1</span> <strong class="next-level-name">BRONZE</strong>
+              </div>
+            </div>
+            <div
+              class="bulk-tier-badge-gem current-tier-pct"
+              style="display: flex; background-color: {{ section.settings.tier_1_color | default: '#C15C30' }}; color: #fff;"
+            >
+              <span style="display:inline-block; transform: rotate(-8deg);"
+                ><strong>{{ section.settings.tier_1_pct | default: 10 }}</strong>%</span
+              >
+            </div>
+          </div>
+          <span class="bulk-savings-text level-max-msg" style="display: none;">
+            <span class="savings-prefix">Incrível, você já economizou</span>
+            <span class="bulk-savings-amount">R$ 0,00</span>
+          </span>
+        </div>
+
+        <div class="bulk-current-tier-display">
+          NÍVEL ATUAL <strong class="current-tier-name" style="font-weight: 600;">NENHUM</strong>
+          <span class="bulk-pct-badge current-tier-pct">0%</span>
+        </div>
+
+        <div class="bulk-gift-card" id="bulk-gift-card">
+          <button type="button" class="bulk-gift-close" id="bulk-gift-close" aria-label="Fechar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+          <div class="bulk-gift-image">
+            <img src="" alt="Brinde" id="gift-visual" width="80" height="80">
+          </div>
+          <div class="bulk-gift-info">
+            <div class="bulk-gift-status">GANHOU</div>
+            <div class="bulk-gift-name" id="gift-title">01 COPO MEDIDOR</div>
+          </div>
+          <div class="bulk-gift-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="135.558" height="134.821" viewBox="0 0 135.558 134.821">
+              <g id="brinde_icone_desbloqueado" transform="translate(-357.481 -56.406)">
+                <path id="Caminho_2" data-name="Caminho 2" d="M74.947,137.821A23.926,23.926,0,0,1,62.4,134.266l-11.566-7.12a10.848,10.848,0,0,0-3.606-1.412L33.9,123.113a23.892,23.892,0,0,1-19.147-20.6L13.111,89.035a10.864,10.864,0,0,0-1.145-3.7L5.708,73.284A23.891,23.891,0,0,1,9.873,45.472l9.516-9.69a10.846,10.846,0,0,0,2.177-3.2l5.522-12.408A23.93,23.93,0,0,1,51.429,6.089l13.509,1.4a10.934,10.934,0,0,0,1.12.057A10.884,10.884,0,0,0,68.8,7.192L81.942,3.773a23.934,23.934,0,0,1,26.187,10.25l7.33,11.432a10.872,10.872,0,0,0,2.637,2.837l10.868,8.144A23.892,23.892,0,0,1,137.278,63.3L132.91,76.159a10.835,10.835,0,0,0-.574,3.83l.409,13.575a23.891,23.891,0,0,1-15.82,23.249l-12.777,4.6a10.838,10.838,0,0,0-3.35,1.939l-10.359,8.784a23.979,23.979,0,0,1-15.491,5.682" transform="translate(354.48 53.406)" fill="#7bca0c"/>
+                <g id="Layer_2" data-name="Layer 2" transform="translate(392.018 83.723)">
+                  <g id="invisible_box" data-name="invisible box" transform="translate(0 0)">
+                    <rect id="Retângulo_16" data-name="Retângulo 16" width="66.839" height="66.839" fill="none"/>
+                  </g>
+                  <g id="icons_Q2" data-name="icons Q2" transform="translate(8.316 3.752)">
+                    <g id="Grupo_8" data-name="Grupo 8">
+                      <path id="Caminho_5" data-name="Caminho 5" d="M32,21.9Z" transform="translate(4.036 5.682)" fill="#f9f8ea"/>
+                      <path id="Caminho_6" data-name="Caminho 6" d="M53.124,24.176H19.86v-6.93a9.7,9.7,0,0,1,9.7-9.7h2.772a9.841,9.841,0,0,1,6.93,2.911,2.772,2.772,0,0,0,3.049.693h.139a2.633,2.633,0,0,0,.832-4.3A15.108,15.108,0,0,0,32.334,2H29.562A15.246,15.246,0,0,0,14.316,17.246v6.93H8.772A2.772,2.772,0,0,0,6,26.948V60.212a2.772,2.772,0,0,0,2.772,2.772H53.124A2.772,2.772,0,0,0,55.9,60.212V26.948A2.772,2.772,0,0,0,53.124,24.176ZM50.352,57.44H11.544V29.72H50.352Z" transform="translate(-6 -2)" fill="#f9f8ea"/>
+                      <path id="Caminho_7" data-name="Caminho 7" d="M30.988,31.43a5.544,5.544,0,1,0-8.316,4.851v3.465a2.772,2.772,0,0,0,5.544,0V36.281A5.544,5.544,0,0,0,30.988,31.43Z" transform="translate(-0.635 7.239)" fill="#f9f8ea"/>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bulk-modal-body">
+      <div class="bulk-inline-gift" id="bulk-inline-gift">
+        <div class="bulk-gift-image">
+          <img src="" alt="Brinde" id="inline-gift-visual" width="80" height="80">
+        </div>
+        <div class="bulk-gift-info">
+          <div class="bulk-gift-status">GANHOU</div>
+          <div class="bulk-gift-name" id="inline-gift-title">01 COPO MEDIDOR</div>
+        </div>
+        <div class="bulk-gift-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="135.558" height="134.821" viewBox="0 0 135.558 134.821">
+            <g id="brinde_icone_desbloqueado" transform="translate(-357.481 -56.406)">
+              <path id="Caminho_2" data-name="Caminho 2" d="M74.947,137.821A23.926,23.926,0,0,1,62.4,134.266l-11.566-7.12a10.848,10.848,0,0,0-3.606-1.412L33.9,123.113a23.892,23.892,0,0,1-19.147-20.6L13.111,89.035a10.864,10.864,0,0,0-1.145-3.7L5.708,73.284A23.891,23.891,0,0,1,9.873,45.472l9.516-9.69a10.846,10.846,0,0,0,2.177-3.2l5.522-12.408A23.93,23.93,0,0,1,51.429,6.089l13.509,1.4a10.934,10.934,0,0,0,1.12.057A10.884,10.884,0,0,0,68.8,7.192L81.942,3.773a23.934,23.934,0,0,1,26.187,10.25l7.33,11.432a10.872,10.872,0,0,0,2.637,2.837l10.868,8.144A23.892,23.892,0,0,1,137.278,63.3L132.91,76.159a10.835,10.835,0,0,0-.574,3.83l.409,13.575a23.891,23.891,0,0,1-15.82,23.249l-12.777,4.6a10.838,10.838,0,0,0-3.35,1.939l-10.359,8.784a23.979,23.979,0,0,1-15.491,5.682" transform="translate(354.48 53.406)" fill="#7bca0c"/>
+              <g id="Layer_2" data-name="Layer 2" transform="translate(392.018 83.723)">
+                <g id="invisible_box" data-name="invisible box" transform="translate(0 0)">
+                  <rect id="Retângulo_16" data-name="Retângulo 16" width="66.839" height="66.839" fill="none"/>
+                </g>
+                <g id="icons_Q2" data-name="icons Q2" transform="translate(8.316 3.752)">
+                  <g id="Grupo_8" data-name="Grupo 8">
+                    <path id="Caminho_5" data-name="Caminho 5" d="M32,21.9Z" transform="translate(4.036 5.682)" fill="#f9f8ea"/>
+                    <path id="Caminho_6" data-name="Caminho 6" d="M53.124,24.176H19.86v-6.93a9.7,9.7,0,0,1,9.7-9.7h2.772a9.841,9.841,0,0,1,6.93,2.911,2.772,2.772,0,0,0,3.049.693h.139a2.633,2.633,0,0,0,.832-4.3A15.108,15.108,0,0,0,32.334,2H29.562A15.246,15.246,0,0,0,14.316,17.246v6.93H8.772A2.772,2.772,0,0,0,6,26.948V60.212a2.772,2.772,0,0,0,2.772,2.772H53.124A2.772,2.772,0,0,0,55.9,60.212V26.948A2.772,2.772,0,0,0,53.124,24.176ZM50.352,57.44H11.544V29.72H50.352Z" transform="translate(-6 -2)" fill="#f9f8ea"/>
+                    <path id="Caminho_7" data-name="Caminho 7" d="M30.988,31.43a5.544,5.544,0,1,0-8.316,4.851v3.465a2.772,2.772,0,0,0,5.544,0V36.281A5.544,5.544,0,0,0,30.988,31.43Z" transform="translate(-0.635 7.239)" fill="#f9f8ea"/>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      {%- for i in (1..4) -%}
+        {%- capture col_id -%}collection_{{ i }}{%- endcapture -%}
+        {%- assign collection = section.settings[col_id] -%}
+
+        {%- if collection != blank -%}
+          {%- assign available_products_count = 0 -%}
+          {%- for product in collection.products limit: 12 -%}
+            {%- if product.available -%}
+              {%- assign available_products_count = available_products_count | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if available_products_count > 0 -%}
+            <div class="bulk-collection-section" id="bulk-cat-{{ i }}">
+              <div class="bulk-collection-title-container">
+                <h3 class="bulk-collection-title">{{ collection.title | split: '-' | first | strip }}</h3>
+              </div>
+              <div class="bulk-product-grid">
+                {%- for product in collection.products limit: 12 -%}
+                  {%- if product.available -%}
+                    {%- assign variant = product.selected_or_first_available_variant -%}
+                    <div class="bulk-product-item" data-id="{{ variant.id }}" data-price="{{ variant.price }}">
+                      <div class="bulk-product-image">
+                        {%- if product.metafields.custom.popup_imagem_do_produto != blank -%}
+                          {{
+                            product.metafields.custom.popup_imagem_do_produto
+                            | image_url: width: 300
+                            | image_tag: loading: 'lazy'
+                          }}
+                        {%- else -%}
+                          {{ product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+                        {%- endif -%}
+                      </div>
+                      <div class="bulk-product-info">
+                        <h4>
+                          {%- if product.metafields.custom.popup_nome_do_produto != blank -%}
+                            {{ product.metafields.custom.popup_nome_do_produto | metafield_tag }}
+                          {%- else -%}
+                            {{ product.title }}
+                          {%- endif -%}
+                        </h4>
+                        <p class="bulk-product-price">{{ product.price | money }}</p>
+                        <div class="bulk-qty-selector">
+                          <button type="button" class="bulk-qty-btn minus">{% render 'icon-minus' %}</button>
+                          <input type="text" class="bulk-qty-input" value="0" inputmode="numeric" pattern="[0-9]*">
+                          <button type="button" class="bulk-qty-btn plus">{% render 'icon-plus' %}</button>
+                        </div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <div class="bulk-modal-footer">
+      <div
+        class="gift-progress-badges-modal"
+        style="padding-bottom: 10px; margin-bottom: 0;"
+      >
+        {% assign relative_index = 0 %}
+        {% for i in (1..4) %}
+          {% capture gift_img_id %}tier_{{ i }}_gift_image{% endcapture %}
+          {% capture gift_text_id %}tier_{{ i }}_gift_text{% endcapture %}
+          {% assign gift_img = section.settings[gift_img_id] %}
+          {% assign gift_text = section.settings[gift_text_id] %}
+
+          {% if gift_img != blank or gift_text != blank %}
+            {% assign relative_index = relative_index | plus: 1 %}
+            <div
+              class="bulk-gift-card-progress-modal"
+              id="modal-gift-{{ i }}"
+              data-relative-index="{{ relative_index }}"
+            >
+              <div class="bulk-gift-image-progress-modal">
+                <div class="bulk-gift-lock-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 68">
+                    <g id="cadeado" transform="translate(0.006 -0.096)">
+                      <g id="invisible_box" data-name="invisible box" transform="translate(0 0)">
+                        <rect id="Retângulo_15" data-name="Retângulo 15" width="68" height="68" transform="translate(-0.006 0.096)" fill="none"/>
+                      </g>
+                      <g id="icons_Q2" data-name="icons Q2" transform="translate(8.743 4.058)">
+                        <g id="Grupo_7" data-name="Grupo 7">
+                          <path id="Caminho_3" data-name="Caminho 3" d="M53.4,24.307H47.826V17.336A15.336,15.336,0,0,0,32.49,2H29.7A15.336,15.336,0,0,0,14.365,17.336v6.971H8.788A2.788,2.788,0,0,0,6,27.1V60.557a2.788,2.788,0,0,0,2.788,2.788H53.4a2.788,2.788,0,0,0,2.788-2.788V27.1A2.788,2.788,0,0,0,53.4,24.307ZM19.942,17.336A9.759,9.759,0,0,1,29.7,7.577H32.49a9.759,9.759,0,0,1,9.759,9.759v6.971H19.942ZM50.614,57.768H11.577V29.884H50.614Z" transform="translate(-6 -2)" fill="#fffef5"/>
+                          <path id="Caminho_4" data-name="Caminho 4" d="M31.054,31.463a5.577,5.577,0,1,0-8.365,4.88v3.486a2.788,2.788,0,0,0,5.577,0V36.342A5.577,5.577,0,0,0,31.054,31.463Z" transform="translate(-0.521 7.436)" fill="#fffef5"/>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+                {% if gift_img != blank %}
+                  <img
+                    src="{{ gift_img | image_url: width: 80 }}"
+                    alt="{{ gift_text | escape }}"
+                    width="48"
+                    height="48"
+                  >
+                {% endif %}
+              </div>
+              <div class="bulk-gift-info-progress-modal">
+                <div class="bulk-gift-progress-bar-modal">
+                  <div class="bulk-gift-progress-fill-modal"><span></span></div>
+                </div>
+                <span class="bulk-gift-status-progress-modal"><span class="status-txt">Bloqueado</span></span>
+                <span class="bulk-gift-name-progress-modal">
+                  {{- gift_text | default: 'Brinde Especial' -}}
+                </span>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="bulk-selected-list" id="bulk-selected-list">
+      </div>
+      <div class="bulk-summary">
+        <div class="bulk-summary-info">
+          <div class="bulk-summary-total">
+            Total
+            <div class="bulk-summary-prices">
+              <span class="bulk-old-price">R$ 0,00</span>
+              <span class="bulk-total-price">R$ 0,00</span>
+            </div>
+          </div>
+        </div>
+        <div class="bulk-summary-right">
+          <div class="bulk-summary-items"><span class="bulk-total-qty">0</span> itens</div>
+          <button type="button" class="bulk-view-list">
+            ver todos
+            <span class="bulk-arrow-icon"></span>
+          </button>
+        </div>
+      </div>
+      <a href="#" onclick="yampiClick()" class="button-checkout bulk-buy-btn" disabled>
+        <span class="bulk-btn-text">COMPRAR AGORA</span>
+        <div class="bulk-btn-loader">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            role="presentation"
+            class="spinner"
+            viewBox="0 0 66 66"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>
+      </a>
+      <div class="bulk-continue-shopping" id="bulk-continue-shopping">Continuar Comprando</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    window.money_format = {{ shop.money_format | json }};
+    
+    if (typeof Shopify === 'undefined') window.Shopify = {};
+    if (!Shopify.formatMoney) {
+      Shopify.formatMoney = function(cents, format) {
+        if (typeof cents === 'string') cents = cents.replace('.', '');
+        let value = '';
+        const placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
+        const formatString = format || window.money_format;
+
+        function formatWithDelimiters(number, precision, thousands, decimal) {
+          precision = precision || 2;
+          thousands = thousands || ',';
+          decimal = decimal || '.';
+          if (isNaN(number) || number == null) return 0;
+          number = (number / 100.0).toFixed(precision);
+          const parts = number.split('.'),
+            dollars = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1' + thousands),
+            cents = parts[1] ? decimal + parts[1] : '';
+          return dollars + cents;
+        }
+
+        switch (formatString.match(placeholderRegex)[1]) {
+          case 'amount': value = formatWithDelimiters(cents, 2); break;
+          case 'amount_no_decimals': value = formatWithDelimiters(cents, 0); break;
+          case 'amount_with_comma_separator': value = formatWithDelimiters(cents, 2, '.', ','); break;
+          case 'amount_no_decimals_with_comma_separator': value = formatWithDelimiters(cents, 0, '.', ','); break;
+        }
+        return formatString.replace(placeholderRegex, value);
+      };
+    }
+
+    function init() {
+      if (typeof Swiper === 'undefined') {
+        setTimeout(init, 100);
+        return;
+      }
+
+      const swiperBulk = new Swiper('.swiper-bulk', {
+        slidesPerView: 1.1,
+        spaceBetween: 10,
+        freeMode: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          500: { slidesPerView: 2.2, spaceBetween: 15 },
+          967: { slidesPerView: 3.2, spaceBetween: 20 },
+          1200: { slidesPerView: 4, spaceBetween: 25 }
+        }
+      });
+
+      const body = document.body;
+      const overlay = document.querySelector('.bulk-modal-overlay');
+      const container = document.querySelector('.bulk-modal-container');
+      const closeBtn = document.querySelector('.bulk-modal-close');
+      const slides = document.querySelectorAll('.swiper-bulk-purchase .swiper-slide');
+      const modalBody = document.querySelector('.bulk-modal-body');
+
+      const tiers = [
+        { 
+          qty: {{ section.settings.tier_1_qty | default: 3 }}, 
+          discount: {{ section.settings.tier_1_pct | default: 10 }}, 
+          name: 'BRONZE',
+          color: '{{ section.settings.tier_1_color | default: "#C15C30" }}',
+          barBgImage: '{{ section.settings.tier_1_bar_image | image_url: width: 1000 }}',
+          badgeBgImage: '{{ section.settings.tier_1_badge_bg_image | image_url: width: 400 }}',
+          gift: "{{ section.settings.tier_1_gift_text | escape }}",
+          giftImg: "{{ section.settings.tier_1_gift_image | image_url: width: 200 }}"
+        },
+        { 
+          qty: {{ section.settings.tier_2_qty | default: 6 }}, 
+          discount: {{ section.settings.tier_2_pct | default: 15 }}, 
+          name: 'PRATA',
+          color: '{{ section.settings.tier_2_color | default: "#777371" }}',
+          barBgImage: '{{ section.settings.tier_2_bar_image | image_url: width: 1000 }}',
+          badgeBgImage: '{{ section.settings.tier_2_badge_bg_image | image_url: width: 400 }}',
+          gift: "{{ section.settings.tier_2_gift_text | escape }}",
+          giftImg: "{{ section.settings.tier_2_gift_image | image_url: width: 200 }}"
+        },
+        { 
+          qty: {{ section.settings.tier_3_qty | default: 12 }}, 
+          discount: {{ section.settings.tier_3_pct | default: 20 }}, 
+          name: 'OURO',
+          color: '{{ section.settings.tier_3_color | default: "#E3B760" }}',
+          barBgImage: '{{ section.settings.tier_3_bar_image | image_url: width: 1000 }}',
+          badgeBgImage: '{{ section.settings.tier_3_badge_bg_image | image_url: width: 400 }}',
+          gift: "{{ section.settings.tier_3_gift_text | escape }}",
+          giftImg: "{{ section.settings.tier_3_gift_image | image_url: width: 200 }}"
+        },
+        { 
+          qty: {{ section.settings.tier_4_qty | default: 15 }}, 
+          discount: {{ section.settings.tier_4_pct | default: 25 }}, 
+          name: 'DIAMANTE',
+          color: '{{ section.settings.tier_4_color | default: "#7BCA0C" }}',
+          barBgImage: '{{ section.settings.tier_4_bar_image | image_url: width: 1000 }}',
+          badgeBgImage: '{{ section.settings.tier_4_badge_bg_image | image_url: width: 1000 }}',
+          gift: "{{ section.settings.tier_4_gift_text | escape }}",
+          giftImg: "{{ section.settings.tier_4_gift_image | image_url: width: 200 }}"
+        }
+      ];
+
+      const neutralColor = '{{ section.settings.tier_0_color | default: "#AFAA7A" }}';
+
+      let productsCache = [];
+      let cartSyncController = null;
+      let lastSelectedHash = '';
+
+      function updateProductsCache() {
+        const items = document.querySelectorAll('.bulk-product-item');
+        productsCache = Array.from(items).map(item => ({
+          el: item,
+          id: item.dataset.id,
+          price: parseInt(item.dataset.price) || 0,
+          input: item.querySelector('.bulk-qty-input'),
+          priceEl: item.querySelector('.bulk-product-price'),
+          img: item.querySelector('.bulk-product-image img'),
+          minus: item.querySelector('.minus'),
+          plus: item.querySelector('.plus')
+        }));
+      }
+
+      async function syncWithCart() {
+        try {
+          const res = await fetch(window.Shopify.routes.root + 'cart.js');
+          const cart = await res.json();
+          if (productsCache.length === 0) updateProductsCache();
+          productsCache.forEach(item => {
+            const cartItem = cart.items.find(i => i.variant_id == item.id);
+            const qty = cartItem ? cartItem.quantity : 0;
+            if (item.input) item.input.value = qty;
+            if (qty > 0) item.el.classList.add('qty-active'); else item.el.classList.remove('qty-active');
+          });
+          updateTotals();
+        } catch (e) {
+          console.error('Error syncing with cart:', e);
+          updateTotals();
+        }
+      }
+
+      async function openModal(index) {
+        if (modalBody) {
+          modalBody.style.scrollBehavior = 'auto';
+          modalBody.scrollTop = 0;
+        }
+        overlay.classList.add('active');
+        container.classList.add('active');
+        body.style.overflow = 'hidden';
+        window.isInitialSync = true;
+        updateProductsCache();
+        await syncWithCart();
+        window.isInitialSync = false;
+        if (index) {
+          setTimeout(() => {
+            const target = document.getElementById(`bulk-cat-${index}`);
+            if (target && modalBody) {
+              const scrollTopTarget = (index === '1') ? 0 : target.offsetTop;
+              modalBody.scrollTo({ top: scrollTopTarget, behavior: 'smooth' });
+            }
+          }, 500);
+        }
+      }
+
+      function closeModal() {
+        if (cartSyncController) cartSyncController.abort();
+        overlay.classList.remove('active');
+        container.classList.remove('active');
+        body.style.overflow = '';
+      }
+
+      slides.forEach(slide => {
+        slide.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          openModal(slide.dataset.index);
+        });
+      });
+
+      overlay.addEventListener('click', closeModal);
+      closeBtn.addEventListener('click', closeModal);
+
+      const totalPriceEl = document.querySelector('.bulk-total-price');
+      const totalQtyEl = document.querySelector('.bulk-total-qty');
+      const buyBtn = document.querySelector('.bulk-buy-btn');
+      const selectedListEl = document.getElementById('bulk-selected-list');
+      const oldPriceEl = document.querySelector('.bulk-old-price');
+      const savingsEls = document.querySelectorAll('.bulk-savings-amount');
+      const levelZeroMsg = document.querySelector('.level-zero-msg');
+      const savingsActiveMsg = document.querySelector('.savings-active-msg');
+      const levelMaxMsg = document.querySelector('.level-max-msg');
+      const savingsContent = document.querySelector('.bulk-savings-content');
+      const progressBar = document.querySelector('.bulk-progress-bar-container');
+      const progressFill = document.querySelector('.bulk-progress-fill');
+      const nextTierInfo = document.querySelector('.bulk-next-tier-info');
+      const tierBadge = document.querySelector('.bulk-tier-badge-gem');
+      const savingsHeader = document.querySelector('.bulk-savings-header');
+      const nextLevelQtyText = document.querySelector('.next-level-qty-text');
+      const nextLevelName = document.querySelector('.next-level-name');
+      const nextLevelNum = document.querySelector('.next-level-num');
+      const currentTierNameEl = document.querySelector('.current-tier-name');
+      const currentTierPctEls = document.querySelectorAll('.current-tier-pct');
+
+      function syncInputs(variantId, newQty) {
+        productsCache.forEach(item => {
+          if (item.id === variantId) {
+            if (item.input) item.input.value = newQty;
+            if (newQty > 0) item.el.classList.add('qty-active');
+            else item.el.classList.remove('qty-active');
+          }
+        });
+      }
+
+      let cartUpdateTimer = null;
+      function debouncedCartUpdate() {
+        if (cartUpdateTimer) clearTimeout(cartUpdateTimer);
+        cartUpdateTimer = setTimeout(async () => {
+          if (cartSyncController) cartSyncController.abort();
+          cartSyncController = new AbortController();
+          const { signal } = cartSyncController;
+          try {
+            if (buyBtn) buyBtn.classList.add('loading');
+            const cartRes = await fetch(window.Shopify.routes.root + 'cart.js', { signal });
+            const cart = await cartRes.json();
+            const updates = {};
+            let changed = false;
+            productsCache.forEach(item => {
+              const qty = parseInt(item.input.value) || 0;
+              const cartItem = cart.items.find(i => i.variant_id == item.id);
+              const cartQty = cartItem ? cartItem.quantity : 0;
+              if (qty !== cartQty) {
+                updates[item.id] = qty;
+                changed = true;
+              }
+            });
+            if (changed) {
+              await fetch(window.Shopify.routes.root + 'cart/update.js', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ updates }),
+                signal
+              });
+              if (typeof window.updateCart === 'function') window.updateCart();
+              window.dispatchEvent(new CustomEvent('cart-change', { bubbles: true }));
+            }
+          } catch (e) {
+            if (e.name !== 'AbortError') console.error('Cart sync error:', e);
+          } finally {
+            if (buyBtn && !signal.aborted) buyBtn.classList.remove('loading');
+          }
+        }, 600);
+      }
+
+      function updateTotals() {
+        try {
+          if (productsCache.length === 0) updateProductsCache();
+          let total = 0;
+          let itemsCount = 0;
+          const selectedMap = new Map();
+
+          productsCache.forEach(item => {
+            const qty = parseInt(item.input.value) || 0;
+            if (qty > 0) {
+              if (!selectedMap.has(item.id)) {
+                selectedMap.set(item.id, { qty, imgSrc: item.img ? item.img.src : '', price: item.price });
+                total += item.price * qty;
+                if (item.price > 0) {
+                  itemsCount += qty;
+                }
+              }
+            }
+          });
+
+          const currentHash = Array.from(selectedMap.entries()).map(([id, d]) => `${id}:${d.qty}`).join('|');
+          if (currentHash !== lastSelectedHash) {
+            lastSelectedHash = currentHash;
+            if (selectedListEl) {
+              if (itemsCount === 0) {
+                selectedListEl.innerHTML = '';
+                selectedListEl.classList.remove('active');
+              } else {
+                let html = '';
+                selectedMap.forEach((d, id) => {
+                  html += `<div class="bulk-selected-item" data-variant-id="${id}"><img src="${d.imgSrc}" class="bulk-selected-img" loading="lazy"> <span class="bulk-selected-qty">${d.qty}</span> <div class="bulk-selected-remove"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div></div>`;
+                });
+                selectedListEl.innerHTML = html;
+              }
+            }
+          }
+
+          let currentTier = null;
+          tiers.forEach(t => { if (itemsCount >= t.qty) currentTier = t; });
+          const tierIndex = currentTier ? tiers.indexOf(currentTier) : -1;
+          const nextTier = (tierIndex < tiers.length - 1) ? tiers[tierIndex + 1] : null;
+          const discountPct = currentTier ? currentTier.discount : 0;
+          const discountedTotal = total * (1 - discountPct / 100);
+          const savingsAmount = total * (discountPct / 100);
+
+          if (totalPriceEl) totalPriceEl.textContent = Shopify.formatMoney(discountedTotal, window.money_format);
+          if (totalQtyEl) totalQtyEl.textContent = itemsCount;
+          if (buyBtn) {
+            if (itemsCount === 0) {
+              buyBtn.setAttribute('disabled', 'disabled');
+            } else {
+              buyBtn.removeAttribute('disabled');
+            }
+          }
+          if (oldPriceEl) {
+            oldPriceEl.textContent = itemsCount > 0 ? Shopify.formatMoney(total, window.money_format) : '';
+            oldPriceEl.style.display = discountPct > 0 ? 'inline' : 'none';
+          }
+          savingsEls.forEach(el => el.textContent = Shopify.formatMoney(savingsAmount, window.money_format));
+
+          if (itemsCount === 0) {
+            if (levelZeroMsg) levelZeroMsg.style.display = 'block';
+            if (savingsContent) savingsContent.style.display = 'none';
+            if (levelMaxMsg) levelMaxMsg.style.display = 'none';
+            if (savingsHeader) {
+               savingsHeader.style.backgroundColor = '#F9F8EA';
+               savingsHeader.style.backgroundImage = 'none';
+               savingsHeader.style.justifyContent = 'center';
+            }
+          } else {
+            if (levelZeroMsg) levelZeroMsg.style.display = 'none';
+            if (savingsHeader) {
+               savingsHeader.style.backgroundColor = '#F9F8EA';
+               savingsHeader.style.backgroundImage = 'none';
+               savingsHeader.style.justifyContent = 'space-between';
+               const sTxt = savingsHeader.querySelector('.savings-prefix');
+               const aTxt = savingsHeader.querySelector('.bulk-savings-amount');
+               if (sTxt) sTxt.style.color = '#1a1a1a';
+               if (aTxt) aTxt.style.color = '#1a1a1a';
+            }
+          }
+
+          if (progressFill) {
+            const maxQty = tiers[tiers.length - 1]?.qty || 24;
+            progressFill.style.width = Math.min((itemsCount / maxQty) * 100, 100) + '%';
+            if (currentTier && currentTier.barBgImage) {
+               progressFill.style.backgroundImage = `url(${currentTier.barBgImage})`;
+               progressFill.style.backgroundSize = 'cover';
+            } else if (currentTier) {
+               progressFill.style.backgroundColor = currentTier.color;
+               progressFill.style.backgroundImage = 'none';
+            } else {
+               progressFill.style.backgroundColor = neutralColor;
+               progressFill.style.backgroundImage = 'none';
+            }
+          }
+
+          if (nextTier) {
+            if (savingsContent && itemsCount > 0) savingsContent.style.display = 'flex';
+            if (levelMaxMsg) levelMaxMsg.style.display = 'none';
+            if (savingsActiveMsg) savingsActiveMsg.style.display = 'flex';
+            if (tierBadge) tierBadge.style.display = 'flex';
+            const needed = nextTier.qty - itemsCount;
+            if (nextLevelQtyText) nextLevelQtyText.textContent = `${needed} ${needed === 1 ? 'item' : 'itens'}`;
+            if (nextLevelName) nextLevelName.textContent = nextTier.name;
+            if (nextLevelNum) nextLevelNum.textContent = tiers.indexOf(nextTier) + 1;
+            if (nextTierInfo) {
+              nextTierInfo.style.display = itemsCount > 0 ? 'block' : 'none';
+              nextTierInfo.innerHTML = `${needed === 1 ? 'Falta' : 'Faltam'} <strong class="next-level-qty-text">${needed} ${needed === 1 ? 'item' : 'itens'}</strong> para desbloquear NÍVEL <span class="next-level-num">${tiers.indexOf(nextTier) + 1}</span> <strong class="next-level-name">${nextTier.name}</strong>`;
+            }
+            if (progressBar) progressBar.style.display = itemsCount > 0 ? 'block' : 'none';
+          } else {
+            if (savingsContent) savingsContent.style.display = 'none';
+            if (levelMaxMsg) levelMaxMsg.style.display = 'block';
+            if (savingsHeader) {
+               savingsHeader.style.justifyContent = 'center';
+               const lastT = tiers[tiers.length - 1];
+               if (lastT) {
+                 if (lastT.badgeBgImage) {
+                   savingsHeader.style.backgroundImage = `url(${lastT.badgeBgImage})`;
+                   savingsHeader.style.backgroundSize = 'cover';
+                 } else {
+                   savingsHeader.style.backgroundColor = lastT.color;
+                   savingsHeader.style.backgroundImage = 'none';
+                 }
+                 const aEl = levelMaxMsg.querySelector('.bulk-savings-amount');
+                 const pEl = levelMaxMsg.querySelector('.savings-prefix');
+                 const isDark = (lastT.name === 'DIAMANTE' || lastT.name === 'SUPREMO' || lastT.color === '#7BCA0C');
+                 if (aEl) aEl.style.color = isDark ? '#344F53' : '#fff';
+                 if (pEl) pEl.style.color = isDark ? '#344F53' : '#fff';
+               }
+            }
+          }
+
+          if (currentTierNameEl) currentTierNameEl.textContent = currentTier ? currentTier.name : 'NENHUM';
+          currentTierPctEls.forEach(el => {
+            const isGem = el.classList.contains('bulk-tier-badge-gem');
+            const targetTier = isGem ? (nextTier || currentTier || tiers[0]) : (currentTier || { discount: 0, color: neutralColor });
+            if (isGem) {
+              if (targetTier.badgeBgImage) {
+                el.style.backgroundImage = `url(${targetTier.badgeBgImage})`;
+                el.style.backgroundSize = tiers.indexOf(targetTier) === tiers.length - 1 ? 'initial' : '100% 100%';
+              } else {
+                el.style.backgroundColor = targetTier.color;
+                el.style.backgroundImage = 'none';
+              }
+              el.style.color = (targetTier.name === 'DIAMANTE' || targetTier.name === 'SUPREMO') ? '#344F53' : '#fff';
+              el.innerHTML = `<span style="display:flex; transform: rotate(-8deg);"><strong>${targetTier.discount}</strong>%</span>`;
+            } else {
+              el.textContent = `${discountPct}%`;
+              if (currentTier) {
+                if (currentTier.badgeBgImage) {
+                  el.style.backgroundImage = `url(${currentTier.badgeBgImage})`;
+                  el.style.backgroundSize = tiers.indexOf(currentTier) === tiers.length - 1 ? 'initial' : '100% 100%';
+                } else {
+                  el.style.backgroundColor = currentTier.color;
+                  el.style.backgroundImage = 'none';
+                }
+                el.style.color = (currentTier.name === 'DIAMANTE' || currentTier.name === 'SUPREMO') ? '#344F53' : '#fff';
+              } else {
+                el.style.backgroundColor = neutralColor;
+                el.style.backgroundImage = 'none';
+                el.style.color = '#fff';
+              }
+            }
+          });
+
+          productsCache.forEach(item => {
+            if (!item.priceEl) return;
+            if (discountPct > 0) {
+              const dPrice = item.price * (1 - discountPct / 100);
+              item.priceEl.innerHTML = `<span style="text-decoration: line-through; opacity: 0.6; font-size: 0.85em; display: block;">${Shopify.formatMoney(item.price, window.money_format)}</span> <div>${Shopify.formatMoney(dPrice, window.money_format)}</div>`;
+            } else {
+              item.priceEl.innerHTML = `<div>${Shopify.formatMoney(item.price, window.money_format)}</div>`;
+            }
+          });
+
+          let activeGiftTier = null;
+          let activeGiftIndex = -1;
+          tiers.forEach((t, i) => { if (itemsCount >= t.qty && t.gift) { activeGiftTier = t; activeGiftIndex = i; } });
+          if (typeof window.lastSeenGiftIndex === 'undefined') window.lastSeenGiftIndex = -1;
+          let isNewGift = false;
+          if (activeGiftIndex > window.lastSeenGiftIndex) {
+            if (!window.isInitialSync) { isNewGift = true; window.giftCardDismissed = false; }
+            window.lastSeenGiftIndex = activeGiftIndex;
+          } else if (activeGiftIndex < window.lastSeenGiftIndex) {
+            window.lastSeenGiftIndex = activeGiftIndex;
+          }
+
+          const giftCard = document.getElementById('bulk-gift-card');
+          if (giftCard && modalBody) {
+            if (activeGiftTier && isNewGift && !window.giftCardDismissed) {
+              giftCard.classList.add('show');
+              document.getElementById('gift-title').textContent = activeGiftTier.gift;
+              document.getElementById('gift-visual').src = activeGiftTier.giftImg;
+              if (window.giftTimer) clearTimeout(window.giftTimer);
+              window.giftTimer = setTimeout(() => { giftCard.classList.remove('show'); window.giftCardDismissed = true; }, 4000);
+            } else if (!activeGiftTier) {
+              giftCard.classList.remove('show');
+            }
+          }
+
+          for (let i = 1; i <= 4; i++) {
+            const modalGift = document.getElementById('modal-gift-' + i);
+            if (modalGift) {
+              const targetQty = tiers[i - 1]?.qty || 99;
+              const isUnlocked = itemsCount >= targetQty;
+              modalGift.classList.toggle('is-unlocked', isUnlocked);
+              modalGift.classList.toggle('is-locked', !isUnlocked);
+              
+              const statusTxt = modalGift.querySelector('.status-txt');
+              const progressFill = modalGift.querySelector('.bulk-gift-progress-fill-modal');
+              const giftName = modalGift.querySelector('.bulk-gift-name-progress-modal');
+              
+              if (statusTxt) {
+                if (isUnlocked) {
+                  statusTxt.innerHTML = '<strong>Ganhou</strong>';
+                } else {
+                  const relativeIdx = modalGift.dataset.relativeIndex || i;
+                  const giftNum = relativeIdx.toString().padStart(2, '0');
+                  statusTxt.innerHTML = `Desbloquear <strong>Brinde ${giftNum}</strong>`;
+                }
+              }
+
+              if (giftName) {
+                giftName.style.display = isUnlocked ? 'block' : 'none';
+              }
+              
+              if (progressFill) {
+                const progressPct = isUnlocked ? 100 : Math.min((itemsCount / targetQty) * 100, 100);
+                progressFill.style.width = progressPct + '%';
+              }
+            }
+          }
+        } catch (e) { console.error('Error in updateTotals:', e); }
+      }
+
+      if (selectedListEl) {
+        selectedListEl.addEventListener('click', (e) => {
+          const item = e.target.closest('.bulk-selected-item');
+          if (!item) return;
+          const vid = item.dataset.variantId;
+          if (e.target.closest('.bulk-selected-remove')) {
+            syncInputs(vid, 0); updateTotals(); debouncedCartUpdate();
+          } else if (e.target.classList.contains('bulk-selected-img')) {
+            const gridItem = productsCache.find(i => i.id === vid)?.el;
+            if (gridItem && modalBody) {
+              modalBody.scrollTo({ top: gridItem.offsetTop - 20, behavior: 'smooth' });
+              gridItem.style.boxShadow = '0 0 0 2px #ff5017';
+              setTimeout(() => gridItem.style.boxShadow = '', 1500);
+            }
+          }
+        });
+      }
+
+      const giftClose = document.getElementById('bulk-gift-close');
+      if (giftClose) giftClose.onclick = () => { window.giftCardDismissed = true; document.getElementById('bulk-gift-card').classList.remove('show'); };
+
+      function attachListeners() {
+        const modalContainer = document.querySelector('.bulk-modal-container');
+        if (modalContainer && !modalContainer.dataset.touchListenersAttached) {
+          modalContainer.dataset.touchListenersAttached = 'true';
+          let touchStartY = 0;
+          let touchTimer = null;
+          
+          modalContainer.addEventListener('touchstart', (e) => {
+            const el = e.target.closest('.bulk-product-item');
+            if (el) {
+              touchStartY = e.touches[0].clientY;
+              const vid = el.dataset.id;
+              
+              if (touchTimer) clearTimeout(touchTimer);
+              touchTimer = setTimeout(() => {
+                el.classList.add('is-hover');
+                const product = productsCache.find(p => p.id === vid);
+                if (product && (parseInt(product.input.value) || 0) === 0) {
+                  syncInputs(vid, 1);
+                  updateTotals();
+                  debouncedCartUpdate();
+                }
+              }, 180);
+            }
+          }, {passive: true});
+
+          modalContainer.addEventListener('touchmove', (e) => {
+            const el = e.target.closest('.bulk-product-item');
+            if (el) {
+              const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+              if (deltaY > 10) {
+                el.classList.remove('is-hover');
+                if (touchTimer) clearTimeout(touchTimer);
+              }
+            }
+          }, {passive: true});
+          
+          modalContainer.addEventListener('touchend', (e) => {
+            if (touchTimer) clearTimeout(touchTimer);
+            const el = e.target.closest('.bulk-product-item');
+            if (el) {
+              setTimeout(() => el.classList.remove('is-hover'), 200);
+            }
+          }, {passive: true});
+
+          modalContainer.addEventListener('touchcancel', (e) => {
+            if (touchTimer) clearTimeout(touchTimer);
+            const el = e.target.closest('.bulk-product-item');
+            if (el) el.classList.remove('is-hover');
+          }, {passive: true});
+        }
+
+        productsCache.forEach(item => {
+          item.el.onclick = () => {
+            const currentVal = parseInt(item.input.value) || 0;
+            if (currentVal === 0) {
+              syncInputs(item.id, 1);
+              updateTotals();
+              debouncedCartUpdate();
+            }
+          };
+
+          if (item.minus) item.minus.onclick = (e) => {
+            e.stopPropagation();
+            const val = Math.max((parseInt(item.input.value) || 0) - 1, 0);
+            syncInputs(item.id, val); updateTotals(); debouncedCartUpdate();
+          };
+          if (item.plus) item.plus.onclick = (e) => {
+            e.stopPropagation();
+            const val = (parseInt(item.input.value) || 0) + 1;
+            syncInputs(item.id, val); updateTotals(); debouncedCartUpdate();
+          };
+          if (item.input) {
+            item.input.onclick = (e) => e.stopPropagation();
+            item.input.oninput = (e) => {
+              let v = e.target.value.replace(/\D/g, '');
+              if (v !== '') v = Math.min(parseInt(v), 99);
+              e.target.value = v;
+              syncInputs(item.id, v === '' ? 0 : parseInt(v));
+              updateTotals(); debouncedCartUpdate();
+            };
+            item.input.onblur = (e) => { if (e.target.value === '') e.target.value = 0; updateTotals(); };
+            item.input.onkeydown = (e) => { if (e.key === 'Enter') item.input.blur(); };
+          }
+        });
+      }
+
+      const continueShoppingBtn = document.getElementById('bulk-continue-shopping');
+      if (continueShoppingBtn) {
+        continueShoppingBtn.onclick = () => closeModal();
+      }
+
+      if (document.querySelector('.bulk-view-list')) {
+        document.querySelector('.bulk-view-list').onclick = () => {
+          if ((parseInt(totalQtyEl.textContent) || 0) > 0) selectedListEl.classList.toggle('active');
+        };
+      }
+
+      function isIosSafari() {
+        var ua = (window.navigator && navigator.userAgent) || '';
+        var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+        var webkit = !!ua.match(/WebKit/i);
+        var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+        return iOSSafari;
+      }
+
+      function applyIosSafariFix() {
+        if (!isIosSafari()) return;
+
+        function shouldPrevent(target) {
+          var tagName = target.tagName ? target.tagName.toLowerCase() : '';
+          var isProductItem = target.closest && target.closest('.bulk-product-item') !== null;
+          return tagName === 'a' || tagName === 'button' || isProductItem;
+        }
+
+        var eventSelector = {
+          touchend: function (_, target) {
+            target.dataset._clicked_ = '';
+            target.dataset._mousemove_ = '0';
+            target.dataset._timeOutId_ = '';
+          },
+          mouseover: function (e) {
+            e.preventDefault();
+          },
+          mousemove: function (e, target) {
+            e.preventDefault();
+            var _mousemoves = +(target.dataset._mousemove_ || '0');
+            _mousemoves = _mousemoves + 1;
+            target.dataset._mousemove_ = _mousemoves;
+            if (_mousemoves > 1 && !target.dataset._timeOutId_) {
+              var id = setTimeout(function () {
+                target.click();
+              }, 80);
+              target.dataset._timeOutId_ = id;
+            }
+          },
+          click: function (e, target) {
+            if (target.dataset._clicked_) {
+              if (e.isTrusted) {
+                e.preventDefault();
+              }
+              return;
+            }
+            if (target.dataset._timeOutId_) {
+              clearTimeout(+target.dataset._timeOutId_);
+            }
+            target.dataset._clicked_ = 'true';
+          }
+        };
+
+        function preventHover(e) {
+          var target = e.target.closest ? e.target.closest('a, button, .bulk-product-item') : e.target;
+          if (!target || !(target.tagName && target.dataset)) return;
+          if (!shouldPrevent(target)) return;
+          var type = e.type;
+          eventSelector[type] && eventSelector[type](e, target);
+        }
+
+        const modalContainer = document.querySelector('.bulk-modal-container');
+        if (modalContainer) {
+          modalContainer.addEventListener('touchend', preventHover, true);
+          modalContainer.addEventListener('mouseover', preventHover, true);
+          modalContainer.addEventListener('mousemove', preventHover, true);
+          modalContainer.addEventListener('click', preventHover, true);
+        }
+      }
+
+      function setupBuyBtnClickHandler() {
+        if (!buyBtn) return;
+        
+        const newBtn = buyBtn.cloneNode(true);
+        buyBtn.parentNode.replaceChild(newBtn, buyBtn);
+        const currentBuyBtn = document.querySelector('.bulk-buy-btn');
+
+        currentBuyBtn.addEventListener('click', function (e) {
+          if (currentBuyBtn.hasAttribute('disabled')) {
+             e.preventDefault();
+             return;
+          }
+
+          e.preventDefault(); 
+          currentBuyBtn.classList.add('loading');
+
+          setTimeout(() => {
+            window.location.href = buyBtn.href;
+          }, 2000);
+        });
+      }
+
+      updateProductsCache();
+      attachListeners();
+      updateTotals();
+
+      if (window.location.search.includes('cart-popup')) {
+        openModal();
+      }
+    }
+
+    if (document.readyState === 'complete') {
+      init();
+    } else {
+      window.addEventListener('load', init);
+    }
+  })();
+</script>
+
+<style id="bulk-purchase-preload-images">
+</style>
+<script>
+  (function() {
+    const styleEl = document.getElementById('bulk-purchase-preload-images');
+    let preloadCSS = '';
+    const imagesToPreload = {{ section.settings.tier_1_bar_image | image_url: width: 1000 | json }} ? [
+      {%- if section.settings.tier_1_bar_image != blank -%}'{{ section.settings.tier_1_bar_image | image_url: width: 1000 }}',{%- endif -%}
+      {%- if section.settings.tier_1_badge_bg_image != blank -%}'{{ section.settings.tier_1_badge_bg_image | image_url: width: 400 }}',{%- endif -%}
+      {%- if section.settings.tier_2_bar_image != blank -%}'{{ section.settings.tier_2_bar_image | image_url: width: 1000 }}',{%- endif -%}
+      {%- if section.settings.tier_2_badge_bg_image != blank -%}'{{ section.settings.tier_2_badge_bg_image | image_url: width: 400 }}',{%- endif -%}
+      {%- if section.settings.tier_3_bar_image != blank -%}'{{ section.settings.tier_3_bar_image | image_url: width: 1000 }}',{%- endif -%}
+      {%- if section.settings.tier_3_badge_bg_image != blank -%}'{{ section.settings.tier_3_badge_bg_image | image_url: width: 400 }}',{%- endif -%}
+      {%- if section.settings.tier_4_bar_image != blank -%}'{{ section.settings.tier_4_bar_image | image_url: width: 1000 }}',{%- endif -%}
+      {%- if section.settings.tier_4_badge_bg_image != blank -%}'{{ section.settings.tier_4_badge_bg_image | image_url: width: 1000 }}'{%- endif -%}
+    ] : [];
+    
+    imagesToPreload.forEach((url, index) => {
+      if(url) {
+        preloadCSS += `.preload-bg-images::after { content: url(${url}); display: none; }`;
+      }
+    });
+    styleEl.innerHTML = preloadCSS;
+  })();
+</script>
+<div class="preload-bg-images" style="display:none;width:0;height:0;overflow:hidden;"></div>
+
+{% schema %}
+{
+  "name": "Popup Progressivo",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "rich_title",
+      "label": "Título Principal (Rich Text)",
+      "default": "<p>QUANTO VOCÊ QUER <strong>ECONOMIZAR HOJE</strong></p>"
+    },
+    {
+      "type": "header",
+      "content": "Categorias (Coleções)"
+    },
+    {
+      "type": "collection",
+      "id": "collection_1",
+      "label": "Coleção 1"
+    },
+    {
+      "type": "collection",
+      "id": "collection_2",
+      "label": "Coleção 2"
+    },
+    {
+      "type": "collection",
+      "id": "collection_3",
+      "label": "Coleção 3"
+    },
+    {
+      "type": "collection",
+      "id": "collection_4",
+      "label": "Coleção 4"
+    },
+    {
+      "type": "collection",
+      "id": "collection_5",
+      "label": "Coleção 5"
+    },
+    {
+      "type": "header",
+      "content": "Configuração de Descontos"
+    },
+    {
+      "type": "color",
+      "id": "tier_0_color",
+      "label": "Cor do Nível 0 (Nenhum)"
+    },
+    {
+      "type": "header",
+      "content": "Nível 1 (Bronze)"
+    },
+    {
+      "type": "number",
+      "id": "tier_1_qty",
+      "label": "Qtd. Nível 1 (Bronze)",
+      "default": 4
+    },
+    {
+      "type": "number",
+      "id": "tier_1_pct",
+      "label": "% Desconto Nível 1",
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "tier_1_gift_text",
+      "label": "Texto do Brinde Nível 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier_1_gift_image",
+      "label": "Imagem do Brinde Nível 1"
+    },
+    {
+      "type": "color",
+      "id": "tier_1_color",
+      "label": "Cor do Nivel 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier_1_bar_image",
+      "label": "Imagem de fundo da barra (Nivel 1)"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier_1_badge_bg_image",
+      "label": "Imagem de fundo do desconto (Nivel 1)"
+    },
+    {
+      "type": "header",
+      "content": "Nível 2 (Prata)"
+    },
+    {
+      "type": "number",
+      "id": "tier_2_qty",
+      "label": "Qtd. Nível 2 (Prata)",
+      "default": 8
+    },
+    {
+      "type": "number",
+      "id": "tier_2_pct",
+      "label": "% Desconto Nível 2",
+      "default": 15
+    },
+    {
+      "type": "text",
+      "id": "tier_2_gift_text",
+      "label": "Texto do Brinde Nível 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier_2_gift_image",
+      "label": "Imagem do Brinde Nível 2"
+    },
+    {
+      "type": "color",
+      "id": "tier_2_color",
+      "label": "Cor do Nivel 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier_2_bar_image",
+      "label": "Imagem de fundo da barra (Nivel 2)"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier_2_badge_bg_image",
+      "label": "Imagem de fundo do desconto (Nivel 2)"
+    },
+    {
+      "type": "header",
+      "content": "Nível 3 (Ouro)"
+    },
+    {
+      "type": "number",
+      "id": "tier_3_qty",
+      "label": "Qtd. Nível 3 (Ouro)",
+      "default": 12
+    },
+    {
+      "type": "number",
+      "id": "tier_3_pct",
+      "label": "% Desconto Nível 3",
+      "default": 20
+    },
+    {
+      "type": "text",
+      "id": "tier_3_gift_text",
+      "label": "Texto do Brinde Nível 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier_3_gift_image",
+      "label": "Imagem do Brinde Nível 3"
+    },
+    {
+      "type": "color",
+      "id": "tier_3_color",
+      "label": "Cor do Nivel 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier_3_bar_image",
+      "label": "Imagem de fundo da barra (Nivel 3)"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier_3_badge_bg_image",
+      "label": "Imagem de fundo do desconto (Nivel 3)"
+    },
+    {
+      "type": "header",
+      "content": "Nível 4 (Diamante)"
+    },
+    {
+      "type": "number",
+      "id": "tier_4_qty",
+      "label": "Qtd. Nível 4 (Diamante)",
+      "default": 16
+    },
+    {
+      "type": "number",
+      "id": "tier_4_pct",
+      "label": "% Desconto Nível 4",
+      "default": 25
+    },
+    {
+      "type": "text",
+      "id": "tier_4_gift_text",
+      "label": "Texto do Brinde Nível 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier_4_gift_image",
+      "label": "Imagem do Brinde Nível 4"
+    },
+    {
+      "type": "color",
+      "id": "tier_4_color",
+      "label": "Cor do Nivel 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier_4_bar_image",
+      "label": "Imagem de fundo da barra (Nivel 4)"
+    },
+    {
+      "type": "image_picker",
+      "id": "tier_4_badge_bg_image",
+      "label": "Imagem de fundo do desconto (Nivel 4)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide do Swiper",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem do Slide"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Popup Progressivo",
+      "settings": {
+        "rich_title": "<p>QUANTO VOCÊ QUER <strong>ECONOMIZAR HOJE</strong></p>",
+        "collection_1": "sopas-popup",
+        "collection_2": "macarroes-popup",
+        "collection_3": "risotos-popup",
+        "collection_4": "aveias-popup",
+        "collection_5": "",
+        "tier_0_color": "#afaa7a",
+        "tier_1_qty": 4,
+        "tier_1_pct": 10,
+        "tier_1_gift_text": "",
+        "tier_1_color": "",
+        "tier_1_bar_image": "shopify://shop_images/nivel_barra_bronze_2x_340e5f5c-8bb3-475f-8c24-eb7fc6a2b055.png",
+        "tier_1_badge_bg_image": "shopify://shop_images/nivel_badge_bronze_2x_58077fc8-fce6-4c4b-b84a-0539008c0c4c.png",
+        "tier_2_qty": 8,
+        "tier_2_pct": 15,
+        "tier_2_gift_text": "",
+        "tier_2_color": "",
+        "tier_2_bar_image": "shopify://shop_images/nivel_barra_prata_2x_3f946ecc-902e-406b-b2ef-5400658e495b.png",
+        "tier_2_badge_bg_image": "shopify://shop_images/nivel_badge_prata_2x_56dc1d5e-036d-4e31-86a5-07796fd8e892.png",
+        "tier_3_qty": 12,
+        "tier_3_pct": 20,
+        "tier_3_gift_text": "COPO MEDIDOR",
+        "tier_3_gift_image": "shopify://shop_images/brinde_ouro_2x_cecdb978-7ccd-4675-9d13-7b5f99dfafdb.png",
+        "tier_3_color": "",
+        "tier_3_bar_image": "shopify://shop_images/nivel_barra_ouro_2x_bbc30324-393b-47b0-96b6-580343b5a0f6.png",
+        "tier_3_badge_bg_image": "shopify://shop_images/nivel_badge_ouro_2x_78f17b75-a0cd-420c-a743-f263fa2e047b.png",
+        "tier_4_qty": 18,
+        "tier_4_pct": 25,
+        "tier_4_gift_text": "01 COPO MEDIDOR +01 CAÇAROLA",
+        "tier_4_gift_image": "shopify://shop_images/brinde_diamante_2x_468ca295-e869-4ca7-9be8-eeefb18bc20c.png",
+        "tier_4_color": "",
+        "tier_4_badge_bg_image": "shopify://shop_images/nivel_box_diamante_2x_00ee41f3-57f8-4152-9bfd-dbc54f9f4a60.png"
+      },
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/card_bronze_2x_b833f478-30ad-4e39-997b-34fab79e1bda.png"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/card_prata_2x_43ade1ac-2b2d-4037-9331-0eb5c651b144.png"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/card_ouro_2x_41cf74de-fad4-4248-be24-1867d2dd169b.png"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/card_diamante_2x_e7802200-5636-4b5f-afc1-c77fa4d6efcc.png"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

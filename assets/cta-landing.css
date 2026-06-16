@@ -1,0 +1,51 @@
+.cta-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-headline {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  margin: 0 0 32px 0;
+}
+
+.cta-headline p {
+  margin-top: 0;
+}
+
+.cta-landing .btn-primary {
+  box-shadow: 5px 5px 0 0 #000000;
+  width: 405px;
+}
+
+.cta-landing .btn-primary:hover {
+  box-shadow: 5px 5px 0 0 #000000;
+}
+
+@media (min-width: 991px) {
+  .cta-landing {
+    padding: 50px 40px;
+  }
+
+  .cta-headline {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 990px) {
+  .cta-landing {
+    padding: 50px 20px;
+  }
+
+  .cta-headline {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 400px) {
+  .cta-headline {
+    font-size: 24px;
+  }
+}

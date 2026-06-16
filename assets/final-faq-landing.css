@@ -1,0 +1,158 @@
+.final-faq-container {
+  max-width: 440px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.final-faq-title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 20px 0;
+}
+
+.final-faq-landing .btn-primary {
+  background: #F45218;
+  color: #ffffff;
+  height: 48px;
+  width: 100%;
+  margin-bottom: 30px;
+  border-radius: 24px;
+  font-size: 19px;
+}
+
+.final-faq-landing .btn-primary:hover {
+  background: #7BCA0C;
+  color: #005234;
+}
+
+
+.final-faqs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  text-align: left;
+}
+
+.final-faq-item {
+  border-bottom: 1px solid #005234;
+  padding: 15px 0;
+  transition: all 0.3s ease;
+}
+
+.final-faq-question {
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  color: #006b3c !important;
+}
+
+.final-faq-item.active .final-faq-question {
+  color: #006b3c;
+}
+
+.final-faq-question-text {
+  flex: 1;
+}
+
+.final-faq-icon {
+  flex-shrink: 0;
+  width: 12.75px;
+  height: 12.75px;
+  position: relative;
+  display: inline-block;
+  transform: rotate(135deg);
+  transition: transform 0.3s ease;
+}
+
+.final-faq-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12.75px;
+  height: 12.75px;
+  border-top: 3px solid #005234;
+  border-right: 3px solid #005234;
+  box-sizing: border-box;
+}
+
+
+.final-faq-answer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.final-faq-item.active .final-faq-answer {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.final-faq-answer-content {
+  padding: 0 0 0 0;
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: inherit;
+}
+
+.final-faq-answer-content p {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.final-faq-answer-content p:last-child {
+  margin-bottom: 0;
+}
+
+.final-faq-item.active .final-faq-answer-content {
+  color: #006b3c;
+}
+
+@media (min-width: 991px) {
+  .final-faq-title {
+    font-size: 32px;
+  }
+
+}
+
+@media (max-width: 990px) {
+  .final-faq-landing {
+    padding: 40px 15px;
+  }
+
+  .final-faq-container {
+    max-width: 460px;
+  }
+
+  .final-faq-title {
+    font-size: 28px;
+  }
+
+
+  .final-faq-question {
+    font-size: 16px;
+  }
+
+  .final-faq-answer-content {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .final-faq-title {
+    font-size: 24px;
+  }
+}

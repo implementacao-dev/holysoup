@@ -1,0 +1,32 @@
+{% if collection.metafields.custom.footer_text != blank %}
+<div class="product-description-short">
+  <div class="descricao-curta">
+    {{ collection.metafields.custom.footer_text | metafield_text | truncate: 500, '. . . '  }}
+    <br>
+    <a class="readmore button button--secondary" href="#">Leia mais</a>
+  </div>
+</div>
+<div class="product-description-full" style="display:none;">
+  {{ collection.metafields.custom.footer_text | metafield_tag }}
+  <br>
+  <a class="readless button button--secondary" href="#">Leia menos</a>
+</div>
+
+
+<script>
+  $('.readmore').click(function (event) {
+    event.preventDefault();
+    var descriptionFull = document.querySelector('.product-description-full');
+    descriptionFull.style.display = 'block';
+    var descriptionShort = document.querySelector('.descricao-curta');
+    descriptionShort.style.display = 'none';
+  });
+  $('.readless').click(function (event) {
+    event.preventDefault();
+    var descriptionFull = document.querySelector('.product-description-full');
+    descriptionFull.style.display = 'none';
+    var descriptionShort = document.querySelector('.descricao-curta');
+    descriptionShort.style.display = 'block';
+  });
+</script>
+{% endif %}

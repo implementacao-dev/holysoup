@@ -1,0 +1,43 @@
+<style>
+  .page-header {
+    background-color: #00b45a;
+    padding: 30px;
+    padding-bottom: 45px;
+  }
+
+  .content-page-header {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .content-page-header h1 .destaque {
+    color: #FFD88A;
+  }
+
+  .page-header p {
+    color: #fff;
+  }
+
+  @media (max-width: 1024px){
+    .page-header {
+      padding-top: 60px;
+    }
+  }
+</style>
+
+<div class="page-header">
+  <div class="content-page-header">
+	  <h1 class="main-page-title page-header">
+	    {{ page.title | escape }}
+	  </h1>
+  </div>
+</div>
+{% render 'borda-superior' %}

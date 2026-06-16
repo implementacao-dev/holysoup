@@ -1,0 +1,31 @@
+# Shopify CLI (sessão local — não commitar)
+.shopify/
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+!.env.example
+
+# Node (build, Theme Check, etc.)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build / cache
+dist/
+.cache/
+*.log
+
+# SO
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# IDE
+.cursor/
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json

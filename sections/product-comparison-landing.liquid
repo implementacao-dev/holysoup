@@ -1,0 +1,219 @@
+<div class="product-comparison-landing">
+  <div class="product-comparison-container">
+    {% if section.settings.title != blank %}
+      <h2 class="comparison-title">{{ section.settings.title }}</h2>
+    {% endif %}
+
+    {% if section.settings.subtitle != blank %}
+      <div class="comparison-subtitle">{{ section.settings.subtitle }}</div>
+    {% endif %}
+
+    <div class="comparison-left">
+      {% if section.settings.table_image != blank %}
+        <div class="comparison-table-image">
+          {{
+            section.settings.table_image
+            | image_url: width: 400
+            | image_tag: alt: section.settings.title, loading: 'lazy'
+          }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="comparison-right">
+      {% if section.settings.product_image != blank %}
+        <div class="product-images">
+          {{
+            section.settings.product_image
+            | image_url: width: 800
+            | image_tag: alt: 'Products', loading: 'lazy', class: 'product-image-main'
+          }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.cta_text != blank %}
+        <a href="#escolha-seu-kit" class="btn-primary">
+          {{ section.settings.cta_text }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.guarantee_text != blank %}
+        <div class="comparison-guarantee">
+          {% render 'icon-check-landing', width: 16, height: 16, fill: section.settings.tag_text_color %}
+          <span>{{ section.settings.guarantee_text }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% style %}
+  #shopify-section-{{ section.id }} .product-comparison-landing {
+    padding: 60px 20px;
+    background-color: {{ section.settings.bg_color | default: '#ffffff' }};
+  }
+  #shopify-section-{{ section.id }} .comparison-title {
+    color: {{ section.settings.title_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .btn-primary {
+    background-color: {{ section.settings.button_bg_color }} !important;
+    color: {{ section.settings.button_text_color }} !important;
+    border-color: {{ section.settings.button_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.button_shadow_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .btn-primary:hover {
+    background-color: {{ section.settings.button_hover_bg_color }} !important;
+    color: {{ section.settings.button_hover_text_color }} !important;
+    border-color: {{ section.settings.button_hover_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.button_hover_shadow_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .comparison-guarantee {
+    background-color: {{ section.settings.tag_bg_color }} !important;
+    color: {{ section.settings.tag_text_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .comparison-guarantee svg path {
+    fill: {{ section.settings.tag_text_color }} !important;
+  }
+{% endstyle %}
+
+{{ 'product-comparison-landing.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "Comparação de Produtos",
+  "tag": "section",
+  "class": "product-comparison-landing-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Estilo Visual (Cores)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Cor de Fundo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Holy vs. Outros"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Cor do Título",
+      "default": "#005234"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "<p>Nada de milagres ou mentiras.<br>Apenas nutrição de verdade.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "table_image",
+      "label": "Imagem da Tabela"
+    },
+    {
+      "type": "header",
+      "content": "Imagens do Produto"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Imagem do Produto"
+    },
+    {
+      "type": "header",
+      "content": "CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto do Botão CTA",
+      "default": "Garantir Meu Kit Agora"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL do Botão CTA"
+    },
+    {
+      "type": "header",
+      "content": "Cores do Botão"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Cor de Fundo do Botão",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Cor do Texto do Botão",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_shadow_color",
+      "label": "Cor da Sombra do Botão",
+      "default": "#005234"
+    },
+    {
+      "type": "header",
+      "content": "Cores do Botão (Hover)"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Cor de Fundo (Hover)",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Cor do Texto (Hover)",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_shadow_color",
+      "label": "Cor da Sombra (Hover)",
+      "default": "#005234"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_text",
+      "label": "Texto de Garantia",
+      "default": "Garantia De Satisfação Total 30 Dias"
+    },
+    {
+      "type": "color",
+      "id": "tag_bg_color",
+      "label": "Cor de Fundo das Flags/Badges",
+      "default": "#ebf7da"
+    },
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "Cor do Texto das Flags/Badges",
+      "default": "#005234"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparação de Produtos",
+      "settings": {
+        "title": "Holy vs. Outros",
+        "subtitle": "<p>Nada de milagres ou mentiras.<br>Apenas nutrição de verdade.</p>",
+        "cta_text": "Garantir Meu Kit Agora",
+        "guarantee_text": "Garantia De Satisfação Total 30 Dias"
+      }
+    }
+  ]
+}
+{% endschema %}

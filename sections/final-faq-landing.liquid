@@ -1,0 +1,268 @@
+<div
+  class="final-faq-landing final-faq-landing-section"
+  data-allow-multiple="{{ section.settings.allow_multiple_open }}"
+>
+  <div class="final-faq-container">
+    {% if section.settings.title != blank %}
+      <h2 class="final-faq-title">{{ section.settings.title }}</h2>
+    {% endif %}
+
+    {% if section.settings.cta_text != blank %}
+      <a href="#escolha-seu-kit" class="btn-primary">
+        {{ section.settings.cta_text }}
+      </a>
+    {% endif %}
+
+    <div class="final-faqs-list">
+      {% for block in section.blocks %}
+        {% if block.type == 'faq' %}
+          <div class="final-faq-item" {{ block.shopify_attributes }}>
+            <button type="button" class="final-faq-question" aria-expanded="false">
+              <span class="final-faq-question-text">{{ block.settings.question }}</span>
+              <span class="final-faq-icon"></span>
+            </button>
+            <div class="final-faq-answer">
+              <div class="final-faq-answer-content">
+                {{ block.settings.answer }}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% style %}
+  #shopify-section-{{ section.id }} .final-faq-landing {
+    padding: 60px 20px;
+    background-color: {{ section.settings.bg_color | default: '#ffffff' }};
+  }
+
+  #shopify-section-{{ section.id }} .final-faq-title {
+    color: {{ section.settings.title_color }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .final-faq-question,
+  #shopify-section-{{ section.id }} .final-faq-item.active .final-faq-question,
+  #shopify-section-{{ section.id }} .final-faq-answer-content,
+  #shopify-section-{{ section.id }} .final-faq-item.active .final-faq-answer-content {
+    color: {{ section.settings.question_color }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .final-faq-icon::before {
+    border-color: {{ section.settings.question_color }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .final-faq-item {
+    border-color: {{ section.settings.divider_color }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .btn-primary {
+    background-color: {{ section.settings.cta_bg_color }} !important;
+    color: {{ section.settings.cta_text_color }} !important;
+    border-color: {{ section.settings.cta_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.cta_shadow_color }} !important;
+    transition: all 0.2s ease !important;
+  }
+  #shopify-section-{{ section.id }} .btn-primary:hover {
+    background-color: {{ section.settings.cta_hover_bg_color }} !important;
+    color: {{ section.settings.cta_hover_text_color }} !important;
+    border-color: {{ section.settings.cta_hover_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.cta_hover_shadow_color }} !important;
+  }
+{% endstyle %}
+
+{{ 'final-faq-landing.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'final-faq-landing.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "FAQ Final Landing",
+  "tag": "section",
+  "class": "final-faq-landing-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Ainda tem dúvidas?"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto do Botão CTA",
+      "default": "Não? Experimente Holy Agora"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL do Botão CTA"
+    },
+    {
+      "type": "header",
+      "content": "Configurações Gerais"
+    },
+    {
+      "type": "checkbox",
+      "id": "allow_multiple_open",
+      "label": "Permitir Múltiplas FAQs Abertas",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Cor de Fundo da Seção",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Cores da FAQ (Textos e Divisores)"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Cor do Título Principal",
+      "default": "#006B3C"
+    },
+    {
+      "type": "color",
+      "id": "question_color",
+      "label": "Cor da Pergunta",
+      "default": "#006B3C"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Cor do Divisor",
+      "default": "#00b45a"
+    },
+    {
+      "type": "header",
+      "content": "Botão CTA (Cores Base)"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "Cor de Fundo do Botão CTA",
+      "default": "#F45218"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "Cor do Texto do Botão CTA",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "color",
+      "id": "cta_shadow_color",
+      "label": "Cor da Sombra do Botão CTA",
+      "default": "#005234"
+    },
+    {
+      "type": "header",
+      "content": "Botão CTA (Cores Hover)"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_bg_color",
+      "label": "Cor de Fundo (Hover)",
+      "default": "#F45218"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_text_color",
+      "label": "Cor do Texto (Hover)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_shadow_color",
+      "label": "Cor da Sombra (Hover)",
+      "default": "#005234"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pergunta",
+          "default": "Pergunta"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Resposta",
+          "default": "<p>Resposta</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Final Landing",
+      "settings": {
+        "title": "Ainda tem dúvidas?",
+        "cta_text": "Não? Experimente Holy Agora"
+      },
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

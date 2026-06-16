@@ -1,0 +1,238 @@
+<style>
+  .slider-persona-hs .swiper-slide{
+    width: fit-content;
+    height: auto;
+  }
+  
+  .slider-persona-hs {
+    padding: 40px 20px 60px 20px;
+  }
+
+  .icon-persona {
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+  }
+
+  .icon-persona svg {
+    color: #fff;
+    width: 20px;
+    height: auto;
+  }
+  
+  .persona-hs-header {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .slider-persona-hs:not(.open-description) .persona-hs-header{
+    width: 100%;
+    height: 100%;
+  }
+  
+  .title-persona {
+    width: 60%;
+    max-width: 135px;
+    line-height: 1.2;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .persona-hs {
+    padding: 30px;
+    background: #fff;
+    border-radius: 25px;
+    height: calc(100% - 65px);
+    background-color: var(--bg);
+  }
+
+  .swiper-slide-active .persona-hs {
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.01);
+  }
+
+  .persona-hs .descubra-mais {
+    font-size: 10px;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 0;
+  }
+  
+  .persona-hs .descubra-mais svg {
+    color: #00b45a;
+    width: 16px;
+    height: auto;
+    stroke-width: 2px;
+  }
+
+  .description-persona p {
+    line-height: 1.5;
+    font-size: 11px;
+    color: #606060;
+  }
+
+  .persona-hs .title-persona,
+  .persona-hs .descubra-mais,
+  .description-persona p,
+  .persona-hs .descubra-mais svg{
+    color: var(--color);
+  }
+
+  .slider-persona-hs:not(.open-description) .description-persona {
+    height: 0px;
+    opacity: 0;
+  }
+
+  .header-widget h3 {
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  @media (min-width: 1200px){
+    .slider-persona-hs .swiper-slide {
+      width: 25%;
+    }
+  
+    .slider-persona-hs {
+      padding: 40px 120px 60px 120px;
+    }
+  }
+</style>
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+<div class="persona-home-container" style="background-color: {{ section.settings.background_color }};">
+  <div class="swiper slider-persona-hs max-container">
+    <div class="header-widget custom-font">
+      <h3 style="color: {{ section.settings.header_color }};">{{ section.settings.header_title | newline_to_br }}</h3>
+    </div>
+    <div class="swiper-wrapper">
+    {% for block in section.blocks %}
+      {% assign content = block.settings.title | split: ": " %}
+      <div class="swiper-slide">
+        {% assign contrastMedia = block.settings.color | color_contrast: '#ffffff' %}
+        <div class="persona-hs" {{ contrastMedia }} style="--bg: {{ block.settings.color }}; --color: #fff;{% comment -%}{% if contrastMedia > 2.0 %}--color: #fff;{% else %}--color: #000;{% endif %}{%- endcomment %}">
+          <div class="persona-hs-header">
+            <div class="icon-persona">
+              {% if block.settings.icone %}
+                <img src="{{ block.settings.icone | image_url }}">
+              {% endif %}
+            </div>
+            <div class="title-persona custom-font" style="color: {{ section.settings.default_title_color }};">
+              <span>
+                {% if content.size > 1 %}
+                <highlight>{{ content | first }}:</highlight><br /> {{ content | last }}
+                {% else %}
+                {{ block.settings.title }}
+                {% endif %}
+              </span>
+              <a href="#" data-open-persona=".slider-persona-hs" data-index="{{ forloop.index0 }}" class="descubra-mais">Descubra mais <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="512px" height="512px"><path d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 24 13 L 24 24 L 13 24 L 13 26 L 24 26 L 24 37 L 26 37 L 26 26 L 37 26 L 37 24 L 26 24 L 26 13 L 24 13 z"/></svg></a>
+            </div>
+          </div>
+          <div class="description-persona">
+            <p>{{ block.settings.description }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+{% if section.settings.borda-inferior %}
+  {% render 'borda-inferior', cor: section.settings.color-borda-inferior %}
+{% endif %}
+{% schema %}
+  {
+    "name": "Persona Home",
+    "class": "white-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "header_title",
+        "label": "Título do cabeçalho",
+        "default": "HolySoup é\nperfeita para quem:"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Cor do fundo",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "header_color",
+        "label": "Cor do título",
+        "default": "#3c3c3c"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-superior",
+        "default": true,
+        "label": "Ativar divisória superior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-superior",
+        "default": "#fff",
+        "label": "Cor da divisória superior"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-inferior",
+        "default": false,
+        "label": "Ativar divisória inferior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-inferior",
+        "default": "#fff",
+        "label": "Cor da divisória inferior"
+      },
+      {
+        "type": "color",
+        "id": "default_title_color",
+        "label": "Cor padrão dos títulos",
+        "default": "#FFFFFF"
+      }
+    ],
+    "blocks": [{
+      "type": "feature",
+      "name": "Destaque",
+      "settings": [
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Cor"
+        },
+        {
+          "type": "image_picker",
+          "id": "icone",
+          "label": "Icone"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descrição"
+        }
+      ]
+    }],
+    "presets": [
+      {"name": "Persona Home"}
+    ]
+  }
+{% endschema %}

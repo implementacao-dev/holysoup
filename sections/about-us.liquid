@@ -1,0 +1,196 @@
+<link rel="stylesheet" href="{{ 'about-us.css' | asset_url }}" media="print" onload="this.media='all'">
+
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+<div class="container_about_us container_be_about_us" style="background-color: {{ section.settings.background_color }};">
+  <div class="about_us_content">
+      <div class="media-container">
+        {% capture media_markup %}
+          {% if section.settings.video != blank %}
+            {% assign m3u8_source = section.settings.video.sources | where: 'format', 'm3u8' | first %}
+            {% assign mp4_sources = section.settings.video.sources | where: 'format', 'mp4' %}
+            {% assign best_mp4_source = mp4_sources | sort: 'width' | first %}
+            {% for source in mp4_sources %}
+              {% if source.width >= 600 %}
+                {% assign best_mp4_source = source %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            {% assign video_url = best_mp4_source.url %}
+            {% assign video_mime_type = best_mp4_source.mime_type %}
+            {% assign poster_url = section.settings.video.preview_image | image_url: width: 600 %}
+            <video width="auto" height="auto" autoplay loop muted playsinline loading="lazy" aria-label="Video" poster="{{ poster_url }}" class="main-video">
+              <source src="{{ video_url }}" type="{{ video_mime_type }}">
+              {% if m3u8_source %}
+                <source src="{{ m3u8_source['url'] }}" type="application/x-mpegURL">
+                <source src="{{ video_url }}" type="{{ video_mime_type }}">
+              {% endif %}
+            </video>
+          {% elsif section.settings.main_image != blank %}
+            <img loading="lazy" src="{{ section.settings.main_image | img_url: 'master' }}" alt="{{ section.settings.main_image.alt | escape }}" class="main-image">
+          {% endif %}
+        {% endcapture %}
+        {{ media_markup | strip }}
+      </div>
+      <div class="content">          
+        <h3 class="content_title">{{ section.settings.title }}</h3>
+        <div class="content_info">{{ section.settings.content_info }}</div>
+        {% if section.settings.button_text != blank %}
+          <a href="{{ section.settings.button_url }}" class="content_button_cta" style="background-color: {{ section.settings.button_bg_color }}; color: {{ section.settings.button_text_color }}; border-color: {{ section.settings.button_bg_color }};">{{ section.settings.button_text }}</a>
+        {% endif %}
+      </div>
+  </div>
+
+  {% for block in section.blocks %}
+    {% if block.type == 'floating_image' %}
+      <div class="float_images_box scroll-trigger animate--slide-in" id="{{ block.settings.position }}">
+        <img loading="lazy" src="{{ block.settings.image | img_url: 'master' }}" width="160" height="auto" alt="{{ block.settings.image_alt }}" class="float-images_image">
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "About Us",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFFAE0"
+    },
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "borda-superior",
+      "default": true,
+      "label": "Ativar divisória superior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-superior",
+      "default": "#fff",
+      "label": "Cor da divisória superior"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Transforme sua rotina</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "content_info",
+      "label": "Content",
+      "default": "<p><strong>Start Healthy</strong><br><em>Com </em><em><strong>Morning Shot</strong></em><em><br></em><br>Mais que um shot matinal, é um ritual diário de autocuidado. Sem açúcar, glúten ou conservantes, ele prepara seu corpo para um dia mais equilibrado.<br><strong><br>Be Unstoppable<br></strong><em>com </em><em><strong>SuperCoffee</strong></em><em><br></em><br>Energia sem oscilações para corpo e mente! Um suplemento completo que melhora sua performance cognitiva e mantém você no seu melhor, todos os dias.<br><br><strong>Sleep Better</strong><br><em>com </em><em><strong>Koala</strong></em><em><br></em><br>Uma bebida deliciosa para sua rotina noturna, que apoia o metabolismo e a função muscular, proporcionando um descanso mais profundo e restaurador.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Conheça nossos produtos"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL",
+      "default": "/collections/all"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#442623"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Media Settings"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Image",
+      "info": "Displayed if no video is provided"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "floating_image",
+      "name": "Floating Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image Alt Text"
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Position",
+          "options": [
+            {
+              "value": "imagem_1",
+              "label": "Position 1"
+            },
+            {
+              "value": "imagem_2",
+              "label": "Position 2"
+            },
+            {
+              "value": "imagem_3",
+              "label": "Position 3"
+            },
+            {
+              "value": "imagem_4",
+              "label": "Position 4"
+            },
+            {
+              "value": "imagem_5",
+              "label": "Position 5"
+            },
+            {
+              "value": "imagem_6",
+              "label": "Position 6"
+            },
+            {
+              "value": "imagem_7",
+              "label": "Position 7"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

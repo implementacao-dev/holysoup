@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="{{ 'where-to-find.css' | asset_url }}" media="print" onload="this.media='all'">
+
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+<div class="swiper onde-encontrar max-container" style="background-color: {{ section.settings.background_color }};">
+  <div class="header-widget custom-font light-font">
+    <h3 style="text-align: center; color: {{ section.settings.heading_color }};">Onde encontrar</h3>
+  </div>
+  <div class="swiper-wrapper">
+  {% for block in section.blocks %}
+    <div class="swiper-slide">
+      <a href="{{ block.settings.link_url }}" target="_blank" class="store-image">
+        <img src="{{ block.settings.image | img_url: '220x' }}" alt="{{ block.settings.title }}" loading="lazy">
+      </a>
+
+      <a href="{{ block.settings.link_url }}" target="_blank" class="store-image">
+        <img src="{{ 'localizacao.svg' | asset_url }}" alt="{{ block.settings.title }}" loading="lazy">
+      </a>
+    </div>
+  {% endfor %}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+{% schema %}
+  {
+    "name": "Onde encontrar",
+    "class": "onde-encontrar-section",
+    "settings": [{
+      "type": "checkbox",
+      "id": "borda-superior",
+      "default": true,
+      "label": "Ativar divisória superior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-superior",
+      "default": "#fff",
+      "label": "Cor da divisória superior"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Cor de fundo",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Cor do título",
+      "default": "#FFC51D"
+    }
+    ],
+    "blocks": [{
+      "type": "feature",
+      "name": "Loja",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem da loja"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nome da loja (alt text)"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link da loja"
+        }
+      ]
+    }],
+    "presets": [
+      {"name": "Where to find"}
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,130 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.slider-bar {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--color-fourth);
+  word-wrap: normal;
+  word-break: keep-all;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+@media (max-width: 991px) {
+  .slider-bar {
+    white-space: nowrap;
+    overflow-x: hidden;
+  }
+}
+.slider-bar .slider-bar-content {
+  overflow: hidden;
+  position: relative;
+  padding: 0 20px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.slider-bar .slider-bar-content .slider-content {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  width: max-content;
+  flex-shrink: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  white-space: nowrap;
+  word-wrap: normal;
+  word-break: keep-all;
+  overflow: visible;
+  will-change: transform;
+  position: relative;
+  font-family: "HatchwayUltraCondensed", sans-serif;
+  font-weight: 400;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.slider-bar .slider-bar-content .slider-content.is-visible {
+  opacity: 1;
+}
+.slider-bar .slider-bar-content .slider-item strong {
+  font-weight: 700;
+}
+.slider-bar .slider-bar-content .slider-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 1.25rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.slider-bar-content .block-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.slider-bar-content .block-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.slider-bar .slider-bar-content .block-text p {
+  margin: 0;
+  display: inline;
+}
+
+.slider-bar .slider-bar-content .separator {
+  padding: 0 1.25rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-items: center;
+}
+.compre-agora-btn-wrapper {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: inherit;
+  height: 100%;
+  padding: 0 20px;
+}
+.compre-agora-btn {
+  padding: 5px 10px;
+  border-radius: 3px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+@media (max-width: 767px) {
+  .compre-agora-btn-wrapper {
+    padding: 0 10px;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-8.33%);
+  }
+}

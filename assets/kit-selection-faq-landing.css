@@ -1,0 +1,402 @@
+.kit-selection-faq-container {
+  display: flex;
+  gap: 40px;
+  max-width: 1280px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.kit-selection-wrapper {
+  width: 45%;
+  border: 1px solid #005234;
+  border-radius: 30px;
+  padding: 30px 10px;
+  background-color: #ffffff;
+}
+
+.faq-wrapper {
+  width: 45%;
+}
+
+
+.kit-selection-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  text-align: center;
+  color: #005234;
+  letter-spacing: 0;
+}
+
+
+.kit-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.kit-option {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+.kit-option-radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.kit-option-content {
+  display: block;
+  padding: 10px 15px;
+  border: 1px solid #005234;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: #fff;
+  position: relative;
+  line-height: 1;
+}
+
+.kit-option-radio:checked + .kit-option-content {
+  border: 2px solid #005234;
+}
+
+.kit-label-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+
+.kit-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #005234;
+}
+
+.kit-price-badge-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.kit-price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kit-price-original {
+  font-size: 16px;
+  color: #005234;
+  font-weight: 400;
+  text-decoration: line-through;
+}
+
+.kit-price-current {
+  font-size: 18px;
+  font-weight: 700;
+  color: #005234;
+}
+
+.kit-badge-wrapper {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 1;
+}
+
+.kit-discount-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  color: #ffffff;
+  border-radius: 16px;
+  font-size: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.kit-discount-badge-1 {
+  background-color: #005234;
+}
+
+.kit-discount-badge-2 {
+  background-color: #7BCA0C;
+}
+
+.kit-free-shipping {
+  display: block;
+  font-size: 14px;
+  color: #7ED321;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.kit-meal-info {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.kit-meal-info p {
+  margin: 0;
+}
+
+.kit-meal-price {
+  color: #7BCA0C;
+  font-weight: 700;
+}
+
+.kit-price-per-meal {
+  color: #00b45a;
+  font-weight: 600;
+}
+
+.kit-yield {
+  color: #999;
+}
+
+.kit-benefits-list {
+  list-style: none;
+  padding: 0;
+  padding-left: 7.5px;
+  margin: 0 0 32px 0;
+}
+
+.kit-benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.kit-benefit-check {
+  flex-shrink: 0;
+  width: 12px;
+  height: auto;
+}
+
+.kit-benefit-check path {
+  fill: #7BCA0C;
+  stroke: #7BCA0C;
+}
+
+.kit-guarantee {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #005234;
+  padding: 5px 10px;
+  background-color: #EBF7DA;
+  border-radius: 5px;
+  letter-spacing: 0;
+  white-space: nowrap;
+  margin: 20px auto 0;
+  width: fit-content;
+}
+
+.kit-guarantee svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.kit-guarantee svg path {
+  fill: #005234;
+}
+
+.kit-add-to-cart-btn {
+  width: 100%;
+  margin-top: 16px;
+  background: #7BCA0C !important;
+  border: 1px solid #005234 !important;
+  color: #ffffff !important;
+  box-shadow: 5px 5px 0 0 #005234 !important;
+}
+
+.kit-add-to-cart-btn:hover:not(:disabled) {
+  color: #005234 !important;
+  box-shadow: 5px 5px 0 0 #005234 !important;
+}
+
+.kit-add-to-cart-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.kit-add-to-cart-btn.is-loading {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+
+.faq-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 25px 0;
+  color: #005234;
+  letter-spacing: 0;
+}
+
+.faqs-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-item {
+  border: none;
+  border-bottom: 1px solid #6868684D;
+  border-radius: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background-color: #F7F6F1;
+}
+
+
+.faq-item.active {
+  border-bottom-color: #6868684D;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 15px 0;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+  background-color: transparent;
+}
+
+.faq-question-text {
+  flex: 1;
+  color: #005234;
+  font-weight: 600;
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  border: 2px solid #005234;
+  border-radius: 100%;
+}
+
+.faq-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 2px;
+  background-color: #005234;
+}
+
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 12px;
+  background-color: #005234;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 0;
+}
+
+.faq-answer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+.faq-answer-content {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #005234;
+}
+
+.faq-answer-content p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 991px) {
+  .kit-selection-title,
+  .faq-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 990px) {
+  .kit-selection-faq-landing {
+    padding: 40px 15px;
+  }
+
+  .kit-selection-faq-container {
+    flex-direction: column;
+    gap: 30px;
+    max-width: 460px;
+  }
+
+  .kit-selection-wrapper {
+    width: 100%;
+    order: 2;
+  }
+
+  .faq-wrapper {
+    width: 100%;
+    order: 1;
+  }
+
+
+  .kit-selection-title {
+    font-size: 28px;
+    text-align: left;
+  }
+
+  .faq-title {
+    font-size: 28px;
+  }
+}

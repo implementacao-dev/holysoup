@@ -1,0 +1,20 @@
+{%- liquid
+  assign btn = settings.notify_form_btn
+  if id
+    assign buttonId = 'stoq-btn-notify-' | append: id
+  else
+    assign buttonId = 'stoq-btn-notify'
+  endif
+-%}
+
+<div class="notifyMe-stoq-wrapper" style="width: 100%">
+  <button
+    id="{{ buttonId }}"
+    class="btn stoq-notify-me-button"
+    style="width: 100%; height: 50px; border-radius: 999px; background: #00b45a; display: flex; justify-content: center; align-items: center; padding: 2px 15px; color: #fff; border: none; position: relative; font-size: 16px; font-weight: 600; transition: color 0.3s ease;"
+    data-product='{ "id": {{ product.id | json }}, "title": {{ product.title | json }}, "handle": {{ product.handle | json }}, "variants": {{ product.variants | json }}, "featured_image": {{ product.featured_image | json }}, "image": {{ product.featured_image | json }} }'
+    data-variant-id="{{ current_variant.id }}"
+  >
+    Avise-me quando chegar
+  </button>
+</div>

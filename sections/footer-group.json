@@ -1,0 +1,154 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer Group",
+  "sections": {
+    "41d631ea-9923-431c-971d-f0f6b314d628": {
+      "type": "footer-8",
+      "settings": {
+        "borda-superior": true,
+        "color-borda-superior": "#00b45a",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff",
+        "logo": "shopify:\/\/shop_images\/logo_principal_off_white.png",
+        "logo_holysoup": "shopify:\/\/shop_images\/complete-logo-holysoup.svg",
+        "show_product_title": true
+      }
+    },
+    "eff6a25d-4e70-4913-9010-17023ff27025": {
+      "type": "footer-02",
+      "blocks": {
+        "sections--16035464708276__eff6a25d-4e70-4913-9010-17023ff27025-newsletter-1": {
+          "type": "newsletter",
+          "settings": {
+            "custom_width": "49.8",
+            "newsletter_style": "style2",
+            "newsletter_margin_bottom": 45,
+            "newsletter_padding_bottom": 0,
+            "enable_border_bottom": false,
+            "border_block_color": "#ffffff",
+            "heading": "Sign up for newsletter",
+            "subtext": "",
+            "mg_top_des": 0,
+            "mg_bottom_des": 28,
+            "spacing_input": 10,
+            "newsletter_form_width": 420,
+            "input_text": "enter your email address",
+            "input_color": "#808080",
+            "input_color_bg": "#232323",
+            "input_color_border": "rgba(0,0,0,0)",
+            "button_text": "Submit",
+            "button_width": 150,
+            "button_color": "#ffffff",
+            "button_color_border": "rgba(0,0,0,0)",
+            "button_color_bg": "#000000",
+            "button_color_bg_gradient": "",
+            "button_color_hover": "#000000",
+            "button_color_border_hover": "#ffffff",
+            "button_color_bg_hover": "#ffffff",
+            "button_color_bg_gradient_hover": "",
+            "check_text": "<p>By providing your email, you consent to our <a href=\"https:\/\/new-ella-demo.myshopify.com\/?fts=0#\">Privacy Policy <\/a>and <a href=\"https:\/\/new-ella-demo.myshopify.com\/?fts=0#\">Terms & Conditions<\/a>.<\/p>",
+            "check_text_color": "#808080",
+            "check_text_fontsize": 14,
+            "check_input_color": "#ffffff",
+            "social_heading": "Follow Us",
+            "show_social": true,
+            "enable_bg_social": false,
+            "social_margin_top": 35,
+            "social_icon_width": 12,
+            "social_icon_padding": 12,
+            "social_icon_border_width": 1,
+            "social_icon_margin_right": 15,
+            "social_color": "#282828",
+            "social_border_color": "#ffffff",
+            "social_background_color": "#ffffff",
+            "social_background_color_gradient": "",
+            "social_color_hover": "#282828",
+            "social_border_color_hover": "#ffffff",
+            "social_background_color_hover": "#ffffff",
+            "social_background_color_gradient_hover": "",
+            "social_box_hover_color": "#ffffff"
+          }
+        },
+        "sections--16035464708276__eff6a25d-4e70-4913-9010-17023ff27025-link_list-1": {
+          "type": "link_list",
+          "settings": {
+            "custom_width": "16.6",
+            "heading": "Shop",
+            "menu": "",
+            "mg_bottom": 0
+          }
+        },
+        "sections--16035464708276__eff6a25d-4e70-4913-9010-17023ff27025-link_list-2": {
+          "type": "link_list",
+          "settings": {
+            "custom_width": "16.6",
+            "heading": "Information",
+            "menu": "",
+            "mg_bottom": 0
+          }
+        },
+        "sections--16035464708276__eff6a25d-4e70-4913-9010-17023ff27025-link_list-3": {
+          "type": "link_list",
+          "settings": {
+            "custom_width": "16.6",
+            "heading": "Customer Service",
+            "menu": "",
+            "mg_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "sections--16035464708276__eff6a25d-4e70-4913-9010-17023ff27025-newsletter-1",
+        "sections--16035464708276__eff6a25d-4e70-4913-9010-17023ff27025-link_list-1",
+        "sections--16035464708276__eff6a25d-4e70-4913-9010-17023ff27025-link_list-2",
+        "sections--16035464708276__eff6a25d-4e70-4913-9010-17023ff27025-link_list-3"
+      ],
+      "disabled": true,
+      "settings": {
+        "container": "full",
+        "padding_full_width": 15,
+        "type_footer_heading": "font_1",
+        "type_footer_heading_font_size": 16,
+        "type_footer_heading_font_weight": "500",
+        "type_footer_heading_text_transform": "uppercase",
+        "type_footer_heading_line_height": 18,
+        "type_footer_heading_letter_spacing": ".02em",
+        "type_footer_link": "font_1",
+        "type_footer_link_font_size": 14,
+        "type_footer_link_font_weight": "400",
+        "type_footer_link_text_transform": "capitalize",
+        "type_footer_link_line_height": 44,
+        "type_footer_link_letter_spacing": ".02em",
+        "border_footer_top_color": "#00b45a",
+        "pdtop_footer_top": 50,
+        "pdbottom_footer_top": 50,
+        "footer_top_bg": "#00b45a",
+        "footer_top_bg_gradient": "",
+        "show_footer_top_bg_img": false,
+        "footer_top_bg_img": "shopify:\/\/shop_images\/patter_background.png",
+        "footer_top_bg_position_x": "center",
+        "footer_top_bg_position_y": "center",
+        "footer_top_bg_repeat": "no-repeat",
+        "footer_top_bg_attachment": "fixed",
+        "footer_top_bg_size": "contain",
+        "footer_top_text_align": "center",
+        "footer_top_title_color": "#ffffff",
+        "footer_top_color_link": "#ffffff",
+        "footer_top_color_link_hover": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "41d631ea-9923-431c-971d-f0f6b314d628",
+    "eff6a25d-4e70-4913-9010-17023ff27025"
+  ]
+}

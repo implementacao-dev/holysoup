@@ -1,0 +1,206 @@
+<style>
+  .hs-garante {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-left: 20px;
+      padding-right: 20px;
+      background-color: {{ section.settings.background_color }};
+    }
+
+    .banners-hs-garante {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 27px;
+    }
+
+    @media (max-width: 1024px){
+      .banners-hs-garante {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+
+    .content-hs-garante h3 {
+      text-align: center;
+      color: {{ section.settings.title_color }};
+      font-weight: 400;
+      font-size: 24px;
+      letter-spacing: 0;
+      line-height: 1.4;
+      margin-bottom: 30px;
+    }
+
+    .banner-hs-garante h4 {
+      color: #ffd88a;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: 5px;
+      font-size: 1.2em;
+    }
+
+    .banner-hs-garante p {
+      margin: 0;
+      max-width: 65%;
+      line-height: 1.3;
+      color: #fff;
+      font-size: 0.9em;
+    }
+
+    .banner-hs-garante {
+      background-color: var(--destaque-color);
+      border-radius: 20px;
+      justify-content: center;
+      background-size: 65%;
+      background-repeat: no-repeat;
+      background-position: right;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+      min-height: 180px;
+    }
+
+    {% for block in section.blocks %}
+      .banner-hs-{{ block.id }} {
+        --destaque-color: {{ block.settings.bg_color | default: '#00b45a' }};
+        {% if block.settings.image != blank %}
+          background-image: url({{ block.settings.image | image_url: width: 600 }});
+        {% elsif block.settings.image_url != blank %}
+          background-image: url({{ block.settings.image_url }});
+        {% endif %}
+      }
+    {% endfor %}
+</style>
+
+<div class="hs-garante">
+  <div class="content-hs-garante">
+    {% if section.settings.title != blank %}
+      <h3>{{ section.settings.title }}</h3>
+    {% endif %}
+    <div class="banners-hs-garante">
+      {% for block in section.blocks %}
+        <div class="banner-hs-garante banner-hs-{{ block.id }}" {{ block.shopify_attributes }}>
+          <h4>{{ block.settings.title }}</h4>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Garantia HS",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título da Seção",
+      "default": "A HolyFoods garante para você"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Cor do Título",
+      "default": "#00b45a"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Cor de Fundo da Seção",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "guarantee_item",
+      "name": "Item de Garantia",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "+ Saúde"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texto",
+          "default": "Descrição da garantia"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem de Fundo"
+        },
+        {
+          "type": "url",
+          "id": "image_url",
+          "label": "URL da Imagem (Opcional)"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Cor de Destaque",
+          "default": "#00b45a"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Garantia HS",
+      "blocks": [
+        {
+          "type": "guarantee_item",
+          "settings": {
+            "title": "+ Saúde",
+            "text": "Uma refeição 100% natural, nutritiva e leve, sem abrir mão do sabor. Cuidar da sua alimentação nunca foi tão fácil.",
+            "bg_color": "#00b45a",
+            "image_url": "https://cdn.shopify.com/s/files/1/0619/0206/1748/files/Grupo_de_rolagem_29.png?v=1695044017"
+          }
+        },
+        {
+          "type": "guarantee_item",
+          "settings": {
+            "title": "+ Praticidade",
+            "text": "Água fervente, poucos minutos e pronto. Sua refeição HolyFoods fica pronta sem esforço, sem bagunça e sem complicação.",
+            "bg_color": "#0077bb",
+            "image_url": "https://cdn.shopify.com/s/files/1/0619/0206/1748/files/Grupo_de_rolagem_30.png?v=1695044016"
+          }
+        },
+        {
+          "type": "guarantee_item",
+          "settings": {
+            "title": "+ Sabor",
+            "text": "Temperos naturais selecionados que entregam um sabor de comida caseira de verdade. Você vai se surpreender.",
+            "bg_color": "#ff7a50",
+            "image_url": "https://cdn.shopify.com/s/files/1/0619/0206/1748/files/Grupo_de_rolagem_31.png?v=1695044017"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

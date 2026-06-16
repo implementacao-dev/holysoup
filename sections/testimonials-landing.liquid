@@ -1,0 +1,895 @@
+{{ 'testimonials-landing.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'testimonials-landing.js' | asset_url }}" defer></script>
+
+<div class="testimonials-landing">
+  <div class="testimonials-container">
+    <div class="testimonials-left">
+      <div class="testimonials-header">
+        {% if section.settings.rating != blank %}
+          <div class="testimonials-rating">
+            <div class="testimonials-stars">
+              {% for i in (1..5) %}
+                <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 0L12.2451 7.90983L20 7.90983L13.8775 12.7803L16.1225 20.6902L10 15.8197L3.87746 20.6902L6.12254 12.7803L0 7.90983L7.75486 7.90983L10 0Z" fill="#005234"/>
+                </svg>
+              {% endfor %}
+            </div>
+            <span class="testimonials-rating-text">{{ section.settings.rating }}</span>
+          </div>
+        {% endif %}
+
+        {% if section.settings.headline != blank %}
+          <h2 class="testimonials-headline">{{ section.settings.headline }}</h2>
+        {% endif %}
+      </div>
+
+      <div class="swiper testimonials-carousel">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            {% if block.type == 'testimonial' %}
+              <div class="swiper-slide" {{ block.shopify_attributes }}>
+                <div class="testimonial-card">
+                  <div class="testimonial-stars">
+                    {% for i in (1..5) %}
+                      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 0L9.79611 5.52786L16 6.11146L11.8541 9.94428L13.4164 16L8 12.5279L2.58359 16L4.1459 9.94428L0 6.11146L6.20389 5.52786L8 0Z" fill="#7BCA0C" stroke="#7BCA0C" stroke-width="0.5"/>
+                      </svg>
+                    {% endfor %}
+                  </div>
+
+                  {% if block.settings.title != blank %}
+                    <h3 class="testimonial-title">{{ block.settings.title }}</h3>
+                  {% endif %}
+
+                  {% if block.settings.text != blank %}
+                    <p class="testimonial-text">{{ block.settings.text }}</p>
+                  {% endif %}
+
+                  {% if block.settings.author_name != blank %}
+                    <div class="testimonial-author">{{ block.settings.author_name }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonials-right">
+      {% if section.blocks.size > 0 %}
+        {% assign video_blocks = section.blocks | where: 'type', 'video' %}
+        {% if video_blocks.size > 0 %}
+          <div class="swiper testimonials-videos-carousel">
+            <div class="swiper-wrapper">
+              {% for block in video_blocks %}
+                <div class="swiper-slide" {{ block.shopify_attributes }} data-video-index="{{ forloop.index0 }}">
+                  <div class="testimonials-video-wrapper">
+                    {% if block.settings.video != blank %}
+                      <div class="testimonials-video-container">
+                        {% assign video_tag = block.settings.video | video_tag: controls: false, image_size: '1200x' %}
+                        {% assign poster_match = video_tag | split: 'poster="' %}
+                        {% if poster_match.size > 1 %}
+                          {% assign poster_url = poster_match[1] | split: '"' | first %}
+                          <img
+                            src="{{ poster_url }}"
+                            alt="Video thumbnail"
+                            class="testimonials-video-thumbnail"
+                            width="600"
+                            height="600"
+                            loading="lazy"
+                          >
+                        {% else %}
+                          <div class="testimonials-video-placeholder"></div>
+                        {% endif %}
+                        <button
+                          type="button"
+                          class="testimonials-video-play-btn"
+                          aria-label="Play video"
+                          data-video-index="{{ forloop.index0 }}"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 28.57 20"
+                            focusable="false"
+                            style="pointer-events: none; display: block; width: 100%; height: 100%;"
+                            stroke="none"
+                          >
+                            <g>
+                              <path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z" fill="#FFFFFF" stroke="none"></path>
+                              <path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="#1A1A1A" stroke="none"></path>
+                            </g>
+                          </svg>
+                        </button>
+                        <button
+                          type="button"
+                          class="testimonials-video-fullscreen-btn"
+                          aria-label="Fullscreen"
+                          data-video-index="{{ forloop.index0 }}"
+                        >
+                          <svg
+                            fill="#ffffff"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M9.29,13.29,4,18.59V17a1,1,0,0,0-2,0v4a1,1,0,0,0,.08.38,1,1,0,0,0,.54.54A1,1,0,0,0,3,22H7a1,1,0,0,0,0-2H5.41l5.3-5.29a1,1,0,0,0-1.42-1.42ZM5.41,4H7A1,1,0,0,0,7,2H3a1,1,0,0,0-.38.08,1,1,0,0,0-.54.54A1,1,0,0,0,2,3V7A1,1,0,0,0,4,7V5.41l5.29,5.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42ZM21,16a1,1,0,0,0-1,1v1.59l-5.29-5.3a1,1,0,0,0-1.42,1.42L18.59,20H17a1,1,0,0,0,0,2h4a1,1,0,0,0,.38-.08,1,1,0,0,0,.54-.54A1,1,0,0,0,22,21V17A1,1,0,0,0,21,16Zm.92-13.38a1,1,0,0,0-.54-.54A1,1,0,0,0,21,2H17a1,1,0,0,0,0,2h1.59l-5.3,5.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L20,5.41V7a1,1,0,0,0,2,0V3A1,1,0,0,0,21.92,2.62Z"/>
+                          </svg>
+                        </button>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="testimonials-videos-nav-wrapper">
+              <button
+                type="button"
+                class="testimonials-videos-nav-btn testimonials-videos-nav-prev"
+                aria-label="Previous video"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#005234">
+                  <path fill-rule="evenodd" d="M14.5 8a.5.5 0 0 1-.5.5H2.207l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.207 7.5H14A.5.5 0 0 1 14.5 8z"/>
+                </svg>
+              </button>
+              <div class="swiper-pagination"></div>
+              <button
+                type="button"
+                class="testimonials-videos-nav-btn testimonials-videos-nav-next"
+                aria-label="Next video"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#005234">
+                  <path fill-rule="evenodd" d="M1.5 8a.5.5 0 0 1 .5-.5h11.793L10.646 4.354a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.793 8.5H2A.5.5 0 0 1 1.5 8z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {% if section.settings.disclaimer != blank %}
+        <div class="testimonials-disclaimer">{{ section.settings.disclaimer }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Video Lightbox -->
+<div id="testimonials-video-lightbox" class="testimonials-video-lightbox" style="display: none;">
+  <div class="testimonials-video-lightbox-overlay"><span></span></div>
+  <div class="testimonials-video-lightbox-content">
+    <div class="testimonials-video-lightbox-header">
+      <button type="button" class="testimonials-video-lightbox-close" aria-label="Fechar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="swiper testimonials-video-lightbox-carousel">
+      <div class="swiper-wrapper">
+        {% if section.blocks.size > 0 %}
+          {% assign video_blocks = section.blocks | where: 'type', 'video' %}
+          {% for block in video_blocks %}
+            {% if block.settings.video != blank %}
+              <div class="swiper-slide">
+                <div class="testimonials-video-lightbox-video-wrapper">
+                  {{
+                    block.settings.video
+                    | video_tag: controls: true, class: 'testimonials-video-lightbox-video', image_size: '1200x'
+                  }}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    <button
+      type="button"
+      class="testimonials-video-lightbox-nav-btn testimonials-video-lightbox-nav-prev"
+      aria-label="Previous video"
+    >
+      <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#005234">
+        <path fill-rule="evenodd" d="M14.5 8a.5.5 0 0 1-.5.5H2.207l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.207 7.5H14A.5.5 0 0 1 14.5 8z"/>
+      </svg>
+    </button>
+    <button
+      type="button"
+      class="testimonials-video-lightbox-nav-btn testimonials-video-lightbox-nav-next"
+      aria-label="Next video"
+    >
+      <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#005234">
+        <path fill-rule="evenodd" d="M1.5 8a.5.5 0 0 1 .5-.5h11.793L10.646 4.354a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.793 8.5H2A.5.5 0 0 1 1.5 8z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+{% style %}
+  #shopify-section-{{ section.id }} .testimonials-landing {
+    padding: 140px 20px;
+    background-color: {{ section.settings.bg_color | default: '#EBFBD7' }};
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-headline,
+  #shopify-section-{{ section.id }} .testimonial-title,
+  #shopify-section-{{ section.id }} .testimonial-text,
+  #shopify-section-{{ section.id }} .testimonial-author {
+    color: {{ section.settings.headline_color | default: '#005234' }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-rating-text {
+    color: {{ section.settings.rating_color | default: '#005234' }};
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-stars svg path {
+    fill: {{ section.settings.star_color }} !important;
+    stroke: {{ section.settings.star_color }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .testimonial-stars svg path {
+    fill: {{ section.settings.card_star_color }} !important;
+    stroke: {{ section.settings.card_star_color }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .testimonial-card {
+    border: 1px solid {{ section.settings.card_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.card_shadow_color }} !important;
+    border-radius: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-videos-nav-btn svg path,
+  #shopify-section-{{ section.id }} .testimonials-video-lightbox-nav-btn svg path {
+    fill: {{ section.settings.headline_color }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-videos-carousel .swiper-pagination-bullet-active {
+    background-color: {{ section.settings.star_color }} !important;
+    border-color: {{ section.settings.headline_color }} !important;
+  }
+{% endstyle %}
+
+{% stylesheet %}
+  .testimonials-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .testimonials-left {
+    width: 68%;
+  }
+
+  .testimonials-right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35%;
+    z-index: 1;
+  }
+
+  .testimonials-header {
+    margin-bottom: 32px;
+  }
+
+  .testimonials-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .testimonials-stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .testimonials-stars svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .testimonials-rating-text {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .testimonials-headline {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+    color: #005234;
+  }
+
+  .testimonials-headline p {
+    margin: 0;
+  }
+
+  .testimonials-carousel {
+    position: relative;
+  }
+
+  .testimonials-carousel .swiper-slide {
+    height: auto;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .testimonial-card {
+    background: #ffffff;
+    padding: 24px;
+    height: 100%;
+  }
+
+  .testimonial-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 12px;
+    justify-content: center;
+  }
+
+  .testimonial-stars svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .testimonial-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #005234;
+    margin: 0 0 12px 0;
+    text-align: center;
+  }
+
+  .testimonial-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #005234;
+    margin: 0 0 16px 0;
+    text-align: center;
+  }
+
+  .testimonial-author {
+    font-size: 18px;
+    font-weight: 700;
+    color: #005234;
+    text-align: center;
+  }
+
+  .testimonials-videos-carousel {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .testimonials-videos-nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 10px;
+  }
+
+  .testimonials-videos-carousel .swiper-pagination {
+    position: relative;
+    margin: 0;
+    margin-top: 0 !important;
+    width: fit-content !important;
+    display: flex;
+    align-items: center;
+  }
+
+  .testimonials-videos-nav-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .testimonials-videos-nav-btn:disabled,
+  .testimonials-videos-nav-btn.swiper-button-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .testimonials-videos-nav-btn svg {
+    width: 100%;
+    height: 26px;
+  }
+
+  .testimonials-videos-nav-btn svg path {
+    fill: #005234 !important;
+    stroke: none;
+  }
+
+  .testimonials-videos-carousel .swiper-pagination-bullet {
+    width: 14px !important;
+    height: 14px !important;
+    background-color: #005234;
+    opacity: 0.3;
+  }
+
+  .testimonials-landing .testimonials-videos-carousel .swiper-pagination .swiper-pagination-bullet-active {
+    width: 14px !important;
+    height: 14px !important;
+    opacity: 1;
+    border: 2px solid #005234;
+    background-color: #7bca0c !important;
+  }
+
+  .testimonials-video-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonials-video-container {
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .testimonials-video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .testimonials-video-container video::-webkit-media-controls {
+    display: none !important;
+  }
+
+  .testimonials-video-container video::-webkit-media-controls-enclosure {
+    display: none !important;
+  }
+
+  .testimonials-video-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid #006b3c;
+    border-radius: 16px;
+    box-sizing: border-box;
+  }
+
+  .testimonials-video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+  }
+
+  .testimonials-video-fullscreen-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 40px;
+    height: 32px;
+    background-color: #005234;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    padding: 0;
+  }
+
+  .testimonials-video-fullscreen-btn svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .testimonials-video-fullscreen-btn svg path {
+    fill: #ffffff !important;
+    stroke: none;
+  }
+
+  .testimonials-video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55px;
+    height: auto;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+    padding: 0;
+  }
+
+  .testimonials-video-play-btn:hover {
+    opacity: 0.9;
+  }
+
+  .testimonials-video-play-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .testimonials-video-play-btn svg {
+    width: 55px;
+    height: auto;
+  }
+
+  .testimonials-video-play-btn svg path {
+    stroke: none;
+  }
+
+  .testimonials-disclaimer {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .testimonials-disclaimer p {
+    margin: 0;
+  }
+
+  /* Video Lightbox */
+  .testimonials-video-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .testimonials-video-lightbox-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .testimonials-video-lightbox-overlay span {
+    display: block;
+  }
+
+  .testimonials-video-lightbox-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .testimonials-video-lightbox-carousel {
+    width: 100%;
+    position: relative;
+  }
+
+  .testimonials-video-lightbox-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+
+  .testimonials-video-lightbox-close {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    padding: 0;
+  }
+
+  .testimonials-video-lightbox-close svg {
+    width: 24px;
+    height: 24px;
+    color: #005234;
+  }
+
+  .testimonials-video-lightbox-close svg path {
+    stroke: #005234;
+  }
+
+  .testimonials-video-lightbox-video-wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #000000;
+  }
+
+  .testimonials-video-lightbox-video {
+    width: fit-content;
+    max-width: 800px;
+    max-height: 90dvh;
+    height: auto;
+    display: block;
+  }
+
+  .testimonials-video-lightbox-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    z-index: 10;
+  }
+
+  .testimonials-video-lightbox-nav-prev {
+    left: 10px;
+  }
+
+  .testimonials-video-lightbox-nav-next {
+    right: 10px;
+  }
+
+  .testimonials-video-lightbox-nav-btn svg {
+    width: 100%;
+    height: 26px;
+  }
+
+  .testimonials-video-lightbox-nav-btn svg path {
+    fill: #005234 !important;
+    stroke: none;
+  }
+
+  .testimonials-video-lightbox-nav-btn:disabled,
+  .testimonials-video-lightbox-nav-btn.swiper-button-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  @media (min-width: 991px) {
+    .testimonials-headline {
+      font-size: 40px;
+    }
+
+    .testimonials-left {
+      padding-bottom: 50px;
+    }
+
+    .testimonials-right {
+      width: 35%;
+    }
+  }
+
+  @media (max-width: 990px) {
+    .testimonials-landing {
+      padding: 70px 20px !important;
+    }
+
+    .testimonials-container {
+      flex-direction: column;
+      gap: 30px;
+      max-width: 460px;
+    }
+
+    .testimonials-left,
+    .testimonials-right {
+      width: 100%;
+      position: static;
+      transform: none;
+      right: auto;
+      top: auto;
+    }
+
+    .testimonials-header {
+      text-align: center;
+    }
+
+    .testimonials-rating {
+      justify-content: center;
+    }
+
+    .testimonials-headline {
+      font-size: 28px;
+      text-align: center;
+    }
+
+    .testimonials-video-wrapper {
+      max-width: 460px;
+      width: 100%;
+      margin: 40px auto 16px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .testimonials-headline {
+      font-size: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Depoimentos Landing",
+  "tag": "section",
+  "class": "testimonials-landing-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "rating",
+      "label": "Texto de Avaliação",
+      "default": "4.8 avaliações"
+    },
+    {
+      "type": "richtext",
+      "id": "headline",
+      "label": "Título Principal",
+      "default": "<p>Seja um 650.000+ Clientes<br>Que Secaram Com Saúde</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "disclaimer",
+      "label": "Aviso",
+      "default": "<p>Avaliações e experiências reais de pessoas reais,<br>disponíveis em nossa loja e redes sociais</p>"
+    },
+    {
+      "type": "header",
+      "content": "Estilo Visual (Cores e Estrelas)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Cor de Fundo",
+      "default": "#EBFBD7"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Cor do Título",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "rating_color",
+      "label": "Cor da Avaliação",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Cor das Estrelas (Geral)",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "card_star_color",
+      "label": "Cor das Estrelas (Cards)",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "card_shadow_color",
+      "label": "Cor da Sombra dos Cards",
+      "default": "#005234"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Depoimento",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Titulo"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texto",
+          "default": "lorem ipsum"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Nome do Autor",
+          "default": "Nome"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Vídeo",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Vídeo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Depoimentos Landing",
+      "settings": {
+        "rating": "4.8 avaliações",
+        "headline": "<p>Seja um 650.000+ Clientes<br>Que Secaram Com Saúde</p>",
+        "disclaimer": "<p>Avaliações e experiências reais de pessoas reais,<br>disponíveis em nossa loja e redes sociais</p>"
+      },
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "title": "Perdi 3,5kg em 12 dias!",
+            "text": "As sopas enchem tanto que nem senti vontade de besteira. A Low Carb virou meu almoço favorito.",
+            "author_name": "Marina T."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "title": "Intestino funcionando",
+            "text": "Perdi 3kg e desinchei. As fibras fazem milagre! E não preciso cozinhar.",
+            "author_name": "Juliana S."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "title": "Perdi 2,5 kg!",
+            "text": "As sopas são saborosas. Perdi 2,5 kg! É real! fiquei impressionada com o resultado.",
+            "author_name": "Patricia Alves"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "title": "Kit excelente",
+            "text": "As sopas são sensacionais. Saborosas, práticas, da saciedade e salva de pedir delivery em dias mais corridos. Super recomendo",
+            "author_name": "Tatiane Santos Sena"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

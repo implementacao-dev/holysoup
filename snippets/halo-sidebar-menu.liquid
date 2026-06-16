@@ -1,0 +1,109 @@
+{%- style -%}
+  .sidebar-banner {
+    width: 100%;
+  }
+  
+  .sidebar-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .sidebar-button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    min-height: 45px;
+    background: #DBB17B;
+    color: #5B1F36;
+    text-align: center;
+    border-radius: 30px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+{%- endstyle -%}
+
+<div class="halo-sidebar halo-sidebar-left halo-sidebar_menu {% if settings.mobile_menu == 'custom' %}custom-mobile-menu{% endif %}" id="navigation-mobile">
+    <div class="halo-sidebar-wrapper custom-scrollbar">
+          <div class="menu-heading-mobile halo-sidebar-header">
+            <span class="title">{{ 'general.common.menu' | t }}</span>
+            <button type="button" class="halo-sidebar-close" data-menu-close-sidebar aria-label="{{ 'general.common.close' | t }}">{% render 'icon-close' %}{{ 'general.common.close' | t }}</button>
+          </div>
+
+          <div class="col-12 mobile-search">
+            <div class="back-home-mobile">
+              <a href="/">
+                <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 64 64"><path d="M43.76,52.6h-9V43.49a2.84,2.84,0,0,0-2.53-3.06h-.5a2.84,2.84,0,0,0-2.53,3.06V52.6h-9a4.64,4.64,0,0,1-4.36-4.87V37.2H11.61L32,13.6l6.34,7.34a2.87,2.87,0,0,1,2.41-1.41,3.3,3.3,0,0,1,3,3.52V27.2l8.63,10H48.12V47.73A4.64,4.64,0,0,1,43.76,52.6Zm-8-1h8a3.64,3.64,0,0,0,3.36-3.87V36.2h0V47.73a3.64,3.64,0,0,1-3.36,3.87Zm-18.9-3.87a3.64,3.64,0,0,0,3.36,3.87h8V43.49a3.83,3.83,0,0,1,3.53-4.06h.5a3.83,3.83,0,0,1,3.53,4.06,3.83,3.83,0,0,0-3.53-4.06h-.5a3.83,3.83,0,0,0-3.53,4.06V51.6h-8A3.64,3.64,0,0,1,16.88,47.73Zm19.9,2.87h7a2.66,2.66,0,0,0,2.36-2.87V35.2H48l-6.3-7.29,0-.5V23.05c0-.87-.54-1.52-1-1.52s-1,.67-1,1.44l-.1,2.54L32,16.66,16,35.2h1.9V47.73a2.66,2.66,0,0,0,2.36,2.87h7V43.49a4.82,4.82,0,0,1,4.53-5.06h.5a4.82,4.82,0,0,1,4.53,5.06Zm-23-14.4h0Zm29-8.64v0ZM38.63,22.8l.12.13a2.8,2.8,0,0,1,.16-.88Zm2.11-2.27Zm0,0h0Z"/></svg>
+              </a>
+            </div>
+            <form action="/search" method="get" class="search-bar" role="search">
+              <input type="hidden" name="type" value="product">
+              <input type="search" name="q" placeholder="Busque em nossa loja" class="input-group-field header-search__input" aria-label="Search Site" autocomplete="off">
+              <button type="submit" class="btn icon-search">
+                <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2.54mm" height="2.54mm" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 254 254" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+                  <g id="Camada_x0020_1">
+                    <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                    <path fill="#292929" d="M41.3 106.26c0,-14.66 6.19,-32.33 15.73,-42.96 10.36,-11.55 20.39,-18.32 36.43,-22.24 19.66,-4.82 43.4,0.89 57.87,13.86 5.4,4.85 7.55,6.89 11.99,13.15 15.95,22.5 15.95,53.88 0,76.38 -1,1.41 -2.42,3.44 -3.61,4.77 -2.84,3.15 -2.76,3.56 -6.24,6.34 -2.64,2.12 -2.1,2.24 -6.92,5.66 -3.34,2.37 -6.87,4.17 -10.7,6.06 -12.2,6.02 -29,7.47 -42.39,4.19 -4.55,-1.11 -8.82,-2.34 -12.58,-4.19 -5.04,-2.49 -11.27,-5.91 -15.47,-9.68 -11.56,-10.36 -18.32,-20.39 -22.25,-36.43 -0.91,-3.72 -1.86,-10.39 -1.86,-14.91zm-14.9 -3.72c0,14.81 1.38,26.15 7.76,38.81 1.21,2.39 2.14,4.3 3.39,6.39 3.9,6.5 9.41,13.84 15.26,18.74 3.09,2.58 2.9,3.2 8.14,6.76 11.94,8.09 27.67,14.99 43.69,14.99 15.03,0 21.39,-0.69 35.26,-6.19 6.05,-2.39 10.95,-5.39 16.16,-8.99 0.99,-0.68 1.47,-1.03 2.4,-1.79 1.47,-1.2 1,-1.49 3,-1.66 0.66,1.81 4.45,4.83 5.83,6.28l7.46 7.44c6.69,7.54 22.13,20.68 29.1,29.12 0.39,0.47 0,0.05 0.64,0.75l7.97 7.87c3.37,3.48 4.18,4.43 8.61,4.43 3.38,0 6.52,-3.23 6.52,-8.39 0,-3.73 -10.12,-12.68 -12.92,-15.48 -3.69,-3.68 -41.54,-41.07 -42.97,-43.2 2.02,-3 4.38,-5.28 6.97,-9.8 2.19,-3.8 3.76,-7.01 5.6,-11.17 8.8,-19.92 8.02,-47.01 -1.69,-66.28 -5.11,-10.12 -7.1,-12.65 -13.78,-20.22l-7.48 -7.42 -11.48 -8.08c-2.09,-1.26 -3.99,-2.19 -6.39,-3.4 -20.62,-10.39 -49.47,-10.43 -70.17,0 -9.66,4.87 -12.42,6.89 -20.22,13.78 -6.5,5.74 -10.98,11.39 -15.51,18.96 -5.78,9.64 -11.15,24.73 -11.15,37.75z"></path>
+                  </g>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          {% comment %} Render banner if conditions are met {% endcomment %}
+          {% if settings.show_menu_banner_top and settings.menu_banner_top %}
+            <div class="sidebar-banner">
+              <a href="{{ settings.menu_banner_top_url | default: '#' }}" class="sidebar-banner-link">
+                <img src="{{ settings.menu_banner_top | image_url: width: 500 }}" 
+                     alt="{{ settings.menu_banner_top.alt | default: 'Menu Banner' }}"
+                     loading="lazy">
+              </a>
+            </div>
+          {% endif %}
+
+      {%- if settings.mobile_menu == 'default' -%}
+        <div class="site-nav-mobile nav-menu-tab"></div>
+        <div class="site-nav-mobile nav" data-navigation-mobile>
+          <div class="menu-heading-mobile halo-sidebar-header">
+            <span class="title">{{ 'general.common.menu' | t }}</span>
+            <button type="button" class="halo-sidebar-close" data-menu-close-sidebar aria-label="{{ 'general.common.close' | t }}">{% render 'icon-close' %}{{ 'general.common.close' | t }}</button>
+          </div>
+        </div>
+      {%- else -%}
+        <div class="site-nav-mobile nav-menu-tab nav-mobile-menu-tab" data-navigation-tab-mobile></div>
+        <button type="button" class="halo-sidebar-close halo-sidebar-close-custom" data-menu-close-sidebar aria-label="{{ 'general.common.close' | t }}">{% render 'icon-close' %}{{ 'general.common.close' | t }}</button>
+        <div class="site-nav-mobile nav menu-custom-mobile" data-navigation-mobile></div>
+      {%- endif -%}
+      
+      {%- if settings.mobile_menu == 'default' -%}
+        <div class="site-nav-mobile nav-account">
+          {%- if shop.customer_accounts_enabled -%}
+              <div class="customer-links {% if customer %}customer-login{% endif %} {%- unless settings.show_wishlist -%}last-link{% endunless %}">
+                {%- if customer -%}
+                  {% comment %}<span class="icon-wrapper">{% render 'icon-account' %}</span>{% endcomment %}
+                  {% comment %}<span>/</span>{% endcomment %}
+                  <a class="header__link--account customer_acc" href="{{ routes.account_url }}">{{ 'customer.account.my_account' | t }}</a>
+                  <a class="header__link--account customer_logount" id="customer_logout_link" href="{{ routes.account_logout_url }}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="32px" viewBox="0 0 32 32" version="1.1"> <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch --> <title>Logout</title> <desc>Created with Sketch.</desc> <defs/> <g id="Page-2-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="74" stroke="#979797" fill-rule="nonzero"> <path d="M24.2565689,11.1135605 C23.8660446,10.7230362 23.8660446,10.0898712 24.2565689,9.69934692 C24.6470932,9.30882263 25.2802582,9.30882263 25.6707825,9.69934692 L31.3276367,15.3562012 C31.718161,15.7467255 31.718161,16.3798904 31.3276367,16.7704147 L25.6707825,22.427269 C25.2802582,22.8177933 24.6470932,22.8177933 24.2565689,22.427269 C23.8660446,22.0367447 23.8660446,21.4035797 24.2565689,21.0130554 L28.2773842,16.9922401 L6.03804313,16.9922401 C5.48602219,16.9922401 5.0347435,16.5445249 5.0347435,15.9922401 C5.0347435,15.436105 5.48393605,14.9922401 6.03804313,14.9922401 L28.1352486,14.9922401 L24.2565689,11.1135605 Z" id="Rectangle-359" stroke="none" fill="#2A2630"/> <path d="M18,31 L19,30 L1,30 L2,31 L2,24.0644531 L2,8.02148437 L2,1 L1,2 L19,2 L18,1 L18,10 C18,10.5522847 18.4477153,11 19,11 C19.5522847,11 20,10.5522847 20,10 L20,1 C20,0.44771525 19.5522847,3.66373598e-15 19,3.55271368e-15 L1,0 C0.44771525,0 3.55271368e-15,0.44771525 3.55271368e-15,1 L3.55271368e-15,8.02148437 L0,24.0644531 L0,31 C0,31.5522847 0.44771525,32 1,32 L19,32 C19.5522847,32 20,31.5522847 20,31 L20,22 C20,21.4477153 19.5522847,21 19,21 C18.4477153,21 18,21.4477153 18,22 L18,31 Z" id="Rectangle-508" stroke="none" fill="#95909E"/> </g> </g> </svg> {{ 'customer.log_out' | t }}</a>
+                {%- else -%}  
+                  <a login-inline-menu class="header__link--account customer_login_link" href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"><span class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="32px" viewBox="0 0 32 32" version="1.1"> <defs/> <g id="Page-2-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="75" stroke="#979797" fill-rule="nonzero"> <path d="M23.3847763,15 L19.5060967,11.1213203 C19.1155724,10.7307961 19.1155724,10.0976311 19.5060967,9.70710678 C19.8966209,9.31658249 20.5297859,9.31658249 20.9203102,9.70710678 L26.5771645,15.363961 C26.9676888,15.7544853 26.9676888,16.3876503 26.5771645,16.7781746 L20.9203102,22.4350288 C20.5297859,22.8255531 19.8966209,22.8255531 19.5060967,22.4350288 C19.1155724,22.0445046 19.1155724,21.4113396 19.5060967,21.0208153 L23.5269119,17 L1.28757088,17 C0.735549934,17 0.284271247,16.5522847 0.284271247,16 C0.284271247,15.4438648 0.733463795,15 1.28757088,15 L23.3847763,15 L23.3847763,15 Z" id="Rectangle-358" stroke="none" fill="#2A2630"/> <path d="M31,2 L30,1 L30,7.93554687 L30,23.9785156 L30,31 L31,30 L13,30 C12.4477153,30 12,30.4477153 12,31 C12,31.5522847 12.4477153,32 13,32 L31,32 C31.5522847,32 32,31.5522847 32,31 L32,23.9785156 L32,7.93554687 L32,1 C32,0.44771525 31.5522847,0 31,0 L13,2.22044605e-16 C12.4477153,2.28857485e-16 12,0.44771525 12,1 C12,1.55228475 12.4477153,2 13,2 L31,2 Z" id="Rectangle-508" stroke="none" fill="#95909E"/> </g> </g> </svg></span><span class="title">{{ 'customer.sign_in' | t }}</span></a>
+                  <a class="header__link--account{% unless settings.show_wishlist %} last-link{% endunless %} customer_register_link" href="{{ routes.account_register_url }}"><span class="icon-wrapper">{% render 'icon-sign-up' %}</span><span class="title">{{ 'customer.create_account' | t }}</span></a>
+                {%- endif -%}                                   
+            </div>
+          {%- endif -%}
+          {%- if settings.show_wishlist -%}
+              <a href="{{ pages['wish-list'].url }}" class="header__icon header__icon--wishlist link link--text focus-inset last-link"><span class="icon-wrapper">{% render 'icon-wishlist' %}</span><span class="title">{{ 'wishlist.general.title' | t }}</span></a>
+          {%- endif -%}
+          <div class="wrapper-links"></div>
+        </div>
+      {%- endif -%}
+
+      {% render 'footer-menu-sidebar' %}
+      <div class="site-nav-mobile nav-currency-language p-relative"></div>
+    </div>
+</div>

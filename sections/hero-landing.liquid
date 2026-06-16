@@ -1,0 +1,466 @@
+<div class="hero-section-container">
+  <style>
+    #shopify-section-{{ section.id }} .hero-tag {
+       background-color: {{ section.settings.tag_bg_color }} !important;
+       color: {{ section.settings.tag_text_color }} !important;
+    }
+    #shopify-section-{{ section.id }} .hero-rating-number {
+       color: {{ section.settings.star_color }};
+    }
+    #shopify-section-{{ section.id }} .hero-gallery-thumbs .swiper-slide img {
+       border-color: {{ section.settings.swiper_border_color }} !important;
+       transition: opacity 0.3s ease;
+    }
+    #shopify-section-{{ section.id }} .hero-gallery-thumbs .swiper-slide:not(.swiper-slide-thumb-active) img {
+       opacity: 0.6;
+    }
+    #shopify-section-{{ section.id }} .hero-gallery-thumbs .swiper-slide-thumb-active img {
+       opacity: 1;
+       border-width: 2px !important;
+    }
+      #shopify-section-{{ section.id }} .btn-primary,
+      #shopify-section-{{ section.id }} .hero-cta-button {
+          background-color: {{ section.settings.button_bg_color }} !important;
+          color: {{ section.settings.button_text_color }} !important;
+          border-color: {{ section.settings.button_border_color }} !important;
+          box-shadow: 5px 5px 0 0 {{ section.settings.button_border_color }} !important;
+      }
+      #shopify-section-{{ section.id }} .btn-primary:hover,
+      #shopify-section-{{ section.id }} .hero-cta-button:hover {
+          background-color: {{ section.settings.button_hover_bg_color }} !important;
+          color: {{ section.settings.button_hover_text_color }} !important;
+          border-color: {{ section.settings.button_hover_shadow_color }} !important;
+          box-shadow: 5px 5px 0 0 {{ section.settings.button_hover_shadow_color }} !important;
+      }
+      #shopify-section-{{ section.id }} .hero-mobile-guarantee {
+          background-color: {{ section.settings.guarantee_bg_color }} !important;
+          color: {{ section.settings.guarantee_text_color }} !important;
+      }
+      #shopify-section-{{ section.id }} .hero-mobile-guarantee svg,
+      #shopify-section-{{ section.id }} .hero-mobile-guarantee svg path {
+          fill: {{ section.settings.guarantee_text_color }} !important;
+          color: {{ section.settings.guarantee_text_color }} !important;
+      }
+  </style>
+  <div class="hero-content-left">
+    {% if section.settings.social_proof != blank or section.settings.social_proof_2 != blank %}
+      <div class="hero-social-proof">
+        {% if section.settings.social_proof != blank %}
+          <div class="hero-rating">
+            <div class="hero-stars">
+              {% for i in (1..5) %}
+                <svg width="15" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 0L9.79611 5.52786L16 6.11146L11.8541 9.94428L13.4164 16L8 12.5279L2.58359 16L4.1459 9.94428L0 6.11146L6.20389 5.52786L8 0Z" fill="{{ section.settings.star_color }}" stroke="{{ section.settings.star_color }}" stroke-width="0.5"/>
+                </svg>
+              {% endfor %}
+            </div>
+            <span class="hero-rating-text">
+              {% assign rating_text = section.settings.social_proof %}
+              {% assign first_word = rating_text | split: ' ' | first %}
+              <span class="hero-rating-number">{{ first_word }}</span
+              ><span class="hero-rating-rest">{{ rating_text | remove_first: first_word }}</span>
+            </span>
+          </div>
+        {% endif %}
+        {% if section.settings.social_proof_2 != blank %}
+          <div class="hero-sales-text">{{ section.settings.social_proof_2 }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.headline != blank %}
+      <h1 class="hero-headline" style="color: {{ section.settings.title_color }};">{{ section.settings.headline }}</h1>
+    {% endif %}
+
+    {% if section.settings.subheadline != blank %}
+      <h2 class="hero-subheadline" style="color: {{ section.settings.subtitle_color }};">
+        {{ section.settings.subheadline }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <div class="hero-description">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.benefits != blank %}
+      <div class="hero-tags">
+        {% assign benefits_list = section.settings.benefits | newline_to_br | split: '<br />' %}
+        {% for benefit in benefits_list %}
+          {% if benefit != blank %}
+            <span class="hero-tag">{{ benefit | strip }}</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.primary_button_text != blank %}
+      <a href="#escolha-seu-kit" class="btn-primary">
+        {{ section.settings.primary_button_text }}
+      </a>
+    {% endif %}
+
+    {% if section.settings.cta_text != blank and section.settings.cta_url != blank %}
+      <a href="{{ section.settings.cta_url }}" class="hero-cta-button">
+        {{ section.settings.cta_text }}
+      </a>
+    {% endif %}
+  </div>
+
+  {% if section.blocks.size > 0 %}
+    <div class="hero-gallery-right">
+      <div class="hero-gallery-container">
+        <div class="swiper hero-gallery-main">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              {% if block.type == 'image' and block.settings.image != blank %}
+                <div class="swiper-slide" {{ block.shopify_attributes }}>
+                  <div class="swiper-zoom-container">
+                    <img
+                      src="{{ block.settings.image | image_url: width: 760 }}"
+                      alt="{{ block.settings.image.alt | default: section.settings.headline }}"
+                      class="hero-image"
+                      width="760"
+                      height="400"
+                      loading="lazy"
+                    >
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <div class="hero-zoom-tooltip">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+            </svg>
+            <span class="text-mobile">Toque duas vezes para zoom</span>
+            <span class="text-desktop">Clique duas vezes para zoom</span>
+          </div>
+        </div>
+        {% if section.blocks.size > 1 %}
+          <div class="swiper hero-gallery-thumbs">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                {% if block.type == 'image' and block.settings.image != blank %}
+                  <div class="swiper-slide">
+                    <img
+                      src="{{ block.settings.image | image_url: width: 100 }}"
+                      alt="{{ block.settings.image.alt | default: section.settings.headline }}"
+                      width="100"
+                      height="100"
+                      loading="lazy"
+                    >
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="hero-mobile-cta">
+          {% if section.settings.mobile_button_text != blank %}
+            <a href="#escolha-seu-kit" class="btn-primary hero-mobile-button">
+              {{ section.settings.mobile_button_text }}
+            </a>
+          {% endif %}
+
+          {% if section.settings.mobile_guarantee_text != blank %}
+            <div class="hero-mobile-guarantee">
+              {% render 'icon-check-landing', width: 16, height: 16, fill: section.settings.guarantee_text_color %}
+              <span>{{ section.settings.mobile_guarantee_text }}</span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+<style>
+  {{ 'hero-landing.css' | inline_asset_content }}
+</style>
+
+<style>
+  /* Tooltip Zoom Styles */
+  .hero-gallery-main {
+    position: relative;
+    cursor: zoom-in;
+  }
+  .hero-zoom-tooltip {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 500;
+    pointer-events: none;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    opacity: 0.8 !important; /* Force visibility on all screens */
+    transition: opacity 0.5s ease;
+  }
+
+  .hero-zoom-tooltip .text-mobile {
+    display: none;
+  }
+  .hero-zoom-tooltip .text-desktop {
+    display: inline;
+  }
+
+  @media (max-width: 991px) {
+    .hero-zoom-tooltip {
+      bottom: 25px;
+    }
+    .hero-zoom-tooltip .text-mobile {
+      display: inline;
+    }
+    .hero-zoom-tooltip .text-desktop {
+      display: none;
+    }
+  }
+</style>
+<script src="{{ 'hero-landing.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Hero Landing",
+  "tag": "section",
+  "class": "hero-landing-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "social_proof",
+      "label": "Prova Social (Avaliação)",
+      "default": "4.8 de 275.000 avaliações"
+    },
+    {
+      "type": "header",
+      "content": "Cores e Estilo Geral"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Cor das Estrelas",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "richtext",
+      "id": "social_proof_2",
+      "label": "Prova Social (Vendas)",
+      "default": "<p><strong>2.000.000+</strong> de sopas vendidas</p>"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Título Principal",
+      "default": "Você tem excesso de peso."
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Cor do Título Principal",
+      "default": "#005234"
+    },
+    {
+      "type": "text",
+      "id": "subheadline",
+      "label": "Subtítulo",
+      "default": "O Kit Seca Barriga elimina!"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Cor do Subtítulo",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Descrição",
+      "default": "<p>Reduza até 5kg de excesso com sopas prontas, cientificamente formuladas e deliciosas que aceleram seu metabolismo sem fome, sem efeito sanfona e sem complicação.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "benefits",
+      "label": "Tags",
+      "info": "Enter one benefit per line",
+      "default": "Proteicas\nBaixa Kcal\nZero Glúten\nGarantia 30 dias"
+    },
+    {
+      "type": "header",
+      "content": "Cores das Tags"
+    },
+    {
+      "type": "color",
+      "id": "tag_bg_color",
+      "label": "Cor de Fundo das Tags/Badges",
+      "default": "#EBF7DA"
+    },
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "Cor do Texto das Tags/Badges",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "header",
+      "content": "Botão Principal"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_text",
+      "label": "Texto do Botão Principal",
+      "default": "Garantir Meu Kit Agora"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_url",
+      "label": "URL do Botão Principal"
+    },
+    {
+      "type": "header",
+      "content": "Botão Principal (Cores Base)"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Cor de Fundo do Botão",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Cor do Texto do Botão",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Cor da Sombra do Botão",
+      "default": "#005234"
+    },
+    {
+      "type": "header",
+      "content": "Cores do Botão (Hover)"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Cor de Fundo (Hover)",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Cor do Texto (Hover)",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_shadow_color",
+      "label": "Cor da Sombra (Hover)",
+      "default": "#005234"
+    },
+    {
+      "type": "header",
+      "content": "Botão CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto do Botão CTA",
+      "default": "Garantir Meu Kit Agora"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL do Botão CTA"
+    },
+    {
+      "type": "header",
+      "content": "CTA Mobile"
+    },
+    {
+      "type": "text",
+      "id": "mobile_button_text",
+      "label": "Texto do Botão Mobile",
+      "default": "Garantir Meu Kit Agora"
+    },
+    {
+      "type": "text",
+      "id": "mobile_guarantee_text",
+      "label": "Texto de Garantia Mobile",
+      "default": "Garantia De Satisfação Total 30 Dias"
+    },
+    {
+      "type": "color",
+      "id": "guarantee_bg_color",
+      "label": "Cor de Fundo da Garantia",
+      "default": "#EBF7DA"
+    },
+    {
+      "type": "color",
+      "id": "guarantee_text_color",
+      "label": "Cor do Texto da Garantia",
+      "default": "#005234"
+    },
+    {
+      "type": "header",
+      "content": "Cores do Swiper"
+    },
+    {
+      "type": "color",
+      "id": "swiper_border_color",
+      "label": "Cor da Borda do Swiper Ativo",
+      "default": "#7BCA0C"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Landing",
+      "settings": {
+        "social_proof": "4.8 de 275.000 avaliações",
+        "social_proof_2": "<p><strong>2.000.000+</strong> de sopas vendidas</p>",
+        "headline": "Você tem excesso de peso.",
+        "subheadline": "O Kit Seca Barriga elimina!",
+        "description": "<p>Reduza até 5kg de excesso com sopas prontas, cientificamente formuladas e deliciosas que aceleram seu metabolismo sem fome, sem efeito sanfona e sem complicação.</p>",
+        "cta_text": "Garantir Meu Kit Agora",
+        "benefits": "Proteicas\nBaixa Kcal\nZero Glúten\nGarantia 30 dias"
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Imagem",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

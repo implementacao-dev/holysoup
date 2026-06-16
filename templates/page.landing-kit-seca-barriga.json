@@ -1,0 +1,679 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "announcement_bar": {
+      "type": "announcement-bar-landing",
+      "settings": {
+        "enable_section": true,
+        "bg_color": "#f45218",
+        "text_color": "#ffffff",
+        "top_line_color": "#ffb6c1",
+        "offer_text": "<p><strong>Oferta Relâmpago<br/></strong>com <strong>25% OFF</strong></p>",
+        "show_countdown": true,
+        "countdown_type": "random",
+        "countdown_date": "2024-12-31 23:59:59",
+        "countdown_bg_color": "#ffffff",
+        "countdown_number_color": "#f45218",
+        "coupon_text_color": "#ffffff",
+        "coupon_code": ""
+      }
+    },
+    "header_landing": {
+      "type": "header-landing",
+      "settings": {
+        "bg_color": "#005234",
+        "show_cart": false,
+        "cart_color": "#7ed321"
+      }
+    },
+    "hero_section": {
+      "type": "hero-landing",
+      "blocks": {
+        "image_XkNbdJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/imagem_principal_d68d68d1-2731-4409-a0da-93a3fd428aa7.png"
+          }
+        },
+        "image_Vtg4JF": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/lowcarb_beneficios.png"
+          }
+        },
+        "image_WWRqVz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/canja_beneficios.png"
+          }
+        },
+        "image_j4dYjm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/crme_verde_beneficios.png"
+          }
+        },
+        "image_9y34Te": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/detox_beneficios.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_XkNbdJ",
+        "image_Vtg4JF",
+        "image_WWRqVz",
+        "image_j4dYjm",
+        "image_9y34Te"
+      ],
+      "settings": {
+        "social_proof": "4.8 de 275.000 avaliações",
+        "star_color": "#7bca0c",
+        "social_proof_2": "<p><strong>2.000.000+</strong> de sopas vendidas</p>",
+        "headline": "Você tem excesso de peso?",
+        "title_color": "#005234",
+        "subheadline": "O Kit Seca Barriga elimina!",
+        "subtitle_color": "#7bca0c",
+        "description": "<p>Reduza até 5kg com sopas semiprontas, formuladas para acelerar seu metabolismo, controlar a fome, sem efeito sanfona e sem complicação.</p>",
+        "benefits": "100% Natural\nBaixa Kcal\nZero Glúten\nGarantia 30 dias",
+        "tag_bg_color": "#ebf7da",
+        "tag_text_color": "#7bca0c",
+        "primary_button_text": "Garantir Meu Kit Agora",
+        "primary_button_url": "",
+        "button_bg_color": "#7bca0c",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#005234",
+        "button_hover_bg_color": "#7bca0c",
+        "button_hover_text_color": "#005234",
+        "button_hover_shadow_color": "#005234",
+        "cta_text": "Garantir Meu Kit Agora",
+        "cta_url": "",
+        "mobile_button_text": "Garantir Meu Kit Agora",
+        "mobile_guarantee_text": "Garantia De Satisfação Total 30 Dias",
+        "guarantee_bg_color": "#ebf7da",
+        "guarantee_text_color": "#005234",
+        "swiper_border_color": "#7bca0c"
+      }
+    },
+    "product_flavors": {
+      "type": "product-flavors-landing",
+      "blocks": {
+        "block_3": {
+          "type": "product_flavor",
+          "settings": {
+            "title": "Creme Verde Fit",
+            "subtitle": "1 Pacote Rende 4 porções (1 Litro)",
+            "badge_1_text": "18 Kcal",
+            "badge_2_text": "12% Fibras",
+            "benefits": "Menor caloria: ideal para jantar\nErvilha controla glicemia\nZero sódio elimina inchaço",
+            "image": "shopify://shop_images/creme_verde_fit_foto_prato_1.png",
+            "product": "creme-verde-fit",
+            "button_text": "Ver Tabela Nutricional",
+            "button_url": ""
+          }
+        },
+        "block_1": {
+          "type": "product_flavor",
+          "settings": {
+            "title": "Sopa Detox",
+            "subtitle": "1 Pacote Rende 4 porções (1 Litro)",
+            "badge_1_text": "27 Kcal",
+            "badge_2_text": "9% Fibras",
+            "benefits": "Macarrão sem glúten mantém saciedade\nCúrcuma + gengibre aceleram metabolismo\nQuinoa fornece proteína completa",
+            "image": "shopify://shop_images/sopa_detox_foto_prato_1.png",
+            "product": "sopa-detox",
+            "button_text": "Ver Tabela Nutricional",
+            "button_url": ""
+          }
+        },
+        "block_4": {
+          "type": "product_flavor",
+          "settings": {
+            "title": "Canja da Mamãe",
+            "subtitle": "1 Pacote Rende 4 porções (1 Litro)",
+            "badge_1_text": "40 Kcal",
+            "badge_2_text": "22g de Proteína",
+            "benefits": "Proteína de ervilha: absorção rápida\nArroz + quinoa: energia limpa\nSabor nostálgico: com frango",
+            "image": "shopify://shop_images/canja_da_mamae_foto_prato_1.png",
+            "product": "canja-da-mamae",
+            "button_text": "Ver Tabela Nutricional",
+            "button_url": ""
+          }
+        },
+        "block_2": {
+          "type": "product_flavor",
+          "settings": {
+            "title": "Sopa Low Carb",
+            "subtitle": "1 Pacote Rende 4 porções (1 Litro)",
+            "badge_1_text": "53 Kcal",
+            "badge_2_text": "30 g de Proteína",
+            "benefits": "Maior proteína: preserva massa magra\nLentilha + quinoa = proteína completa\n23% fibras aceleram intestino",
+            "image": "shopify://shop_images/sopa_low_carb_foto_prato_1.png",
+            "product": "sopa-low-carb",
+            "button_text": "Ver Tabela Nutricional",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_3",
+        "block_1",
+        "block_4",
+        "block_2"
+      ],
+      "settings": {
+        "title": "<p>Conheça os sabores do<br/>Kit Seca Barriga</p>",
+        "subtitle": "4 sabores 100% estratégicos",
+        "benefits": "Regula o Intestino\nPromove Saciedade\nProntas em 2 Passos\nSó Precisam de Água e Sal\nPode Fazer no Micro-ondas",
+        "cta_text": "Garantir Meu Kit Agora",
+        "cta_url": "",
+        "guarantee_text": "Garantia De Satisfação Total 30 Dias",
+        "bg_color": "#ffffff",
+        "title_color": "#006b3c",
+        "tag_bg_color": "#ebf7da",
+        "tag_text_color": "#005234",
+        "check_icon_color": "#7bca0c",
+        "card_shadow_color": "#006b3c",
+        "card_button_bg_color": "#ffffff",
+        "card_button_text_color": "#005234",
+        "card_button_shadow_color": "#005234",
+        "card_button_hover_bg_color": "#005234",
+        "card_button_hover_text_color": "#ffffff",
+        "card_button_hover_shadow_color": "#002b1b",
+        "cta_button_bg_color": "#7bca0c",
+        "cta_button_text_color": "#ffffff",
+        "cta_button_shadow_color": "#005234",
+        "cta_button_hover_bg_color": "#7bca0c",
+        "cta_button_hover_text_color": "#005234",
+        "cta_button_hover_shadow_color": "#005234"
+      }
+    },
+    "kit_selection_faq": {
+      "type": "kit-selection-faq-landing",
+      "blocks": {
+        "kit_option_1": {
+          "type": "kit_option",
+          "settings": {
+            "product": "kit-seca-barriga-15-dias-lp",
+            "yampi_url": "https://seguro.holyfoods.com.br/r/JPWMMH12F7",
+            "name": "Para 01 Pessoa (1 KIT)",
+            "original_price": "199.00",
+            "current_price": "149.25",
+            "discount_badge": "25% off",
+            "free_shipping_text": "",
+            "quantity_price_text": "R$3.73 Por Refeição",
+            "quantity_yield_text": "Rende 40 Refeições"
+          }
+        },
+        "kit_option_YMXYNR": {
+          "type": "kit_option",
+          "settings": {
+            "product": "kit-seca-barriga-30-dias-lp",
+            "yampi_url": "https://seguro.holyfoods.com.br/r/OF50YAJGVW",
+            "name": "Para 02 Pessoas (2 KITS)",
+            "original_price": "398.00",
+            "current_price": "298.50",
+            "discount_badge": "25% off",
+            "free_shipping_text": "+ Frete Grátis",
+            "quantity_price_text": "R$3.73 Por Refeição",
+            "quantity_yield_text": "Rende 80 Refeições"
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Por que HolyFoods?",
+            "answer": "<p><strong>É simples. É completo. É HolyFoods.</strong><br/>Nutrição de verdade em uma única solução, descomplicada, inteligente e acessível. Você não precisa planejar nem cozinhar, é só seguir.</p><p><strong>É gostoso de verdade.</strong><br/>Não é sopa de dieta. É um hábito prazeroso, fácil de manter. Tão prático que você vai querer consumir todos os dias.</p><p><strong>Cabe na sua rotina.</strong><br/>Pronto em poucos minutos, no fogão ou no micro-ondas. Uma refeição leve e fácil para manter o foco até o fim, sem preguiça e sem desculpas.</p><p><strong>Sem bagunça. Sem estresse.</strong><br/>Nada de mercado, receitas complicadas ou ultraprocessados. Apenas nutrição limpa, simples e eficiente para o seu dia a dia.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Como o Seca Barriga ajuda emagrecer?",
+            "answer": "<p>A combinação certa para emagrecer de forma simples e sustentável.<br/><br/>Proteína, fibras e poucas calorias criam o cenário ideal para perder peso sem sofrimento.</p><p><strong>Mais saciedade, menos fome.</strong><br/>A proteína ajuda a controlar o apetite e preserva a massa muscular, fazendo o corpo gastar mais energia ao longo do dia.</p><p><strong>Volume sem culpa.</strong><br/>As baixas calorias permitem comer bem, sem estourar o consumo diário e sem aquela sensação de restrição.</p><p><strong>Controle real da vontade por doces.</strong><br/>As fibras retardam a digestão, estabilizam a glicose e reduzem picos de fome e beliscos ao longo do dia.</p><p><strong>Fibras completas em todas as sopas do Kit.</strong><br/>A combinação de fibras solúveis e insolúveis melhora o funcionamento do intestino e reduz o inchaço.</p><p>As fibras solúveis se misturam à água, alimentam as bactérias boas e ajudam a controlar gases, diarreia e prisão de ventre.<br/><br/>As fibras insolúveis dão volume às fezes e estimulam o movimento intestinal, facilitando a evacuação.</p><p><strong>O resultado no dia a dia.</strong><br/>Intestino mais regular, menos gases, menos barriga estufada e muito mais conforto abdominal.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Quando consumir?",
+            "answer": "<p>Você pode consumir a qualquer momento do dia, mas para melhores resultados recomendamos substituir pelo menos o jantar. Como são sopas leves, nutritivas e que dão saciedade, esse é o melhor momento de consumo.</p><p>Se quiser economizar tempo pode fazer todo o pacote e congelar por até 3 meses, e apenas descongelar na hora do jantar.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "As sopas ficam prontas em quanto tempo?",
+            "answer": "<p>Em média, nossas sopas ficam prontas em apenas 20 minutos, mas cada uma delas vem com um tempo específico de cozimento claramente indicado na embalagem.</p><p>Com exceção do Creme Verde Fit, os outros sabores podem ser preparados no micro ondas seguindo as instruções da embalagem.</p><p>Para preparar você só precisa despejar o conteúdo do pacote na água fervente e sal à gosto.</p><p>Você também pode complementar com mais proteínas ou outros ingredientes.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "As sopas contém glutén?",
+            "answer": "<p>Não! Para garantir uma alimentação saudável e segura para pessoas celíacas, nossos produtos são totalmente livres de glúten e contaminação cruzada.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "question": "Como as sopas duram sem conservantes?",
+            "answer": "<p>Cada pacote dura 8 meses. Para garantir que nossas sopas cheguem fresquinhas e sem conservantes, adotamos um cuidadoso processo de desidratação em todos os ingredientes das receitas.</p><p>Este método retira toda a água enquanto preserva os nutrientes essenciais, eliminando a necessidade de aditivos químicos.</p><p>Estamos comprometidos em enviar para a sua casa apenas lotes recém-produzidos, assegurando que cada refeição seja tão fresca e saborosa quanto saudável.</p><p>Para estender o prazo de validade, você pode congelar as sopas já preparadas por até 3 meses.</p>"
+          }
+        },
+        "faq_7": {
+          "type": "faq",
+          "settings": {
+            "question": "Tem muito sódio?",
+            "answer": "<p>O único sódio que você encontra são dos próprios alimentos. Não adicionamos sódio em nenhuma sopa.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "kit_option_1",
+        "kit_option_YMXYNR",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7"
+      ],
+      "settings": {
+        "bg_color": "#f7f6f1",
+        "action_type": "redirect_yampi",
+        "kit_title": "Escolha seu Kit",
+        "benefits": "Baixíssimas calorias por porção\nJantar leve pronto em 15 minutos\nLivre de aditivos, conservantes, 100% natural\nRegula o intestino e desincha",
+        "button_text": "Comprar Agora",
+        "guarantee_text": "Garantia De Satisfação Total 30 Dias",
+        "title_color": "#005234",
+        "tag_color": "#005234",
+        "check_icon_color": "#7bca0c",
+        "button_bg_color": "#7bca0c",
+        "button_text_color": "#ffffff",
+        "button_shadow_color": "#005234",
+        "button_hover_bg_color": "#7bca0c",
+        "button_hover_text_color": "#005234",
+        "button_hover_shadow_color": "#005234",
+        "shadow_color": "#005234",
+        "discount_badge_color": "#005234",
+        "discount_badge_active_color": "#7bca0c",
+        "meal_price_color": "#7bca0c",
+        "guarantee_bg_color": "#ebf7da",
+        "guarantee_text_color": "#005234",
+        "faq_title": "Você pode querer saber:"
+      }
+    },
+    "strategic_ingredients": {
+      "type": "strategic-ingredients-landing",
+      "blocks": {
+        "block_1": {
+          "type": "ingredient",
+          "settings": {
+            "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32.722\" height=\"38.868\" viewbox=\"0 0 32.722 38.868\">\n  <path id=\"icon_metabolismo\" d=\"M69.151,11.724a1.519,1.519,0,0,0-2.459.249,7.787,7.787,0,0,1-4.415,3.763A16.574,16.574,0,0,0,57.923.444a1.518,1.518,0,0,0-2.147,0L45.283,10.938a16.358,16.358,0,1,0,23.869.785ZM54.06,34.672a3.944,3.944,0,0,1,0-5.58l2.79-2.79,2.79,2.79h0a3.946,3.946,0,0,1-5.58,5.58Zm9.426-.614a6.973,6.973,0,0,0-1.7-7.113l-3.864-3.864a1.518,1.518,0,0,0-2.147,0l-3.864,3.864a6.974,6.974,0,0,0-1.7,7.113A13.336,13.336,0,0,1,47.43,13.085l9.35-9.35a13.552,13.552,0,0,1,1.948,13.287,1.519,1.519,0,0,0,1.42,2.054,10.034,10.034,0,0,0,7.919-3.764,13.329,13.329,0,0,1-4.58,18.745Z\" transform=\"translate(-40.487 0)\" fill=\"#7bca0c\"></path>\n</svg>",
+            "title": "<p>Acelera o<br>Metabolismo</p>",
+            "description": "<p><strong>Quinoa e proteínas</strong> vegetais aumentam termogênese naturalmente.</p>"
+          }
+        },
+        "block_2": {
+          "type": "ingredient",
+          "settings": {
+            "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"39.357\" height=\"39.318\" viewbox=\"0 0 39.357 39.318\">\n  <path id=\"icon_saciedade\" d=\"M23.271,39.577c-5.678,0-8.313-2.876-10.237-4.976-1.4-1.524-2.183-2.319-3.432-2.319l-.081,0a4.538,4.538,0,0,0-.308,1.622c0,.072.005.146.005.219v3.916a1.536,1.536,0,0,1-3.072,0V34.125q0-.036,0-.073c0-.026-.065-2.647,1.222-4A2.917,2.917,0,0,1,9.6,29.21c2.66,0,4.2,1.686,5.7,3.316,1.792,1.956,3.645,3.979,7.972,3.979a11.727,11.727,0,0,0,7.767-2.543,1.536,1.536,0,0,1,1.974,2.353A14.7,14.7,0,0,1,23.271,39.577Zm-20.2-1.536v-3.86c0-.016,0-.032,0-.048-.012-.4-.06-3.965,2.07-6.2a5.983,5.983,0,0,1,4.458-1.8,6.27,6.27,0,0,1,4.129,1.482,5.212,5.212,0,0,0,3.09,1.282,3.172,3.172,0,0,0,3.457-3.379l0-10.136c0-2.517-1.692-3.456-2.758-3.456a2.384,2.384,0,0,1-1.4-.811,13.175,13.175,0,0,1-3.675-9.326,1.536,1.536,0,1,0-3.072,0,16.227,16.227,0,0,0,4.556,11.479,5.512,5.512,0,0,0,3.237,1.713,1.727,1.727,0,0,1,.04.4l0,10.136a1.271,1.271,0,0,1-.024.272,1.468,1.468,0,0,1-.362.035c-.3,0-.689-.268-1.3-.706A9.192,9.192,0,0,0,9.6,23.066a8.983,8.983,0,0,0-6.681,2.748C.018,28.859-.023,33.279,0,34.2v3.837a1.536,1.536,0,1,0,3.072,0Zm34.29-7.854a29.78,29.78,0,0,0,1.956-12.164c-.009-5.07-1.33-8.913-3.926-11.425a10.288,10.288,0,0,0-6.916-2.883A11.348,11.348,0,0,0,21.71,6.194a9.908,9.908,0,0,1-1.124.716l-.026-.032q-.026-.033-.054-.064a7.46,7.46,0,0,1-1.92-5.019,1.536,1.536,0,1,0-3.072,0,10.486,10.486,0,0,0,2.668,7.028,2.847,2.847,0,0,0,3,1.117,7.107,7.107,0,0,0,2.276-1.224,8.336,8.336,0,0,1,5.03-1.93h.051a7.236,7.236,0,0,1,4.715,2.02c1.984,1.92,2.99,5.038,2.99,9.27,0,.036,0,.074,0,.11A27.088,27.088,0,0,1,34.531,29a1.536,1.536,0,1,0,2.833,1.186ZM20.682,7.007h0ZM33.13,22.014a1.126,1.126,0,0,0-.845-1.865H28.191l2.964-5.068h-4.53l-3.539,6.31a1.541,1.541,0,0,0,1.361,2.291h3.085l-2.064,5.26a.47.47,0,0,0-.047.193c0,.242.208.385.477.384a.76.76,0,0,0,.519-.207Z\" transform=\"translate(0 -0.259)\" fill=\"#7bca0c\"></path>\n</svg>",
+            "title": "<p>Saciedade<br>Inteligente</p>",
+            "description": "<p>6-12g de <strong>fibras</strong> mantêm você satisfeito por horas.</p>"
+          }
+        },
+        "block_3": {
+          "type": "ingredient",
+          "settings": {
+            "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"39.317\" height=\"39.317\" viewbox=\"0 0 39.317 39.317\">\n  <path id=\"icon_retenção\" data-name=\"icon retenção\" d=\"M13.515,39.317a1.536,1.536,0,0,1-1.265-.663c-.232-.337-5.083-7.459-6.19-15.74,0-.011,0-.021,0-.032a24.551,24.551,0,0,1-.22-3.224A9.833,9.833,0,0,1,7.618,13.74C9.87,10.4,9.576,8.086,9.2,5.156a27.794,27.794,0,0,1-.3-3.621A1.536,1.536,0,0,1,10.444,0h18.43a1.536,1.536,0,0,1,1.535,1.535,28,28,0,0,1-.3,3.64C29.742,8.1,29.449,10.4,31.7,13.74a9.834,9.834,0,0,1,1.781,5.918,24.551,24.551,0,0,1-.22,3.224c0,.011,0,.021,0,.032-1.107,8.281-5.959,15.4-6.19,15.74a1.536,1.536,0,0,1-1.264.663Zm7.679-10.444v7.372h3.771a39.449,39.449,0,0,0,4.944-11.979H25.8A4.613,4.613,0,0,0,21.194,28.874Zm-6.842,7.372h3.77V28.874a4.612,4.612,0,0,0-4.607-4.607H9.408A39.443,39.443,0,0,0,14.352,36.246ZM8.907,19.659c0,.513.022,1.025.06,1.536h4.548a7.672,7.672,0,0,1,6.14,3.072h.007a7.672,7.672,0,0,1,6.14-3.072H30.35c.039-.511.059-1.023.059-1.536a8.506,8.506,0,0,0-.131-1.535H9.038A8.506,8.506,0,0,0,8.907,19.659ZM12.25,4.768c.387,3.041.787,6.183-1.819,10.283H28.886c-2.6-4.1-2.206-7.23-1.82-10.263.074-.583.146-1.148.2-1.717H12.055C12.106,3.633,12.177,4.192,12.25,4.768ZM36.7,11.53,33.624,8.458a1.536,1.536,0,0,1,0-2.172L36.7,3.215a1.536,1.536,0,1,1,2.173,2.172L36.882,7.372l1.986,1.986A1.536,1.536,0,0,1,36.7,11.53ZM.45,11.53a1.535,1.535,0,0,1,0-2.172L2.435,7.372.45,5.387A1.536,1.536,0,0,1,2.622,3.215L5.693,6.286a1.536,1.536,0,0,1,0,2.172L2.622,11.53a1.536,1.536,0,0,1-2.172,0Zm17.671-1.372a1.5,1.5,0,1,1,1.5,1.5A1.5,1.5,0,0,1,18.122,10.158Z\" fill=\"#7bca0c\"></path>\n</svg>",
+            "title": "<p>Combate<br>Retenção</p>",
+            "description": "<p><strong>Zero sódio</strong> adicionado desincha em poucos dias.</p>"
+          }
+        },
+        "block_4": {
+          "type": "ingredient",
+          "settings": {
+            "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"38.864\" height=\"38.864\" viewbox=\"0 0 38.864 38.864\">\n  <path id=\"icon_energia\" d=\"M7.635,34.874v1.787a1.138,1.138,0,1,1-2.277,0V32.368A1.138,1.138,0,0,1,6.5,31.229H10.79a1.138,1.138,0,1,1,0,2.277H9.618A17.158,17.158,0,0,0,34.2,10.7a1.139,1.139,0,1,1,1.959-1.161A19.434,19.434,0,0,1,7.635,34.874Zm10.659-4.056v-7.97H12.6A1.138,1.138,0,0,1,11.582,21.2L18.414,7.537a1.138,1.138,0,0,1,2.156.509v7.97h5.693a1.138,1.138,0,0,1,1.018,1.648L20.451,31.327a1.1,1.1,0,0,1-1,.631A1.128,1.128,0,0,1,18.293,30.818ZM14.442,20.57h4.99a1.139,1.139,0,0,1,1.139,1.139v4.286l3.851-7.7h-4.99a1.138,1.138,0,0,1-1.139-1.139V12.869ZM2.7,29.321A19.433,19.433,0,0,1,31.228,3.99V2.2a1.139,1.139,0,0,1,2.278,0V6.5a1.139,1.139,0,0,1-1.139,1.139H28.074a1.139,1.139,0,0,1,0-2.278h1.172A17.158,17.158,0,0,0,4.662,28.16,1.139,1.139,0,1,1,2.7,29.321Z\" fill=\"#7bca0c\"></path>\n</svg>",
+            "title": "<p>Energia<br>Sem Fome</p>",
+            "description": "<p><strong>Baixa Calorias</strong>, mas que nutrem de verdade.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ],
+      "settings": {
+        "title": "Ingredientes do Kit Seca Barriga são estratégicos.",
+        "bg_color": "#ffffff",
+        "title_color": "#006b3c",
+        "card_title_color": "#005234",
+        "icon_bg_color": "#005234",
+        "icon_color": "#7bca0c"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials-landing",
+      "blocks": {
+        "video_qMdEQi": {
+          "type": "video",
+          "disabled": true,
+          "settings": {
+            "video": "shopify://files/videos/copy_078D4019-EAF0-4675-B5EF-39D31B1EF796.MOV"
+          }
+        },
+        "video_pPdFk9": {
+          "type": "video",
+          "disabled": true,
+          "settings": {
+            "video": "shopify://files/videos/holy-soup.mp4"
+          }
+        },
+        "video_UFCU3t": {
+          "type": "video",
+          "disabled": true,
+          "settings": {
+            "video": "shopify://files/videos/tolstoy_79921b6e-6b7d-445a-9ff2-f39cc0e8579c.mp4"
+          }
+        },
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Perdi 3,5kg em 12 dias!",
+            "text": "As sopas enchem tanto que nem senti vontade de besteira. A Low Carb virou meu almoço favorito.",
+            "author_name": "Marina T."
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Intestino funcionando",
+            "text": "Perdi 3kg e desinchei. As fibras fazem milagre! E não preciso cozinhar.",
+            "author_name": "Juliana S."
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Perdi 2,5 kg!",
+            "text": "As sopas são saborosas. Perdi 2,5 kg! É real! fiquei impressionada com o resultado.",
+            "author_name": "Patricia Alves"
+          }
+        },
+        "testimonial_4": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Kit excelente",
+            "text": "As sopas são sensacionais. Saborosas, práticas, da saciedade e salva de pedir delivery em dias mais corridos. Super recomendo",
+            "author_name": "Tatiane Santos Sena"
+          }
+        },
+        "testimonial_5": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Muito sabor",
+            "text": "As sopas são muito saborosas e saciam de verdade. Fiz a receita conforme sugerido na embalagem, acrescentando carnes e ovos e ficou uma delícia!!",
+            "author_name": "Vanessa Maria Pontes"
+          }
+        },
+        "testimonial_6": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Melhor solução, e muito sabor",
+            "text": "Amei e vou comprar novamente, já senti na primeira semana a barriga diminuir e me sentir menos inchada.",
+            "author_name": "Erika"
+          }
+        },
+        "testimonial_7": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Holysoup foi a melhor escolha!",
+            "text": "No meu processo de emagrecimento, uma dieta saudável e nutritiva foi o principal objetivo! Simplesmente adoro o sabor e a qualidade das sopas Holysoup. Espero que continue assim…. Desse jeitinho… com esse sabor!",
+            "author_name": "Luciana Tavares"
+          }
+        },
+        "testimonial_8": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Ótimo produto",
+            "text": "Estou adorando as sopas, ainda não experimentei todos os sabores. Muito prática e realmente alimenta.",
+            "author_name": "Irene Guerriero"
+          }
+        },
+        "testimonial_9": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Saudável",
+            "text": "É a segunda compra que faço. Gosto muito pois ajuda no funcionamento do intestino",
+            "author_name": "Lana Santos"
+          }
+        },
+        "testimonial_10": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Muito bom!",
+            "text": "O kit emagrecimento tem me ajudado a perder peso, e a sopa é saborosa. Adicionei um frango cozido desfiado, tempero verde e vegetais. Ficou perfeito!",
+            "author_name": "JOHNNI ALMEIDA"
+          }
+        },
+        "testimonial_11": {
+          "type": "testimonial",
+          "settings": {
+            "title": "Amei",
+            "text": "Sopas são deliciosas e super práticas de preparar. Percebi que desinchei tomando todas as noites.",
+            "author_name": "Vanessa Quirino"
+          }
+        }
+      },
+      "block_order": [
+        "video_qMdEQi",
+        "video_pPdFk9",
+        "video_UFCU3t",
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3",
+        "testimonial_4",
+        "testimonial_5",
+        "testimonial_6",
+        "testimonial_7",
+        "testimonial_8",
+        "testimonial_9",
+        "testimonial_10",
+        "testimonial_11"
+      ],
+      "settings": {
+        "rating": "4.8 avaliações",
+        "headline": "<p>Seja um dos 650.000+ Clientes<br/>Que Secaram Com Saúde</p>",
+        "disclaimer": "<p><br/>Avaliações e experiências reais de pessoas reais,<br/>disponíveis em nossa loja e redes sociais</p>",
+        "bg_color": "#ebfbd7",
+        "headline_color": "#005234",
+        "rating_color": "#005234",
+        "star_color": "#7bca0c",
+        "card_star_color": "#7bca0c",
+        "card_shadow_color": "#005234"
+      }
+    },
+    "cta_section": {
+      "type": "cta-landing",
+      "settings": {
+        "headline": "<p>Quer Se Juntar a Quem<br>Já Desincha e Define<br>Naturalmente?</p>",
+        "cta_text": "Sim Eu Quero",
+        "cta_url": "",
+        "bg_color": "#006b3c",
+        "text_color": "#ffffff",
+        "button_bg_color": "#7ed321",
+        "button_text_color": "#006b3c",
+        "button_shadow_color": "#005234",
+        "button_hover_bg_color": "#7ed321",
+        "button_hover_text_color": "#ffffff",
+        "button_hover_shadow_color": "#005234"
+      }
+    },
+    "product_comparison": {
+      "type": "product-comparison-landing",
+      "settings": {
+        "bg_color": "#ffffff",
+        "title": "Holy vs. Outros",
+        "title_color": "#005234",
+        "subtitle": "<p>Nada de milagres ou mentiras.<br/>Apenas nutrição de verdade.</p>",
+        "table_image": "shopify://shop_images/tabela.png",
+        "product_image": "shopify://shop_images/kit_secabarriga.png",
+        "cta_text": "Garantir Meu Kit Agora",
+        "cta_url": "",
+        "button_bg_color": "#7bca0c",
+        "button_text_color": "#ffffff",
+        "button_shadow_color": "#005234",
+        "button_hover_bg_color": "#7bca0c",
+        "button_hover_text_color": "#005234",
+        "button_hover_shadow_color": "#005234",
+        "guarantee_text": "Garantia De Satisfação Total 30 Dias",
+        "tag_bg_color": "#ebf7da",
+        "tag_text_color": "#005234"
+      }
+    },
+    "expert_endorsement": {
+      "type": "expert-endorsement-landing",
+      "settings": {
+        "person_image": "shopify://shop_images/Captura_de_tela_2026-01-14_211055.png",
+        "quote": "<p>Eu amo que seja prático<br/>sem abrir mão da<br/>qualidade</p>",
+        "testimonial_text": "<p>Como nutricionista, sempre busco opções que combinem praticidade com ingredientes de verdade. A HolyFoods entrega exatamente isso: produtos com bom valor nutricional, feitos com ingredientes limpos, que facilitam a rotina sem comprometer os objetivos. Seja pra quem treina pesado ou pra quem só quer fazer escolhas mais inteligentes no dia a dia, é uma solução que realmente funciona.</p>",
+        "author_name": "Larissa Montijo",
+        "author_title": "Nutricionista e Digital Creator, Alimentação e Lifestyle",
+        "bg_color": "#f8f8f8",
+        "quote_color": "#7bca0c",
+        "text_color": "#1a1a1a",
+        "author_name_color": "#1a1a1a",
+        "author_title_color": "#1a1a1a"
+      }
+    },
+    "flash_sale_bar": {
+      "type": "flash-sale-bar-landing",
+      "disabled": true,
+      "settings": {
+        "enable_section": true,
+        "flash_sale_type": "svg",
+        "flash_sale_text": "",
+        "flash_sale_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"151.141\" height=\"83.524\" viewbox=\"0 0 151.141 83.524\">\n  <g id=\"Grupo_306\" data-name=\"Grupo 306\" transform=\"translate(-0.672)\">\n    <path id=\"Caminho_139\" data-name=\"Caminho 139\" d=\"M-16052.129,597.975q-3.437-3.612-3.432-9.913,0-6.274,3.415-10.023a11.849,11.849,0,0,1,9.206-3.744,11.869,11.869,0,0,1,9.057,3.562q3.369,3.57,3.371,9.548v2.173h-18.044v.439a6.348,6.348,0,0,0,1.649,4.552,5.7,5.7,0,0,0,4.357,1.746,6.209,6.209,0,0,0,3.37-.889,4.371,4.371,0,0,0,1.905-2.4h6.542a9.1,9.1,0,0,1-3.846,6.213,13.471,13.471,0,0,1-8.094,2.355Q-16048.7,601.589-16052.129,597.975Zm5.393-16.821a6.313,6.313,0,0,0-1.746,4.053h11.111a6.092,6.092,0,0,0-1.625-4.077,5.125,5.125,0,0,0-3.87-1.563A5.186,5.186,0,0,0-16046.736,581.154Zm-70.812,18.141a8.109,8.109,0,0,1-3.4-6.177h6.961a3.751,3.751,0,0,0,1.523,2.563,5.7,5.7,0,0,0,3.383.9,5.878,5.878,0,0,0,3.188-.743,2.31,2.31,0,0,0,1.157-2.039,1.963,1.963,0,0,0-.73-1.6,6.413,6.413,0,0,0-2.489-1.011l-4.837-1.076q-7.493-1.706-7.493-7.566a7.124,7.124,0,0,1,3-5.994,13.042,13.042,0,0,1,8.033-2.258,12.571,12.571,0,0,1,7.887,2.294,7.514,7.514,0,0,1,3.05,6.1h-6.566a3.3,3.3,0,0,0-1.3-2.489,5.073,5.073,0,0,0-3.164-.906,5.141,5.141,0,0,0-2.969.768,2.376,2.376,0,0,0-1.108,2.039q0,1.907,3.42,2.713l5,1.072a11.842,11.842,0,0,1,5.653,2.55,6.14,6.14,0,0,1,1.722,4.605,7.313,7.313,0,0,1-3.225,6.2,14.006,14.006,0,0,1-8.423,2.343A13.615,13.615,0,0,1-16117.549,599.295Zm24.951-.073a7.308,7.308,0,0,1-2.489-5.714,6.662,6.662,0,0,1,2.636-5.592q2.637-2.022,7.545-2.319l6.592-.39v-1.734a3.541,3.541,0,0,0-1.187-2.831,4.719,4.719,0,0,0-3.208-1.027,5.349,5.349,0,0,0-3.187.881,3.58,3.58,0,0,0-1.5,2.368h-6.522a7.981,7.981,0,0,1,3.3-6.213,13.248,13.248,0,0,1,8.228-2.355,12.63,12.63,0,0,1,8.058,2.392,7.687,7.687,0,0,1,3.025,6.347v17.995h-6.884v-4h-.146a7.694,7.694,0,0,1-3.273,3.233,9.743,9.743,0,0,1-4.711,1.186A9.09,9.09,0,0,1-16092.6,599.221Zm8.764-9.353a5.539,5.539,0,0,0-3.086,1,2.708,2.708,0,0,0-1.089,2.246,2.776,2.776,0,0,0,1.1,2.319,4.649,4.649,0,0,0,2.928.853,6.058,6.058,0,0,0,4.017-1.377,4.357,4.357,0,0,0,1.649-3.48v-1.9Zm17.288,11.16V565.8h7.127v35.23Zm-81.388-33.126a7.46,7.46,0,0,1-2.542-5.828,6.786,6.786,0,0,1,2.692-5.7q2.687-2.071,7.691-2.368l6.726-.4v-1.767a3.626,3.626,0,0,0-1.207-2.891,4.851,4.851,0,0,0-3.276-1.044,5.45,5.45,0,0,0-3.249.9,3.659,3.659,0,0,0-1.531,2.412h-6.648a8.108,8.108,0,0,1,3.363-6.335,13.494,13.494,0,0,1,8.39-2.4,12.878,12.878,0,0,1,8.22,2.441,7.841,7.841,0,0,1,3.087,6.473v18.356h-7.022v-4.085h-.149a7.858,7.858,0,0,1-3.339,3.3,9.937,9.937,0,0,1-4.8,1.21A9.254,9.254,0,0,1-16147.934,567.9Zm8.938-9.539a5.7,5.7,0,0,0-3.147,1.023,2.772,2.772,0,0,0-1.108,2.29,2.834,2.834,0,0,0,1.12,2.364,4.737,4.737,0,0,0,2.985.873,6.171,6.171,0,0,0,4.1-1.409,4.424,4.424,0,0,0,1.682-3.545v-1.945Zm55.535,11.383V554.107a5.968,5.968,0,0,0-1.283-4.073,4.7,4.7,0,0,0-3.725-1.458,5.081,5.081,0,0,0-4,1.633,6.21,6.21,0,0,0-1.458,4.3v15.241h-7.269V533.81h7.147V547.8h.146a8.244,8.244,0,0,1,3.225-3.895,9.5,9.5,0,0,1,5.17-1.36,8.828,8.828,0,0,1,6.859,2.68,10.427,10.427,0,0,1,2.452,7.33v17.186Zm-78.172,0V533.81h7.273v35.936Zm-16.382,0V548.527h-3.639v-5.352h3.639v-2.018q0-3.984,2.051-5.828t6.737-1.844a18.633,18.633,0,0,1,3.712.325v4.808a10.774,10.774,0,0,0-1.97-.15q-3.437,0-3.436,2.936v1.771h5.3v5.352h-5.13v21.219Z\" transform=\"translate(16182.324 -518.065)\" fill=\"#fff\"></path>\n    <path id=\"Caminho_50\" data-name=\"Caminho 50\" d=\"M3.236,38.847H16.18L8.09,62.793c-.647,1.294,1.294,2.589,2.589,1.618l27.506-33.33A3.236,3.236,0,0,0,35.6,25.9H22.652l8.09-23.946C31.389.663,29.447-.632,28.153.339L.647,33.669a3.236,3.236,0,0,0,2.589,5.178Z\" transform=\"matrix(0.995, 0.105, -0.105, 0.995, 56.099, 0)\" fill=\"#ffc51d\"></path>\n  </g>\n</svg>",
+        "content_text": "<p>Garanta [DESCONTO]</p><p>usando o cupom:</p>",
+        "discount_percentage": "10",
+        "copy_button_text": "Copiar Cupom",
+        "coupon_code": "CARNA10",
+        "bg_color": "#f45218",
+        "text_color": "#ffffff",
+        "fs_button_bg_color": "#ffc51d",
+        "fs_button_text_color": "#1a1a1a",
+        "fs_button_shadow_color": "#1a1a1a",
+        "fs_button_hover_bg_color": "#ffc51d",
+        "fs_button_hover_text_color": "#1a1a1a",
+        "fs_button_hover_shadow_color": "#1a1a1a"
+      }
+    },
+    "final_faq": {
+      "type": "final-faq-landing",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        },
+        "faq_7": {
+          "type": "faq",
+          "settings": {
+            "question": "Pergunta",
+            "answer": "<p>Resposta</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Ainda tem dúvidas?",
+        "cta_text": "Não? Experimente Holy Agora",
+        "cta_url": "",
+        "allow_multiple_open": false,
+        "bg_color": "#ffffff",
+        "title_color": "#006b3c",
+        "question_color": "#006b3c",
+        "divider_color": "#00b45a",
+        "cta_bg_color": "#f45218",
+        "cta_text_color": "#ffffff",
+        "cta_shadow_color": "#005234",
+        "cta_hover_bg_color": "#f45218",
+        "cta_hover_text_color": "#ffffff",
+        "cta_hover_shadow_color": "#005234"
+      }
+    }
+  },
+  "order": [
+    "announcement_bar",
+    "header_landing",
+    "hero_section",
+    "product_flavors",
+    "kit_selection_faq",
+    "strategic_ingredients",
+    "testimonials",
+    "cta_section",
+    "product_comparison",
+    "expert_endorsement",
+    "flash_sale_bar",
+    "final_faq"
+  ]
+}

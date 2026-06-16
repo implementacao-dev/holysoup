@@ -1,0 +1,1101 @@
+{%- if section.settings.display_section -%}
+<div class="mobile-toolbar-container" style="position: relative;">
+  <div
+    x-cloak
+    x-data="
+    {    
+      loading: false,
+      handleToolbar() {
+        this.loading = true
+        fetch('/?view=cart')
+          .then(response => response.text())
+          .then(toolbarContent => {
+            document.getElementById('toolbarContent').innerHTML = new DOMParser().parseFromString(toolbarContent, 'text/html').getElementById('toolbarContent').innerHTML
+            this.loading = false
+          })
+        }
+      }
+    "
+    class="mobile-toolbar"
+    @cart-change.window="handleToolbar()"
+    id="toolbarContent"
+  >
+    {% if section.blocks.size > 0 %}
+      <div 
+        x-data="{
+          init() {      
+            new Swiper('.toolbar-tags', {
+              slidesPerView: 'auto',
+              spaceBetween: 10,
+              centeredSlides: false,
+              {% unless cart.item_count > 0 %}
+                loop: true,
+                speed: 7000,
+                freeMode: true,
+                autoplay: {
+                  delay: 0,
+                  disableOnInteraction: false,
+                },
+              {% endunless %}
+            })
+          },        
+        }"
+        class="toolbar-tags swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            {% liquid
+              comment
+                Filtra produtos VIP e Exclusivo da contagem
+              endcomment
+              assign filtered_item_count = 0
+              assign filtered_total_price = 0
+              
+              for item in cart.items
+                assign item_handle_lower = item.product.handle | downcase
+                assign is_vip_product = false
+                
+                if item_handle_lower contains 'vip' or item_handle_lower contains 'exclusivo'
+                  assign is_vip_product = true
+                endif
+                
+                unless is_vip_product
+                  assign filtered_item_count = filtered_item_count | plus: item.quantity
+                  assign filtered_total_price = filtered_total_price | plus: item.final_line_price
+                endunless
+              endfor
+              
+              assign minimum_free_shipping_value = block.settings.minimum_value | default: 0 | times: 100
+              assign amount_number = minimum_free_shipping_value | minus: filtered_total_price
+              if amount_number < 0
+                assign amount = 0 | money
+              else
+                assign amount = amount_number | money
+              endif
+  
+              assign amount_1 = block.settings.discount_un_1 | minus: filtered_item_count
+              assign amount_2 = block.settings.discount_un_2 | minus: filtered_item_count
+              assign amount_3 = block.settings.discount_un_3 | minus: filtered_item_count
+              assign amount_4 = block.settings.discount_un_4 | minus: filtered_item_count
+            %}
+            {% case block.type %}
+              {% when 'tag' %}
+                <div class="swiper-slide">
+                  <div
+                    class="toolbar-tag"
+                    style="background: {{ block.settings.bg_color }};{% if block.settings.modal_image != blank %}cursor: pointer;{% endif %}"
+                    {% if block.settings.modal_image != blank %}
+                      onclick="openModal('modal-{{ block.id }}')"
+                    {% endif %}
+                  >
+                    {% if block.settings.icon != blank %}
+                      {{ block.settings.icon | image_url: width: 100 | image_tag: loading: 'lazy', fetchpriority: 'auto' }}
+                    {% endif %}
+                    {% if block.settings.text != blank %}
+                      <div style="color: {{ block.settings.text_color }}; --highlightedColor: {{ block.settings.highlighted_text_color }}">
+                        {{ block.settings.text }}
+                      </div>
+                    {% endif %}
+                    {% if block.settings.copy_icon %}
+                      <div
+                        x-data="{
+                          copyContent() {
+                            const copy = async () => {
+                              try {
+                                await navigator.clipboard.writeText('{{ block.settings.copy_text }}');
+                                $dispatch('show-notification', { type: 'success', description: 'Cupom copiado com sucesso' })
+                              } catch (err) {
+                                console.error('Failed to copy: ', err);
+                              }
+                            }
+                            copy()
+                          }
+                        }"
+                        style="cursor: pointer;"
+                        @click.prevent="copyContent()"
+                      >
+                      {{ block.settings.copy_icon | image_url: width: 100 | image_tag: loading: 'lazy', fetchpriority: 'auto' }}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% when 'zip' %}
+                <div class="swiper-slide">
+                  <div
+                    x-data="
+                      {
+                        items: {{ cart.items | json | escape | replace: '"', "'" }},
+                        itemsCount: {{ cart.item_count }},
+                        cartTotalPrice: {{ cart.total_price }},
+                        freeShippingMinimumValue: {{ minimum_free_shipping_value }},
+                        freeShippingRemainingValue: 0,
+                        freeShippingRemainingPercentual: 0,
+                        shipping_calculate: false
+                      }
+                    "
+                    x-init="
+                      freeShippingRemainingValue = freeShippingMinimumValue - cartTotalPrice
+                      freeShippingRemainingPercentual = (cartTotalPrice / freeShippingMinimumValue) * 100
+    
+                      $store.cart.refresh(itemsCount, items)
+                    "
+                    class="toolbar-tag toolbar-zip"
+                    style="background: {{ block.settings.bg_color }};{% if block.settings.modal_image != blank %}cursor: pointer;{% endif %}"
+                    {% if block.settings.modal_image != blank %}
+                      onclick="openModal('modal-{{ block.id }}')"
+                    {% endif %}
+                  >
+                    {% if block.settings.icon != blank %}
+                      <div 
+                        {% if block.settings.icon_after != blank %}
+                        x-show="freeShippingRemainingPercentual < 100"
+                        {% endif %}
+                      >
+                        {{ block.settings.icon | image_url: width: 100 | image_tag: loading: 'lazy', fetchpriority: 'auto' }}
+                      </div>
+                    {% endif %}
+                    {% if block.settings.icon_after != blank %}
+                      <div x-show="freeShippingRemainingPercentual >= 100">
+                        {{ block.settings.icon_after | image_url: width: 100 | image_tag: loading: 'lazy', fetchpriority: 'auto' }}
+                      </div>
+                    {% endif %}
+                    <div class="toolbar-zip-container">
+                      {% if settings.activate_free_shipping and minimum_free_shipping_value > 0 %}
+                        <div>
+                          <div>
+                            <div style="color: {{ block.settings.text_color }}; --highlightedColor: {{ block.settings.highlighted_text_color }}">
+                              {% if cart.item_count <= 0 %}
+                                {{ block.settings.before_cart_text | replace: '[value]', amount }}
+                              {% elsif amount_number > 0 %}
+                                {{ block.settings.cart_text | replace: '[value]', amount }}
+                              {% else %}
+                                {{ block.settings.after_cart_text | replace: '[value]', amount }}
+                              {% endif %}
+                            </div>
+                            {% if cart.item_count > 0 %}
+                              <template x-if="freeShippingRemainingPercentual >= 100">
+                                <div class="toolbar-zip-bar">
+                                  <div
+                                    x-data="{ progressBarWidth: 0 }"
+                                    x-init="setTimeout(() => progressBarWidth = freeShippingRemainingPercentual, 500)"
+                                    x-show="progressBarWidth >= 100"
+                                    role="progressbar"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    class="toolbar-zip-bar-active"
+                                    style="--highlightedColor: {{ block.settings.highlighted_text_color }}"
+                                    :style="{ width: `100%` }"
+                                  ></div>
+                                </div>
+                              </template>
+                              <template x-if="freeShippingRemainingPercentual < 100">
+                                <div class="toolbar-zip-bar">
+                                  <div
+                                    x-data="{ progressBarWidth: 0 }"
+                                    x-init="setTimeout(() => progressBarWidth = freeShippingRemainingPercentual, 500)"
+                                    x-show="progressBarWidth < 100"
+                                    role="progressbar"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    class="toolbar-zip-bar-active"
+                                    style="--highlightedColor: {{ block.settings.highlighted_text_color }}"
+                                    :style="{ width: `${progressBarWidth}%` }"
+                                  ></div>
+                                </div>
+                              </template>
+                            {% endif %}
+                          </div>
+                        </div>
+                      {% endif %}
+                    </div>
+                    {% if block.settings.copy_icon %}
+                      <div
+                        x-data="{
+                          copyContent() {
+                            const copy = async () => {
+                              try {
+                                await navigator.clipboard.writeText('{{ block.settings.copy_text }}');
+                                $dispatch('show-notification', { type: 'success', description: 'Cupom copiado com sucesso' })
+                              } catch (err) {
+                                console.error('Failed to copy: ', err);
+                              }
+                            }
+                            copy()
+                          }
+                        }"
+                        style="cursor: pointer;"
+                        @click.prevent="copyContent()"
+                      >
+                      {{ block.settings.copy_icon | image_url: width: 100 | image_tag: loading: 'lazy', fetchpriority: 'auto' }}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% when 'descount' %}
+                <div class="swiper-slide">
+                  <div
+                    x-data="
+                      {
+                        items: {{ cart.items | json | escape | replace: '"', "'" }},
+                        itemsCount: {{ filtered_item_count }},
+                        value1: {{ block.settings.discount_un_1 }},
+                        value2: {{ block.settings.discount_un_2 }},
+                        value3: {{ block.settings.discount_un_3 }},
+                        value4: {{ block.settings.discount_un_4 }},
+                        maxValue: 0,
+                        valueArray: [],
+                        freeShippingMinimumValue: {{ minimum_free_shipping_value }},
+                        freeShippingRemainingPercentual: 0,
+                        shipping_calculate: false,
+                      }
+                    "
+                    x-init="                  
+                      valueArray = [value1, value2, value3, value4]
+                      maxValue = Math.max(...valueArray)
+                      freeShippingRemainingPercentual = (itemsCount / maxValue) * 100
+    
+                      $store.cart.refresh(itemsCount, items)
+                    "
+                    class="toolbar-tag"
+                    style="background: {{ block.settings.bg_color }};{% if block.settings.modal_image != blank %}cursor: pointer;{% endif %}"
+                    {% if block.settings.modal_image != blank %}
+                      onclick="openModal('modal-{{ block.id }}')"
+                    {% endif %}
+                  >
+                    {% if block.settings.icon != blank %}
+                      {{ block.settings.icon | image_url: width: 100 | image_tag: loading: 'lazy', fetchpriority: 'auto' }}
+                    {% endif %}
+                    <div class="toolbar-zip-container">
+                        <div
+                        >
+                          <div>
+                            <div style="color: {{ block.settings.text_color }}; --highlightedColor: {{ block.settings.highlighted_text_color }}">
+                              {% if filtered_item_count <= 0 %}
+                                {{ block.settings.before_cart_text }}
+                              {% elsif filtered_item_count < block.settings.discount_un_1 %}
+                                {{ block.settings.text_label_1 | replace: '[value]', amount_1 | replace: '[discount]',  block.settings.discount_1 }}
+                              {% elsif filtered_item_count < block.settings.discount_un_2 %}
+                                {{ block.settings.text_label_2 | replace: '[value]', amount_2 | replace: '[discount]',  block.settings.discount_2 }}
+                              {% elsif filtered_item_count < block.settings.discount_un_3 %}
+                                {{ block.settings.text_label_3 | replace: '[value]', amount_3 | replace: '[discount]',  block.settings.discount_3 }}
+                              {% elsif filtered_item_count < block.settings.discount_un_4 %}
+                                {{ block.settings.text_label_4 | replace: '[value]', amount_4 | replace: '[discount]',  block.settings.discount_4 }}
+                              {% else %}
+                                {{ block.settings.after_cart_text }}
+                              {% endif %}
+                            </div>
+                            {% if filtered_item_count > 0 %}
+                              <template x-if="freeShippingRemainingPercentual >= 100">
+                                <div class="toolbar-zip-bar">
+                                  <div
+                                    x-data="{ progressBarWidth: 0 }"
+                                    x-init="setTimeout(() => progressBarWidth = freeShippingRemainingPercentual, 500)"
+                                    x-show="progressBarWidth >= 100"
+                                    role="progressbar"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    class="toolbar-zip-bar-active"
+                                    style="--highlightedColor: {{ block.settings.highlighted_text_color }}"
+                                    :style="{ width: `100%` }"
+                                  ></div>
+                                </div>
+                              </template>
+                              <template x-if="freeShippingRemainingPercentual < 100">
+                                <div class="toolbar-zip-bar">
+                                  <div
+                                    x-data="{ progressBarWidth: 0 }"
+                                    x-init="setTimeout(() => progressBarWidth = freeShippingRemainingPercentual, 500)"
+                                    x-show="progressBarWidth < 100"
+                                    role="progressbar"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    class="toolbar-zip-bar-active"
+                                    style="--highlightedColor: {{ block.settings.highlighted_text_color }}"
+                                    :style="{ width: `${progressBarWidth}%` }"
+                                  ></div>
+                                </div>
+                              </template>
+                            {% endif %}
+                          </div>
+                        </div>
+                    </div>
+                    {% if block.settings.copy_icon %}
+                      <div
+                        x-data="{
+                          copyContent() {
+                            const copy = async () => {
+                              try {
+                                await navigator.clipboard.writeText('{{ block.settings.copy_text }}');
+                                $dispatch('show-notification', { type: 'success', description: 'Cupom copiado com sucesso' })
+                              } catch (err) {
+                                console.error('Failed to copy: ', err);
+                              }
+                            }
+                            copy()
+                          }
+                        }"
+                        style="cursor: pointer;"
+                        @click.prevent="copyContent()"
+                      >
+                      {{ block.settings.copy_icon | image_url: width: 100 | image_tag: loading: 'lazy', fetchpriority: 'auto' }}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+    {% if cart.item_count > 0 %}
+      <div class="toolbar-cart">
+        <div class="toolbar-cart-info">
+          <div class="toolbar-subtotal">Subtotal de produtos</div>
+          <div>
+            <span class="toolbar-total-price">{{ cart.total_price | money }}</span>
+            <span class="toolbar-item-count">
+              /<span x-text="$store.cart.itemsCount">{{ cart.item_count }}</span> {% if cart.item_count > 1 %}itens{% else %}item{% endif %}
+            </span>
+          </div>
+        </div>
+        <button @click.prevent="$dispatch('show-cart', true)">{{ section.settings.button_text }}</button>
+      </div>
+    {% endif %}
+  <div
+    x-show="loading"
+    class="loading-container"
+  >
+    {% render 'loading-spinner' %}
+  </div>
+  </div>
+
+</div>
+
+  {% for block in section.blocks %}
+    <div id="modal-{{ block.id }}" class="toolbar-tag-modal">
+      <div
+        style="width: 100%; height: 100%;position: absolute;top: 0;display: block;"
+        onclick="closeModal('modal-{{ block.settings.product.id }}')"
+      ></div>
+      <div class="modal-content">
+        <div class="modal-close-button" onclick="closeModal('modal-{{ block.id }}')">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14.424"
+            height="14.424"
+            viewBox="0 0 14.424 14.424"
+          >
+            <path id="União_10" data-name="União 10" d="M6.152,6.152,0,12.3,6.152,6.152,0,0,6.152,6.152,12.3,0,6.152,6.152,12.3,12.3Z" transform="translate(1.061 1.061)" fill="rgba(0,0,0,0)" stroke="#ff7a50" stroke-linecap="round" stroke-width="3"/>
+          </svg>
+        </div>
+        <img
+          loading="lazy"
+          width="100%"
+          height="100%"
+          src="{{ block.settings.modal_image | image_url: width: block.settings.modal_image.width }}"
+        >
+      </div>
+    </div>
+  {% endfor %}
+{%- endif -%}
+
+{% style %}
+  .mobile-toolbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    width: 100vw;
+    background: #FFF;
+    font-size: 12px;
+    box-shadow: 0 -10px 15px -3px rgb(0 0 0 / 0.1), 0 -4px 6px -4px rgb(0 0 0 / 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 0;
+  }
+
+  .toolbar-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: nowrap;
+    padding: 0 24px;
+    white-space: nowrap;
+  }
+
+  .toolbar-tags {
+    margin: 0;
+  }
+  
+  .toolbar-tags .swiper-slide {
+    width: fit-content;
+    height: auto;
+  }
+
+  .toolbar-tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 9999px;
+    padding: 8px 16px;
+  }
+
+  .toolbar-tag.toolbar-zip {
+    display: none;
+  }
+
+  .free-shipping .toolbar-tag.toolbar-zip {
+    display: flex;
+  }
+
+  .toolbar-tag img {
+    max-height: 20px;
+    max-width: 20px;
+    width: auto;
+  }
+
+  .toolbar-tag p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .toolbar-tag p strong {
+    color: var(--highlightedColor)
+  }
+
+  .toolbar-cart {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 24px;
+  }
+
+  .toolbar-subtotal {
+    font-size: 10px;
+  }
+
+  .toolbar-cart button {
+    border-radius: 9999px;
+    background: #FF7A50;
+    color: #FFF;
+    padding: 8px 32px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .toolbar-cart-info {
+    white-space: nowrap;
+  }
+
+  .toolbar-total-price {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .toolbar-zip-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .toolbar-zip-bar {
+    height: 4px;
+    width: 100%;
+    background: #D8D8D8;
+    border-radius: 9999px;
+  }
+
+  .toolbar-zip-bar-active {
+    height: 4px;
+    width: 100%;
+    background: var(--highlightedColor);
+    display: block;
+    border-radius: 9999px;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: 1s;
+    transition-property: all;
+  }
+
+  .toolbar-tag-modal {
+    display: none;
+    position: fixed;
+    inset: 0px;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+  }
+
+  .toolbar-tag-modal .modal-content {
+    margin: auto;
+    max-width: 425px;
+    padding: 20px;
+    position: relative;
+  }
+
+  .toolbar-tag-modal .modal-close-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: absolute;
+    top: 65px;
+    right: 85px;
+    color: black;
+    text-decoration: underline;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  .modal-close-button svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 4px;
+  }
+
+  .toolbar-tag-modal.visible {
+    display: flex;
+  }
+
+  .mobile-toolbar-container .loading-container {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+    color: #000;
+    background-color: rgb(255 255 255 / 0.8);
+  }
+
+  /* For Webkit-based browsers (Chrome, Safari and Opera) */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* For IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  @media (min-width: 768px){
+    .toolbar-tag-modal .modal-content {
+      max-width: none;
+      height: 100vh;
+    }
+
+    .mobile-toolbar {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+{% endstyle %}
+
+<script>
+  function openModal(modalId) {
+    if (modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.add('visible');
+    }
+  }
+
+  function closeModal(modalId) {
+    if (modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.remove('visible');
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Barra de serviços",
+  "tag": "section",
+  "presets": [{ "name": "Barra de serviços" }],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "display_section",
+      "label": "t:sections.layout.display_block",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "float_button",
+      "label": "Habilitar botão fultuante (Desktop e mobile)?",
+      "default": false
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.sticky_toolbar_mobile.settings.paragraph"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "t:settings_schema.typography.settings.font_weight.label",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "t:sections.footer.settings.footer_top.pdtop_footer_top.unit",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "t:settings_schema.typography.settings.font_weight.label",
+      "default": "500",
+      "options": [
+        {
+          "value": "400",
+          "label": "t:settings_schema.typography.settings.font_weight.options__1"
+        },
+        {
+          "value": "500",
+          "label": "t:settings_schema.typography.settings.font_weight.options__2"
+        },
+        {
+          "value": "600",
+          "label": "t:settings_schema.typography.settings.font_weight.options__3"
+        },
+        {
+          "value": "700",
+          "label": "t:settings_schema.typography.settings.font_weight.options__4"
+        },
+        {
+          "value": "800",
+          "label": "t:settings_schema.typography.settings.font_weight.options__5"
+        },
+        {
+          "value": "900",
+          "label": "t:settings_schema.typography.settings.font_weight.options__6"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "t:settings_schema.typography.settings.typography.icon_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "t:sections.footer.settings.footer_top.pdtop_footer_top.unit",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "t:settings_schema.general.name"
+    },
+    {
+      "type": "color",
+      "id": "color_icon",
+      "label": "t:sections.sticky_toolbar_mobile.settings.color_icon",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "t:settings_schema.colors.settings.colors_name.border_color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "t:settings_schema.colors.settings.colors_name.background_color",
+      "default": "#fff"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_color_gradient",
+      "label": "t:settings_schema.colors.settings.colors_name.background_color_gradient"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Texto do botão",
+      "default": "Botão"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tag",
+      "name": "Tag",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Ícone"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Selecione o ícone"
+        },
+        {
+          "type": "header",
+          "content": "Copiar texto"
+        },
+        {
+          "type": "image_picker",
+          "id": "copy_icon",
+          "label": "Selecione o ícone"
+        },
+        {
+          "type": "text",
+          "id": "copy_text",
+          "label": "Texto que será copiado"
+        },
+        {
+          "type": "header",
+          "content": "Textos"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Texto da tag",
+          "info": "Para adicionar destaque à um trecho basta deixá-lo bold"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Selecione cor do texto",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "highlighted_text_color",
+          "label": "Selecione cor do texto destaquado",
+          "default": "#FF7A50"
+        },
+        {
+          "type": "header",
+          "content": "Modal"
+        },
+        {
+          "type": "image_picker",
+          "id": "modal_image",
+          "label": "Selecione a imagem do modal"
+        },
+        {
+          "type": "header",
+          "content": "Fundo"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Selecione a cor do fundo",
+          "default": "#F6F6F6"
+        }
+      ]
+    },
+    {
+      "type": "zip",
+      "name": "Tag Interativa",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Ícone"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Selecione o ícone"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_after",
+          "label": "Selecione o ícone que aparecerá após carrinho ter atingido o valor"
+        },
+        {
+          "type": "header",
+          "content": "Copiar texto"
+        },
+        {
+          "type": "image_picker",
+          "id": "copy_icon",
+          "label": "Selecione o ícone"
+        },
+        {
+          "type": "text",
+          "id": "copy_text",
+          "label": "Texto que será copiado"
+        },
+        {
+          "type": "header",
+          "content": "Textos"
+        },
+        {
+          "type": "text",
+          "id": "minimum_value",
+          "label": "Valor",
+        },
+        {
+          "type": "richtext",
+          "id": "before_cart_text",
+          "label": "Texto da tag com carrinho vazio",
+          "info": "Para adicionar destaque à um trecho basta deixá-lo bold. Para adicionar o valor basta inserir [value] onde deseja que seja exibido.",
+          "default": "<p><strong>Frete Grátis</strong> em compras acima de R$99</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "cart_text",
+          "label": "Texto da tag com itens no carrinho",
+          "info": "Para adicionar destaque à um trecho basta deixá-lo bold. Para adicionar o valor basta inserir [value] onde deseja que seja exibido.",
+          "default": "<p>Faltam [value] para <strong>Frete Grátis</strong></p>"
+        },
+        {
+          "type": "richtext",
+          "id": "after_cart_text",
+          "label": "Texto da tag após carrinho ter atingido o valor",
+          "info": "Para adicionar destaque à um trecho basta deixá-lo bold.",
+          "default": "<p>Você ganhou <strong>Frete Grátis</strong></p>"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Selecione cor do texto",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "highlighted_text_color",
+          "label": "Selecione cor do texto destaquado",
+          "default": "#FF7A50"
+        },
+        {
+          "type": "header",
+          "content": "Modal"
+        },
+        {
+          "type": "image_picker",
+          "id": "modal_image",
+          "label": "Selecione a imagem do modal"
+        },
+        {
+          "type": "header",
+          "content": "Fundo"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Selecione a cor do fundo",
+          "default": "#F6F6F6"
+        }
+      ]
+    },
+    {
+      "type": "descount",
+      "name": "Desconto Progressivo",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Ícone"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Selecione o ícone"
+        },
+        {
+          "type": "header",
+          "content": "Copiar texto"
+        },
+        {
+          "type": "image_picker",
+          "id": "copy_icon",
+          "label": "Selecione o ícone"
+        },
+        {
+          "type": "text",
+          "id": "copy_text",
+          "label": "Texto que será copiado"
+        },
+        {
+          "type": "header",
+          "content": "Textos"
+        },
+        {
+          "type": "richtext",
+          "id": "before_cart_text",
+          "label": "Texto da tag com carrinho vazio",
+          "info": "Para adicionar destaque à um trecho basta deixá-lo bold.",
+          "default": "<p><strong>Desconto Progressivo</strong> até 35% OFF</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "after_cart_text",
+          "label": "Texto da tag após carrinho ter atingido o valor",
+          "info": "Para adicionar destaque à um trecho basta deixá-lo bold.",
+          "default": "<p>Você ganhou <strong>Frete Grátis</strong></p>"
+        },
+        {
+          "type": "header",
+          "content": "Descontos 1"
+        },
+        {
+          "type": "checkbox",
+          "id": "active_discount_1",
+          "label": "Ativar esse desconto?",
+          "default": true
+        },
+        {
+          "type": "richtext",
+          "id": "text_label_1",
+          "label": "Texto da tag com carrinho vazio",
+          "info": "Para adicionar destaque à um trecho basta deixá-lo bold. Para adicionar o valor basta inserir [value] e para adicionar o desconto basta inserir [discount] onde deseja que seja exibido.",
+          "default": "<p>Faltam [value] para <strong>Desconto de [discount]</strong></p>"
+        },
+        {
+          "type": "range",
+          "id": "discount_1",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "label": "Valor do desconto"
+        },
+        {
+          "type": "range",
+          "id": "discount_un_1",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "label": "Quantidade mínima"
+        },
+        {
+          "type": "header",
+          "content": "Descontos 2"
+        },
+        {
+          "type": "checkbox",
+          "id": "active_discount_2",
+          "label": "Ativar esse desconto?",
+          "default": true
+        },
+        {
+          "type": "richtext",
+          "id": "text_label_2",
+          "label": "Texto da tag com carrinho vazio",
+          "info": "Para adicionar destaque à um trecho basta deixá-lo bold. Para adicionar o valor basta inserir [value] e para adicionar o desconto basta inserir [discount] onde deseja que seja exibido",
+          "default": "<p>Faltam [value] para <strong>Desconto de [discount]</strong></p>"
+        },
+        {
+          "type": "range",
+          "id": "discount_2",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "label": "Valor do desconto"
+        },
+        {
+          "type": "range",
+          "id": "discount_un_2",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "label": "Quantidade mínima"
+        },
+        {
+          "type": "header",
+          "content": "Descontos 3"
+        },
+        {
+          "type": "richtext",
+          "id": "text_label_3",
+          "label": "Texto da tag com carrinho vazio",
+          "info": "Para adicionar destaque à um trecho basta deixá-lo bold. Para adicionar o valor basta inserir [value] e para adicionar o desconto basta inserir [discount] onde deseja que seja exibido",
+          "default": "<p>Faltam [value] para <strong>Desconto de [discount]</strong></p>"
+        },
+        {
+          "type": "range",
+          "id": "discount_3",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "label": "Valor do desconto"
+        },
+        {
+          "type": "range",
+          "id": "discount_un_3",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "label": "Quantidade mínima"
+        },
+        {
+          "type": "header",
+          "content": "Descontos 4"
+        },
+        {
+          "type": "checkbox",
+          "id": "active_discount_4",
+          "label": "Ativar esse desconto?",
+          "default": true
+        },
+        {
+          "type": "richtext",
+          "id": "text_label_4",
+          "label": "Texto da tag com carrinho vazio",
+          "info": "Para adicionar destaque à um trecho basta deixá-lo bold. Para adicionar o valor basta inserir [value] e para adicionar o desconto basta inserir [discount] onde deseja que seja exibido",
+          "default": "<p>Faltam [value] para <strong>Desconto de [discount]</strong></p>"
+        },
+        {
+          "type": "range",
+          "id": "discount_4",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "label": "Valor do desconto"
+        },
+        {
+          "type": "range",
+          "id": "discount_un_4",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0,
+          "label": "Quantidade mínima"
+        },      
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Selecione cor do texto",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "highlighted_text_color",
+          "label": "Selecione cor do texto destaquado",
+          "default": "#FF7A50"
+        },
+        {
+          "type": "header",
+          "content": "Modal"
+        },
+        {
+          "type": "image_picker",
+          "id": "modal_image",
+          "label": "Selecione a imagem do modal"
+        },
+        {
+          "type": "header",
+          "content": "Fundo"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Selecione a cor do fundo",
+          "default": "#F6F6F6"
+        }
+      ]
+    },
+  ]
+}
+{% endschema %}

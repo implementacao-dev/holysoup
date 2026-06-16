@@ -1,0 +1,239 @@
+{% style %}
+  {{ 'slider-bar.css' | inline_asset_content }}
+{% endstyle %}
+
+<script src="{{ 'slider-bar.js' | asset_url }}" defer="defer"></script>
+
+<div
+  class="slider-bar-content"
+  style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }}; font-size: {{ section.settings.font_size }};"
+  data-cc-animate
+>
+  <div class="slider-content">
+    {% comment %} Manter os blocos individuais existentes {% endcomment %}
+    {% assign current_time = 'now' | date: '%s' %}
+    {% for block in section.blocks %}
+      {% assign show_block = true %}
+      {% if block.settings.data_inicio != blank %}
+        {% assign start_datetime = block.settings.data_inicio %}
+        {% if block.settings.hora_inicio != blank %}
+          {% assign start_datetime = start_datetime | append: ' ' | append: block.settings.hora_inicio %}
+        {% endif %}
+        {% assign start_time = start_datetime | date: '%s' %}
+        {% if start_time > current_time %}
+          {% assign show_block = false %}
+        {% endif %}
+      {% endif %}
+      {% if show_block and block.settings.expira == true and block.settings.data_fim != blank %}
+        {% assign end_datetime = block.settings.data_fim %}
+        {% if block.settings.hora_fim != blank %}
+          {% assign end_datetime = end_datetime | append: ' ' | append: block.settings.hora_fim %}
+        {% endif %}
+        {% assign end_time = end_datetime | date: '%s' %}
+        {% if end_time < current_time %}
+          {% assign show_block = false %}
+        {% endif %}
+      {% endif %}
+      {% if show_block %}
+        {% if block.settings.block_link != blank %}
+          <a href="{{ block.settings.block_link }}">
+            <div class="slider-item">
+              {% if block.settings.block_svg != blank %}
+                <div class="block-icon">{{ block.settings.block_svg }}</div>
+              {% endif %}
+              <div class="block-text">{{ block.settings.block_text }}</div>
+            </div>
+          </a>
+        {% else %}
+          <div class="slider-item">
+            {% if block.settings.block_svg != blank %}
+              <div class="block-icon">{{ block.settings.block_svg }}</div>
+            {% endif %}
+            <div class="block-text">{{ block.settings.block_text }}</div>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if section.settings.show_compre_btn %}
+    <div class="compre-agora-btn-wrapper" style="background-color: {{ section.settings.background_color }};">
+      <a
+        href="{{ section.settings.compre_btn_link | default: '/collections/all' }}"
+        class="compre-agora-btn"
+        style="background-color: {{ section.settings.compre_btn_bg_color }}; color: {{ section.settings.compre_btn_text_color }};"
+      >
+        {{ section.settings.compre_btn_text | default: 'Compre Agora' }}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Barra deslizante",
+  "tag": "section",
+  "class": "slider-bar section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Configurações de Cores"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Cor de Fundo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Cor do Texto",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Configurações de Texto"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "Tamanho da Fonte",
+      "options": [
+        {
+          "value": "14px",
+          "label": "Pequeno (14px)"
+        },
+        {
+          "value": "16px",
+          "label": "Médio (16px)"
+        },
+        {
+          "value": "18px",
+          "label": "Grande (18px)"
+        },
+        {
+          "value": "20px",
+          "label": "Extra Grande (20px)"
+        },
+        {
+          "value": "22px",
+          "label": "Muito Grande (22px)"
+        }
+      ],
+      "default": "16px"
+    },
+    {
+      "type": "header",
+      "content": "Configurações do Botão 'Compre Agora'"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_compre_btn",
+      "label": "Mostrar Botão 'Compre Agora'?",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "compre_btn_text",
+      "label": "Texto do Botão 'Compre Agora'",
+      "default": "Compre Agora"
+    },
+    {
+      "type": "url",
+      "id": "compre_btn_link",
+      "label": "Link do Botão 'Compre Agora'"
+    },
+    {
+      "type": "color",
+      "id": "compre_btn_bg_color",
+      "label": "Cor de Fundo do Botão 'Compre Agora'",
+      "default": "#007bff"
+    },
+    {
+      "type": "color",
+      "id": "compre_btn_text_color",
+      "label": "Cor do Texto do Botão 'Compre Agora'",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Text Block",
+      "settings": [
+        {
+          "type": "html",
+          "id": "block_svg",
+          "label": "SVG Icon (HTML)"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "block_text",
+          "label": "Block Text",
+          "default": "Lorem ipsum dolor sit amet"
+        },
+        {
+          "type": "url",
+          "id": "block_link",
+          "label": "Link (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "data_inicio",
+          "label": "Data de Início (yyyy-mm-dd)"
+        },
+        {
+          "type": "text",
+          "id": "hora_inicio",
+          "label": "Hora de Início (hh:mm:ss)"
+        },
+        {
+          "type": "text",
+          "id": "data_fim",
+          "label": "Data de Fim (yyyy-mm-dd)"
+        },
+        {
+          "type": "text",
+          "id": "hora_fim",
+          "label": "Hora de Fim (hh:mm:ss)"
+        },
+        {
+          "type": "checkbox",
+          "id": "expira",
+          "label": "Expira?",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Barra deslizante",
+      "blocks": [
+        {
+          "type": "text_block",
+          "settings": {
+            "block_svg": "<svg width=\"58\" height=\"46\" viewBox=\"0 0 58 46\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><g clip-path=\"url(#clip0_110_5)\"><path d=\"M40.0307 45.2012H17.1945C14.6807 45.2012 12.6354 43.156 12.6354 40.642V39.227C3.31187 33.6118 1.14249 23.5572 0.640666 19.3986C0.514776 18.3536 0.842884 17.3023 1.54148 16.5145C2.24056 15.726 3.2462 15.2734 4.30041 15.2734H52.9248C53.979 15.2734 54.9846 15.726 55.6837 16.5145C56.3823 17.3023 56.7104 18.3536 56.5843 19.3986C56.0827 23.5572 53.9133 33.6118 44.5898 39.227V40.642C44.5898 43.156 42.5446 45.2012 40.0307 45.2012ZM4.30041 18.8407C4.28554 18.8407 4.24638 18.8407 4.2107 18.8809C4.17625 18.9198 4.18071 18.9572 4.1822 18.9711C4.63397 22.7153 6.61847 31.9301 15.2697 36.6253L16.2025 37.1315V40.642C16.2025 41.189 16.6476 41.6341 17.1945 41.6341H40.0307C40.5776 41.6341 41.0227 41.189 41.0227 40.642V37.1315L41.9555 36.6253C50.6067 31.9301 52.5912 22.7153 53.0427 18.9711C53.0445 18.9572 53.0489 18.9198 53.0145 18.8809C52.9788 18.8407 52.9394 18.8407 52.9248 18.8407H4.30041Z\" fill=\"currentColor\"></path><path d=\"M33.7399 24.9196C33.6101 25.6024 33.5546 26.301 33.5782 27.0035C33.6214 28.2699 33.004 30.2863 31.1428 32.1479C29.6386 33.6522 27.716 34.5862 26.1256 34.5862C25.651 34.5862 24.9975 34.4982 24.5775 34.0784C23.5054 33.0064 24.1153 29.9049 26.5075 27.5125C28.0107 26.0093 29.933 25.0753 31.5235 25.0753C31.5666 25.0753 31.6092 25.076 31.6523 25.0773C31.7596 25.081 31.8672 25.083 31.974 25.083C32.5729 25.083 33.1633 25.0277 33.7399 24.9196ZM55.905 0.835938C55.4146 0.835938 54.9249 1.02304 54.5508 1.39674L36.1802 19.7673C35.0623 20.8852 33.5494 21.5156 31.974 21.5156C31.9073 21.5156 31.8402 21.5144 31.7733 21.5122C31.6902 21.5095 31.6072 21.508 31.5235 21.508C29.0679 21.508 26.2569 22.7183 23.9849 24.9903C20.2454 28.7296 19.3817 33.9277 22.0552 36.6009C23.1037 37.6494 24.5403 38.1535 26.1256 38.1535C28.5811 38.1535 31.3926 36.9427 33.6651 34.6702C36.0147 32.3209 37.2287 29.3954 37.1437 26.8823C37.0877 25.2356 37.7233 23.6407 38.8881 22.4757L57.2588 4.10512C58.0068 3.35721 58.0068 2.1449 57.2588 1.39674C56.8849 1.02304 56.3952 0.835938 55.905 0.835938Z\" fill=\"currentColor\"></path></g><defs><clipPath id=\"clip0_110_5\"><rect width=\"58\" height=\"46\" fill=\"white\"></rect></clipPath></defs></svg>",
+            "block_text": "<strong>Lorem</strong> ipsum dolor sit amet"
+          }
+        },
+        {
+          "type": "text_block",
+          "settings": {
+            "block_svg": "<svg width=\"58\" height=\"46\" viewBox=\"0 0 58 46\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><g clip-path=\"url(#clip0_110_5)\"><path d=\"M40.0307 45.2012H17.1945C14.6807 45.2012 12.6354 43.156 12.6354 40.642V39.227C3.31187 33.6118 1.14249 23.5572 0.640666 19.3986C0.514776 18.3536 0.842884 17.3023 1.54148 16.5145C2.24056 15.726 3.2462 15.2734 4.30041 15.2734H52.9248C53.979 15.2734 54.9846 15.726 55.6837 16.5145C56.3823 17.3023 56.7104 18.3536 56.5843 19.3986C56.0827 23.5572 53.9133 33.6118 44.5898 39.227V40.642C44.5898 43.156 42.5446 45.2012 40.0307 45.2012ZM4.30041 18.8407C4.28554 18.8407 4.24638 18.8407 4.2107 18.8809C4.17625 18.9198 4.18071 18.9572 4.1822 18.9711C4.63397 22.7153 6.61847 31.9301 15.2697 36.6253L16.2025 37.1315V40.642C16.2025 41.189 16.6476 41.6341 17.1945 41.6341H40.0307C40.5776 41.6341 41.0227 41.189 41.0227 40.642V37.1315L41.9555 36.6253C50.6067 31.9301 52.5912 22.7153 53.0427 18.9711C53.0445 18.9572 53.0489 18.9198 53.0145 18.8809C52.9788 18.8407 52.9394 18.8407 52.9248 18.8407H4.30041Z\" fill=\"currentColor\"></path><path d=\"M33.7399 24.9196C33.6101 25.6024 33.5546 26.301 33.5782 27.0035C33.6214 28.2699 33.004 30.2863 31.1428 32.1479C29.6386 33.6522 27.716 34.5862 26.1256 34.5862C25.651 34.5862 24.9975 34.4982 24.5775 34.0784C23.5054 33.0064 24.1153 29.9049 26.5075 27.5125C28.0107 26.0093 29.933 25.0753 31.5235 25.0753C31.5666 25.0753 31.6092 25.076 31.6523 25.0773C31.7596 25.081 31.8672 25.083 31.974 25.083C32.5729 25.083 33.1633 25.0277 33.7399 24.9196ZM55.905 0.835938C55.4146 0.835938 54.9249 1.02304 54.5508 1.39674L36.1802 19.7673C35.0623 20.8852 33.5494 21.5156 31.974 21.5156C31.9073 21.5156 31.8402 21.5144 31.7733 21.5122C31.6902 21.5095 31.6072 21.508 31.5235 21.508C29.0679 21.508 26.2569 22.7183 23.9849 24.9903C20.2454 28.7296 19.3817 33.9277 22.0552 36.6009C23.1037 37.6494 24.5403 38.1535 26.1256 38.1535C28.5811 38.1535 31.3926 36.9427 33.6651 34.6702C36.0147 32.3209 37.2287 29.3954 37.1437 26.8823C37.0877 25.2356 37.7233 23.6407 38.8881 22.4757L57.2588 4.10512C58.0068 3.35721 58.0068 2.1449 57.2588 1.39674C56.8849 1.02304 56.3952 0.835938 55.905 0.835938Z\" fill=\"currentColor\"></path></g><defs><clipPath id=\"clip0_110_5\"><rect width=\"58\" height=\"46\" fill=\"white\"></rect></clipPath></defs></svg>",
+            "block_text": "<strong>Consectetur</strong> adipiscing elit"
+          }
+        },
+        {
+          "type": "text_block",
+          "settings": {
+            "block_svg": "<svg width=\"58\" height=\"46\" viewBox=\"0 0 58 46\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><g clip-path=\"url(#clip0_110_5)\"><path d=\"M40.0307 45.2012H17.1945C14.6807 45.2012 12.6354 43.156 12.6354 40.642V39.227C3.31187 33.6118 1.14249 23.5572 0.640666 19.3986C0.514776 18.3536 0.842884 17.3023 1.54148 16.5145C2.24056 15.726 3.2462 15.2734 4.30041 15.2734H52.9248C53.979 15.2734 54.9846 15.726 55.6837 16.5145C56.3823 17.3023 56.7104 18.3536 56.5843 19.3986C56.0827 23.5572 53.9133 33.6118 44.5898 39.227V40.642C44.5898 43.156 42.5446 45.2012 40.0307 45.2012ZM4.30041 18.8407C4.28554 18.8407 4.24638 18.8407 4.2107 18.8809C4.17625 18.9198 4.18071 18.9572 4.1822 18.9711C4.63397 22.7153 6.61847 31.9301 15.2697 36.6253L16.2025 37.1315V40.642C16.2025 41.189 16.6476 41.6341 17.1945 41.6341H40.0307C40.5776 41.6341 41.0227 41.189 41.0227 40.642V37.1315L41.9555 36.6253C50.6067 31.9301 52.5912 22.7153 53.0427 18.9711C53.0445 18.9572 53.0489 18.9198 53.0145 18.8809C52.9788 18.8407 52.9394 18.8407 52.9248 18.8407H4.30041Z\" fill=\"currentColor\"></path><path d=\"M33.7399 24.9196C33.6101 25.6024 33.5546 26.301 33.5782 27.0035C33.6214 28.2699 33.004 30.2863 31.1428 32.1479C29.6386 33.6522 27.716 34.5862 26.1256 34.5862C25.651 34.5862 24.9975 34.4982 24.5775 34.0784C23.5054 33.0064 24.1153 29.9049 26.5075 27.5125C28.0107 26.0093 29.933 25.0753 31.5235 25.0753C31.5666 25.0753 31.6092 25.076 31.6523 25.0773C31.7596 25.081 31.8672 25.083 31.974 25.083C32.5729 25.083 33.1633 25.0277 33.7399 24.9196ZM55.905 0.835938C55.4146 0.835938 54.9249 1.02304 54.5508 1.39674L36.1802 19.7673C35.0623 20.8852 33.5494 21.5156 31.974 21.5156C31.9073 21.5156 31.8402 21.5144 31.7733 21.5122C31.6902 21.5095 31.6072 21.508 31.5235 21.508C29.0679 21.508 26.2569 22.7183 23.9849 24.9903C20.2454 28.7296 19.3817 33.9277 22.0552 36.6009C23.1037 37.6494 24.5403 38.1535 26.1256 38.1535C28.5811 38.1535 31.3926 36.9427 33.6651 34.6702C36.0147 32.3209 37.2287 29.3954 37.1437 26.8823C37.0877 25.2356 37.7233 23.6407 38.8881 22.4757L57.2588 4.10512C58.0068 3.35721 58.0068 2.1449 57.2588 1.39674C56.8849 1.02304 56.3952 0.835938 55.905 0.835938Z\" fill=\"currentColor\"></path></g><defs><clipPath id=\"clip0_110_5\"><rect width=\"58\" height=\"46\" fill=\"white\"></rect></clipPath></defs></svg>",
+            "block_text": "<strong>Sed</strong> do eiusmod tempor incididunt"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

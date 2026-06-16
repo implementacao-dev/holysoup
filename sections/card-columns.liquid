@@ -1,0 +1,286 @@
+<style>
+  .section {
+    background: var(--bgColor);
+  }
+
+  .card-columns {
+    padding: 20px; 
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-columns h3,
+  .card-columns p {
+    margin: 0;
+  }
+
+  .card-columns.max-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .card-columns .card {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    border: 3px solid #40A7FF;
+    border-radius: 28px;
+  }
+  
+  .card-columns .card em {
+    font-style: normal;
+    text-decoration: underline;
+  }
+  
+  .card-columns .card.card_numbered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .card-columns .card .content {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .card-columns .card .info .description {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
+    color: #545454;
+  }
+  
+  .card-columns .card .info .description strong {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .card-columns .card .info .title {
+    font-size: 25px;
+    font-weight: 400;
+    color: #545454;
+    margin-bottom: 16px;
+  }
+  
+  .card-columns .card.card_numbered .title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1D84EB;
+    margin-bottom: 16px;
+  }
+  
+  .card-columns .card.card_numbered .info .description {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    color: #545454;
+  }
+
+  .card-columns .card.card_numbered .info .title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #545454;
+    margin: 0;    
+  }
+  
+  .card-columns .card.card_numbered .info .number {
+    min-width: 24px;
+    min-height: 24px;
+    width: 24px;
+    height: 24px;
+    color: white;
+    background: #F5C1E1;
+    border-radius: 9999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    .card-columns {
+      flex-direction: row;
+      align-items: normal;
+    }
+  }
+</style>
+<div class="section" style="--bgColor: {{ section.settings.color }}">
+  {% if section.settings['borda-superior'] %}
+    {% render 'borda-superior', cor: section.settings['color-borda-superior'], style: 'waves' %}
+  {% endif %}
+  <div class="card-columns max-container">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'card' %}
+          <div class="card">
+            <div class="info">
+              <div class="title">
+                {{ block.settings.title }}
+              </div>
+              <div class="description">{{ block.settings.description }}</div>
+            </div>
+          </div>
+        {% when 'card_numbered' %}
+          <div class="card card_numbered">
+            <div class="title">{{ block.settings.title }}</div>
+            <div class="info">
+              {% for variable in (1..4) %}
+                <div class="content">
+                  {% assign title_name = 'title_' | append: variable %}
+                  {% assign title = block.settings[title_name] %}
+                  {% assign description_name = 'description_' | append: variable %}
+                  {% assign description = block.settings[description_name] %}
+                  <div class="number">
+                    {{ variable }}
+                  </div>
+                  <div>
+                    <div class="title">{{ title }}</div>
+                    <div class="description">{{ description }}</div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+  {% if section.settings['borda-inferior'] %}
+    {% render 'borda-inferior', cor: section.settings['color-borda-inferior'] %}
+  {% endif %}
+</div>
+{% schema %}
+{
+  "name": "Card Columns",
+  "settings": [{
+    "type": "checkbox",
+    "id": "borda-superior",
+    "default": true,
+    "label": "Ativar divisória superior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-superior",
+    "default": "#fff",
+    "label": "Cor da divisória superior"
+  },
+  {
+    "type": "checkbox",
+    "id": "borda-inferior",
+    "default": false,
+    "label": "Ativar divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-inferior",
+    "default": "#fff",
+    "label": "Cor da divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color",
+    "label": "Cor"
+  }],
+  "blocks":[
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titulo"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Descrição"
+        }
+      ]
+    },
+    {
+      "type": "card_numbered",
+      "name": "Card Numerado",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titulo"
+        },
+        {
+          "type": "header",
+          "content": "Item 1"
+        },
+        {
+          "type": "text",
+          "id": "title_1",
+          "label": "Titulo"
+        },
+        {
+          "type": "richtext",
+          "id": "description_1",
+          "label": "Descrição"
+        },
+        {
+          "type": "header",
+          "content": "Item 2"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Titulo"
+        },
+        {
+          "type": "richtext",
+          "id": "description_2",
+          "label": "Descrição"
+        },
+        {
+          "type": "header",
+          "content": "Item 3"
+        },
+        {
+          "type": "text",
+          "id": "title_3",
+          "label": "Titulo"
+        },
+        {
+          "type": "richtext",
+          "id": "description_3",
+          "label": "Descrição"
+        },
+        {
+          "type": "header",
+          "content": "Item 4"
+        },
+        {
+          "type": "text",
+          "id": "title_4",
+          "label": "Titulo"
+        },
+        {
+          "type": "richtext",
+          "id": "description_4",
+          "label": "Descrição"
+        }
+      ]
+    },
+  ],
+  "presets": [{
+    "name": "Card Columns",
+    "blocks": [
+      {
+        "type": "card"
+      },
+      {
+        "type": "card"
+      }
+    ]
+  }]
+}
+{% endschema %}

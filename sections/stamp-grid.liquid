@@ -1,0 +1,202 @@
+<style>  
+  .section {
+    background: var(--bgColor);
+  }
+
+  .stamp-grid {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .stamp-grid h3,
+  .stamp-grid p {
+    margin: 0;
+  }
+
+  .stamp-grid.max-container {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+
+  .stamp-grid .heading h3 {
+    color: #012F6E;   
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    font-family: var(--font-body-family);
+    letter-spacing: -1px;
+  }
+  
+  .stamp-grid .stamp-grid-content {
+    display: grid;
+    gap: 64px;
+    justify-content: space-between;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  
+  .stamp-grid .stamp {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .stamp-grid .stamp .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .stamp-grid .stamp .title {
+    color: var(--titleColor);   
+    font-size: 18px;
+    font-weight: 700;
+  }
+  
+  .stamp-grid .stamp img {
+    width: 82px;
+    height: 82px;
+  }
+
+  @media (max-width: 768px) {
+    .stamp-grid .stamp-grid-content {
+      gap: 10px;
+    }
+    
+    .stamp-grid .stamp {
+      flex-direction: column;
+    }
+    
+    .stamp-grid .stamp .info {
+      text-align: center;
+    }
+
+    .stamp-grid .stamp .title { 
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+</style>
+<div class="section" style="--bgColor: {{ section.settings.color }}">
+  {% if section.settings['borda-superior'] %}
+    {% render 'borda-superior', cor: section.settings['color-borda-superior'], style: 'waves' %}
+  {% endif %}
+  <div class="stamp-grid max-container">
+    {% if section.settings.title != blank %}
+      <div class="heading">
+        <h3>
+          {{ section.settings.title }}
+        </h3>
+        {{ section.settings.description }}
+      </div>
+    {% endif %}    
+    <div class="stamp-grid-content" style="--bgColor: {{ section.settings.color }}">
+      {% for block in section.blocks %}
+        <div class="stamp">
+            {% if block.settings.image == blank %}
+              {{ 'product-1' | placeholder_svg_tag: 'image-placeholder' }}
+            {% else %}
+              <img
+                loading="lazy"
+                width="100%"
+                height="100%"
+                src="{{ block.settings.image | image_url: width: block.settings.image.width }}"
+              >
+            {% endif %}
+            <div class="info">
+              <div class="title" style="--titleColor: {{ block.settings.title_color }}">
+                {{ block.settings.title }}
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% if section.settings['borda-inferior'] %}
+    {% render 'borda-inferior', cor: section.settings['color-borda-inferior'] %}
+  {% endif %}
+</div>
+{% schema %}
+{
+  "name": "Stamp Grid",
+  "settings": [{
+    "type": "checkbox",
+    "id": "borda-superior",
+    "default": true,
+    "label": "Ativar divisória superior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-superior",
+    "default": "#fff",
+    "label": "Cor da divisória superior"
+  },
+  {
+    "type": "checkbox",
+    "id": "borda-inferior",
+    "default": false,
+    "label": "Ativar divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-inferior",
+    "default": "#fff",
+    "label": "Cor da divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color",
+    "label": "Cor"
+  },
+  {
+    "type": "text",
+    "id": "title",
+    "label": "Titulo"
+  },
+  {
+    "type": "richtext",
+    "id": "description",
+    "label": "Descrição"
+  }],
+  "blocks":[
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titulo"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Cor",
+          "default": "#707070"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Stamp Grid",
+    "blocks": [
+      {
+        "type": "card"
+      },
+      {
+        "type": "card"
+      },
+      {
+        "type": "card"
+      }
+    ]
+  }]
+}
+{% endschema %}

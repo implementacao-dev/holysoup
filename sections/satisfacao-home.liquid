@@ -1,0 +1,171 @@
+<style>
+  .satisfacao-home-section {
+    padding: 40px 20px 60px 20px;
+  }
+  
+  @media (min-width: 1200px){
+    .satisfacao-home-section {
+      padding: 40px 120px 60px 120px;
+    }
+  }
+  
+  .satisfacao-home-content {
+    display: flex;
+    z-index: 1;
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .satisfacao-content-left img {
+    width: 130px;
+  }
+
+  .satisfacao-home-section {
+    background: #00b45a;
+    position: relative;
+  }
+
+  .satisfacao-content-left {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px
+  }
+
+  .satisfacao-content-right h4 {
+    font-weight: 400;
+  }
+
+  .satisfacao-content-right h4 b{
+    font-weight: 600;
+  }
+
+  .satisfacao-content-right * {
+    color: #fff;
+  }
+  
+  .satisfacao-content-right highlight {
+    background: #ffd88a;
+    color: #000
+  }
+  
+  .satisfacao-content-right {
+    width: 50%;
+  }
+
+  .satisfacao-home-section::after {
+    background-image: url(https://cdn.shopify.com/s/files/1/0619/0206/1748/files/patter_background.png?v=1692130859);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    background-position: center;
+    opacity: 0.2;
+    z-index: 0;
+  }
+
+  @media (max-width: 1024px){
+    .satisfacao-home-content {
+      flex-direction: column;
+    }
+    
+    .satisfacao-content-left.light-font {
+      width: 100%;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+    
+    .satisfacao-content-left img {
+      margin-top: -95px;
+    }
+
+    .satisfacao-content-right {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+<div class="satisfacao-home-section">
+  <div class="satisfacao-home-content">
+    <div class="satisfacao-content-left light-font">
+      <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/escudo_satisfacao_garantia_f00d8da1-dc9e-463b-9d52-ccdf90169bb1.png?v=1692132948" />
+      <h3 class="custom-font thin-font light-font">SATISFAÇÃO
+      <br /><span class="yellow-light">GARANTIDA</span></h3>
+    </div>
+    <div class="satisfacao-content-right">
+      <h4><highlight>Você tem 30 dias</highlight> para provar as suas sopas e, caso não goste, pode devolver tudo pra gente sem custo que nós te *<b>reembolsaremos 100%</b> do valor.</h4>
+      <p>*Ah, mas não esquece que se você comprar várias sopas, <b>só uma pode ter sido aberta</b>, ok? As outras devem voltar fechadas. </p>
+      <p>Mas fica tranquilo que nós confiamos que você vai amar!</p>
+    </div>
+  </div>
+</div>
+{% if section.settings.borda-inferior %}
+  {% render 'borda-inferior', cor: section.settings.color-borda-inferior %}
+{% endif %}
+{% schema %}
+  {
+    "name": "Satisfação Home",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Configuração de conteudo"
+      },
+      {
+        "type": "html",
+        "id": "title",
+        "label": "Título"
+      },
+      {
+        "type": "html",
+        "id": "description",
+        "label": "Descrição"
+      },
+      {
+        "type": "html",
+        "id": "aviso",
+        "label": "Aviso"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-superior",
+        "default": true,
+        "label": "Ativar divisória superior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-superior",
+        "default": "#fff",
+        "label": "Cor da divisória superior"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-inferior",
+        "default": false,
+        "label": "Ativar divisória inferior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-inferior",
+        "default": "#fff",
+        "label": "Cor da divisória inferior"
+      }],
+      "presets": [
+        {"name": "Satisfação Home"}
+      ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,150 @@
+.strategic-ingredients-landing-section {
+  background-color: #FFFEF9;
+}
+
+.strategic-ingredients-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.strategic-ingredients-header {
+  flex: 0 0 auto;
+}
+
+.strategic-ingredients-title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  margin: 0;
+  color: #005234;
+}
+
+.strategic-ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  flex: 1;
+}
+
+.strategic-ingredient-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #6868680D;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+
+.ingredient-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ingredient-icon-wrapper {
+  width: 71px;
+  height: 71px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #005234;
+  border-radius: 100%;
+  padding: 15px;
+}
+
+.ingredient-icon-wrapper svg,
+.ingredient-icon-wrapper img {
+  width: 100%;
+  height: 38px;
+  object-fit: contain;
+}
+
+.ingredient-icon-placeholder {
+  width: 100%;
+  height: 100%;
+}
+
+.ingredient-title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+  color: #7ED321;
+}
+
+.ingredient-title p {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.ingredient-description {
+  font-size: 14px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.ingredient-description p {
+  margin: 0;
+}
+
+@media (min-width: 991px) {
+  .strategic-ingredients-container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .strategic-ingredients-header {
+    flex: 0 0 300px;
+  }
+
+  .strategic-ingredients-title {
+    font-size: 32px;
+  }
+
+  .strategic-ingredients-grid {
+    flex: 1;
+  }
+}
+
+@media (max-width: 990px) {
+  .strategic-ingredients-landing {
+    padding: 40px 15px;
+  }
+
+  .strategic-ingredients-container {
+    flex-direction: column;
+    max-width: 460px;
+    gap: 0;
+  }
+
+  .strategic-ingredients-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .strategic-ingredients-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+    .ingredient-icon-wrapper {
+      width: 71px;
+      height: 71px;
+      margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+  .strategic-ingredients-title {
+    font-size: 24px;
+  }
+}

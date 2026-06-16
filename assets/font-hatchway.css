@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'HatchwayUltraCondensed';
+  src: url('HatchwayUltraCondensed-Bold.eot');
+  src: local('HatchwayUltraCondensed Bold'), local('HatchwayUltraCondensed-Bold'),
+      url('HatchwayUltraCondensed-Bold.eot?#iefix') format('embedded-opentype'),
+      url('HatchwayUltraCondensed-Bold.woff2') format('woff2'),
+      url('HatchwayUltraCondensed-Bold.woff') format('woff'),
+      url('HatchwayUltraCondensed-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HatchwayUltraCondensed';
+  src: url('HatchwayUltraCondensed-SemiBold.eot');
+  src: local('HatchwayUltraCondensed SemiBold'), local('HatchwayUltraCondensed-SemiBold'),
+      url('HatchwayUltraCondensed-SemiBold.eot?#iefix') format('embedded-opentype'),
+      url('HatchwayUltraCondensed-SemiBold.woff2') format('woff2'),
+      url('HatchwayUltraCondensed-SemiBold.woff') format('woff'),
+      url('HatchwayUltraCondensed-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HatchwayUltraCondensed';
+  src: url('HatchwayUltraCondensed-Regular.eot');
+  src: local('HatchwayUltraCondensed Regular'), local('HatchwayUltraCondensed-Regular'),
+      url('HatchwayUltraCondensed-Regular.eot?#iefix') format('embedded-opentype'),
+      url('HatchwayUltraCondensed-Regular.woff2') format('woff2'),
+      url('HatchwayUltraCondensed-Regular.woff') format('woff'),
+      url('HatchwayUltraCondensed-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}

@@ -1,0 +1,196 @@
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+
+<style>
+  .slider-blog-hs {
+    padding: 40px 20px 60px 20px;
+  }
+
+  .slider-blog-hs .swiper-slide {
+    width: 65%;
+    height: auto;
+    display: flex;
+  }
+
+  .post-item-home {
+    background: #fff;
+    border-radius: 27px;
+  }
+
+  .post-item-home .title-post {
+    overflow: hidden;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    min-height: 44px;
+  }
+
+  .header-post img {
+    aspect-ratio: 1/0.5;
+    object-fit: cover;
+    border-top-left-radius: 27px;
+    border-top-right-radius: 27px;
+  }
+
+  .body-post {
+    padding: 0 23px 23px;
+  }
+
+  .button-blog {
+    display: flex;
+    align-items: center;
+    padding: 15px 60px 60px;
+    margin: 0 auto;
+    max-width: 500px;
+  }
+
+  .button-blog .button {
+    border-radius: 999px;
+    color: #000;
+    border-color: #00814e;
+    text-transform: initial;
+    font-weight: 400;
+    letter-spacing: 0;
+    padding: 14px 0 !important;
+    display: block;
+  }
+  
+  @media (min-width: 1200px){
+    .slider-blog-hs {
+      padding: 40px 120px 60px 120px;
+    }
+
+    .slider-blog-hs .swiper-slide {
+      width: 25%;
+    }
+  }
+
+  .blog-home-section .swiper-button-prev {
+    bottom: 0px;
+    top: auto;
+    left: calc(50% - 50px);
+    border: 2px solid #000;
+    padding: 18px 18px;
+    border-radius: 9999px;
+  }
+  
+  .blog-home-section .swiper-button-prev:after {
+    font-size: 14px
+  }
+
+  .blog-home-section .swiper-button-next {
+    bottom: 0px;
+    top: auto;
+    right: calc(50% - 50px);
+    border: 2px solid #000;
+    padding: 18px 18px;
+    border-radius: 9999px;
+  }
+
+  .blog-home-section .swiper-button-next:after {
+    font-size: 14px
+  }
+
+
+  @media (max-width: 768px){    
+    .blog-home-section .slider-blog-hs .swiper-button-prev {
+      display: none!important;
+    }
+
+    .blog-home-section .slider-blog-hs .swiper-button-next {
+      display: none!important;
+    }
+  }
+</style>
+
+<div class="blog-home-section">
+  <div class="blog-home-content">
+    <div class="swiper slider-blog-hs">
+      <div class="header-widget custom-font">
+        <h3 style="color: {{ section.settings.title_color | default: '#3c3c3c' }}">{{ section.settings.title | default: 'Blog' }}</h3>
+      </div>
+      <div class="swiper-wrapper">
+        {% for article in blogs['blog'].articles limit: 8 %}
+          <div class="swiper-slide">
+            <div class="post-item-home">
+              <div class="header-post">
+                <a href="{{ article.url }}"><img loading="lazy" alt="{{ article.image.alt | default: article.title }}" src="{{ article.image | image_url: width: 450 }}" /></a>
+              </div>
+              <div class="body-post">
+                <p class="title-post custom-font"><a href="{{ article.url }}">{{ article.title }}</a></p>
+                <p class="description-post">{{ article.excerpt_or_content | strip_html | truncatewords: 14 }}</p>
+                <a href="{{ article.url }}" class="read-more-blog">Ler tudo</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+      {% comment %}
+        <div class="swiper-button-prev" style="--swiper-navigation-size: 20px; --swiper-navigation-color: #000"></div>
+        <div class="swiper-button-next" style="--swiper-navigation-size: 20px; --swiper-navigation-color: #000"></div>
+      {% endcomment %}
+    </div>
+  </div>
+  <div class="button-blog">
+    <a href="{{ blogs['blog'].url }}" class="button button--outline">Acessar blog</a>
+  </div>
+</div>
+
+{% if section.settings.borda-inferior %}
+  {% render 'borda-inferior', cor: section.settings.color-borda-inferior %}
+{% endif %}
+{% schema %}
+  {
+    "name": "Blog Home",
+    "class": "gray-section",
+    "settings": [{
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Blog"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#3c3c3c"
+    },
+    {
+      "type": "checkbox",
+      "id": "borda-superior",
+      "default": true,
+      "label": "Ativar divisória superior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-superior",
+      "default": "#fff",
+      "label": "Cor da divisória superior"
+    },
+    {
+      "type": "checkbox",
+      "id": "borda-inferior",
+      "default": false,
+      "label": "Ativar divisória inferior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-inferior",
+      "default": "#fff",
+      "label": "Cor da divisória inferior"
+    }],
+    "presets": [
+      {"name": "Blog Home"}
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

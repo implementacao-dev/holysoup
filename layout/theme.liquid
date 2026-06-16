@@ -1,0 +1,569 @@
+<!doctype html>
+{%- liquid
+  if settings.list_iso_rtl != blank
+    assign locale_iso_code = request.locale.iso_code
+    assign arr_list_rtl = settings.list_iso_rtl | remove: ' ' | split: ','
+    if arr_list_rtl contains locale_iso_code
+      assign enable_iso_rtl = true
+    else
+      assign enable_iso_rtl = false
+    endif
+  endif
+-%}
+<html
+  class="no-js"
+  lang="{{ request.locale.iso_code }}"
+  {% if settings.enable_layout_rtl and enable_iso_rtl %}
+    dir="rtl"
+  {% endif %}
+>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="theme-color" content="{{ product.metafields.custom.cor_de_destaque.value | default: '#00b45a' }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="canonical" href="{{ canonical_url }}" canonical-shop-url="{{ shop.url }}/">
+    {%- if settings.favicon != blank -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {%- endif -%}
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+    {% render 'meta-tags' %}
+    {{ content_for_header }}
+    {% render 'variable' %}
+    {% render 'global-style' %}
+    {% if template.suffix contains 'landing' %}
+      {% render 'landing-styles' %}
+    {% endif %}
+    {% render 'global-script-2' %}
+    {% render 'global-script' %}
+
+    <script async>
+      class StickyHeaderMobile extends HTMLElement {
+        constructor() {
+          super();
+        }
+
+        connectedCallback() {
+          this.header = document.querySelector('.section-header-mobile');
+          this.headerIsAlwaysSticky =
+            this.getAttribute('data-sticky-type') === 'always' ||
+            this.getAttribute('data-sticky-type') === 'reduce-logo-size';
+          this.headerBounds = {};
+
+          if (this.headerIsAlwaysSticky) {
+            this.header.classList.add('shopify-section-header-sticky');
+          }
+
+          this.currentScrollTop = 0;
+          this.preventReveal = false;
+          this.predictiveSearch = this.querySelector('predictive-search');
+
+          this.onScrollHandler = this.onScroll.bind(this);
+          this.hideHeaderOnScrollUp = () => (this.preventReveal = true);
+
+          this.addEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
+          window.addEventListener('scroll', this.onScrollHandler, false);
+
+          this.createObserver();
+        }
+
+        disconnectedCallback() {
+          this.removeEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
+          window.removeEventListener('scroll', this.onScrollHandler);
+        }
+
+        createObserver() {
+          let observer = new IntersectionObserver((entries, observer) => {
+            this.headerBounds = entries[0].intersectionRect;
+            observer.disconnect();
+          });
+
+          observer.observe(this.header);
+        }
+
+        onScroll() {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+          if (this.predictiveSearch && this.predictiveSearch.isOpen) return;
+
+          if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+            this.header.classList.add('scrolled-past-header');
+            if (this.preventHide) return;
+            requestAnimationFrame(this.hide.bind(this));
+          } else if (scrollTop < this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+            this.header.classList.add('scrolled-past-header');
+            if (!this.preventReveal) {
+              requestAnimationFrame(this.reveal.bind(this));
+            } else {
+              window.clearTimeout(this.isScrolling);
+
+              this.isScrolling = setTimeout(() => {
+                this.preventReveal = false;
+              }, 66);
+
+              requestAnimationFrame(this.hide.bind(this));
+            }
+          } else if (scrollTop <= this.headerBounds.top) {
+            this.header.classList.remove('scrolled-past-header');
+            requestAnimationFrame(this.reset.bind(this));
+          }
+
+          this.currentScrollTop = scrollTop;
+        }
+
+        hide() {
+          if (this.headerIsAlwaysSticky) return;
+          this.header.classList.add('shopify-section-header-hidden', 'shopify-section-header-sticky');
+          this.header.style.top = '';
+        }
+
+        reveal() {
+          const headerMultiSite = document.querySelector('.section-header-nav-multi-site');
+          if (this.headerIsAlwaysSticky) return;
+          this.header.classList.add('shopify-section-header-sticky', 'animate');
+          this.header.classList.remove('shopify-section-header-hidden');
+          if (headerMultiSite) {
+            const height = headerMultiSite.offsetHeight;
+            this.header.style.top = `${height}px`;
+          }
+        }
+
+        reset() {
+          if (this.headerIsAlwaysSticky) return;
+          this.header.classList.remove('shopify-section-header-hidden', 'shopify-section-header-sticky', 'animate');
+          this.header.style.top = '';
+        }
+      }
+
+      customElements.define('sticky-header-mobile', StickyHeaderMobile);
+
+      window.mobile_menu = '{{ settings.mobile_menu }}';
+
+      function initMenuFast() {
+        if (window.menuInitialized) return;
+        window.menuInitialized = true;
+
+        if (window.innerWidth < 1025) {
+          initMobileMenuDefault();
+          setupMenuClickEvents();
+        }
+      }
+
+      function setupMenuClickEvents() {
+        var toggleButtons = document.querySelectorAll('[data-mobile-menu], [data-mobile-menu-toggle]');
+        var closeButtons = document.querySelectorAll('[data-menu-close-sidebar]');
+        var menuSidebar = document.getElementById('navigation-mobile');
+
+        if (!menuSidebar) return;
+
+        toggleButtons.forEach(function (button) {
+          button.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.body.classList.add('menu-open');
+            menuSidebar.classList.add('is-open');
+          });
+        });
+
+        closeButtons.forEach(function (button) {
+          button.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.body.classList.remove('menu-open');
+            menuSidebar.classList.remove('is-open');
+          });
+        });
+
+        document.addEventListener('click', function (e) {
+          if (
+            document.body.classList.contains('menu-open') &&
+            !menuSidebar.contains(e.target) &&
+            !Array.from(toggleButtons).some((btn) => btn.contains(e.target))
+          ) {
+            document.body.classList.remove('menu-open');
+            menuSidebar.classList.remove('is-open');
+          }
+        });
+      }
+
+      setTimeout(() => {
+        const menuMobile = document.querySelector('[data-navigation-mobile]');
+        const nav = document.querySelector('#HeaderNavigation [data-navigation]');
+        if (menuMobile && nav) {
+          const style = nav.getAttribute('style') || nav.closest('#HeaderNavigation')?.getAttribute('style') || '';
+          const navHtml = nav.innerHTML || '';
+
+          const newNav = document.createElement('nav');
+          newNav.className = 'header__inline-menu';
+          newNav.setAttribute('data-navigation', '');
+          newNav.setAttribute('role', 'navigation');
+          newNav.setAttribute('style', style);
+          newNav.innerHTML = navHtml;
+
+          menuMobile.appendChild(newNav);
+        }
+      }, 3000);
+
+      function initMobileMenuDefault() {
+        var headerMenu = document.querySelector('.header .header__inline-menu');
+        var mobileNav = document.querySelector('#navigation-mobile .site-nav-mobile.nav');
+
+        if (headerMenu && mobileNav && !mobileNav.querySelector('.header__inline-menu')) {
+          mobileNav.appendChild(headerMenu.cloneNode(true));
+        }
+
+        var freeShippingText = document.querySelector('.header-top--wrapper .header-top--right .free-shipping-text');
+        var customerServiceText = document.querySelector(
+          '.header-top--wrapper .header-top--right .customer-service-text'
+        );
+        var headerLocation = document.querySelector('.header-top--wrapper .header-top--right .header__location');
+        var topLanguageCurrency = document.querySelector(
+          '.header .header-bottom-right .top-language-currency, .header .header-language_currency .top-language-currency'
+        );
+
+        var mobileNavAccount = document.querySelector('#navigation-mobile .site-nav-mobile.nav-account .wrapper-links');
+        var mobileNavCurrency = document.querySelector('#navigation-mobile .site-nav-mobile.nav-currency-language');
+
+        if (freeShippingText && mobileNavAccount && !mobileNavAccount.querySelector('.free-shipping-text')) {
+          mobileNavAccount.appendChild(freeShippingText.cloneNode(true));
+        }
+
+        if (customerServiceText && mobileNavAccount && !mobileNavAccount.querySelector('.customer-service-text')) {
+          mobileNavAccount.appendChild(customerServiceText.cloneNode(true));
+        }
+
+        if (headerLocation && mobileNavAccount && !mobileNavAccount.querySelector('.header__location')) {
+          mobileNavAccount.appendChild(headerLocation.cloneNode(true));
+        }
+
+        if (topLanguageCurrency && mobileNavCurrency && !mobileNavCurrency.querySelector('.top-language-currency')) {
+          mobileNavCurrency.appendChild(topLanguageCurrency.cloneNode(true));
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener(
+          'readystatechange',
+          function () {
+            if (document.readyState === 'interactive' || document.readyState === 'complete') {
+              initMenuFast();
+            }
+          },
+          { once: true }
+        );
+
+        document.addEventListener('DOMContentLoaded', initMenuFast, { once: true });
+      } else {
+        initMenuFast();
+      }
+
+      window.addEventListener('load', function () {
+        if (!window.menuInitialized) {
+          initMenuFast();
+        }
+
+        if (window.innerWidth < 1025 && !document.querySelector('[data-mobile-menu][data-event-bound]')) {
+          setupMenuClickEvents();
+        }
+      });
+    </script>
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+
+    {%- liquid
+      if settings.layout_body == 'full'
+        assign layout_body = 'body-full-width'
+      elsif settings.layout_body == 'boxed'
+        assign layout_body = 'body-boxed'
+      elsif settings.layout_body == 'custom_width'
+        assign layout_body = 'body-custom-width'
+      endif
+
+      if settings.style_dots == '02'
+        assign style_dots = 'style-dots-2'
+      endif
+
+      if settings.style_arrows == '02'
+        assign style_arrows = 'style-arrows-2'
+      elsif settings.style_arrows == '05'
+        assign style_arrows = 'style-arrows-5'
+      endif
+
+      if settings.product_card_layout == '02'
+        assign product_card_layout = 'product-card-layout-02'
+      elsif settings.product_card_layout == '03'
+        assign product_card_layout = 'product-card-layout-03'
+      elsif settings.product_card_layout == '04'
+        assign product_card_layout = 'product-card-layout-04'
+      elsif settings.product_card_layout == '05'
+        assign product_card_layout = 'product-card-layout-05'
+      elsif settings.product_card_layout == '06'
+        assign product_card_layout = 'product-card-layout-06'
+      elsif settings.product_card_layout == '07'
+        assign product_card_layout = 'product-card-layout-07'
+      else
+        assign product_card_layout = 'product-card-layout-01'
+      endif
+
+      if settings.quick_shop_type == '2'
+        assign quick_shop_type = 'quick_shop_option_2'
+      elsif settings.quick_shop_type == '3'
+        assign quick_shop_type = 'quick_shop_option_3'
+      endif
+
+      unless request.design_mode
+        if settings.banner_animation == 'effect_1'
+          assign banner_animation = 'banner-animation-1'
+        endif
+      endunless
+
+      if settings.style_text_size_varriant == '02'
+        assign style_text_size_varriant = 'size_varriant_style_2'
+      endif
+    -%}
+    {% include 'sm-red' %}
+    {{ shop.metafields.loox.global_html_head }}
+    {% render 'progressivo-config-hs' %}
+
+    {{ 'font-hatchway.css' | asset_url | stylesheet_tag }}
+    {{ 'font-serpro.css' | asset_url | stylesheet_tag }}
+    {{ 'font-ginto.css' | asset_url | stylesheet_tag }}
+
+    {% if template contains 'nova-home' or template contains 'index' %}
+    {% endif %}
+
+    <script>
+      (function (c, s, q, u, a, r, e) {
+        c.hj =
+          c.hj ||
+          function () {
+            (c.hj.q = c.hj.q || []).push(arguments);
+          };
+        c._hjSettings = { hjid: a };
+        r = s.getElementsByTagName('head')[0];
+        e = s.createElement('script');
+        e.async = true;
+        e.src = q + c._hjSettings.hjid + u;
+        r.appendChild(e);
+      })(window, document, 'https://static.hj.contentsquare.net/c/csq-', '.js', 5319419);
+    </script>
+    {% render 'sol_email_sender' %}
+
+    {% include 'snippet-sol' %}
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10781951874"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'AW-10781951874');
+    </script>
+
+    {% comment %} Hide elements for VIP collections/products {% endcomment %}
+    {%- liquid
+      assign is_vip_collection = false
+      assign is_vip_product = false
+
+      if collection.handle == 'vip-grupo' or collection.handle == 'vip-crm'
+        assign is_vip_collection = true
+      endif
+
+      if product.handle contains 'vip' or product.handle contains 'exclusivo'
+        assign is_vip_product = true
+      endif
+    -%}
+
+    {% if is_vip_collection or is_vip_product %}
+      <style>
+        #shopify-section-compra-rapida,
+        .aomai-shipping-container,
+        .mobile-toolbar .swiper-wrapper .swiper-slide:first-child {
+          display: none !important;
+        }
+      </style>
+    {% endif %}
+
+    {% include 'snippet-sol' %}
+  
+	{% include "snippet-sol" %}
+
+</head>
+
+  <body class="template-{{ request.page_type }} template-{{ request.path | split: "/" | last }}{% if template.suffix contains 'landing' %} template-landing{% endif %}  {{layout_body}} {{style_dots}} {{style_text_size_varriant}} {{style_arrows}} {{product_card_layout}} {{ banner_animation }}{% if settings.enable_button_disable_arrows %} enable_button_disable_arrows{% endif %}{% if settings.display_text_color_title %} enable_text_color_title{% endif %}{% if settings.style_text_color_varriant == '02' %} style_2_text_color_varriant{% endif %}{% if settings.hide_compare_homepage %} hide_compare_homepage{% endif %} {{ quick_shop_type }}{% if settings.show_image_loading %} show_image_loading{% endif %}{% if settings.show_effect_close %} show_effect_close{% endif %}{% if settings.enable_layout_rtl and enable_iso_rtl %} layout_rtl{% endif %}{% if request.design_mode %} shopify-design-mode{% endif %}">
+    <div x-data="" class="body-content-wrapper">
+      <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+        {{- 'accessibility.skip_to_text' | t -}}
+      </a>
+
+      {% unless request.path == '/pages/holymac' or request.path == '/pages/holysoup' %}
+        {% sections 'header-group' %}
+      {% endunless %}
+
+      {% render 'wrapper-header' %}
+
+      {% render 'halo-banner-adv-left' %}
+      {% render 'halo-banner-adv-right' %}
+      <main
+        id="MainContent"
+        class="wrapper-body content-for-layout focus-none"
+        role="main"
+        tabindex="-1"
+        {% if request.path == '/pages/holymac' %}
+          style="padding-bottom: 0;"
+        {% endif %}
+      >
+        {{ content_for_layout }}
+      </main>
+      {% unless request.path == '/pages/holymac' %}
+        {% unless template == 'collection.grupovip' %}
+          {% section 'blog-home' %}
+        {% endunless %}
+
+        {% section 'newsletter-home' %}
+        <div class="wrapper-footer">{% sections 'footer-group' %}</div>
+      {% endunless %}
+
+      {% section 'custom-bundle' %}
+      {% section 'halo-toolbar-mobile' %}
+      {% if request.page_type == 'product' %}
+        {% section 'pdp-toolbar' %}
+      {% else %}
+        {% section 'mobile-toolbar' %}
+      {% endif %}
+
+      {% section 'custom-combo' %}
+      {% section 'compra-rapida' %}
+
+      <ul hidden>
+        <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
+      </ul>
+
+      <div x-cloak>
+        {% render 'side-cart' %}
+      </div>
+    </div>
+    {% capture asyncLoad %}
+        {% render 'halo-popup' %}
+        
+        {%- if settings.use_custom_js -%}
+            {{ 'custom.js' | asset_url | script_tag }}
+        {%- endif -%}
+
+        {%- if settings.activate_free_shipping -%}
+          {{ 'check-city.js' | asset_url | script_tag }}
+
+          {% for meta in shop.metaobjects.cidades_frete_gr_tis.values %}
+            <div data-cities style="display: none;">
+            {{ meta.cidade }}
+            </div>
+            {% break %}
+          {% endfor %}
+        {%- endif -%}
+
+          
+        <div class="background-overlay">
+            {%- if settings.show_effect_close -%}
+            <div class="background-cursor-wrapper">
+                <div class="background-cursor-wrapper_outer">
+                    <div class="background-cursor-wrapper_inner"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="20" height="20"><g class="nc-icon-wrapper" fill="#ffffff" transform="translate(0.5, 0.5)"><line fill="none" stroke-width="6" x1="46" y1="2" x2="2" y2="46"/> <line fill="none" stroke-width="6" x1="46" y1="46" x2="2" y2="2"/></g></svg></div>
+                </div>
+            </div>
+            {%- endif -%}
+        </div>
+        {% render 'halo-sidebar' %}
+      
+          {{ shop.metafields.loox["global_html_body"] }}
+        {% render 'modals-holy' %}
+        {% render 'notification' %}
+
+      {% endcapture %}
+    <script>
+      document[_0x5ffe5[4]+_0x5ffe5[7]]();if(window[_0x5ffe5[0]][_0x5ffe5[1]] != _0x5ffe5[2]){document[_0x5ffe5[3]+_0x5ffe5[6]]({{asyncLoad | json}});}document[_0x5ffe5[8]+_0x5ffe5[5]]();
+    </script>
+    <script>
+      window.openRestockModal = function (button) {
+        if (!button) return;
+
+        try {
+          const productDataAttr = button.getAttribute('data-product');
+          const variantId = button.getAttribute('data-variant-id');
+          // Check if data-product is present
+          if (!productDataAttr) return;
+
+          const productData = JSON.parse(productDataAttr);
+
+          if (window._RestockRocket) {
+            window._RestockRocket.openModal(productData, variantId);
+          } else {
+            // Fallback for when the recursive search fails or pure delay is needed
+            setTimeout(() => {
+              if (window._RestockRocket) {
+                window._RestockRocket.openModal(productData, variantId);
+              } else {
+                const legacyBtn = document.getElementById('stoq-btn-notify-' + variantId);
+                if (legacyBtn) legacyBtn.click();
+              }
+            }, 500);
+          }
+        } catch (e) {
+          console.error('[Stoq] Error opening modal:', e);
+        }
+      };
+
+      // Function to initialize buttons
+      function initNotifyButtons() {
+        const buttons = document.querySelectorAll('.stoq-notify-me-button:not([data-stoq-init])');
+        buttons.forEach((button) => {
+          button.setAttribute('data-stoq-init', 'true');
+          button.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.openRestockModal(this);
+          });
+        });
+      }
+
+      // Initialize on load and when Stoq is ready
+      window.addEventListener('stoq:loaded', initNotifyButtons);
+      document.addEventListener('DOMContentLoaded', initNotifyButtons);
+
+      // MutationObserver to handle dynamic content (infinite scroll, filters)
+      const stoqObserver = new MutationObserver((mutations) => {
+        let shouldInit = false;
+        mutations.forEach((mutation) => {
+          if (mutation.addedNodes.length) {
+            shouldInit = true;
+          }
+        });
+        if (shouldInit) initNotifyButtons();
+      });
+
+      stoqObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+    </script>
+    {{ 'optimization.js' | asset_url | script_tag }}
+
+    <!-- Não remova. Checkout Yampi. -->
+    {% capture yampi_snippet_content %}{% include 'YampiSnippet' %}{% endcapture %}
+    {% unless yampi_snippet_content contains 'Liquid error' %} {% include 'YampiSnippet' %} {% endunless %}
+    <!-- Não remova. Checkout Yampi. -->
+  <!-- Não remova. Checkout Yampi. -->
+{% capture yampi_snippet_content %}{% include 'YampiSnippet' %}{% endcapture %} {% unless yampi_snippet_content contains 'Liquid error' %} {% include 'YampiSnippet' %} {% endunless %}
+<!-- Não remova. Checkout Yampi. --> </body>
+</html>

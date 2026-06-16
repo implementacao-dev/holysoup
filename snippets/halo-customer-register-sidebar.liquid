@@ -1,0 +1,39 @@
+<customer-auth-register class="halo-sidebar halo-sidebar-right halo-auth-register-sidebar" data-auth-sidebar id="halo-auth-register-sidebar">
+    <div class="halo-sidebar-header text-left">
+      <span class="title">Criar conta</span>
+      <span class="back-menu" data-remove-sidebar="auth-sidebar-register-show">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="10.004" viewBox="0 0 15 10.004">
+          <path id="Icon_ionic-ios-arrow-round-back" data-name="Icon ionic-ios-arrow-round-back" d="M13.316,11.443a.681.681,0,0,1,.005.959l-3.163,3.173H22.21a.677.677,0,0,1,0,1.355H10.159L13.327,20.1a.686.686,0,0,1-.005.959.675.675,0,0,1-.953-.005L8.075,16.732h0a.761.761,0,0,1-.141-.214.646.646,0,0,1-.052-.261.679.679,0,0,1,.193-.474l4.293-4.324A.664.664,0,0,1,13.316,11.443Z" transform="translate(-7.882 -11.252)" fill="#3c3c3c"></path>
+        </svg>
+      </span>
+      <button type="button" class="halo-sidebar-close button-effect" data-close-auth-register-sidebar title="{{ 'general.common.close' | t }}">{% render 'icon-close' %}{{ 'general.common.close' | t }}</button>
+    </div>
+    <div class="halo-sidebar-wrapper custom-scrollbar">
+        <form method="post" action="/account" id="create_customer" accept-charset="UTF-8" data-login-with-shop-sign-up="true" class="create-customer-form">
+          <input type="hidden" name="form_type" value="create_customer">
+          <input type="hidden" name="utf8" value="✓">
+            <div class="form-field">
+                <input class="form-input form-input-placeholder" type="text" name="customer[first_name]" id="RegisterForm-FirstName" autocomplete="given-name" placeholder="Nome">
+            </div>
+            <div class="form-field">     
+                <input class="form-input form-input-placeholder" type="text" name="customer[last_name]" id="RegisterForm-LastName" autocomplete="family-name" placeholder="Sobrenome">
+            </div>
+            <div class="form-field"> 
+                <input class="form-input form-input-placeholder" type="email" name="customer[email]" id="RegisterForm-email" spellcheck="false" autocapitalize="off" autocomplete="email" aria-required="true" placeholder="Email" required="">
+            </div>
+            <div class="form-field">   
+                <input class="form-input form-input-placeholder" type="password" name="customer[password]" id="RegisterForm-password" aria-required="true" placeholder="Senha" required="">
+            </div>
+            <div class="accepts-marketing">
+                <input type="hidden" name="customer[accepts_marketing]" value="false">
+                <input type="checkbox" checked="" name="customer[accepts_marketing]" id="accepts-marketing">
+                <label class="form-label--checkbox" for="accepts-marketing">Aceito receber noticias da HolySoup</label>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="button button--primary">Pronto <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="32px" viewBox="0 0 32 32" version="1.1"> <defs></defs> <g id="Page-2-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="75" stroke="#979797" fill-rule="nonzero"> <path d="M23.3847763,15 L19.5060967,11.1213203 C19.1155724,10.7307961 19.1155724,10.0976311 19.5060967,9.70710678 C19.8966209,9.31658249 20.5297859,9.31658249 20.9203102,9.70710678 L26.5771645,15.363961 C26.9676888,15.7544853 26.9676888,16.3876503 26.5771645,16.7781746 L20.9203102,22.4350288 C20.5297859,22.8255531 19.8966209,22.8255531 19.5060967,22.4350288 C19.1155724,22.0445046 19.1155724,21.4113396 19.5060967,21.0208153 L23.5269119,17 L1.28757088,17 C0.735549934,17 0.284271247,16.5522847 0.284271247,16 C0.284271247,15.4438648 0.733463795,15 1.28757088,15 L23.3847763,15 L23.3847763,15 Z" id="Rectangle-358" stroke="none" fill="#2A2630"></path> <path d="M31,2 L30,1 L30,7.93554687 L30,23.9785156 L30,31 L31,30 L13,30 C12.4477153,30 12,30.4477153 12,31 C12,31.5522847 12.4477153,32 13,32 L31,32 C31.5522847,32 32,31.5522847 32,31 L32,23.9785156 L32,7.93554687 L32,1 C32,0.44771525 31.5522847,0 31,0 L13,2.22044605e-16 C12.4477153,2.28857485e-16 12,0.44771525 12,1 C12,1.55228475 12.4477153,2 13,2 L31,2 Z" id="Rectangle-508" stroke="none" fill="#95909E"></path> </g> </g> </svg></button>
+            </div>
+        </form>
+        
+        {% render 'footer-menu-sidebar' %}
+    </div>
+</customer-auth-register>

@@ -1,0 +1,208 @@
+{% if section.settings['borda-superior'] %}
+  {% render 'borda-superior', cor: section.settings['color-borda-superior'] %}
+{% endif %}
+
+<style>
+  .faq-section {
+    padding: 20px 20px 60px 20px;
+  }
+
+  @media (min-width: 1200px){
+    .faq-section {
+      padding: 20px 120px 60px 120px;
+    }
+
+    .faqs-container {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      position: relative;
+      column-gap: 10px;
+    }
+  }
+
+  .header-faq {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  
+  .header-faq h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1D84EB;
+    font-family: var(--font-body-family);
+    letter-spacing: -1px;
+  }
+  
+  .header-faq p {
+    margin: 0;
+    font-size: 14px;
+    color: #3C3C3C;
+    line-height: normal;
+  }
+
+  .faq {
+    padding: 16px 24px;
+    cursor: pointer;
+    background: #F3FCFF;
+    margin-bottom: 10px;
+    border-radius: 12px;   
+  }
+
+  .faq.active {
+    background: #FFF3FD;
+    border-radius: 15px;
+  }
+  
+  .faq-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid transparent;
+    font-weight: var(--font-weight-semibold);
+    line-height: normal;
+    letter-spacing: var(--body-letter-spacing);
+    color: #5BB0FF;
+    font-size: 12px;
+  }
+
+  .faq.active .faq-title {
+    border-bottom: 1px solid #D6D6D6;
+    padding-bottom: 10px;
+  }
+
+  .faq-content {
+    display: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: normal;
+  }
+  
+  .faq.active .faq-content {
+    display: block;
+    font-size: 12px;
+    color: #545454;
+  }
+
+  .faq-icon {
+    transition: transform 0.3s;
+    width: 20px;
+    height: auto;
+    stroke: none;
+  }
+  
+  .faqs-container {
+    margin-top: 50px;
+    max-width: 768px;
+    margin: 0 auto;
+  }
+
+  .faq-section .header-widget h3 {
+    margin-bottom: 0;
+  }
+</style>
+<div class="faq-section">
+  <div class="header-faq">
+    <h3 class="font-3">Perguntas frequentes</h3>
+  </div>
+  <div class="faqs-container">
+    {% for block in section.blocks %}
+      <div class="faq">
+        <div class="faq-title">
+          {{ block.settings.title }}
+          <svg class="faq-icon faq-retracted" xmlns="http://www.w3.org/2000/svg" id="Layer_2" data-name="Layer 2" width="25" height="25" viewBox="0 0 25 25">
+            <g id="invisible_box" data-name="invisible box">
+              <rect id="Retângulo_1345" data-name="Retângulo 1345" width="25" height="25" fill="none"/>
+            </g>
+            <g id="icons_Q2" data-name="icons Q2" transform="translate(2.314 2.062)">
+              <path id="Caminho_9654" data-name="Caminho 9654" d="M23.343,17.156H19.218V13.031a1.031,1.031,0,0,0-2.062,0v4.125H13.031a1.031,1.031,0,0,0,0,2.062h4.125v4.125a1.031,1.031,0,1,0,2.062,0V19.218h4.125a1.031,1.031,0,1,0,0-2.062Z" transform="translate(-7.875 -7.875)" fill="#40a7ff"/>
+              <path id="Caminho_9655" data-name="Caminho 9655" d="M22.561,6.062v16.5H6.062V6.062h16.5M23.592,4H5.031A1.031,1.031,0,0,0,4,5.031V23.592a1.031,1.031,0,0,0,1.031,1.031H23.592a1.031,1.031,0,0,0,1.031-1.031V5.031A1.031,1.031,0,0,0,23.592,4Z" transform="translate(-4 -4)" fill="#40a7ff"/>
+            </g>
+          </svg>
+          <svg class="faq-icon faq-expanded" style="display: none" xmlns="http://www.w3.org/2000/svg" id="Layer_2" data-name="Layer 2" width="25" height="25" viewBox="0 0 25 25">
+            <g id="invisible_box" data-name="invisible box">
+              <rect id="Retângulo_1345" data-name="Retângulo 1345" width="25" height="25" fill="none"/>
+            </g>
+            <g id="icons_Q2" data-name="icons Q2" transform="translate(2.314 2.062)">
+              <path id="Caminho_9654" data-name="Caminho 9654" d="M23.343,17.156H13.031a1.031,1.031,0,0,0,0,2.062H23.343a1.031,1.031,0,1,0,0-2.062Z" transform="translate(-7.875 -7.875)" fill="#40a7ff"/>
+              <path id="Caminho_9655" data-name="Caminho 9655" d="M22.561,6.062v16.5H6.062V6.062h16.5M23.592,4H5.031A1.031,1.031,0,0,0,4,5.031V23.592a1.031,1.031,0,0,0,1.031,1.031H23.592a1.031,1.031,0,0,0,1.031-1.031V5.031A1.031,1.031,0,0,0,23.592,4Z" transform="translate(-4 -4)" fill="#40a7ff"/>
+            </g>
+          </svg>
+        </div>
+        <div class="faq-content">
+          {% assign description = block.settings.descricao | newline_to_br | split: '<br />' %}
+          {% for p in description %}
+            <p>{{ p }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<script>
+  const faqTitles = document.querySelectorAll('.faq-title');
+
+  faqTitles.forEach(title => {
+    title.addEventListener('click', () => {
+      title.parentElement.classList.toggle('active');
+      const retracted = title.querySelector('.faq-retracted');
+      const expanded = title.querySelector('.faq-expanded');
+      retracted.style.display = retracted.style.display === 'none' ? 'block' : 'none';
+      expanded.style.display = expanded.style.display === 'none' ? 'block' : 'none';
+    });
+  });
+</script>
+
+{% if section.settings['borda-inferior'] %}
+  {% render 'borda-inferior', cor: section.settings['color-borda-inferior'] %}
+{% endif %}
+{% schema %}
+{
+  "name": "Faq Vertical V2",
+  "settings": [{
+    "type": "checkbox",
+    "id": "borda-superior",
+    "default": true,
+    "label": "Ativar divisória superior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-superior",
+    "default": "#fff",
+    "label": "Cor da divisória superior"
+  },
+  {
+    "type": "checkbox",
+    "id": "borda-inferior",
+    "default": false,
+    "label": "Ativar divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-inferior",
+    "default": "#fff",
+    "label": "Cor da divisória inferior"
+  }],
+  "blocks":[
+    {
+      "type": "faq",
+      "name": "Faq",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título"
+        },
+        {
+          "type": "textarea",
+          "id": "descricao",
+          "label": "Descrição"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {"name": "Faq Vertical V2"}
+  ]
+}
+{% endschema %}

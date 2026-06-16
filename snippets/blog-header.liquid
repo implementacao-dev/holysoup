@@ -1,0 +1,42 @@
+<style>
+  .blog-header {
+    background-color: #00b45a;
+    padding: 30px;
+  }
+
+  .content-blog-header {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .blog-header h1 {
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .content-blog-header h1 .destaque {
+    color: #FFD88A;
+  }
+
+  .blog-header p {
+    color: #fff;
+  }
+
+  @media (max-width: 1024px){
+    .blog-header {
+      padding-top: 60px;
+    }
+  }
+</style>
+{% assign customTitle = blog.metafields.custom.t_tulo_do_blog.value.children[0].children %}
+<div class="blog-header">
+  <div class="content-blog-header">
+    <h1 class="page-header text-{{ page_title_alignment }}">
+      Holy<span class="destaque">Blog</span>
+    </h1>
+    <p>Aqui, acreditamos que uma vida saudável é a chave para a felicidade. Queremos ajudá-lo a viver melhor e mais feliz, compartilhando dicas, receitas e informações sobre saúde e bem-estar. Junte-se a nós nessa jornada e explore nosso blog, compartilhando suas opiniões e sugestões. Obrigado por estar aqui!</p>
+  </div>
+</div>

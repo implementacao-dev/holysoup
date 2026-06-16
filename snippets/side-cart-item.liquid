@@ -1,0 +1,405 @@
+{% liquid
+  assign product_variant = item.variant
+  assign quantity_id = 'quantity_' | append: key
+  assign final_price = item.quantity | times: item.final_price
+
+  assign gift = ''
+  if item.final_line_price == 0
+    assign gift = 'Brinde'
+  endif
+
+  assign loading = 'eager'
+  assign fetchpriority = 'auto'
+  if section.index == 1
+    assign fetchpriority = 'high'
+  elsif section.index > 2
+    assign loading = 'lazy'
+  endif
+
+  assign is_bundle_item = false
+  assign bundle_items_count = 0
+  if item.item_components != blank and item.item_components.size > 0
+    assign is_bundle_item = true
+    for component in item.item_components
+      assign component_qty = component.quantity | default: 1
+      assign bundle_items_count = bundle_items_count | plus: component_qty
+    endfor
+  endif
+%}
+<div
+  x-data="
+    {
+      quantity: {{ item.quantity | default: 1 }},
+      isBundleOpen: false,
+      handleChangeQuantity(quantity) {
+        const item = { id: '{{ item.key }}', quantity: quantity }
+        $store.cart.updateItem(item)
+        .then(response => {
+          if (quantity == 0) {
+            $el.remove()
+          }
+        })
+      },
+    }
+  "
+  class="side-cart-item-product{% if is_bundle_item %} side-cart-item-product--bundle{% endif %}"
+>
+  <div class="side-cart-item-product-container">
+    <div class="item-product-image">
+      {% if item.image != blank %}
+        {{
+          item.image
+          | image_url: width: item.image.width
+          | image_tag: fetchpriority: fetchpriority, loading: loading
+        }}
+      {% endif %}
+    </div>
+    <div class="item-product-info">
+      <div class="item-product-title">{{ item.product.title }}</div>
+      <div class="item-product-price">
+        {% if final_price > 0 %}
+          {% if product_variant.compare_at_price > product_variant.price %}
+            <p class="item-compare-at-price">{{ item.quantity | times: product_variant.compare_at_price | money }}</p>
+          {% elsif product_variant.price > item.original_price %}
+            <p class="item-compare-at-price">{{ item.quantity | times: product_variant.price | money }}</p>
+          {% elsif item.original_price > item.price %}
+            <p class="item-compare-at-price">{{ item.quantity | times: item.original_price | money }}</p>
+          {% endif %}
+
+          <p class="item-price">{{ final_price | money }}</p>
+        {% else %}
+          <p class="item-price">R$0,01</p>
+        {% endif %}
+      </div>
+
+      {% if is_bundle_item %}
+        <button
+          type="button"
+          class="bundle-components-toggle"
+          @click="isBundleOpen = !isBundleOpen"
+          :aria-expanded="isBundleOpen ? 'true' : 'false'"
+          aria-controls="bundle-components-{{ key }}"
+        >
+          <span
+            class="bundle-components-toggle__label"
+            :class="{ 'bundle-components-toggle__label--hidden': isBundleOpen }"
+          >
+            Mostrar {{ bundle_items_count }}
+            {%- if bundle_items_count == 1 %} item{% else %} itens{% endif -%}
+          </span>
+          <span
+            class="bundle-components-toggle__label"
+            :class="{ 'bundle-components-toggle__label--hidden': !isBundleOpen }"
+          >Ocultar itens</span>
+          <svg class="bundle-components-chevron" :class="{ 'is-open': isBundleOpen }" viewBox="0 0 10 6" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div
+          id="bundle-components-{{ key }}"
+          class="bundle-components-wrapper"
+          :class="{ 'bundle-components-wrapper--open': isBundleOpen }"
+        >
+          <div class="bundle-components-list">
+            {% for component in item.item_components %}
+              {% liquid
+                assign component_title = component.product.title | default: component.title | default: 'Item do kit'
+                assign component_image = component.image
+                if component_image == blank and component.product != blank
+                  assign component_image = component.product.featured_image
+                endif
+                assign component_qty = component.quantity | default: 1
+              %}
+              <div class="bundle-component-row">
+                <div class="bundle-component-thumb">
+                  {% if component_image != blank %}
+                    {{ component_image | image_url: width: 80 | image_tag: loading: 'lazy', alt: component_title }}
+                  {% endif %}
+                </div>
+                <div class="bundle-component-text">
+                  {{ component_qty }}x {{ component_title }}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="item-product-quantity">
+    {% if final_price > 0 %}
+      <div class="product-quantity-input-container">
+        <div
+          class="product-quantity-input"
+          role="group"
+        >
+          <button
+            type="button"
+            @click="handleChangeQuantity(--quantity)"
+            x-bind:disabled="quantity == 0"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#FF7A50"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+            </svg>
+          </button>
+          <input
+            id="{{ quantity_id }}"
+            type="tel"
+            min="0"
+            max="99"
+            size="2"
+            name="quantity"
+            x-model="quantity"
+            value="{{ item.quantity }}"
+            @change="handleChangeQuantity(quantity)"
+          >
+          <button
+            type="button"
+            @click="handleChangeQuantity(++quantity)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#FF7A50"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    {% endif %}
+    <!--
+      <div class="flex flex-col justify-center">
+        <button
+          @click="handleChangeQuantity(0)"
+          class="button-link button-black inline-flex items-center gap-1 text-body-sm font-semibold no-underline"
+        >
+          <svg width="14" height="14" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.2498 0.600098C4.33853 0.600098 3.5998 1.33883 3.5998 2.2501V2.51572C3.12264 2.56193 2.64942 2.62178 2.18055 2.69487C1.93499 2.73316 1.76696 2.96326 1.80524 3.20882C1.84352 3.45438 2.07362 3.62241 2.31919 3.58413L2.40793 3.57047L2.91283 9.88168C2.98143 10.7392 3.69733 11.4001 4.55758 11.4001H7.44191C8.30215 11.4001 9.01805 10.7392 9.08665 9.88168L9.59155 3.57043L9.68055 3.58413C9.92611 3.62241 10.1562 3.45438 10.1945 3.20882C10.2328 2.96326 10.0647 2.73316 9.81919 2.69487C9.35028 2.62177 8.87702 2.56192 8.39981 2.5157V2.2501C8.39981 1.33883 7.66107 0.600098 6.7498 0.600098H5.2498ZM5.99987 2.4001C6.50348 2.4001 7.00361 2.41524 7.4998 2.44509V2.2501C7.4998 1.83588 7.16402 1.5001 6.7498 1.5001H5.2498C4.83559 1.5001 4.4998 1.83588 4.4998 2.2501V2.4451C4.99605 2.41524 5.49621 2.4001 5.99987 2.4001ZM5.44725 4.62012C5.4307 4.20624 5.08176 3.88414 4.66787 3.9007C4.25399 3.91725 3.93189 4.26619 3.94845 4.68008L4.12846 9.18008C4.14501 9.59396 4.49395 9.91605 4.90784 9.8995C5.32172 9.88294 5.64382 9.534 5.62726 9.12012L5.44725 4.62012ZM8.05126 4.68007C8.06782 4.26619 7.74572 3.91725 7.33184 3.9007C6.91795 3.88414 6.56901 4.20624 6.55246 4.62012L6.37246 9.12012C6.3559 9.534 6.678 9.88294 7.09188 9.8995C7.50577 9.91605 7.85471 9.59396 7.87126 9.18007L8.05126 4.68007Z" fill="currentColor"/>
+          </svg>
+          remover
+        </button>
+      </div>
+    -->
+  </div>
+</div>
+
+{% style %}
+  .side-cart-item-title {
+    font-size: 15px;
+    color: #3c3c3c;
+    margin-bottom: 8px;
+  }
+
+  .side-cart-item-product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .side-cart-item-product--bundle {
+    align-items: flex-start;
+  }
+
+  .side-cart-item-product .side-cart-item-product-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px;
+  }
+
+  .side-cart-item-product .item-product-image img {
+    width: 74px;
+    height: auto;
+  }
+
+  .side-cart-item-product .item-product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .side-cart-item-product .item-product-info .item-product-title {
+    font-size: 13px;
+    color: #3c3c3c;
+  }
+
+  .side-cart-item-product .item-product-info .item-product-price {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .side-cart-item-product .item-product-info .item-compare-at-price {
+    font-size: 13px;
+    font-weight: 500;
+    color: #000;
+    margin: 0;
+    margin-right: 4px;
+    text-decoration-line: line-through;
+  }
+
+  .side-cart-item-product .item-product-info .item-price {
+    font-size: 13px;
+    font-weight: 500;
+    color: #00b45a;
+    margin: 0;
+  }
+
+  .side-cart-item-product--bundle .item-product-info {
+    align-items: flex-start;
+  }
+
+  .bundle-components-toggle {
+    margin-top: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: #6b7280;
+    font-size: 13px;
+    line-height: 1.2;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .bundle-components-toggle:hover {
+    color: #3c3c3c;
+  }
+
+  .bundle-components-toggle__label {
+    display: inline-block;
+    min-width: 120px;
+  }
+
+  .bundle-components-toggle__label--hidden {
+    display: none;
+  }
+
+  .bundle-components-chevron {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .bundle-components-chevron.is-open {
+    transform: rotate(180deg);
+  }
+
+  .bundle-components-wrapper {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+  }
+
+  .bundle-components-wrapper--open {
+    max-height: 480px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .bundle-components-wrapper--open::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .bundle-components-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0 10px 4px;
+    width: 100%;
+  }
+
+  .bundle-component-row {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    align-items: start;
+    gap: 8px;
+  }
+
+  .bundle-component-thumb {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .bundle-component-thumb img {
+    width: 40px;
+    height: auto;
+    max-height: 40px;
+    object-fit: contain;
+  }
+
+  .bundle-component-text {
+    font-size: 12px;
+    margin-top: 4px;
+    color: #6b7280;
+    line-height: 1.3;
+  }
+
+  .item-product-quantity {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .item-product-quantity .product-quantity-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 9999px;
+    border: 1px solid #d8d8d8;
+    padding: 6px 12px;
+  }
+
+  .item-product-quantity .product-quantity-input input {
+    border: none;
+    width: 45px;
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .item-product-quantity .product-quantity-input button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield !important;
+  }
+
+  .item-product-quantity .product-quantity-input svg {
+    width: 20px;
+    height: 20px;
+    stroke: #ff7a50;
+    stroke-width: 3;
+  }
+
+{% endstyle %}

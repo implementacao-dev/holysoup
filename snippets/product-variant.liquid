@@ -1,0 +1,159 @@
+{%- liquid 
+    assign picker_type = block.settings.picker_type
+    assign enable_border_top = block.settings.enable_border_top
+    assign enable_border_bottom = block.settings.enable_border_bottom
+    assign color_border = block.settings.color_border
+-%}
+<div class="productView-options{% if enable_border_top %} has-border-top{% endif %}{% if enable_border_bottom %} has-border-bottom{% endif %}" style="--color-border: {{ color_border }}">
+    {%- if variantCount > 0  and product.has_only_default_variant != true -%}
+        <div class="productView-variants halo-productOptions" id="product-option-{{ product.id }}"  data-type="{{ picker_type }}">
+            {%- if picker_type == 'button' -%}
+                {%- assign product_swatch_option = settings.swatch | downcase -%}
+                <variant-radios class="no-js-hidden product-option has-default" data-product="{{ product.id }}" data-section="{{ section.id }}" data-url="{{ product.url }}">
+                    {%- for option in product.options_with_values -%}
+                  {% assign index = forloop.index0 %}
+                  <fieldset
+                    class="flex flex-col gap-2 border-none variant-fieldset-{{ option.name | handleize }}"
+                    id="ProductSelect-option-{{ forloop.index0 }}"
+                    name="{{ option.name | handleize }}"
+                    x-init="$watch('selectedOptions', () => updateVariant()); displayButton()"
+                  >
+                    <div class="flex items-center gap-2">
+                      <span class="text swatch-variant-name font-semibold {{ section.settings.selector_title_color }} {{ section.settings.selector_title_size }}">
+                        {{ option.name | escape }}
+                      </span>
+                      <div class="block h-1 w-1 rounded-full bg-black"></div>
+                      <span class="text swatch-variant-name {{ section.settings.selector_title_color }} {{ section.settings.selector_title_size }}">
+                        {{ option.selected_value | escape }}
+                      </span>
+                    </div>
+                    <div class="flex gap-2 variant-fieldset-values">
+                      {%- for value in option.values -%}
+                        {% liquid
+                          assign option_variants = product.variants
+                          for option_index in (1..index)
+                            assign option_index0 = option_index | minus: 1
+                            assign option_where = 'option' | append: option_index
+                            assign option_variants = option_variants | where: option_where, product.selected_variant.options[option_index0]
+                          endfor
+                          assign index1 = index | plus: 1
+                          assign option_where = 'option' | append: index1
+                          assign available_option_variants_size = option_variants | where: option_where, value | where: 'available' | size
+                        %}
+
+                        {% if option.name == 'Cor' or option.name == 'Color' %}
+                          {% assign color = value | handle %}
+                          <input
+                            type="radio"
+                            {% if option.selected_value == value %}
+                              checked="checked"
+                            {% endif %}
+                            {% if available_option_variants_size <= 0 %}
+                              disabled
+                            {% endif %}
+                            value="{{ value | escape }}"
+                            data-index="option{{ forloop.index }}"
+                            name="{{ option.name | handleize }}"
+                            id="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}"
+                            class="hidden"
+                            x-model="selectedOptions[{{ index }}]"
+                          >
+                          <label
+                            class="selector relative flex h-12 w-12 cursor-pointer items-center justify-center {% if option.selected_value == value %}border-2 {{ block.settings.active_option_color | replace: 'button', 'border' }}{% else %}border border-gray-300{% endif %} {% if available_option_variants_size <= 0 %}cursor-not-allowed{% endif %}"
+                            for="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}"
+                          >
+                            <span class="sr-only">
+                              {{ option.name | escape }}
+                            </span>
+                            <div
+                              class="selector-image h-10 w-10 {% if available_option_variants_size <= 0 %}bg-gray-400{% else %}{% if color != blank %}bg-colors-{{ color }}{% endif %}{% endif %}"
+                            ></div>
+                            {% if available_option_variants_size <= 0 %}
+                              <div class="absolute w-full -rotate-45  border-t-[1px] bg-gray-300"></div>
+                            {% endif %}
+                          </label>
+                        {% else %}
+                          <input
+                            type="radio"
+                            {% if option.selected_value == value %}
+                              checked="checked"
+                            {% endif %}
+                            {% if available_option_variants_size <= 0 %}
+                              disabled="disabled"
+                            {% endif %}
+                            value="{{ value | escape }}"
+                            data-index="option{{ forloop.index }}"
+                            name="{{ option.name | handleize }}"
+                            id="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}"
+                            class="hidden"
+                            x-model="selectedOptions[{{ index }}]"
+                          >
+                          <label
+                            class="selector button h-12 w-12 cursor-pointer {% if available_option_variants_size <= 0 %}cursor-not-allowed border-neutral-300 bg-neutral-300 text-neutral-400{% elsif option.selected_value == value %}{{ block.settings.active_option_color }}{% else %}button-outline {{ block.settings.active_option_color }}{% endif %}"
+                            for="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}"
+                          >
+                            {{ value | escape }}
+                          </label>
+                        {% endif %}
+                      {%- endfor -%}
+                    </div>
+                  </fieldset>
+                {%- endfor -%}
+                    <script type="application/json">
+                        {{ product.variants | json }}
+                    </script>
+                </variant-radios>
+            {%- else -%}
+                <variant-selects class="no-js-hidden product-option has-default" data-product="{{ product.id }}" data-section="{{ section.id }}" data-url="{{ product.url }}">
+                    {%- for option in product.options_with_values -%}
+                        <div class="product-form__input product-form__input--dropdown" data-product-attribute="set-select" data-option-index="{{ forloop.index0 }}">
+                            <label class="form__label" for="option-{{ forloop.index0 }}">
+                                {{ option.name | append: ':' }}
+                                <span data-header-option>
+                                    {{ option.selected_value }}
+                                </span>
+                            </label>
+                            <div class="form__select select">
+                                <select id="option-{{ forloop.index0 }}"
+                                    class="select__select"
+                                    name="options[{{ option.name | escape }}]"
+                                >
+                                    {%- for value in option.values -%}
+                                        <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+                                            {{ value }}
+                                        </option>
+                                    {%- endfor -%}
+                                </select>
+                            </div>
+                        </div>
+                    {%- endfor -%}
+                    <script type="application/json">
+                        {{ product.variants | json }}
+                    </script>
+                </variant-selects>
+            {%- endif -%}
+        </div>
+        <noscript>
+            <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
+                <label class="form__label" for="Variants-{{ section.id }}">
+                    {{ 'products.product.product_variants' | t }}
+                </label>
+                <div class="select">
+                <select name="id" id="Variants-{{ section.id }}" class="select__select" form="product-form">
+                    {%- for variant in product.variants -%}
+                        <option
+                            {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+                            {% if variant.available == false %}disabled{% endif %}
+                            value="{{ variant.id }}"
+                        >
+                            {{ variant.title }}
+                            {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+                            - {{ variant.price | money | strip_html }}
+                        </option>
+                    {%- endfor -%}
+              </select>
+            </div>
+          </div>
+        </noscript>
+    {%- endif -%}
+</div>

@@ -1,0 +1,217 @@
+{% liquid
+  assign is_hidden = false
+  if product.handle contains 'vip' or product.handle contains 'exclusivo'
+    assign is_hidden = true
+  endif
+  if collection.handle contains 'vip'
+    assign is_hidden = true
+  endif
+%}
+{% unless is_hidden %}
+<div
+  x-data="
+    {
+      quantity: 1,
+      handleAdd(type = 'add', currentVariantId) {
+        const items = [{ id: currentVariantId, quantity: this.quantity }]
+        $store.cart.addItems(items, { showCart: (type == 'add' ? true : false) })
+        .then(response => {
+          $dispatch('cart-change')
+          $store.cart.fetchItems()
+        })
+      }
+    }
+  "
+  class="side-cart-recommendation"
+  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related"
+>
+  {%- if recommendations.performed? and recommendations.products_count > 0 -%}
+    <span class="side-cart-recommendation-title">Compre junto</span>
+    <div id="recommendation-carousel" class="swiper recommendation-carousel">
+      <div class="swiper-wrapper">
+        {%- for product in recommendations.products -%}
+          {% if product.handle contains 'vip' or product.handle contains 'exclusivo' %}
+            {% continue %}
+          {% endif %}
+          {% unless product.title contains 'Assinatura' %}
+            {% liquid
+              assign discountPercentage = 0
+              assign discountPercentage = product.selected_or_first_available_variant.compare_at_price | minus: product.selected_or_first_available_variant.price | times: 100.0 | divided_by: product.selected_or_first_available_variant.compare_at_price | round
+            %}
+            <div class="swiper-slide side-cart-recommendation-container">
+              <div class="side-cart-recommendation-product">
+                <div class="recommendation-product-image">
+                  {{ product.featured_media | image_url: width: product.featured_media.width | image_tag }}
+                  {% if discountPercentage > 0 and discountPercentage != blank %}
+                    <span class="recommendation-discount-tag"> {{ discountPercentage }}% </span>
+                  {% endif %}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="60"
+                    height="60"
+                    viewBox="0 0 60 60"
+                    @click="handleAdd('add', '{{ product.selected_or_first_available_variant.id }}')"
+                  >
+                    <defs>
+                      <filter id="Elipse_3" x="0" y="0" width="60" height="60" filterUnits="userSpaceOnUse">
+                        <feOffset dy="3" input="SourceAlpha"/>
+                        <feGaussianBlur stdDeviation="3" result="blur"/>
+                        <feFlood flood-opacity="0.161"/>
+                        <feComposite operator="in" in2="blur"/>
+                        <feComposite in="SourceGraphic"/>
+                      </filter>
+                    </defs>
+                    <g id="Grupo_2360" data-name="Grupo 2360" transform="translate(398.791 -63.209)">
+                      <g transform="matrix(1, 0, 0, 1, -398.79, 63.21)" filter="url(#Elipse_3)">
+                        <circle id="Elipse_3-2" data-name="Elipse 3" cx="21" cy="21" r="21" transform="translate(9 6)" fill="#fff"/>
+                      </g>
+                      <g id="Grupo_2358" data-name="Grupo 2358" transform="translate(-377.686 81.314)">
+                        <line id="Linha_42" data-name="Linha 42" y2="17.399" transform="translate(8.699)" fill="none" stroke="#ff7a50" stroke-linecap="round" stroke-width="3"/>
+                        <line id="Linha_43" data-name="Linha 43" y2="17.399" transform="translate(17.399 8.699) rotate(90)" fill="none" stroke="#ff7a50" stroke-linecap="round" stroke-width="3"/>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+                <div class="recommendation-product-info">
+                  <div class="recommendation-product-title">{{ product.title }}</div>
+                  <div class="recommendation-product-prices">
+                    <div class="recommendation-product-compare_at_price">{{ product.compare_at_price | money }}</div>
+                    <div class="recommendation-product-price">{{ product.price | money }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endunless %}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+{% endunless %}
+
+{% style %}
+  .side-cart-recommendation-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #3c3c3c;
+    margin-bottom: 8px;
+  }
+
+  .side-cart-recommendation-product {
+    display: flex;
+    gap: 8px;
+  }
+
+  .side-cart-coupon .recommendation-carousel {
+    width: 100%;
+  }
+
+  .side-cart-recommendation-product .recommendation-product-image {
+    position: relative;
+  }
+
+  .side-cart-recommendation-product .recommendation-discount-tag {
+    padding: 4px;
+    color: #fff;
+    background: #00b45a;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    border-radius: 99px;
+  }
+
+  .side-cart-recommendation-product .recommendation-product-image img {
+    max-width: 125px;
+    width: auto;
+    height: auto;
+    background: #f6f6f6;
+    border-radius: 20px;
+  }
+
+  .side-cart-recommendation-product .recommendation-product-image svg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 55px;
+    height: 55px;
+    stroke: none;
+    cursor: pointer;
+  }
+
+  .side-cart-recommendation-product .recommendation-product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .side-cart-recommendation-product .recommendation-product-info .recommendation-product-title {
+    font-size: 13px;
+    color: #3c3c3c;
+  }
+
+  .side-cart-recommendation-product .recommendation-product-info .recommendation-product-compare_at_price {
+    font-size: 13px;
+    font-weight: 500;
+    color: #3c3c3c;
+    text-decoration-line: line-through;
+  }
+
+  .side-cart-recommendation-product .recommendation-product-info .recommendation-product-price {
+    font-size: 13px;
+    font-weight: 500;
+    color: #00b45a;
+  }
+
+  .side-cart-recommendation-product .recommendation-product-prices {
+    display: flex;
+    gap: 8px;
+  }
+
+  @media (max-width: 420px) {
+    .side-cart-recommendation-product .recommendation-product-prices {
+      white-space: nowrap;
+      flex-direction: column;
+      font-size: 12px;
+      gap: 3px;
+    }
+  }
+{% endstyle %}
+
+{% javascript %}
+  const handleIntersection = (entries, observer) => {
+    if (!entries[0].isIntersecting) return;
+
+    observer.unobserve(productRecommendationsSection);
+
+    const url = productRecommendationsSection.dataset.url;
+
+    fetch(url)
+      .then((response) => response.text())
+      .then((text) => {
+        const html = document.createElement('div');
+        html.innerHTML = text;
+        const recommendations = html.querySelector('.side-cart-recommendation');
+
+        if (recommendations && recommendations.innerHTML.trim().length) {
+          productRecommendationsSection.innerHTML = recommendations.innerHTML;
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  const productRecommendationsSection = document.querySelector('.side-cart-recommendation');
+  if (productRecommendationsSection) {
+    const observer = new IntersectionObserver(handleIntersection, { rootMargin: '0px 0px 200px 0px' });
+    observer.observe(productRecommendationsSection);
+  }
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Product recommendation",
+  "settings": []
+}
+{% endschema %}

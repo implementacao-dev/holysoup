@@ -1,0 +1,886 @@
+{% if section.settings['borda-superior'] %}
+  {% render 'borda-superior', cor: section.settings['color-borda-superior'], style: 'waves' %}
+{% endif %}
+
+<style>
+  footer {
+    position: relative;
+    background-color: #8355a7;
+    padding: 80px 20px 110px 20px;
+  }
+
+  @media (min-width: 1200px) {
+    .footer {
+      padding: 80px 120px 60px 120px;
+    }
+  }
+
+  .footer-holymac {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .row-footer {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  a.btn.btn-footer {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 23px;
+    font-size: 14px;
+    padding: 10px 20px;
+    width: 355px;
+    margin: 0 auto;
+    display: block;
+    max-width: 300px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 400;
+  }
+
+  a.btn.btn-footer.btn-loja-fisica {
+    background-color: #00814e;
+    color: #fff;
+    border-color: #00814e;
+  }
+
+  a.btn.btn-footer.btn-whatsapp {
+    background-color: #ffd88a;
+    border-color: #ffd88a;
+    color: #00814e;
+  }
+
+  a.btn.btn-footer svg {
+    width: 25px;
+    height: auto;
+    stroke: none;
+  }
+
+  .row-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 0;
+  }
+
+  .menu-principal-footer ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+  }
+
+  .menu-principal-footer ul li a {
+    font-weight: 400;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .menu-footer ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .menu-footer ul li a {
+    font-weight: 400;
+    color: #fff;
+    font-size: 13px;
+  }
+
+  .menu-footer li {
+    padding: 3px 0;
+  }
+
+  .logo-footer {
+    width: 33.33%;
+  }
+
+  .logo-footer img {
+    width: 160px;
+    height: auto;
+  }
+
+  .menu-principal-footer {
+    width: 33.33%;
+  }
+
+  .comprar-loja-fisica {
+    width: 33.33%;
+  }
+
+  .menu-footer {
+    width: 33.33%;
+  }
+
+  .buttons-footer {
+    width: 33.33%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .row-copyright ul.list.list-payment {
+    list-style: none;
+    display: flex;
+    gap: 3px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .row-footer.row-copyright {
+    text-align: center;
+    color: #fff;
+  }
+
+  .row-footer.row-copyright .cnpj {
+    margin-bottom: 0;
+  }
+
+  .row-footer.row-copyright p:last-child {
+    font-size: 7px;
+    line-height: 1.5;
+    margin-top: 15px;
+    font-weight: 100 !important;
+  }
+
+  .row-footer.row-copyright {
+    flex-direction: column;
+  }
+
+  .logo-footer svg {
+    height: 32px;
+    width: 100%;
+    color: #cbde59;
+    text-align: center;
+  }
+
+  footer .disco-logo {
+    display: flex;
+    justify-content: center;
+  }
+
+  footer .disco-logo svg {
+    width: auto;
+    height: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    .logo-footer svg {
+      text-align: left;
+      width: fit-content;
+    }
+
+    .row-footer.row-selos img {
+      height: 45px;
+      width: auto;
+    }
+
+    .row-footer.row-selos {
+      gap: 10px;
+      margin: 25px auto;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .whatsapp-mobile {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .whatsapp-desktop {
+      display: none !important;
+    }
+    .whatsapp-mobile {
+      margin: 15px 0 35px;
+    }
+    .row-footer.row-selos img + img {
+      width: 63px;
+      height: 63px;
+    }
+
+    .row-footer.row-selos img:first-child {
+      width: 70px;
+      max-height: 70px;
+      object-fit: contain;
+    }
+
+    .row-footer.row-selos {
+      gap: 10px;
+      margin: 25px 0;
+    }
+
+    .row-footer {
+      flex-wrap: wrap;
+    }
+
+    .logo-footer img {
+      margin: 0 auto;
+    }
+
+    .menu-principal-footer ul {
+      justify-content: center;
+    }
+
+    .logo-footer {
+      width: 100%;
+    }
+
+    .menu-principal-footer {
+      width: 100%;
+    }
+
+    .comprar-loja-fisica {
+      width: 100%;
+      margin-top: 25px;
+    }
+
+    .menu-footer {
+      width: 50%;
+    }
+
+    .buttons-footer {
+      width: 100%;
+    }
+
+    .buttons-footer {
+      order: -2;
+      margin-bottom: 25px;
+    }
+  }
+</style>
+
+<footer>
+  <div class="footer-holymac">
+    <div class="row-footer">
+      <div class="logo-footer">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="98.602"
+          height="19.173"
+          viewBox="0 0 98.602 19.173"
+        >
+          <defs><clipPath id="a"><rect width="98.602" height="19.173" fill="#cbde59"/></clipPath></defs><g clip-path="url(#a)"><path d="M13.088,4.354q-.021-.524-.04-.787c-.014-.175-.027-.3-.04-.363a.286.286,0,0,0-.06-.141,2.088,2.088,0,0,0-1.029-.323,11.38,11.38,0,0,0-2-.081A4.8,4.8,0,0,0,8.873,2.8q-.323.1-.424.686a12.479,12.479,0,0,0-.1,1.9q0,1.311-.161,3.731-.041.888-.061,1.492t-.04.988a3.028,3.028,0,0,1-.081.605.732.732,0,0,1-.262.383.67.67,0,0,1-.3.061q-.263.021-.6.06a5.65,5.65,0,0,1-.665.04H5.727a1.245,1.245,0,0,1-.565-.222,1.282,1.282,0,0,1-.2-.787q-.041-.645-.02-1.976t-.02-3.751q0-1.169-.02-1.795t-.04-.928a.662.662,0,0,0-.1-.383.513.513,0,0,0-.2-.121,5.829,5.829,0,0,0-1.17-.1q-.888-.02-1.734-.02a8.626,8.626,0,0,0-1.129.1.457.457,0,0,0-.363.262q0,.041-.04,1.472T.06,8.266q-.021,2.34-.04,5.3T0,19.6q.04,1.13.323,1.371a1.5,1.5,0,0,0,.887.282,6.842,6.842,0,0,0,.827.04q.5,0,1.008-.02a8.447,8.447,0,0,0,.907-.081c.268-.04.457-.074.565-.1q.363-.121.383-.746T4.88,19q-.041-.726-.02-1.351t.383-.746a1.7,1.7,0,0,1,.464-.06q.383-.02.827-.02h.827a1.492,1.492,0,0,1,.464.04q.282.081.383.645a10.874,10.874,0,0,1,.141,1.23q.04.665.061,1.27a1.9,1.9,0,0,0,.141.807q.524.646,1.855.363A4.641,4.641,0,0,1,12,21.133a.816.816,0,0,0,.786-.121.761.761,0,0,0,.141-.2,2.375,2.375,0,0,0,.121-.585q.061-.463.081-1.371t.02-2.581V12.058q0-2.541-.04-6.252,0-.927-.02-1.452" transform="translate(0 -2.313)" fill="#cbde59"/><path d="M124.271,4.784a4.458,4.458,0,0,0-2.1-2.924,7.979,7.979,0,0,0-3.428-.867,7.287,7.287,0,0,0-3.267.424,4.652,4.652,0,0,0-2.037,1.593,6.336,6.336,0,0,0-1.028,2.5,16.482,16.482,0,0,0-.282,3.146,17.519,17.519,0,0,0,.2,2.783,6.017,6.017,0,0,0,.746,2.158,3.7,3.7,0,0,0,1.533,1.412,5.868,5.868,0,0,0,2.521.544q3.63.242,5.344-1.089t1.956-4.6q.121-1.774.081-2.884a15.112,15.112,0,0,0-.242-2.2M120.2,8.031a12.734,12.734,0,0,1-.161,1.492,4.926,4.926,0,0,1-.242.988,1.8,1.8,0,0,1-1.19,1.008,1.763,1.763,0,0,1-1.432-.2,1.655,1.655,0,0,1-.787-1.23,7.556,7.556,0,0,1-.06-1.432,13.987,13.987,0,0,1,.081-1.512,2.71,2.71,0,0,1,.4-1.23,1.807,1.807,0,0,1,.565-.665,1.964,1.964,0,0,1,.787-.343,2.011,2.011,0,0,1,.847.02,1.241,1.241,0,0,1,.706.464,2.069,2.069,0,0,1,.424,1.109,8.342,8.342,0,0,1,.061,1.533" transform="translate(-97.852 -0.847)" fill="#cbde59"/><path d="M123.08,119.68a4.422,4.422,0,0,0-.827-.04h-1.714q-1.009,0-2.218.02t-2.339.02h-2.037q-.907,0-1.311-.04-.484-.04-.786-.081a.473.473,0,0,0-.444.121,1.141,1.141,0,0,0-.182.625q-.041.464-.04,1.391a3.411,3.411,0,0,0,.161,1.17q.121.2.645.282.282.041,1.19.061t2.077.02q1.169,0,2.48-.02t2.42-.04q1.109-.02,1.876-.06a4.628,4.628,0,0,0,.847-.081.472.472,0,0,0,.262-.383,11.319,11.319,0,0,0,.1-1.351,8.166,8.166,0,0,0,.04-1.311q-.041-.262-.2-.3" transform="translate(-97.025 -104.329)" fill="#cbde59"/><path d="M228.335,16.4a1.144,1.144,0,0,0-.766-.3,13.354,13.354,0,0,0-1.815-.061q-1.21.021-3.428-.02.04-1.694.06-2.864t.04-2.138q.02-.968.04-1.976t.02-2.42q.04-1.815.1-2.7t.121-1.25a1.545,1.545,0,0,0,.04-.424.858.858,0,0,0-.182-.222A.835.835,0,0,0,222,1.8q-.363-.02-1.694-.02h-1.492a.434.434,0,0,0-.222.04,2.274,2.274,0,0,1-.222.121.818.818,0,0,0-.363.343,3.056,3.056,0,0,0-.081.928q0,.747.04,2.359t0,4.638V16q0,1.432.02,2.46t.02,1.109a.986.986,0,0,0,.726.686,5.907,5.907,0,0,0,.786.081q.625.041,1.472.04t1.815-.02q.968-.02,1.815-.04t1.452-.04q.6-.02.686-.02a5.838,5.838,0,0,0,1.23-.121.914.914,0,0,0,.423-.4,3.118,3.118,0,0,0,.161-1.029,9.429,9.429,0,0,0-.04-1.512,1.607,1.607,0,0,0-.2-.787" transform="translate(-190.18 -1.552)" fill="#cbde59"/><path d="M313.781,2.255a1.561,1.561,0,0,0-.666-.121q-.585-.04-1.25-.04h-1.23a1.335,1.335,0,0,0-.645.081,3.023,3.023,0,0,0-.2.565q-.162.525-.383,1.291t-.464,1.654q-.242.888-.484,1.654t-.464,1.291q-.222.525-.343.565-.162.041-.363-.444a10.021,10.021,0,0,1-.4-1.23q-.2-.746-.4-1.654t-.363-1.674q-.162-.766-.363-1.855c-.054-.107-.282-.175-.686-.2a17.234,17.234,0,0,0-1.936.04q-.646,0-.988.02c-.229.014-.4.027-.5.04a.385.385,0,0,0-.222.081l-.182.181q.363.968.726,2.218t.726,2.3q.363.968.665,1.855T304,10.705q.342.948.746,2.037t.887,2.42v2.864q0,1.009.02,1.472a1.4,1.4,0,0,0,.081.544.714.714,0,0,0,.181.161l.565.02q.524.021,1.17.02t1.19-.04a1.4,1.4,0,0,0,.625-.121,3.769,3.769,0,0,0,.06-.827q.02-.787.02-1.734t.02-1.775a4.9,4.9,0,0,1,.061-.907q.04-.08.383-1.008t.867-2.42q.524-1.491,1.19-3.388t1.311-3.913q.363-1.129.464-1.432t-.061-.423" transform="translate(-262.88 -1.827)" fill="#cbde59"/><path d="M423.259,3.329a2.211,2.211,0,0,1-.222-.121.436.436,0,0,0-.222-.04q-.162,0-.545.02t-1.19.02q-.767.041-1.331.06c-.377.014-.592.02-.645.02a5.19,5.19,0,0,0-.424.766,10.774,10.774,0,0,0-.585,1.412A18.935,18.935,0,0,1,417.31,7.3q-.464.948-.867,2-.162.4-.323.787t-.242.585a2.15,2.15,0,0,1-.242.363c-.108.135-.209.262-.3.383a3.548,3.548,0,0,1-.282.323c-.095.094-.155.141-.182.141-.081,0-.209-.087-.383-.262a3.25,3.25,0,0,1-.464-.585,8.786,8.786,0,0,1-.484-.948q-.242-.545-.6-1.593a16.088,16.088,0,0,0-.928-2.3,11.468,11.468,0,0,1-.645-1.412,3.294,3.294,0,0,0-.383-.827,2.5,2.5,0,0,0-.464-.625,2.964,2.964,0,0,0-.625-.081q-.544-.04-1.21-.06t-1.291,0a7.9,7.9,0,0,0-.867.06q-.283.041-.444.081a.306.306,0,0,0-.222.2,1.85,1.85,0,0,0-.081.5q-.021.343-.06.988V6.435q0,1.21-.02,2.924t-.02,3.67q0,1.957.04,3.67t.1,2.9A7.145,7.145,0,0,0,405.956,21q.2.4,1.008.524.363.041.988.061a12.288,12.288,0,0,0,1.23-.02q.6-.04,1.069-.081a1.145,1.145,0,0,0,.545-.121,1.9,1.9,0,0,0,.061-.565q.02-.524.04-1.271t.02-1.593v-2.9c0-.161.027-.255.081-.282q.322-.121,1.452,1.775a9.646,9.646,0,0,0,1.029,1.472,2.164,2.164,0,0,0,.907.625.967.967,0,0,0,.545.121,2.171,2.171,0,0,0,.625-.363q.242-.2.363-.323a2.067,2.067,0,0,0,.262-.343q.141-.221.424-.625t.807-1.17q.686-.927.887-1.15t.363-.02a.352.352,0,0,1,.06.181c.013.095.026.249.04.464s.013.524,0,.928-.02.928-.02,1.573q-.04,1.25-.04,1.936t.02,1.008c.013.215.054.343.121.383s.155.088.262.141a2.441,2.441,0,0,0,.827.06q.625-.02,1.916-.02.565-.04,1.008-.04a.539.539,0,0,0,.565-.444,7.429,7.429,0,0,0,.02-1.15q-.021-1.029-.02-2.521t.02-3.186q.02-1.694.141-3.186.04-.484.081-1.633T423.7,6.9V4.761a6.908,6.908,0,0,0-.04-1.069,1.084,1.084,0,0,0-.4-.363" transform="translate(-354.019 -2.765)" fill="#cbde59"/><path d="M563.349,17.99q-.162-.363-.484-1.311t-.887-3.045q-.484-1.855-.746-2.844t-.4-1.633q-.142-.645-.222-1.15t-.161-1.391q-.121-1.089-.282-1.876t-.323-1.391q-.162-.6-.3-1.069a7.918,7.918,0,0,1-.222-.907q-.121-.524-.2-.807a.618.618,0,0,0-.323-.4,1.812,1.812,0,0,0-.706-.141Q557.622,0,556.775,0q-.726,0-1.19.02t-.807.06a3.461,3.461,0,0,0-.6.121,3.294,3.294,0,0,0-.5.2.9.9,0,0,0-.383.262,1.484,1.484,0,0,0-.182.5q-.081.363-.242,1.028T552.3,4.034q-.242.767-.6,2.037t-.746,2.743q-.384,1.473-.766,2.985t-.726,2.783q-.343,1.271-.565,2.118a7.773,7.773,0,0,1-.3,1.008.6.6,0,0,0,.081.726.463.463,0,0,0,.262.141q.141.021.867.06.443.041.827.04a1.953,1.953,0,0,0,.5-.04q.726,0,1.17-.02a2.083,2.083,0,0,0,.686-.121.708.708,0,0,0,.363-.323,2.268,2.268,0,0,0,.2-.625,1.152,1.152,0,0,1,.121-.383.636.636,0,0,1,.322-.242,2.565,2.565,0,0,1,.726-.141q.484-.04,1.371-.04h.968a1.435,1.435,0,0,1,.585.1.755.755,0,0,1,.343.3,2.739,2.739,0,0,1,.242.645q.2.686.444.766a3.806,3.806,0,0,0,.847.121h2.339q.564,0,.867-.02c.2-.013.356-.026.464-.04a.387.387,0,0,0,.2-.06l.081-.081q.08-.161.06-.141c-.014.014-.074-.1-.181-.343M556.714,12.2a.4.4,0,0,1-.1.141.553.553,0,0,1-.484.121,1.286,1.286,0,0,0-.565.04,3.357,3.357,0,0,1-.766-.121c-.135-.026-.209-.054-.222-.081a1.012,1.012,0,0,1-.02-.282,7.513,7.513,0,0,1,.1-.867q.1-.666.262-1.392a7.305,7.305,0,0,1,.4-1.291q.242-.564.484-.565c.054,0,.121.115.2.343a4.907,4.907,0,0,1,.2.907q.081.4.141.6t.121.363a1.442,1.442,0,0,1,.081.323q.02.162.06.484.04.444.081.706a2.924,2.924,0,0,1,.04.383.615.615,0,0,1-.02.181" transform="translate(-478.662 -0.001)" fill="#cbde59"/><path d="M682.085,4.124q-.343-.665-.665-1.19a5.356,5.356,0,0,0-1.23-1.391,4.485,4.485,0,0,0-1.634-.706,6.909,6.909,0,0,0-1.815-.2A8.011,8.011,0,0,0,674.966.8a8.639,8.639,0,0,0-2.017.605A5.225,5.225,0,0,0,671.5,2.45a9.534,9.534,0,0,0-.948,1.008,5.35,5.35,0,0,0-.625.928,6.54,6.54,0,0,0-.6,1.9,18.5,18.5,0,0,0-.262,2.339q-.061,1.21-.041,2.339t.1,1.855q.08.766.161,1.633a5.871,5.871,0,0,0,.444,1.734,5.045,5.045,0,0,0,1.17,1.654,7.078,7.078,0,0,0,2.3,1.392,7.451,7.451,0,0,0,2.319.484,7.15,7.15,0,0,0,2.561-.3,6.18,6.18,0,0,0,2.3-1.311,5.347,5.347,0,0,0,1.533-2.541.752.752,0,0,0-.161-.887,3.074,3.074,0,0,0-.706-.383q-.585-.262-1.291-.524t-1.351-.444a1.4,1.4,0,0,0-.887-.06c-.054,0-.108.094-.161.282a2.518,2.518,0,0,1-1.169,1.9,1.361,1.361,0,0,1-.625.1,1.492,1.492,0,0,1-.585-.141.924.924,0,0,1-.5-.5,4.1,4.1,0,0,1-.222-1.028q0-.04-.06-.6t-.1-1.452q-.041-.887-.02-1.936a13.84,13.84,0,0,1,.182-2.017q.121-.564.262-1.17a4,4,0,0,1,.4-1.069,1.937,1.937,0,0,1,.645-.706,1.131,1.131,0,0,1,.948-.081,1.426,1.426,0,0,1,.524.2.74.74,0,0,1,.242.323,2.9,2.9,0,0,1,.141.524,5.089,5.089,0,0,0,.262.847,1.439,1.439,0,0,0,.323.524c.081.054.228.04.444-.04a5.713,5.713,0,0,0,1.392-.625,9.324,9.324,0,0,1,1.311-.665q.443-.2.867-.4a.646.646,0,0,0,.424-.6,3.311,3.311,0,0,0-.343-.787" transform="translate(-583.826 -0.554)" fill="#cbde59"/></g>
+        </svg>
+      </div>
+      <div class="menu-principal-footer">
+        <ul>
+          <li><a href="/collections/sopas-e-canjas">Sopas</a></li>
+          <li><a href="/collections/temperos">Temperos</a></li>
+        </ul>
+      </div>
+      <div class="comprar-loja-fisica">
+        <a class="btn btn-footer btn-loja-fisica" href="/pages/compre-em-lojas-fisicas">
+          {%- render 'icon-loja-fisica' %} Comprar em Lojas Físicas</a
+        >
+      </div>
+    </div>
+    <div class="row-footer row-buttons">
+      <div class="menu-footer">
+        <ul>
+          <li><a href="/pages/quem-somos">Quem somos</a></li>
+          <li><a href="/blogs/novidades">Blog</a></li>
+          <li><a href="/pages/rastreie-seu-pedido">Rastrear pedido</a></li>
+          <li><a href="/pages/contato-1">Fale conosco</a></li>
+        </ul>
+      </div>
+      <div class="menu-footer">
+        <ul>
+          <li><a href="/pages/duvidas-frequentes">Perguntas frequentes</a></li>
+          <li><a href="/pages/termos-de-servico">Termos de uso e serviço</a></li>
+          <li><a href="/pages/politica-de-privacidade">Política de privacidade</a></li>
+          <li><a href="/pages/trocas-e-devolucoes">Trocas e devoluções</a></li>
+        </ul>
+      </div>
+      <div class="buttons-footer">
+        <a
+          class="btn btn-footer btn-revendedor"
+          target="_blank"
+          href="https://api.whatsapp.com/send/?phone=5511993787026&text&type=phone_number&app_absent=0"
+        >
+          {%- render 'icon-revendedor' %} Quero Revender</a
+        >
+
+        <a class="btn btn-footer btn-whatsapp whatsapp-desktop" target="_blank" href="http://wa.me/551140038025">
+          {%- render 'icon-whatsapp-footer' %} Chame no WhastApp</a
+        >
+      </div>
+    </div>
+
+    <div class="row-footer row-selos">
+      <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/Uniao_7.png?v=1692143295">
+      <img src="https://cdn.shopify.com/s/files/1/0846/3741/7789/files/esgprobrasil_selo_pro_1.webp?v=17060400546">
+      <div id="reputation-ra">
+        <script
+          type="text/javascript"
+          id="ra-embed-reputation"
+          src="https://s3.amazonaws.com/raichu-beta/selos/bundle.js"
+          data-id="Z3V2OHhHMjZ0bUNwVWZYXzpob2x5c291cA=="
+          data-target="reputation-ra"
+          data-model="2"
+        ></script>
+      </div>
+    </div>
+
+    <div class="row-footer row-copyright">
+      <p class="cnpj">©2025 HOLY GROUP LTDA - CNPJ 50.874.415/0001-62</p>
+      <p>Rua Gumercindo Luiz Pinto Monteiro, 35 - Extrema/MG CEP 37.640-000</p>
+      <ul class="list list-payment clearfix" role="list">
+        <li class="list-payment__item visa">
+          <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/visa.svg?v=1705588630">
+        </li>
+        <li class="list-payment__item master">
+          <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/master.svg?v=1705588630">
+        </li>
+        <li class="list-payment__item amex">
+          <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/amex.svg?v=1705588630">
+        </li>
+        <li class="list-payment__item diners">
+          <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/diners.svg?v=1705588630">
+        </li>
+        <li class="list-payment__item hiper">
+          <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/hiper.svg?v=1705588630">
+        </li>
+        <li class="list-payment__item hipercard">
+          <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/hipercard.svg?v=1705588630">
+        </li>
+        <li class="list-payment__item discover">
+          <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/discover.svg?v=1705588630">
+        </li>
+        <li class="list-payment__item aura">
+          <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/aura.svg?v=1705588630">
+        </li>
+        <li class="list-payment__item pix">
+          <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/pix.svg?v=1705588630">
+        </li>
+      </ul>
+
+      <p>
+        Todo o conteúdo do site, todas as imagens, vídeos, logotipos, marcas, layout veiculados são de propriedade
+        exclusiva. É vedada qualquer reprodução, total ou parcial, de qualquer elemento de identidade, sem expressa
+        autorização. A violação de qualquer direito mencionado implicará na responsabilização cível e criminal nos
+        termos da Lei. Os preços dos produtos estão sujeitos a alteração sem aviso prévio.
+      </p>
+    </div>
+  </div>
+  <div class="disco-logo">
+    <a href="https://www.disco-tec.com/" target="_blank" alt="Logo Disco Tecnologia">
+      <svg xmlns="http://www.w3.org/2000/svg" width="600" height="143" viewBox="0 0 600 143" fill="none">
+        <path d="M0 0H47.2727C66.0789 0 84.1149 7.48092 97.4129 20.797C110.711 34.1132 118.182 52.1737 118.182 71.0056C118.182 89.8374 110.711 107.898 97.4129 121.214C84.1149 134.53 66.0789 142.011 47.2727 142.011H0V0Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M470.805 0L403.636 0C384.829 0 366.793 7.48092 353.495 20.797C340.197 34.1132 332.727 52.1737 332.727 71.0056C332.727 89.8374 340.197 107.898 353.495 121.214C366.793 134.53 384.829 142.011 403.636 142.011H470.805C467.598 139.656 464.543 137.097 461.66 134.346C448.54 121.818 439.604 105.857 435.984 88.4812C432.364 71.1051 434.222 53.0943 441.323 36.7264C447.626 22.1985 457.808 9.54402 470.805 0Z" fill="white"/>
+        <path d="M132.363 0H191.454V142.011H132.363V0Z" fill="white"/>
+        <path d="M323.818 0H252.909C240.372 0 228.348 4.98728 219.483 13.8647C210.617 22.7421 205.637 34.7825 205.637 47.337C205.637 59.8916 210.617 71.932 219.483 80.8094C228.348 89.6868 240.372 94.6741 252.909 94.6741L323.818 0Z" fill="white"/>
+        <path d="M276.546 47.3378C289.083 47.3378 301.107 52.3251 309.973 61.2025C318.838 70.0799 323.818 82.1203 323.818 94.6749C323.818 107.229 318.838 119.27 309.973 128.147C301.107 137.025 289.083 142.012 276.546 142.012H205.637L276.546 47.3378Z" fill="white"/>
+        <path d="M600 71.0056C600 85.0491 595.841 98.7773 588.049 110.454C580.258 122.131 569.183 131.232 556.226 136.606C543.269 141.98 529.012 143.387 515.257 140.647C501.502 137.907 488.867 131.144 478.95 121.214C469.034 111.284 462.28 98.6318 459.544 84.8581C456.808 71.0843 458.212 56.8075 463.579 43.8329C468.946 30.8583 478.035 19.7688 489.696 11.9666C501.357 4.1644 515.066 0 529.091 0C547.897 0 565.933 7.48092 579.231 20.797C592.529 34.1132 600 52.1737 600 71.0056Z" fill="white"/>
+      </svg>
+    </a>
+  </div>
+  <a
+    style="width: 65px !important; position: relative !important; z-index: 1; pointer-events: auto !important; cursor: pointer !important; transform: translate(0, 0) !important; height: auto !important; display: none !important; margin: 0 auto !important; text-align: center !important; opacity: 1 !important; visibility: visible !important;"
+    href="https://alfinet.com.br/?utm_source=referencias&amp;amp;utm_medium=link&amp;amp;utm_campaign=cliente_referencia&amp;amp;utm_content=holysoup"
+    target="_blank"
+    class="a1flnifd"
+    ><img
+      style="width: 65px !important; position: relative !important; z-index: 1; pointer-events: auto !important; cursor: pointer !important; transform: translate(0, 0) !important; height: auto !important; margin: 15px auto 10px auto !important; display: block; margin: 0 auto !important; text-align: center !important; opacity: 1 !important; visibility: visible !important;"
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='71.626' height='19.774' viewBox='0 0 71.626 19.774'%3E%3Cg id='logo-alfinet' transform='translate(0 0.004)'%3E%3Cpath id='Caminho_7' data-name='Caminho 7' d='M7.907,18.238a4.883,4.883,0,0,1-.418.417,5.021,5.021,0,0,1-.832.593A3.7,3.7,0,0,1,5.6,19.64a6.228,6.228,0,0,1-1.32.129,6.292,6.292,0,0,1-.865-.058,5.338,5.338,0,0,1-.8-.174,3.883,3.883,0,0,1-.729-.3,3.48,3.48,0,0,1-.628-.432,3.346,3.346,0,0,1-.517-.563,3.813,3.813,0,0,1-.4-.69,3.7,3.7,0,0,1-.255-.821A5.02,5.02,0,0,1,0,15.789v-.125A4.257,4.257,0,0,1,.124,14.61,3.137,3.137,0,0,1,.5,13.72,3.612,3.612,0,0,1,1.089,13a4.006,4.006,0,0,1,.777-.569A5.731,5.731,0,0,1,2.8,12.01a7.407,7.407,0,0,1,1.076-.284q.573-.108,1.178-.162t1.252-.054H7.882v-.8a4.53,4.53,0,0,0-.12-1.11,1.954,1.954,0,0,0-.347-.744,1.352,1.352,0,0,0-.638-.42,3.34,3.34,0,0,0-1.071-.148,2.9,2.9,0,0,0-.961.148,2.009,2.009,0,0,0-.725.437A2.958,2.958,0,0,0,3.5,9.5a2.354,2.354,0,0,0-.279.694l-.032.141L.376,9.818.4,9.67a4.2,4.2,0,0,1,.233-.816,4.053,4.053,0,0,1,.39-.739h0a4.425,4.425,0,0,1,.533-.649,4.747,4.747,0,0,1,.657-.551,5.212,5.212,0,0,1,.77-.442,6.114,6.114,0,0,1,.863-.325,6.368,6.368,0,0,1,.951-.2,7.673,7.673,0,0,1,1.03-.067,8.515,8.515,0,0,1,1.031.061,7.13,7.13,0,0,1,.959.182,4.37,4.37,0,0,1,.868.327,3.828,3.828,0,0,1,.743.492,3.518,3.518,0,0,1,.6.663,4.2,4.2,0,0,1,.451.834,4.773,4.773,0,0,1,.281,1.017,7.294,7.294,0,0,1,.093,1.2v8.858H7.907v-1.28Zm-3-.774A4.2,4.2,0,0,0,6.1,17.3a3.012,3.012,0,0,0,.956-.474,1.948,1.948,0,0,0,.62-.758,2.525,2.525,0,0,0,.208-1.06v-1.45H6.406a8.231,8.231,0,0,0-1.456.116,4.246,4.246,0,0,0-1.105.344,1.587,1.587,0,0,0-.891,1.566v.1a2.382,2.382,0,0,0,.114.771,1.447,1.447,0,0,0,.331.55,1.359,1.359,0,0,0,.584.336,3.14,3.14,0,0,0,.922.118ZM14.338.1h2.853V19.518h-3V.1ZM31,4.23a1.87,1.87,0,0,1-.7-.127,1.747,1.747,0,0,1-.954-.946,1.787,1.787,0,0,1-.127-.679,1.749,1.749,0,0,1,.131-.68,1.7,1.7,0,0,1,.391-.566,1.763,1.763,0,0,1,.579-.38A1.811,1.811,0,0,1,31,.726a1.892,1.892,0,0,1,.7.126,1.746,1.746,0,0,1,.582.38,1.7,1.7,0,0,1,.391.566,1.749,1.749,0,0,1,.131.68,1.749,1.749,0,0,1-.131.68,1.7,1.7,0,0,1-.391.566,1.744,1.744,0,0,1-.582.38,1.892,1.892,0,0,1-.7.126Zm-1.326,1.9H32.5V19.518H29.525V6.13ZM21.353,8.559h-1.7V6.13h1.7V4.3a4.328,4.328,0,0,1,1.108-3.2A3.528,3.528,0,0,1,23.8.275,5.334,5.334,0,0,1,25.582,0a4.088,4.088,0,0,1,1.51.213l.093.039V2.66l-.212-.094a1.851,1.851,0,0,0-.22-.081,2.275,2.275,0,0,0-.246-.059,2.837,2.837,0,0,0-.285-.035q-.155-.012-.339-.012a1.794,1.794,0,0,0-.7.122,1.08,1.08,0,0,0-.457.354,1.748,1.748,0,0,0-.276.573,2.757,2.757,0,0,0-.094.751V6.13H27.21V8.559H24.357V19.518h-3V8.559ZM36.26,6.13h2.8v1.6a3.873,3.873,0,0,1,.329-.409,4.758,4.758,0,0,1,.9-.753,3.99,3.99,0,0,1,1.186-.517,5.68,5.68,0,0,1,1.436-.171,5.764,5.764,0,0,1,.915.071,4.951,4.951,0,0,1,.849.213,3.485,3.485,0,0,1,.762.373,3.358,3.358,0,0,1,.638.544,3.842,3.842,0,0,1,.511.709,5.048,5.048,0,0,1,.384.871,5.786,5.786,0,0,1,.241,1.047,8.849,8.849,0,0,1,.08,1.228v8.583h-3V11.085a4.424,4.424,0,0,0-.147-1.216,2.012,2.012,0,0,0-.427-.809,1.736,1.736,0,0,0-.724-.466,3.251,3.251,0,0,0-1.079-.16,3.394,3.394,0,0,0-1.1.179,2.547,2.547,0,0,0-.487.224,2.438,2.438,0,0,0-.421.318,2.465,2.465,0,0,0-.348.407,2.8,2.8,0,0,0-.267.493,2.728,2.728,0,0,0-.169.578,3.807,3.807,0,0,0-.057.677v8.208H36.108V6.13h.151Zm25.588,9.834a4.345,4.345,0,0,1-.247.7,4.985,4.985,0,0,1-.373.677,4.643,4.643,0,0,1-.51.645,5.286,5.286,0,0,1-.638.572,5.483,5.483,0,0,1-.777.494,6.46,6.46,0,0,1-.892.384,5.788,5.788,0,0,1-1.037.251,7.91,7.91,0,0,1-1.176.083,7.736,7.736,0,0,1-1.317-.109,6.414,6.414,0,0,1-1.2-.327,5.777,5.777,0,0,1-1.066-.536,5.477,5.477,0,0,1-.914-.736,5.537,5.537,0,0,1-.743-.923,6.173,6.173,0,0,1-.555-1.093,6.442,6.442,0,0,1-.346-1.262,8.4,8.4,0,0,1-.115-1.42V12.336a8.081,8.081,0,0,1,.115-1.386,6.63,6.63,0,0,1,.893-2.362,5.74,5.74,0,0,1,.723-.934,5.432,5.432,0,0,1,.891-.753,5.781,5.781,0,0,1,1.05-.558A6.052,6.052,0,0,1,54.793,6a6.925,6.925,0,0,1,1.279-.116,7.246,7.246,0,0,1,1.146.09,6.734,6.734,0,0,1,1.091.269,5.1,5.1,0,0,1,1.006.464,5.036,5.036,0,0,1,.877.671,4.946,4.946,0,0,1,.729.88,6.106,6.106,0,0,1,.558,1.087,6.338,6.338,0,0,1,.356,1.317,9.59,9.59,0,0,1,.118,1.554v1.327h-9a6.517,6.517,0,0,0,.235,1.655,3.182,3.182,0,0,0,.65,1.234,2.687,2.687,0,0,0,1.031.72,3.8,3.8,0,0,0,1.408.242,3.993,3.993,0,0,0,.636-.048,2.9,2.9,0,0,0,.55-.142,3.383,3.383,0,0,0,.476-.219,2.6,2.6,0,0,0,.393-.269,3.03,3.03,0,0,0,.324-.313,2.6,2.6,0,0,0,.257-.34A2.863,2.863,0,0,0,59.1,15.7a2.3,2.3,0,0,0,.126-.352l.038-.141,2.62.606-.039.15Zm-5.776-7.78a2.951,2.951,0,0,0-2.039.778,2.785,2.785,0,0,0-.7,1.027,5.474,5.474,0,0,0-.348,1.4H59a4.533,4.533,0,0,0-.217-1.4,2.643,2.643,0,0,0-.626-1.044,2.467,2.467,0,0,0-.9-.569,3.417,3.417,0,0,0-1.185-.192ZM68.2,2.7V6.13h3.278V8.559H68.2v7.1a2.267,2.267,0,0,0,.1.724,1.031,1.031,0,0,0,.285.452,1.706,1.706,0,0,0,1.164.349q.246,0,.473-.018t.44-.055a3.774,3.774,0,0,0,.4-.09,2.983,2.983,0,0,0,.354-.125l.21-.09v2.451l-.087.041a3.242,3.242,0,0,1-.437.165,4.866,4.866,0,0,1-.513.122,5.8,5.8,0,0,1-.6.077q-.323.025-.69.026a5.946,5.946,0,0,1-1.8-.245,3.116,3.116,0,0,1-1.281-.75,3.763,3.763,0,0,1-1-2.784V8.559H63.5V6.13h1.726V2.552H68.2Z' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E%0A"
+  ></a>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer Holymac",
+  "limit": 1,
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "t:sections.footer.blocks.link_list.name",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "custom_width",
+          "label": "t:sections.footer.settings.custom_width.label",
+          "info": "t:sections.footer.settings.custom_width.info",
+          "default": "20"
+        },
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "t:sections.image-banner.blocks.image.settings.content.label__19",
+          "info": "t:sections.footer.blocks.link_list.settings.heading.info",
+          "default": "Quick links"
+        },
+        {
+          "id": "menu",
+          "type": "link_list",
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+          "info": "t:sections.footer.blocks.link_list.settings.menu.info",
+          "default": "footer"
+        },
+        {
+          "type": "range",
+          "id": "mg_bottom",
+          "label": "t:sections.footer.blocks.newsletter.settings.newsletter_margin_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.image-banner.blocks.image.settings.content.label__16",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "custom_width",
+          "label": "t:sections.footer.settings.custom_width.label",
+          "info": "t:sections.footer.settings.custom_width.info",
+          "default": "30"
+        },
+        {
+          "id": "heading",
+          "type": "text",
+          "default": "Heading",
+          "label": "t:sections.image-banner.blocks.image.settings.content.label__19"
+        },
+        {
+          "id": "logo",
+          "type": "image_picker",
+          "label": "t:sections.footer.settings.custom_width.image"
+        },
+        {
+          "type": "range",
+          "id": "logo_margin_bottom",
+          "label": "t:sections.footer.blocks.text.settings.logo_margin_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "t:sections.footer.settings.footer_bottom.pdtop_footer_bottom.unit",
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "logo_margin_top",
+          "label": "t:sections.footer.blocks.text.settings.logo_margin_top",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "t:sections.footer.settings.footer_bottom.pdtop_footer_bottom.unit",
+          "default": 0
+        },
+        {
+          "id": "subtext",
+          "type": "richtext",
+          "default": "<p>Share store details, promotions, or brand content with your customers.</p>",
+          "label": "t:sections.image-banner.blocks.image.settings.content.label__2"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main_contact.settings.contact_info.label__4"
+        },
+        {
+          "type": "select",
+          "id": "address_icon",
+          "label": "Address Icon",
+          "default": "point_icon",
+          "options": [
+            {
+              "value": "point_icon",
+              "label": "t:icons.address"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "show_address_icon",
+          "label": "t:icons.show_icon"
+        },
+        {
+          "id": "address_text",
+          "type": "richtext",
+          "label": "t:sections.main_contact.settings.contact_info.label__4"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.store_locator.block.settings.f_phone"
+        },
+        {
+          "type": "select",
+          "id": "phone_icon",
+          "label": "t:settings_schema.typography.settings.typography.icon",
+          "default": "message_icon",
+          "options": [
+            {
+              "value": "message_icon",
+              "label": "t:icons.message"
+            },
+            {
+              "value": "phone_icon",
+              "label": "t:icons.phone"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "show_phone_icon",
+          "label": "t:icons.show_icon"
+        },
+        {
+          "id": "phone_text",
+          "type": "richtext",
+          "label": "t:sections.store_locator.block.settings.f_phone"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:settings_schema.notify_me.settings.general.label__2"
+        },
+        {
+          "type": "select",
+          "id": "email_icon",
+          "label": "t:settings_schema.typography.settings.typography.icon",
+          "default": "envelope_icon",
+          "options": [
+            {
+              "value": "envelope_icon",
+              "label": "t:icons.envelope"
+            },
+            {
+              "value": "envelope_outline_icon",
+              "label": "t:icons.envelope_outline"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "show_email_icon",
+          "label": "t:icons.show_icon"
+        },
+        {
+          "id": "email_text",
+          "type": "richtext",
+          "label": "t:settings_schema.notify_me.settings.general.label__2"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:settings_schema.general.name"
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "label": "t:settings_schema.typography.settings.typography.icon_size",
+          "min": 12,
+          "max": 50,
+          "step": 1,
+          "default": 16,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "t:settings_schema.typography.settings.typography.icon_color"
+        },
+        {
+          "type": "range",
+          "id": "content_spacing",
+          "label": "t:sections.spotlight_block.settings.content_spacing",
+          "min": 0,
+          "max": 30,
+          "default": 1,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "mg_bottom",
+          "label": "t:sections.footer.blocks.newsletter.settings.newsletter_margin_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "footer_bottom",
+      "name": "t:sections.footer.settings.footer_bottom.content",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "t:sections.footer.settings.footer_bottom.content"
+        },
+        {
+          "type": "range",
+          "id": "pdtop_footer_bottom",
+          "label": "t:sections.footer.settings.footer_bottom.pdtop_footer_bottom.label",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "t:sections.footer.settings.footer_bottom.pdtop_footer_bottom.unit",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "pdbottom_footer_bottom",
+          "label": "t:sections.footer.settings.footer_bottom.pdbottom_footer_bottom.label",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "t:sections.footer.settings.footer_bottom.pdbottom_footer_bottom.unit",
+          "default": 50
+        },
+        {
+          "id": "border_top",
+          "type": "checkbox",
+          "label": "t:settings_schema.typography.settings.typography.border_enable_top",
+          "default": true
+        },
+        {
+          "id": "footer_bottom_color",
+          "type": "color",
+          "label": "t:settings_schema.typography.settings.typography.text_color",
+          "default": "#808080"
+        },
+        {
+          "id": "border_top_color",
+          "type": "color",
+          "label": "t:settings_schema.typography.settings.typography.border_top_color",
+          "default": "#282828"
+        },
+        {
+          "id": "footer_bottom_bg",
+          "type": "color",
+          "label": "t:settings_schema.colors.settings.colors_name.background_color",
+          "default": "#141414"
+        },
+        {
+          "id": "footer_bottom_bg_gradient",
+          "type": "color_background",
+          "label": "t:settings_schema.colors.settings.colors_name.background_color_gradient"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.settings.copy_right.content"
+        },
+        {
+          "id": "show_copyright",
+          "type": "checkbox",
+          "label": "t:sections.footer.settings.copy_right.show_copyright",
+          "default": true
+        },
+        {
+          "id": "enable_layout_grid",
+          "type": "checkbox",
+          "label": "t:sections.footer.settings.copy_right.enable_layout_grid",
+          "default": true
+        },
+        {
+          "id": "copyright_content",
+          "type": "richtext",
+          "label": "t:sections.footer.settings.copy_right.copyright_content"
+        },
+        {
+          "id": "copyright_content_color",
+          "type": "color",
+          "label": "t:settings_schema.colors.settings.colors_name.color"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.settings.payment.content"
+        },
+        {
+          "id": "show_payment",
+          "type": "checkbox",
+          "default": true,
+          "label": "t:sections.footer.settings.payment.show_payment"
+        },
+        {
+          "type": "range",
+          "id": "payment_margin_top",
+          "label": "t:sections.footer.settings.social_media_link.social_margin_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "t:sections.footer.settings.footer_bottom.pdtop_footer_bottom.unit",
+          "default": 0
+        },
+        {
+          "id": "heading_payment",
+          "type": "text",
+          "label": "t:sections.image-banner.blocks.image.settings.content.label__19"
+        },
+        {
+          "type": "select",
+          "id": "payment_type",
+          "label": "t:sections.footer.settings.payment.payment_type.option",
+          "default": "custom",
+          "options": [
+            {
+              "value": "default",
+              "label": "t:sections.footer.settings.payment.payment_type.option1"
+            },
+            {
+              "value": "custom",
+              "label": "t:sections.footer.settings.payment.payment_type.option2"
+            }
+          ],
+          "info": "t:sections.footer.settings.payment.payment_type.info"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_visa",
+          "label": "Visa"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_master",
+          "label": "Master"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_maestro",
+          "label": "Maestro"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_american_express",
+          "label": "American Express"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_apple_pay",
+          "label": "Apple Pay"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_bitcoin",
+          "label": "Bitcoin"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_dankort",
+          "label": "Dankort"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_diners_club",
+          "label": "Diners Club"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_discover",
+          "label": "Discover"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_paypal",
+          "label": "Paypal"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_dogecoin",
+          "label": "Dogecoin"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_dwolla",
+          "label": "Dwolla"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_forbrugsforeningen",
+          "label": "Forbrugsforeningen"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_jcb",
+          "label": "JCB"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_litecoin",
+          "label": "Litecoin"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_afterpay",
+          "label": "Afterpay"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_google_pay",
+          "label": "Googlepay"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_ideal",
+          "label": "Ideal"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_klarna",
+          "label": "Klarna"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_klarna-pay-later",
+          "label": "Klarnapay Later"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_shopify_pay",
+          "label": "Shopifypay"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_sofort",
+          "label": "Sofort"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "borda-superior",
+      "default": true,
+      "label": "Ativar divisória superior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-superior",
+      "default": "#fff",
+      "label": "Cor da divisória superior"
+    },
+    {
+      "type": "checkbox",
+      "id": "borda-inferior",
+      "default": false,
+      "label": "Ativar divisória inferior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-inferior",
+      "default": "#fff",
+      "label": "Cor da divisória inferior"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer Holymac"
+    }
+  ]
+}
+{% endschema %}

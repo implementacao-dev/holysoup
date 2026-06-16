@@ -1,0 +1,169 @@
+<style>
+  .section {
+    background: var(--bgColor);
+  }
+
+  .image-grid {
+    padding: 60px 0px 20px;
+  }
+
+  .image-grid-slider .swiper-slide {
+    width: fit-content;
+    height: auto;
+    padding: 0 0 40px;
+  }
+
+  .image-grid .max-container {
+    max-width: 1152px;
+    margin: 0 auto;
+  }
+
+  .image-container .card {
+    border-radius: 24px;
+  }
+
+  .image-container .image-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .image-grid {
+      padding: 60px 20px 20px;
+    }
+    
+    .image-container {
+      display: grid;
+      gap: 16px;
+      justify-content: space-between;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      justify-content: space-between;
+    }
+
+    .image-grid-slider .swiper-slide {
+      width: 100%!important;
+      margin-right: 0px!important;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .image-grid-slider .swiper-slide {
+      width: fit-content;
+      height: auto;
+    }
+  }
+
+  .image-grid .swiper-button-prev {
+    bottom: 0px;
+    top: auto;
+    left: calc(50% - 50px);
+    border: 2px solid #8355A7;
+    padding: 18px 18px;
+    border-radius: 9999px;
+  }
+  
+  .image-grid .swiper-button-prev:after {
+    font-size: 14px
+  }
+
+  .image-grid .swiper-button-next {
+    bottom: 0px;
+    top: auto;
+    right: calc(50% - 50px);
+    border: 2px solid #8355A7;
+    padding: 18px 18px;
+    border-radius: 9999px;
+  }
+
+  .image-grid .swiper-button-next:after {
+    font-size: 14px
+  }
+</style>
+<div class="section" style="--bgColor: {{ section.settings.color }}">
+  {% if section.settings['borda-superior'] %}
+    {% render 'borda-superior', cor: section.settings['color-borda-superior'], style: 'waves' %}
+  {% endif %}
+  <div class="image-grid">
+    <div class="swiper image-grid-slider max-container" style="--bgColor: {{ section.settings.color }}">
+      <div class="swiper-wrapper image-container">
+        {% for block in section.blocks %}
+          <div class="swiper-slide">
+            <div class="card">
+              {% if block.settings.image == blank %}
+                {{ 'product-1' | placeholder_svg_tag: 'image-placeholder' }}
+              {% else %}
+                <img loading="lazy" width="100%" height="100%" src="{{ block.settings.image | image_url: width: block.settings.image.width }}">
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-button-prev" style="--swiper-navigation-size: 20px; --swiper-navigation-color: #8355A7"></div>
+      <div class="swiper-button-next" style="--swiper-navigation-size: 20px; --swiper-navigation-color: #8355A7"></div>
+    </div>
+  </div>
+  {% if section.settings['borda-inferior'] %}
+    {% render 'borda-inferior', cor: section.settings['color-borda-inferior'] %}
+  {% endif %}
+</div>
+{% schema %}
+{
+  "name": "Image Grid",
+  "settings": [{
+    "type": "checkbox",
+    "id": "borda-superior",
+    "default": true,
+    "label": "Ativar divisória superior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-superior",
+    "default": "#fff",
+    "label": "Cor da divisória superior"
+  },
+  {
+    "type": "checkbox",
+    "id": "borda-inferior",
+    "default": false,
+    "label": "Ativar divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-inferior",
+    "default": "#fff",
+    "label": "Cor da divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color",
+    "label": "Cor"
+  }],
+  "blocks":[
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Image Grid",
+    "blocks": [
+      {
+        "type": "card"
+      },
+      {
+        "type": "card"
+      },
+      {
+        "type": "card"
+      }
+    ]
+  }]
+}
+{% endschema %}

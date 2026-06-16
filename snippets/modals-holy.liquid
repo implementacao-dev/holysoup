@@ -1,0 +1,292 @@
+{{ 'nice-select.min.css' | asset_url | stylesheet_tag }}
+<style>
+  .modal-holy {
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    background: #fff;
+    border-radius: 25px;
+    padding: 40px;
+    z-index: 200;
+    text-align: center;
+    width: 320px;
+    max-width: 90%;
+    min-height: fit-content;
+    max-height: 100%;
+    height: 370px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .overflow-holy-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000b8;
+    z-index: 199;
+  }
+  
+  .modal-holy-content h3 {
+    color: #00804e;
+    font-size: 17px;
+    font-weight: 100!important;
+    letter-spacing: 0;
+  }
+
+  .modal-holy-select {
+    width: 100%;
+  }
+
+  .modal-holy-inputs input {
+    border-radius: 999px;
+    background-color: #f6f6f6;
+    border: none;
+    margin-bottom: 6px;
+    font-size: 11px;
+  }
+
+  .modal-holy-buttons {
+    margin-top: 15px;
+  }
+  
+  .btn.modal-holy-btn {
+    background-color: #00814e;
+    width: 100%;
+    border-radius: 9999px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  .btn.modal-holy-btn.btn-participar {
+    background: transparent;
+    border: 1px solid #00814e;
+    color: #000;
+  }
+
+  .modal-holy-close {
+    font-size: 16px;
+    color: #fff;
+    position: absolute;
+    right: 20px;
+    top: 30px;
+  }
+
+  .modal-holy.hide,
+  .overflow-holy-modal.hide {
+    display: none;
+  }
+
+  .modal-holy.tabela-medidas-modal {
+    padding: 0;
+    background: transparent;
+    width: fit-content;
+    max-height: -webkit-fill-available;
+    height: 80vh;
+    aspect-ratio: 1/1.2;
+  }
+</style>
+
+<div class="modal-holy holyclub hide">
+  <div class="modal-holy-content">
+    <h3>HolyClub</h3>
+    <div class="modal-holy-inputs">
+      {%- form 'customer', id: 'NewsletterSection', class: 'newsletter-block newsletter-form' -%}
+        {%- if form.errors -%}
+          <div class="newsletter-form__message newsletter-form__message--error form__message" id="ContactFooter-error">
+            {% render 'icon-error' -%}
+            {{- form.errors.translated_fields.email | capitalize }}
+            {{ form.errors.messages.email }}
+          </div>
+        {%- endif -%}
+        <input type="hidden" name="contact[tags]" value="newsletter, holyclub">
+        <input id="NewsletterForm--{{ section.id }}_name" type="email" name="contact[first_name]" class="field__input form-input-placeholder" value="{{ form.first_name }}" aria-required="true" autocorrect="off" autocapitalize="off" autocomplete="first_name"{% if form.errors %} autofocus aria-invalid="true" aria-describedby="ContactFooter-error"{% elsif form.posted_successfully? %} aria-describedby="ContactFooter-success" {% endif %} placeholder="Nome">
+        <input id="NewsletterForm--{{ section.id }}" type="email" name="contact[email]" class="field__input form-input-placeholder" value="{{ form.email }}" aria-required="true" autocorrect="off" autocapitalize="off" autocomplete="email"{% if form.errors %} autofocus aria-invalid="true" aria-describedby="ContactFooter-error"{% elsif form.posted_successfully? %} aria-describedby="ContactFooter-success" {% endif %} placeholder="E-mail">
+      {%- if form.posted_successfully? -%}
+          <script>
+            $(document).ready(function () {
+              var newsletterSuccessPopup = (function () {
+                var popup = $('.newsletter-success-modal');
+                var close = popup.find('.close');
+                var success = popup.find('.success');
+                var error = popup.find('.error');
+                var overlay = $('.background-overlay');
+                popup.show();
+                overlay.show();
+                error.hide();
+                success.show();
+                close.off('click').on('click', function () {
+                  popup.fadeOut();
+                  overlay.hide();
+                });
+                overlay.off('click').on('click', function () {
+                  popup.fadeOut();
+                  overlay.hide();
+                });
+              })();
+              var newURL = location.href.split('?')[0];
+              window.history.pushState('object', document.title, newURL);
+            });
+          </script>
+        {% else %}
+          <script>
+            $(document).ready(function () {
+              if (window.location.href.indexOf('newsletter&form_type=customer') > -1) {
+                var newsletterSuccessPopup = (function () {
+                  var popup = $('.newsletter-success-modal');
+                  var close = popup.find('.close');
+                  var success = popup.find('.success');
+                  var error = popup.find('.error');
+                  var overlay = $('.background-overlay');
+                  popup.show();
+                  overlay.show();
+                  error.show();
+                  success.hide();
+                  close.off('click').on('click', function () {
+                    popup.fadeOut();
+                    overlay.hide();
+                  });
+                  overlay.off('click').on('click', function () {
+                    popup.fadeOut();
+                    overlay.hide();
+                  });
+                })();
+                var newURL = location.href.split('?')[0];
+                window.history.pushState('object', document.title, newURL);
+              }
+            });
+          </script>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+
+  </div>
+  <div class="modal-holy-buttons">
+    <a submit-form="#NewsletterSection" href="javascript:void(0)" class="btn modal-holy-btn btn-participar">
+      <span>Participar</span>
+    </a>
+  </div>
+</div>
+
+<div class="modal-holy lojafisica hide">
+  <div class="modal-holy-content">
+    <h3>Encontre a HolySoup pertinho de você</h3>
+    <div class="modal-holy-inputs">
+      <form ckass="loja-fisica">
+        <input class="field__input form-input-placeholder" placeholder="E-mail">
+        <select class="modal-holy-select select-estado">
+          <option selected value="" disabled>Estado</option>
+          <option value="AC">Acre</option>
+          <option value="AL">Alagoas</option>
+          <option value="AP">Amapá</option>
+          <option value="AM">Amazonas</option>
+          <option value="BA">Bahia</option>
+          <option value="CE">Ceará</option>
+          <option value="DF">Distrito Federal</option>
+          <option value="ES">Espírito Santo</option>
+          <option value="GO">Goiás</option>
+          <option value="MA">Maranhão</option>
+          <option value="MT">Mato Grosso</option>
+          <option value="MS">Mato Grosso do Sul</option>
+          <option value="MG">Minas Gerais</option>
+          <option value="PA">Pará</option>
+          <option value="PB">Paraíba</option>
+          <option value="PR">Paraná</option>
+          <option value="PE">Pernambuco</option>
+          <option value="PI">Piauí</option>
+          <option value="RJ">Rio de Janeiro</option>
+          <option value="RN">Rio Grande do Norte</option>
+          <option value="RS">Rio Grande do Sul</option>
+          <option value="RO">Rondônia</option>
+          <option value="RR">Roraima</option>
+          <option value="SC">Santa Catarina</option>
+          <option value="SP">São Paulo</option>
+          <option value="SE">Sergipe</option>
+          <option value="TO">Tocantins</option>
+        </select>
+        <select class="modal-holy-select select-cidade"><option selected value="" disabled>Cidade</option></select>
+      </form>
+    </div>
+
+  </div>
+  <div class="modal-holy-buttons">
+    <a href="javascript:void(0)" class="btn modal-holy-btn btn-loja-fisica">
+      <span>Encontrar</span>
+    </a>
+  </div>
+</div>
+
+<div class="modal-holy tabela-medidas-modal hide">
+  <div class="modal-holy-content">
+    <div class="modal-holy-inputs">
+      
+    </div>
+  </div>
+</div>
+
+<div class="overflow-holy-modal hide">
+  <span class="modal-holy-close">x</span>
+</div>
+<script src="{{ 'jquery.nice-select.min.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'cidades.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'estados.js' | asset_url }}" defer="defer"></script>
+<script>
+  $(document).ready(function() {
+    $('.modal-holy-inputs').find('select').niceSelect();
+    $('.overflow-holy-modal').off('click').on('click',function(){
+      $('.modal-holy').addClass('hide');
+      $(this).addClass('hide');
+    });
+
+    $('[open-newsletter]').off('click').on('click',function(){
+      $('.modal-holy.holyclub').removeClass('hide');
+      $('.overflow-holy-modal').removeClass('hide');
+    });
+
+    // $('.btn-loja-fisica').off('click').on('click',function(){
+    //   $('.modal-holy.lojafisica').removeClass('hide');
+    //   $('.overflow-holy-modal').removeClass('hide');
+    // });
+    
+    $('[tabela-nutri]').off('click').on('click',function(e){
+      e.preventDefault();
+      var tabelamedida = $(this).attr('href');
+
+      if(tabelamedida.length){
+        $( ".modal-holy.tabela-medidas-modal .modal-holy-inputs" ).html( "<img src='"+tabelamedida+"'/>");
+        $('.modal-holy.tabela-medidas-modal').removeClass('hide');
+        $('.overflow-holy-modal').removeClass('hide');
+      }
+    });
+
+    /*Estados e cidades*/
+    $("select.select-estado").on("change", function() {
+        let estadoSelecionado = $(this).val(); // Ex: MG
+    
+        // Corrigindo a filtragem do estado
+        let estadoObj = window.estados.filter(estado => estado.Sigla === estadoSelecionado)[0];
+        
+        // Verificar se encontrou o estado antes de continuar
+        if(estadoObj) {
+            let cidadesFiltradas = window.cidade.filter(cidade => cidade.Estado === estadoObj.ID);
+            console.log(cidadesFiltradas);
+            let optionsCidades = cidadesFiltradas.map(cidade => {
+                return `<option value="${cidade.ID}">${cidade.Nome}</option>`;
+            }).join('');
+            $("select.select-cidade").html(optionsCidades);
+            $('select.select-cidade').niceSelect('update');
+        } else {
+            // Se não encontrou o estado, limpa o select das cidades
+            $("select.select-cidade").html('');
+            $('select.select-cidade').niceSelect('update');
+        }
+    });
+  });
+</script>
+<script type="text/javascript" defer>var script_loaded=!1;function loadJSscripts(){script_loaded||(void 0!==observer&&observer.disconnect(),void 0!==window.yett&&window.yett.unblock(),script_loaded=!0,document.querySelectorAll("iframe[data-src], script[data-src], img[data-src]").forEach(e=>{datasrc=e.dataset.src,null!=datasrc&&(e.src=datasrc)}),document.querySelectorAll("link[data-href]").forEach(e=>{datahref=e.dataset.href,null!=datahref&&(e.href=datahref)}),document.querySelectorAll("script[type='text/lazyload']").forEach(e=>{var t=document.createElement("script");for(a=0;a<e.attributes.length;a++){var r=e.attributes[a];t.setAttribute(r.name,r.value)}t.type="text/javascript",t.innerHTML=e.innerHTML,e.parentNode.insertBefore(t,e),e.parentNode.removeChild(e)}),document.dispatchEvent(new CustomEvent("asyncLazyLoad")))}var activityEvents=["mousedown","mousemove","keydown","scroll","touchstart","click","keypress","touchmove"];activityEvents.forEach(function(e){window.addEventListener(e,loadJSscripts,!1)});</script>

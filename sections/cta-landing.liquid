@@ -1,0 +1,142 @@
+<div class="cta-landing">
+  <div class="cta-container">
+    {% if section.settings.headline != blank %}
+      <h2 class="cta-headline">{{ section.settings.headline }}</h2>
+    {% endif %}
+
+    {% if section.settings.cta_text != blank %}
+      <a href="#escolha-seu-kit" class="btn-primary">
+        {{ section.settings.cta_text }}
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+{% style %}
+  #shopify-section-{{ section.id }} .cta-landing {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: {{ section.settings.bg_color | default: '#00b45a' }};
+  }
+
+  #shopify-section-{{ section.id }} .cta-headline,
+  #shopify-section-{{ section.id }} .cta-headline p {
+    color: {{ section.settings.text_color | default: '#ffffff' }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .btn-primary {
+    background-color: {{ section.settings.button_bg_color }} !important;
+    color: {{ section.settings.button_text_color }} !important;
+    border-color: {{ section.settings.button_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.button_shadow_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .btn-primary:hover {
+    background-color: {{ section.settings.button_hover_bg_color }} !important;
+    color: {{ section.settings.button_hover_text_color }} !important;
+    border-color: {{ section.settings.button_hover_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.button_hover_shadow_color }} !important;
+  }
+{% endstyle %}
+
+{{ 'cta-landing.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "CTA Landing",
+  "tag": "section",
+  "class": "cta-landing-section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "headline",
+      "label": "Título Principal",
+      "default": "<p>Quer Se Juntar a Quem<br>Já Desincha e Define<br>Naturalmente?</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto do Botão CTA",
+      "default": "Sim Eu Quero"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL do Botão CTA"
+    },
+    {
+      "type": "header",
+      "content": "Estilo Visual (Cores)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Cor de Fundo",
+      "default": "#006B3C"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Cor do Texto",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Cores do Botão"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Cor de Fundo do Botão",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Cor do Texto do Botão",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "button_shadow_color",
+      "label": "Cor da Sombra do Botão",
+      "default": "#005234"
+    },
+    {
+      "type": "header",
+      "content": "Cores do Botão (Hover)"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Cor de Fundo (Hover)",
+      "default": "#7ED321"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Cor do Texto (Hover)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_shadow_color",
+      "label": "Cor da Sombra (Hover)",
+      "default": "#005234"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA Landing",
+      "settings": {
+        "headline": "<p>Quer Se Juntar a Quem<br>Já Desincha e Define<br>Naturalmente?</p>",
+        "cta_text": "Sim Eu Quero",
+        "bg_color": "#006B3C",
+        "text_color": "#ffffff",
+        "button_bg_color": "#005234",
+        "button_text_color": "#7BCA0C",
+        "button_shadow_color": "#005234"
+      }
+    }
+  ]
+}
+{% endschema %}

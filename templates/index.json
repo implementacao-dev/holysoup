@@ -1,0 +1,2546 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "a8d45234-ff4c-4fb4-ab6d-16d71fbf1a5d": {
+      "type": "slideshow-hs",
+      "blocks": {
+        "slide_KtnNhF": {
+          "type": "Slide",
+          "settings": {
+            "image_slide": "shopify://shop_images/bannedr_projeto21D_desk.png",
+            "image_slide_mb": "shopify://shop_images/bannedr_projeto21D_mob.png",
+            "title": "",
+            "rotative": "",
+            "subtitle": "",
+            "url": "shopify://products/projeto-21-dias"
+          }
+        },
+        "slide_TEeVm3": {
+          "type": "Slide",
+          "settings": {
+            "image_slide": "shopify://shop_images/IMG_2168.png",
+            "image_slide_mb": "shopify://shop_images/IMG_2169.png",
+            "title": "",
+            "rotative": "",
+            "subtitle": "",
+            "url": "shopify://collections/all"
+          }
+        },
+        "slide_CMPdFn": {
+          "type": "Slide",
+          "disabled": true,
+          "settings": {
+            "image_slide": "shopify://shop_images/baner_leve_mais_poupe_mais_desk_MAIO_V2.png",
+            "image_slide_mb": "shopify://shop_images/baner_leve_mais_poupe_mais_mob_MAIO_V2.png",
+            "title": "",
+            "rotative": "",
+            "subtitle": "",
+            "url": ""
+          }
+        },
+        "slide_XmYgLX": {
+          "type": "Slide",
+          "disabled": true,
+          "settings": {
+            "image_slide": "shopify://shop_images/baner_leve_mais_poupe_mais_desk_5e5e7fd5-61fb-4789-b486-e7b61d2717a4.png",
+            "image_slide_mb": "shopify://shop_images/baner_leve_mais_poupe_mais_mob_cdc160f2-bece-4d2a-8437-43392f8eb6e4.png",
+            "title": "",
+            "rotative": "",
+            "subtitle": "",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_KtnNhF",
+        "slide_TEeVm3",
+        "slide_CMPdFn",
+        "slide_XmYgLX"
+      ],
+      "settings": {}
+    },
+    "11d025eb-d332-49cd-ae54-c6243379ae1c": {
+      "type": "destaques-home",
+      "blocks": {
+        "feature_GCTDLH": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/100_natural_2x_04ef8abb-d1d6-4083-84e0-edad2007b322.png",
+            "svg": "",
+            "title": "",
+            "badge": ""
+          }
+        },
+        "feature_Ukh8mm": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/opcoes_proteica_2x_6acc86d9-12ca-4a16-a805-baec5ef3afc7.png",
+            "svg": "",
+            "title": "",
+            "badge": ""
+          }
+        },
+        "feature_geeiGp": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/zero_conservantes_2x_e1685f81-a2a5-4299-904e-167c1afe388a.png",
+            "svg": "",
+            "title": "",
+            "badge": ""
+          }
+        },
+        "feature_9hGm7D": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/zero_gluten_2x_df7f3aa0-755c-44e2-a535-e7416dc26b10.png",
+            "svg": "",
+            "title": "",
+            "badge": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_GCTDLH",
+        "feature_Ukh8mm",
+        "feature_geeiGp",
+        "feature_9hGm7D"
+      ],
+      "settings": {
+        "background_color": "#ffffff",
+        "borda-superior": false,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "praticidade_home_argKfc": {
+      "type": "praticidade-home",
+      "blocks": {
+        "step_WQygpE": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/preparo_passo_1_2x_c3b76c02-0b12-4d5d-9172-caa71ba50e13.png",
+            "step_description": "<b>Passo 1:</b><br>Ferva a água, adicione<br>o conteúdo e sal.",
+            "step_title": "Passo 1 - Ferva água e adicione sopa"
+          }
+        },
+        "step_hYbDmV": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/peparo_passo_2_2x_2f68a09a-36ca-4d85-b69d-c8bce1446473.png",
+            "step_description": "<b>Passo 2:</b><br>Cozinhe pelo tempo<br> indicado no pacote.",
+            "step_title": "Passo 2 - Cozinhe no tempo indicado"
+          }
+        },
+        "video_g9PCgz": {
+          "type": "video",
+          "disabled": true,
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/5083f170a78a43619f63f28d5ec8a514.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "step_WQygpE",
+        "step_hYbDmV",
+        "video_g9PCgz"
+      ],
+      "settings": {
+        "section_title": "TODA HOLY É PRÁTICA ASSIM",
+        "observation": "",
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "swiper_bulk_purchase_g3AxMP": {
+      "type": "swiper-bulk-purchase",
+      "blocks": {
+        "slide_4A8aMc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/card_bronze_2x_b833f478-30ad-4e39-997b-34fab79e1bda.png"
+          }
+        },
+        "slide_gQT44a": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/card_prata_2x_43ade1ac-2b2d-4037-9331-0eb5c651b144.png"
+          }
+        },
+        "slide_afXVDQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/card_ouro_2x_41cf74de-fad4-4248-be24-1867d2dd169b.png"
+          }
+        },
+        "slide_Gpr3pj": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/card_diamante_2x_e7802200-5636-4b5f-afc1-c77fa4d6efcc.png"
+          }
+        }
+      },
+      "block_order": [
+        "slide_4A8aMc",
+        "slide_gQT44a",
+        "slide_afXVDQ",
+        "slide_Gpr3pj"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".product-carousel-container {padding-top: 60px;}",
+        ".product-carousel-container .font-home {margin-right: 40px;}",
+        "@media (min-width: 768px) {.product-carousel-container .font-home {margin-right: 0; }}"
+      ],
+      "name": "Popup Progressivo",
+      "settings": {
+        "rich_title": "<p>QUANTO VOCÊ QUER <strong>ECONOMIZAR HOJE?</strong></p>",
+        "collection_1": "sopas-popup",
+        "collection_2": "macarroes-popup",
+        "collection_3": "risotos-popup",
+        "collection_4": "aveias-popup",
+        "collection_5": "",
+        "tier_0_color": "#afaa7a",
+        "tier_1_qty": 4,
+        "tier_1_pct": 10,
+        "tier_1_gift_text": "",
+        "tier_1_color": "rgba(0,0,0,0)",
+        "tier_1_bar_image": "shopify://shop_images/nivel_barra_bronze_2x_340e5f5c-8bb3-475f-8c24-eb7fc6a2b055.png",
+        "tier_1_badge_bg_image": "shopify://shop_images/nivel_badge_bronze_2x_58077fc8-fce6-4c4b-b84a-0539008c0c4c.png",
+        "tier_2_qty": 8,
+        "tier_2_pct": 15,
+        "tier_2_gift_text": "",
+        "tier_2_color": "rgba(0,0,0,0)",
+        "tier_2_bar_image": "shopify://shop_images/nivel_barra_prata_2x_3f946ecc-902e-406b-b2ef-5400658e495b.png",
+        "tier_2_badge_bg_image": "shopify://shop_images/nivel_badge_prata_2x_56dc1d5e-036d-4e31-86a5-07796fd8e892.png",
+        "tier_3_qty": 12,
+        "tier_3_pct": 20,
+        "tier_3_gift_text": "COPO MEDIDOR",
+        "tier_3_gift_image": "shopify://shop_images/brinde_ouro_2x_cecdb978-7ccd-4675-9d13-7b5f99dfafdb.png",
+        "tier_3_color": "rgba(0,0,0,0)",
+        "tier_3_bar_image": "shopify://shop_images/nivel_barra_ouro_2x_bbc30324-393b-47b0-96b6-580343b5a0f6.png",
+        "tier_3_badge_bg_image": "shopify://shop_images/nivel_badge_ouro_2x_78f17b75-a0cd-420c-a743-f263fa2e047b.png",
+        "tier_4_qty": 18,
+        "tier_4_pct": 25,
+        "tier_4_gift_text": "01 COPO MEDIDOR +01 CAÇAROLA",
+        "tier_4_gift_image": "shopify://shop_images/brinde_diamante_2x_468ca295-e869-4ca7-9be8-eeefb18bc20c.png",
+        "tier_4_color": "rgba(0,0,0,0)",
+        "tier_4_badge_bg_image": "shopify://shop_images/nivel_box_diamante_2x_00ee41f3-57f8-4152-9bfd-dbc54f9f4a60.png"
+      }
+    },
+    "e3a9ff10-6902-4baf-a0a2-91ae8874ceb0": {
+      "type": "persona-home",
+      "blocks": {
+        "b7edecf9-0a8c-4b0c-bbf5-ed93a4ae8d75": {
+          "type": "feature",
+          "settings": {
+            "color": "#e2f3c9",
+            "icone": "shopify://shop_images/icone_nao-tem-tempo_59f122f8-686c-4bd9-97fc-f4db19dd05f6.svg",
+            "title": "Não tem tempo",
+            "description": "Todas as sopas Holysoup são 100% naturais e saudáveis e auxiliam no processo de emagrecimento por terem poucas calorias se comparadas a jantares comuns. Emagreça comendo bem!"
+          }
+        },
+        "a5c9b4e0-ab09-4310-92c2-0a6441c83257": {
+          "type": "feature",
+          "settings": {
+            "color": "#e2f3c9",
+            "icone": "shopify://shop_images/icone_balanca_50cffe06-3379-4842-bb73-bf3bf3e945e0.svg",
+            "title": "Quer emagrecer",
+            "description": "Para quem tem a vida corrida, as sopas Holysoup são 100% práticas. É só colocar na água e esperar cozinhar. Praticidade é nossa especialidade!"
+          }
+        },
+        "639155ba-5b7c-4676-917c-e97fe55f3925": {
+          "type": "feature",
+          "settings": {
+            "color": "#e2f3c9",
+            "icone": "shopify://shop_images/icone_nao-sabe-cozinhar_83c162b6-ec85-46b3-a4a3-67ac83a75fd8.svg",
+            "title": "Não sabe cozinhar",
+            "description": "Muitas fibras, que irão auxiliar na regulação do seu intestino, te esperam num prato de Holysoup. Aposte numa sopa deliciosa e cuide da sua saúde intestinal."
+          }
+        },
+        "53fabea6-cea3-4074-98ef-74c362c7d485": {
+          "type": "feature",
+          "settings": {
+            "color": "#e2f3c9",
+            "icone": "shopify://shop_images/icone_dificuldade-ir-banheiro_de7166c2-6818-42ac-bbd3-c3d9893c5cce.svg",
+            "title": "Tem dificuldade de ir ao banheiro",
+            "description": "Se a cozinha não é sua praia, Holysoup é a melhor opção! Super fácil de ser preparada, só precisa de 2 ingredientes. Com a Holy, qualquer um pode virar chef!"
+          }
+        },
+        "220f4640-ab56-49ba-8fd6-3617560abd23": {
+          "type": "feature",
+          "settings": {
+            "color": "#e2f3c9",
+            "icone": "shopify://shop_images/icone_louco_por_sopa_a9eae3f1-bd49-435d-8ecc-3727665c2c49.svg",
+            "title": "É louco por sopa",
+            "description": "Se você ama sopa e tem memórias afetivas ligadas a esse alimento, nossas sopinhas possuem tempero e sabor especial para você se deliciar e aquecer também o coração."
+          }
+        }
+      },
+      "block_order": [
+        "b7edecf9-0a8c-4b0c-bbf5-ed93a4ae8d75",
+        "a5c9b4e0-ab09-4310-92c2-0a6441c83257",
+        "639155ba-5b7c-4676-917c-e97fe55f3925",
+        "53fabea6-cea3-4074-98ef-74c362c7d485",
+        "220f4640-ab56-49ba-8fd6-3617560abd23"
+      ],
+      "settings": {
+        "header_title": "AS HOLYS SÃO PERFEITAS PRA QUEM:",
+        "background_color": "#fffae0",
+        "header_color": "#005234",
+        "borda-superior": false,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff",
+        "default_title_color": "#005234"
+      }
+    },
+    "product_carousel_aVP7kr": {
+      "type": "product-carousel",
+      "blocks": {
+        "product_dDAqbf": {
+          "type": "product",
+          "settings": {
+            "product": "projeto-21-dias",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "show_product_description": false,
+            "description": "<p>21 sopas nutritivas que vão transformar o seu corpo.</p>",
+            "color": "",
+            "porcoes": "21"
+          }
+        },
+        "product_HqyDQx": {
+          "type": "product",
+          "settings": {
+            "product": "kit-mais-vendidos-8un",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "show_product_description": true,
+            "description": "",
+            "color": "",
+            "porcoes": "17"
+          }
+        },
+        "product_LPKP4A": {
+          "type": "product",
+          "settings": {
+            "product": "kit-emagrecimento-holysoup-programa-15-dias",
+            "show_product_image": true,
+            "image": "shopify://shop_images/Kit_Emagrecimento_15_dias_DEZ24.png",
+            "show_product_title": true,
+            "title": "Kit Emagrecimento HolySoup – Programa 15 Dias",
+            "show_product_description": false,
+            "description": "<p>O segredo pra barriga seca e sem inchaço tá aqui.</p>",
+            "color": "",
+            "porcoes": "40"
+          }
+        },
+        "product_AXct3t": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "kit-almoco-proteico-10un",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "show_product_description": true,
+            "description": "",
+            "color": "",
+            "porcoes": "10"
+          }
+        },
+        "product_JTyrD8": {
+          "type": "product",
+          "settings": {
+            "product": "kit-almoco-completo",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "show_product_description": false,
+            "description": "<p>Macs Clássicos + Lançamentos</p>",
+            "color": "",
+            "porcoes": "12"
+          }
+        },
+        "product_wXwV9V": {
+          "type": "product",
+          "settings": {
+            "product": "kit-jantar-premium-9un",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "show_product_description": true,
+            "description": "",
+            "color": "",
+            "porcoes": "9"
+          }
+        },
+        "product_L9mTAB": {
+          "type": "product",
+          "settings": {
+            "product": "kit-sopa-lovers-9un-v2",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "show_product_description": false,
+            "description": "<p>O kit completo de sopas da Holy.</p>",
+            "color": "",
+            "porcoes": "36"
+          }
+        },
+        "product_WtNyLi": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "kit-manha-turbinada-10un",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "show_product_description": true,
+            "description": "",
+            "color": "",
+            "porcoes": "9"
+          }
+        },
+        "product_6WUJWw": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "kit-salva-rotina-12un-1",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "show_product_description": true,
+            "description": "<p>O Kit completão com todas linhas, refeições do café da manhã ao jantar!</p>",
+            "color": "",
+            "porcoes": "18"
+          }
+        },
+        "product_3jzgHt": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "kit-aconchego-de-verdade",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "show_product_description": false,
+            "description": "<p>Macs Lançamentos</p>",
+            "color": "",
+            "porcoes": "8"
+          }
+        },
+        "product_GgirVt": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "kit-feijao-sem-pressao-8un",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "show_product_description": true,
+            "description": "",
+            "color": "",
+            "porcoes": "24"
+          }
+        },
+        "product_VTELDK": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "sopa-dos-sonhos",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Kit_Sopa_dos_Sonhos_10UN.png",
+            "show_product_title": false,
+            "title": "Sopa dos Sonhos (10UN)",
+            "show_product_description": false,
+            "description": "<p>Dormir nunca foi tão prático, rápido e saboroso. </p>",
+            "color": "",
+            "porcoes": "10"
+          }
+        }
+      },
+      "block_order": [
+        "product_dDAqbf",
+        "product_HqyDQx",
+        "product_LPKP4A",
+        "product_AXct3t",
+        "product_JTyrD8",
+        "product_wXwV9V",
+        "product_L9mTAB",
+        "product_WtNyLi",
+        "product_6WUJWw",
+        "product_3jzgHt",
+        "product_GgirVt",
+        "product_VTELDK"
+      ],
+      "custom_css": [
+        ".product-carousel-container {padding-top: 60px;}",
+        ".product-carousel-container .font-home {margin-right: 40px;}",
+        "@media (min-width: 768px) {.product-carousel-container .font-home {margin-right: 0; }}"
+      ],
+      "settings": {
+        "section_id": "",
+        "border_style": "default",
+        "borda-superior": false,
+        "color-borda-superior": "#f5f5f5",
+        "borda-inferior": false,
+        "color-borda-inferior": "#f5f5f5",
+        "color": "#f5f5f5",
+        "navigation_color": "#000000",
+        "subtitle": "",
+        "title": "<p>MELHORES KITS</p>",
+        "title_color": "#231f20",
+        "custom_color": "#005234"
+      }
+    },
+    "product_carousel_v2_Xczirg": {
+      "type": "product-carousel-v2",
+      "blocks": {
+        "product_mPRCVC": {
+          "type": "product",
+          "settings": {
+            "product": "novo-mac-queijo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11234.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "A revolução saudável do mac’n’cheese",
+            "show_product_description": false,
+            "description": "<p>Saboreie o clássico mac’n’cheese, mas de um jeito saudável, que seu corpo agradece! Com 20 g de proteína, fonte de vitaminas e minerais e a cremosidade que só um queijo de verdade pode oferecer.<br/><br/><strong>Ingredientes: </strong>Leite, queijo provolone, colágeno, extrato de levedura, farinha de feijão branco, queijo em pó, alho, páprica defumada, orégano, vitaminas [ácido ascóbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)]</p>",
+            "color": "#e6f3ff",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/Grupo_11245.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_11244.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/Grupo_11243.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/Grupo_11232_70d26778-fb11-4a0e-93e5-8a72272fed08.png"
+          }
+        },
+        "product_k8RUaE": {
+          "type": "product",
+          "settings": {
+            "product": "pack-sopa-low-carb",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11207.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Descomplica qualquer dieta",
+            "show_product_description": false,
+            "description": "<p>Funcional, nutritiva e no sachê, a Sopa Low Carb em sachê chegou pra descomplicar a dieta, entregando mais praticidade, saciedade duradoura e muuuito sabor.<br/></p><p><strong>Ingredientes: </strong>Lentilha vermelha, tomate, quinoa branca, quinoa vermelha, quinoa preta, páprica defumada, cebola, pimentão vermelho, salsa, alho poró e orégano.</p>",
+            "color": "#f8e9e4",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_pEXYUP": {
+          "type": "product",
+          "settings": {
+            "product": "risoto-de-queijo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_risoto_queijo.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Risoto com queijo provolone de verdade",
+            "show_product_description": false,
+            "description": "<p>Feito com queijo de qualidade, é o sabor que agrada a todos, acompanhando bem qualquer proteína. Muuuito cremoso, derrete na boca, confortando a cada garfada.   </p><p><strong>Ingredientes: </strong>queijo provolone, arroz arbóreo, leite integral em pó, colágeno, queijo em pó, alho, noz moscada, orégano.</p>",
+            "color": "#fffbf5",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/queijo_vitaminas.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/queijo_colageno.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/queijo_saborinedito.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_risoto_queijo.png"
+          }
+        },
+        "product_BwVq3k": {
+          "type": "product",
+          "settings": {
+            "product": "novo-mac-alfredo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11235.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "O mais proteico, e favorito das nutris.",
+            "show_product_description": false,
+            "description": "<p>Com incríveis 20 g de proteína de frango suculento, fonte de vitaminas e minerais, fica pronto em 15 minutos e é a escolha número um dos nutricionistas. Praticidade e sabor nos seus dias corridos!<br/><br/><strong>Ingredientes: </strong>Leite, farinha de feijão branco, queijo provolone, frango desidratado, alho, extrato de levedura, cebola, salsa, cebolinha, noz moscada, pimenta branca, vitaminas [ácido ascóbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)]</p>",
+            "color": "#f6ebff",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/Grupo_11242_2c90d4ff-e204-4feb-8434-f98fb4b73d9c.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_11241_da43d555-d3a8-4ec4-a10d-fba05da16d5b.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/Grupo_11240_5f0ed623-c822-4354-a58d-e64c92eee739.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/Grupo_11233_e668991e-4b5f-4bff-8b00-13a0c8193bd7.png"
+          }
+        },
+        "product_Qm6WDd": {
+          "type": "product",
+          "settings": {
+            "product": "sopa-da-vovo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_vovo_2x_47a6bbde-3092-4916-a7cf-ddbeb583a1b0.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Uma sopa com gostinho de comida de vó",
+            "show_product_description": false,
+            "description": "<p>Tenho valor afetivo, mas não é só isso. Possuo muitas fibras, forneço energia, auxílio no funcionamento intestinal e ajudo na sua perda de peso.<br/><br/><strong>Ingredientes:</strong> Macarrão sem glúten (farinha de arroz, corante natural curcumina, urucum e emulsificante) flocos de batata, quinoa branca, flocos de arroz, cenoura, cebola, tomate, salsa, mandioquinha, alho, pimentão vermelho, cúrcuma, páprica defumada, alho poró e pimenta preta.</p>",
+            "color": "#ffeed8",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/macarrao_funcional.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/ajuda_a_emagrecer.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/baixas_calorias.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_vovo.png"
+          }
+        },
+        "product_mRPK3M": {
+          "type": "product",
+          "settings": {
+            "product": "canja-da-mamae",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_canja_e582ccbf-b223-4c09-8e31-091fb9858577.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Uma receita clássica e mega proteica",
+            "show_product_description": false,
+            "description": "<p>Sou um delicioso frango com arroz proteico que se encaixa em qualquer plano alimentar e cuida da sua saúde como carinho de mãe.<br/><br/><strong>Ingredientes:</strong> Arroz branco, quinoa, proteína de ervilha, cenoura, frango desidratado e desfiado, flocos de batata, cebola, farinha de mandioca, salsa, cúrcuma, tomate, alho e alho poró.</p>",
+            "color": "#ffeff1",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/20g_proteina.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_4206.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/regula_intestino.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_canja.png"
+          }
+        },
+        "product_hkAPEH": {
+          "type": "product",
+          "settings": {
+            "product": "risoto-funghi",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_risoto_funghi.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Risoto com cogumelos selecionados que não sai de moda",
+            "show_product_description": false,
+            "description": "<p>Releitura caseira do risoto clássico, elegante e irresistível de restaurante. Esse prato suculento é uma experiência profunda, suave e reconfortante. </p><p><strong>Ingredientes: </strong>cogumelo funghi, cogumelo shiitake, arroz arbório, colágeno, cebola, alho, alho poró, salsa, e vitaminas e minerais.</p>",
+            "color": "#f5fff5",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/funghi_vitaminas.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/funghi_colageno.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/funghi_cogumelos.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_risoto_funghi.png"
+          }
+        },
+        "product_EPtgnE": {
+          "type": "product",
+          "settings": {
+            "product": "sopa-low-carb",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_lowcarb_5a191fea-5d5f-453b-a50c-2da61d674dab.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Perfeito para uma dieta Low Carb cheia de sabor",
+            "show_product_description": false,
+            "description": "<p>Sou rica em proteína e fibras, meu ingrediente principal é a lentilha que ajuda no trânsito e no inchaço abdominal. Me inclua na sua dieta de baixo carbo.<br/><br/><strong>Ingredientes:</strong> Lentilha vermelha, quinoa branca, proteína de ervilha, tomate, quinoa vermelha, farinha de mandioca, páprica defumada, pimentão vermelho, cebola, quinoa preta, salsa, alho poró e orégano.</p>",
+            "color": "#fff3f5",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/Grupo_4109.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/rica_em_fibras.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/Grupo_4100.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_lowcarb.png"
+          }
+        },
+        "product_RKKFUi": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "super-aveia-chocolate-e-banana",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_chocolate.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "É pra comer chocolate sem culpa na consciência",
+            "show_product_description": false,
+            "description": "<p>Perfeita pra começar o dia com leveza e doçura, essa combinação é ideal pra quem quer matar a vontade de comer chocolate sem abrir mão do sabor, equilíbrio e prazer.</p><p><strong>Ingredientes:</strong> aveia, banana desidratada, proteína concentrada do soro de leite, semente de chia, cacau, leite em pó integral, psyllium, sal, vitaminas A, B6, B12, C e D, e ferro e zinco</p>",
+            "color": "#e0a48d",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/claim_4em1_chocolate.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/claim_gluten_chocolate.svg",
+            "stamp_text_2": "",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_chocolate.png"
+          }
+        },
+        "product_exwUTQ": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "super-aveia-morango-e-cranberry",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_morango.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Combinação frutada, bem leve e muito refrescante ",
+            "show_product_description": false,
+            "description": "<p>Doce na medida certa e completamente natural, essa explosão de frescor é pra quem quer sentir, de verdade, os pedaços reais de morango e cranberry. </p><p><strong>Ingredientes: </strong>aveia, proteína concentrada do soro de leite, cranberry desidratado, semente de chia, psyllium, morango em pó, beterraba em pó, sal, vitaminas A, B6, B12, C e D, e ferro e zinco.</p>",
+            "color": "#ffe8f0",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/claim_4em1_morango.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/claim_gluten_morango.svg",
+            "stamp_text_2": "",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_morango.png"
+          }
+        },
+        "product_HCGeAn": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "feijao-carioca",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_feijao_carioca.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Mais praticidade naquele feijão do dia a dia do brasileiro",
+            "show_product_description": false,
+            "description": "<p>Sou aquele feijão do almoço de todos os dias, com gostinho de comida feita em casa, fonte de muitas vitaminas e minerais, e bem fácil de fazer.</p><p><strong>Ingredientes: </strong>feijão carioca, páprica defumada, cebola, páprica picante, cominho, louro, pimenta preta, fécula de mandioca, vitaminas [ácido ascórbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)].</p>",
+            "color": "#fff2ed",
+            "card_color": "",
+            "porcoes": "3",
+            "stamp_image_1": "shopify://shop_images/carioca_pressao.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/carioca_10min.svg",
+            "stamp_text_2": "",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_feijao_carioca_b48dd568-47d3-4b4c-bf7f-50a636349945.png"
+          }
+        },
+        "product_JjdQEq": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "feijao-preto",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_feijao_preto.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "A feijoada ficou ainda melhor e claro, mais rápida",
+            "show_product_description": false,
+            "description": "<p>Sou a opção prática perfeita para fazer uma feijoada em poucos minutos ou qualquer outra receita saborosa com feijão preto que você tenha em mente.</p><p><strong>Ingredientes: </strong>feijão preto, cebola, alho, extrato de levedura, fécula de mandioca, vitaminas [ácido ascórbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)].</p>",
+            "color": "#f3e7e2",
+            "card_color": "",
+            "porcoes": "3",
+            "stamp_image_1": "shopify://shop_images/preto_pressao.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/preto_10min.svg",
+            "stamp_text_2": "",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_feijao_preto.png"
+          }
+        }
+      },
+      "block_order": [
+        "product_mPRCVC",
+        "product_k8RUaE",
+        "product_pEXYUP",
+        "product_BwVq3k",
+        "product_Qm6WDd",
+        "product_mRPK3M",
+        "product_hkAPEH",
+        "product_EPtgnE",
+        "product_RKKFUi",
+        "product_exwUTQ",
+        "product_HCGeAn",
+        "product_JjdQEq"
+      ],
+      "custom_css": [
+        ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
+        "h3 {text-align: center;}"
+      ],
+      "name": "Product Carousel V2",
+      "settings": {
+        "section_id": "",
+        "border_style": "default",
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff",
+        "color": "",
+        "title_color": "#005234",
+        "custom_color": "#005234",
+        "title": "<p>MAIS VENDIDOS</p>",
+        "subtitle": "<p>Os favoritos de +400.000 clientes</p>"
+      }
+    },
+    "product_carousel_v2_AifKKK": {
+      "type": "product-carousel-v2",
+      "blocks": {
+        "product_BdezVP": {
+          "type": "product",
+          "settings": {
+            "product": "canja-da-mamae",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_canja_e582ccbf-b223-4c09-8e31-091fb9858577.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Uma receita clássica e mega proteica",
+            "show_product_description": false,
+            "description": "<p>Sou um delicioso frango com arroz proteico que se encaixa em qualquer plano alimentar e cuida da sua saúde como carinho de mãe.<br/><br/><strong>Ingredientes:</strong> Arroz branco, quinoa, proteína de ervilha, cenoura, frango desidratado e desfiado, flocos de batata, cebola, farinha de mandioca, salsa, cúrcuma, tomate, alho e alho poró.</p>",
+            "color": "#ffeff1",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/20g_proteina.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_4206.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/regula_intestino.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_canja.png"
+          }
+        },
+        "product_eyMKw7": {
+          "type": "product",
+          "settings": {
+            "product": "sopa-da-vovo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_vovo_2x_47a6bbde-3092-4916-a7cf-ddbeb583a1b0.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Uma sopa com gostinho de comida de vó",
+            "show_product_description": false,
+            "description": "<p>Tenho valor afetivo, mas não é só isso. Possuo muitas fibras, forneço energia, auxílio no funcionamento intestinal e ajudo na sua perda de peso.<br/><br/><strong>Ingredientes:</strong> Macarrão sem glúten (farinha de arroz, corante natural curcumina, urucum e emulsificante) flocos de batata, quinoa branca, flocos de arroz, cenoura, cebola, tomate, salsa, mandioquinha, alho, pimentão vermelho, cúrcuma, páprica defumada, alho poró e pimenta preta.</p>",
+            "color": "#ffeed8",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/macarrao_funcional.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/ajuda_a_emagrecer.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/baixas_calorias.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_vovo.png"
+          }
+        },
+        "product_r4zJdr": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "lamen-fit",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_lamenfit_selo-lancamento.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "O lámen que todo mundo ama, em uma versão saudável",
+            "show_product_description": false,
+            "description": "<p>Sou uma lámen diferente dos demais, pois além de saboroso e natural, tenho pouco sódio, vitaminas que vão do A ao D e fico pronto em menos de 20 minutos. Quem ama lámen vai se apaixonar por mim!</p><p><strong>Ingredientes:  </strong>massa alimentícia de tapioca (farinha de arroz integral, fécula de mandioca hidratada, clara de ovo e espessante goma guar), cenoura, caldo de peixe, páprica, cogumelo shitake, alho, cebola, cebolinha, gengibre, alga marinha desidratada e premix de vitaminas e minerais (vitamina C, Ferro, Zinco, vitamina B6, vitamina A, vitamina D2 e vitamina B12).</p>",
+            "color": "",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/claim_lamen_home_kcal.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/claim_lamen_home_vitaminas_875b743f-0b90-495e-b542-0e07f0dc4f48.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/claim_lamen_home_macarrao_funcional.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_lamen_24-01-2025.png"
+          }
+        },
+        "product_m6emUd": {
+          "type": "product",
+          "settings": {
+            "product": "sopa-detox",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_detox_2x_a30f1fcd-793e-4791-847d-4932f24efe6c.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "A opção ideal para um detox",
+            "show_product_description": false,
+            "description": "<p>Ajudo na saúde intestinal, e desintoxico seu corpo depois de um exagero.<br/><br/><strong>Ingredientes:</strong> Macarrão sem glúten (farinha de arroz, corante natural curcumina, urucum e emulsificante), quinoa branca, cenoura, flocos de batata, semente de abóbora, cebola, espinafre, alho, alho poró, gengibre e pimenta preta.</p>",
+            "color": "#f2fff7",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/Grupo_4072.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_4067.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/desincha_corpo.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_detox.png"
+          }
+        },
+        "product_hnNbJL": {
+          "type": "product",
+          "settings": {
+            "product": "sopa-low-carb",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_lowcarb_5a191fea-5d5f-453b-a50c-2da61d674dab.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Perfeito para uma dieta Low Carb cheia de sabor",
+            "show_product_description": false,
+            "description": "<p>Sou rica em proteína e fibras, meu ingrediente principal é a lentilha que ajuda no trânsito e no inchaço abdominal. Me inclua na sua dieta de baixo carbo.<br/><br/><strong>Ingredientes:</strong> Lentilha vermelha, quinoa branca, proteína de ervilha, tomate, quinoa vermelha, farinha de mandioca, páprica defumada, pimentão vermelho, cebola, quinoa preta, salsa, alho poró e orégano.</p>",
+            "color": "#fff3f5",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/Grupo_4109.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/rica_em_fibras.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/Grupo_4100.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_lowcarb.png"
+          }
+        },
+        "product_BV3zkw": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "sopa-massala",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_masala_selo-lancamento.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Uma sopa com os melhores aromas indianos",
+            "show_product_description": false,
+            "description": "<p>Sou uma surpreendente receita proteica com os melhores temperos da Índia com um macarrão sem glúten que faz bem pro corpo e aquece a alma.</p><p><strong>Ingredientes: </strong>massa alimentícia de tapioca (farinha de arroz, fécula de mandioca hidratada (tapioca), clara de ovo em pó, espessante goma guar, curcuma em pó, gengibre em pó e pimenta preta em pó), lentilha vermelha, grão-de-bico, cenoura, cebola, levedura nutricional, farinha de mandioca tipo I, curry em pó, alho-poró desidratado, salsa, cúrcuma em pó e premix de vitaminas e minerais (vitamina C, Ferro, Zinco, vitamina B6, vitamina A, vitamina D2 e vitamina B12).</p>",
+            "color": "rgba(0,0,0,0)",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/claim_masala_home_proteina.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/claim_lamen_home_vitaminas.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/claim_masala_home_macarrao_funcional.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_masala_24-01-2025.png"
+          }
+        },
+        "product_6Vbza6": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "creme-de-cebola-do-pierre",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_cremecebola_selo-lancamento.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "O clássico creme francês para suas receitas",
+            "show_product_description": false,
+            "description": "<p>A realeza francesa me ama e eu posso ser o prato principal do seu jantar ou um acompanhamento sofisticado.</p><p><strong>Ingredientes: </strong>cebola, farinha de mandioca tipo I, proteína isolada de ervilha, levedura nutricional, especiarias e premix de vitaminas e minerais (vitamina C, Ferro, Zinco, vitamina B6, vitamina A, vitamina D2 e vitamina B12).</p>",
+            "color": "",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/claim_cremecebola_home_kcal.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/claim_cremecebola_home_proteina.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/claim_lamen_home_vitaminas_14f2125e-06a0-47e5-8e7e-8ef5691afda0.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_cebola_24-01-2025.png"
+          }
+        },
+        "product_m9fFA7": {
+          "type": "product",
+          "settings": {
+            "product": "creme-verde-fit",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_cremeverde_2x_1b57e489-5bcc-4c21-84c9-e9bcdcf1fedc.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Refeição leve à base de ervilha com apenas 58kcal por porção",
+            "show_product_description": false,
+            "description": "<p>Quer secar a barriga? Então demos match! Ajudo a combater a retenção de líquido e a gordura corporal com uma receita com muitas fibras.<br/><br/><strong>Ingredientes:</strong> Ervilha, cenoura, cebola, alho e pimenta preta.</p>",
+            "color": "#effff8",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/Grupo_4034_1.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_4029.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/Grupo_4006.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_creme_verde.png"
+          }
+        },
+        "product_b8AByB": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "sache-sopa-dos-sonhos",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_sopadossonhos.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Contar carneirinhos, nunca mais",
+            "show_product_description": false,
+            "description": "<p>Sou uma refeição proteica que fica pronta em 2 minutos, te sacia e relaxa para você acordar cheia de energia e disposição.</p>",
+            "color": "#d9f0ff",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/melatonina.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/pronta_2_min.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/disposicao_5bba9d4b-c268-46ac-ab60-d7829a7e4d48.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_sopa_dos_sonhos_15-10.png"
+          }
+        }
+      },
+      "block_order": [
+        "product_BdezVP",
+        "product_eyMKw7",
+        "product_r4zJdr",
+        "product_m6emUd",
+        "product_hnNbJL",
+        "product_BV3zkw",
+        "product_6Vbza6",
+        "product_m9fFA7",
+        "product_b8AByB"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
+        "h3 {text-align: center;}"
+      ],
+      "settings": {
+        "section_id": "",
+        "border_style": "default",
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff",
+        "color": "",
+        "title_color": "#005234",
+        "custom_color": "#005234",
+        "title": "<p>SEMANA DA SOPA</p>",
+        "subtitle": "<p>Linha de R$19,90 por R$14,90</p>"
+      }
+    },
+    "product_carousel_v2_wjQbrc": {
+      "type": "product-carousel-v2",
+      "blocks": {
+        "product_acaM8W": {
+          "type": "product",
+          "settings": {
+            "product": "kit-s-o-s-carnaval-6un",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "subtitle": "",
+            "show_product_description": false,
+            "description": "",
+            "color": "",
+            "card_color": "",
+            "porcoes": "24",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_YBzg88": {
+          "type": "product",
+          "settings": {
+            "product": "kit-carnaval-em-casa-10un",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "subtitle": "",
+            "show_product_description": false,
+            "description": "",
+            "color": "",
+            "card_color": "",
+            "porcoes": "10",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_acaM8W",
+        "product_YBzg88"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
+        "h3 {text-align: center;}"
+      ],
+      "settings": {
+        "section_id": "",
+        "border_style": "default",
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff",
+        "color": "rgba(0,0,0,0)",
+        "title_color": "#005234",
+        "custom_color": "#005234",
+        "title": "<p>CARNA HOLY</p>",
+        "subtitle": "<p>A Holy vai com você, na folia ou em casa</p>"
+      }
+    },
+    "product_carousel_v2_aQiQHV": {
+      "type": "product-carousel-v2",
+      "blocks": {
+        "product_y4hHWw": {
+          "type": "product",
+          "settings": {
+            "product": "kit-santo-recomeco-15d-10un",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "subtitle": "",
+            "show_product_description": false,
+            "description": "",
+            "color": "",
+            "card_color": "",
+            "porcoes": "28",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_FPLg8Q": {
+          "type": "product",
+          "settings": {
+            "product": "kit-montijo-13un-1",
+            "show_product_image": true,
+            "show_product_title": true,
+            "title": "",
+            "subtitle": "",
+            "show_product_description": false,
+            "description": "",
+            "color": "",
+            "card_color": "",
+            "porcoes": "40",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_y4hHWw",
+        "product_FPLg8Q"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
+        "h3 {text-align: center;}"
+      ],
+      "settings": {
+        "section_id": "",
+        "border_style": "default",
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff",
+        "color": "rgba(0,0,0,0)",
+        "title_color": "#005234",
+        "custom_color": "#005234",
+        "title": "<p>NUTRI INDICA!</p>",
+        "subtitle": "<p>Escolha especial das nossas nutris </p>"
+      }
+    },
+    "product_carousel_v2_QRLFMq": {
+      "type": "product-carousel-v2",
+      "blocks": {
+        "product_7dK6Lt": {
+          "type": "product",
+          "settings": {
+            "product": "mac-caipira",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_home_caipira.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Da roça com “gostin” de prosa boa e “é bão dimais, sô”",
+            "show_product_description": false,
+            "description": "<p>Se encante pelo tradicional sabor do campo no formato mais prático do seu dia. Com <strong>20g de proteína, fonte de 5 vitaminas + 2 minerais</strong> e aquele tantão de frango e milho, o Mac Caipira entrega cremosidade, nutrição e o gostinho de comida de cada que o seu almoço precisa. </p><p><br/><strong>Ingredientes:</strong> Frango, tomate, proteína isolada de ervilha, páprica defumada, cebola, milho, colágeno, fécula de mandioca, levedura nutricional, pimentão verde, alho, salsinha, limão, vitaminas (Vitamina C, B6, A, D2, B12) e minerais (Ferro e Zinco).<br/></p>",
+            "color": "#fdeed4",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_caipora.png"
+          }
+        },
+        "product_9BAkxt": {
+          "type": "product",
+          "settings": {
+            "product": "mac-bolonha",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_home_bolonha.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Almoço de domingo que diz: “mamma mia!” do jeitinho brasileir",
+            "show_product_description": false,
+            "description": "<p>A receita que você já ama, agora ainda mais saborosa, nutritiva e prática. São <strong>20g de proteína, fibras, vitaminas, minerais e um molho bolonhesa encorpado</strong> que combina o melhor da carne com tomates selecionados tudo pronto em poucos minutos pra um almoço bem prático.</p><p><br/><strong>Ingredientes:</strong> Tomate, carne bovina desidratada, proteína isolada de ervilha, cebola, páprica defumada, cenoura, extrato de levedura, alho, açúcar, manjericão, orégano, pimenta preta, vitaminas (Vitamina C, B6, A, D2, B12) e minerais (Ferro e Zinco).<br/></p>",
+            "color": "#f7e6e1",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_bolonha.png"
+          }
+        },
+        "product_HiNTGB": {
+          "type": "product",
+          "settings": {
+            "product": "pack-sopa-low-carb",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11207.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Descomplica qualquer dieta",
+            "show_product_description": false,
+            "description": "<p>Funcional, nutritiva e no sachê, a Sopa Low Carb em sachê chegou pra descomplicar a dieta, entregando mais praticidade, saciedade duradoura e muuuito sabor.<br/></p><p><strong>Ingredientes: </strong>Lentilha vermelha, tomate, quinoa branca, quinoa vermelha, quinoa preta, páprica defumada, cebola, pimentão vermelho, salsa, alho poró e orégano.</p>",
+            "color": "#f8e9e4",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_RLrKLx": {
+          "type": "product",
+          "settings": {
+            "product": "pack-canja-da-mamae",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11206.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Baixa em calorias, alta em sabor",
+            "show_product_description": false,
+            "description": "<p>Imagine chegar em casa após um dia cansativo, preparar uma sopa no micro-ondas em poucos minutos e jantar comfort food que abraça e cuida igual sua mãe.  <br/><br/><strong>Ingredientes: </strong>Arroz branco, quinoa, proteína de ervilha, cenoura, frango desidratado e desfiado, flocos de batata, cebola, farinha de mandioca, salsa, curcuma, tomate, alho e alho poró.</p>",
+            "color": "#ffebeb",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_a8Atgh": {
+          "type": "product",
+          "settings": {
+            "product": "pack-sopa-da-vovo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11205.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Comfort food de verdade",
+            "show_product_description": false,
+            "description": "<p>Mesmo na versão em sachê, a Sopa da Vovó ainda traz o aconchego da comida de quem amamos, com todo sabor, leveza e praticidade que sua rotina precisa.</p><p><strong>Ingredientes:</strong> Macarrão sem glúten ( farinha de arroz, corantes naturais cúrcuma e urucum e emulsificante INS 471), flocos de batata, quinoa branca, flocos de arroz, cenoura, cebola, tomate, salsa, mandioquinha, alho, pimentão vermelho, cúrcuma, páprica defumada, alho poró e pimenta preta.</p>",
+            "color": "#feebde",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_7dK6Lt",
+        "product_9BAkxt",
+        "product_HiNTGB",
+        "product_RLrKLx",
+        "product_a8Atgh"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
+        "h3 {text-align: center;}"
+      ],
+      "name": "Product Carousel V2",
+      "settings": {
+        "section_id": "",
+        "border_style": "default",
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff",
+        "color": "",
+        "title_color": "#005234",
+        "custom_color": "#005234",
+        "title": "<p>Lançamentos</p>",
+        "subtitle": "<p> </p>"
+      }
+    },
+    "586198a2-a4dc-41b9-8e36-8050ad9530d3": {
+      "type": "pontos-positivos",
+      "blocks": {
+        "33b1ddfb-4b56-4b07-bf3c-52e4383a0f93": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify://shop_images/kcal.svg",
+            "title": "COMA SEM<br>SENTIR CULPA",
+            "description": "Comida de verdade sem aditivos, sal ou qualquer realçador de sabor ou corante."
+          }
+        },
+        "6adf25b3-4cb9-4f7d-b8ea-28c178114e6f": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify://shop_images/tempo.svg",
+            "title": "PRATICIDADEPARA SUA DIETA",
+            "description": "Apenas dois passos para sua refeição saudável ficar pronta!"
+          }
+        },
+        "eb489a0e-9d21-495f-9410-f06e298e71ce": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify://shop_images/reeducacao.svg",
+            "title": "REEDUCAÇÃO ALIMENTAR SABOROSA",
+            "description": "Refeições saudáveis com muito sabor que se encaixam na sua rotina."
+          }
+        },
+        "e8962a92-9956-4317-9bc0-e7e5c1289ec8": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify://shop_images/inchaco.svg",
+            "title": "100% NATURAL: XÔ INCHAÇO",
+            "description": "Mix de grãos e legumes para uma digestão leve e gostosa."
+          }
+        }
+      },
+      "block_order": [
+        "33b1ddfb-4b56-4b07-bf3c-52e4383a0f93",
+        "6adf25b3-4cb9-4f7d-b8ea-28c178114e6f",
+        "eb489a0e-9d21-495f-9410-f06e298e71ce",
+        "e8962a92-9956-4317-9bc0-e7e5c1289ec8"
+      ],
+      "settings": {
+        "background_color": "#e2f3c9",
+        "highlight_color": "#3c3c3c",
+        "borda-superior": false,
+        "color-borda-superior": "#f6f6f6",
+        "borda-inferior": false,
+        "color-borda-inferior": "#f6f6f6"
+      }
+    },
+    "57fe8019-168b-4953-8dd1-4cb704b6b57d": {
+      "type": "promos-home",
+      "blocks": {
+        "promotion_LcErRY": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify://shop_images/BANNER_PROMOCIONAL_PRO_SITE.png",
+            "badge": "",
+            "url": ""
+          }
+        },
+        "promotion_UCnNKN": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify://shop_images/IMG_5678.png",
+            "badge": "",
+            "url": "shopify://collections/aveias"
+          }
+        },
+        "promotion_j9g6mG": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify://shop_images/2506-25_25HS291_holyfoods_site_banner_-_risoto-lancamento_PROMO.png",
+            "badge": "",
+            "url": "shopify://collections/risotos"
+          }
+        }
+      },
+      "block_order": [
+        "promotion_LcErRY",
+        "promotion_UCnNKN",
+        "promotion_j9g6mG"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "header_title": "NOVIDADES QUENTINHAS!",
+        "header_color": "#3c3c3c",
+        "borda-superior": false,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "1732882966940526c4": {
+      "type": "apps",
+      "settings": {
+        "include_margins": false
+      }
+    },
+    "product_carousel_v2_F9FerG": {
+      "type": "product-carousel-v2",
+      "blocks": {
+        "product_3agypb": {
+          "type": "product",
+          "settings": {
+            "product": "risoto-de-queijo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_risoto_queijo.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Risoto com queijo provolone de verdade",
+            "show_product_description": false,
+            "description": "<p>Feito com queijo de qualidade, é o sabor que agrada a todos, acompanhando bem qualquer proteína. Muuuito cremoso, derrete na boca, confortando a cada garfada.   </p><p><strong>Ingredientes: </strong>queijo provolone, arroz arbóreo, leite integral em pó, colágeno, queijo em pó, alho, noz moscada, orégano.</p>",
+            "color": "#fffbf5",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/queijo_vitaminas.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/queijo_colageno.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/queijo_saborinedito.svg",
+            "stamp_text_3": ""
+          }
+        },
+        "product_FHXH7d": {
+          "type": "product",
+          "settings": {
+            "product": "risoto-al-mare",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_risoto_almare.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Primeiro risoto com camarão desidratado do Brasil",
+            "show_product_description": false,
+            "description": "<p>Com camarão desidratado e azeite de dendê, é um prato potente, mas equilibrado, despertando a sensação de estar mergulhando nas praias do Nordeste brasileiro. </p><p><strong>Ingredientes: </strong>camarão desidratado, arroz arbóreo, proteína de ervilha, pimentão vermelho, pimentão verde, azeite de dendê, tomate, salsa, cebola, alho, cúrcuma, caldo de peixe.</p>",
+            "color": "#f5fbff",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/almare_vitaminas.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/almare_colageno.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/almare_saborinedito.svg",
+            "stamp_text_3": ""
+          }
+        },
+        "product_pVwGJ4": {
+          "type": "product",
+          "settings": {
+            "product": "risoto-funghi",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_risoto_funghi.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Risoto com cogumelos selecionados que não sai de moda",
+            "show_product_description": false,
+            "description": "<p>Releitura caseira do risoto clássico, elegante e irresistível de restaurante. Esse prato suculento é uma experiência profunda, suave e reconfortante. </p><p><strong>Ingredientes: </strong>cogumelo funghi, cogumelo shiitake, arroz arbório, colágeno, cebola, alho, alho poró, salsa, e vitaminas e minerais.</p>",
+            "color": "#f5fff5",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/funghi_vitaminas.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/funghi_colageno.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/funghi_cogumelos.svg",
+            "stamp_text_3": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_3agypb",
+        "product_FHXH7d",
+        "product_pVwGJ4"
+      ],
+      "custom_css": [
+        ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
+        "h3 {text-align: center;}"
+      ],
+      "name": "Product Carousel V2",
+      "settings": {
+        "section_id": "",
+        "border_style": "default",
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff",
+        "color": "",
+        "title_color": "#005234",
+        "custom_color": "#005234",
+        "title": "<p>Linha de Risotos</p>",
+        "subtitle": "<p>Jantar cinco estrelas feito por você</p>"
+      }
+    },
+    "product_carousel_v2_6c3ngN": {
+      "type": "product-carousel-v2",
+      "blocks": {
+        "product_BaKxrW": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "mac-xicano",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11235.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Xicano de volta por pouco tempo! Só 2.000 un.",
+            "show_product_description": true,
+            "description": "<p>Com incríveis 20 g de proteína de frango suculento, fonte de vitaminas e minerais, fica pronto em 15 minutos e é a escolha número um dos nutricionistas. Praticidade e sabor nos seus dias corridos!<br/><br/><strong>Ingredientes: </strong>Leite, farinha de feijão branco, queijo provolone, frango desidratado, alho, extrato de levedura, cebola, salsa, cebolinha, noz moscada, pimenta branca, vitaminas [ácido ascóbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)]</p>",
+            "color": "#f6ebff",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/Grupo_11242_2c90d4ff-e204-4feb-8434-f98fb4b73d9c.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_11241_da43d555-d3a8-4ec4-a10d-fba05da16d5b.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/Grupo_11240_5f0ed623-c822-4354-a58d-e64c92eee739.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/Grupo_11233_e668991e-4b5f-4bff-8b00-13a0c8193bd7.png"
+          }
+        },
+        "product_nxxJYB": {
+          "type": "product",
+          "settings": {
+            "product": "novo-mac-alfredo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11235.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "O mais proteico, e favorito das nutris.",
+            "show_product_description": false,
+            "description": "<p>Com incríveis 20 g de proteína de frango suculento, fonte de vitaminas e minerais, fica pronto em 15 minutos e é a escolha número um dos nutricionistas. Praticidade e sabor nos seus dias corridos!<br/><br/><strong>Ingredientes: </strong>Leite, farinha de feijão branco, queijo provolone, frango desidratado, alho, extrato de levedura, cebola, salsa, cebolinha, noz moscada, pimenta branca, vitaminas [ácido ascóbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)]</p>",
+            "color": "#f6ebff",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/Grupo_11242_2c90d4ff-e204-4feb-8434-f98fb4b73d9c.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_11241_da43d555-d3a8-4ec4-a10d-fba05da16d5b.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/Grupo_11240_5f0ed623-c822-4354-a58d-e64c92eee739.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/Grupo_11233_e668991e-4b5f-4bff-8b00-13a0c8193bd7.png"
+          }
+        },
+        "product_jnD8rm": {
+          "type": "product",
+          "settings": {
+            "product": "novo-mac-queijo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11234.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "A revolução saudável do mac’n’cheese",
+            "show_product_description": false,
+            "description": "<p>Saboreie o clássico mac’n’cheese, mas de um jeito saudável, que seu corpo agradece! Com 20 g de proteína, fonte de vitaminas e minerais e a cremosidade que só um queijo de verdade pode oferecer.<br/><br/><strong>Ingredientes: </strong>Leite, queijo provolone, colágeno, extrato de levedura, farinha de feijão branco, queijo em pó, alho, páprica defumada, orégano, vitaminas [ácido ascóbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)]</p>",
+            "color": "#e6f3ff",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/Grupo_11245.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_11244.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/Grupo_11243.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/Grupo_11232_70d26778-fb11-4a0e-93e5-8a72272fed08.png"
+          }
+        },
+        "product_PPJ37K": {
+          "type": "product",
+          "settings": {
+            "product": "mac-bolonha",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_home_bolonha.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Almoço de domingo que diz: “mamma mia!” do jeitinho brasileir",
+            "show_product_description": false,
+            "description": "<p>A receita que você já ama, agora ainda mais saborosa, nutritiva e prática. São <strong>20g de proteína, fibras, vitaminas, minerais e um molho bolonhesa encorpado</strong> que combina o melhor da carne com tomates selecionados tudo pronto em poucos minutos pra um almoço bem prático.</p><p><br/><strong>Ingredientes:</strong> Tomate, carne bovina desidratada, proteína isolada de ervilha, cebola, páprica defumada, cenoura, extrato de levedura, alho, açúcar, manjericão, orégano, pimenta preta, vitaminas (Vitamina C, B6, A, D2, B12) e minerais (Ferro e Zinco).<br/></p>",
+            "color": "#f7e6e1",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_bolonha.png"
+          }
+        },
+        "product_4f93aB": {
+          "type": "product",
+          "settings": {
+            "product": "mac-caipira",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_home_caipira.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Da roça com “gostin” de prosa boa e “é bão dimais, sô”",
+            "show_product_description": false,
+            "description": "<p>Se encante pelo tradicional sabor do campo no formato mais prático do seu dia. Com <strong>20g de proteína, fonte de 5 vitaminas + 2 minerais</strong> e aquele tantão de frango e milho, o Mac Caipira entrega cremosidade, nutrição e o gostinho de comida de cada que o seu almoço precisa. </p><p><br/><strong>Ingredientes:</strong> Frango, tomate, proteína isolada de ervilha, páprica defumada, cebola, milho, colágeno, fécula de mandioca, levedura nutricional, pimentão verde, alho, salsinha, limão, vitaminas (Vitamina C, B6, A, D2, B12) e minerais (Ferro e Zinco).<br/></p>",
+            "color": "#fdeed4",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_caipora.png"
+          }
+        }
+      },
+      "block_order": [
+        "product_BaKxrW",
+        "product_nxxJYB",
+        "product_jnD8rm",
+        "product_PPJ37K",
+        "product_4f93aB"
+      ],
+      "custom_css": [
+        ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
+        "h3 {text-align: center;}"
+      ],
+      "settings": {
+        "section_id": "",
+        "border_style": "default",
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff",
+        "color": "",
+        "title_color": "#005234",
+        "custom_color": "#005234",
+        "title": "<p>Linha de Macarrões</p>",
+        "subtitle": "<p>Macarrão saudável e proteico</p>"
+      }
+    },
+    "product_carousel_v2_rxkCEH": {
+      "type": "product-carousel-v2",
+      "blocks": {
+        "product_yNgWjj": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "pack-sopa-low-carb",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11207.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Descomplica qualquer dieta",
+            "show_product_description": false,
+            "description": "<p>Funcional, nutritiva e no sachê, a Sopa Low Carb em sachê chegou pra descomplicar a dieta, entregando mais praticidade, saciedade duradoura e muuuito sabor.<br/></p><p><strong>Ingredientes: </strong>Lentilha vermelha, tomate, quinoa branca, quinoa vermelha, quinoa preta, páprica defumada, cebola, pimentão vermelho, salsa, alho poró e orégano.</p>",
+            "color": "#f8e9e4",
+            "card_color": "",
+            "porcoes": "10",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_MLA6Ng": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "pack-canja-da-mamae",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11206.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Baixa em calorias, alta em sabor",
+            "show_product_description": false,
+            "description": "<p>Imagine chegar em casa após um dia cansativo, preparar uma sopa no micro-ondas em poucos minutos e jantar comfort food que abraça e cuida igual sua mãe.  <br/><br/><strong>Ingredientes: </strong>Arroz branco, quinoa, proteína de ervilha, cenoura, frango desidratado e desfiado, flocos de batata, cebola, farinha de mandioca, salsa, curcuma, tomate, alho e alho poró.</p>",
+            "color": "#ffebeb",
+            "card_color": "",
+            "porcoes": "10",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_GAadEi": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "pack-sopa-da-vovo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11205.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Comfort food de verdade",
+            "show_product_description": false,
+            "description": "<p>Mesmo na versão em sachê, a Sopa da Vovó ainda traz o aconchego da comida de quem amamos, com todo sabor, leveza e praticidade que sua rotina precisa.</p><p><strong>Ingredientes:</strong> Macarrão sem glúten ( farinha de arroz, corantes naturais cúrcuma e urucum e emulsificante INS 471), flocos de batata, quinoa branca, flocos de arroz, cenoura, cebola, tomate, salsa, mandioquinha, alho, pimentão vermelho, cúrcuma, páprica defumada, alho poró e pimenta preta.</p>",
+            "color": "#feebde",
+            "card_color": "",
+            "porcoes": "10",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_nkKTh4": {
+          "type": "product",
+          "settings": {
+            "product": "canja-da-mamae",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_canja_e582ccbf-b223-4c09-8e31-091fb9858577.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Uma receita clássica e mega proteica",
+            "show_product_description": false,
+            "description": "<p>Sou um delicioso frango com arroz proteico que se encaixa em qualquer plano alimentar e cuida da sua saúde como carinho de mãe.<br/><br/><strong>Ingredientes:</strong> Arroz branco, quinoa, proteína de ervilha, cenoura, frango desidratado e desfiado, flocos de batata, cebola, farinha de mandioca, salsa, cúrcuma, tomate, alho e alho poró.</p>",
+            "color": "#ffeff1",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/20g_proteina.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_4206.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/regula_intestino.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_canja.png"
+          }
+        },
+        "product_8YiExa": {
+          "type": "product",
+          "settings": {
+            "product": "sopa-da-vovo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_vovo_2x_47a6bbde-3092-4916-a7cf-ddbeb583a1b0.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Uma sopa com gostinho de comida de vó",
+            "show_product_description": false,
+            "description": "<p>Tenho valor afetivo, mas não é só isso. Possuo muitas fibras, forneço energia, auxílio no funcionamento intestinal e ajudo na sua perda de peso.<br/><br/><strong>Ingredientes:</strong> Macarrão sem glúten (farinha de arroz, corante natural curcumina, urucum e emulsificante) flocos de batata, quinoa branca, flocos de arroz, cenoura, cebola, tomate, salsa, mandioquinha, alho, pimentão vermelho, cúrcuma, páprica defumada, alho poró e pimenta preta.</p>",
+            "color": "#ffeed8",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/macarrao_funcional.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/ajuda_a_emagrecer.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/baixas_calorias.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_vovo.png"
+          }
+        },
+        "product_qtPGBw": {
+          "type": "product",
+          "settings": {
+            "product": "sopa-detox",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_detox_2x_a30f1fcd-793e-4791-847d-4932f24efe6c.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "A opção ideal para um detox",
+            "show_product_description": false,
+            "description": "<p>Ajudo na saúde intestinal, e desintoxico seu corpo depois de um exagero.<br/><br/><strong>Ingredientes:</strong> Macarrão sem glúten (farinha de arroz, corante natural curcumina, urucum e emulsificante), quinoa branca, cenoura, flocos de batata, semente de abóbora, cebola, espinafre, alho, alho poró, gengibre e pimenta preta.</p>",
+            "color": "#f2fff7",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/Grupo_4072.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_4067.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/desincha_corpo.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_detox.png"
+          }
+        },
+        "product_cMkqrW": {
+          "type": "product",
+          "settings": {
+            "product": "sopa-low-carb",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_lowcarb_5a191fea-5d5f-453b-a50c-2da61d674dab.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Perfeito para uma dieta Low Carb cheia de sabor",
+            "show_product_description": false,
+            "description": "<p>Sou rica em proteína e fibras, meu ingrediente principal é a lentilha que ajuda no trânsito e no inchaço abdominal. Me inclua na sua dieta de baixo carbo.<br/><br/><strong>Ingredientes:</strong> Lentilha vermelha, quinoa branca, proteína de ervilha, tomate, quinoa vermelha, farinha de mandioca, páprica defumada, pimentão vermelho, cebola, quinoa preta, salsa, alho poró e orégano.</p>",
+            "color": "#fff3f5",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/Grupo_4109.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/rica_em_fibras.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/Grupo_4100.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_lowcarb.png"
+          }
+        },
+        "product_DMAH4M": {
+          "type": "product",
+          "settings": {
+            "product": "creme-verde-fit",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_cremeverde_2x_1b57e489-5bcc-4c21-84c9-e9bcdcf1fedc.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Refeição leve à base de ervilha com apenas 58kcal por porção",
+            "show_product_description": false,
+            "description": "<p>Quer secar a barriga? Então demos match! Ajudo a combater a retenção de líquido e a gordura corporal com uma receita com muitas fibras.<br/><br/><strong>Ingredientes:</strong> Ervilha, cenoura, cebola, alho e pimenta preta.</p>",
+            "color": "#effff8",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/Grupo_4034_1.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_4029.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/Grupo_4006.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_creme_verde.png"
+          }
+        },
+        "product_gTFbCi": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "sopa-massala",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_masala_selo-lancamento.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Uma sopa com os melhores aromas indianos",
+            "show_product_description": false,
+            "description": "<p>Sou uma surpreendente receita proteica com os melhores temperos da Índia com um macarrão sem glúten que faz bem pro corpo e aquece a alma.</p><p><strong>Ingredientes: </strong>massa alimentícia de tapioca (farinha de arroz, fécula de mandioca hidratada (tapioca), clara de ovo em pó, espessante goma guar, curcuma em pó, gengibre em pó e pimenta preta em pó), lentilha vermelha, grão-de-bico, cenoura, cebola, levedura nutricional, farinha de mandioca tipo I, curry em pó, alho-poró desidratado, salsa, cúrcuma em pó e premix de vitaminas e minerais (vitamina C, Ferro, Zinco, vitamina B6, vitamina A, vitamina D2 e vitamina B12).</p>",
+            "color": "rgba(0,0,0,0)",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/claim_masala_home_proteina.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/claim_lamen_home_vitaminas.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/claim_masala_home_macarrao_funcional.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_masala_24-01-2025.png"
+          }
+        },
+        "product_LymVg7": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "creme-de-cebola-do-pierre",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_cremecebola_selo-lancamento.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "O clássico creme francês para suas receitas",
+            "show_product_description": false,
+            "description": "<p>A realeza francesa me ama e eu posso ser o prato principal do seu jantar ou um acompanhamento sofisticado.</p><p><strong>Ingredientes: </strong>cebola, farinha de mandioca tipo I, proteína isolada de ervilha, levedura nutricional, especiarias e premix de vitaminas e minerais (vitamina C, Ferro, Zinco, vitamina B6, vitamina A, vitamina D2 e vitamina B12).</p>",
+            "color": "",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/claim_cremecebola_home_kcal.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/claim_cremecebola_home_proteina.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/claim_lamen_home_vitaminas_14f2125e-06a0-47e5-8e7e-8ef5691afda0.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_cebola_24-01-2025.png"
+          }
+        },
+        "product_eciVBR": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "lamen-fit",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_lamenfit_selo-lancamento.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "O lámen que todo mundo ama, em uma versão saudável",
+            "show_product_description": false,
+            "description": "<p>Sou uma lámen diferente dos demais, pois além de saboroso e natural, tenho pouco sódio, vitaminas que vão do A ao D e fico pronto em menos de 20 minutos. Quem ama lámen vai se apaixonar por mim!</p><p><strong>Ingredientes:  </strong>massa alimentícia de tapioca (farinha de arroz integral, fécula de mandioca hidratada, clara de ovo e espessante goma guar), cenoura, caldo de peixe, páprica, cogumelo shitake, alho, cebola, cebolinha, gengibre, alga marinha desidratada e premix de vitaminas e minerais (vitamina C, Ferro, Zinco, vitamina B6, vitamina A, vitamina D2 e vitamina B12).</p>",
+            "color": "",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/claim_lamen_home_kcal.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/claim_lamen_home_vitaminas_875b743f-0b90-495e-b542-0e07f0dc4f48.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/claim_lamen_home_macarrao_funcional.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_lamen_24-01-2025.png"
+          }
+        },
+        "product_yA7nVK": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "sache-sopa-dos-sonhos",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_sopadossonhos.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Contar carneirinhos, nunca mais",
+            "show_product_description": false,
+            "description": "<p>Sou uma refeição proteica que fica pronta em 2 minutos, te sacia e relaxa para você acordar cheia de energia e disposição.</p>",
+            "color": "#d9f0ff",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/melatonina.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/pronta_2_min.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/disposicao_5bba9d4b-c268-46ac-ab60-d7829a7e4d48.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_sopa_dos_sonhos_15-10.png"
+          }
+        }
+      },
+      "block_order": [
+        "product_yNgWjj",
+        "product_MLA6Ng",
+        "product_GAadEi",
+        "product_nkKTh4",
+        "product_8YiExa",
+        "product_qtPGBw",
+        "product_cMkqrW",
+        "product_DMAH4M",
+        "product_gTFbCi",
+        "product_LymVg7",
+        "product_eciVBR",
+        "product_yA7nVK"
+      ],
+      "custom_css": [
+        ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
+        "h3 {text-align: center;}"
+      ],
+      "settings": {
+        "section_id": "",
+        "border_style": "default",
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff",
+        "color": "",
+        "title_color": "#005234",
+        "custom_color": "#005234",
+        "title": "<p>LINHA DE SOPAS</p>",
+        "subtitle": "<p>Refeição completa e baixa em calorias</p>"
+      }
+    },
+    "product_carousel_v2_yQyMcj": {
+      "type": "product-carousel-v2",
+      "blocks": {
+        "product_kLKyca": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "super-aveia-amendoim-e-banana",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_amendoim.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Mistura versátil, reconfortante e equilibrada",
+            "show_product_description": false,
+            "description": "<p>Ideal pra quem busca algo doce, mas sem exagero, essa mistura única, já que não tem leite em sua composição, sendo também uma ótima base pra receitas e combinações. </p><p><strong>Ingredientes:</strong> amendoim, aveia, banana desidratada, semente de chia, colágeno, psyllium, sal, stévia, vitaminas A, B6, B12, C e D, e ferro e zinco.</p>",
+            "color": "#ffe6dc",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/claim_4em1_amendoim.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/claim_gluten_amendoim.svg",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_8ANtCT": {
+          "type": "product",
+          "settings": {
+            "product": "super-aveia-chocolate-e-banana",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_chocolate.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "É pra comer chocolate sem culpa na consciência",
+            "show_product_description": false,
+            "description": "<p>Perfeita pra começar o dia com leveza e doçura, essa combinação é ideal pra quem quer matar a vontade de comer chocolate sem abrir mão do sabor, equilíbrio e prazer.</p><p><strong>Ingredientes:</strong> aveia, banana desidratada, proteína concentrada do soro de leite, semente de chia, cacau, leite em pó integral, psyllium, sal, vitaminas A, B6, B12, C e D, e ferro e zinco</p>",
+            "color": "#e0a48d",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/claim_4em1_chocolate.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/claim_gluten_chocolate.svg",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_8PR4Hi": {
+          "type": "product",
+          "settings": {
+            "product": "super-aveia-morango-e-cranberry",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_morango.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Combinação frutada, bem leve e muito refrescante ",
+            "show_product_description": false,
+            "description": "<p>Doce na medida certa e completamente natural, essa explosão de frescor é pra quem quer sentir, de verdade, os pedaços reais de morango e cranberry. </p><p><strong>Ingredientes: </strong>aveia, proteína concentrada do soro de leite, cranberry desidratado, semente de chia, psyllium, morango em pó, beterraba em pó, sal, vitaminas A, B6, B12, C e D, e ferro e zinco.</p>",
+            "color": "#ffe8f0",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/claim_4em1_morango.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/claim_gluten_morango.svg",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_kLKyca",
+        "product_8ANtCT",
+        "product_8PR4Hi"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
+        "h3 {text-align: center;}"
+      ],
+      "name": "Product Carousel V2",
+      "settings": {
+        "section_id": "",
+        "border_style": "default",
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff",
+        "color": "",
+        "title_color": "#005234",
+        "custom_color": "#005234",
+        "title": "<p>Linha de Super Aveias</p>",
+        "subtitle": "<p>Café da manhã completo em 2 minutos</p>"
+      }
+    },
+    "b3572668-9da5-46c0-ab1b-fa0125217432": {
+      "type": "satisfacao-home",
+      "settings": {
+        "title": "",
+        "description": "",
+        "aviso": "",
+        "borda-superior": true,
+        "color-borda-superior": "#00b45a",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "1734054037a45824b1": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_featured_carousel_XtdQWD": {
+          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "maxwidth": 1080
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_featured_carousel_XtdQWD"
+      ],
+      "settings": {
+        "include_margins": false
+      }
+    },
+    "44dc5a22-1f78-453c-ad7f-af218de73592": {
+      "type": "holy-por-voce-home",
+      "blocks": {
+        "28139113-844e-4167-b97e-2f48e1ba16dd": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify://shop_images/disposicao_2x_98a84a91-3652-44d7-8f16-45db610c65a1.png",
+            "title": "Melhora a<br> \n<b>disposição</b>",
+            "description": "Com um jantar mais leve e de fácil digestão, você terá um sono de melhor qualidade e uma digestão noturna mais limpa que irá te trazer disposição e aumento de produtividade para os seus dias. Experimente mudar sua alimentação para acordar melhor e mais disposto todos os dias."
+          }
+        },
+        "c1c488a1-1e28-4781-afef-39e427de8645": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify://shop_images/desinflama_2x_1524d6fc-a213-483f-a5d2-5f2a00f1575d.png",
+            "title": "<b>Desinflama</b> <br> \nseu corpo",
+            "description": "Seu intestino e corpo como um todo desinflamam com Holysoup por ser uma refeição livre de conservantes, glutamato, glúten e demais aditivos químicos. Uma alimentação 100% natural com comida de verdade auxilia na desinflamação corporal e na limpeza do seu organismo."
+          }
+        },
+        "4f6f3ba4-e33a-4f45-a423-9fa5ccba237d": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify://shop_images/regula_intestino_2x_5ad58a5e-819f-4025-9519-cf3cf86c16e0.png",
+            "title": "<b>Regula o</b><br> \nintestino",
+            "description": "Por serem ricas em fibras, as sopas da Holysoup ajudam na regulação intestinal, pois as fibras, quando são consumidas juntamente com água, ajudam na formação do bolo fecal e facilitam a passagem das fezes ao longo do intestino. Assim, a evacuação acontece de maneira mais natural, sem que seja necessário um grande esforço."
+          }
+        },
+        "5314c09c-944f-47ee-a3be-1e0982be38db": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify://shop_images/sono_2x_7bfcc629-25d8-44dd-9995-d242528a44bd.png",
+            "title": "Melhora o<br> \nseu <b>sono</b>",
+            "description": "Um sono de qualidade está muito ligado a uma alimentação saudável e, principalmente, à qualidade do seu jantar. Na hora do sono, nossa digestão deve estar focada na limpeza e irrigação do corpo por completo. Por isso, um jantar leve irá deixar seu cerébro livre de preocupações com a digestão e forte para cuidar de todas as funções corporais durante a noite."
+          }
+        },
+        "08a7c988-f454-4cfb-afd3-b4559c059a6c": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify://shop_images/microbiota_2x_283a62a9-6f02-4102-ae26-c1545e8c6c9d.png",
+            "title": "<b>Fortalece</b> a<br> \nmicrobiota intestinal",
+            "description": "Uma refeição saudável e rica em nutrientes e vitaminas como a Holysoup irá fornecer as ferramentas necessárias para um intestino mais regular e uma microbiota intestinal como um todo mais resistente a alergias alimentares e sensibilidades extremas."
+          }
+        },
+        "e8530df7-047d-4a0b-9b3c-7c0589b68a23": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify://shop_images/kcal_2x_92907fac-9d55-4c32-b86d-8a22913c3287.png",
+            "title": "Auxilia no <b>emagrecimento</b><br> \nsaudável",
+            "description": "Por todas as Holysoup’s serem repletas de vegetais ricos em fibras e nutrientes, as sopas possuem poucas calorias e proporcionam muita saciedade para o seu jantar. Por isso, pode comer sem culpa e peso na consciência e garanta estômago cheio e barriga sequina."
+          }
+        },
+        "f369b3d0-07ba-4185-a4c1-0d962b21c524": {
+          "type": "feature",
+          "disabled": true,
+          "settings": {
+            "icone": "shopify://shop_images/imunidade.svg",
+            "title": "Ajuda na<br> \n<b>imunidade</b>",
+            "description": "Por serem 100% naturais e possuírem muitos legumes em sua composição, as Holy’s são riquíssimas em nutrientes e vitaminas. Esses nutrientes dão forças ao sistema imunológico para se defender de doenças e inflamações."
+          }
+        },
+        "752c3a21-642a-4a04-92a8-d7e0dffbd71f": {
+          "type": "feature",
+          "disabled": true,
+          "settings": {
+            "icone": "shopify://shop_images/fibras.svg",
+            "title": "Fonte de<br> \n<b>fibras</b>",
+            "description": "Através dos legumes e ingredientes naturais, a Holysoup possui muitas fibras em todas as suas sopas. Essas fibras irão auxiliar a sua microbiota intestinal e facilitará suas idas ao banheiro. Além disso, as fibras ajudam na saciedade e no controle do apetite."
+          }
+        }
+      },
+      "block_order": [
+        "28139113-844e-4167-b97e-2f48e1ba16dd",
+        "c1c488a1-1e28-4781-afef-39e427de8645",
+        "4f6f3ba4-e33a-4f45-a423-9fa5ccba237d",
+        "5314c09c-944f-47ee-a3be-1e0982be38db",
+        "08a7c988-f454-4cfb-afd3-b4559c059a6c",
+        "e8530df7-047d-4a0b-9b3c-7c0589b68a23",
+        "f369b3d0-07ba-4185-a4c1-0d962b21c524",
+        "752c3a21-642a-4a04-92a8-d7e0dffbd71f"
+      ],
+      "custom_css": [],
+      "settings": {
+        "section_title": "O QUE A HOLY FAZ POR VOCÊ:",
+        "title_color": "#fffae0",
+        "highlight_color": "#005234",
+        "borda-superior": false,
+        "color-borda-superior": "#f6f6f6",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff",
+        "background_color": "#005234",
+        "card_background_color": "#fffae0"
+      }
+    },
+    "dea073da-72e7-4635-a981-e3e0967f1829": {
+      "type": "nutricionistas-home",
+      "blocks": {
+        "nutricionista_46rAz3": {
+          "type": "Nutricionista",
+          "settings": {
+            "icone": "shopify://shop_images/65b0664e3d1fc.jpg",
+            "star_range": 5,
+            "title": "Laila Furtado",
+            "description": "Eu estou tão feliz! A holysoup está transformando sonho em realidade.\nHoje, ao acordar, me pesei e já eliminei 4.1 kg em 30 dias. Estou substituindo o meu jantar por essas sopas deliciosas e o resultado está vindo. Ainda tenho que perder 40 kg pra fazer as cirurgias que eu tanto gostaria de fazer e sei que chegarei lá."
+          }
+        },
+        "nutricionista_jycrJi": {
+          "type": "Nutricionista",
+          "settings": {
+            "icone": "shopify://shop_images/65b066e668cb2.jpg",
+            "star_range": 5,
+            "title": "Jessica Sabino",
+            "description": "Já comprei duas vezes, super recomendo, são uma delícia, fico super saciada, faço uma vez na semana, congelo os potinhos e janto a semana toda, uma delícia e o custo benefício é incrível... Na da vovó coloquei alguns pedacinhos de carne em cubos pequenos, ficou ainda mais perfeita"
+          }
+        },
+        "nutricionista_ndaUUa": {
+          "type": "Nutricionista",
+          "settings": {
+            "icone": "shopify://shop_images/65b067b32b88e.jpg",
+            "star_range": 5,
+            "title": "Cristina Kraeski",
+            "description": "Eu simplesmente amei todas as sopas. Desde que inseri HolySoup no meu jantar comecei a emagrecer, me sentindo bem disposta, com a pele boa, intestino super regulado... Obrigada sopinhas @holysoupbr por cuidar de mim."
+          }
+        },
+        "52e69445-041e-46ae-a37d-495428177819": {
+          "type": "Nutricionista",
+          "disabled": true,
+          "settings": {
+            "icone": "shopify://shop_images/1.webp",
+            "star_range": 5,
+            "title": "Letícia Albano",
+            "description": "Sabemos que os dias atuais são mais corridos, então sempre busco facilitar a rotina. Foi aí que encontrei a HolySoup e me surpreendi. <b>Lista de ingrediente perfeita, combinação de nutrientes excelente e o melhor de tudo: SÃO MUITO SABOROSAS!</b> Super indico aos meus pacientes. Podem provar sem medo!"
+          }
+        },
+        "545aeb41-8274-43f5-8ab4-d4b3abc0670c": {
+          "type": "Nutricionista",
+          "disabled": true,
+          "settings": {
+            "icone": "shopify://shop_images/8.png",
+            "star_range": 5,
+            "title": "Itamara Belluzzo",
+            "description": "Como nutricionista e chefe de cozinha sou amante de uma culinária saudável e prática! <b>Prezo muito por ingredientes naturais e na HolySoup eu encontrei tudo isso e muito mais! Super indico e foi extremamente aprovada pelos meus pacientes e por todos aqui de casa!</b> São deliciosas! Difícil é escolher uma só como favorita😬"
+          }
+        },
+        "f92a6ba2-568a-4dc9-8d21-7b7705553299": {
+          "type": "Nutricionista",
+          "disabled": true,
+          "settings": {
+            "icone": "shopify://shop_images/10.png",
+            "star_range": 5,
+            "title": "Francine Wollinge",
+            "description": "<b>Eu escolhi a HolySoup para fazer parte de um grupo de desafio detox, foi a melhor escolha para contribuir no processo das minhas pacientes</b>, além de prática possui ingredientes naturais, com o sódio apenas dos próprios alimentos, ou seja, sem o glutamato que é uma das minhas premissas na minha conduta em consultório. <b>Recomendo de olhos fechados!</b>"
+          }
+        },
+        "7cc5ec86-e128-44ce-a345-4f008fd83065": {
+          "type": "Nutricionista",
+          "disabled": true,
+          "settings": {
+            "icone": "shopify://shop_images/11.png",
+            "star_range": 5,
+            "title": "Ana Beatriz Wey",
+            "description": "Com a correria do dia a dia nada melhor que abrir um pacote e ter uma refeição completa pronta em 20 minutos! <b>A lista de ingredientes e a tabela nutricional são MARAVILHOSAS, mas o sabor não têm comentários que descrevam, são extremamente saborosas além de saudáveis.</b> Sempre indico para os pacientes!"
+          }
+        },
+        "87869668-ef07-41fa-99e3-4ff0aa5b5d52": {
+          "type": "Nutricionista",
+          "disabled": true,
+          "settings": {
+            "icone": "shopify://shop_images/13.png",
+            "star_range": 5,
+            "title": "Aimée Madureira",
+            "description": "O maior desafio na clínica, sempre é conciliar a individualidade nutricional ao dia a dia de cada paciente.\n\n<b>Ao encontrar a HolySoup foi realmente como encontrar um milagre. Pois o produto consegue entregar qualidade nutricional, sem possuir aditivos químicos, possui rápido preparo e muito sabor.</b>\n\nEu recomendo, faço uso e amo!"
+          }
+        },
+        "3bbebe3d-9fec-404c-81b5-75abb0c57305": {
+          "type": "Nutricionista",
+          "disabled": true,
+          "settings": {
+            "icone": "shopify://shop_images/12.png",
+            "star_range": 5,
+            "title": "Aline Netto",
+            "description": "Desde que conheci os produtos HolySoup, venho compartilhando essa experiência maravilhosa com meus pacientes. <b>A facilidade de preparo e a qualidade nutricional das sopas são o diferencial da marca.</b> Sem conservantes e contendo somente ingredientes naturais, as sopas da Holy são saborosas e excelentes alternativas para as refeições do dia a dia."
+          }
+        },
+        "9be9b0cc-6c2f-4715-91e0-9ec74d7ac66b": {
+          "type": "Nutricionista",
+          "disabled": true,
+          "settings": {
+            "icone": "shopify://shop_images/Design_sem_nome.png",
+            "star_range": 5,
+            "title": "Viviane Camargo",
+            "description": "<b>Experimentar foi uma grata surpresa! A combinação de praticidade, sabor e saúde presente nas sopas é sem igual.</b> A lista de ingredientes além de ser livre de conservantes também é funcional, pois contém alimentos com ação antioxidante e anti-inflamatória. Recomendo para todos os meus pacientes, adultos e crianças."
+          }
+        },
+        "d4343cf2-5a67-4e50-a765-05e0f79df448": {
+          "type": "Nutricionista",
+          "disabled": true,
+          "settings": {
+            "icone": "shopify://shop_images/Design-sem-nome-_1.webp",
+            "star_range": 5,
+            "title": "Amanda Archanjo",
+            "description": "Conheci a Holysoup através de alguns pacientes. Muitos me pediam pra calcular na dieta deles. <b>Quando fui conhecer a tabela nutricional e a lista de ingredientes, fiquei encantada! Quando experimentei, eu amei!\nSÃO DELICIOSAS, super práticas e fáceis de preparar.</b> Agora eu indico sempre aos meus pacientes!"
+          }
+        }
+      },
+      "block_order": [
+        "nutricionista_46rAz3",
+        "nutricionista_jycrJi",
+        "nutricionista_ndaUUa",
+        "52e69445-041e-46ae-a37d-495428177819",
+        "545aeb41-8274-43f5-8ab4-d4b3abc0670c",
+        "f92a6ba2-568a-4dc9-8d21-7b7705553299",
+        "7cc5ec86-e128-44ce-a345-4f008fd83065",
+        "87869668-ef07-41fa-99e3-4ff0aa5b5d52",
+        "3bbebe3d-9fec-404c-81b5-75abb0c57305",
+        "9be9b0cc-6c2f-4715-91e0-9ec74d7ac66b",
+        "d4343cf2-5a67-4e50-a765-05e0f79df448"
+      ],
+      "settings": {
+        "title_color": "#005234",
+        "background_color": "#7bca0c",
+        "title_nutri_color": "#3c3c3c",
+        "borda-superior": false,
+        "color-borda-superior": "#005234",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "5d235e29-c066-423a-a51e-aec2ed75ba2e": {
+      "type": "influencers-home",
+      "blocks": {
+        "da0d39e7-4efd-4437-a726-9b08bbe64893": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify://shop_images/Imagem_1_131979a6-e97f-46fd-b078-bec7c8e2e08c.png",
+            "title": "@userblogueira",
+            "video_1": "https://cdn.shopify.com/videos/c/o/v/ed93c915e1bc43509ad007e123c2515f.mp4",
+            "video_2": "https://cdn.shopify.com/videos/c/o/v/ddf96dcd92a94c02827b305bcb5a2059.mp4",
+            "video_3": "https://cdn.shopify.com/videos/c/o/v/a0a1bba21d3b4720b37aee62a693e441.mp4",
+            "video_4": ""
+          }
+        },
+        "27ae1325-d559-4bfc-81f1-69084bb673a9": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify://shop_images/Imagem_2.png",
+            "title": "@userblogueira",
+            "video_1": "https://cdn.shopify.com/videos/c/o/v/117b57256b7c4fe38fce859fdee36b7d.mp4",
+            "video_2": "",
+            "video_3": "",
+            "video_4": ""
+          }
+        },
+        "c3acb1fa-78ee-4c13-afbd-4b50d111e58a": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify://shop_images/Imagem_3.png",
+            "title": "@userblogueira",
+            "video_1": "",
+            "video_2": "",
+            "video_3": "",
+            "video_4": ""
+          }
+        },
+        "ac55cab5-3d1e-4b1b-a99f-6695ec3ce2fa": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify://shop_images/Imagem_4.png",
+            "title": "@userblogueira",
+            "video_1": "",
+            "video_2": "",
+            "video_3": "",
+            "video_4": ""
+          }
+        },
+        "58ed7897-53f5-4ded-9408-2dcf279eba16": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify://shop_images/Imagem_1_131979a6-e97f-46fd-b078-bec7c8e2e08c.png",
+            "title": "@userblogueira",
+            "video_1": "",
+            "video_2": "",
+            "video_3": "",
+            "video_4": ""
+          }
+        },
+        "28ce10bd-9b67-47be-965d-f158e31643f2": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify://shop_images/Imagem_2.png",
+            "title": "@userblogueira",
+            "video_1": "",
+            "video_2": "",
+            "video_3": "",
+            "video_4": ""
+          }
+        },
+        "234b324a-4845-4005-9383-c954baafe331": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify://shop_images/Imagem_3.png",
+            "title": "@userblogueira",
+            "video_1": "",
+            "video_2": "",
+            "video_3": "",
+            "video_4": ""
+          }
+        }
+      },
+      "block_order": [
+        "da0d39e7-4efd-4437-a726-9b08bbe64893",
+        "27ae1325-d559-4bfc-81f1-69084bb673a9",
+        "c3acb1fa-78ee-4c13-afbd-4b50d111e58a",
+        "ac55cab5-3d1e-4b1b-a99f-6695ec3ce2fa",
+        "58ed7897-53f5-4ded-9408-2dcf279eba16",
+        "28ce10bd-9b67-47be-965d-f158e31643f2",
+        "234b324a-4845-4005-9383-c954baafe331"
+      ],
+      "disabled": true,
+      "settings": {
+        "borda-superior": true,
+        "color-borda-superior": "#ff455a",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff",
+        "title": "Quem consome diz que:",
+        "color-section": "#ff455a"
+      }
+    },
+    "3db47dd3-fea7-470d-95f3-4b025351f03f": {
+      "type": "faqs-home",
+      "blocks": {
+        "0ceb372c-729f-4c05-bdb1-6a68eb968189": {
+          "type": "faq",
+          "settings": {
+            "title": "Qual a validade das sopas? Como elas duram sem conservantes?",
+            "descricao": "Cada pacote dura 8 meses. Para garantir que nossas sopas cheguem fresquinhas e sem conservantes, adotamos um cuidadoso processo de desidratação em todos os ingredientes das receitas. Este método retira toda a água enquanto preserva os nutrientes essenciais, eliminando a necessidade de aditivos químicos.\n<p>\nEstamos comprometidos em enviar para a sua casa apenas lotes recém-produzidos, assegurando que cada refeição seja tão fresca e saborosa quanto saudável.\n</p><p>\nPara estender o prazo de validade, você pode congelar as sopas já preparadas por até 3 meses.</p>"
+          }
+        },
+        "c10b5ff4-2a89-49c2-9d53-57a830497258": {
+          "type": "faq",
+          "settings": {
+            "title": "Qual o rendimento de cada pacote?",
+            "descricao": "Cada pacote rende 4 porções de 250 ml cheias de sabor e saúde. Após o preparo, você terá aproximadamente 1 litro de sopa.\n<p>\nOs valores calóricos e nutritivos variam de acordo com cada sopa.</p>"
+          }
+        },
+        "bea061b6-9638-430a-8a91-0ade134e6c60": {
+          "type": "faq",
+          "settings": {
+            "title": "As sopas contêm glutén?",
+            "descricao": "Não! Para garantir uma alimentação saudável e segura para pessoas celíacas, nossos produtos são totalmente livres de glúten e contaminação cruzada. Além disso, nossas sopas não contêm soja, amendoim, amêndoas e nozes."
+          }
+        },
+        "b4cbd4f5-b3f1-4509-9e99-0d26390862fa": {
+          "type": "faq",
+          "settings": {
+            "title": "As sopas ajudam no emagrecimento?",
+            "descricao": "Sim, nossas sopas são aliadas da perda de peso. \n<p>\nPara emagrecer, é preciso criar um déficit calórico, isto é, consumir menos calorias do que seu corpo utiliza e combinar isso com exercícios físicos regulares. Ao integrar nossas sopas à sua rotina alimentar, você opta por uma refeição de baixa caloria que contribui para esse déficit, auxiliando no processo de emagrecimento.\n</p><p>\nAlém disso, nossas sopas são repletas de fibras solúveis e insolúveis, fundamentais para o bom funcionamento do intestino e para manter você saciado(a) por mais tempo.</p>"
+          }
+        },
+        "fff7d8f8-560f-4312-a076-72ebcb152faa": {
+          "type": "faq",
+          "settings": {
+            "title": "Crianças podem consumir essas sopas?",
+            "descricao": "Absolutamente!  Nossas sopas podem ser consumidas por pessoas de todas as idades que buscam alimentação natural e saudável.\n<p>\nPara os pequenos, recomendamos especialmente as nossas sopas da Vovó e Canja da Mamãe, todas carinhosamente preparadas pensando no bem-estar da sua família. Caso queira, pode complementar as sopas com os legumes e as proteínas que acha melhor.\n</p><p>\nCaso a criança tenha alguma intolerância ou restrição alimentar, você pode consultar a lista detalhada de ingredientes no nosso site.</p>"
+          }
+        },
+        "b5e10cbb-42b8-41cc-904c-af37a98d1ca5": {
+          "type": "faq",
+          "settings": {
+            "title": "As sopas ficam prontas em quanto tempo?",
+            "descricao": "Em média, nossas sopas ficam prontas em apenas 20 minutos, mas cada uma delas vem com um tempo específico de cozimento claramente indicado na embalagem."
+          }
+        },
+        "57db366e-84d0-4715-957f-cce9266aa90f": {
+          "type": "faq",
+          "settings": {
+            "title": "Todas as sopas são veganas?",
+            "descricao": "Quase, no momento a Canja da Mamãe é a única sopa que não é vegana, pois possui frango liofilizado."
+          }
+        },
+        "5501c5ec-f461-4243-a2a4-af5b2109d362": {
+          "type": "faq",
+          "settings": {
+            "title": "As sopas contêm sódio?",
+            "descricao": "Muito pouco, pois o teor de sódio vem naturalmente dos ingredientes utilizados, como a cenoura, que por si só contém apenas 60 mg de sódio a cada 100 g.\n<p>\nA quantidade de sódio presente em nossas sopas vária entre apenas 12 mg e 50 mg por porção, dependendo do sabor escolhido.\n</p><p>\nE é importante ressaltar que sódio e sal não são a mesma coisa. Nossas sopas não possuem sal, mas possuem quantidades pequenas de sódio, que é um mineral essencial para o corpo.</p>"
+          }
+        },
+        "04672848-6e6c-4464-8390-831c1f8e63a1": {
+          "type": "faq",
+          "settings": {
+            "title": "Posso congelar a sopa?",
+            "descricao": "Claro! Após o preparo, você tem a opção de congelar nossas sopas, mantendo-as seguras e saborosas por até 3 meses se bem preservadas."
+          }
+        },
+        "8d2c9c52-d480-4fd0-bcc8-788939f55bac": {
+          "type": "faq",
+          "settings": {
+            "title": "Estou doente, posso tomar as sopas?",
+            "descricao": "Sim, com certeza! As sopas possuem ingredientes 100% naturais, livres de aditivos artificiais, garantindo uma refeição tanto deliciosa quanto saudável. Não há contraindicações, mas consulte um médico ou nutricionista para identificar qualquer tipo de restrição aos ingredientes das sopas."
+          }
+        }
+      },
+      "block_order": [
+        "0ceb372c-729f-4c05-bdb1-6a68eb968189",
+        "c10b5ff4-2a89-49c2-9d53-57a830497258",
+        "bea061b6-9638-430a-8a91-0ade134e6c60",
+        "b4cbd4f5-b3f1-4509-9e99-0d26390862fa",
+        "fff7d8f8-560f-4312-a076-72ebcb152faa",
+        "b5e10cbb-42b8-41cc-904c-af37a98d1ca5",
+        "57db366e-84d0-4715-957f-cce9266aa90f",
+        "5501c5ec-f461-4243-a2a4-af5b2109d362",
+        "04672848-6e6c-4464-8390-831c1f8e63a1",
+        "8d2c9c52-d480-4fd0-bcc8-788939f55bac"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading_color": "#005234",
+        "borda-superior": false,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "about_us_ra3zMj": {
+      "type": "about-us",
+      "settings": {
+        "background_color": "#fffae0",
+        "borda-superior": true,
+        "color-borda-superior": "#f5f5f5",
+        "title": "<p>Nutrição de verdade,</p><p>sem complicação!</p>",
+        "content_info": "<p>A maioria das refeições prontas é cheia de sódio, conservantes e aditivos, comprometendo a qualidade da sua alimentação. A HolyFoods nasceu para mudar isso!</p><p>Nossos produtos são feitos com ingredientes naturais, sem conservantes ou aditivos, e ficam prontos em minutos. Utilizamos um processo especial de desidratação, que mantém o sabor e os nutrientes dos alimentos, garantindo refeições leves, nutritivas e sempre deliciosas. </p><p>Com a Holy, vocêse alimenta bem sem perder tempo na cozinha ou recorrer a opções ultraprocessadas. </p><p>Basta adicionar agua, ajustar o sal e pronto!</p>",
+        "button_text": "Conheça mais",
+        "button_url": "shopify://collections/all",
+        "button_bg_color": "#7bca0c",
+        "button_text_color": "#ffffff",
+        "video": "shopify://files/videos/holy-soup.mp4"
+      }
+    }
+  },
+  "order": [
+    "a8d45234-ff4c-4fb4-ab6d-16d71fbf1a5d",
+    "11d025eb-d332-49cd-ae54-c6243379ae1c",
+    "praticidade_home_argKfc",
+    "swiper_bulk_purchase_g3AxMP",
+    "e3a9ff10-6902-4baf-a0a2-91ae8874ceb0",
+    "product_carousel_aVP7kr",
+    "product_carousel_v2_Xczirg",
+    "product_carousel_v2_AifKKK",
+    "product_carousel_v2_wjQbrc",
+    "product_carousel_v2_aQiQHV",
+    "product_carousel_v2_QRLFMq",
+    "586198a2-a4dc-41b9-8e36-8050ad9530d3",
+    "57fe8019-168b-4953-8dd1-4cb704b6b57d",
+    "1732882966940526c4",
+    "product_carousel_v2_F9FerG",
+    "product_carousel_v2_6c3ngN",
+    "product_carousel_v2_rxkCEH",
+    "product_carousel_v2_yQyMcj",
+    "b3572668-9da5-46c0-ab1b-fa0125217432",
+    "1734054037a45824b1",
+    "44dc5a22-1f78-453c-ad7f-af218de73592",
+    "dea073da-72e7-4635-a981-e3e0967f1829",
+    "5d235e29-c066-423a-a51e-aec2ed75ba2e",
+    "3db47dd3-fea7-470d-95f3-4b025351f03f",
+    "about_us_ra3zMj"
+  ]
+}

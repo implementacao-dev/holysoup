@@ -1,0 +1,314 @@
+{% liquid
+  assign loading = 'eager'
+  assign fetchpriority = 'auto'
+  if section.index == 1
+    assign fetchpriority = 'high'
+  elsif section.index > 2
+    assign loading = 'lazy'
+  endif
+%}
+<div class="w-full" style="background-color: {{ section.settings.background_color }}">
+  <div class="wrapper my-8 flex flex-col gap-8">
+    <div class="flex flex-col gap-2 text-center">
+      {% assign title_tag = section.settings.title_tag %}
+      <{{ title_tag }}
+        class="title font-serif font-bold {{ section.settings.title_size }}"
+        style="color: {{ section.settings.title_color }}"
+      >
+        {{ section.settings.title }}
+      </{{ title_tag }}>
+      <span
+        class="description {{ section.settings.description_size }} "
+        style="color: {{ section.settings.description_color }}"
+      >
+        {{ section.settings.description }}
+      </span>
+    </div>
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+      {% for block in section.blocks %}
+        <div
+          class="flex flex-col gap-4 text-center rounded-lg p-4"
+          style="background: {{ section.settings.card_color }}"
+        >
+          {% if block.settings.icon != blank %}
+          <div
+            class="flex items-center justify-center w-fit mx-auto rounded-full"
+            style="color: {{ section.settings.icon_color }}; background-color: {{ section.settings.bg_icon_color }}; padding: 1rem;"
+          >
+            {% if block.settings.icon == blank %}
+              <svg class="item-icon icon h-14 w-14" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.8779 1.60217C12.6444 1.46594 12.3556 1.46594 12.1221 1.60217L3.5 6.63172L12.5 11.8817L21.5 6.63172L12.8779 1.60217Z" fill="currentColor"/>
+                <path d="M22.25 7.93078L13.25 13.1808V22.1808L21.8779 17.1478C22.1083 17.0134 22.25 16.7668 22.25 16.5V7.93078Z" fill="currentColor"/>
+                <path d="M11.75 22.1808V13.1808L2.75 7.93078V16.5C2.75 16.7668 2.89168 17.0134 3.1221 17.1478L11.75 22.1808Z" fill="currentColor"/>
+              </svg>
+            {% else %}
+              {{
+                block.settings.icon
+                | image_url: width: 960
+                | image_tag: loading: loading, fetchpriority: fetchpriority, class: 'item-icon icon w-14 h-14'
+              }}
+            {% endif %}
+          </div>
+          {% endif %}
+          <div
+            x-data='
+              {
+                  changeBoldTagsToUppercase($el) {
+                        const boldTags = $el.querySelectorAll("strong");
+                        boldTags.forEach((tag) => {
+                            tag.style.textTransform = "uppercase";
+                            tag.style.color = "{{ section.settings.card_title_bold_color }}";
+                        });
+                  }
+              }
+            '
+            class="flex flex-row justify-center"
+          >
+            {% if block.settings.title != blank %}
+              <div
+                x-init="changeBoldTagsToUppercase($el)"
+                class="item-text {{ section.settings.card_title_size }}"
+                style="color: {{ section.settings.card_title_color }}"
+              >
+                {{ block.settings.title }}
+              </div>
+            {% endif %}
+          </div>
+          {% if block.settings.image != blank %}
+            {{
+              block.settings.image
+              | image_url: width: 1920
+              | image_tag: loading: loading, fetchpriority: fetchpriority, class: 'rounded-lg'
+            }}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "tag": "section",
+  "name": "Conteúdo destaque v2",
+  "class": "content-feature-list",
+  "blocks": [
+    {
+      "name": "t:common.headers.item",
+      "type": "item",
+      "settings": [
+        {
+          "type": "header",
+          "content": "t:common.headers.icon"
+        },
+        {
+          "id": "icon",
+          "type": "image_picker",
+          "label": "t:common.labels.icon.select"
+        },
+        {
+          "type": "header",
+          "content": "t:common.headers.text"
+        },
+        {
+          "id": "title",
+          "type": "richtext",
+          "label": "Digite o título",
+          "default": "<p>Escolha o produto e adicione no carrinho de compras clicando em:</p>"
+        },
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Imagem"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Conteúdo destaque v2",
+      "blocks": [
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:common.headers.title"
+    },
+    {
+      "id": "title_tag",
+      "type": "select",
+      "label": "t:common.labels.title.tag",
+      "default": "h2",
+      "options": [
+        {
+          "label": "t:common.headings.h1",
+          "value": "h1"
+        },
+        {
+          "label": "t:common.headings.h2",
+          "value": "h2"
+        },
+        {
+          "label": "t:common.headings.h3",
+          "value": "h3"
+        },
+        {
+          "label": "t:common.headings.h4",
+          "value": "h4"
+        },
+        {
+          "label": "t:common.headings.h5",
+          "value": "h5"
+        },
+        {
+          "label": "t:common.headings.h6",
+          "value": "h6"
+        }
+      ]
+    },
+    {
+      "id": "title_size",
+      "type": "select",
+      "label": "t:common.labels.title.size",
+      "default": "text-h6 md:text-h5",
+      "options": [
+        {
+          "label": "t:common.sizes.large",
+          "value": "text-h3 md:text-h1"
+        },
+        {
+          "label": "t:common.sizes.medium",
+          "value": "text-h4 md:text-h3"
+        },
+        {
+          "label": "t:common.sizes.small",
+          "value": "text-h6 md:text-h5"
+        }
+      ]
+    },
+    {
+      "id": "title_color",
+      "type": "color",
+      "label": "t:common.labels.title.color",
+      "default": "#BA007C"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "t:common.labels.title.write",
+      "default": "COMO UTILIZAR OS SEUS CUPONS"
+    },
+    {
+      "type": "header",
+      "content": "t:common.headers.subtitle"
+    },
+    {
+      "id": "description_size",
+      "type": "select",
+      "label": "t:common.labels.subtitle.size",
+      "default": "text-body-base",
+      "options": [
+        {
+          "label": "t:common.sizes.large",
+          "value": "text-body-lg"
+        },
+        {
+          "label": "t:common.sizes.medium",
+          "value": "text-body-base"
+        },
+        {
+          "label": "t:common.sizes.small",
+          "value": "text-body-sm"
+        }
+      ]
+    },
+    {
+      "id": "description_color",
+      "type": "color",
+      "label": "t:common.labels.title.color",
+      "default": "#4B5563"
+    },
+    {
+      "id": "description",
+      "type": "richtext",
+      "label": "t:common.labels.subtitle.write",
+      "default": "<p>Veja abaixo, o passo a passo de como utilizar os seus cupons no site da Kokeshi Cosméticos.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Card"
+    },
+    {
+      "id": "card_color",
+      "type": "color_background",
+      "label": "Cor de fundo do card",
+      "default": "#CD74A733"
+    },
+    {
+      "id": "card_title_size",
+      "type": "select",
+      "label": "t:common.labels.title.size",
+      "default": "text-h6 md:text-h5",
+      "options": [
+        {
+          "label": "t:common.sizes.large",
+          "value": "text-h3 md:text-h1"
+        },
+        {
+          "label": "t:common.sizes.medium",
+          "value": "text-h4 md:text-h3"
+        },
+        {
+          "label": "t:common.sizes.small",
+          "value": "text-h6 md:text-h5"
+        }
+      ]
+    },
+    {
+      "id": "card_title_color",
+      "type": "color",
+      "label": "Cor do título do card",
+      "default": "#CD74A7"
+    },
+    {
+      "id": "card_title_bold_color",
+      "type": "color",
+      "label": "Cor do título do card em negrito",
+      "default": "#339999"
+    },
+    {
+      "id": "bg_icon_color",
+      "type": "color",
+      "label": "Cor do fundo do ícone",
+      "default": "#ADDFE3"
+    },
+    {
+      "id": "icon_color",
+      "type": "color",
+      "label": "Cor do ícone",
+      "default": "#A94326"
+    },
+    {
+      "type": "header",
+      "content": "t:common.headers.background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:common.labels.background.color",
+      "default": "#FFFFFF"
+    }
+  ]
+}
+{% endschema %}

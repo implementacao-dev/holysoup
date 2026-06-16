@@ -1,0 +1,136 @@
+<style>
+  @media (min-width: 1024px){
+    .price-hs * {
+      color: {{corfonte}};
+    }
+
+    .price-pix .regular-price svg path{
+      fill: {{corfonte}};
+    }
+
+    .garantia-parcelamento svg path{
+      stroke: {{corfonte}};
+    }
+
+    .aviso-frete-gratis {
+      color: {{corfonte}} !important;
+    }
+
+    .cashback-product {
+      color: {{corfonte}} !important;
+    }
+
+    .cashback-product svg path{
+      fill: {{corfonte}} !important;
+    }
+
+    .cashback-product svg g#Elipse_129 {
+      stroke: {{corfonte}};
+    }
+  }
+
+  .price-hs {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .price-pix .regular-price {
+    font-size: 26px;
+    margin: 0;
+  }
+
+  .price-pix .old-price {
+    margin: 0;
+    text-decoration: line-through;
+  }
+
+  .price-pix .pix-label {
+    margin: 2px 0;
+  }
+
+  .price-pix .regular-price svg {
+    stroke: none;
+    width: 26px;
+    height: auto;
+    margin-top: -5px;
+  }
+
+  .garantia-line {
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .garantia-line svg {
+    stroke: none;
+    fill: none;
+    width: 22px;
+    height: auto;
+  }
+
+  .garantia-parcelamento p {
+    margin: 0;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .garantia-parcelamento p:last-child {
+    font-size: 10px;
+  }
+
+  .garantia-parcelamento svg {
+    stroke: none;
+    fill: none;
+    width: 22px;
+    height: auto;
+  }
+</style>
+<div class="price-hs">
+  {%- unless product.tags contains 'esconder-comprar' -%}
+    <div class="price-pix">
+      {% if product.selected_or_first_available_variant.compare_at_price
+          > product.selected_or_first_available_variant.price
+      %}
+        <p class="old-price">{{ product.selected_or_first_available_variant.compare_at_price | money }}</p>
+      {% endif %}
+      <p class="regular-price">
+        <span class="money">
+          {{-
+            settings.desconto_pix_valor
+            | divided_by: 100.00
+            | times: product.selected_or_first_available_variant.price
+            | minus: product.selected_or_first_available_variant.price
+            | abs
+            | money
+          -}}
+        </span>
+        {% if settings.desconto_pix %}
+          <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 11.003C0.0316959 10.9295 0.0503087 10.8509 0.055 10.771C0.12555 10.1141 0.415907 9.50024 0.879 9.029C1.64 8.257 2.411 7.495 3.179 6.729C3.20605 6.69331 3.24322 6.66659 3.28567 6.65232C3.32812 6.63806 3.37388 6.6369 3.417 6.649C3.47116 6.65826 3.52631 6.66659 3.581 6.655C3.966 6.655 4.351 6.655 4.735 6.655C5.01834 6.65112 5.29946 6.70547 5.56092 6.8147C5.82239 6.92394 6.05863 7.08571 6.255 7.29C7.255 8.29 8.255 9.29 9.255 10.29C9.40306 10.4467 9.58504 10.5675 9.787 10.643C10.0566 10.7497 10.3522 10.7728 10.6351 10.7091C10.918 10.6454 11.1751 10.498 11.373 10.286C11.873 9.8 12.357 9.305 12.848 8.814C13.3607 8.302 13.873 7.78967 14.385 7.277C14.5816 7.07967 14.8154 6.9234 15.0729 6.8173C15.3304 6.7112 15.6065 6.6574 15.885 6.659C16.27 6.65 16.655 6.672 17.039 6.647C17.0571 6.64454 17.0755 6.64623 17.0928 6.65195C17.1101 6.65766 17.1259 6.66726 17.139 6.68L17.204 6.742L19.441 8.978C19.8946 9.42253 20.1936 10.0009 20.294 10.628C20.3732 11.0649 20.3553 11.5138 20.2414 11.943C20.1275 12.3721 19.9204 12.7709 19.635 13.111C19.5592 13.204 19.4784 13.2928 19.393 13.377C18.6757 14.0937 17.9587 14.8113 17.242 15.53C17.2046 15.5719 17.1581 15.6049 17.1062 15.6264C17.0542 15.6478 16.9981 15.6573 16.942 15.654C16.627 15.644 16.312 15.654 15.998 15.648C15.7329 15.6497 15.4692 15.6105 15.216 15.532C14.902 15.4275 14.6165 15.2516 14.382 15.018L11.371 12.008C11.1616 11.7898 10.8867 11.6458 10.588 11.598C10.3557 11.5503 10.1152 11.5613 9.88825 11.6299C9.66128 11.6986 9.45498 11.8226 9.288 11.991C8.296 12.9777 7.305 13.966 6.315 14.956C5.95348 15.3363 5.47016 15.578 4.949 15.639C4.87956 15.6461 4.8098 15.6494 4.74 15.649C4.325 15.649 3.91 15.636 3.496 15.656C3.41862 15.6619 3.34094 15.6494 3.26932 15.6195C3.1977 15.5896 3.13419 15.5432 3.084 15.484C2.38467 14.774 1.68167 14.0707 0.975 13.374C0.45884 12.8773 0.132376 12.2158 0.052 11.504C0.0478291 11.4346 0.0301663 11.3667 0 11.304L0 11.003Z" fill="#3C3C3C"/>
+            <path d="M10.016 21.315C9.93163 21.284 9.84283 21.2668 9.753 21.264C9.09764 21.18 8.48874 20.8807 8.022 20.413C6.77 19.171 5.52267 17.9263 4.28 16.679L4.238 16.636C4.218 16.614 4.188 16.592 4.197 16.561C4.206 16.53 4.252 16.524 4.286 16.524H4.766C5.15459 16.5275 5.53986 16.4521 5.89855 16.3026C6.25724 16.1531 6.58192 15.9324 6.853 15.654C7.853 14.6613 8.84967 13.6657 9.843 12.667C9.90956 12.5922 9.9914 12.5325 10.083 12.492C10.1848 12.4483 10.297 12.4351 10.4062 12.4539C10.5153 12.4727 10.6167 12.5228 10.698 12.598C10.74 12.633 10.777 12.675 10.816 12.713C11.7733 13.6703 12.731 14.6273 13.689 15.584C13.9372 15.8384 14.2257 16.0499 14.543 16.21C14.9537 16.4084 15.4029 16.5146 15.859 16.521C15.9678 16.5142 16.077 16.5182 16.185 16.533C16.193 16.595 16.148 16.618 16.118 16.648C15.9107 16.8573 15.7023 17.066 15.493 17.274C14.475 18.291 13.455 19.305 12.441 20.327C11.9137 20.8772 11.2066 21.22 10.448 21.293C10.4131 21.2947 10.379 21.3039 10.348 21.32L10.016 21.315Z" fill="#3C3C3C"/>
+            <path d="M4.198 5.739C4.21779 5.6873 4.25262 5.64271 4.298 5.611C5.53067 4.37833 6.764 3.145 7.998 1.911C8.46829 1.4271 9.08871 1.1169 9.758 1.031C10.217 0.956535 10.6871 0.992234 11.1296 1.13515C11.5721 1.27807 11.9743 1.52411 12.303 1.853C13.583 3.108 14.843 4.384 16.112 5.653C16.1499 5.68087 16.1785 5.71957 16.194 5.764C16.146 5.7908 16.0898 5.79932 16.036 5.788C15.7815 5.78064 15.5268 5.79907 15.276 5.843C14.703 5.95552 14.1768 6.23692 13.765 6.651C12.7943 7.61566 11.8277 8.58233 10.865 9.551L10.748 9.667C10.6977 9.72485 10.6363 9.77197 10.5674 9.80554C10.4985 9.8391 10.4235 9.85842 10.3469 9.86235C10.2704 9.86627 10.1938 9.85471 10.1218 9.82836C10.0499 9.80201 9.98393 9.76141 9.928 9.709C9.87455 9.66403 9.82347 9.61629 9.775 9.566C8.81 8.602 7.842 7.642 6.883 6.673C6.42995 6.20071 5.83115 5.89461 5.183 5.804C4.92061 5.76811 4.65571 5.75407 4.391 5.762C4.32941 5.77306 4.2659 5.76503 4.209 5.739" fill="#3C3C3C"/>
+          </svg>
+        {% endif %}
+      </p>
+      {% if settings.desconto_pix %}
+        <p class="pix-label">
+          A vista no PIX com <b>{{ settings.desconto_pix_valor }}% OFF</b>
+        </p>
+      {% endif %}
+    </div>
+    <div class="garantia-parcelamento">
+      <p>
+        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_14_9)"> <path d="M7.559 17.773C7.559 17.773 14.368 14.373 14.368 9.262V3.303L7.559 0.75L0.75 3.303V9.261C0.75 14.368 7.559 17.773 7.559 17.773Z" stroke="#00B45A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M17.288 2.311L7.926 11.673L3.67 7.418" stroke="#00B45A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </g> <defs> <clipPath id="clip0_14_9"> <rect width="18.348" height="18.522" fill="white"/> </clipPath> </defs>
+        </svg>
+        Garantia de <b>30 dias</b>
+      </p>
+      <p>
+        <b class="original-price">R$ {{ product.price | money }}</b> à vista ou em até <br>
+        12X com juros no cartão
+      </p>
+    </div>
+  {%- endunless -%}
+</div>

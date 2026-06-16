@@ -1,0 +1,691 @@
+<style>
+
+  @media (min-width: 1024px){
+    .slider-sabores-hs .header-widget h3{
+      margin-bottom: 65px;
+    }
+  }
+  
+  .slider-sabores-hs .swiper-slide{
+    width: 60%;
+    height: auto;
+  }
+
+  .flip-card-sabor{
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: relative;
+  }
+  
+  .slider-sabores-hs {
+    padding: 40px 20px 60px 20px;
+  }
+
+  .sabor-item {
+    text-align: center;
+    background: var(--colorCard);
+    padding: 20px;
+    border-radius: 25px;
+  }
+
+  .card-sabor-header {
+    margin-bottom: 10px;
+  }
+
+  .card-sabor-header h3 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 17px;
+  }
+
+  @media (max-width: 1024px){
+    .card-sabor-header h3 {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .calorias-preview {
+    display: flex;
+    background: var(--colorFeature);
+    border-radius: 9999px;
+    justify-content: center;
+    max-width: fit-content;
+    padding: 5px 30px 8px 30px;
+    margin: 0 auto;
+    margin-bottom: -12px;
+    gap: 5px;
+  }
+
+  .star-icon svg {
+    fill: var(--colorFeature);
+    stroke: none;
+    width: 16px;
+    height: 16px;
+    margin-top: -5px;
+  }
+
+  span.qtd-kcal {
+    font-size: 23px;
+    line-height: 1;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  span.medida-kcal span {
+    font-size: 7px;
+  }
+
+  span.medida-kcal b {
+    font-size: 8px
+  }
+  
+  span.medida-kcal {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    text-align: left;
+    color: #fff;
+    justify-content: center;
+  }
+  
+  .foto-sabor {
+    margin: 0 -25px;
+  }
+
+  .foto-sabor img {
+    width: 100%;
+  }
+
+  /*Avaliações*/
+  .avaliacoes-sabor {
+    display: flex;
+    gap: 5px;    
+    margin-top: 10px;
+  }
+
+  .total-avaliacoes {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1;
+    justify-content: center;
+  }
+
+  .media-avaliacao p {
+    font-size: 23px;
+    line-height: 1;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .avaliacoes-sabor {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .conhecer-btn{
+    font-size: 13px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0;
+  }
+
+   @media (min-width: 800px) and (max-width: 1200px){
+    .slider-sabores-hs .swiper-slide {
+      width: 33%;
+      height: auto;
+    }
+  }
+
+  @media (min-width: 1200px){
+    .slider-sabores-hs {
+      padding: 40px 120px 60px 120px;
+    }
+  
+    .slider-sabores-hs .swiper-slide {
+      width: 26%;
+      height: auto;
+    }
+  }
+
+  /*Card Open*/
+  
+  .header-cart-open {
+    display: flex;
+    align-items: center;
+    background: var(--colorCard);
+    border-radius: 25px;
+  }
+  
+  .cal-open-header {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    padding: 20px 35px 20px 20px;
+    background: var(--colorFeature);
+    border-radius: 25px;
+    font-weight: 100;
+    color: #fff;
+  }
+
+  .features-sabor-header {
+    display: flex;
+    gap: 10px;
+    max-width: 175px;
+  }
+  
+  span.kcal-number {
+    font-size: 30px;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  span.kcal-number + span {
+    font-weight: 600;
+  }
+
+  .img-header-card img {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .img-header-card {
+    max-width: 75px;
+    width: auto;
+    height: auto;
+    margin-bottom: -30px;
+    margin-top: -30px;
+    margin-left: -20px;
+  }
+
+  .content-sabor {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    font-size: 9px;
+    justify-content: center
+  }
+
+  .features-sabor-header {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px 15px;
+    align-items: center;
+  }
+
+  .feature-sabor-header {
+    display: flex;
+    gap: 5px;
+  }
+
+  .icon-sabor svg {
+    stroke: none;
+    width: 20px;
+    height: auto;
+  }
+
+  .slider-sabores-hs.open-description-sabor .swiper-slide {
+    width: 33.33%;
+  }
+  
+  .cart-sabor-open {
+    position: absolute;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    width: 100%;
+    background-color: #f6f6f6;
+    height: 100%;
+    border-radius: 25px;
+    z-index: -1;
+  }
+
+  .slider-sabores-hs.open-description-sabor .flip-card-sabor{
+    transform: rotateY(180deg);
+  }
+
+  @media (max-width: 1200px){
+    .slider-sabores-hs.open-description-sabor.end-animation .sabor-item{
+      display:none;
+    }
+    .slider-sabores-hs.open-description-sabor.end-animation .cart-sabor-open {
+      position: relative;
+      transform: inherit;
+      z-index: 1
+    }
+
+    .slider-sabores-hs.open-description-sabor.end-animation .flip-card-sabor {
+      all: unset !important;
+    }
+
+     .body-cart-open-sabor{
+        height: 320px;
+        flex-flow: row wrap;
+        overflow: hidden;
+     }
+
+     /* .open-description-sabor.end-animation .body-cart-open-sabor{
+        height: 390px;
+     } */
+  
+    .body-cart-open-sabor{
+      transition: height 1s;
+    }
+  }
+
+  @media (max-width: 1200px){
+    .slider-sabores-hs.open-description-sabor .swiper-slide {
+      width: 100%;
+    }
+
+    .features-sabor-header {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      padding: 10px 15px;
+      align-items: center;
+    }
+  }
+
+  .body-cart-open-sabor p {
+    font-size: 11px;
+    line-height: 1.6;
+    margin-top: 0;
+    font-weight: 400;
+  }
+
+  .body-cart-open-sabor {
+    padding: 40px 20px 20px;
+    display: flex;
+    flex-flow: column wrap;
+    margin: 0 auto;
+  }
+
+  @media(min-width:1200px){
+    .body-cart-open-sabor {
+      height: 100%;
+    }
+  }
+
+  .content-body-sabor {
+    flex: 1;
+  }
+
+  /* .slider-sabores-hs:not(.open-description-sabor) .cart-sabor-open{
+    display:none;
+  }
+
+  .slider-sabores-hs.open-description-sabor .sabor-item{
+    display:none;
+  } */
+
+  .slider-sabores-hs.open-description-sabor .flip-card-sabor {
+  /* all: unset !important; */
+  }
+
+  @media (min-width: 1200px){
+    .cal-left {
+      display: none;
+    }
+
+    .img-header-card {
+      margin-left: 0;
+      padding-left: 20px;
+    }
+    
+    .header-cart-open {
+      background: transparent;
+    }
+    
+    .cart-sabor-open {
+      transform: unset;
+      backface-visibility: unset;
+      position: relative;
+      width: 400px;
+      margin-left: -45px;
+      z-index: 1;
+      height: auto;
+    }
+
+    .features-sabor-header {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .sabor-item {
+      transform: inherit;
+      position: relative;
+      width: 300px;
+    }
+    
+    .flip-card-sabor {
+      display: flex !important;
+      transform: unset !important;
+      flex-direction: row-reverse !important;
+      width: fit-content;
+    }
+    
+    .slider-sabores-hs .swiper-slide {
+      width: fit-content;
+    }
+  }
+
+  .body-cart-open-sabor .previewCartItem-qty {
+    margin-top: 0;
+  }
+
+  .footer-card .quantity-container {
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+  @media (max-width: 1200px){
+    .footer-card .quantity-container {
+      flex-flow: column-reverse wrap;
+    }
+  }
+
+  @media (min-width: 1200px){
+    .cart-sabor-open {
+      z-index: 0;
+      transform: translateX(-50%);
+      width: 0;
+      margin: 0;
+      height: 0;
+      opacity: 0;
+      animation: all 1s;
+    }
+
+    .slider-sabores-hs.open-description-sabor .swiper-slide {
+      width: auto;
+    }
+
+    .opened .cart-sabor-open {
+      width: 500px;
+      opacity: 1;
+      transform: inherit;
+      z-index: 1;
+      margin-left: -45px;
+      height: auto;
+      animation: all 1s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .features-sabor-header {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  .body-cart-open-sabor .footer-card {
+    display: none;
+  }
+
+  @media (min-width:1024px){
+    .content-body-sabor {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 30px;
+    }
+  }
+</style>
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+<div class="swiper slider-sabores-hs max-container">
+  <div class="header-widget">
+    <h3>Conheça todos os <br />nossos sabores</h3>
+  </div>
+  <div class="swiper-wrapper">
+    {% for block in section.blocks %}
+      <div class="swiper-slide">
+        <div class="flip-card-sabor" style="--colorCard: {{ block.settings.color }}; --colorFeature: {{ block.settings.color_feature }}">
+          <div class="cart-sabor-open">
+            <div class="header-cart-open">
+              <div class="cal-left">
+                <div class="cal-open-header">
+                  <span class="kcal-number">{{ block.settings.kcal }}</span>
+                  <span>kcal</span>
+                  <span>/ a cada 100g</span>
+                </div>
+              </div>
+              <div class="img-header-card"><img loading="lazy" width="75px" height="auto" src="{{ block.settings.embalagem | image_url: width: 75 }}"/></div>
+              <div class="features-sabor-header">
+                {% if block.settings.label_favoritas %}
+                <div class="feature-sabor-header">
+                  <div class="icon-sabor">
+                    {% render 'icon-favoritas-do-brasil' %}
+                  </div>
+                  <div class="content-sabor">
+                    <span><b>favoritas</b></span>
+                    <span>do brasil</span>
+                  </div>
+                </div>
+                {% endif %}
+                {% if block.settings.label_vegano %}
+                <div class="feature-sabor-header">
+                  <div class="icon-sabor">
+                    {% render 'icon-vegano' %}
+                  </div>
+                  <div class="content-sabor">
+                    <span><b>vegano</b></span>
+                  </div>
+                </div>
+                {% endif %}
+                {% if block.settings.label_animal %}
+                <div class="feature-sabor-header">
+                  <div class="icon-sabor">
+                    {% render 'icon-proteina-animal' %}
+                  </div>
+                  <div class="content-sabor">
+                    <span><b>proteina</b></span>
+                    <span>animal</span>
+                  </div>
+                </div>
+                {% endif %}
+                {% if block.settings.label_rende %}
+                <div class="feature-sabor-header">
+                  <div class="icon-sabor">
+                    {% render 'icon-rendimento' %}
+                  </div>
+                  <div class="content-sabor">
+                    <span>rende {{ block.settings.porcoes }}</span>
+                    <span>porções</span>
+                  </div>
+                </div>
+                {% endif %}
+                <div class="feature-sabor-header">
+                  <div class="icon-sabor">
+                    {% render 'icon-tabela' %}
+                  </div>
+                  <div class="content-sabor">
+                    <span><a tabela-nutri href="{{ block.settings.product.metafields.custom.informa_o_nutricional.value | img_url: '800x' }}" class="tabela-nutri">tabela nutri.</a></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="body-cart-open-sabor">
+              <div class="content-body-sabor">
+                <p>{{ block.settings.descricao }}</p>
+                <p>{{ block.settings.ingredientes }}</p>
+              </div>
+              {% render 'footer-card-holy', product: block.settings.product %}
+            </div>
+          </div>
+          
+          <div class="sabor-item" data-open-sabor-desk data-open-sabor-mobile data-index="{{ forloop.index0 }}">
+            <div class="card-sabor">
+              <div class="card-sabor-header">
+                <h3>{{ block.settings.title }}</h3>
+                <a class="conhecer-btn" {% comment %}data-open-sabor-desk data-open=".slider-sabores-hs"{% endcomment %} href="javascript:void(0)">Conhecer <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="512px" height="512px"><path d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z M 12.984375 7.9863281 A 1.0001 1.0001 0 0 0 12 9 L 12 12 L 9 12 A 1.0001 1.0001 0 1 0 9 14 L 12 14 L 12 17 A 1.0001 1.0001 0 1 0 14 17 L 14 14 L 17 14 A 1.0001 1.0001 0 1 0 17 12 L 14 12 L 14 9 A 1.0001 1.0001 0 0 0 12.984375 7.9863281 z"/></svg></a>
+              </div>
+              <div class="calorias-preview">
+                <span class="qtd-kcal">{{ block.settings.kcal }}</span>
+                <span class="medida-kcal">
+                  <b>Kcal</b> 
+                  <span>/ a cada 100g</span>
+                </span>
+              </div>
+              <div class="foto-sabor">
+                <img loading="lazy" width="350px" height="auto" src="{{ block.settings.feature | image_url: width: 350 }}">
+              </div>
+              <div class="avaliacoes-sabor">
+                <div class="konfidency-reviews-multi" data-sku="{{ block.settings.product.id }}" data-v-app> </div>
+                {% comment %}
+                <div class="star-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="512px" height="512px">    <path d="M10.2,48.6c-0.2,0-0.4-0.1-0.6-0.2c-0.3-0.2-0.5-0.7-0.4-1.1l4.4-16.4L0.4,20.2C0,20-0.1,19.5,0,19.1 c0.1-0.4,0.5-0.7,0.9-0.7l17-0.9l6.1-15.9C24.2,1.3,24.6,1,25,1c0.4,0,0.8,0.3,0.9,0.6l6.1,15.9l17,0.9c0.4,0,0.8,0.3,0.9,0.7 c0.1,0.4,0,0.8-0.3,1.1L36.4,30.9l4.4,16.4c0.1,0.4,0,0.8-0.4,1.1c-0.3,0.2-0.8,0.3-1.1,0L25,39.2l-14.3,9.2 C10.5,48.6,10.4,48.6,10.2,48.6z"/></svg>
+                </div>
+                <div class="media-avaliacao">
+                  <p>4.8</p>
+                </div>
+                <div class="total-avaliacoes">
+                  <b>1.500</b>
+                  <span>Avaliações</span>
+                </div>
+                {% endcomment %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+{% if section.settings.borda-inferior %}
+  {% render 'borda-inferior', cor: section.settings.color-borda-inferior %}
+{% endif %}
+{% schema %}
+  {
+    "name": "Sabores Home",
+    "settings": [{
+      "type": "checkbox",
+      "id": "borda-superior",
+      "default": true,
+      "label": "Ativar divisória superior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-superior",
+      "default": "#fff",
+      "label": "Cor da divisória superior"
+    },
+    {
+      "type": "checkbox",
+      "id": "borda-inferior",
+      "default": false,
+      "label": "Ativar divisória inferior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-inferior",
+      "default": "#fff",
+      "label": "Cor da divisória inferior"
+    }],
+    "blocks":[
+      {
+        "type": "sabor",
+        "name": "Sabor",
+        "settings": [
+          {
+            "type": "color",
+            "id": "color",
+            "label": "Cor"
+          },
+          {
+            "type": "color",
+            "id": "color_feature",
+            "label": "Cor destaque"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Título"
+          },
+          {
+            "type": "text",
+            "id": "kcal",
+            "label": "Kcal/porção"
+          },
+          {
+            "type": "image_picker",
+            "id": "feature",
+            "label": "Imagem destaque"
+          },
+          {
+            "type": "image_picker",
+            "id": "embalagem",
+            "label": "Imagem embalagem"
+          },
+          {
+            "type": "textarea",
+            "id": "descricao",
+            "label": "Descrição"
+          },
+          {
+            "type": "textarea",
+            "id": "ingredientes",
+            "label": "Ingredientes"
+          },
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Produto"
+          },
+          {
+            "type": "header",
+            "content": "Configurações de labels"
+          },
+          {
+            "type": "checkbox",
+            "id": "label_favoritas",
+            "label": "Favoritas do brasil"
+          },
+          {
+            "type": "checkbox",
+            "id": "label_vegano",
+            "label": "Vegano"
+          },
+          {
+            "type": "checkbox",
+            "id": "label_animal",
+            "label": "Proteina Animal"
+          },
+          {
+            "type": "checkbox",
+            "id": "label_rende",
+            "label": "Rende X Porções",
+            "default": true
+          },
+          {
+            "type": "text",
+            "id": "porcoes",
+            "label": "Porções"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Sabores Home"
+    }]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,315 @@
+<div class="quantity-selector">
+    {% assign descontos_list = "" %}
+    
+    {% for i in (1..4) %}
+      {% capture mais_vendido_info %}desconto_maisvendido_{{ i }}{% endcapture %}
+      {% capture desconto_info %}desconto_{{ i }}{% endcapture %}
+      {% capture unidades_info %}desconto_un_{{ i }}{% endcapture %}
+      {% capture cor_primaria_info %}desconto_color_{{ i }}{% endcapture %}
+      {% capture ativar_desconto_info %}ativar_desconto_{{ i }}{% endcapture %}
+    
+      {% if settings[ativar_desconto_info] %}
+        {% capture desconto_item %}{{ settings[unidades_info] | strip }}|{{ settings[desconto_info] | strip }}{% endcapture %}
+        
+        {% if descontos_list != "" %}
+          {% assign descontos_list = descontos_list | append: ';' %}
+        {% endif %}
+        
+        {% assign descontos_list = descontos_list | append: desconto_item %}
+      {% endif %}
+    {% endfor %}
+    
+    {% assign descontos_array = descontos_list | split: ';' %}
+
+    <style>
+      .product-form__buttons {
+        margin-top: 15px;
+      }
+      .quantity-selector .nice-select {
+        float: none;
+        border: none;
+        background-color: #f7f7f7;
+        z-index: 5;
+        padding: 5px 20px;
+        height: auto;
+      }
+
+      .badge-frete-gratis {
+        background: #00b45a;
+        border-radius: 9999px;
+        padding: 3px 10px;
+        color: #fff;
+        margin-left: 5px;
+        display: none;
+      }
+
+      .free-shipping .badge-frete-gratis {
+        display: inline;
+      }
+      
+      .select-qtd-nice li {
+        text-align: center!important;
+      }
+
+      .select-qtd-nice span.current {
+        position: relative;
+        display: block;
+      }
+      
+      .select-qtd-nice span.current::before {
+        content: 'Quantidade: ';
+        font-weight: 800;
+      }
+
+      .select-qtd-nice .option {
+        border-top: 1px solid #f7f7f7;
+      }
+
+      .aviso-frete-gratis {
+        text-align: center;
+        color: #00b45a;
+        font-weight: 600;
+        line-height: 1.3;
+        margin-bottom: 10px;
+      }
+
+      @media (min-width: 1024px){
+        .select-qtd-nice.open {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 25px;
+          border-top-left-radius: 25px;
+        }
+
+        .select-qtd-nice .list {
+          top: 38px !Important;
+          border-radius: 0 !Important;
+          border: none;
+          box-shadow: none !Important;
+          width: 100%;
+          max-height: 200px;
+          overflow: auto;
+        }
+      }
+
+      @media (max-width: 1024px){
+        .nice-select.open .list {
+          position: fixed;
+          z-index: 105 !important;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100vw !important;
+          height: 70vh;
+          max-height: initial !important;
+          top: inherit;
+          margin: 0;
+          border-top-left-radius: 27px !important;
+          border-top-right-radius: 27px !important;
+          border-bottom-left-radius: 0 !important;
+          border-bottom-right-radius: 0 !important;
+        }
+
+        body.open-qtd .quantity-selector .nice-select {
+          z-index: 105;
+          animation-duration: 0s;
+        }
+
+        body.open-qtd .background-overlay {
+          opacity: 1;
+        }
+      }
+
+      .productView {
+        padding-bottom: 0;
+      }
+    </style>
+
+    <select name="quantity" @change="handleQuantity($event.target.value)" id="qtd-select" style="display:none">
+      {% unless product.available %}
+      <option data-discount="0" data-unit-price="0" freeshipping value="-1">Indisponível</option>
+      {% endunless %}
+      {% for qtd in (1..20) %}
+        {% assign loopQtd = forloop.index %}
+        {% assign current_discount = 0 %}
+
+        {% for discount_pair in descontos_array %}
+          {% assign pair = discount_pair | split: '|' %}
+          {% assign min_qty = pair[0] | plus: 0 %}
+          {% assign discount = pair[1] | plus: 0%}
+      
+          {% if loopQtd >= min_qty %}
+            {% assign current_discount = discount %}
+          {% endif %}
+        {% endfor %}
+      
+        {% if loopQtd > 1 %}
+          {% assign text = 'unidades' %}
+        {% else %}
+          {% assign text = 'unidade' %}
+        {% endif %}
+
+        {% assign productPrice = product.selected_or_first_available_variant.price %}
+        
+        {% if current_discount > 0 %}
+          {% assign productPrice = current_discount | divided_by: 100.0 | times: productPrice | minus: productPrice | abs %}
+        {% endif %}
+
+        {% comment %}Checagem para frete grátis{% endcomment %}
+        {% assign freeShipping = settings.calculator_free_shipping_message_price | times: 100 %}
+        {% if freeShipping %}
+          {% assign minQtdToShip = freeShipping | times: 1.0 | divided_by: productPrice | ceil  %}
+        {% else %}
+          {% assign minQtdToShip = 0 %}
+        {% endif %}
+      
+        {% if loopQtd >= minQtdToShip %}
+          <option data-discount="{{ current_discount }}" data-unit-price="{{ productPrice }}" {% if product.selected_or_first_available_variant.inventory_quantity < loopQtd and product.selected_or_first_available_variant.inventory_policy != "continue" %}disabled{% endif %} freeshipping value="{{ loopQtd }}">{{ loopQtd }} {{ text }} <span class="frete-gratis-label">Frete <b>Grátis</b></span></option>
+        {% else %}
+          <option data-discount="{{ current_discount }}" data-unit-price="{{ productPrice }}" {% if product.selected_or_first_available_variant.inventory_quantity < loopQtd and product.selected_or_first_available_variant.inventory_policy != "continue" %}disabled{% endif %} value="{{ loopQtd }}">{{ loopQtd }} {{ text }}</option>
+        {% endif %}
+        
+      {% endfor %}
+    </select>
+
+    <script>
+      // Priority initialization via quantity-selector-core.js
+      // Fallback if jQuery loads before core script
+      if (typeof jQuery !== 'undefined' && jQuery.fn.niceSelect) {
+        (function() {
+          var qtdSelect = document.getElementById('qtd-select');
+          if (qtdSelect && !qtdSelect.hasAttribute('data-nice-select-initialized')) {
+            jQuery(qtdSelect).niceSelect();
+            qtdSelect.setAttribute('data-nice-select-initialized', 'true');
+          }
+        })();
+      }
+      
+      $(document).ready(function(){
+        // Skip if already initialized by core script
+        if ($('#qtd-select').attr('data-nice-select-initialized') === 'true') {
+          return;
+        }
+        $('#qtd-select').niceSelect();
+        var newQtd = $('#qtd-select').next('.nice-select');
+        newQtd.addClass('select-qtd-nice')
+
+        function replaceFreteGratis(element) {
+          var texto = $(element).html();
+          if (texto.includes("Frete Grátis")) {
+              var novoTexto = texto.replace("Frete Grátis", '<span class="badge-frete-gratis">Frete <b>Grátis</b></span>');
+              $(element).html(novoTexto);
+          }
+        }
+
+        newQtd.find('li').each(function(){
+          replaceFreteGratis(this);
+        });
+
+        // Aplicar também no elemento current quando a página carrega
+        replaceFreteGratis(newQtd.find('.current')[0]);
+
+        newQtd.click(function(){
+          $('body').addClass('open-qtd');
+          $('.product-details').css('z-index', '');
+        })
+
+        //var targetNode = $('.select-qtd-nice .current')[0];
+        var targetNode = $('.select-qtd-nice .current')[0];
+        var config = {
+            childList: true,      // Observa adições/remoções diretas de filhos 
+            characterData: true,  // Observa mudanças no conteúdo/texto do nó
+            subtree: true         // Observa também os descendentes do nó
+        };
+    
+        var callback = function(mutationsList, observer) {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'characterData' || mutation.type === 'childList') {
+                    replaceFreteGratis(targetNode);
+                }
+            }
+        };
+    
+        var qtdObserver = new MutationObserver(callback);
+        qtdObserver.observe(targetNode, config);
+
+        /*Observar o fechamento da quantidade*/
+        function handleNiceSelectClosed() {
+          $('body').removeClass('open-qtd');
+        }
+
+        const niceSelectContainer = document.querySelector('.nice-select.select-qtd-nice');
+        const niceObserver = new MutationObserver((mutationsList) => {
+            for (const mutation of mutationsList) {
+                if (mutation.type === 'attributes' && !niceSelectContainer.classList.contains('open')) {
+                    handleNiceSelectClosed();
+                }
+            }
+        });
+
+        const configNice = { attributes: true, attributeFilter: ['class'] };
+        niceObserver.observe(niceSelectContainer, configNice);
+
+        /*Calculo*/
+        function totalPriceCalc(price){
+          var preco = price;
+          var pixDiscount = {{settings.desconto_pix_valor}};
+          
+          if(pixDiscount > 0){
+            preco = Math.abs((pixDiscount / 100.0) * preco - preco);
+          }
+
+          $('.price-pix .regular-price .money').html(Shopify.formatMoney(preco, window.money_format));
+        }
+
+        $(".nice-select.select-qtd-nice").change(function() {
+          if (!$(this).hasClass('open')) {
+              console.log("Modificado");
+          }
+        });
+
+        $("#qtd-select").change(function() {
+        
+            var descontos_array = {{ descontos_array | json }};
+            var qtd = $(this).val();
+            var discountValue = 0;
+          
+            $.each(descontos_array, function(index, discount_pair) {
+                var pair = discount_pair.split('|');
+                var min_qty = parseInt(pair[0], 10);
+                var discount = parseFloat(pair[1].replace('%', ''));
+            
+                if (qtd >= min_qty) {
+                    discountValue = discount;
+                }
+            });
+        
+            var price = {{ product.selected_or_first_available_variant.price }};
+
+            if (discountValue > 0){
+              var discountedAmount = (discountValue / 100.0) * price;
+              price = price - discountedAmount;
+            }
+
+            price = price * qtd;
+
+            totalPriceCalc(price);
+
+            $('.original-price').html(Shopify.formatMoney(price, window.money_format));
+
+            var cashback = 0;
+            {% if settings.ativar_cashback %}
+              let cashbackDiscount = {{settings.valor_cashback}};
+              cashback = cashbackDiscount / 100 * price;
+              $('.cashback-product').find('b').text(`Cashback de ${Shopify.formatMoney(cashback, window.money_format)}`)
+            {% endif %}
+            
+        });
+      });
+    </script>
+</div>
+{% if freeShipping %}
+<div class="aviso-frete-gratis">
+  <span>Frete Grátis em compras acima de {{ freeShipping | money }}.</span>
+</div>
+{% endif %}

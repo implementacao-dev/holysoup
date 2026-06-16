@@ -1,0 +1,203 @@
+{% for block in section.blocks %}
+  <link rel="preload" as="image" href="{{ block.settings.image_slide | image_url: width: 1900 }}">
+{% endfor %}
+<style>
+
+  .template-holymac .slideshow-hs  .swiper-pagination {
+    bottom: 30px !important;
+  }
+
+  .slideshow-hs .slide-item {
+    position: relative;
+  }
+
+  .slideshow-hs .slide-item img {
+    width: 100%;
+  }
+  
+  .rotative-text {
+    border-right: 2px solid #ffd88a;
+    /* animation: blink 0.75s infinite; */
+  }
+
+  .content-slide-hs {
+    max-width: 450px;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+  }
+  
+  .content-slide-hs h3 {
+    font-size: 45px;
+    font-family: var(--font-family-1);
+    font-weight: 500;
+    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    gap: 10px;
+  }
+  
+  .content-slide-hs h3 .rotative-text {
+    color: #ffd88a;
+    min-height: 52px;
+    display: block;
+  }
+
+  @media (max-width: 1024px){
+    .content-slide-hs {
+      top: 25%;
+      left: 50%;
+    }
+    
+    .content-slide-hs h3 {
+      font-size: 25px;
+    }
+  
+    .content-slide-hs h3 .rotative-text {
+      min-height: 25px;
+    }
+  }
+  
+  /* @keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+  } */
+</style>
+<div class="slideshow-hs">
+  <div class="swiper slide-home">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide">
+          <div class="slide-item">
+            <div class="content-slide-hs {{block.id}}">
+              {% if block.settings.title != blank or block.settings.rotative != blank %}
+                <h3>{{ block.settings.title }} {% if block.settings.rotative != blank %}<span class="rotative-text" data-typing-text="{{ block.settings.rotative | newline_to_br | split: "<br />" | join: "," }}">{{ block.settings.rotative | newline_to_br | split: "<br />" | first }}</span>{% endif %}</h3>
+              {% endif %}
+              {% if block.settings.subtitle %}<p>{{ block.settings.subtitle }}</p>{% endif %}
+            </div>
+            <a href="{{ block.settings.url }}">
+              <picture>
+                <source media="(max-width: 1024px)" srcset="{{ block.settings.image_slide_mb | image_url: width: 800 }}" />
+                {{ block.settings.image_slide | image_url: width: 1900 | image_tag: height: 'auto' }}
+              </picture>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+      </div>      
+      <div class="swiper-pagination pagination-slideshow-hs"></div>      
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+
+      $( '[data-typing-text]' ).each(function( index ) {
+          var texts = $(this).data('typing-text');
+          var container = $(this);
+          
+          // Defina suas variáveis aqui
+          var counter = 0;
+          var wordIndex = 0;
+          var isDeleting = false;
+          
+          // Passa suas variáveis como argumento
+          type(texts, container, counter, wordIndex, isDeleting);
+      });
+    
+      function type(texts, container, counter, wordIndex, isDeleting) {
+        
+          var words = texts.split(",");
+          var currentWord = words[wordIndex];
+          var typeSpeed = isDeleting ? 50 : 150;
+    
+          if (!isDeleting && counter < currentWord.length) {
+              container.text(currentWord.substring(0, counter + 1));
+              counter++;
+          } else if (isDeleting && counter > 0) {
+              container.text(currentWord.substring(0, counter - 1));
+              counter--;
+          }
+    
+          if (!isDeleting && counter === currentWord.length) {
+              if (wordIndex === words.length - 1) {
+                  typeSpeed = 5000; 
+              } else {
+                  typeSpeed = 1000;
+              }
+              isDeleting = true;
+          } else if (isDeleting && counter === 0) {
+              isDeleting = false;
+              wordIndex = (wordIndex + 1) % words.length;
+          }
+    
+          // Passa os argumentos atualizados para a próxima chamada
+          setTimeout(() => type(texts, container, counter, wordIndex, isDeleting), typeSpeed);
+      }
+    });
+</script>
+{% schema %}
+  {
+    "name": "Slideshow HS",
+    "settings": [],
+    "blocks":[
+      {
+        "type": "Slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image_slide",
+            "label" : "Imagem desktop"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_slide_mb",
+            "label" : "Imagem mobile"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Título"
+          },
+          {
+            "type": "textarea",
+            "id": "rotative",
+            "label": "Texto rotativo"
+          },
+          {
+            "type": "textarea",
+            "id": "subtitle",
+            "label": "Sub Título"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Link"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Slide HS"
+    }]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

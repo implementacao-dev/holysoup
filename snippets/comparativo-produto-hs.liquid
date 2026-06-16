@@ -1,0 +1,301 @@
+<style>
+  .comparativos-hs {
+    padding: 0 15px;
+  }
+  @media (min-width: 1200px){
+    .comparativos-hs {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .header-product-section {
+    padding: 20px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .header-product-section h3 {
+    font-weight: 400;
+    margin-bottom: 0;
+    font-size: 24px;
+    letter-spacing: 0;
+    color: #00b45a;
+  }
+
+  .tabela-comparativo-hs {
+    display: flex;
+    gap: 0px;
+    justify-content: center;
+    background-color: #FFFBF3;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 27px;
+    padding: 20px 10px 0;
+  }
+
+  .header-tabela{
+    text-align: center;
+    min-height: 140px;
+  }
+
+  .header-tabela h4 {
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.2;
+    min-height: 35px;
+  }
+
+  .positivos-tabela-hs .header-tabela h4 {
+    color: #00b45a;
+  }
+
+  .negativos-tabela-hs  .header-tabela h4 {
+    color: #FF455A;
+  }
+
+  .tabela-comparativo-hs ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .header-tabela svg {
+    stroke: none;
+    width: auto;
+    height: 69px;
+  }
+  
+  .header-tabela img {
+    height: 69px;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  .tabela-comparativo-hs ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .list-comparativo li + li {
+    border-top: 1px solid #FFF2D9;
+  }
+
+  .tabela-comparativo-hs li::after{
+    content: '';
+    background-size: cover;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);  
+  }
+
+  .positivos-tabela-hs li::after {
+    width: 13px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11.79' height='8.792' viewBox='0 0 11.79 8.792'%3E%3Cpath id='Icon_awesome-check' data-name='Icon awesome-check' d='M4,13.2.173,9.365a.59.59,0,0,1,0-.834L1.006,7.7a.589.589,0,0,1,.834,0l2.581,2.581L9.95,4.75a.59.59,0,0,1,.834,0l.834.834a.59.59,0,0,1,0,.834L4.838,13.2A.59.59,0,0,1,4,13.2Z' transform='translate(0 -4.577)' fill='%2300b45a'/%3E%3C/svg%3E%0A");
+  }
+
+  .negativos-tabela-hs li::after {
+    width: 10px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8.792' height='8.792' viewBox='0 0 8.792 8.792'%3E%3Cpath id='Icon_awesome-times' data-name='Icon awesome-times' d='M6.063,10.021l2.5-2.5a.786.786,0,0,0,0-1.111l-.556-.556a.786.786,0,0,0-1.111,0l-2.5,2.5-2.5-2.5a.786.786,0,0,0-1.111,0L.23,6.411a.786.786,0,0,0,0,1.111l2.5,2.5-2.5,2.5a.786.786,0,0,0,0,1.111l.556.556a.786.786,0,0,0,1.111,0l2.5-2.5,2.5,2.5a.786.786,0,0,0,1.111,0l.556-.556a.786.786,0,0,0,0-1.111Z' transform='translate(0 -5.625)' fill='%23ff455a'/%3E%3C/svg%3E%0A");
+  }
+  
+  .list-comparativo li {
+    position: relative;
+    padding-left: 21px;
+    font-size: 10px;
+    padding-right: 20px;
+    line-height: 1.3;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  @media (max-width: 1024px){
+    .list-comparativo li,
+    .list-custo-beneficio li{
+      min-height: 47px;
+      display: flex;
+      align-items: center;
+    }
+  }
+</style>
+
+<style>
+  .header-product-beneficio-section {
+    padding: 20px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .header-product-beneficio-section h3 {
+    font-weight: 400;
+    margin-bottom: 0;
+    color: #00b45a;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: 1.4;
+  }
+
+  .tabela-custo-beneficio-hs {
+    display: flex;
+    gap: 0px;
+    justify-content: center;
+    background-color: #E5F7EE;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 27px;
+    padding: 20px 10px 0;
+  }
+
+  .header-tabela-custo-beneficio{
+    text-align: center;
+    min-height: 142px;
+  }
+
+  .positivos-tabela-hs,
+  .custo-beneficio-positivos-tabela-hs{
+    width: 50%;
+  }
+  
+  .negativos-tabela-hs,
+  .custo-beneficio-negativos-tabela-hs{
+    width: 50%;
+  }
+
+  .header-tabela-custo-beneficio h4 {
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.2;
+    min-height: 35px;
+  }
+
+  .custo-beneficio-positivos-tabela-hs .header-tabela-custo-beneficio h4 {
+    color: #00b45a;
+  }
+
+  .custo-beneficio-negativos-tabela-hs  .header-tabela-custo-beneficio h4 {
+    color: #FF455A;
+  }
+
+  .tabela-custo-beneficio-hs ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .header-tabela-custo-beneficio svg {
+    stroke: none;
+    width: auto;
+    height: 69px;
+  }
+  
+  .header-tabela-custo-beneficio img {
+    height: 69px;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  .tabela-custo-beneficio-hs ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .list-custo-beneficio li + li {
+    border-top: 1px solid #CEF0DF;
+  }
+
+  .tabela-custo-beneficio-hs li::after{
+    content: '';
+    background-size: cover;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);  
+  }
+
+  .custo-beneficio-positivos-tabela-hs li::after {
+    width: 13px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11.79' height='8.792' viewBox='0 0 11.79 8.792'%3E%3Cpath id='Icon_awesome-check' data-name='Icon awesome-check' d='M4,13.2.173,9.365a.59.59,0,0,1,0-.834L1.006,7.7a.589.589,0,0,1,.834,0l2.581,2.581L9.95,4.75a.59.59,0,0,1,.834,0l.834.834a.59.59,0,0,1,0,.834L4.838,13.2A.59.59,0,0,1,4,13.2Z' transform='translate(0 -4.577)' fill='%2300b45a'/%3E%3C/svg%3E%0A");
+  }
+
+  .custo-beneficio-negativos-tabela-hs li::after {
+    width: 10px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8.792' height='8.792' viewBox='0 0 8.792 8.792'%3E%3Cpath id='Icon_awesome-times' data-name='Icon awesome-times' d='M6.063,10.021l2.5-2.5a.786.786,0,0,0,0-1.111l-.556-.556a.786.786,0,0,0-1.111,0l-2.5,2.5-2.5-2.5a.786.786,0,0,0-1.111,0L.23,6.411a.786.786,0,0,0,0,1.111l2.5,2.5-2.5,2.5a.786.786,0,0,0,0,1.111l.556.556a.786.786,0,0,0,1.111,0l2.5-2.5,2.5,2.5a.786.786,0,0,0,1.111,0l.556-.556a.786.786,0,0,0,0-1.111Z' transform='translate(0 -5.625)' fill='%23ff455a'/%3E%3C/svg%3E%0A");
+  }
+  
+  .list-custo-beneficio li {
+    position: relative;
+    padding-left: 21px;
+    font-size: 10px;
+    padding-right: 20px;
+    line-height: 1.3;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .header-tabela-custo-beneficio.padding-top-header {
+    padding-top: 10px;
+    padding-bottom: 63px;
+  }
+</style>
+
+<div class="comparativos-hs">
+  <div class="comparativo-produto-hs">
+    <div class="content-comparativo-produto-hs">
+      <div class="header-product-section">
+        <h3>Comparativo</h3>
+        <p>Compare a Holysoup com o preparo de sopas tradicionais e descubra como a sua vida pode ser mais prática, saudável e saborosa com Holysoup.</p>
+      </div>
+      <div class="tabela-comparativo-hs">
+        <div class="tabela-comparativo-hs">
+          <div class="positivos-tabela-hs">
+            <div class="header-tabela">
+              <svg width="69" height="69" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M34.5 69C53.5538 69 69 53.5538 69 34.5C69 15.4462 53.5538 0 34.5 0C15.4462 0 0 15.4462 0 34.5C0 53.5538 15.4462 69 34.5 69Z" fill="#00B45A"/>
+                <path d="M47.508 48.13C47.0005 48.2685 46.4701 48.3025 45.949 48.23C45.9425 48.2333 45.9365 48.2373 45.931 48.242C43.6109 49.7305 41.013 50.7329 38.2944 51.1886C35.5758 51.6443 32.793 51.5438 30.1143 50.8932C27.4357 50.2425 24.9168 49.0553 22.7101 47.4033C20.5035 45.7514 18.6548 43.6689 17.276 41.282C17.0443 40.8805 16.6636 40.5866 16.2164 40.4641C15.7693 40.3417 15.2919 40.4006 14.888 40.628C14.6887 40.7388 14.5134 40.888 14.3721 41.0669C14.2309 41.2459 14.1265 41.4511 14.065 41.6706C14.0036 41.8902 13.9862 42.1197 14.014 42.346C14.0418 42.5723 14.1142 42.7909 14.227 42.989C16.0164 46.0922 18.481 48.753 21.4383 50.7744C24.3956 52.7957 27.7697 54.1259 31.3108 54.6663C34.852 55.2066 38.4693 54.9434 41.8949 53.8961C45.3204 52.8488 48.4665 51.0442 51.1 48.616C49.8813 48.8289 48.6266 48.6595 47.508 48.131" fill="white"/>
+                <path d="M55.453 39.869C53.4347 40.1506 51.5414 41.0116 50.0025 42.3476C48.4637 43.6836 47.3453 45.4372 46.783 47.396C49.509 47.031 51.82 43.602 51.82 43.602C51.4955 44.6262 50.9441 45.5641 50.2069 46.3456C49.4696 47.1272 48.5656 47.7323 47.562 48.116L47.51 48.13C48.6287 48.6581 49.8833 48.8275 51.102 48.615L51.11 48.607C53.738 47.751 56.156 44.488 55.456 39.868" fill="#FFD88A"/>
+                <path d="M23.428 18.999C20.9737 18.9902 18.6161 19.9554 16.8726 21.6828C15.1291 23.4102 14.142 25.7587 14.128 28.213C14.128 30.6806 15.1082 33.0471 16.8531 34.7919C18.5979 36.5368 20.9644 37.517 23.432 37.517C25.8996 37.517 28.2661 36.5368 30.0109 34.7919C31.7558 33.0471 32.736 30.6806 32.736 28.213C32.722 25.7573 31.7338 23.4076 29.9886 21.68C28.2433 19.9523 25.8837 18.9881 23.428 18.999ZM23.428 22.467C24.9584 22.4617 26.4284 23.0635 27.5157 24.1405C28.603 25.2174 29.2187 26.6816 29.228 28.212C29.229 29.065 29.0376 29.9072 28.668 30.676C27.2435 29.3523 25.371 28.6166 23.4265 28.6166C21.482 28.6166 19.6095 29.3523 18.185 30.676C17.8162 29.9074 17.6258 29.0655 17.628 28.213C17.6367 26.6825 18.2524 25.218 19.3398 24.1409C20.4272 23.0638 21.8975 22.4621 23.428 22.468" fill="white"/>
+                <path d="M46.366 37.421C43.9119 37.429 41.5548 36.4635 39.8115 34.7363C38.0681 33.0091 37.0808 30.661 37.066 28.207C37.0631 26.7875 37.3916 25.3869 38.0252 24.1166C38.6589 22.8464 39.5802 21.7415 40.716 20.89C41.0854 20.6103 41.5501 20.4872 42.0095 20.5475C42.469 20.6078 42.8862 20.8465 43.171 21.212C43.3107 21.3924 43.4132 21.5987 43.4726 21.819C43.5319 22.0394 43.5469 22.2693 43.5167 22.4954C43.4864 22.7216 43.4116 22.9395 43.2964 23.1365C43.1813 23.3335 43.0282 23.5056 42.846 23.643C42.1375 24.1741 41.5628 24.8632 41.1675 25.6556C40.7722 26.4479 40.5672 27.3215 40.569 28.207C40.569 29.7453 41.1801 31.2205 42.2678 32.3082C43.3555 33.3959 44.8307 34.007 46.369 34.007C47.9072 34.007 49.3825 33.3959 50.4702 32.3082C51.5579 31.2205 52.169 29.7453 52.169 28.207C52.1707 27.3215 51.9658 26.4479 51.5705 25.6556C51.1752 24.8632 50.6005 24.1741 49.892 23.643C49.7098 23.5056 49.5567 23.3335 49.4415 23.1365C49.3264 22.9395 49.2516 22.7216 49.2213 22.4954C49.1911 22.2693 49.2061 22.0394 49.2654 21.819C49.3248 21.5987 49.4273 21.3924 49.567 21.212C49.8518 20.8465 50.269 20.6078 50.7284 20.5475C51.1879 20.4872 51.6526 20.6103 52.022 20.89C53.1578 21.7415 54.0791 22.8464 54.7128 24.1166C55.3464 25.3869 55.6749 26.7875 55.672 28.207C55.6572 30.661 54.6699 33.0091 52.9265 34.7363C51.1832 36.4635 48.8261 37.429 46.372 37.421" fill="white"/>
+              </svg>
+              <h4>HolySoup</h4>
+            </div>
+            <ul class="list-comparativo">
+              <li>Pronta em 20 minutos</li>
+              <li>Grande variedade de legumes</li>
+              <li>Menos de R$7 por porção</li>
+              <li>Receba em casa</li>
+              <li>Sabores variados</li>
+            </ul>
+          </div>
+          <div class="negativos-tabela-hs">
+            <div class="header-tabela">
+              <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/descricao_comparativo_legumes.png?v=1694909805"/>
+              <h4>Fazer sua sopa do zero</h4>
+            </div>
+            <ul class="list-comparativo">
+              <li>Mais de 1 hora de preparo</li>
+              <li>Pouca variedade de legumes</li>
+              <li>Muito mais caro</li>
+              <li>Enfrentar fila de mercado</li>
+              <li>Pouca variedade de sabor</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+              <li>Contém glúten</li>
+              <li>Sabor artificial</li>
+              <li>Altas calorias</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

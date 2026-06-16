@@ -1,0 +1,194 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-faqs-page",
+      "blocks": {
+        "6d900977-8489-4c34-a2fb-df1d2d88e4b6": {
+          "type": "paragraph",
+          "settings": {
+            "title": "Dúvidas Frequentes",
+            "question_1": "Tem cupom de desconto na hora da compra?",
+            "answer_1": "Claro! Você pode usar o cupom: 10NAPRIMEIRA e ganhar 10% de desconto em sua primeira compra. Além disso, você pode fazer parte do HolyClub para receber promoções e cupons frequentemente.",
+            "question_2": "Qual o prazo de entrega?",
+            "answer_2": "Temos prazos de postagem e entrega diferentes. Confira como cada um deles funciona:\n<p>\nPrazo de postagem - após a confirmação de pagamento, em até 3 dias úteis postamos as sopas. Esse prazo pode ser estendido em caso de alta demanda. Você receberá um link de rastreio por e-mail ou sms assim que seu pedido for postado.\n<\/p><p>\nPrazo de entrega - o prazo de entrega aparece assim que você realiza o checkout da sua sopa. Em média de 2 a 4 dias úteis para São Paulo e de 6 a 25 dias para as outras cidades do Brasil.<\/p>",
+            "question_3": "Como acompanhar meu pedido?",
+            "answer_3": "Para acompanhar o pedido, basta usar o link com o código de rastreio que enviamos para o seu e-mail ou sms. Depois, é só colocar o código:\n\n<p><a style=\"width: auto;\" href=\"https:\/\/holysoup.com.br\/pages\/rastreie-seu-pedido\" class=\"btn-comprar-kit an-horizontal-shaking button-text-change\">RASTREAR PEDIDO<\/a><\/p>",
+            "question_4": "Meu código de rastreio não chegou. O que eu faço?",
+            "answer_4": "Você receberá o código de rastreio em até 3 dias úteis após fechar seu pedido. Se não o encontrar, procure no seu e-mail pelo termo “HolySoup” na Caixa de Entrada, no Spam, na aba Promoções e na aba Social.\n<p>\nTenha certeza de que não houve um erro de digitação do e-mail na hora de solicitar sua compra.\n<\/p><p>\nSe ainda assim não encontrar o seu código de rastreio, por favor, nos envie um e-mail para ola@holysoup.com.br com o CPF utilizado na hora da compra.\n\nVocê pode também tentar rastrear seu pedido pelo nosso link do site:\n<\/p><p>\n<\/p><p><a style=\"width: auto;\" href=\"https:\/\/holysoup.com.br\/pages\/rastreie-seu-pedido\" class=\"btn-comprar-kit an-horizontal-shaking button-text-change\">RASTREAR PEDIDO<\/a><\/p>",
+            "question_5": "As sopas vendem em supermercados? Onde posso encontrar na minha cidade?",
+            "answer_5": "As Holys podem ser encontradas em diversas lojas espalhadas por todo o Brasil. Acesse o link abaixo e encontre o ponto mais próximo de você:<p><\/p>\n<p><a style=\"width: auto;\" href=\"https:\/\/holysoup.com.br\/pages\/onde-encontrar\" class=\"btn-comprar-kit an-horizontal-shaking button-text-change\">ONDE ENCONTRAR<\/a><\/p>",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
+        },
+        "4c51c292-c89d-4c1e-bc69-75a31267155a": {
+          "type": "paragraph",
+          "settings": {
+            "title": "Pedidos",
+            "question_1": "Como faço para alterar meu pedido?",
+            "answer_1": "Geralmente não é possível realizar alterações em um pedido após a aprovação de pagamento. Entretanto, se tiver algum urgência, por favor, entre em contato pelo nosso WhatsApp:\n<p><a style=\"width: auto;\" href=\"http:\/\/wa.me\/551140038025\" class=\"btn-comprar-kit an-horizontal-shaking button-text-change\"> Chamar no WhatsApp <\/a><\/p>",
+            "question_2": "Quais as formas de pagamento?",
+            "answer_2": "Aceitamos cartões de crédito, pix e boleto. Todos os pagamentos são seguros e feitos pelo Pagar.me. O pedido pode ser parcelado em 12 vezes com os cartões: Visa, Mastercard, Elo, Hipercard, American Express, Diners Club.",
+            "question_3": "",
+            "answer_3": "",
+            "question_4": "compra não aprovada, o que eu faço?",
+            "answer_4": "Se você não estiver conseguindo concluir uma compra ou se recebeu um e-mail informando que seu pedido está pendente, entre em contato com nossa equipe:\n\n<p><\/p>\n<p><a style=\"width: auto;\" href=\"http:\/\/wa.me\/551140038025\" class=\"btn-comprar-kit an-horizontal-shaking button-text-change\"> Chamar no WhatsApp <\/a><\/p>",
+            "question_5": "Não recebi e-mail de confirmação. O que eu faço?",
+            "answer_5": "O e-mail de confirmação é enviado de forma automática, assim que sua compra é confirmada. Se não o encontrar, procure no seu e-mail pelo termo “HolySoup” na Caixa de Entrada, no Spam, na aba Promoções e na aba Social.\n<p>\nSe ainda assim não encontrar o e-mail, por favor, nos envie uma mensagem para ola@holysoup.com.br com o CPF utilizado na hora da compra.<\/p>",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
+        },
+        "15d9d2f4-1bdd-49c8-9a99-58246020f05c": {
+          "type": "paragraph",
+          "settings": {
+            "title": "Sopas",
+            "question_1": "As sopas ficam prontas em quanto tempo?",
+            "answer_1": "Em média, nossas sopas ficam prontas em apenas 20 minutos, mas cada uma delas vem com um tempo específico de cozimento claramente indicado na embalagem.",
+            "question_2": "As sopas contêm glutén?",
+            "answer_2": "Não! Para garantir uma alimentação saudável e segura para pessoas celíacas, nossos produtos são totalmente livres de glúten e contaminação cruzada. Além disso, nossas sopas não contêm soja, amendoim, amêndoas e nozes.",
+            "question_3": "Todas as sopas são veganas?",
+            "answer_3": "Quase, no momento a Canja da Mamãe é a única sopa que não é vegana, pois possui frango liofilizado.",
+            "question_4": "Crianças podem consumir as sopas?",
+            "answer_4": "Claro! Nossas sopas podem ser consumidas por pessoas de todas as idades que buscam alimentação saudável.\n<p>\nPara os pequenos, recomendamos especialmente as nossas sopas da Vovó e Canja da Mamãe, todas carinhosamente preparadas pensando no bem-estar da sua família. Caso queira, pode complementar as sopas com os legumes e as proteínas que acha melhor.\n<\/p><p>\nCaso a criança tenha alguma intolerância ou restrição alimentar, você pode consultar a lista detalhada de ingredientes no nosso site.\n<\/p>",
+            "question_5": "Qual o rendimento de cada pacote?",
+            "answer_5": "Cada pacote rende 4 porções de 250 ml cheias de sabor e saúde. Após o preparo, você terá aproximadamente 1 litro de sopa.\n\nOs valores calóricos e nutritivos variam de acordo com cada sopa.",
+            "question_6": "Qual a validade? Como as sopas duram sem conservantes?",
+            "answer_6": "Cada pacote dura 8 meses. Para garantir que nossas sopas cheguem fresquinhas e sem conservantes, adotamos um cuidadoso processo de desidratação em todos os ingredientes das receitas. Este método retira toda a água enquanto preserva os nutrientes essenciais, eliminando a necessidade de aditivos químicos.\n<p>\nEstamos comprometidos em enviar para a sua casa apenas lotes recém-produzidos, assegurando que cada refeição seja tão fresca e saborosa quanto saudável.\n<\/p><p>\nPara estender o prazo de validade, você pode congelar as sopas já preparadas por até 3 meses.<\/p>",
+            "question_7": "Qual a quantidade de sódio nas sopas?",
+            "answer_7": "A quantidade é muito baixa, pois o teor de sódio vem naturalmente dos ingredientes utilizados, como a cenoura, que por si só contém apenas 60 mg de sódio a cada 100 g.\n<p>\nA quantidade de sódio presente em nossas sopas vária entre apenas 12 mg e 50 mg por porção, dependendo do sabor escolhido.\n<\/p><p>\nE é importante ressaltar que sódio e sal não são a mesma coisa. Nossas sopas não possuem sal, mas possuem quantidades pequenas de sódio, que é um mineral essencial para o corpo.\n<\/p>",
+            "question_8": "As sopas podem ser congeladas?",
+            "answer_8": "Sim! Elas podem ser congeladas depois de preparadas e duram até 3 meses no congelador.",
+            "question_9": "As sopas ajudam no emagrecimento?",
+            "answer_9": "Sim, nossas sopas são aliadas da perda de peso. \n<p>\nPara emagrecer, é preciso criar um déficit calórico, isto é, consumir menos calorias do que seu corpo utiliza e combinar isso com exercícios físicos regulares. Ao integrar nossas sopas à sua rotina alimentar, você opta por uma refeição de baixa caloria que contribui para esse déficit, auxiliando no processo de emagrecimento.\n<\/p><p>\nAlém disso, nossas sopas são repletas de fibras solúveis e insolúveis, fundamentais para o bom funcionamento do intestino e para manter você saciado(a) por mais tempo.\n<\/p>",
+            "question_10": "Grávidas podem tomar essas sopas?",
+            "answer_10": "Sim! Nossas sopas são feitas de ingredientes naturais e não possuem nenhum tipo de conservante que faça mal à saúde.\n<p>\nEntretanto, se preferir, encaminhe nosso site para um obstetra ou nutricionista para que eles verifiquem as informações nutricionais e a possibilidade de colocar as sopas na sua dieta.<\/p>"
+          }
+        },
+        "888ff7b2-232f-46f9-a756-7a4f9d853ca0": {
+          "type": "paragraph",
+          "settings": {
+            "title": "",
+            "question_1": "Diabéticos podem consumir essas sopas?",
+            "answer_1": "Sim, pois elas são 100% naturais, sem glúten, sem conservantes, sem sal e sem açúcar, o que torna nossas sopas em refeições com um baixo índice glicêmico.\n<p>\nEntretanto, sempre orientamos que você consulte um especialista caso tenha dúvidas sobre os alimentos permitidos por sua patologia.\n<\/p>",
+            "question_2": "Tenho uma doença, posso tomar as sopas?",
+            "answer_2": "Em caso de alguma doença grave, que limite a sua dieta, recomendamos que consulte seu médico ou nutricionista para melhor te orientar em relação à ingestão dos ingredientes contidos.\n<p>\nEntretanto, nossas sopas são 100% naturais e sem conservantes que fazem mal à sua saúde.\n<\/p>",
+            "question_3": "Tenho colesterol alto, posso consumir as sopas?",
+            "answer_3": "Sim, pois nossas sopas não contêm gorduras adicionais, como saturadas ou trans, e o índice de gordura total é baixíssimo, variando entre 0,9 g a 3,2 g!\n<p>\nAs sopas também possuem ingredientes que são ricos em ômega 3 como ervilha, lentilha e espinafre, que vão te auxiliar a baixar o colesterol e os triglicerídeos e aumentar o HDL (gordura boa que ajuda a combater a gordura ruim).\n<\/p>",
+            "question_4": "O macarrão de farinha de banana tem gosto de banana?",
+            "answer_4": "Não! o macarrão de biomassa não tem gosto nem cheiro de banana.",
+            "question_5": "Posso fazer as sopas no micro-ondas?",
+            "answer_5": "Algumas sopas podem ser preparadas no micro-ondas, porém, outras precisam passar por um período de cozimento e no micro-ondas ela não chegará à consistência e sabor desejado.",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
+        },
+        "paragraph_rKqVHk": {
+          "type": "paragraph",
+          "settings": {
+            "title": "Macarrões",
+            "question_1": "Qual a diferença do HolyMac para o macarrão instantâneo tradicional?",
+            "answer_1": "O macarrão instantâneo comum tem altos volumes de sódio (média de 1259 mg por pacote), gorduras (15 g) e conservantes (como o glutamato monossódico), além de que, quando consumido frequentemente, pode causar ganho de peso.\n<p>\nO HolyMac tem níveis controlados de sódio e não possui lupas de alto teor ou aditivos químicos em sua composição. Seus ingredientes são saudáveis, naturais e não causam efeitos colaterais ao corpo. Além disso, não possui glúten, podendo ser consumido por pessoas com doença celíaca.\n<\/p>",
+            "question_2": "O HolyMac é um alimento ultraprocessado?",
+            "answer_2": "Não, os ingredientes da linha HolyMac são desidratados e não passam por nenhum tipo de transformação química, por isso não são considerados ultraprocessados. Além de não possuírem lupas de alto teor.",
+            "question_3": "Para quem ele é indicado?",
+            "answer_3": "Ele pode ser consumido por pessoas de todas as idades, mas suas referências nutricionais foram pensadas na alimentação ideal para pessoas adultas. Entretanto, é importante que as pessoas com algum tipo de alergia verifiquem sempre a tabela de ingredientes.",
+            "question_4": "O tempero do HolyMac possui algum ingrediente que pode fazer mal à saúde?",
+            "answer_4": "Não, o tempero que acompanha o HolyMac é feito com ingredientes comuns, que você conhece e possui em casa (como alho, salsa, noz-moscada e cebola), e não fazem mal à saúde. São temperos diferentes daqueles dos macarrões instantâneos que são cheios de sódio e conservantes. Entretanto, o HolyMac contém lactose e derivados de leite, de modo que pode causar desconforto a pessoas intolerantes a esses produtos.",
+            "question_5": "O HolyMac é uma boa refeição para anteceder meu treino?",
+            "answer_5": "Sim, por possuir carboidratos, potássio e alto nível de proteínas, ele é uma boa opção de alimentação pré-treino. Entretanto, é importante que a refeição seja feita cerca de 40 minutos antes do treino para que o corpo absorva os nutrientes necessários para a atividade física.",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
+        }
+      },
+      "block_order": [
+        "6d900977-8489-4c34-a2fb-df1d2d88e4b6",
+        "4c51c292-c89d-4c1e-bc69-75a31267155a",
+        "15d9d2f4-1bdd-49c8-9a99-58246020f05c",
+        "888ff7b2-232f-46f9-a756-7a4f9d853ca0",
+        "paragraph_rKqVHk"
+      ],
+      "settings": {
+        "show_breadcrumb": true,
+        "breadcrumb_alignment": "left",
+        "breadcrumb_bg": "",
+        "breadcrumb_gradient": "",
+        "breadcrumb_bg_mb": "#f6f6f6",
+        "breadcrumb_gradient_mb": "",
+        "show_page_title": true,
+        "page_title_alignment": "left",
+        "container": "1170",
+        "mg_top_desktop": 0,
+        "mg_top_tablet": 0,
+        "mg_top_mobile": 0,
+        "mg_bottom_desktop": 0,
+        "mg_bottom_tablet": 0,
+        "mg_bottom_mobile": 0,
+        "show_faqs_filter": false,
+        "faqs_text": "<p>Confira as respostas das possíveis dúvidas que você possa ter<\/p>",
+        "faqs_message_heading": "",
+        "faqs_message_text": "",
+        "message_method_link_1": "",
+        "message_method_text_1": "Message Us",
+        "message_method_link_2": "",
+        "message_method_text_2": "",
+        "contact_content_text": "",
+        "contact_text": "",
+        "contact_link": "shopify:\/\/pages\/contact-us-2",
+        "contact_color": "#ffffff",
+        "contact_color_border": "#ef6454",
+        "contact_color_bg": "#ef6454",
+        "contact_color_bg_gradient": "",
+        "contact_color_hover": "#ffffff",
+        "contact_color_border_hover": "#e93d29",
+        "contact_color_bg_hover": "#e93d29",
+        "contact_color_bg_gradient_hover": ""
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

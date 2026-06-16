@@ -1,0 +1,47 @@
+{%- liquid 
+    assign fontsize_text = block.settings.fontsize_text
+    assign fontsize_text_mb = block.settings.fontsize_text_mb
+    assign color_title = block.settings.color_title
+-%}
+
+{%- comment -%}
+{%- if check_show_share == '3' -%}
+    <div class="halo-share-3">
+        <h1 class="productView-title" style="--color-title: {{ color_title }};--fontsize-text: {{ fontsize_text | append: 'px' }};--fontsize-mb-text: {{ fontsize_text_mb | append: 'px' }};"><span>{{ product.title | escape }}</span></h1>
+        {% render 'halo-share', product: product, share_layout: check_show_share %}
+    </div>
+{%- else -%}
+    <h1 class="productView-title" style="--color-title: {{ color_title }};--fontsize-text: {{ fontsize_text | append: 'px' }};--fontsize-mb-text: {{ fontsize_text_mb | append: 'px' }};"><span>{{ product.title | escape }}</span></h1>
+{%- endif -%}
+{%- endcomment -%}
+
+<div class="desktop-description">
+    <div class="title-container-product">
+      <h3 class="productView-title" style="--color-title: {{ color_title }};--fontsize-text: {{ fontsize_text | append: 'px' }};--fontsize-mb-text: {{ fontsize_text_mb | append: 'px' }};">
+        {{ product.title | escape }}
+      </h3>
+      <span>{{ product.metafields.custom.subtitulo }}</span>
+    </div>
+    <div id="review" class="review-share">
+      {% comment %}
+      <div class="konfidency-reviews-summary" data-v-app=""></div>
+      {% endcomment %}
+      <!-- Start of Judge.me code --> 
+        <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
+          {{ product.metafields.judgeme.badge }} 
+        </div> 
+      <!-- End of Judge.me code -->
+      <div class="share-product">
+        <a target="_blank" href="http://api.whatsapp.com/send?text=Olá que incrível: {{ product.title }}%0Ahttps://{{ shop.url }}{{ product.url }}">
+          <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.5111 2.77642C13.5111 3.20545 13.3839 3.62485 13.1455 3.98156C12.9071 4.33827 12.5683 4.61628 12.1719 4.78041C11.7755 4.94455 11.3394 4.98744 10.9186 4.90367C10.4978 4.8199 10.1113 4.61322 9.80803 4.30978C9.50473 4.00634 9.29823 3.61977 9.21465 3.19896C9.13107 2.77815 9.17417 2.342 9.33849 1.94569C9.50281 1.54937 9.78097 1.21069 10.1378 0.972478C10.4946 0.734266 10.9141 0.607224 11.3431 0.607422C11.9182 0.607687 12.4696 0.836323 12.8762 1.24306C13.2827 1.6498 13.5111 2.20134 13.5111 2.77642Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4.83702 7.83648C4.83702 8.26551 4.70979 8.6849 4.47141 9.04162C4.23304 9.39833 3.89422 9.67633 3.49783 9.84047C3.10144 10.0046 2.66528 10.0475 2.24451 9.96373C1.82373 9.87996 1.43726 9.67328 1.13396 9.36984C0.830656 9.0664 0.624158 8.67983 0.540579 8.25902C0.457001 7.83821 0.500097 7.40206 0.664417 7.00575C0.828737 6.60943 1.1069 6.27075 1.46372 6.03254C1.82054 5.79432 2.23999 5.66728 2.66902 5.66748C3.24411 5.66775 3.79554 5.89638 4.20209 6.30312C4.60864 6.70986 4.83702 7.2614 4.83702 7.83648Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13.5111 12.8965C13.5111 13.3256 13.3839 13.745 13.1455 14.1017C12.9071 14.4584 12.5683 14.7364 12.1719 14.9005C11.7755 15.0647 11.3394 15.1076 10.9186 15.0238C10.4978 14.94 10.1113 14.7333 9.80803 14.4299C9.50473 14.1265 9.29823 13.7399 9.21465 13.3191C9.13107 12.8983 9.17417 12.4621 9.33849 12.0658C9.50281 11.6695 9.78097 11.3308 10.1378 11.0926C10.4946 10.8544 10.9141 10.7273 11.3431 10.7275C11.9182 10.7278 12.4696 10.9564 12.8762 11.3632C13.2827 11.7699 13.5111 12.3215 13.5111 12.8965Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4.54102 8.92725L9.47802 11.8042" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9.47102 3.86719L4.54102 6.74419" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <b>Mostrar</b> à um amigo
+        </a>
+      </div>
+    </div>
+</div>

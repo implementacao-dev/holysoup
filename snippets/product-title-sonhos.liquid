@@ -1,0 +1,50 @@
+{%- liquid 
+    assign fontsize_text = block.settings.fontsize_text
+    assign fontsize_text_mb = block.settings.fontsize_text_mb
+    assign color_title = block.settings.color_title
+-%}
+
+{%- comment -%}
+{%- if check_show_share == '3' -%}
+    <div class="halo-share-3">
+        <h1 class="productView-title" style="--color-title: {{ color_title }};--fontsize-text: {{ fontsize_text | append: 'px' }};--fontsize-mb-text: {{ fontsize_text_mb | append: 'px' }};"><span>{{ product.title | escape }}</span></h1>
+        {% render 'halo-share', product: product, share_layout: check_show_share %}
+    </div>
+{%- else -%}
+    <h1 class="productView-title" style="--color-title: {{ color_title }};--fontsize-text: {{ fontsize_text | append: 'px' }};--fontsize-mb-text: {{ fontsize_text_mb | append: 'px' }};"><span>{{ product.title | escape }}</span></h1>
+{%- endif -%}
+{%- endcomment -%}
+<div style="display: flex; justify-content: space-between; align-items: end;">
+  <div id="review-col" class="review-share">
+     {% comment %}
+    <div class="konfidency-reviews-summary" data-v-app=""></div>
+    {% endcomment %}
+    <!-- Start of Judge.me code --> 
+      <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
+        {{ product.metafields.judgeme.badge }} 
+      </div> 
+    <!-- End of Judge.me code -->
+  </div>
+  {% if image != blank %}
+    <button
+      @click="open = true"
+      class="modal-button"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+      </svg>  
+      <div class="modal-button-text">
+        Tabela Nutricional
+      </div>
+    </button>
+  {% endif %}
+</div>
+          
+<div class="desktop-description">
+  <div class="title-container-product">
+    <h3 class="productView-title" style="--color-title: {{ color_title }};--fontsize-text: {{ fontsize_text | append: 'px' }};--fontsize-mb-text: {{ fontsize_text_mb | append: 'px' }};">
+      {{ product.title | escape }}
+    </h3>
+    <span>{{ product.metafields.custom.subtitulo }}</span>
+  </div>
+</div>

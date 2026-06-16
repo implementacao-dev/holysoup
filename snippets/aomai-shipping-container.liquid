@@ -1,0 +1,908 @@
+{% comment %} Logica para calcular progresso {% endcomment %}
+
+{%- liquid
+  if settings.aomaiProgress01 != blank
+    assign aomaiStop1 = settings.aomaiProgress01 | plus: 0
+  else
+    assign aomaiStop1 = 0
+  endif
+
+  if settings.aomaiProgress02 != blank
+    assign aomaiStop2 = settings.aomaiProgress02 | plus: 0
+  else
+    assign aomaiStop2 = 0
+  endif
+
+  if settings.aomaiProgress03 != blank
+    assign aomaiStop3 = settings.aomaiProgress03 | plus: 0
+  else
+    assign aomaiStop3 = 0
+  endif
+
+  if settings.aomaiProgress04 != blank
+    assign aomaiStop4 = settings.aomaiProgress04 | plus: 0
+  else
+    assign aomaiStop4 = 0
+  endif
+
+  if settings.aomaiProgress05 != blank
+    assign aomaiStop5 = settings.aomaiProgress05 | plus: 0
+  else
+    assign aomaiStop5 = 0
+  endif
+
+  comment
+    Usa o último marco configurado como referência final
+  endcomment
+  if aomaiStop5 > 0
+    assign finalFrete = aomaiStop5
+  elsif aomaiStop4 > 0
+    assign finalFrete = aomaiStop4
+  elsif aomaiStop3 > 0
+    assign finalFrete = aomaiStop3
+  elsif aomaiStop2 > 0
+    assign finalFrete = aomaiStop2
+  elsif aomaiStop1 > 0
+    assign finalFrete = aomaiStop1
+  else
+    assign finalFrete = 0
+  endif
+
+  comment
+    Calcula o total excluindo produtos VIP e Exclusivo
+  endcomment
+  assign filtered_item_count = 0
+  assign filtered_total_price = 0
+
+  assign excluded_product_ids = '|'
+  for excluded_product in settings.aomai_excluded_products
+    assign excluded_product_ids = excluded_product_ids | append: excluded_product.id | append: '|'
+  endfor
+
+  for item in cart.items
+    assign item_handle_lower = item.product.handle | downcase
+    assign is_vip_product = false
+    assign is_excluded_product = false
+
+    assign item_product_token = '|' | append: item.product_id | append: '|'
+    if excluded_product_ids contains item_product_token
+      assign is_excluded_product = true
+    endif
+
+    if item_handle_lower contains 'vip' or item_handle_lower contains 'exclusivo'
+      assign is_vip_product = true
+    endif
+
+    unless is_vip_product or is_excluded_product
+      assign filtered_item_count = filtered_item_count | plus: item.quantity
+      assign filtered_total_price = filtered_total_price | plus: item.final_line_price
+    endunless
+  endfor
+
+  if settings.aomai_tipo_progresso == 'quantidade'
+    assign aomaiTotalCart = filtered_item_count
+    assign totalCartDividedby100 = filtered_item_count
+  else
+    assign aomaiTotalCart = filtered_total_price
+    assign totalCartDividedby100 = aomaiTotalCart | divided_by: 100.0
+  endif
+
+  comment
+    CALCULO DE DISTANCIA EQUIDISTANTE
+  endcomment
+  assign active_stops_count = 0
+  if aomaiStop1 > 0
+    assign active_stops_count = active_stops_count | plus: 1
+  endif
+  if aomaiStop2 > 0
+    assign active_stops_count = active_stops_count | plus: 1
+  endif
+  if aomaiStop3 > 0
+    assign active_stops_count = active_stops_count | plus: 1
+  endif
+  if aomaiStop4 > 0
+    assign active_stops_count = active_stops_count | plus: 1
+  endif
+  if aomaiStop5 > 0
+    assign active_stops_count = active_stops_count | plus: 1
+  endif
+
+  if active_stops_count > 0
+    assign step_percentage = 100.0 | divided_by: active_stops_count
+  else
+    assign step_percentage = 0
+  endif
+
+  assign aomaiNewStop1 = 0
+  assign aomaiNewStop2 = 0
+  assign aomaiNewStop3 = 0
+  assign aomaiNewStop4 = 0
+  assign aomaiNewStop5 = 0
+
+  assign current_visible_index = 0
+
+  if aomaiStop1 > 0
+    assign current_visible_index = current_visible_index | plus: 1
+    assign aomaiNewStop1 = step_percentage | times: current_visible_index
+  endif
+  if aomaiStop2 > 0
+    assign current_visible_index = current_visible_index | plus: 1
+    assign aomaiNewStop2 = step_percentage | times: current_visible_index
+  endif
+  if aomaiStop3 > 0
+    assign current_visible_index = current_visible_index | plus: 1
+    assign aomaiNewStop3 = step_percentage | times: current_visible_index
+  endif
+  if aomaiStop4 > 0
+    assign current_visible_index = current_visible_index | plus: 1
+    assign aomaiNewStop4 = step_percentage | times: current_visible_index
+  endif
+  if aomaiStop5 > 0
+    assign current_visible_index = current_visible_index | plus: 1
+    assign aomaiNewStop5 = step_percentage | times: current_visible_index
+  endif
+
+  comment
+    CALCULO DO PROGRESSO REAL BASEADO NAS ETAPAS
+  endcomment
+
+  assign finalProgress = 0
+
+  if totalCartDividedby100 > 0 and finalFrete > 0
+    if totalCartDividedby100 >= finalFrete
+      assign finalProgress = 100
+    else
+      comment
+        Logica de segmentos
+      endcomment
+      assign current_segment_start_val = 0
+      assign current_segment_end_val = aomaiStop1
+      assign current_segment_start_pct = 0
+      assign current_segment_end_pct = aomaiNewStop1
+
+      if totalCartDividedby100 >= aomaiStop4 and aomaiStop5 > 0
+        assign current_segment_start_val = aomaiStop4
+        assign current_segment_end_val = aomaiStop5
+        assign current_segment_start_pct = aomaiNewStop4
+        assign current_segment_end_pct = aomaiNewStop5
+      elsif totalCartDividedby100 >= aomaiStop3 and aomaiStop4 > 0
+        assign current_segment_start_val = aomaiStop3
+        assign current_segment_end_val = aomaiStop4
+        assign current_segment_start_pct = aomaiNewStop3
+        assign current_segment_end_pct = aomaiNewStop4
+      elsif totalCartDividedby100 >= aomaiStop2 and aomaiStop3 > 0
+        assign current_segment_start_val = aomaiStop2
+        assign current_segment_end_val = aomaiStop3
+        assign current_segment_start_pct = aomaiNewStop2
+        assign current_segment_end_pct = aomaiNewStop3
+      elsif totalCartDividedby100 >= aomaiStop1 and aomaiStop2 > 0
+        assign current_segment_start_val = aomaiStop1
+        assign current_segment_end_val = aomaiStop2
+        assign current_segment_start_pct = aomaiNewStop1
+        assign current_segment_end_pct = aomaiNewStop2
+      endif
+
+      assign segment_val_diff = current_segment_end_val | minus: current_segment_start_val
+      assign segment_pct_diff = current_segment_end_pct | minus: current_segment_start_pct
+      assign val_in_segment = totalCartDividedby100 | minus: current_segment_start_val
+
+      if segment_val_diff > 0
+        comment
+          Quadratic interpolation for more visual separation
+        endcomment
+        assign val_sq = val_in_segment | times: val_in_segment
+        assign diff_sq = segment_val_diff | times: segment_val_diff
+
+        assign pct_in_segment = val_sq | times: segment_pct_diff | divided_by: diff_sq
+        assign finalProgress = current_segment_start_pct | plus: pct_in_segment
+      else
+        assign finalProgress = current_segment_end_pct
+      endif
+    endif
+  endif
+
+  assign aomaiFalta = finalFrete | minus: totalCartDividedby100
+  if aomaiFalta < 0
+    assign aomaiFalta = 0
+  endif
+
+  comment
+    Calcula quanto falta para cada marco
+  endcomment
+  if aomaiStop1 > 0
+    assign faltaMarco1 = aomaiStop1 | minus: totalCartDividedby100
+    if faltaMarco1 < 0
+      assign faltaMarco1 = 0
+    endif
+  else
+    assign faltaMarco1 = 0
+  endif
+
+  if aomaiStop2 > 0
+    assign faltaMarco2 = aomaiStop2 | minus: totalCartDividedby100
+    if faltaMarco2 < 0
+      assign faltaMarco2 = 0
+    endif
+  else
+    assign faltaMarco2 = 0
+  endif
+
+  if aomaiStop3 > 0
+    assign faltaMarco3 = aomaiStop3 | minus: totalCartDividedby100
+    if faltaMarco3 < 0
+      assign faltaMarco3 = 0
+    endif
+  else
+    assign faltaMarco3 = 0
+  endif
+
+  if aomaiStop4 > 0
+    assign faltaMarco4 = aomaiStop4 | minus: totalCartDividedby100
+    if faltaMarco4 < 0
+      assign faltaMarco4 = 0
+    endif
+  else
+    assign faltaMarco4 = 0
+  endif
+
+  if aomaiStop5 > 0
+    assign faltaMarco5 = aomaiStop5 | minus: totalCartDividedby100
+    if faltaMarco5 < 0
+      assign faltaMarco5 = 0
+    endif
+  else
+    assign faltaMarco5 = 0
+  endif
+-%}
+
+{% if cart.empty? != false or settings.aomai_ativar_progressivo != true %}
+  <style>
+    .aomai-shipping-container {
+      display: none;
+    }
+  </style>
+{% endif %}
+
+{% if settings.aomai_ativar_progressivo == true %}
+  <div class="aomai-shipping-container">
+    <div class="aomai-shipping-text" style="display: none;">
+      {% if settings.aomai_ativar_progressivo == true %}
+        {% if aomaiStop1 != 0 and totalCartDividedby100 < aomaiStop1 %}
+          <p class="aomai-progress-text">
+            <span class="font-gelica font-weight-400">{{ settings.aomaiProgress1Text }}</span>
+          </p>
+        {% endif %}
+        {% if aomaiStop1 != 0 and totalCartDividedby100 >= aomaiStop1 and totalCartDividedby100 < aomaiStop2 %}
+          <p class="aomai-progress-text">
+            <span class="font-gelica font-weight-400">{{ settings.aomaiProgress2Text }}</span>
+          </p>
+        {% endif %}
+        {% if aomaiStop2 != 0 and totalCartDividedby100 >= aomaiStop2 and totalCartDividedby100 < aomaiStop3 %}
+          <p class="aomai-progress-text">
+            <span class="font-gelica font-weight-400">{{ settings.aomaiProgress3Text }}</span>
+          </p>
+        {% endif %}
+        {% if aomaiStop3 != 0 and totalCartDividedby100 >= aomaiStop3 and totalCartDividedby100 < aomaiStop4 %}
+          <p class="aomai-progress-text">
+            <span class="font-gelica font-weight-400">{{ settings.aomaiProgress4Text }}</span>
+          </p>
+        {% endif %}
+        {% if aomaiStop4 != 0 and totalCartDividedby100 >= aomaiStop4 and totalCartDividedby100 < aomaiStop5 %}
+          <p class="aomai-progress-text">
+            <span class="font-gelica font-weight-400">{{ settings.aomaiProgress4Text }}</span>
+          </p>
+        {% endif %}
+        {% if aomaiStop5 != 0 and totalCartDividedby100 >= aomaiStop5 %}
+          <p class="aomai-progress-text">
+            <span class="font-gelica font-weight-400">{{ settings.aomaiProgress5Text }}</span>
+          </p>
+        {% endif %}
+      {% endif %}
+
+      {% if settings.aomai_ativar_progressivo == false %}
+        {% if finalProgress < 100 %}
+          {% if settings.aomai_tipo_progresso == 'quantidade' %}
+            <p>
+              <span class="font-gelica font-weight-400"
+                >Adicione mais <span class="font-weight-700">{{ aomaiFalta }}</span> itens</span
+              >
+            </p>
+          {% else %}
+            <p>
+              <span class="font-gelica font-weight-400"
+                >Adicione mais <span class="font-weight-700">{{ aomaiFalta | times: 100 | money }}</span></span
+              >
+            </p>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <div class="aomai-shipping-bar" id="aomaiProgress">
+      <div class="aomai-progress"></div>
+
+      {% if settings.aomai_ativar_progressivo == true %}
+        {% if aomaiStop1 > 0 %}
+          <div
+            class="aomai-shipping-island aomai-shipping-island-1"
+            data-marco-value="{{ aomaiStop1 }}"
+            data-marco-falta="{{ faltaMarco1 }}"
+          >
+            <div class="aomai-inside-shipping"></div>
+            <div class="aomai-dot-text-above" data-texto-inicial="{{ settings.aomaiProgress1Text }}">
+              {% assign texto1 = settings.aomaiProgress1Text %}
+              {% if settings.aomai_tipo_progresso == 'quantidade' %}
+                {% if faltaMarco1 > 0 %}
+                  {% assign valorComMais = '+' | append: faltaMarco1 %}
+                  {% assign texto1 = texto1 | replace: '{marco1}', valorComMais %}
+                {% else %}
+                  {% assign texto1 = aomaiStop1 | append: ' itens' %}
+                {% endif %}
+              {% else %}
+                {% assign valorFormatado = faltaMarco1 | times: 100 | money %}
+                {% if faltaMarco1 > 0 %}
+                  {% assign valorComMais = '+' | append: valorFormatado %}
+                  {% assign texto1 = texto1 | replace: '{marco1}', valorComMais %}
+                {% else %}
+                  {% assign valorMarcoFormatado = aomaiStop1 | times: 100 | money %}
+                  {% assign texto1 = valorMarcoFormatado %}
+                {% endif %}
+              {% endif %}
+              {{ texto1 }}
+            </div>
+            <div class="aomai-dot-text-below">
+              {{ settings.aomaiDot1SubText }}
+            </div>
+          </div>
+        {% endif %}
+        {% if aomaiStop2 > 0 %}
+          <div
+            class="aomai-shipping-island aomai-shipping-island-2"
+            data-marco-value="{{ aomaiStop2 }}"
+            data-marco-falta="{{ faltaMarco2 }}"
+          >
+            <div class="aomai-inside-shipping"></div>
+            <div class="aomai-dot-text-above" data-texto-inicial="{{ settings.aomaiProgress2Text }}">
+              {% assign texto2 = settings.aomaiProgress2Text %}
+              {% if settings.aomai_tipo_progresso == 'quantidade' %}
+                {% if faltaMarco2 > 0 %}
+                  {% assign valorComMais = '+' | append: faltaMarco2 %}
+                  {% assign texto2 = texto2 | replace: '{marco2}', valorComMais %}
+                {% else %}
+                  {% assign texto2 = aomaiStop2 | append: ' itens' %}
+                {% endif %}
+              {% else %}
+                {% assign valorFormatado = faltaMarco2 | times: 100 | money %}
+                {% if faltaMarco2 > 0 %}
+                  {% assign valorComMais = '+' | append: valorFormatado %}
+                  {% assign texto2 = texto2 | replace: '{marco2}', valorComMais %}
+                {% else %}
+                  {% assign valorMarcoFormatado = aomaiStop2 | times: 100 | money %}
+                  {% assign texto2 = valorMarcoFormatado %}
+                {% endif %}
+              {% endif %}
+              {{ texto2 }}
+            </div>
+            <div class="aomai-dot-text-below">
+              {{ settings.aomaiDot2SubText }}
+            </div>
+          </div>
+        {% endif %}
+        {% if aomaiStop3 > 0 %}
+          <div
+            class="aomai-shipping-island aomai-shipping-island-3"
+            data-marco-value="{{ aomaiStop3 }}"
+            data-marco-falta="{{ faltaMarco3 }}"
+          >
+            <div class="aomai-inside-shipping"></div>
+            <div class="aomai-dot-text-above" data-texto-inicial="{{ settings.aomaiProgress3Text }}">
+              {% assign texto3 = settings.aomaiProgress3Text %}
+              {% if settings.aomai_tipo_progresso == 'quantidade' %}
+                {% if faltaMarco3 > 0 %}
+                  {% assign valorComMais = '+' | append: faltaMarco3 %}
+                  {% assign texto3 = texto3 | replace: '{marco3}', valorComMais %}
+                {% else %}
+                  {% assign texto3 = aomaiStop3 | append: ' itens' %}
+                {% endif %}
+              {% else %}
+                {% assign valorFormatado = faltaMarco3 | times: 100 | money %}
+                {% if faltaMarco3 > 0 %}
+                  {% assign valorComMais = '+' | append: valorFormatado %}
+                  {% assign texto3 = texto3 | replace: '{marco3}', valorComMais %}
+                {% else %}
+                  {% assign valorMarcoFormatado = aomaiStop3 | times: 100 | money %}
+                  {% assign texto3 = valorMarcoFormatado %}
+                {% endif %}
+              {% endif %}
+              {{ texto3 }}
+            </div>
+            <div class="aomai-dot-text-below">
+              {{ settings.aomaiDot3SubText }}
+            </div>
+          </div>
+        {% endif %}
+        {% if aomaiStop4 > 0 %}
+          <div
+            class="aomai-shipping-island aomai-shipping-island-4"
+            data-marco-value="{{ aomaiStop4 }}"
+            data-marco-falta="{{ faltaMarco4 }}"
+          >
+            <div class="aomai-inside-shipping"></div>
+            <div class="aomai-dot-text-above" data-texto-inicial="{{ settings.aomaiProgress4Text }}">
+              {% assign texto4 = settings.aomaiProgress4Text %}
+              {% if settings.aomai_tipo_progresso == 'quantidade' %}
+                {% if faltaMarco4 > 0 %}
+                  {% assign valorComMais = '+' | append: faltaMarco4 %}
+                  {% assign texto4 = texto4 | replace: '{marco4}', valorComMais %}
+                {% else %}
+                  {% assign texto4 = aomaiStop4 | append: ' itens' %}
+                {% endif %}
+              {% else %}
+                {% assign valorFormatado = faltaMarco4 | times: 100 | money %}
+                {% if faltaMarco4 > 0 %}
+                  {% assign valorComMais = '+' | append: valorFormatado %}
+                  {% assign texto4 = texto4 | replace: '{marco4}', valorComMais %}
+                {% else %}
+                  {% assign valorMarcoFormatado = aomaiStop4 | times: 100 | money %}
+                  {% assign texto4 = valorMarcoFormatado %}
+                {% endif %}
+              {% endif %}
+              {{ texto4 }}
+            </div>
+            <div class="aomai-dot-text-below">
+              {{ settings.aomaiDot4SubText }}
+            </div>
+          </div>
+        {% endif %}
+        {% if aomaiStop5 > 0 %}
+          <div
+            class="aomai-shipping-island aomai-shipping-island-5"
+            data-marco-value="{{ aomaiStop5 }}"
+            data-marco-falta="{{ faltaMarco5 }}"
+          >
+            <div class="aomai-inside-shipping"></div>
+            <div class="aomai-dot-text-above" data-texto-inicial="{{ settings.aomaiProgress5Text }}">
+              {% assign texto5 = settings.aomaiProgress5Text %}
+              {% if settings.aomai_tipo_progresso == 'quantidade' %}
+                {% if faltaMarco5 > 0 %}
+                  {% assign valorComMais = '+' | append: faltaMarco5 %}
+                  {% assign texto5 = texto5 | replace: '{marco5}', valorComMais %}
+                {% else %}
+                  {% assign texto5 = aomaiStop5 | append: ' itens' %}
+                {% endif %}
+              {% else %}
+                {% assign valorFormatado = faltaMarco5 | times: 100 | money %}
+                {% if faltaMarco5 > 0 %}
+                  {% assign valorComMais = '+' | append: valorFormatado %}
+                  {% assign texto5 = texto5 | replace: '{marco5}', valorComMais %}
+                {% else %}
+                  {% assign valorMarcoFormatado = aomaiStop5 | times: 100 | money %}
+                  {% assign texto5 = valorMarcoFormatado %}
+                {% endif %}
+              {% endif %}
+              {{ texto5 }}
+            </div>
+            <div class="aomai-dot-text-below">
+              {{ settings.aomaiDot5SubText }}
+            </div>
+          </div>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+
+  <style>
+    .aomai-shipping-container {
+        width: 100%;
+        padding-left: 30px;
+        padding-right: 30px;
+        box-sizing: border-box;
+    }
+
+
+    /* Styling for shipping bar text based on Figma design */
+    .aomai-shipping-text {
+        margin-bottom: 8px;
+    }
+
+    /* Styling for text above progress bar */
+    .aomai-texto-acima-barra {
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    .aomai-texto-acima-barra p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.171875;
+        color: #005234;
+    }
+
+    .aomai-shipping-text p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.171875;
+        color: #005234;
+        text-align: left;
+    }
+
+    /* Styling for progressive text (smaller variant) */
+    .aomai-shipping-text p.aomai-progress-text {
+        font-size: 14px;
+        line-height: 1.171875;
+        color: #005234;
+    }
+
+    .aomai-shipping-bar{
+        width: 100%;
+        height: 4px;
+        background-color: {{ settings.aomaiShippingBackgroundColor }};
+        border-radius: 30px;
+        position: relative;
+        margin-bottom: 60px; /* Espaço para textos */
+        margin-top: 40px;
+    }
+
+    .aomai-texto-acima-barra + .aomai-shipping-bar{
+      margin-top: 0;
+    }
+
+
+    .aomai-progress {
+        {% if finalProgress > 0 %}
+          width: calc({{ finalProgress }}% + 7px);
+        {% else %}
+          width: 0;
+        {% endif %}
+        height: 4px;
+        background-color: {{ settings.aomaiShippingColor }};
+        position: relative;
+        display: flex!important;
+        border-radius: 30px;
+        animation: aomaiWidth 1s ease-out;
+        z-index: 1; /* Ensure bar is below dots if needed, but above background bar */
+    }
+
+    .aomai-shipping-island{
+        width: 13px;
+        height: 13px;
+        background-color: #FFFEF5;
+        border: 1px solid {{ settings.aomaiShippingBackgroundColor }};
+        border-radius: 100%;
+        position: absolute;
+        display: flex!important;
+        justify-content: center;
+        align-items: center;
+        top: -4.5px;
+        z-index: 1;
+    }
+
+    /* Posicionamento específico para cada ilha */
+    {% if aomaiStop1 > 0 %}
+    .aomai-shipping-island-1 {
+        left: calc({{ aomaiNewStop1 }}% - 6.5px);
+    }
+    {% endif %}
+
+    {% if aomaiStop2 > 0 %}
+    .aomai-shipping-island-2 {
+        left: calc({{ aomaiNewStop2 }}% - 6.5px);
+    }
+    {% endif %}
+
+    {% if aomaiStop3 > 0 %}
+    .aomai-shipping-island-3 {
+        left: calc({{ aomaiNewStop3 }}% - 6.5px);
+    }
+    {% endif %}
+
+    {% if aomaiStop4 > 0 %}
+    .aomai-shipping-island-4 {
+        left: calc({{ aomaiNewStop4 }}% - 6.5px);
+    }
+    {% endif %}
+
+    {% if aomaiStop5 > 0 %}
+    .aomai-shipping-island-5 {
+        left: calc({{ aomaiNewStop5 }}% - 6.5px);
+    }
+    {% endif %}
+
+    .aomai-inside-shipping{
+        width: 5px;
+        height: 5px;
+        border-radius: 100%;
+        display: flex!important;
+    }
+
+    /* Texto simples acima e abaixo dos dots */
+    .aomai-dot-text-above {
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #00B45A;
+      font-size: 11px;
+      font-weight: 500;
+      text-align: center;
+      width: 80px;
+      line-height: 1.2;
+    }
+
+    .aomai-dot-text-below {
+        position: absolute;
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        font-weight: 600;
+        text-align: center;
+        width: 60px;
+        line-height: 1.4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: visible;
+        color: #00B45A;
+    }
+
+    .aomai-dot-text-below span {
+        white-space: nowrap;
+        display: flex;
+        border: 1px solid #00B45A;
+        padding: 2px 5px;
+        background: #00B45A;
+        color: #FFF;
+        border-radius: 10px;
+        margin-top: 3px;
+    }
+
+    @keyframes aomaiWidth {
+        0% {
+            width: 0;
+        }
+        100% {
+            width: {{ finalProgress }}%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .aomai-shipping-container {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        .aomai-texto-acima-barra {
+            margin-bottom: 50px;
+        }
+        .aomai-texto-acima-barra p {
+            font-size: 12px;
+        }
+        .aomai-shipping-bar {
+          margin-bottom: 60px;
+          margin-top: 40px;
+        }
+        .aomai-dot-text-above {
+            top: -30px;
+            font-size: 10px;
+            width: 50px;
+            line-height: 1.2;
+        }
+        .aomai-dot-text-below {
+            font-size: 10px;
+            top: 15px;
+        }
+    }
+  </style>
+
+  {% if settings.aomaiHabilitarInsideDot == true %}
+    <style>
+      .aomai-inside-shipping {
+        background-color: #fff;
+      }
+    </style>
+  {% endif %}
+
+  {% if aomaiStop1 <= totalCartDividedby100 %}
+    <style>
+      .aomai-shipping-island-1 {
+        background-color: {{ settings.aomaiShippingColor }};
+      }
+    </style>
+  {% endif %}
+  {% if aomaiStop2 <= totalCartDividedby100 %}
+    <style>
+      .aomai-shipping-island-2 {
+        background-color: {{ settings.aomaiShippingColor }};
+      }
+    </style>
+  {% endif %}
+  {% if aomaiStop3 <= totalCartDividedby100 %}
+    <style>
+      .aomai-shipping-island-3 {
+        background-color: {{ settings.aomaiShippingColor }};
+      }
+    </style>
+  {% endif %}
+  {% if aomaiStop4 <= totalCartDividedby100 %}
+    <style>
+      .aomai-shipping-island-4 {
+        background-color: {{ settings.aomaiShippingColor }};
+      }
+    </style>
+  {% endif %}
+  {% if aomaiStop5 <= totalCartDividedby100 %}
+    <style>
+      .aomai-shipping-island-5 {
+        background-color: {{ settings.aomaiShippingColor }};
+      }
+    </style>
+  {% endif %}
+{% endif %}
+
+<script>
+  (function () {
+    const tipoProgresso = '{{ settings.aomai_tipo_progresso }}';
+    const islands = document.querySelectorAll('[data-marco-value]');
+    const excludedProductIdsRaw = {{ settings.aomai_excluded_products | map: 'id' | json }};
+    const excludedProductIds = Array.isArray(excludedProductIdsRaw)
+      ? excludedProductIdsRaw.map((id) => Number(id))
+      : [];
+
+    function formatarValor(valor, tipo) {
+      if (tipo === 'quantidade') {
+        const valorFormatado = Math.max(0, Math.round(valor));
+        return valorFormatado > 0 ? '+' + valorFormatado : valorFormatado;
+      } else {
+        const valorCentavos = Math.max(0, Math.round(valor * 100));
+        const valorFormatado = new Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+        }).format(valorCentavos / 100);
+        return valorCentavos > 0 ? '+' + valorFormatado : valorFormatado;
+      }
+    }
+
+    function atualizarMarcos() {
+      let valorAtual = 0;
+
+      // Busca o carrinho via API do Shopify
+      fetch('/cart.js')
+        .then((response) => response.json())
+        .then((cart) => {
+          // Filtra produtos VIP e Exclusivo
+          let filteredItemCount = 0;
+          let filteredTotalPrice = 0;
+
+          if (cart.items && cart.items.length > 0) {
+            cart.items.forEach((item) => {
+              const handle = (item.handle || '').toLowerCase();
+              const isVipProduct = handle.includes('vip') || handle.includes('exclusivo');
+              const productId = Number(item.product_id || 0);
+              const isExcludedProduct = excludedProductIds.includes(productId);
+
+              if (!isVipProduct && !isExcludedProduct) {
+                filteredItemCount += item.quantity;
+                filteredTotalPrice += item.final_line_price || item.line_price || 0;
+              }
+            });
+          }
+
+          if (tipoProgresso === 'quantidade') {
+            valorAtual = filteredItemCount;
+          } else {
+            // total_price vem em centavos, divide por 100
+            valorAtual = filteredTotalPrice / 100;
+          }
+          atualizarTextos(valorAtual);
+        })
+        .catch(() => {
+          // Fallback: tenta usar Alpine store
+          if (typeof Alpine !== 'undefined' && Alpine.store && Alpine.store('cart')) {
+            const cartStore = Alpine.store('cart');
+            if (tipoProgresso === 'quantidade') {
+              valorAtual = cartStore.itemsCount || 0;
+            } else {
+              valorAtual = 0; // Precisa buscar via API para valor
+            }
+          } else {
+            valorAtual = 0;
+          }
+          atualizarTextos(valorAtual);
+        });
+    }
+
+    function atualizarTextos(valorAtual) {
+      islands.forEach(function (island) {
+        const marcoValue = parseFloat(island.getAttribute('data-marco-value')) || 0;
+        const textoElement = island.querySelector('.aomai-dot-text-above');
+        let textoOriginal = textoElement.getAttribute('data-texto-original');
+
+        // Se não tem texto original salvo, pega do HTML inicial (antes de qualquer substituição)
+        if (!textoOriginal) {
+          // Tenta pegar do texto inicial renderizado pelo Liquid
+          const textoInicial = textoElement.getAttribute('data-texto-inicial');
+          if (textoInicial) {
+            textoOriginal = textoInicial;
+          } else {
+            // Fallback: pega o texto atual e tenta limpar substituições anteriores
+            textoOriginal = textoElement.textContent.trim();
+            // Remove valores já substituídos para tentar recuperar o original
+            textoOriginal = textoOriginal.replace(/\+?\d+\s*itens/g, '{marcoX}');
+            textoOriginal = textoOriginal.replace(/\+?R\$\s*[\d,\.]+/g, '{marcoX}');
+          }
+          textoElement.setAttribute('data-texto-original', textoOriginal);
+        }
+
+        let falta = marcoValue - valorAtual;
+        if (falta < 0) falta = 0;
+
+        const numeroMarco = island.className.match(/island-(\d+)/);
+
+        if (numeroMarco) {
+          const marcoNum = numeroMarco[1];
+          let novoTexto;
+
+          if (falta === 0) {
+            // Meta batida: mostra apenas o valor do marco + itens
+            if (tipoProgresso === 'quantidade') {
+              novoTexto = marcoValue + ' itens';
+            } else {
+              const valorMarcoCentavos = Math.round(marcoValue * 100);
+              novoTexto = new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(valorMarcoCentavos / 100);
+            }
+          } else {
+            // Ainda falta: mostra o texto com a variável substituída
+            const valorFormatado = formatarValor(falta, tipoProgresso);
+            novoTexto = textoOriginal.replace(new RegExp('\\{marco' + marcoNum + '\\}', 'g'), valorFormatado);
+          }
+
+          textoElement.textContent = novoTexto;
+        }
+      });
+    }
+
+    // Atualiza quando o carrinho muda (Alpine.js)
+    if (typeof Alpine !== 'undefined') {
+      document.addEventListener('cart-change', atualizarMarcos);
+    }
+
+    // Atualiza quando o carrinho muda (eventos padrão)
+    document.addEventListener('cart:updated', atualizarMarcos);
+    document.addEventListener('cart:refresh', atualizarMarcos);
+
+    // Observa mudanças no DOM do carrinho
+    const observer = new MutationObserver(function (mutations) {
+      let shouldUpdate = false;
+      mutations.forEach(function (mutation) {
+        if (mutation.type === 'childList' || mutation.type === 'characterData') {
+          const target = mutation.target;
+          if (
+            target.classList &&
+            (target.classList.contains('cart') || target.closest('.cart') || target.closest('[data-cart]'))
+          ) {
+            shouldUpdate = true;
+          }
+        }
+      });
+      if (shouldUpdate) {
+        setTimeout(atualizarMarcos, 100);
+      }
+    });
+
+    const cartContainer = document.querySelector('.cart') || document.querySelector('[data-cart]') || document.body;
+    if (cartContainer) {
+      observer.observe(cartContainer, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+      });
+    }
+
+    // Atualiza inicialmente
+    setTimeout(atualizarMarcos, 500);
+  })();
+</script>

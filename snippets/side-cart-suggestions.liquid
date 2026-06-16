@@ -1,0 +1,265 @@
+<div
+  x-data="
+    {
+      tabSelected: 0,
+      handleTab(tab) {
+        this.tabSelected = tab
+      },
+      quantity: 1,
+      handleAdd(type = 'add', currentVariantId, productsKit, quantityKit) {
+        let items = []
+        if(productsKit){
+          productsKit.forEach(product => {
+            items.push({ id: product.variants[0].id, quantity: this.quantity * quantityKit })
+          })
+        }else{
+          items.push({ id: currentVariantId, quantity: this.quantity })
+        }
+        $store.cart.addItems(items, { showCart: (type == 'add' ? true : false) })
+        .then(response => {
+          $dispatch('cart-change')
+          $store.cart.fetchItems()
+        })
+      }
+    }
+  "
+  class="side-cart-suggestions"
+  id="side-cart-suggestions"
+>
+  <span class="side-cart-suggestions-title">{{ settings.suggestions_title }}</span>
+  <div class="side-cart-suggestions-tabs">
+    <button
+      :class="{'side-cart-suggestions-tab-active': tabSelected == 1}"
+      class="side-cart-suggestions-tab"
+      @click="handleTab(1)"
+    >
+      {{ settings.suggestions_tab_name_1 }}
+    </button>
+    <button
+      :class="{'side-cart-suggestions-tab-active': tabSelected == 2}"
+      class="side-cart-suggestions-tab"
+      @click="handleTab(2)"
+    >
+      {{ settings.suggestions_tab_name_2 }}
+    </button>
+    <button
+      :class="{'side-cart-suggestions-tab-active': tabSelected == 3}"
+      class="side-cart-suggestions-tab {% if settings.suggestions_tab_name_3 == blank %}hidden{% endif %}"
+      @click="handleTab(3)"
+    >
+      {{ settings.suggestions_tab_name_3 }}
+    </button>
+  </div>
+  <template x-init="tabSelected = 1" x-if="tabSelected == 1">
+    <div class="side-cart-suggestion-product">
+      {% if settings.suggestions_product_1 != blank %}
+        <div class="suggestion-product-image">
+          {{
+            settings.suggestions_product_1.featured_media
+            | image_url: width: settings.suggestions_product_1.featured_media.width
+            | image_tag
+          }}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="60"
+            height="60"
+            viewBox="0 0 60 60"
+            @click="handleAdd('add', '{{ settings.suggestions_product_1.selected_or_first_available_variant.id }}', {{ settings.suggestions_product_1.metafields.disco.kit_products.value | json | escape }}, {{ settings.suggestions_product_1.metafields.disco.unity | default: 1 }})"
+          >
+            <defs>
+              <filter id="Elipse_3" x="0" y="0" width="60" height="60" filterUnits="userSpaceOnUse">
+                <feOffset dy="3" input="SourceAlpha"/>
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feFlood flood-opacity="0.161"/>
+                <feComposite operator="in" in2="blur"/>
+                <feComposite in="SourceGraphic"/>
+              </filter>
+            </defs>
+            <g id="Grupo_2360" data-name="Grupo 2360" transform="translate(398.791 -63.209)">
+              <g transform="matrix(1, 0, 0, 1, -398.79, 63.21)" filter="url(#Elipse_3)">
+                <circle id="Elipse_3-2" data-name="Elipse 3" cx="21" cy="21" r="21" transform="translate(9 6)" fill="#fff"/>
+              </g>
+              <g id="Grupo_2358" data-name="Grupo 2358" transform="translate(-377.686 81.314)">
+                <line id="Linha_42" data-name="Linha 42" y2="17.399" transform="translate(8.699)" fill="none" stroke="#ff7a50" stroke-linecap="round" stroke-width="3"/>
+                <line id="Linha_43" data-name="Linha 43" y2="17.399" transform="translate(17.399 8.699) rotate(90)" fill="none" stroke="#ff7a50" stroke-linecap="round" stroke-width="3"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="suggestion-product-info">
+          <div class="suggestion-product-title">{{ settings.suggestions_product_1.title }}</div>
+          <div class="suggestion-product-price">{{ settings.suggestions_product_1.price | money }}</div>
+        </div>
+      {% endif %}
+    </div>
+  </template>
+  <template x-if="tabSelected == 2">
+    <div class="side-cart-suggestion-product">
+      {% if settings.suggestions_product_2 != blank %}
+        <div class="suggestion-product-image">
+          {{
+            settings.suggestions_product_2.featured_media
+            | image_url: width: settings.suggestions_product_2.featured_media.width
+            | image_tag
+          }}
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="60"
+            height="60"
+            viewBox="0 0 60 60"
+            @click="handleAdd('add', '{{ settings.suggestions_product_2.selected_or_first_available_variant.id }}', {{ settings.suggestions_product_2.metafields.disco.kit_products.value | json | escape }}, {{ settings.suggestions_product_2.metafields.disco.unity | default: 1 }})"
+          >
+            <defs>
+              <filter id="Elipse_3" x="0" y="0" width="60" height="60" filterUnits="userSpaceOnUse">
+                <feOffset dy="3" input="SourceAlpha"/>
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feFlood flood-opacity="0.161"/>
+                <feComposite operator="in" in2="blur"/>
+                <feComposite in="SourceGraphic"/>
+              </filter>
+            </defs>
+            <g id="Grupo_2360" data-name="Grupo 2360" transform="translate(398.791 -63.209)">
+              <g transform="matrix(1, 0, 0, 1, -398.79, 63.21)" filter="url(#Elipse_3)">
+                <circle id="Elipse_3-2" data-name="Elipse 3" cx="21" cy="21" r="21" transform="translate(9 6)" fill="#fff"/>
+              </g>
+              <g id="Grupo_2358" data-name="Grupo 2358" transform="translate(-377.686 81.314)">
+                <line id="Linha_42" data-name="Linha 42" y2="17.399" transform="translate(8.699)" fill="none" stroke="#ff7a50" stroke-linecap="round" stroke-width="3"/>
+                <line id="Linha_43" data-name="Linha 43" y2="17.399" transform="translate(17.399 8.699) rotate(90)" fill="none" stroke="#ff7a50" stroke-linecap="round" stroke-width="3"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="suggestion-product-info">
+          <div class="suggestion-product-title">{{ settings.suggestions_product_2.title }}</div>
+          <div class="suggestion-product-price">{{ settings.suggestions_product_2.price | money }}</div>
+        </div>
+      {% endif %}
+    </div>
+  </template>
+  <template x-if="tabSelected == 3">
+    <div class="side-cart-suggestion-product">
+      {% if settings.suggestions_product_3 != blank %}
+        <div class="suggestion-product-image">
+          {{
+            settings.suggestions_product_3.featured_media
+            | image_url: width: settings.suggestions_product_3.featured_media.width
+            | image_tag
+          }}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="60"
+            height="60"
+            viewBox="0 0 60 60"
+            @click="handleAdd('add', '{{ settings.suggestions_product_3.selected_or_first_available_variant.id }}, {{ settings.suggestions_product_3.metafields.disco.kit_products.value | json | escape }}, {{ settings.suggestions_product_3.metafields.disco.unity | default: 1 }}')"
+          >
+            <defs>
+              <filter id="Elipse_3" x="0" y="0" width="60" height="60" filterUnits="userSpaceOnUse">
+                <feOffset dy="3" input="SourceAlpha"/>
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feFlood flood-opacity="0.161"/>
+                <feComposite operator="in" in2="blur"/>
+                <feComposite in="SourceGraphic"/>
+              </filter>
+            </defs>
+            <g id="Grupo_2360" data-name="Grupo 2360" transform="translate(398.791 -63.209)">
+              <g transform="matrix(1, 0, 0, 1, -398.79, 63.21)" filter="url(#Elipse_3)">
+                <circle id="Elipse_3-2" data-name="Elipse 3" cx="21" cy="21" r="21" transform="translate(9 6)" fill="#fff"/>
+              </g>
+              <g id="Grupo_2358" data-name="Grupo 2358" transform="translate(-377.686 81.314)">
+                <line id="Linha_42" data-name="Linha 42" y2="17.399" transform="translate(8.699)" fill="none" stroke="#ff7a50" stroke-linecap="round" stroke-width="3"/>
+                <line id="Linha_43" data-name="Linha 43" y2="17.399" transform="translate(17.399 8.699) rotate(90)" fill="none" stroke="#ff7a50" stroke-linecap="round" stroke-width="3"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="suggestion-product-info">
+          <div class="suggestion-product-title">{{ settings.suggestions_product_3.title }}</div>
+          <div class="suggestion-product-price">{{ settings.suggestions_product_3.price | money }}</div>
+        </div>
+      {% endif %}
+    </div>
+  </template>
+</div>
+
+{% style %}
+  .side-cart-suggestions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    align-items: center;
+    padding: 0 24px;
+  }
+
+  .side-cart-suggestions .side-cart-suggestions-title {
+    font-size: 15px;
+    color: #3c3c3c;
+    text-align: center;
+  }
+
+  .side-cart-suggestions .side-cart-suggestions-tabs {
+    display: flex;
+    gap: 8px;
+    font-size: 10px;
+  }
+
+  .side-cart-suggestions .side-cart-suggestions-tabs .side-cart-suggestions-tab {
+    background: #f5f5f5;
+    color: #ababab;
+    padding: 8px 32px;
+    border: none;
+    border-radius: 9999px;
+  }
+
+  .side-cart-suggestions .side-cart-suggestions-tabs .side-cart-suggestions-tab-active {
+    background: #ff7a50;
+    color: #ffffff;
+  }
+
+  .side-cart-suggestions .side-cart-suggestion-product {
+    display: flex;
+    gap: 16px;
+  }
+
+  .side-cart-suggestions .side-cart-suggestion-product .suggestion-product-image {
+    position: relative;
+  }
+
+  .side-cart-suggestions .side-cart-suggestion-product .suggestion-product-image svg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    stroke: none;
+    cursor: pointer;
+  }
+
+  .side-cart-suggestions .side-cart-suggestion-product .suggestion-product-image img {
+    width: 150px;
+    height: auto;
+    background: #f6f6f6;
+    border-radius: 20px;
+  }
+
+  .side-cart-suggestions .side-cart-suggestion-product .suggestion-product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .side-cart-suggestions .side-cart-suggestion-product .suggestion-product-info .suggestion-product-title {
+    font-size: 13px;
+    color: #3c3c3c;
+  }
+
+  .side-cart-suggestions .side-cart-suggestion-product .suggestion-product-info .suggestion-product-price {
+    font-size: 13px;
+    font-weight: 500;
+    color: #00b45a;
+  }
+{% endstyle %}

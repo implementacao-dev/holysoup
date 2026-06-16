@@ -1,0 +1,956 @@
+<style>
+  .personalize-kit .header-widget {
+    max-width: 600px;
+    margin: 0 auto 50px;
+  }
+  
+  .ajax-select-kit {
+    position: fixed;
+    height: 85vh;
+    border-top-left-radius: 27px;
+    border-top-right-radius: 27px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 103;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0px -5px 13px #00000033;
+    padding-top: 20px;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.5s;
+  }
+
+  /* .opened-kit .scrolled-past-header,
+  .opened-kit .annoucement-fixed,
+  .opened-kit .section-header-mobile{
+    z-index: 2 !important;
+  } */
+
+  .opened-kit .header-plain--transparent,
+  .opened-kit announcement-bar-component{
+    opacity: 0 !important;
+  }
+
+  .opened-kit .kit-container {
+    z-index: 104 !important;
+    position: relative;
+  }
+
+  .opened-kit {
+    overflow: hidden !important;
+    height: 100vh !important;
+    width: 100vw !important;
+  }
+
+  @media(min-width: 1200px){
+    .ajax-select-kit {
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      transform: translateX(100%);
+    }
+  }
+
+  .personalize-kit.open-kit .ajax-select-kit{
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.5s;
+  }
+
+  @media(min-width: 1200px){
+    .personalize-kit.open-kit .ajax-select-kit{
+      transform: translateX(0);
+    }
+  }
+  
+  .item-sopa {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+  }
+  
+  .imagem-item-sopa img {
+    width: 50px;
+    height: auto;
+  }
+  
+  .content-item-sopa h4 {
+    margin: 0;
+  }
+
+  @media (max-width: 1024px){
+    .content-item-sopa h4 {
+      font-size: 14px;
+    }
+  }
+  
+  .content-item-sopa p {
+    margin: 0;
+  }
+
+   @media (max-width: 1024px){
+    .content-item-sopa p {
+      font-size: 10px;
+    }
+  }
+  
+  .content-item-sopa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: calc(100% - 180px);
+  }
+  
+  .footer-ajax-select {
+    flex: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .footer-ajax-select p {
+    font-size: 20px;
+  }
+
+  .content-ajax-select {
+    display: flex;
+    flex-flow: column wrap;
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .sopas-items {
+    flex: 1;
+    overflow: auto;
+    width: 100%;
+  }
+
+  .imagem-item-sopa {
+    width: 60px;
+  }
+  
+  .quantity-item-sopa {
+    width: 85px;
+  }
+
+  .quantity-item-sopa .unid-price{
+    font-size: 11px;
+    text-align: center;
+    display: block;
+  }
+
+  .quantity-item-sopa .quantity-container input {
+    width: 100%;
+  }
+
+  .footer-ajax-select button {
+    width: 90%;
+    background: #00B45A;
+    border: none;
+    color: #fff;
+    font-weight: 400;
+    padding: 10px;
+    border-radius: 999px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .footer-ajax-select button svg {
+    color: #fff;
+    fill: #fff;
+    width: 23px;
+    height: auto;
+  }
+
+  a.close-ajax {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: -20px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    background: #ff455a;
+    color: #fff;
+    border-radius: 999px;
+    box-shadow: 0px 0px 7px 2px #0000001a;
+  }
+  
+  a.close-ajax svg {
+    width: 20px;
+    height: auto;
+  }
+
+  .overflow-kit {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background: #000000b8;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    display:none;
+  }
+
+  .personalize-kit.open-kit .overflow-kit{
+    display: block;
+  }
+
+  .personalize-kit {
+    padding: 40px 20px 60px 20px;
+  }
+
+  .sopas-select .content-select {
+    display: flex;
+    align-items: center;
+    background-color: #FF7A50;
+    max-width: 450px;
+    margin: 0 auto;
+    border-radius: 27px;
+    padding: 20px;
+    cursor: pointer;
+  }
+  
+  .sopas-select .feature-kit-button svg {
+    stroke: none;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .sopas-select .feature-kit-image {
+    width: 150px;
+  }
+  
+  .sopas-select .feature-kit-button {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .sopas-select .feature-kit-title {
+    width: calc(100% - 110px);
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1200px){
+    .personalize-kit {
+      padding: 40px 120px 60px 120px;
+    }
+
+    .ajax-select-kit {
+      padding-top: 50px;
+    }
+  
+    a.close-ajax {
+      top: 10px;
+    }
+    .ajax-select-kit {
+      height: 100vh;
+      max-width: 500px;
+      right: 0;
+      left: inherit;
+    }
+  }
+
+  .personalize-kit {
+    padding-bottom: 0;
+    position: relative;
+    z-index: 2;
+    margin-bottom: -25px;
+  }
+
+  /*Desconto progressivo*/
+  .descontos-progressivos {
+      display: grid;
+      max-width: 450px;
+      margin: 0px auto 30px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+  }
+  
+  .desconto-item-progressivo {
+      position: relative;
+      width: calc(100% + 25px);
+      margin-left: -25px;
+  }
+  
+  .desconto-item-progressivo svg {
+      width: 100%;
+      height: auto;
+      stroke: none;
+  }
+  
+  .desconto-item-progressivo .value-desconto {
+      background: #b5b2b2;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      right: 25%;
+      top: -20px;
+      font-weight: 700;
+  }
+  
+  .content-desconto {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      line-height: 1;
+  }
+  
+  .content-desconto span {
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  span.label-best-seller {
+    font-size: 11px;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 0px 10px;
+    border-radius: 9999px;
+    position: absolute;
+    bottom: -10px;
+    left: 5px;
+    width: fit-content;
+  }
+
+  /* .progress-desconto-kit {
+    margin-top: 10px;
+  } */
+
+  @media (max-width: 1024px){
+    .descontos-progressivos {
+      padding-right: 15px;
+    }
+    .desconto-item-progressivo{
+      margin-left: 0;
+    }
+  }
+
+  span.aviso-desconto {
+    text-align: center;
+    display: block;
+    font-size: 10px;
+    padding: 6px 0;
+  }
+</style>
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+
+{% assign descontos_list = "" %}
+{% assign total_items = 0 %}
+{% assign desconto_aplicado = 0 %}
+{% assign proximo_desconto_unidades = 0 %}
+{% assign desconto_max = 0 %}
+
+{% for i in (1..4) %}
+  {% capture mais_vendido_info %}desconto_maisvendido_{{ i }}{% endcapture %}
+  {% capture desconto_info %}desconto_{{ i }}{% endcapture %}
+  {% capture unidades_info %}desconto_un_{{ i }}{% endcapture %}
+  {% capture cor_primaria_info %}desconto_color_{{ i }}{% endcapture %}
+  {% capture ativar_desconto_info %}ativar_desconto_{{ i }}{% endcapture %}
+
+  {% if settings[ativar_desconto_info] %}
+    {% capture desconto_item %}{{ settings[unidades_info] | strip }}|{{ settings[desconto_info] | strip }}{% endcapture %}
+    
+    {% if descontos_list != "" %}
+      {% assign descontos_list = descontos_list | append: ';' %}
+    {% endif %}
+    
+    {% assign descontos_list = descontos_list | append: desconto_item %}
+  {% endif %}
+{% endfor %}
+
+{% assign descontos_array = descontos_list | split: ';' %}
+
+{% assign descontoInicial = descontos_array[0] | split: '|'  %}
+{% assign descontoInicial = descontoInicial[1] | plus: 0  %}
+{% if descontoInicial > 0 %}
+  {% assign descontoInicial = descontos_array[0] | split: '|'  %}
+  {% assign descontoInicial = descontoInicial[0] | plus: 0  %}
+{% else %}
+  {% assign descontoInicial = descontos_array[1] | split: '|'  %}
+  {% assign descontoInicial = descontoInicial[0] | plus: 0  %}
+{% endif %}
+    
+{% for desconto in descontos_array %}
+  {% assign desconto_parts = desconto | split: '|' %}
+  {% assign unidade = desconto_parts[0] | plus: 0 %} <!-- Convert to integer -->
+  {% assign valor_desconto = desconto_parts[1] | plus: 0 %} <!-- Convert to integer -->
+
+  {% if total_items >= unidade %}
+    {% assign desconto_aplicado = valor_desconto %}
+  {% endif %}
+
+  {% if total_items < unidade and proximo_desconto_unidades == 0 %}
+    {% assign proximo_desconto_unidades = unidade %}
+  {% endif %}
+
+  {% if valor_desconto > desconto_max %}
+    {% assign desconto_max = valor_desconto | times: 1.0 %}
+  {% endif %}
+{% endfor %}
+
+{% if proximo_desconto_unidades > 0 %}
+  {% assign items_para_proximo_desconto = proximo_desconto_unidades | minus: total_items %}
+{% endif %}
+
+{% assign desconto_progressivo = false %}
+
+<div class="personalize-kit">
+  <div class="header-widget">
+    <h3 class="custom-font mb-0">{{ section.settings.title }}</h3>
+    <p>{{ section.settings.description }}</p>
+  </div>
+  {% if settings.monte_seu_kit_progressivo %}
+  <div class="descontos-progressivos">
+    {% for i in (1..4) %}
+      {% capture mais_vendido %}desconto_maisvendido_{{ i }}{% endcapture %}
+      {% capture desconto %}desconto_{{ i }}{% endcapture %}
+      {% capture unidades %}desconto_un_{{ i }}{% endcapture %}
+      {% capture cor_primaria %}desconto_color_{{ i }}{% endcapture %}
+      {% capture text_label %}text_label_{{ i }}{% endcapture %}
+      {% capture ativar_desconto %}ativar_desconto_{{ i }}{% endcapture %}
+
+      {% if settings[ativar_desconto] %}
+      {% assign desconto_progressivo = true %}
+      <div class="desconto-item-progressivo" style="--primary-color: {{ settings[cor_primaria] }}; --secundary-color: {{ settings[cor_primaria] | color_modify: 'alpha', 0.4  }}">
+        {% if settings[desconto] %}<div style="background-color: var(--primary-color); color: #fff" class="value-desconto">{{ settings[desconto] }}%</div>{% endif %}
+        {% if settings[unidades] %}<div class="content-desconto"><span>{{ settings[unidades] }}</span> UNI.</div>{% endif %}
+        <svg xmlns="http://www.w3.org/2000/svg" width="102.232" height="75.571" viewBox="0 0 102.232 75.571">
+          <path style="fill: var(--secundary-color);" id="Caminho_4911" data-name="Caminho 4911" d="M100.466,42.072,69.573,72.965a4.816,4.816,0,0,1-.4.4c-.047.047-.094.094-.141.133a7.914,7.914,0,0,1-5.346,2.073H6.076A6.061,6.061,0,0,1,1.79,65.224L24.942,42.072a6.084,6.084,0,0,0,0-8.573L1.79,10.347A5.946,5.946,0,0,1,0,6.108,6.058,6.058,0,0,1,6.076,0H63.685a7.914,7.914,0,0,1,5.346,2.073c.047.039.094.086.141.133l.4.4L100.466,33.5a6.084,6.084,0,0,1,0,8.573" fill="#ebebeb"/>
+        </svg>
+        {% if settings[mais_vendido] or settings[text_label] != blank %}<span class="label-best-seller">{{ settings[text_label] | default: "Mais vendidos" }}</span>{% endif %}
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  <div class="sopas-select" openkit>
+    <div class="content-select">
+      <div class="feature-kit-image">
+        <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/sopa_da_vovo_-_duplo.png?v=1692103342"/>
+      </div>
+      <div class="feature-kit-title custom-font thin-font light-font">
+        <h3>Adicionar <br/>sabores</h3>
+      </div>
+      <div class="feature-kit-button">
+        {% render 'icon-open-kit' %}
+      </div>
+    </div>
+  </div>
+
+  <div class="ajax-select-kit">
+    <a href="javascript:void(0)" class="close-ajax" close-ajax-sopas>
+      {% render 'icon-close' %}
+    </a>
+    <div class="content-ajax-select">
+      <div class="sopas-items">
+        <div class="progress-items-kit">
+          {% if settings.calculator_free_shipping_message_price != blank and section.settings.frete_show %}
+            <div class="progress-frete-kit">
+              <div class="progress-container">
+                <div class="title">
+                    <span class="left">Frete grátis</span>
+                    <span class="right">Faltam só <b>{{ settings.calculator_free_shipping_message_price | times: 100 | money }}</b> para ganhar</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% if settings.ativar_brinde and section.settings.brinde_show %}
+            <div class="progress-brinde-kit">
+              <div class="progress-container">
+                <div class="title">
+                    <span class="left">Brinde</span>
+                    <span class="right">Faltam só <b>{{ settings.valor_min_brinde | times: 100 | money }}</b> para ganhar!</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% if desconto_progressivo and section.settings.desconto_show and settings[ativar_desconto] %}
+          <div class="progress-desconto-kit">
+            <div class="progress-container">
+              <div class="title">
+                  <span class="left"><div class="desconto-percente">0%</div> Desconto progressivo</span>
+                  <span class="right">Já economizou <b>R$ 0</b></span>
+              </div>
+              <div class="progress-bar">
+                  <div class="progress"></div>
+              </div>
+              <span class="aviso-desconto">Adicione <b>+{{ descontoInicial }} unidades</b> para chegar no próximo nível</span>
+            </div>
+          </div>
+          {% endif %}
+          {% if section.settings.jantas_show %}
+          <div class="progress-sopa-kit">
+            <div class="progress-container">
+              <div class="title">
+                  <span class="left"><span class="highlight-red">0 jantas</span> descomplicadas</span>
+                  <span class="right"><b>0 un.</b> / 10 un.</span>
+              </div>
+              <div class="progress-bar">
+                  <div class="progress"></div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        {% for block in section.blocks %}
+          <div class="item-sopa">
+            <div class="imagem-item-sopa">
+              <img src="{{ block.settings.image | default: block.settings.sopa.featured_image | image_url }}"/>
+            </div>
+            <div class="content-item-sopa">
+              <h4>{{ block.settings.sopa.title }}</h4>
+              <p>{{ block.settings.subtitle }}</p>
+              <div class="tabela-nutricional">
+                <a tabela-nutri href="{{ block.settings.sopa.metafields.custom.informa_o_nutricional.value | img_url: '800x' }}">Tabela Nutri.</a>
+              </div>
+            </div>
+            <div class="quantity-item-sopa {% unless block.settings.sopa.selected_or_first_available_variant.available %}unavailable{% endunless %}">
+              <div class="quantity-container">
+                  <div class="quantity">
+                    <quickshop-update-quantity class="previewCartItem-qty quickshop-quantity">
+                      <button type="button" name="minus" data-minus-quantity-quickshop="" class="minus btn-quantity"></button>
+                      <input data-porcao="{{ block.settings.jantas_descomplicadas }}" data-price="{{ block.settings.sopa.selected_or_first_available_variant.price }}" class="qtd-input" name="quantity" value="0" type="number" data-variantId="{{ block.settings.sopa.selected_or_first_available_variant.id }}" {%- if block.settings.sopa.selected_or_first_available_variant.available and block.settings.sopa.selected_or_first_available_variant.inventory_quantity < 1 -%}data-inventory="9999"{% else %}data-inventory="{{ block.settings.sopa.selected_or_first_available_variant.inventory_quantity }}"{%- endif -%}>
+                      <button type="button" name="plus" data-plus-quantity-quickshop="" class="plus btn-quantity"></button>
+                    </quickshop-update-quantity>
+                  </div>
+                </div>
+                <span class="unid-price">{% unless block.settings.sopa.selected_or_first_available_variant.available %}Esgotado{% else %}{{ block.settings.sopa.price | money }} / un{% endunless %}</span>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="footer-ajax-select">
+        <div class="preco-kit"></div>
+        <button add-kit-sopa disabled>COMPRAR KIT <span class="count-total-kit">{% render 'icon-cart-06' %}<span class="count-bubble">0</span></span></button>
+        {%- comment -%}<a href="javascript:void(0)">Conhecer todos</a>{%- endcomment -%}
+      </div>
+    </div>
+  </div>
+  <div class="overflow-kit"></div>
+</div>
+{% if section.settings.borda-inferior %}
+  {% render 'borda-inferior', cor: section.settings.color-borda-inferior %}
+{% endif %}
+
+<script>
+  $(document).ready(function(){
+    var inputsQtd = $('.content-ajax-select').find('.qtd-input');
+    var parcelas = {{settings.parcelas}};
+    var total = 0;
+    var descontoValor = {{settings.desconto_pix_valor}};
+
+    function obterDesconto(unidadesCompradas) {
+      let descontosOrdenados = window.descontos.sort((a, b) => parseInt(b.unidades) - parseInt(a.unidades));
+    
+      for (let desconto of descontosOrdenados) {
+          if (unidadesCompradas >= parseInt(desconto.unidades)) {
+              return desconto;
+          }
+      }
+  
+      return 0;
+    }
+
+    function obterProximoDesconto(unidadesCompradas) {
+      // Ordena os descontos em ordem crescente.
+      let descontosOrdenados = window.descontos.sort((a, b) => parseInt(a.unidades) - parseInt(b.unidades));
+      
+      for (let desconto of descontosOrdenados) {
+          if (unidadesCompradas < parseInt(desconto.unidades)) {
+              return desconto.unidades;
+          }
+      }
+    
+      return false;
+    }
+
+    inputsQtd.on("change", function() {
+        let progressShipping = false;
+        let progressDinner = false;
+        let progressDiscount = false;
+        let progressGift = false;
+
+        {% if settings.calculator_free_shipping_message_price != blank and section.settings.frete_show %}
+          progressShipping = true;
+          let minShippingValue = {{ settings.calculator_free_shipping_message_price | times: 100 }};
+        {% endif %}
+
+        {% if section.settings.jantas_show %}
+          progressDinner = true;
+        {% endif %}
+
+        {% if desconto_progressivo and section.settings.desconto_show %}
+          progressDiscount = true;
+        {% endif %}
+
+        {% if settings.ativar_brinde and section.settings.brinde_show %}
+          progressGift = true;
+          let minGiftValue = {{ settings.valor_min_brinde | times: 100 }};
+        {% endif %}
+      
+        total = 0;
+        let porcoes = 0;
+        let qtdSelect = 0;
+        inputsQtd.each(function() {
+          qtdSelect = qtdSelect + parseInt($(this).val());
+          if($(this).val() > 0){
+            porcoes = porcoes + (parseInt($(this).data('porcao'))*parseInt($(this).val()));
+          }
+
+          var qtd = $(this).val();
+          var price = $(this).data('price');
+          total += price * qtd;
+        });
+      
+
+        {% if section.settings.jantas_show %}
+        updateProgress(qtdSelect, porcoes);
+        {% endif %}
+      
+        {% if desconto_progressivo %}
+        updateProgressiveDiscount(qtdSelect, total);
+        {% endif %}
+      
+        {% if settings.calculator_free_shipping_message_price != blank and section.settings.frete_show %}
+        updateShipping(minShippingValue, total, qtdSelect);
+        {% endif %}
+
+        {% if settings.ativar_brinde and section.settings.brinde_show %}
+        updateGift(minGiftValue, total);
+        {% endif %}
+
+        $('.count-total-kit .count-bubble').html(qtdSelect);
+        if (total !== 0) {
+          var formattedTotal = Shopify.formatMoney(total / parcelas, window.money_format);
+          var totalText = Shopify.formatMoney(total, window.money_format);
+          let descontoSelected = obterDesconto(qtdSelect);
+          let totalWithDiscount = Math.abs((parseInt(descontoSelected.desconto) / 100.00 * total - total));
+          let progressiveDiscount = {{desconto_progressivo}};
+        
+          //$('.preco-kit').html('<p><b>' +parcelas+'x ' + formattedTotal + '</b> ou ' + totalText + '</p>');
+          if (progressiveDiscount && descontoSelected.desconto > 0){
+            $('.preco-kit').html(`<div class="container-price-pix"> <div class="price-parcel-content"><span class="count-itens-kit"><b>${qtdSelect} unidades</b> adicionadas</span> <span class="price-full">${Shopify.formatMoney(total, window.money_format)}</span> <span class="price-parcel-info"><b>Total:</b> ${Shopify.formatMoney(Math.abs((parseInt(descontoSelected.desconto) / 100.00 * total - total)), window.money_format)}</span> </div> <div class="price-pix-content"> <span class="price-disconted-pix"><span class="price price-pix" >${Shopify.formatMoney(Math.abs( parseInt(descontoValor) / 100.00 * totalWithDiscount - totalWithDiscount) , window.money_format)}</span> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50"><path d="M 25 0.0390625 C 22.84 0.0390625 20.799531 0.88015625 19.269531 2.4101562 L 9.6796875 12 L 12.929688 12 C 14.529687 12 16.039922 12.619766 17.169922 13.759766 L 23.939453 20.529297 C 24.519453 21.109297 25.480547 21.109531 26.060547 20.519531 L 32.830078 13.759766 C 33.960078 12.619766 35.470312 12 37.070312 12 L 40.320312 12 L 30.730469 2.4101562 C 29.200469 0.88015625 27.16 0.0390625 25 0.0390625 z M 7.6796875 14 L 2.4101562 19.269531 C -0.74984375 22.429531 -0.74984375 27.570469 2.4101562 30.730469 L 7.6796875 36 L 12.929688 36 C 13.999687 36 14.999766 35.580078 15.759766 34.830078 L 22.529297 28.060547 C 23.889297 26.700547 26.110703 26.700547 27.470703 28.060547 L 34.240234 34.830078 C 35.000234 35.580078 36.000312 36 37.070312 36 L 42.320312 36 L 47.589844 30.730469 C 50.749844 27.570469 50.749844 22.429531 47.589844 19.269531 L 42.320312 14 L 37.070312 14 C 36.000313 14 35.000234 14.419922 34.240234 15.169922 L 27.470703 21.939453 C 26.790703 22.619453 25.9 22.960938 25 22.960938 C 24.1 22.960937 23.209297 22.619453 22.529297 21.939453 L 15.759766 15.169922 C 14.999766 14.419922 13.999688 14 12.929688 14 L 7.6796875 14 z M 25 29.037109 C 24.615 29.038359 24.229453 29.185469 23.939453 29.480469 L 17.169922 36.240234 C 16.039922 37.380234 14.529687 38 12.929688 38 L 9.6796875 38 L 19.269531 47.589844 C 20.799531 49.119844 22.84 49.960938 25 49.960938 C 27.16 49.960938 29.200469 49.119844 30.730469 47.589844 L 40.320312 38 L 37.070312 38 C 35.470313 38 33.960078 37.380234 32.830078 36.240234 L 26.060547 29.470703 C 25.770547 29.180703 25.385 29.035859 25 29.037109 z"></path></svg></span> <span class="price-pix-call">A vista no PIX com até ${descontoValor}% OFF</span> </div> </div>`);
+          }else{
+            $('.preco-kit').html(`<div class="container-price-pix"> <div class="price-parcel-content"><span class="count-itens-kit"><b>${qtdSelect} unidades</b> adicionadas</span> <span class="price-parcel-info"><b>Total:</b> ${Shopify.formatMoney(total, window.money_format)}</span> </div> <div class="price-pix-content"> <span class="price-disconted-pix"><span class="price price-pix" >${Shopify.formatMoney(Math.abs( parseInt(descontoValor) / 100.00 * total - total) , window.money_format)}</span> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50"><path d="M 25 0.0390625 C 22.84 0.0390625 20.799531 0.88015625 19.269531 2.4101562 L 9.6796875 12 L 12.929688 12 C 14.529687 12 16.039922 12.619766 17.169922 13.759766 L 23.939453 20.529297 C 24.519453 21.109297 25.480547 21.109531 26.060547 20.519531 L 32.830078 13.759766 C 33.960078 12.619766 35.470312 12 37.070312 12 L 40.320312 12 L 30.730469 2.4101562 C 29.200469 0.88015625 27.16 0.0390625 25 0.0390625 z M 7.6796875 14 L 2.4101562 19.269531 C -0.74984375 22.429531 -0.74984375 27.570469 2.4101562 30.730469 L 7.6796875 36 L 12.929688 36 C 13.999687 36 14.999766 35.580078 15.759766 34.830078 L 22.529297 28.060547 C 23.889297 26.700547 26.110703 26.700547 27.470703 28.060547 L 34.240234 34.830078 C 35.000234 35.580078 36.000312 36 37.070312 36 L 42.320312 36 L 47.589844 30.730469 C 50.749844 27.570469 50.749844 22.429531 47.589844 19.269531 L 42.320312 14 L 37.070312 14 C 36.000313 14 35.000234 14.419922 34.240234 15.169922 L 27.470703 21.939453 C 26.790703 22.619453 25.9 22.960938 25 22.960938 C 24.1 22.960937 23.209297 22.619453 22.529297 21.939453 L 15.759766 15.169922 C 14.999766 14.419922 13.999688 14 12.929688 14 L 7.6796875 14 z M 25 29.037109 C 24.615 29.038359 24.229453 29.185469 23.939453 29.480469 L 17.169922 36.240234 C 16.039922 37.380234 14.529687 38 12.929688 38 L 9.6796875 38 L 19.269531 47.589844 C 20.799531 49.119844 22.84 49.960938 25 49.960938 C 27.16 49.960938 29.200469 49.119844 30.730469 47.589844 L 40.320312 38 L 37.070312 38 C 35.470313 38 33.960078 37.380234 32.830078 36.240234 L 26.060547 29.470703 C 25.770547 29.180703 25.385 29.035859 25 29.037109 z"></path></svg></span> <span class="price-pix-call">A vista no PIX com até ${descontoValor}% OFF</span> </div> </div>`);
+          }
+          $('[add-kit-sopa]').removeAttr('disabled');
+        } else {
+          $('.preco-kit').html('');
+          $('[add-kit-sopa]').attr('disabled', true);
+        }
+    });
+    
+    $('[close-ajax-sopas]').click(function(){
+      $('.personalize-kit').removeClass('open-kit');
+      $('body').removeClass('opened-kit');
+    })
+
+    $('[openkit]').click(function(){
+      $('.personalize-kit').addClass('open-kit');
+      $('body').addClass('opened-kit');
+    })
+
+    $('[href="/?kit_show#monte-seu-kit"]').click(function(e){
+      $('.personalize-kit').addClass('open-kit');
+      $('body').addClass('opened-kit');
+    })
+
+    $("body.template-index").on( "click", "a[href='/?kit_show#monte-seu-kit']", function(e){
+      e.preventDefault();
+      $('.personalize-kit').addClass('open-kit');
+      $('body').addClass('opened-kit');
+    })
+
+    let searchParams = new URLSearchParams(window.location.search)
+    var kitShow = searchParams.has('kit_show');
+    
+    if(kitShow){
+      $('.personalize-kit').addClass('open-kit');
+      $('body').addClass('opened-kit');
+    }
+  
+    $('.overflow-kit').click(function(){
+      $('.personalize-kit').removeClass('open-kit');
+      $('body').removeClass('opened-kit');
+    })
+  
+    $('[add-kit-sopa]').click(function(){
+    var inputsQtd = $('.sopas-items').find('.qtd-input');
+    var items = [];
+    
+    inputsQtd.each(function() {
+      var qtd = $(this).val();
+      var id = $(this).data('variantid');
+      var item = {};
+      if(qtd > 0){
+        item['id'] = id;
+        item['quantity'] = qtd;
+        items.push(item)
+      }
+    });
+    var data = {};
+    data.items = items;
+
+    if(data.items.length > 0){
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        window.updateCart();
+        $('.personalize-kit').removeClass('open-kit');
+      $('body').removeClass('opened-kit');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+  });
+
+    /*jantas descomplicadas*/
+    let totalUnits = 10;
+    
+    function updateProgress(currentUnits, porcoes) {
+      let progressPercentage = (currentUnits / totalUnits) * 100;
+      
+      $(".progress-sopa-kit .progress").css("width", `${progressPercentage}%`);
+      $(".progress-sopa-kit .left").html(`<span class="highlight-red">${porcoes} jantas</span> já descomplicadas`);
+      $(".progress-sopa-kit .right").html(`<b>${currentUnits} un.</b> / 10 un.`);
+    }
+    
+    function updateProgressiveDiscount(qtdSelect, total) {
+      let descontosOrdenados = window.descontos.sort((a, b) => parseInt(b.unidades) - parseInt(a.unidades));
+      let descontoSelected = obterDesconto(qtdSelect);
+      let proximoDesconto = obterProximoDesconto(qtdSelect);
+
+      console.log(proximoDesconto, qtdSelect);
+      console.log(descontoSelected);
+
+      if(descontoSelected){
+        let progressPercentage = (parseInt(descontoSelected.desconto) / parseInt(descontosOrdenados[descontosOrdenados.length-1].desconto)) * 100;
+        if(qtdSelect === 0){
+          progressPercentage = 0;
+        }
+        let desconto = parseInt(descontoSelected.desconto);
+        let calcTotal = parseInt(descontoSelected.desconto)/100*total;
+        if(parseInt(descontoSelected.desconto) === 0){
+          calcTotal = 0;
+        }
+        let price = Shopify.formatMoney(calcTotal, window.money_format);
+        let items_para_proximo_desconto = proximoDesconto;
+
+      
+        $(".progress-desconto-kit .progress").css("width", `${progressPercentage}%`);
+        $(".progress-desconto-kit .left").html(`<div class="desconto-percente">${descontoSelected.desconto}%</div> Desconto progressivo`);
+        $(".progress-desconto-kit .right").html(`Já economizou <b>${price}</b>`);
+        if(items_para_proximo_desconto != false){
+          $(".progress-desconto-kit .aviso-desconto").html(`Muito bem! Adicione <b>+${items_para_proximo_desconto - qtdSelect} unidades</b> para chegar no próximo nível`)
+        }else{
+          $(".progress-desconto-kit .aviso-desconto").html(`Parabéns! Você atingiu o nível máximo!`)
+        }
+      }else{
+        $(".progress-desconto-kit .progress").css("width", '0%');
+        $(".progress-desconto-kit .left").html(`<div class="desconto-percente">0%</div> Desconto progressivo`);
+        $(".progress-desconto-kit .right").html(`Já economizou <b>R$ 0</b>`);
+        $(".progress-desconto-kit .aviso-desconto").html(`Adicione <b>+${parseInt(descontosOrdenados[1].unidades)} unidades</b> para chegar no próximo nível`)
+      }
+    }
+    
+    function updateGift(minGiftValue, total) {
+      if(total > 0){
+        let progressPercentage = (parseInt(total) / parseInt(minGiftValue)) * 100;
+        let calcTotal = (minGiftValue - parseInt(total)) > 0 ? (minGiftValue - parseInt(total)) : 0;
+        let price = Shopify.formatMoney(calcTotal, window.money_format);
+  
+        $(".progress-brinde-kit .progress").css("width", `${progressPercentage}%`);
+        $(".progress-brinde-kit .left").html(`Brinde`);
+
+        if(calcTotal > 0){
+          $(".progress-brinde-kit .right").html(`Faltam só <b>${price}</b> para ganhar!`);
+        }else{
+          $(".progress-brinde-kit .right").html(`<b>Parabéns</b>, você conseguiu!`);
+        }
+      }else{
+        $(".progress-brinde-kit .progress").css("width", '0%');
+        $(".progress-brinde-kit .left").html(`Brinde`);
+        $(".progress-brinde-kit .right").html(`Faltam só <b>${Shopify.formatMoney(minGiftValue, window.money_format)}</b> para ganhar!`);
+      }
+    }
+    function updateShipping(minShippingValue, total, qtdSelect) {
+      let descontosOrdenados = window.descontos.sort((a, b) => parseInt(b.unidades) - parseInt(a.unidades));
+      let descontoSelected = obterDesconto(qtdSelect);
+      let totalWithDiscount = total;
+
+      if(descontoSelected.desconto > 0){
+          totalWithDiscount = Math.abs((parseInt(descontoSelected.desconto) / 100.00 * total - total));      
+      }
+
+      console.log(totalWithDiscount, total)
+      
+      if(totalWithDiscount > 0){
+        let progressPercentage = (parseInt(totalWithDiscount) / parseInt(minShippingValue)) * 100;
+        let calcTotal = (minShippingValue - parseInt(totalWithDiscount)) > 0 ? (minShippingValue - parseInt(totalWithDiscount)) : 0;
+        let price = Shopify.formatMoney(calcTotal, window.money_format);
+  
+        $(".progress-frete-kit .progress").css("width", `${progressPercentage}%`);
+        $(".progress-frete-kit .left").html(`Frete grátis`);
+
+        if(calcTotal > 0){
+          $(".progress-frete-kit .right").html(`Faltam só <b>${price}</b> para ganhar!`);
+        }else{
+          $(".progress-frete-kit .right").html(`Você ganhou!`);
+        }
+      }else{
+        $(".progress-frete-kit .progress").css("width", '0%');
+        $(".progress-frete-kit .left").html(`Frete grátis`);
+        $(".progress-frete-kit .right").html(`Faltam só <b>${Shopify.formatMoney(minShippingValue, window.money_format)}</b> para ganhar`);
+      }
+    }
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Monte seu KIT Progressivo",
+    "class": "kit-container",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "desconto_show",
+        "label": "Exibir barra de desconto?",
+        "default": true,
+        "info": "Os descontos precisam estar configurados."
+      },
+      {
+        "type": "checkbox",
+        "id": "brinde_show",
+        "label": "Exibir barra de brinde?",
+        "default": true,
+        "info": "O brinde precisa estar configurado."
+      },
+      {
+        "type": "checkbox",
+        "id": "frete_show",
+        "label": "Exibir barra de frete grátis?",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "jantas_show",
+        "label": "Exibir barra de jantas descomplicadas?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Título"
+      },
+      {
+        "type": "html",
+        "id": "description",
+        "label": "Descrição",
+        "info": "use a tag <highlight></highlight> para dar destaque em um texto"
+      },
+      {
+        "type": "header",
+        "content": "Configurações da sessão"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-superior",
+        "default": true,
+        "label": "Ativar divisória superior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-superior",
+        "default": "#fff",
+        "label": "Cor da divisória superior"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-inferior",
+        "default": false,
+        "label": "Ativar divisória inferior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-inferior",
+        "default": "#fff",
+        "label": "Cor da divisória inferior"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Sopa",
+        "settings": [
+          {
+            "type": "product",
+            "id": "sopa",
+            "label": "Sopa"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Imagem destaque"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtítulo"
+          },
+          {
+            "type": "text",
+            "id": "jantas_descomplicadas",
+            "label": "jantas descomplicadas"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name": "Monte seu KIT Progressivo"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,325 @@
+<style>
+  .praticidade-col-right {
+    display: flex;
+    gap: 15px;
+    position: relative;
+    flex-wrap: wrap;
+    width: 450px;
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .praticidade-home {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .plus-divisor {
+    padding-top: 30px;
+  }
+  
+  .praticidade-home {
+    padding: 40px 20px 60px 20px;
+  }
+  
+
+  .praticidade-col-right div:not(.plus-divisor) img {
+    width: auto;
+    height: 110px;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+
+  .aviso-sal {
+    max-width: 450px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  .aviso-sal p {
+    margin: 0;
+  }
+
+  .aviso-sal b {
+    color: #ff455a;
+  }
+
+  @media (max-width: 1024px){
+    .praticidade-home {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .praticidade-col-right {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .praticidade-col-right {
+      width: 100%;
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    .praticidade-col-right div {
+      width: 100%;
+    }
+
+    .praticidade-col-right .flex .custom-font {
+      font-size: 10px;
+      line-height: 16px;
+    }
+    
+    .plus-divisor {
+      width: 10% !Important;
+    }
+
+    .aviso-sal {
+      width: 100% !Important;
+    }
+
+    .praticidade-col-right div:not(.plus-divisor) img {
+      width: auto;
+      height: 110px;
+      object-fit: cover;
+      margin: 0 auto;
+    }
+      
+    .plus-divisor {
+      width: 10%;
+    }
+    
+    .plus-divisor img {
+      margin: 0 auto;
+    }
+  }
+
+  @media (min-width: 1200px){
+    .praticidade-home {
+      padding: 40px 120px 60px 120px;
+    }
+  }
+
+  .praticidade-col-right .flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .praticidade-col-right .flex div {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .praticidade-col-right .flex img {
+    height: 70px !important;
+  }
+
+  .praticidade-home {
+    background: #F9F9F9;
+    margin: 2rem;
+    border-radius: 45px;
+  }
+
+  .praticidade-home video {
+    border-radius: 45px;
+  }
+
+  .observation-text {
+    max-width: 450px;
+    margin: 20px auto 0;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+</style>
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+<div class="praticidade-home">
+  <div class="praticidade-col-left w-1/2">
+    <div class="content-left">
+      <div class="header-widget custom-font text-center">
+        <h3>{{ section.settings.section_title }}</h3>
+      </div>
+    </div>
+    <div class="flex steps">
+      {% for block in section.blocks %}
+        {% if block.type == 'step' %}
+          <div class="w-1/2 p-2 flex-col" {{ block.shopify_attributes }}>
+            <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.step_title }}"/>
+            <p class="text-center custom-font">{{ block.settings.step_description }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.observation != blank %}
+      <div class="observation-text">
+        {{ section.settings.observation }}
+      </div>
+    {% endif %}
+  </div>
+  <div class="praticidade-col-right w-1/2">
+    {% for block in section.blocks %}
+      {% if block.type == 'video' %}
+        <div {{ block.shopify_attributes }}>
+          <video width="300" height="300" autoplay muted loop playsinline>
+            <source src="{{ block.settings.video_url }}" type="video/mp4">
+          </video>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% if section.settings.borda-inferior %}
+  {% render 'borda-inferior', cor: section.settings.color-borda-inferior %}
+{% endif %}
+{% schema %}
+  {
+    "name": "Praticidades Home",
+    "class": "yellow-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Título da Seção",
+        "default": "Preparo fácil em 2 passos"
+      },
+      {
+        "type": "html",
+        "id": "observation",
+        "label": "Texto de Observação",
+        "info": "Será exibido abaixo dos passos"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-superior",
+        "default": true,
+        "label": "Ativar divisória superior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-superior",
+        "default": "#fff",
+        "label": "Cor da divisória superior"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-inferior",
+        "default": false,
+        "label": "Ativar divisória inferior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-inferior",
+        "default": "#fff",
+        "label": "Cor da divisória inferior"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "step",
+        "name": "Passo de Preparo",
+        "limit": 4,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Imagem do passo",
+            "info": "Exemplo: shopify:\/\/shop_images\/Imagem_3.png"
+          },
+          {
+            "type": "text",
+            "id": "step_description",
+            "label": "Descrição do passo",
+            "default": "Ferva a água adicione a sopa e sal"
+          },
+          {
+            "type": "text",
+            "id": "step_title",
+            "label": "Título do passo (alt da imagem)"
+          }
+        ]
+      },
+      {
+        "type": "video",
+        "name": "Vídeo",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "url",
+            "id": "video_url",
+            "label": "URL do vídeo MP4",
+            "info": "Exemplo: https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/ed93c915e1bc43509ad007e123c2515f.mp4"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Praticidades Home",
+        "settings": {
+          "section_title": "Preparo fácil em 2 passos",
+          "observation": "",
+          "borda-superior": true,
+          "color-borda-superior": "#fff",
+          "borda-inferior": false,
+          "color-borda-inferior": "#fff"
+        },
+        "blocks": [
+          {
+            "type": "step",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/preparo_passo_1_2x_c3b76c02-0b12-4d5d-9172-caa71ba50e13.png",
+              "step_description": "<b>Passo 1:</b> Ferva a água adicione a sopa e sal",
+              "step_title": "Passo 1 - Ferva água e adicione sopa"
+            }
+          },
+          {
+            "type": "step",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/peparo_passo_2_2x_2f68a09a-36ca-4d85-b69d-c8bce1446473.png",
+              "step_description": "<b>Passo 2:</b> Cozinhe pelo tempo indicado no pacote",
+              "step_title": "Passo 2 - Cozinhe no tempo indicado"
+            }
+          },
+          {
+            "type": "video",
+            "settings": {
+              "video_url": "https://cdn.shopify.com/videos/c/o/v/5083f170a78a43619f63f28d5ec8a514.mp4"
+            }
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const videoElements = document.querySelectorAll('video');
+
+    function tryPlayVideo(video) {
+      video.play().catch((error) => {
+        console.warn(`Autoplay falhou para o vídeo: ${video.src}. Tentando novamente...`);
+        setTimeout(() => tryPlayVideo(video), 2000);
+      });
+    }
+
+    videoElements.forEach((video) => {
+      video.setAttribute('playsinline', '');
+      video.setAttribute('muted', '');
+      video.setAttribute('autoplay', '');
+
+      video.addEventListener('suspend', () => {
+        tryPlayVideo(video);
+      });
+
+      tryPlayVideo(video);
+    });
+  });
+</script>

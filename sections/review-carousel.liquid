@@ -1,0 +1,438 @@
+<style>
+  .shopify-section .section-review {
+    background: var(--bgColor);
+    padding: 0 20px;
+  }
+
+  .review-carousel .swiper-slide {
+    width: fit-content;
+    height: auto;
+  }
+
+  .review-carousel {
+    padding: 30px 60px 60px 60px;
+  }
+
+  .review-carousel-container .review-title {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    text-align: right;
+  }
+
+  .review-carousel-container .review-title h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 15px
+  }
+
+  .review-carousel-container .review-title svg {
+    height: 28px;
+    width: auto;
+    stroke: none;
+  }
+
+  .review-carousel-container.max-container {
+    background-image: url('{{ section.settings.bg_image_mobile | image_url: width: section.settings.bg_image_mobile.width }}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 200px 0 300px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: -250px;
+    z-index: 2;
+  }
+
+  .review-carousel-container .side-image {
+    background-image: url('{{ section.settings.side_image_mobile | image_url: width: section.settings.side_image_mobile.width }}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    height: 250px;
+    width: 100%;
+  }
+
+  .review-carousel .card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 32px;
+    max-width: 300px;
+    font-size: 14px;
+    line-height: normal;
+  }
+
+  .review-carousel .name {
+      font-weight: var(--font-weight-medium);
+  }
+  
+  .review-carousel .star-reviews {
+      display: flex;
+      gap: 4px;
+  }
+
+  .customer-review__item .star-reviews .star--icon {
+      display: inline-block;
+  }
+
+  .customer-review__item .star-reviews .star--icon:before {
+      content: "\2605";
+      font-size: 16px;
+      color: #CBDE59;
+  }
+
+  .customer-review__item .star-reviews .star--icon.star-empty:before {
+      color: #E1E1E1;
+  }
+
+
+  @media (max-width: 1440px) {
+      .review__item-content.maw-780 {max-width: 565px}      
+  }
+
+  @media (min-width: 1024px) {
+    .side-image-container img {
+      width: 200px;
+      height: 200px;
+    }   
+    
+    .side-image-header {
+      flex-direction: column;
+    }
+    
+    .review-carousel-container.max-container {
+      background-image: url('{{ section.settings.bg_image | image_url: width: section.settings.bg_image.width }}');
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius: 40px;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 80px 0 32px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: -250px;
+      z-index: 2;
+    }
+
+    .review-carousel-container .side-image {
+      background-image: url('{{ section.settings.side_image | image_url: width: section.settings.side_image.width }}');
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: auto;
+      bottom: 0;
+      z-index: 2;
+      width: 400px;
+      height: 100%;
+    }
+  }
+  @media (max-width: 1024px) {
+    .shopify-section .section-review {
+      background: var(--bgColor);
+      padding: 0;
+    } 
+
+    .side-image-container {
+      padding: 0px 16px!important;
+    }
+    
+    .side-image-container img {
+      width: 150px;
+      height: 150px;
+    }
+
+    .side-image-header p {
+      padding-top: 32px;
+      text-align: left!important;
+    }
+
+    .review-carousel-container .review-title {
+      flex-direction: column;
+    }
+    
+
+    .side-image-container p {
+      margin: 0!important;      
+    }
+
+    .review-carousel {
+      padding: 20px 20px 60px 20px;
+    }
+
+    .customer-review__item .review_flex {
+        display: block;
+    }
+
+    .customer-review__item .review_flex > div {
+        width: 100%;
+    }
+
+    .customer-review__item .review_flex > div + div {
+        margin-top: 25px;
+    }
+
+    .review-carousel .halo-block-header .title {
+        margin-bottom: var(--margin-bottom-title-mb)
+    }
+  }
+
+  .review__item-image img {
+      pointer-events: none;
+  }
+
+  .review__item-content .name {
+      font-weight: var(--font-weight-semibold);
+  }
+
+  .review-carousel-container .swiper-button-prev {
+    bottom: 0px;
+    top: auto;
+    left: calc(50% - 50px);
+    border: 2px solid #CBDE59;
+    padding: 18px 18px;
+    border-radius: 9999px;
+  }
+
+  .review-carousel-container .swiper-button-prev:after {
+    font-size: 14px
+  }
+
+  .review-carousel-container .swiper-button-next {
+    bottom: 0px;
+    top: auto;
+    right: calc(50% - 50px);
+    border: 2px solid #CBDE59;
+    padding: 18px 18px;
+    border-radius: 9999px;
+  }
+
+  .review-carousel-container .swiper-button-next:after {
+    font-size: 14px
+  }
+
+  .side-image-container {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .side-image-container > p {
+    font-size: 10px;
+  }
+
+  .side-image-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }  
+
+  .side-image-container p {
+    margin: 0 0 32px;
+    text-align: center;
+    line-height: normal;
+  }
+
+  .side-image-container p span {
+    margin: 0;
+    color: #571860;
+  }
+</style>
+<div class="section section-review" style="--bgColor: {{ section.settings.color }}">
+  {% if section.settings['borda-superior'] %}
+    {% render 'borda-superior', cor: section.settings['color-borda-superior'] %}
+  {% endif %}
+  <div class="review-carousel-container max-container">
+    <div class="review-title">
+      <h3 class="font-3">
+        QUEM JÁ SABOREIA <br>
+        HOLYMAC DIZ
+      </h3>
+      <svg xmlns="http://www.w3.org/2000/svg" width="111.09" height="28" viewBox="0 0 111.09 28">
+        <rect width="111.09" height="28" rx="14" transform="translate(0 0)" fill="#cbde59"/><g transform="translate(-7094 8)"><g transform="translate(0 0)"><g transform="translate(7112)"><path d="M5.96,0,7.823,3.725l4.1.6L8.94,7.226l.67,4.1L5.96,9.387,2.309,11.324l.671-4.1L0,4.321l4.1-.6Z" transform="translate(0 0.571)" fill="#8355a7"/><rect width="12" height="12" transform="translate(0.38)" fill="none"/></g><g transform="translate(7127.645)"><path d="M5.96,0,7.823,3.725l4.1.6L8.94,7.226l.67,4.1L5.96,9.387,2.309,11.324l.671-4.1L0,4.321l4.1-.6Z" transform="translate(0 0.571)" fill="#8355a7"/><rect width="12" height="12" transform="translate(0.735)" fill="none"/></g><g transform="translate(7143.29)"><path d="M5.96,0,7.823,3.725l4.1.6L8.94,7.226l.67,4.1L5.96,9.387,2.309,11.324l.671-4.1L0,4.321l4.1-.6Z" transform="translate(0 0.571)" fill="#8355a7"/><rect width="12" height="12" transform="translate(0.09)" fill="none"/></g><g transform="translate(7158.935)"><path d="M5.96,0,7.823,3.725l4.1.6L8.94,7.226l.67,4.1L5.96,9.387,2.309,11.324l.671-4.1L0,4.321l4.1-.6Z" transform="translate(0 0.571)" fill="#8355a7"/><rect width="12" height="12" transform="translate(0.445)" fill="none"/></g><g transform="translate(7174.645)"><path d="M5.96,0,7.823,3.725l4.1.6L8.94,7.226l.67,4.1L5.96,9.387,2.309,11.324l.671-4.1L0,4.321l4.1-.6Z" transform="translate(0 0.571)" fill="#8355a7"/><rect width="12" height="12" transform="translate(0.445)" fill="none"/></g></g></g>
+      </svg>
+    </div>
+    <div class="swiper review-carousel">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide">
+            <div class="card">
+              <div
+                class="halo-item customer-review__item text-left"
+                data-animate="{{ settings.banner_animation }}"
+              >
+                <div class="review__item-content maw-480 m-lr-auto">
+                  {%- if block.settings.body != blank -%}
+                    <div class="customer-review__content" style="margin-bottom: 16px">{{ block.settings.body }}</div>
+                  {%- endif -%}
+                  <div style="display: flex; justify-content: space-between; gap: 8px">
+                    <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 4px">
+                      {%- if block.settings.name != blank -%}
+                        <div class="name">{{ block.settings.name }}</div>
+                      {%- endif -%}
+                      {%- if block.settings.date != blank -%}
+                        <div class="date">{{ block.settings.date }}</div>
+                      {%- endif -%}
+                    </div>
+                    <div class="star-reviews">
+                      {%- assign star_number = block.settings.rating | remove: 'star' | plus: 0 -%}
+                      {%- for i in (1..5) -%}
+                        <span class="star--icon {% if i > star_number %}star-empty{% endif %}"></span>
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-button-prev" style="--swiper-navigation-size: 20px; --swiper-navigation-color: #CBDE59"></div>
+      <div class="swiper-button-next" style="--swiper-navigation-size: 20px; --swiper-navigation-color: #CBDE59"></div>
+    </div>
+    <div class="side-image">
+      <div class="side-image-container">
+        <div class="side-image-header">
+          <img
+            loading="lazy"
+            width="200px"
+            height="200px"
+            src="{{ section.settings.stamp | image_url: width: section.settings.stamp.width }}"
+          >
+          <p>
+            <strong><span>Você tem 30 dias, um mês inteirinho para provar seu HolyMac</span></strong> e, caso não goste,
+            pode devolver tudo pra gente sem custo que nós te *reembolsaremos 100% do valor.
+          </p>
+        </div>
+        <p>
+          <strong>* Importante saber:</strong> caso você tenha comprado um mix com vários sabores, somente um pacote
+          pode ter sido aberto, ok? Todos os outros devem voltar fechados e sem violação
+        </p>
+      </div>
+    </div>
+    {% if section.settings['borda-inferior'] %}
+      {% render 'borda-inferior', cor: section.settings['color-borda-inferior'] %}
+    {% endif %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Review Carousel",
+  "settings": [{
+    "type": "checkbox",
+    "id": "borda-superior",
+    "default": true,
+    "label": "Ativar divisória superior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-superior",
+    "default": "#fff",
+    "label": "Cor da divisória superior"
+  },
+  {
+    "type": "checkbox",
+    "id": "borda-inferior",
+    "default": false,
+    "label": "Ativar divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-inferior",
+    "default": "#fff",
+    "label": "Cor da divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color",
+    "label": "Cor"
+  },
+  {
+    "type": "image_picker",
+    "id": "bg_image",
+    "label": "Imagem de fundo"
+  },
+  {
+    "type": "image_picker",
+    "id": "bg_image_mobile",
+    "label": "Imagem de fundo mobile"
+  },
+  {
+    "type": "image_picker",
+    "id": "stamp",
+    "label": "Selo"
+  },
+  {
+    "type": "image_picker",
+    "id": "side_image",
+    "label": "Imagem de sobreposição"
+  },
+  {
+    "type": "image_picker",
+    "id": "side_image_mobile",
+    "label": "Imagem de sobreposição mobile"
+  }],
+  "blocks":[
+    {
+        "type": "review",
+        "name": "t:sections.customer_review.blocks.review.name",
+        "settings": [
+        {
+            "type": "select",
+            "id": "rating",
+            "label": "t:sections.customer_review.blocks.review.settings.rating",
+            "options": [
+                { "value": "star0", "label": "0" },
+                { "value": "star1", "label": "1" },
+                { "value": "star2", "label": "2" },
+                { "value": "star3", "label": "3" },
+                { "value": "star4", "label": "4" },
+                { "value": "star5", "label": "5" }
+            ],
+            "default": "star5"
+        },
+        {
+            "type" : "text",
+            "id" : "name",
+            "label" : "t:sections.customer_review.blocks.review.settings.name"
+        },
+        {
+            "type" : "text",
+            "id" : "date",
+            "label" : "t:sections.customer_review.blocks.review.settings.date",
+            "default" : "Wednesday, Jan 26, 2019"
+        },
+        {
+            "type": "textarea",
+            "id": "body",
+            "label": "t:sections.customer_review.blocks.review.settings.body",
+            "default": "Nam tempus turpis at metus scelerisque placerat nulla deumantos delo sollicitudin delos felis. Pellentesque diam dolor an elementum et lobortis at mollis ut risus. Curabitur semper sagittis mi condimentum..."
+        }]
+      }
+  ],
+  "presets": [{
+    "name": "Review Carousel",
+    "blocks": [
+      {
+        "type": "review"
+      },
+      {
+        "type": "review"
+      },
+      {
+        "type": "review"
+      }
+    ]
+  }]
+}
+{% endschema %}

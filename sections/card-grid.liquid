@@ -1,0 +1,174 @@
+<style>
+  .section {
+    background: var(--bgColor);
+  }
+
+  .card-container.max-container {
+    max-width: 1152px;
+    margin: 0 auto;
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0px 30px;
+  }
+
+  .card-container .card {
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px 16px;
+    background: var(--colorCard);
+  }
+
+  .card-header {
+    border-radius: 16px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .card-header img {
+    width: auto;
+    height: auto;
+  }
+
+  .card-container .card-header .title {
+    color: #8355A7;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 9px;
+  }
+
+  .card-container .description p {
+    color: #888888;
+    font-size: 9px;
+    line-height: normal;
+    margin: 0;
+  }
+
+  .image-placeholder {
+    width: 135px;
+    height: 135px;
+  }
+
+  @media (min-width: 1200px) {
+    .card-container {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      justify-content: space-between;
+    }
+  }
+</style>
+<div class="section" style="--bgColor: {{ section.settings.color }}">
+  {% if section.settings['borda-superior'] %}
+    {% render 'borda-superior', cor: section.settings['color-borda-superior'], style: 'waves' %}
+  {% endif %}
+  <div class="card-container max-container">
+    {% for block in section.blocks %}
+      <div class="card" style="--colorCard: {{ block.settings.color }}">
+        <div class="card-header">
+          {% if block.settings.image == blank %}
+            {{ 'product-1' | placeholder_svg_tag: 'image-placeholder' }}
+          {% else %}
+            <img loading="lazy" width="30px" height="30px" src="{{ block.settings.image | image_url: width: block.settings.image.width }}">
+          {% endif %}
+          <div class="title font-3">
+            {{ block.settings.title }}
+          </div>
+        </div>
+        <div class="description">
+          {{ block.settings.description }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% if section.settings['borda-inferior'] %}
+    {% render 'borda-inferior', cor: section.settings['color-borda-inferior'], style: 'waves' %}
+  {% endif %}
+</div>
+{% schema %}
+{
+  "name": "Card Grid",
+  "settings": [{
+    "type": "checkbox",
+    "id": "borda-superior",
+    "default": true,
+    "label": "Ativar divisória superior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-superior",
+    "default": "#fff",
+    "label": "Cor da divisória superior"
+  },
+  {
+    "type": "checkbox",
+    "id": "borda-inferior",
+    "default": false,
+    "label": "Ativar divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-inferior",
+    "default": "#fff",
+    "label": "Cor da divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color",
+    "label": "Cor"
+  }],
+  "blocks":[
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+            "type": "color",
+            "id": "color",
+            "label": "Cor",
+            "default": "#fff"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Card title"
+        },
+        {
+          "id": "description",
+          "type": "richtext",
+          "label": "Card description"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Card Grid",
+    "blocks": [
+      {
+        "type": "card"
+      },
+      {
+        "type": "card"
+      },
+      {
+        "type": "card"
+      },
+      {
+        "type": "card"
+      }
+    ]
+  }]
+}
+{% endschema %}

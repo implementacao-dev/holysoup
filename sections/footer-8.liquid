@@ -1,0 +1,855 @@
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+
+<style>
+  footer::after {
+    background-image: url(https://cdn.shopify.com/s/files/1/0619/0206/1748/files/patter_background.png?v=1692130859);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    background-position: center;
+    opacity: 0.2;
+    z-index: 0;
+  }
+  
+  footer {
+    position: relative;
+    background-color: #00b45a;
+    padding: 80px 20px 80px 20px;
+  }
+
+  @media (min-width: 1200px) {
+    .footer {
+      padding: 80px 120px 60px 120px;
+    }
+  }
+
+  .content-footer-hs {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .row-footer{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  a.btn.btn-footer {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 23px;
+    font-size: 14px;
+    padding: 10px 20px;
+    width: 355px;
+    margin: 0 auto;
+    display: block;
+    max-width: 300px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 400;
+  }
+
+  a.btn.btn-footer.btn-loja-fisica {
+    background-color: #00814E;
+    color: #fff;
+    border-color: #00814E;
+  }
+
+  a.btn.btn-footer.btn-whatsapp {
+    background-color: #FFD88A;
+    border-color: #FFD88A;
+    color: #00814E;
+  }
+
+  a.btn.btn-footer svg {
+    width: 25px;
+    height: auto;
+    stroke: none;
+  }
+
+  .row-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 0;
+  }
+
+  .menu-principal-footer ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .menu-principal-footer ul li a {
+    font-weight: 400;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .menu-footer ul {
+    padding: 0;
+    list-style: none;
+  }
+  
+  .menu-footer ul li a {
+    font-weight: 400;
+    color: #fff;
+    font-size: 13px;
+  }
+  
+  .menu-footer li {
+    padding: 3px 0;
+  }
+  
+  .logo-footer {
+    width: 33.33%;
+  }
+  
+  .logo-footer img {
+    width: 160px;
+    height: auto;
+  }
+  
+  .menu-principal-footer {width: 33.33%;}
+  
+  .comprar-loja-fisica {
+    width: 33.33%;
+  }
+
+  .menu-footer {
+    width: 33.33%;
+  }
+
+  .buttons-footer {
+    width: 33.33%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .row-copyright ul.list.list-payment {
+    list-style: none;
+    display: flex;
+    gap: 3px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .row-footer.row-copyright {
+    text-align: center;
+    color: #fff;
+  }
+
+  .row-footer.row-copyright .cnpj {
+    margin-bottom: 0;
+  }
+
+  .row-footer.row-copyright p:last-child {
+    font-size: 7px;
+    line-height: 1.5;
+    margin-top: 15px;
+    font-weight: 100 !important;
+  }
+
+  .row-footer.row-copyright {
+    flex-direction: column;
+  }
+  
+
+  @media (min-width: 1024px){
+    .row-footer.row-selos img {
+      height: 45px;
+      width: auto;
+    }
+
+    .row-footer.row-selos {
+      gap: 10px;
+      margin: 25px auto;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .whatsapp-mobile{
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 1024px){
+    .whatsapp-desktop{
+      display: none !important;
+    }
+    .whatsapp-mobile {
+      margin: 15px 0 35px;
+    }
+    .row-footer.row-selos img+img {
+      width: 63px;
+      height: 63px;
+    }
+    
+    .row-footer.row-selos img:first-child {
+      width: 70px;
+      max-height: 70px;
+      object-fit: contain;
+    }
+    
+    .row-footer.row-selos {
+      gap: 10px;
+      margin: 25px 0;
+    }
+    
+    .row-footer {
+      flex-wrap: wrap;
+    }
+
+    .logo-footer img {
+      margin: 0 auto;
+    }
+
+    .menu-principal-footer ul {
+      justify-content: center;
+      display: none;
+    }
+    
+    .logo-footer {
+      width: 100%;
+    }
+    
+    .menu-principal-footer {
+      width: 100%;
+    }
+    
+    .comprar-loja-fisica {
+      width: 100%;
+      margin-top: 25px;
+    }
+    
+    .menu-footer {
+      width: 50%;
+    }
+    
+    .buttons-footer {
+      width: 100%;
+    }
+
+    .buttons-footer {
+      order: -2;
+      margin-bottom: 25px;
+    }
+  }
+</style>
+
+<footer>
+  <div class="content-footer-hs">
+    <div class="row-footer">
+      <div class="logo-footer">
+        {% assign logo = section.settings.logo %}
+        {% if request.path contains 'holysoup' %}
+          {% assign logo = section.settings.logo_holysoup %}
+        {% endif %}
+        {% if section.settings.logo != blank %}
+            {{ logo | image_url: width: 140 | image_tag:
+              loading: "lazy",
+              widths: "140, 280",
+              alt: shop.name,
+              width: 140,
+              height: 41
+            }}
+        {% endif %}
+      </div>
+      <div class="menu-principal-footer">
+        <ul>
+          <li><a href="/collections/sopas-e-canjas">Sopas</a></li>
+          <li><a href="/collections/temperos">Temperos</a></li>          
+        </ul>
+      </div>
+      <div class="comprar-loja-fisica">
+        <a class="btn btn-footer btn-loja-fisica" href="/pages/compre-em-lojas-fisicas">{% render 'icon-loja-fisica' %} Comprar em Lojas Físicas</a>
+      </div>
+    </div>
+    <div class="row-footer row-buttons">
+      <div class="menu-footer">
+        <ul>
+          <li><a href="/pages/quem-somos">Quem somos</a></li>
+          <li><a href="/blogs/novidades">Blog</a></li>
+          <li><a href="/pages/rastreie-seu-pedido">Rastrear pedido</a></li>
+          <li><a href="/pages/contato-1">Fale conosco</a></li>
+        </ul>
+      </div>
+      <div class="menu-footer">
+        <ul>
+          <li><a href="/pages/duvidas-frequentes">Perguntas frequentes</a></li>
+          <li><a href="/pages/termos-de-servico">Termos de uso e serviço</a></li>
+          <li><a href="/pages/politica-de-privacidade">Política de privacidade</a></li>
+          <li><a href="/pages/trocas-e-devolucoes">Trocas e devoluções</a></li>
+        </ul>
+      </div>
+      <div class="buttons-footer">
+        <a class="btn btn-footer btn-revendedor" target="_blank" href="http://wa.me/551140035536">{% render 'icon-revendedor' %} Quero Revender</a>
+        
+        <a class="btn btn-footer btn-whatsapp whatsapp-desktop" target="_blank" href="http://wa.me/551140038025">{% render 'icon-whatsapp-footer' %} Chame no WhastApp</a>
+      </div>
+    </div>
+    
+    <div class="row-footer row-selos">
+      <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/Uniao_7.png?v=1692143295"/>
+      <img src="https://cdn.shopify.com/s/files/1/0846/3741/7789/files/esgprobrasil_selo_pro_1.webp?v=17060400546"/>
+<div id="reputation-ra"><script type="text/javascript" id="ra-embed-reputation" src="https://s3.amazonaws.com/raichu-beta/selos/bundle.js" data-id="Z3V2OHhHMjZ0bUNwVWZYXzpob2x5c291cA==" data-target="reputation-ra" data-model="2"></script></div>
+    </div>
+
+    <div class="row-footer row-copyright">
+      <p class="cnpj">©{{ "now" | date: "%Y" }} HOLY GROUP LTDA - CNPJ 50.874.415/0001-62</p>
+      <p>Rua Gumercindo Luiz Pinto Monteiro, 35 - Centro - CEP 37.640-000 Extrema -MG</p>
+      <ul class="list list-payment clearfix" role="list">
+        <li class="list-payment__item visa">
+          <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/visa.svg?v=1705588630">
+        </li>
+        <li class="list-payment__item master">
+          <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/master.svg?v=1705588630">
+        </li>
+        <li class="list-payment__item amex">
+          <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/amex.svg?v=1705588630">
+        </li>
+        <li class="list-payment__item diners">
+          <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/diners.svg?v=1705588630">
+        </li>
+        <li class="list-payment__item hiper">
+           <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/hiper.svg?v=1705588630">
+         </li>
+         <li class="list-payment__item hipercard">
+           <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/hipercard.svg?v=1705588630">
+         </li>
+         <li class="list-payment__item discover">
+           <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/discover.svg?v=1705588630">
+         </li>
+         <li class="list-payment__item aura">
+           <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/aura.svg?v=1705588630">
+         </li>
+         <li class="list-payment__item pix">
+           <img src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/pix.svg?v=1705588630">
+         </li>
+      </ul>
+     
+      <p>Todo o conteúdo do site, todas as imagens, vídeos, logotipos, marcas, layout veiculados são de propriedade exclusiva. É vedada qualquer reprodução, total ou parcial, de qualquer elemento de identidade, sem expressa autorização. A violação de qualquer direito mencionado implicará na responsabilização cível e criminal nos termos da Lei. Os preços dos produtos estão sujeitos a alteração sem aviso prévio.</p>
+       
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer HS",
+  "limit": 1,
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "t:sections.footer.blocks.link_list.name",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "custom_width",
+          "label": "t:sections.footer.settings.custom_width.label",
+          "info": "t:sections.footer.settings.custom_width.info",
+          "default": "20"
+        },
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "t:sections.image-banner.blocks.image.settings.content.label__19",
+          "info": "t:sections.footer.blocks.link_list.settings.heading.info",
+          "default": "Quick links"
+        },
+        {
+          "id": "menu",
+          "type": "link_list",
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+          "info": "t:sections.footer.blocks.link_list.settings.menu.info",
+          "default": "footer"
+        },
+        {
+          "type": "range",
+          "id": "mg_bottom",
+          "label": "t:sections.footer.blocks.newsletter.settings.newsletter_margin_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.image-banner.blocks.image.settings.content.label__16",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "custom_width",
+          "label": "t:sections.footer.settings.custom_width.label",
+          "info": "t:sections.footer.settings.custom_width.info",
+          "default": "30"
+        },
+        {
+          "id": "heading",
+          "type": "text",
+          "default": "Heading",
+          "label": "t:sections.image-banner.blocks.image.settings.content.label__19"
+        },
+        {
+          "id": "logo",
+          "type": "image_picker",
+          "label": "t:sections.footer.settings.custom_width.image"
+        },
+        {
+          "type": "range",
+          "id": "logo_margin_bottom",
+          "label": "t:sections.footer.blocks.text.settings.logo_margin_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "t:sections.footer.settings.footer_bottom.pdtop_footer_bottom.unit",
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "logo_margin_top",
+          "label": "t:sections.footer.blocks.text.settings.logo_margin_top",
+          "min": -100,
+          "max": 100,
+          "step": 2,
+          "unit": "t:sections.footer.settings.footer_bottom.pdtop_footer_bottom.unit",
+          "default": 0
+        },
+        {
+          "id": "subtext",
+          "type": "richtext",
+          "default": "<p>Share store details, promotions, or brand content with your customers.</p>",
+          "label": "t:sections.image-banner.blocks.image.settings.content.label__2"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main_contact.settings.contact_info.label__4"
+        },
+        {
+          "type": "select",
+          "id": "address_icon",
+          "label": "Address Icon",
+          "default": "point_icon",
+          "options": [
+            {
+              "value": "point_icon",
+              "label": "t:icons.address"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "show_address_icon",
+          "label": "t:icons.show_icon"
+        },
+        {
+          "id": "address_text",
+          "type": "richtext",
+          "label": "t:sections.main_contact.settings.contact_info.label__4"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.store_locator.block.settings.f_phone"
+        },
+        {
+          "type": "select",
+          "id": "phone_icon",
+          "label": "t:settings_schema.typography.settings.typography.icon",
+          "default": "message_icon",
+          "options": [
+            {
+              "value": "message_icon",
+              "label": "t:icons.message"
+            },
+            {
+              "value": "phone_icon",
+              "label": "t:icons.phone"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "show_phone_icon",
+          "label": "t:icons.show_icon"
+        },
+        {
+          "id": "phone_text",
+          "type": "richtext",
+          "label": "t:sections.store_locator.block.settings.f_phone"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:settings_schema.notify_me.settings.general.label__2"
+        },
+        {
+          "type": "select",
+          "id": "email_icon",
+          "label": "t:settings_schema.typography.settings.typography.icon",
+          "default": "envelope_icon",
+          "options": [
+            {
+              "value": "envelope_icon",
+              "label": "t:icons.envelope"
+            },
+            {
+              "value": "envelope_outline_icon",
+              "label": "t:icons.envelope_outline"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "show_email_icon",
+          "label": "t:icons.show_icon"
+        },
+        {
+          "id": "email_text",
+          "type": "richtext",
+          "label": "t:settings_schema.notify_me.settings.general.label__2"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:settings_schema.general.name"
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "label": "t:settings_schema.typography.settings.typography.icon_size",
+          "min": 12,
+          "max": 50,
+          "step": 1,
+          "default": 16,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "t:settings_schema.typography.settings.typography.icon_color"
+        },
+        {
+          "type": "range",
+          "id": "content_spacing",
+          "label": "t:sections.spotlight_block.settings.content_spacing",
+          "min": 0,
+          "max": 30,
+          "default": 1,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "mg_bottom",
+          "label": "t:sections.footer.blocks.newsletter.settings.newsletter_margin_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "t:sections.layout.fontsize.fontsize_title.unit",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "footer_bottom",
+      "name": "t:sections.footer.settings.footer_bottom.content",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "t:sections.footer.settings.footer_bottom.content"
+        },
+        {
+          "type": "range",
+          "id": "pdtop_footer_bottom",
+          "label": "t:sections.footer.settings.footer_bottom.pdtop_footer_bottom.label",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "t:sections.footer.settings.footer_bottom.pdtop_footer_bottom.unit",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "pdbottom_footer_bottom",
+          "label": "t:sections.footer.settings.footer_bottom.pdbottom_footer_bottom.label",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "t:sections.footer.settings.footer_bottom.pdbottom_footer_bottom.unit",
+          "default": 50
+        },
+        {
+          "id": "border_top",
+          "type": "checkbox",
+          "label": "t:settings_schema.typography.settings.typography.border_enable_top",
+          "default": true
+        },
+        {
+          "id": "footer_bottom_color",
+          "type": "color",
+          "label": "t:settings_schema.typography.settings.typography.text_color",
+          "default": "#808080"
+        },
+        {
+          "id": "border_top_color",
+          "type": "color",
+          "label": "t:settings_schema.typography.settings.typography.border_top_color",
+          "default": "#282828"
+        },
+        {
+          "id": "footer_bottom_bg",
+          "type": "color",
+          "label": "t:settings_schema.colors.settings.colors_name.background_color",
+          "default": "#141414"
+        },
+        {
+          "id": "footer_bottom_bg_gradient",
+          "type": "color_background",
+          "label": "t:settings_schema.colors.settings.colors_name.background_color_gradient"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.settings.copy_right.content"
+        },
+        {
+          "id": "show_copyright",
+          "type": "checkbox",
+          "label": "t:sections.footer.settings.copy_right.show_copyright",
+          "default": true
+        },
+        {
+          "id": "enable_layout_grid",
+          "type": "checkbox",
+          "label": "t:sections.footer.settings.copy_right.enable_layout_grid",
+          "default": true
+        },
+        {
+          "id": "copyright_content",
+          "type": "richtext",
+          "label": "t:sections.footer.settings.copy_right.copyright_content"
+        },
+        {
+          "id": "copyright_content_color",
+          "type": "color",
+          "label": "t:settings_schema.colors.settings.colors_name.color"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.settings.payment.content"
+        },
+        {
+          "id": "show_payment",
+          "type": "checkbox",
+          "default": true,
+          "label": "t:sections.footer.settings.payment.show_payment"
+        },
+        {
+          "type": "range",
+          "id": "payment_margin_top",
+          "label": "t:sections.footer.settings.social_media_link.social_margin_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "t:sections.footer.settings.footer_bottom.pdtop_footer_bottom.unit",
+          "default": 0
+        },
+        {
+          "id": "heading_payment",
+          "type": "text",
+          "label": "t:sections.image-banner.blocks.image.settings.content.label__19"
+        },
+        {
+          "type": "select",
+          "id": "payment_type",
+          "label": "t:sections.footer.settings.payment.payment_type.option",
+          "default": "custom",
+          "options": [
+            {
+              "value": "default",
+              "label": "t:sections.footer.settings.payment.payment_type.option1"
+            },
+            {
+              "value": "custom",
+              "label": "t:sections.footer.settings.payment.payment_type.option2"
+            }
+          ],
+          "info": "t:sections.footer.settings.payment.payment_type.info"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_visa",
+          "label": "Visa"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_master",
+          "label": "Master"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_maestro",
+          "label": "Maestro"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_american_express",
+          "label": "American Express"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_apple_pay",
+          "label": "Apple Pay"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_bitcoin",
+          "label": "Bitcoin"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_dankort",
+          "label": "Dankort"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_diners_club",
+          "label": "Diners Club"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_discover",
+          "label": "Discover"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_paypal",
+          "label": "Paypal"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_dogecoin",
+          "label": "Dogecoin"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_dwolla",
+          "label": "Dwolla"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_forbrugsforeningen",
+          "label": "Forbrugsforeningen"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_jcb",
+          "label": "JCB"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_litecoin",
+          "label": "Litecoin"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_afterpay",
+          "label": "Afterpay"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_google_pay",
+          "label": "Googlepay"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_ideal",
+          "label": "Ideal"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_klarna",
+          "label": "Klarna"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_klarna-pay-later",
+          "label": "Klarnapay Later"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_shopify_pay",
+          "label": "Shopifypay"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_payment_sofort",
+          "label": "Sofort"
+        }
+      ]
+    }
+  ],
+  "settings": [{
+      "type": "checkbox",
+      "id": "borda-superior",
+      "default": true,
+      "label": "Ativar divisória superior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-superior",
+      "default": "#fff",
+      "label": "Cor da divisória superior"
+    },
+    {
+      "type": "checkbox",
+      "id": "borda-inferior",
+      "default": false,
+      "label": "Ativar divisória inferior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-inferior",
+      "default": "#fff",
+      "label": "Cor da divisória inferior"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Main"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_holysoup",
+      "label": "Logo Holysoup"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_title",
+      "label": "Mostrar título do produto",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer HS"
+    }
+  ]
+}
+{% endschema %}

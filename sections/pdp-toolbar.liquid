@@ -1,0 +1,496 @@
+{%- unless product.metafields.seo.hidden == 1 -%}
+  <div
+    x-data="
+      {
+        loading: false,
+        quantity: 1,
+        currentVariant: {{ product.selected_or_first_available_variant | json | escape }},
+        nextVariantId: {{ product.selected_or_first_available_variant.id }},
+        productsKit: {{ product.metafields.disco.kit_products.value | json | escape }},
+        quantityKit: {{ product.metafields.disco.unity | default: 1 }},
+        handleToolbar() {
+          this.loading = true
+          fetch(`{{ request.path }}?variant=${this.nextVariantId}`)
+            .then(response => response.text())
+            .then(pdpToolbarContent => {
+              document.getElementById('pdpToolbarContent').outerHTML = new DOMParser().parseFromString(pdpToolbarContent, 'text/html').getElementById('pdpToolbarContent').outerHTML
+              this.loading = false
+            })
+        },
+        handleAdd(type = 'add') {
+          this.loading = true
+          let items = []
+          if(this.productsKit){
+            this.productsKit.forEach(product => {
+              items.push({ id: product.variants[0].id, quantity: this.quantity * this.quantityKit })
+            })
+          }else{
+            items.push({ id: this.currentVariant.id, quantity: this.quantity })
+          }
+          $store.cart.addItems(items, { showCart: (type == 'add' ? true : false) })
+          .then(response => {
+            $dispatch('cart-change')
+            $store.cart.fetchItems()
+            this.loading = false
+            $dispatch('show-cart')
+          })
+        }
+      }
+    "
+    id="pdpToolbarContent"
+    class="pdp-mobile-toolbar"
+    @cart-change.window="nextVariantId = $event.detail.variantId || {{  product.selected_or_first_available_variant.id }}; handleToolbar()"
+  >
+    {% if section.blocks.size > 0 %}
+      <div class="toolbar-tags">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'tag' %}
+              <div
+                class="toolbar-tag"
+                style="background: {{ block.settings.bg_color }}"
+                {% if block.settings.modal_image != blank %}
+                  onclick="openModal('modal-{{ block.id }}')"
+                {% endif %}
+              >
+                {% if block.settings.icon != blank %}
+                  {{ block.settings.icon | image_url: width: 100 | image_tag: loading: 'lazy', fetchpriority: 'auto' }}
+                {% endif %}
+                {% if block.settings.text != blank %}
+                  <div style="color: {{ block.settings.text_color }}; --highlightedColor: {{ block.settings.highlighted_text_color }}">
+                    {{ block.settings.text }}
+                  </div>
+                {% endif %}
+              </div>
+            {% when 'zip' %}
+              <div class="toolbar-tag" style="background: {{ block.settings.bg_color }}">
+                {% if block.settings.icon != blank %}
+                  {{ block.settings.icon | image_url: width: 100 | image_tag: loading: 'lazy', fetchpriority: 'auto' }}
+                {% endif %}
+                <div class="toolbar-zip-container">
+                  {% if block.settings.text != blank %}
+                    <div style="color: {{ block.settings.text_color }}; --highlightedColor: {{ block.settings.highlighted_text_color }}">
+                      {{ block.settings.text }}
+                    </div>
+                  {% endif %}
+                  <div class="toolbar-zip-bar">
+                    <div class="toolbar-zip-bar-active">
+                      <div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="toolbar-cart">
+      <div class="toolbar-cart-info">
+        <div class="toolbar-product-title">{{ product.title }}</div>
+        <span class="toolbar-total-price">{{ product.selected_or_first_available_variant.price | money }}</span>
+      </div>
+      <button @click="handleAdd('add')">{{ section.settings.button_text }}</button>
+    </div>
+    <div
+      x-show="loading"
+      class="loading-container"
+    >
+      {% render 'loading-spinner' %}
+    </div>
+  </div>
+
+  {% for block in section.blocks %}
+    <div id="modal-{{ block.id }}" class="toolbar-tag-modal">
+      <div class="-modal-content">
+        <div class="modal-close-button" onclick="closeModal('modal-{{ block.id }}')">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+          Fechar
+        </div>
+        <img
+          loading="lazy"
+          width="100%"
+          height="100%"
+          src="{{ block.settings.modal_image | image_url: width: block.settings.modal_image.width }}"
+        >
+      </div>
+    </div>
+  {% endfor %}
+
+  {% style %}
+    .pdp-mobile-toolbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      width: 100vw;
+      background: #FFF;
+      font-size: 12px;
+      box-shadow: 0 -10px 15px -3px rgb(0 0 0 / 0.1), 0 -4px 6px -4px rgb(0 0 0 / 0.1)
+    }
+
+    .pdp-mobile-toolbar .loading-container {
+      position: absolute;
+      inset: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 0;
+      color: #000;
+      background-color: rgb(255 255 255 / 0.8);
+    }
+
+    .toolbar-tags {
+      overflow-x: auto;
+      display: flex;
+      gap: 4px;
+      padding: 16px 24px;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+
+    .toolbar-tag {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      border-radius: 9999px;
+      padding: 8px 16px;
+    }
+
+    .toolbar-tag p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .toolbar-tag p strong {
+      color: var(--highlightedColor)
+    }
+
+    .toolbar-cart {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 24px 16px;
+      {% if section.blocks.size <= 0 %}
+      padding-top: 16px;
+      {% endif %}
+    }
+
+    .toolbar-product-image img {
+      height: 45px;
+      width: auto;
+    }
+
+    .toolbar-cart button {
+      border-radius: 9999px;
+      background: #FF7A50;
+      color: #FFF;
+      padding: 8px 32px;
+      border: none;
+      white-space: nowrap;
+    }
+
+    .toolbar-total-price {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .toolbar-zip-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .toolbar-zip-bar {
+      background: #D8D8D8;
+      height: 2px;
+      width: 100%
+    }
+
+    .toolbar-zip-bar-active {
+      background: #00B45A;
+      height: 2px;
+      width: 50%
+    }
+
+    .toolbar-tag-modal {
+      display: none;
+      position: fixed;
+      inset: 0px;
+      z-index: 200;
+      background: rgba(0, 0, 0, 0.5);
+      overflow-y: auto;
+    }
+
+    .modal-content {
+      margin: auto;
+      max-width: 640px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .toolbar-tag-modal .modal-close-button {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      position: absolute;
+      top: 44px;
+      right: 44px;
+      color: white;
+      text-decoration: underline;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    .modal-close-button svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 4px;
+    }
+
+    .toolbar-tag-modal.visible {
+      display: flex;
+    }
+  {% endstyle %}
+
+  <script>
+    function openModal(modalId) {
+      if (modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.add('visible');
+      }
+    }
+
+    function closeModal(modalId) {
+      if (modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.remove('visible');
+      }
+    }
+  </script>
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Barra de serviços PDP",
+  "tag": "section",
+  "presets": [{ "name": "Barra de serviços PDP" }],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "display_section",
+      "label": "t:sections.layout.display_block",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "float_button",
+      "label": "Habilitar botão fultuante (Desktop e mobile)?",
+      "default": false
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.sticky_toolbar_mobile.settings.paragraph"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "t:settings_schema.typography.settings.font_weight.label",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "t:sections.footer.settings.footer_top.pdtop_footer_top.unit",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "t:settings_schema.typography.settings.font_weight.label",
+      "default": "500",
+      "options": [
+        {
+          "value": "400",
+          "label": "t:settings_schema.typography.settings.font_weight.options__1"
+        },
+        {
+          "value": "500",
+          "label": "t:settings_schema.typography.settings.font_weight.options__2"
+        },
+        {
+          "value": "600",
+          "label": "t:settings_schema.typography.settings.font_weight.options__3"
+        },
+        {
+          "value": "700",
+          "label": "t:settings_schema.typography.settings.font_weight.options__4"
+        },
+        {
+          "value": "800",
+          "label": "t:settings_schema.typography.settings.font_weight.options__5"
+        },
+        {
+          "value": "900",
+          "label": "t:settings_schema.typography.settings.font_weight.options__6"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "t:settings_schema.typography.settings.typography.icon_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "t:sections.footer.settings.footer_top.pdtop_footer_top.unit",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "t:settings_schema.general.name"
+    },
+    {
+      "type": "color",
+      "id": "color_icon",
+      "label": "t:sections.sticky_toolbar_mobile.settings.color_icon",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "t:settings_schema.colors.settings.colors_name.border_color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "t:settings_schema.colors.settings.colors_name.background_color",
+      "default": "#fff"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_color_gradient",
+      "label": "t:settings_schema.colors.settings.colors_name.background_color_gradient"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Texto do botão",
+      "default": "Botão"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tag",
+      "name": "Tag",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Ícone"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Selecione o ícone"
+        },
+        {
+          "type": "header",
+          "content": "Textos"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Texto da tag",
+          "info": "Para adicionar destaque à um trecho basta deixá-lo bold"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Selecione cor do texto",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "highlighted_text_color",
+          "label": "Selecione cor do texto destaquado",
+          "default": "#FF7A50"
+        },
+        {
+          "type": "header",
+          "content": "Modal"
+        },
+        {
+          "type": "image_picker",
+          "id": "modal_image",
+          "label": "Selecione a imagem do modal"
+        },
+        {
+          "type": "header",
+          "content": "Fundo"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Selecione a cor do fundo",
+          "default": "#F6F6F6"
+        }
+      ]
+    },
+    {
+      "type": "zip",
+      "name": "Cep",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Ícone"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Selecione o ícone"
+        },
+        {
+          "type": "header",
+          "content": "Textos"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Texto da tag",
+          "info": "Para adicionar destaque à um trecho basta deixá-lo bold"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Selecione cor do texto",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "highlighted_text_color",
+          "label": "Selecione cor do texto destaquado",
+          "default": "#FF7A50"
+        },
+        {
+          "type": "header",
+          "content": "Fundo"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Selecione a cor do fundo",
+          "default": "#F6F6F6"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

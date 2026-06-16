@@ -1,0 +1,146 @@
+<div class="expert-endorsement-landing">
+  <div class="expert-endorsement-container">
+    {% if section.settings.person_image != blank %}
+      <div class="expert-image-wrapper">
+        {{
+          section.settings.person_image
+          | image_url: width: 500
+          | image_tag: alt: section.settings.author_name, loading: 'lazy', class: 'expert-person-image'
+        }}
+      </div>
+    {% endif %}
+
+    <div class="expert-content-wrapper">
+      {% if section.settings.quote != blank %}
+        <blockquote class="expert-quote">{{ section.settings.quote }}</blockquote>
+      {% endif %}
+
+      {% if section.settings.testimonial_text != blank %}
+        <div class="expert-testimonial-text">{{ section.settings.testimonial_text }}</div>
+      {% endif %}
+
+      {% if section.settings.author_name != blank %}
+        <div class="expert-author-info">
+          <strong class="expert-author-name">{{ section.settings.author_name }}</strong>
+          {% if section.settings.author_title != blank %}
+            <span class="expert-author-title">{{ section.settings.author_title }}</span>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% style %}
+  #shopify-section-{{ section.id }} .expert-endorsement-landing {
+    padding: 60px 20px;
+    background-color: {{ section.settings.bg_color | default: '#f8f8f8' }};
+  }
+
+  #shopify-section-{{ section.id }} .expert-quote,
+  #shopify-section-{{ section.id }} .expert-quote p {
+    color: {{ section.settings.quote_color | default: '#7BCA0C' }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .expert-testimonial-text,
+  #shopify-section-{{ section.id }} .expert-testimonial-text p {
+    color: {{ section.settings.text_color | default: '#1A1A1A' }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .expert-author-name {
+    color: {{ section.settings.author_name_color | default: '#1A1A1A' }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .expert-author-title {
+    color: {{ section.settings.author_title_color | default: '#1A1A1A' }} !important;
+  }
+{% endstyle %}
+
+{{ 'expert-endorsement-landing.css' | asset_url | stylesheet_tag }}
+{% schema %}
+{
+  "name": "Endosso de Especialista",
+  "tag": "section",
+  "class": "expert-endorsement-landing-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Conteúdo Principal"
+    },
+    {
+      "type": "image_picker",
+      "id": "person_image",
+      "label": "Imagem"
+    },
+    {
+      "type": "richtext",
+      "id": "quote",
+      "label": "Citação",
+      "default": "<p>Eu amo que seja prático<br>sem abrir mão da<br>qualidade</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "testimonial_text",
+      "label": "Texto do Depoimento",
+      "default": "<p>Como nutricionista, sempre busco opções que combinem praticidade com ingredientes de verdade. A HolyFoods entrega exatamente isso: produtos com bom valor nutricional, feitos com ingredientes limpos, que facilitam a rotina sem comprometer os objetivos. Seja pra quem treina pesado ou pra quem só quer fazer escolhas mais inteligentes no dia a dia, é uma solução que realmente funciona.</p>"
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Nome do Autor",
+      "default": "Larissa Montijo"
+    },
+    {
+      "type": "text",
+      "id": "author_title",
+      "label": "Título do Autor",
+      "default": "Nutricionista e Digital Creator, Alimentação e Lifestyle"
+    },
+    {
+      "type": "header",
+      "content": "Estilo Visual (Cores)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Cor de Fundo",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Cor da Citação",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Cor do Texto",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "author_name_color",
+      "label": "Cor do Nome do Autor",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "author_title_color",
+      "label": "Cor do Título do Autor",
+      "default": "#1A1A1A"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Endosso de Especialista",
+      "settings": {
+        "quote": "<p>Eu amo que seja prático<br>sem abrir mão da<br>qualidade</p>",
+        "testimonial_text": "<p>Como nutricionista, sempre busco opções que combinem praticidade com ingredientes de verdade. A HolyFoods entrega exatamente isso: produtos com bom valor nutricional, feitos com ingredientes limpos, que facilitam a rotina sem comprometer os objetivos. Seja pra quem treina pesado ou pra quem só quer fazer escolhas mais inteligentes no dia a dia, é uma solução que realmente funciona.</p>",
+        "author_name": "Larissa Montijo",
+        "author_title": "Nutricionista e Digital Creator, Alimentação e Lifestyle"
+      }
+    }
+  ]
+}
+{% endschema %}

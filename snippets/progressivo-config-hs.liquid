@@ -1,0 +1,19 @@
+<script>
+  window.descontos = [];
+  {% for i in (1..4) %}
+    {% capture mais_vendido %}desconto_maisvendido_{{ i }}{% endcapture %}
+    {% capture desconto %}desconto_{{ i }}{% endcapture %}
+    {% capture unidades %}desconto_un_{{ i }}{% endcapture %}
+    {% capture cor_primaria %}desconto_color_{{ i }}{% endcapture %}
+  
+    {% if settings[desconto] != blank %}
+    {% assign desconto_progressivo = true %}
+    window.object = {};
+
+    object['unidades'] = {{settings[unidades] | strip}};
+    object['desconto'] = {{settings[desconto] | strip}};
+
+    window.descontos.push(window.object);
+    {% endif %}
+  {% endfor %}
+</script>

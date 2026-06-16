@@ -1,0 +1,169 @@
+<style>
+  .newsletter-section {
+    padding: 40px 20px 0px 20px;
+  }
+  @media (min-width: 1200px){
+    .newsletter-section {
+      padding: 40px 120px 0px 120px;
+    }
+  }
+
+  .newsletter-container {
+    display: flex;
+    align-items: center;
+    background-color: #FF7A50;
+    width: 380px;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 27px;
+    z-index: 1;
+    position: relative;
+    margin-bottom: -30px;
+    z-index: 2;
+  }
+
+  .btn-footer-newsletter {
+    width: 61px;
+    height: 61px;
+    border-radius: 13px;
+    border: none;
+  }
+
+  .btn-footer-newsletter svg {
+    width: 25px;
+    height: 25px;
+    stroke: none;
+  }
+
+  .btn-whatsapp-footer {
+    background-color: #00814E;
+  }
+
+  .content-newsletter {
+    width: calc(100% - 145px);
+    padding: 33px 50px 25px 14px;
+    background: #00814e;
+    border-radius: 27px;
+  }
+  
+  .newsletter-options {
+    padding: 0 30px;
+    margin-left: -70px;
+  }
+  
+  span.or {
+    color: #fff;
+    padding: 0 5px;
+  }
+
+  @media(max-width: 1024px){
+    .newsletter-options {
+      padding: 0;
+      margin-left: -35px;
+      min-width: 144px;
+    }
+    span.or {
+      padding: 0;
+    }
+    .content-newsletter {
+      min-width: fit-content;
+    }
+
+    .content-newsletter h3 {
+      font-size: 12px !important;
+    }
+    
+    .content-newsletter p {
+      font-size: 9px !important;
+    }
+  }
+
+  ul.social-list-footer {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 40px;
+  }
+  
+  ul.social-list-footer li svg {
+    width: auto;
+    height: 35px;
+    color: #00B45A;
+  }
+
+  .newsletter-section h3 {
+    text-align: center;
+  }
+</style>
+
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+<div class="newsletter-section">
+  <h3>Siga nas redes sociais</h3>
+  <ul class="social-list-footer">
+    <li class="icon-social icon-facebook"><a href="https://www.facebook.com/holyfoodsbrasil" target="_blank">{% render 'facebook-icon' %}</a></li>
+    <li class="icon-social icon-instagram"><a href="https://www.instagram.com/holyfoodsbr/" target="_blank">{% render 'instagram-icon' %}</a></li>
+    <li class="icon-social icon-tiktok"><a href="https://www.tiktok.com/@holyfoodsbr" target="_blank">{% render 'tiktok-icon' %}</a></li>
+    <li class="icon-social icon-linkedin"><a href="https://www.linkedin.com/company/holyfoodsbr/" target="_blank">{% render 'linkedin-icon' %}</a></li>
+    <li class="icon-social icon-youtube"><a href="https://www.youtube.com/@holyfoodsbr" target="_blank">{% render 'youtube-icon' %}</a></li>
+  </ul>
+  <div class="newsletter-container">
+    <div class="content-newsletter">
+      <h3 style=" font-size: 14px; font-weight: 400; line-height: 1.4; color: #fff; text-align: right; margin: 0; " class="custom-font">Faça parte do <br />HolyClub</h3>
+      <p style=" margin: 0; text-align: right; line-height: 1.4; font-size: 11px; color: #fff; ">Escolha como participar:</p>
+    </div>
+    <div class="newsletter-options">
+      <button class="btn-footer-newsletter btn-newsletter-footer" open-newsletter>
+        {% render 'email-icon' %}
+      </button>
+      <span class="or">ou</span>
+      <button class="btn-footer-newsletter btn-whatsapp-footer" open-whatsapp>
+        {% render 'whats-icon-white' %}
+      </button>
+    </div>
+  </div>
+</div>
+{% if section.settings.borda-inferior %}
+  {% render 'borda-inferior', cor: section.settings.color-borda-inferior %}
+{% endif %}
+{% schema %}
+  {
+    "name": "Newsletter Home",
+    "settings": [{
+      "type": "checkbox",
+      "id": "borda-superior",
+      "default": true,
+      "label": "Ativar divisória superior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-superior",
+      "default": "#fff",
+      "label": "Cor da divisória superior"
+    },
+    {
+      "type": "checkbox",
+      "id": "borda-inferior",
+      "default": false,
+      "label": "Ativar divisória inferior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-inferior",
+      "default": "#fff",
+      "label": "Cor da divisória inferior"
+    }],
+    "presets": [
+      {"name": "Newsletter Home"}
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

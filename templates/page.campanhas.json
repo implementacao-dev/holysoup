@@ -1,0 +1,947 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "a8d45234-ff4c-4fb4-ab6d-16d71fbf1a5d": {
+      "type": "slideshow-hs",
+      "blocks": {
+        "b28184e3-ba98-4305-a690-6f334f0a9edc": {
+          "type": "Slide",
+          "settings": {
+            "image_slide": "shopify:\/\/shop_images\/Banner_desk_acao_semana_dos_avos_tempero_gratis_1920x640_21-07-2023.png",
+            "image_slide_mb": "shopify:\/\/shop_images\/Banner_mob_acao_semana_dos_avos_tempero_gratis_1920x640_21-07-2023.png",
+            "title": "",
+            "rotative": "",
+            "subtitle": ""
+          }
+        }
+      },
+      "block_order": [
+        "b28184e3-ba98-4305-a690-6f334f0a9edc"
+      ],
+      "settings": {}
+    },
+    "11d025eb-d332-49cd-ae54-c6243379ae1c": {
+      "type": "destaques-home",
+      "blocks": {
+        "4cdbc3a6-e418-47b2-a0f3-43593e26ec72": {
+          "type": "feature",
+          "settings": {
+            "svg": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"23.334\" height=\"18.097\" viewbox=\"0 0 23.334 18.097\">   <g id=\"Grupo_69\" data-name=\"Grupo 69\" transform=\"translate(0 0)\">     <path id=\"Caminho_2765\" data-name=\"Caminho 2765\" d=\"M16.078,70.467H6.763a1.862,1.862,0,0,1-1.86-1.86V68.03A10.923,10.923,0,0,1,.01,59.942,1.5,1.5,0,0,1,1.5,58.259H21.337a1.5,1.5,0,0,1,1.493,1.683,10.923,10.923,0,0,1-4.893,8.088v.577a1.862,1.862,0,0,1-1.86,1.86M1.5,59.714a.046.046,0,0,0-.037.016.044.044,0,0,0-.012.037c.184,1.527.994,5.286,4.523,7.2l.38.207v1.432a.405.405,0,0,0,.4.4h9.315a.405.405,0,0,0,.4-.4V67.175l.38-.207c3.529-1.915,4.338-5.674,4.523-7.2a.044.044,0,0,0-.012-.037.046.046,0,0,0-.037-.016Z\" transform=\"translate(0.001 -52.37)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2766\" data-name=\"Caminho 2766\" d=\"M85.65,9.823a3.858,3.858,0,0,0-.066.85,3.027,3.027,0,0,1-.993,2.1,3.132,3.132,0,0,1-2.047.995.9.9,0,0,1-.631-.207c-.437-.437-.189-1.7.787-2.678a3.131,3.131,0,0,1,2.046-.994H84.8l.131,0a3.909,3.909,0,0,0,.72-.067M94.692,0a.779.779,0,0,0-.552.229L86.646,7.721a2.428,2.428,0,0,1-1.716.713h-.082l-.1,0a4.525,4.525,0,0,0-3.075,1.42c-1.525,1.525-1.878,3.646-.787,4.736a2.292,2.292,0,0,0,1.66.633A4.526,4.526,0,0,0,85.62,13.8a4.474,4.474,0,0,0,1.419-3.177,2.427,2.427,0,0,1,.712-1.8l7.494-7.493A.781.781,0,0,0,94.692,0\" transform=\"translate(-72.138 0.001)\" fill=\"#00814e\"><\/path>   <\/g> <\/svg>",
+            "title": "RENDE 3<br>\nPORÇÕES",
+            "badge": ""
+          }
+        },
+        "1185b38a-b9e5-483d-9410-9555b2c808c8": {
+          "type": "feature",
+          "settings": {
+            "svg": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"25.075\" height=\"25.075\" viewbox=\"0 0 25.075 25.075\">   <g id=\"Grupo_68\" data-name=\"Grupo 68\" transform=\"translate(0 0)\">     <path id=\"Caminho_2833\" data-name=\"Caminho 2833\" d=\"M99.365,36.122l-.447-.348c-.1-.074-2.327-1.837-2.327-4.131s2.232-4.057,2.327-4.131l.447-.348.447.348c.1.074,2.327,1.837,2.327,4.131s-2.232,4.057-2.327,4.131Zm0-7.052a4.045,4.045,0,0,0-1.318,2.573,4.069,4.069,0,0,0,1.32,2.572,4.043,4.043,0,0,0,1.317-2.572,4.045,4.045,0,0,0-1.319-2.573\" transform=\"translate(-86.827 -24.418)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2834\" data-name=\"Caminho 2834\" d=\"M118.369,83.834a6.355,6.355,0,0,1-.735-.038l-.562-.07-.07-.562c-.015-.119-.346-2.945,1.276-4.567s4.447-1.291,4.567-1.276l.562.07.07.562c.015.119.346,2.945-1.276,4.566a5.5,5.5,0,0,1-3.832,1.313m.938-4.207a4.046,4.046,0,0,0-.887,2.752,3.169,3.169,0,0,0,3.639-3.639,4.048,4.048,0,0,0-2.752.887\" transform=\"translate(-105.141 -69.472)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2835\" data-name=\"Caminho 2835\" d=\"M71.45,83.834a5.5,5.5,0,0,1-3.832-1.314C66,80.9,66.327,78.074,66.342,77.954l.07-.562.562-.07c.119-.015,2.945-.346,4.566,1.276s1.291,4.447,1.276,4.567l-.07.562-.562.07a6.389,6.389,0,0,1-.735.038M67.76,78.74A3.169,3.169,0,0,0,71.4,82.379,3.169,3.169,0,0,0,67.76,78.74\" transform=\"translate(-59.602 -69.472)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2836\" data-name=\"Caminho 2836\" d=\"M118.369,129.862a6.351,6.351,0,0,1-.735-.038l-.562-.07-.07-.562c-.015-.119-.346-2.945,1.276-4.566h0c1.622-1.622,4.447-1.291,4.566-1.276l.562.07.07.562c.015.119.346,2.945-1.276,4.566a5.5,5.5,0,0,1-3.831,1.314m3.689-5.094a4.045,4.045,0,0,0-2.752.887h0a4.044,4.044,0,0,0-.887,2.752,3.169,3.169,0,0,0,3.639-3.639\" transform=\"translate(-105.141 -110.847)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2837\" data-name=\"Caminho 2837\" d=\"M71.45,129.861a5.5,5.5,0,0,1-3.831-1.314c-1.622-1.622-1.291-4.447-1.276-4.566l.07-.562.562-.07c.119-.015,2.944-.346,4.566,1.276s1.291,4.447,1.276,4.567l-.07.562-.562.07a6.4,6.4,0,0,1-.735.038m-3.689-5.094a3.169,3.169,0,0,0,3.639,3.638,4.045,4.045,0,0,0-.887-2.752h0a4.045,4.045,0,0,0-2.752-.887\" transform=\"translate(-59.602 -110.847)\" fill=\"#00814e\"><\/path>     <rect id=\"Retângulo_27\" data-name=\"Retângulo 27\" width=\"1.455\" height=\"10.626\" transform=\"translate(11.81 10.782)\" fill=\"#00814e\"><\/rect>     <path id=\"Caminho_2838\" data-name=\"Caminho 2838\" d=\"M12.538,25.075A12.538,12.538,0,1,1,25.075,12.538,12.552,12.552,0,0,1,12.538,25.075m0-23.62A11.083,11.083,0,1,0,23.62,12.538,11.1,11.1,0,0,0,12.538,1.455\" fill=\"#00814e\"><\/path>     <rect id=\"Retângulo_28\" data-name=\"Retângulo 28\" width=\"1.455\" height=\"6.175\" transform=\"translate(3.672 4.701) rotate(-45)\" fill=\"#00814e\"><\/rect>     <rect id=\"Retângulo_29\" data-name=\"Retângulo 29\" width=\"1.455\" height=\"5.725\" transform=\"translate(16.326 17.355) rotate(-45)\" fill=\"#00814e\"><\/rect>   <\/g> <\/svg>",
+            "title": "SEM<br> GLÚTEN",
+            "badge": "Novidade!"
+          }
+        },
+        "dc3708c5-8a3a-4eb0-8271-788b5eb06249": {
+          "type": "feature",
+          "settings": {
+            "svg": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"25.075\" height=\"25.076\" viewbox=\"0 0 25.075 25.076\">   <g id=\"Grupo_65\" data-name=\"Grupo 65\" transform=\"translate(0 0)\">     <path id=\"Caminho_2794\" data-name=\"Caminho 2794\" d=\"M74.734,57.053l-5.2-5.2,4.9-7.5a2.709,2.709,0,0,1,4.093-.305h0l3.779,3.779a2.709,2.709,0,0,1-.25,4.052l-.028.021ZM71.4,51.664,74.9,55.158l6.284-4.432a1.254,1.254,0,0,0,.1-1.865l-3.779-3.779a1.253,1.253,0,0,0-1.883.126Z\" transform=\"translate(-62.509 -38.886)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2795\" data-name=\"Caminho 2795\" d=\"M55.8,125.257a3.8,3.8,0,0,1-2.687-6.487l1.592-1.592,5.374,5.374-1.592,1.592a3.775,3.775,0,0,1-2.687,1.113m-1.095-6.021-.563.563a2.345,2.345,0,0,0,3.316,3.316l.563-.563Z\" transform=\"translate(-46.744 -105.333)\" fill=\"#00814e\"><\/path>     <rect id=\"Retângulo_23\" data-name=\"Retângulo 23\" width=\"1.455\" height=\"8.921\" transform=\"translate(11.664 6.725) rotate(-45)\" fill=\"#00814e\"><\/rect>     <path id=\"Caminho_2796\" data-name=\"Caminho 2796\" d=\"M12.538,25.075A12.538,12.538,0,1,1,25.075,12.537,12.552,12.552,0,0,1,12.538,25.075m0-23.621A11.083,11.083,0,1,0,23.62,12.537,11.1,11.1,0,0,0,12.538,1.454\" transform=\"translate(0 0.001)\" fill=\"#00814e\"><\/path>     <rect id=\"Retângulo_24\" data-name=\"Retângulo 24\" width=\"1.455\" height=\"23.618\" transform=\"translate(3.806 4.569) rotate(-45)\" fill=\"#00814e\"><\/rect>   <\/g> <\/svg>",
+            "title": "ZERO<br> SAL",
+            "badge": ""
+          }
+        },
+        "22f269e2-d3d6-49c4-9ed7-f7952d47ce8f": {
+          "type": "feature",
+          "settings": {
+            "svg": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"25.075\" height=\"25.075\" viewbox=\"0 0 25.075 25.075\">   <g id=\"Grupo_66\" data-name=\"Grupo 66\" transform=\"translate(0 0)\">     <path id=\"Caminho_2783\" data-name=\"Caminho 2783\" d=\"M12.538,25.075A12.538,12.538,0,1,1,25.075,12.538,12.552,12.552,0,0,1,12.538,25.075m0-23.62A11.083,11.083,0,1,0,23.62,12.538,11.1,11.1,0,0,0,12.538,1.455\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2784\" data-name=\"Caminho 2784\" d=\"M45.069,42.129v-.722l-6.385-6.385-1.029,1.029,6.809,6.809c.194-.225.4-.467.605-.731\" transform=\"translate(-33.849 -31.482)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2785\" data-name=\"Caminho 2785\" d=\"M174.19,166.409a2.581,2.581,0,0,1-.566,1.492l2.956,2.956,1.029-1.029Z\" transform=\"translate(-156.073 -149.587)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2786\" data-name=\"Caminho 2786\" d=\"M70.914,55.747H64.92a3.313,3.313,0,0,1-3.2-4.151,6.84,6.84,0,0,1,2.209-3.352,25.657,25.657,0,0,0,1.947-2.117V40.793a1.039,1.039,0,0,1,1.038-1.038H68.85a1.039,1.039,0,0,1,1.038,1.038v5.332A29.877,29.877,0,0,0,71.982,48.4a6.584,6.584,0,0,1,2.133,3.19,3.312,3.312,0,0,1-3.2,4.16M67.327,41.21v5.427l-.158.2a26.676,26.676,0,0,1-2.216,2.439,5.488,5.488,0,0,0-1.83,2.69,1.857,1.857,0,0,0,1.8,2.328h5.994a1.857,1.857,0,0,0,1.795-2.333,5.266,5.266,0,0,0-1.756-2.533,30.629,30.629,0,0,1-2.358-2.586l-.162-.2V41.21Z\" transform=\"translate(-55.379 -35.736)\" fill=\"#00814e\"><\/path>   <\/g> <\/svg>",
+            "title": "ZERO <br> CONSERVANTES",
+            "badge": ""
+          }
+        },
+        "e366e726-22c8-41d5-b400-505b4d959fa7": {
+          "type": "feature",
+          "settings": {
+            "svg": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"19.468\" height=\"15.953\" viewbox=\"0 0 19.468 15.953\">   <g id=\"Grupo_67\" data-name=\"Grupo 67\" transform=\"translate(0 0)\">     <path id=\"Caminho_2810\" data-name=\"Caminho 2810\" d=\"M8.113,2.535a.565.565,0,0,1,.165.4v5.7a.564.564,0,0,1-.564.564H7.706a.564.564,0,0,1-.564-.564v-3.4L5.672,8.793a.564.564,0,0,1-1.043,0L3.16,5.242v3.4A.564.564,0,0,1,2.6,9.2H2.586a.564.564,0,0,1-.564-.564v-5.7a.564.564,0,0,1,.564-.564h.239a.564.564,0,0,1,.521.349l1.8,4.359,1.8-4.359a.565.565,0,0,1,.521-.349h.239a.564.564,0,0,1,.4.165\" transform=\"translate(-1.818 -2.2)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2811\" data-name=\"Caminho 2811\" d=\"M6.2,7.858a.738.738,0,0,1-.744-.735V4.585L4.315,7.344a.735.735,0,0,1-1.358,0L1.815,4.585V7.123a.739.739,0,0,1-1.478,0V1.42A.736.736,0,0,1,1.072.685h.239a.732.732,0,0,1,.679.454L3.636,5.117,5.282,1.139A.732.732,0,0,1,5.96.685H6.2A.729.729,0,0,1,6.719.9a.739.739,0,0,1,.215.52v5.7a.736.736,0,0,1-.735.735M5.8,2.869V7.123a.4.4,0,0,0,.8,0V1.42a.4.4,0,0,0-.116-.278h0A.391.391,0,0,0,6.2,1.026H5.96a.393.393,0,0,0-.364.243L3.636,6.009,1.675,1.269a.393.393,0,0,0-.364-.243H1.072a.394.394,0,0,0-.394.394v5.7a.4.4,0,0,0,.8,0V2.869l1.8,4.344a.394.394,0,0,0,.728,0Z\" transform=\"translate(-0.303 -0.685)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2812\" data-name=\"Caminho 2812\" d=\"M78.493,7.357v.012a1.78,1.78,0,0,1-.543,1.262,2.379,2.379,0,0,1-1.677.66h-.318A2.271,2.271,0,0,1,73.962,8.2a.563.563,0,0,1,.5-.827h.008a.578.578,0,0,1,.5.3,1.157,1.157,0,0,0,.993.489h.308a1.261,1.261,0,0,0,.88-.328.652.652,0,0,0,.208-.456V7.357a.845.845,0,0,0-.68-.726L75.237,6.2a1.961,1.961,0,0,1-1.492-1.816,2.09,2.09,0,0,1,2.22-1.922h.308a2.271,2.271,0,0,1,2,1.094.563.563,0,0,1-.5.828h-.008a.576.576,0,0,1-.5-.3,1.158,1.158,0,0,0-1-.489h-.308c-.587,0-1.082.359-1.082.784a.845.845,0,0,0,.68.726L77,5.54a1.963,1.963,0,0,1,1.493,1.816\" transform=\"translate(-66.29 -2.283)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2813\" data-name=\"Caminho 2813\" d=\"M74.792,7.946h-.352A2.457,2.457,0,0,1,72.3,6.762a.733.733,0,0,1,.646-1.08h0a.753.753,0,0,1,.652.383.991.991,0,0,0,.845.4h.308a1.093,1.093,0,0,0,.765-.284.484.484,0,0,0,.152-.336V5.841c0-.234-.23-.465-.558-.563l-1.438-.429a2.13,2.13,0,0,1-1.614-1.98A2.259,2.259,0,0,1,74.45.777h.307A2.456,2.456,0,0,1,76.91,1.959a.733.733,0,0,1-.646,1.081h0a.752.752,0,0,1-.652-.383.99.99,0,0,0-.851-.4H74.45c-.486,0-.912.287-.912.614,0,.233.23.465.558.563l1.438.429a2.131,2.131,0,0,1,1.614,1.98v.012a1.963,1.963,0,0,1-.595,1.384,2.536,2.536,0,0,1-1.762.708M74.758,7.6a2.213,2.213,0,0,0,1.559-.613,1.619,1.619,0,0,0,.49-1.141v-.01a1.8,1.8,0,0,0-1.371-1.653L74,3.759a1.01,1.01,0,0,1-.8-.89,1.136,1.136,0,0,1,1.253-.955h.308a1.318,1.318,0,0,1,1.147.574.408.408,0,0,0,.35.21h0a.393.393,0,0,0,.353-.577,2.112,2.112,0,0,0-1.853-1H74.45A1.92,1.92,0,0,0,72.4,2.869a1.793,1.793,0,0,0,1.371,1.653l1.438.429a1.01,1.01,0,0,1,.8.89v.012a.83.83,0,0,1-.263.581,1.424,1.424,0,0,1-1,.374h-.3a1.319,1.319,0,0,1-1.14-.573.409.409,0,0,0-.351-.211h0A.392.392,0,0,0,72.6,6.6a2.113,2.113,0,0,0,1.843,1Z\" transform=\"translate(-64.776 -0.768)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2814\" data-name=\"Caminho 2814\" d=\"M136.525,5.566a.56.56,0,0,1,.164.4V7.84a.564.564,0,0,1-.152.385l0,0a3.349,3.349,0,0,1-2.452,1.067h-.142a3.349,3.349,0,0,1-3.349-3.349V5.807a3.349,3.349,0,0,1,3.349-3.349h.142a3.359,3.359,0,0,1,1.974.645.559.559,0,0,1,.042.862l-.013.012a.567.567,0,0,1-.715.034,2.217,2.217,0,0,0-1.288-.414h-.142a2.212,2.212,0,0,0-2.212,2.212v.138a2.212,2.212,0,0,0,2.212,2.212h.142a2.187,2.187,0,0,0,1.467-.556V5.962a.56.56,0,0,1,.56-.56h.018a.56.56,0,0,1,.4.164\" transform=\"translate(-117.392 -2.279)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2815\" data-name=\"Caminho 2815\" d=\"M132.569,7.95h-.142a3.524,3.524,0,0,1-3.52-3.52V4.293a3.524,3.524,0,0,1,3.52-3.52h.142a3.506,3.506,0,0,1,2.075.677.729.729,0,0,1,.056,1.126l-.012.011a.741.741,0,0,1-.932.045,2.034,2.034,0,0,0-1.187-.381h-.141a2.044,2.044,0,0,0-2.041,2.041v.138a2.041,2.041,0,0,0,2.041,2.041h.152a2.012,2.012,0,0,0,1.287-.464V4.448a.731.731,0,0,1,.73-.73h.018a.73.73,0,0,1,.73.73V6.326a.732.732,0,0,1-.2.5,3.532,3.532,0,0,1-2.578,1.123m-.142-6.836a3.182,3.182,0,0,0-3.179,3.179V4.43a3.183,3.183,0,0,0,3.179,3.179h.142A3.189,3.189,0,0,0,134.9,6.6a.394.394,0,0,0,.108-.27V4.448a.39.39,0,0,0-.389-.39H134.6a.39.39,0,0,0-.389.39V6.162l-.057.051a2.353,2.353,0,0,1-1.57.6h-.152a2.382,2.382,0,0,1-2.382-2.382V4.293a2.385,2.385,0,0,1,2.382-2.382h.142a2.374,2.374,0,0,1,1.388.446.4.4,0,0,0,.5-.022l.012-.011a.388.388,0,0,0-.029-.6,3.167,3.167,0,0,0-1.873-.611Z\" transform=\"translate(-115.877 -0.764)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2816\" data-name=\"Caminho 2816\" d=\"M5.662,94.429v.008a.526.526,0,0,1-.526.526H2.746v1.589H4.34a.526.526,0,0,1,.526.526v.008a.526.526,0,0,1-.526.526H2.746v2.124a.526.526,0,0,1-.526.526H2.212a.526.526,0,0,1-.526-.526V94.429a.526.526,0,0,1,.526-.526H5.136a.526.526,0,0,1,.526.526\" transform=\"translate(-1.516 -84.48)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2817\" data-name=\"Caminho 2817\" d=\"M.7,98.917a.7.7,0,0,1-.7-.7V92.913a.7.7,0,0,1,.7-.7H3.62a.7.7,0,0,1,.7.7v.008a.7.7,0,0,1-.7.7H1.4v1.248H2.825a.7.7,0,0,1,0,1.4H1.4v1.954a.7.7,0,0,1-.7.7M.7,92.558a.356.356,0,0,0-.356.356v5.307a.36.36,0,0,0,.72,0V95.926H2.825a.36.36,0,0,0,0-.719H1.06v-1.93H3.62a.356.356,0,0,0,.356-.356v-.008a.356.356,0,0,0-.356-.356Z\" transform=\"translate(0 -82.964)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2818\" data-name=\"Caminho 2818\" d=\"M53.975,99.421a.526.526,0,0,1-.42.842h-.011a.526.526,0,0,1-.42-.209L51.817,98.32H51.23v1.418a.526.526,0,0,1-.526.526H50.7a.526.526,0,0,1-.526-.526V94.431a.526.526,0,0,1,.526-.526h1.61a2.24,2.24,0,0,1,2.257,2.179,2.211,2.211,0,0,1-1.5,2.12Zm-1.62-2.162a1.147,1.147,0,1,0,0-2.295H51.23V97.26Z\" transform=\"translate(-45.099 -84.482)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2819\" data-name=\"Caminho 2819\" d=\"M49.19,98.919a.7.7,0,0,1-.7-.7V92.915a.7.7,0,0,1,.7-.7h1.61a2.412,2.412,0,0,1,2.427,2.347,2.375,2.375,0,0,1-1.4,2.2L52.6,97.8a.7.7,0,0,1-.556,1.115H52.03a.7.7,0,0,1-.556-.277l-1.256-1.667h-.332v1.248a.7.7,0,0,1-.7.7m-.008-6.359a.356.356,0,0,0-.356.356v5.307a.36.36,0,0,0,.719,0V96.634h.843l1.358,1.8a.357.357,0,0,0,.284.142h.011a.356.356,0,0,0,.284-.57L51.265,96.6l.224-.075a2.035,2.035,0,0,0,1.389-1.957,2.07,2.07,0,0,0-2.086-2.01Zm1.659,3.355h-1.3V93.279h1.3a1.318,1.318,0,1,1,0,2.635m-.954-.341h.954a.977.977,0,0,0,0-1.954h-.954Z\" transform=\"translate(-43.584 -82.966)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2820\" data-name=\"Caminho 2820\" d=\"M103.847,94.963v1.589h1.594a.526.526,0,0,1,.526.526v.008a.526.526,0,0,1-.526.526h-1.594V99.2h2.39a.526.526,0,0,1,.526.526v.008a.526.526,0,0,1-.526.526h-2.924a.526.526,0,0,1-.526-.526V94.429a.526.526,0,0,1,.526-.526h2.924a.526.526,0,0,1,.526.526v.008a.526.526,0,0,1-.526.526Z\" transform=\"translate(-92.396 -84.48)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2821\" data-name=\"Caminho 2821\" d=\"M104.721,98.916H101.8a.7.7,0,0,1-.7-.7V92.913a.7.7,0,0,1,.7-.7h2.924a.7.7,0,0,1,0,1.4H102.5v1.248h1.424a.7.7,0,0,1,0,1.4H102.5v1.248h2.219a.7.7,0,0,1,0,1.4M101.8,92.558a.356.356,0,0,0-.356.356V98.22a.356.356,0,0,0,.356.356h2.924a.36.36,0,0,0,0-.719h-2.56v-1.93h1.765a.36.36,0,0,0,0-.719h-1.765v-1.93h2.56a.36.36,0,0,0,0-.719Z\" transform=\"translate(-90.88 -82.964)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2822\" data-name=\"Caminho 2822\" d=\"M152.331,94.963v1.589h1.594a.526.526,0,0,1,.526.526v.008a.526.526,0,0,1-.526.526h-1.594V99.2h2.39a.526.526,0,0,1,.526.526v.008a.526.526,0,0,1-.526.526H151.8a.526.526,0,0,1-.526-.526V94.429a.526.526,0,0,1,.526-.526h2.924a.526.526,0,0,1,.526.526v.008a.526.526,0,0,1-.526.526Z\" transform=\"translate(-135.98 -84.48)\" fill=\"#00814e\"><\/path>     <path id=\"Caminho_2823\" data-name=\"Caminho 2823\" d=\"M153.206,98.916h-2.924a.7.7,0,0,1-.7-.7V92.913a.7.7,0,0,1,.7-.7h2.924a.7.7,0,0,1,0,1.4h-2.219v1.248h1.424a.7.7,0,0,1,0,1.4h-1.424v1.248h2.219a.7.7,0,0,1,0,1.4m-2.924-6.359a.356.356,0,0,0-.356.356V98.22a.356.356,0,0,0,.356.356h2.924a.36.36,0,0,0,0-.719h-2.56v-1.93h1.765a.36.36,0,0,0,0-.719h-1.765v-1.93h2.56a.36.36,0,0,0,0-.719Z\" transform=\"translate(-134.464 -82.964)\" fill=\"#00814e\"><\/path>   <\/g> <\/svg>",
+            "title": "ZERO <br> GLUTAMATO",
+            "badge": ""
+          }
+        }
+      },
+      "block_order": [
+        "4cdbc3a6-e418-47b2-a0f3-43593e26ec72",
+        "1185b38a-b9e5-483d-9410-9555b2c808c8",
+        "dc3708c5-8a3a-4eb0-8271-788b5eb06249",
+        "22f269e2-d3d6-49c4-9ed7-f7952d47ce8f",
+        "e366e726-22c8-41d5-b400-505b4d959fa7"
+      ],
+      "settings": {
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "57fe8019-168b-4953-8dd1-4cb704b6b57d": {
+      "type": "promos-home",
+      "blocks": {
+        "4fa029ec-3537-480d-9c95-8bfbe094661b": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify:\/\/shop_images\/1306PromotionsCampanhasSeloPIJCampanhasAlwaysOnrestaurantesegprincipal_icmH.png",
+            "badge": "ATÉ 25% OFF",
+            "url": "#"
+          }
+        },
+        "dc645bc1-2d07-47b4-8924-b6b6098482cd": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify:\/\/shop_images\/CapaPrincipalGenericoPedeiFoodJaRoxo_kpHr.png",
+            "badge": "",
+            "url": ""
+          }
+        },
+        "dad26316-e19f-4d98-b808-983783d706c4": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify:\/\/shop_images\/0103marcasfamosas35offprincipal_gP6n.png",
+            "badge": "",
+            "url": ""
+          }
+        },
+        "86973509-c08a-46d1-863c-21ad135d702f": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify:\/\/shop_images\/0206sjprincipal11_P6Kg.png",
+            "badge": "",
+            "url": ""
+          }
+        },
+        "549bfd61-a2a9-4391-a188-031304b89c46": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify:\/\/shop_images\/1306PromotionsCampanhasSeloPIJCampanhasAlwaysOnrestaurantesegprincipal_icmH.png",
+            "badge": "",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "4fa029ec-3537-480d-9c95-8bfbe094661b",
+        "dc645bc1-2d07-47b4-8924-b6b6098482cd",
+        "dad26316-e19f-4d98-b808-983783d706c4",
+        "86973509-c08a-46d1-863c-21ad135d702f",
+        "549bfd61-a2a9-4391-a188-031304b89c46"
+      ],
+      "disabled": true,
+      "settings": {
+        "borda-superior": false,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "586198a2-a4dc-41b9-8e36-8050ad9530d3": {
+      "type": "pontos-positivos",
+      "blocks": {
+        "33b1ddfb-4b56-4b07-bf3c-52e4383a0f93": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/pratico.svg",
+            "title": "Praticidade: Pronta em  até 20min",
+            "description": "Apenas dois ingredientes e poucos minutos são necessários para sua Holysoup ficar pronta! É só colocar na água quente e esperar cozinhar!"
+          }
+        },
+        "6adf25b3-4cb9-4f7d-b8ea-28c178114e6f": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/naoinflama.svg",
+            "title": "100% Natural: Não inflama seu corpo",
+            "description": "Nossos ingredientes são 100% naturais e saudáveis. Livres de conservantes e qualquer pózinho do mal que faça mal a sua saúde."
+          }
+        },
+        "e8962a92-9956-4317-9bc0-e7e5c1289ec8": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/saboroso.svg",
+            "title": "Muito sabor: Feita com comida de verdade",
+            "description": "Por aqui não usamos nenhum realçador de sabor ou corante, a Holysoup é temperada com legumes, vegetais e especiarias 100% naturais."
+          }
+        },
+        "eb489a0e-9d21-495f-9410-f06e298e71ce": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/cleanlabel.svg",
+            "title": "Clean Label: Rótulo limpo e acessível",
+            "description": "Possuímos o selo Clean Label, um movimento que promove rótulos com ingredientes mais naturais, menos substâncias industrializadas e menos nomes difíceis."
+          }
+        }
+      },
+      "block_order": [
+        "33b1ddfb-4b56-4b07-bf3c-52e4383a0f93",
+        "6adf25b3-4cb9-4f7d-b8ea-28c178114e6f",
+        "e8962a92-9956-4317-9bc0-e7e5c1289ec8",
+        "eb489a0e-9d21-495f-9410-f06e298e71ce"
+      ],
+      "settings": {
+        "borda-superior": true,
+        "color-borda-superior": "#f6f6f6",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "aa6404ca-22ed-4a3a-88bf-43de3ef8588a": {
+      "type": "sabores-home",
+      "blocks": {
+        "ae3f120a-ca3b-47c1-8162-2da2cd5c469c": {
+          "type": "sabor",
+          "settings": {
+            "color": "#ffad85",
+            "color_feature": "#ff7a50",
+            "title": "Sopa da Vovó",
+            "kcal": "39",
+            "feature": "shopify:\/\/shop_images\/tigela_sopa_da_vovo.png",
+            "embalagem": "shopify:\/\/shop_images\/Sopa_da_Vovo_-_Fundo_Branco_-_45_invertido.png",
+            "descricao": "Sou a queridinha de todos porque tenho valor afetivo. Mas não sou só um rostinho bonito, também possuo muitas vitaminas e minerais. Possuo muitas fibras, forneço energia e te auxilio no funcionamento intestinal sem esquecer de cuidar da sua imunidade. Agora me diz se eu não pareço um carinho de vó?",
+            "ingredientes": "<b>Ingredientes:<\/b>  macarrão sem glúten (farinha de arroz, fécula de mandioca, farinha de banana verde, cúrcuma em po e espessante goma xantana), flocos de batata desidratados, cenoura desidratada, quinoa branca, flocos de arroz desidratados, tomate desidratado, mandioquinha desidratada, salsa desidratada, pimentão vermelho desidratado, alho desidratado, cúrcuma em pó, alho-poro desidratado, páprica defumada e pimenta-preta em pó.",
+            "product": "sopa-da-vovo",
+            "label_favoritas": true,
+            "label_vegano": true,
+            "label_animal": false,
+            "label_rende": true,
+            "porcoes": "3"
+          }
+        },
+        "fe6b39f8-53a8-4d45-b15b-5920c89e4f20": {
+          "type": "sabor",
+          "settings": {
+            "color": "#fee141",
+            "color_feature": "#ff455a",
+            "title": "Canja da Mamãe",
+            "kcal": "24",
+            "feature": "shopify:\/\/shop_images\/tigela_sopa_imunidade.png",
+            "embalagem": "shopify:\/\/shop_images\/Canja_da_Mamae_-_Fundo_Branco_-_45_invertido.png",
+            "descricao": "Nada é tão eficiente como aquela canjinha da mamãe. Por isso, estou aqui para auxiliar as mães a terem praticidade e para os filhos sentirem esse afeto a qualquer hora. Possuo um delicioso franguinho e arroz basmati que é cheio de fibras, proporcionando saciedade e contribuindo para a digestão. Cuido da sua imunidade, combato doenças e ainda te lembro quem você ama.",
+            "ingredientes": "<b>Ingredientes:<\/b>  arroz branco, quinoa branca, flocos de batata desidratados cenoura desidratada, frango desfiado desidratado, cebola desidratada, tomate desidratado, alho-poró desidratado, alho desidratado, cúrcuma em pó e salsa desidratada.",
+            "product": "canja-da-mamae",
+            "label_favoritas": true,
+            "label_vegano": false,
+            "label_animal": true,
+            "label_rende": true,
+            "porcoes": "3"
+          }
+        },
+        "72dcc258-ac09-433d-ba53-afbc2531c1f5": {
+          "type": "sabor",
+          "settings": {
+            "color": "#ff7a50",
+            "color_feature": "#00814e",
+            "title": "Creme Verde Fit",
+            "kcal": "65",
+            "feature": "shopify:\/\/shop_images\/tigela_creme_verde_fit.png",
+            "embalagem": "shopify:\/\/shop_images\/Creme_verde_Fit_-_Fundo_Branco_-_45_-_Invertido_-_Editada_Leandro.png",
+            "descricao": "Sofre com distensão abdominal e quer, literalmente, secar a barriga? Então demos match! A ervilha, meu ingrediente principal, é uma forte aliada do seu intestino por ser riquíssima em fibras e proteínas. Também sou forte combatente da retenção de líquido e da gordura corporal. Emagrecimento saudável e desinflamação são o meu forte.",
+            "ingredientes": "<b>Ingredientes:<\/b> ervilha desidratada, cebola desidratada, cenoura desidratada, alho desidratado e pimenta-preta em pó.",
+            "product": "creme-verde-fit",
+            "label_favoritas": true,
+            "label_vegano": true,
+            "label_animal": false,
+            "label_rende": true,
+            "porcoes": "3"
+          }
+        },
+        "bec287e7-852e-4fcf-b3df-39ee58bca497": {
+          "type": "sabor",
+          "settings": {
+            "color": "#51c664",
+            "color_feature": "#ffbac1",
+            "title": "Sopa Detox",
+            "kcal": "34",
+            "feature": "shopify:\/\/shop_images\/tigela_sopa_detox.png",
+            "embalagem": "shopify:\/\/shop_images\/Sopa_Detox_-_Fundo_Branco_-_45_invertido.png",
+            "descricao": "Nada é tão eficiente como aquela canjinha da mamãe. Por isso, estou aqui para auxiliar as mães a terem praticidade e para os filhos sentirem esse afeto a qualquer hora. Possuo um delicioso franguinho e arroz basmati que é cheio de fibras, proporcionando saciedade e contribuindo para a digestão. Cuido da sua imunidade, combato doenças e ainda te lembro quem você ama.",
+            "ingredientes": "<b>Ingredientes:<\/b>  arroz branco, quinoa branca, flocos de batata desidratados cenoura desidratada, frango desfiado desidratado, cebola desidratada, tomate desidratado, alho-poró desidratado, alho desidratado, cúrcuma em pó e salsa desidratada.",
+            "product": "sopa-detox",
+            "label_favoritas": false,
+            "label_vegano": true,
+            "label_animal": false,
+            "label_rende": true,
+            "porcoes": "3"
+          }
+        },
+        "c6af9f01-756a-40c3-a093-9b39d66b6ab9": {
+          "type": "sabor",
+          "settings": {
+            "color": "#f4d2ad",
+            "color_feature": "#e36c56",
+            "title": "Sopa do Jão",
+            "kcal": "44",
+            "feature": "shopify:\/\/shop_images\/tigela_sopa_do_jao.png",
+            "embalagem": "shopify:\/\/shop_images\/Sopa_do_Jao_-_Fundo_Branco_-_45_invertido.png",
+            "descricao": "Sou uma sopinha de feijão que te lembrará a infância. Mas não para por aí. Tenho vários tipos de feijões, um toque de arroz e um gostinho de alho e cebola para ninguém colocar defeito. Sou rica em ferro e também possuo muitas fibras para auxiliar o seu intestino. Vamos de Sopa do Jão?",
+            "ingredientes": "<b>Ingredientes:<\/b>  feijão preto, lentilha rosa, ervilha desidratada, feijão fradinho, feijão vermelho, feijão carioca, feijão branco, feijão moyashi, feijão fava, páprica defumada em pó, flocos de arroz desidratados, alho desidratado, cebola desidratada, louro desidratado, cominho em po e pimenta-preta em pó.",
+            "product": "sopa-do-jao",
+            "label_favoritas": false,
+            "label_vegano": true,
+            "label_animal": false,
+            "label_rende": true,
+            "porcoes": "3"
+          }
+        },
+        "499afc08-2c8f-4408-b2c0-a70946d3c941": {
+          "type": "sabor",
+          "settings": {
+            "color": "#68786e",
+            "color_feature": "#ffbac1",
+            "title": "Sopa Low Carb",
+            "kcal": "56",
+            "feature": "shopify:\/\/shop_images\/tigela_sopa_low_carb.png",
+            "embalagem": "shopify:\/\/shop_images\/Sopa_Low_Carb_-_Fundo_Branco_-_45_invertido.png",
+            "descricao": "Baixo teor de carboidratos, alto índice proteico e um ótimo mix nutricional, me conferem o título de rainha dos alimentos low carb. Sou rica de nutrientes essenciais para uma boa saúde como ferro, magnésio, potássio e Vitaminas. Me inclua na sua dieta de emagrecimento se você procura baixa ingestão de gorduras e carbos.",
+            "ingredientes": "Ingredientes:<b>  lentilha rosa, quinoa branca, quinoa preta, quinoa vermelha. páprica defumada em pó, cebola desidratada, alho-poró desidratado, tomate desidratado, pimentão vermelho desidratado, orégano desidratado e salsa desidratada.<\/b>",
+            "product": "sopa-low-carb",
+            "label_favoritas": false,
+            "label_vegano": true,
+            "label_animal": false,
+            "label_rende": true,
+            "porcoes": "3"
+          }
+        },
+        "eb2e2a27-6870-4586-8733-0b1a18e20e53": {
+          "type": "sabor",
+          "settings": {
+            "color": "#fdbbe1",
+            "color_feature": "#ff455a",
+            "title": "Sopa +Imunidade",
+            "kcal": "65",
+            "feature": "shopify:\/\/shop_images\/tigela_sopa_imunidade.png",
+            "embalagem": "shopify:\/\/shop_images\/Sopa_Imunidade_-_Fundo_Branco_-_45_invertido.png",
+            "descricao": "Um blend de ingredientes funcionais baseados na medicina ayurveda me farão atuar no fortalecimento do sistema imunológico, conferindo força ao organismo para combater várias doenças inflamatórias. Atuo na diminuição do colesterol ruim e sou uma forte auxiliadora do emagrecimento devido ao mix de ingredientes termogênicos. Fala a verdade, sou indispensável, né?",
+            "ingredientes": "<b>Ingredientes:<\/b>  lentilha rosa, painço, leite de coco em pó, cenoura desidratada, cebola desidratada, curry em pó, gengibre em pó, alho desidratado, salsa desidratada, cúrcuma em pó, canela em pó e pimenta-preta em pó.",
+            "product": "sopa-imunidade",
+            "label_favoritas": false,
+            "label_vegano": true,
+            "label_animal": false,
+            "label_rende": true,
+            "porcoes": "18"
+          }
+        }
+      },
+      "block_order": [
+        "ae3f120a-ca3b-47c1-8162-2da2cd5c469c",
+        "fe6b39f8-53a8-4d45-b15b-5920c89e4f20",
+        "72dcc258-ac09-433d-ba53-afbc2531c1f5",
+        "bec287e7-852e-4fcf-b3df-39ee58bca497",
+        "c6af9f01-756a-40c3-a093-9b39d66b6ab9",
+        "499afc08-2c8f-4408-b2c0-a70946d3c941",
+        "eb2e2a27-6870-4586-8733-0b1a18e20e53"
+      ],
+      "settings": {
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "44dc5a22-1f78-453c-ad7f-af218de73592": {
+      "type": "holy-por-voce-home",
+      "blocks": {
+        "c1c488a1-1e28-4781-afef-39e427de8645": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/desinflamacao.svg",
+            "title": "<b>Desinflama<\/b> <br> \nseu corpo",
+            "description": ""
+          }
+        },
+        "4f6f3ba4-e33a-4f45-a423-9fa5ccba237d": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/intestino.svg",
+            "title": "<b>Regula o<\/b><br> \nintestino",
+            "description": ""
+          }
+        },
+        "28139113-844e-4167-b97e-2f48e1ba16dd": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/disposicao.svg",
+            "title": "Melhora a<br> \n<b>disposição<\/b>",
+            "description": ""
+          }
+        },
+        "e8530df7-047d-4a0b-9b3c-7c0589b68a23": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/saciedade.svg",
+            "title": "Mais <b>saciedade<\/b><br> \ncom poucas kcal",
+            "description": ""
+          }
+        },
+        "5314c09c-944f-47ee-a3be-1e0982be38db": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/sono.svg",
+            "title": "Melhora o<br> \nseu <b>sono<\/b>",
+            "description": ""
+          }
+        },
+        "08a7c988-f454-4cfb-afd3-b4559c059a6c": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/microbiota.svg",
+            "title": "<b>Fortalece<\/b> a<br> \nmicrobiota intestinal",
+            "description": ""
+          }
+        },
+        "f369b3d0-07ba-4185-a4c1-0d962b21c524": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/imunidade.svg",
+            "title": "Ajuda na<br> \n<b>imunidade<\/b>",
+            "description": ""
+          }
+        },
+        "752c3a21-642a-4a04-92a8-d7e0dffbd71f": {
+          "type": "feature",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/fibras.svg",
+            "title": "Fonte de<br> \n<b>fibras<\/b>",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "c1c488a1-1e28-4781-afef-39e427de8645",
+        "4f6f3ba4-e33a-4f45-a423-9fa5ccba237d",
+        "28139113-844e-4167-b97e-2f48e1ba16dd",
+        "e8530df7-047d-4a0b-9b3c-7c0589b68a23",
+        "5314c09c-944f-47ee-a3be-1e0982be38db",
+        "08a7c988-f454-4cfb-afd3-b4559c059a6c",
+        "f369b3d0-07ba-4185-a4c1-0d962b21c524",
+        "752c3a21-642a-4a04-92a8-d7e0dffbd71f"
+      ],
+      "settings": {
+        "borda-superior": true,
+        "color-borda-superior": "#00b45a",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "be73d693-ba8d-4383-b8e7-92cc6923b117": {
+      "type": "praticidade-home",
+      "settings": {
+        "borda-superior": true,
+        "color-borda-superior": "#ffd88a",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "e3a9ff10-6902-4baf-a0a2-91ae8874ceb0": {
+      "type": "persona-home",
+      "blocks": {
+        "b7edecf9-0a8c-4b0c-bbf5-ed93a4ae8d75": {
+          "type": "feature",
+          "settings": {
+            "color": "#00b45a",
+            "icone": "shopify:\/\/shop_images\/icone_balanca.svg",
+            "title": "Quer emagrecer",
+            "description": "Todas as sopas Holysoup são 100% naturais e saudáveis e auxiliam no processo de emagrecimento por terem poucas calorias se comparadas a jantares comuns. Emagreça comendo bem!"
+          }
+        },
+        "a5c9b4e0-ab09-4310-92c2-0a6441c83257": {
+          "type": "feature",
+          "settings": {
+            "color": "#ff455a",
+            "icone": "shopify:\/\/shop_images\/icone_nao-tem-tempo.svg",
+            "title": "Não tem tempo",
+            "description": "Para quem tem a vida corrida, as sopas Holysoup são 100% práticas. É só colocar na água e esperar cozinhar. Praticidade é nossa especialidade!"
+          }
+        },
+        "53fabea6-cea3-4074-98ef-74c362c7d485": {
+          "type": "feature",
+          "settings": {
+            "color": "#0077bb",
+            "icone": "shopify:\/\/shop_images\/icone_nao-sabe-cozinhar.svg",
+            "title": "Não sabe cozinhar",
+            "description": "Se a cozinha não é sua praia, Holysoup é a melhor opção! Super fácil de ser preparada, só precisa de 2 ingredientes. Com a Holy, qualquer um pode virar chef!"
+          }
+        },
+        "639155ba-5b7c-4676-917c-e97fe55f3925": {
+          "type": "feature",
+          "settings": {
+            "color": "#ff7a50",
+            "icone": "shopify:\/\/shop_images\/icone_dificuldade-ir-banheiro.svg",
+            "title": "Tem dificuldade de ir ao banheiro",
+            "description": "Muitas fibras, que irão auxiliar na regulação do seu intestino, te esperam num prato de Holysoup. Aposte numa sopa deliciosa e cuide da sua saúde intestinal."
+          }
+        },
+        "220f4640-ab56-49ba-8fd6-3617560abd23": {
+          "type": "feature",
+          "settings": {
+            "color": "#ffbac1",
+            "icone": "shopify:\/\/shop_images\/icone_louco_por_sopa.svg",
+            "title": "É louco por sopa",
+            "description": "Se você ama sopa e tem memórias afetivas ligadas a esse alimento, nossas sopinhas possuem tempero e sabor especial para você se deliciar e aquecer também o coração."
+          }
+        }
+      },
+      "block_order": [
+        "b7edecf9-0a8c-4b0c-bbf5-ed93a4ae8d75",
+        "a5c9b4e0-ab09-4310-92c2-0a6441c83257",
+        "53fabea6-cea3-4074-98ef-74c362c7d485",
+        "639155ba-5b7c-4676-917c-e97fe55f3925",
+        "220f4640-ab56-49ba-8fd6-3617560abd23"
+      ],
+      "settings": {
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "dea073da-72e7-4635-a981-e3e0967f1829": {
+      "type": "nutricionistas-home",
+      "blocks": {
+        "52e69445-041e-46ae-a37d-495428177819": {
+          "type": "Nutricionista",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/1.webp",
+            "star_range": 5,
+            "title": "Letícia Albano",
+            "description": "Sabemos que os dias atuais são mais corridos, então sempre busco facilitar a rotina. Foi aí que encontrei a HolySoup e me surpreendi. <b>Lista de ingrediente perfeita, combinação de nutrientes excelente e o melhor de tudo: SÃO MUITO SABOROSAS!<\/b> Super indico aos meus pacientes. Podem provar sem medo!"
+          }
+        },
+        "545aeb41-8274-43f5-8ab4-d4b3abc0670c": {
+          "type": "Nutricionista",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/8.png",
+            "star_range": 5,
+            "title": "Itamara Belluzzo",
+            "description": "Como nutricionista e chefe de cozinha sou amante de uma culinária saudável e prática! <b>Prezo muito por ingredientes naturais e na HolySoup eu encontrei tudo isso e muito mais! Super indico e foi extremamente aprovada pelos meus pacientes e por todos aqui de casa!<\/b> São deliciosas! Difícil é escolher uma só como favorita😬"
+          }
+        },
+        "f92a6ba2-568a-4dc9-8d21-7b7705553299": {
+          "type": "Nutricionista",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/10.png",
+            "star_range": 5,
+            "title": "Francine Wollinge",
+            "description": "<b>Eu escolhi a HolySoup para fazer parte de um grupo de desafio detox, foi a melhor escolha para contribuir no processo das minhas pacientes<\/b>, além de prática possui ingredientes naturais, com o sódio apenas dos próprios alimentos, ou seja, sem o glutamato que é uma das minhas premissas na minha conduta em consultório. <b>Recomendo de olhos fechados!<\/b>"
+          }
+        },
+        "7cc5ec86-e128-44ce-a345-4f008fd83065": {
+          "type": "Nutricionista",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/11.png",
+            "star_range": 5,
+            "title": "Ana Beatriz Wey",
+            "description": "Com a correria do dia a dia nada melhor que abrir um pacote e ter uma refeição completa pronta em 20 minutos! <b>A lista de ingredientes e a tabela nutricional são MARAVILHOSAS, mas o sabor não têm comentários que descrevam, são extremamente saborosas além de saudáveis.<\/b> Sempre indico para os pacientes!"
+          }
+        },
+        "87869668-ef07-41fa-99e3-4ff0aa5b5d52": {
+          "type": "Nutricionista",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/13.png",
+            "star_range": 5,
+            "title": "Aimée Madureira",
+            "description": "O maior desafio na clínica, sempre é conciliar a individualidade nutricional ao dia a dia de cada paciente.\n\n<b>Ao encontrar a HolySoup foi realmente como encontrar um milagre. Pois o produto consegue entregar qualidade nutricional, sem possuir aditivos químicos, possui rápido preparo e muito sabor.<\/b>\n\nEu recomendo, faço uso e amo!"
+          }
+        },
+        "3bbebe3d-9fec-404c-81b5-75abb0c57305": {
+          "type": "Nutricionista",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/12.png",
+            "star_range": 5,
+            "title": "Aline Netto",
+            "description": "Desde que conheci os produtos HolySoup, venho compartilhando essa experiência maravilhosa com meus pacientes. <b>A facilidade de preparo e a qualidade nutricional das sopas são o diferencial da marca.<\/b> Sem conservantes e contendo somente ingredientes naturais, as sopas da Holy são saborosas e excelentes alternativas para as refeições do dia a dia."
+          }
+        },
+        "9be9b0cc-6c2f-4715-91e0-9ec74d7ac66b": {
+          "type": "Nutricionista",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/Design_sem_nome.png",
+            "star_range": 5,
+            "title": "Viviane Camargo",
+            "description": "<b>Experimentar foi uma grata surpresa! A combinação de praticidade, sabor e saúde presente nas sopas é sem igual.<\/b> A lista de ingredientes além de ser livre de conservantes também é funcional, pois contém alimentos com ação antioxidante e anti-inflamatória. Recomendo para todos os meus pacientes, adultos e crianças."
+          }
+        },
+        "d4343cf2-5a67-4e50-a765-05e0f79df448": {
+          "type": "Nutricionista",
+          "settings": {
+            "icone": "shopify:\/\/shop_images\/Design-sem-nome-_1.webp",
+            "star_range": 5,
+            "title": "Amanda Archanjo",
+            "description": "Conheci a Holysoup através de alguns pacientes. Muitos me pediam pra calcular na dieta deles. <b>Quando fui conhecer a tabela nutricional e a lista de ingredientes, fiquei encantada! Quando experimentei, eu amei!\nSÃO DELICIOSAS, super práticas e fáceis de preparar.<\/b> Agora eu indico sempre aos meus pacientes!"
+          }
+        }
+      },
+      "block_order": [
+        "52e69445-041e-46ae-a37d-495428177819",
+        "545aeb41-8274-43f5-8ab4-d4b3abc0670c",
+        "f92a6ba2-568a-4dc9-8d21-7b7705553299",
+        "7cc5ec86-e128-44ce-a345-4f008fd83065",
+        "87869668-ef07-41fa-99e3-4ff0aa5b5d52",
+        "3bbebe3d-9fec-404c-81b5-75abb0c57305",
+        "9be9b0cc-6c2f-4715-91e0-9ec74d7ac66b",
+        "d4343cf2-5a67-4e50-a765-05e0f79df448"
+      ],
+      "settings": {
+        "borda-superior": true,
+        "color-borda-superior": "#0077bb",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "5d235e29-c066-423a-a51e-aec2ed75ba2e": {
+      "type": "influencers-home",
+      "blocks": {
+        "da0d39e7-4efd-4437-a726-9b08bbe64893": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify:\/\/shop_images\/Imagem_1_131979a6-e97f-46fd-b078-bec7c8e2e08c.png",
+            "title": "@userblogueira",
+            "video_1": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/ed93c915e1bc43509ad007e123c2515f.mp4",
+            "video_2": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/ddf96dcd92a94c02827b305bcb5a2059.mp4",
+            "video_3": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/a0a1bba21d3b4720b37aee62a693e441.mp4",
+            "video_4": ""
+          }
+        },
+        "27ae1325-d559-4bfc-81f1-69084bb673a9": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify:\/\/shop_images\/Imagem_2.png",
+            "title": "@userblogueira",
+            "video_1": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/117b57256b7c4fe38fce859fdee36b7d.mp4",
+            "video_2": "",
+            "video_3": "",
+            "video_4": ""
+          }
+        },
+        "c3acb1fa-78ee-4c13-afbd-4b50d111e58a": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify:\/\/shop_images\/Imagem_3.png",
+            "title": "@userblogueira",
+            "video_1": "",
+            "video_2": "",
+            "video_3": "",
+            "video_4": ""
+          }
+        },
+        "ac55cab5-3d1e-4b1b-a99f-6695ec3ce2fa": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify:\/\/shop_images\/Imagem_4.png",
+            "title": "@userblogueira",
+            "video_1": "",
+            "video_2": "",
+            "video_3": "",
+            "video_4": ""
+          }
+        },
+        "58ed7897-53f5-4ded-9408-2dcf279eba16": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify:\/\/shop_images\/Imagem_1_131979a6-e97f-46fd-b078-bec7c8e2e08c.png",
+            "title": "@userblogueira",
+            "video_1": "",
+            "video_2": "",
+            "video_3": "",
+            "video_4": ""
+          }
+        },
+        "28ce10bd-9b67-47be-965d-f158e31643f2": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify:\/\/shop_images\/Imagem_2.png",
+            "title": "@userblogueira",
+            "video_1": "",
+            "video_2": "",
+            "video_3": "",
+            "video_4": ""
+          }
+        },
+        "234b324a-4845-4005-9383-c954baafe331": {
+          "type": "Nutricionista",
+          "settings": {
+            "photo": "shopify:\/\/shop_images\/Imagem_3.png",
+            "title": "@userblogueira",
+            "video_1": "",
+            "video_2": "",
+            "video_3": "",
+            "video_4": ""
+          }
+        }
+      },
+      "block_order": [
+        "da0d39e7-4efd-4437-a726-9b08bbe64893",
+        "27ae1325-d559-4bfc-81f1-69084bb673a9",
+        "c3acb1fa-78ee-4c13-afbd-4b50d111e58a",
+        "ac55cab5-3d1e-4b1b-a99f-6695ec3ce2fa",
+        "58ed7897-53f5-4ded-9408-2dcf279eba16",
+        "28ce10bd-9b67-47be-965d-f158e31643f2",
+        "234b324a-4845-4005-9383-c954baafe331"
+      ],
+      "settings": {
+        "borda-superior": true,
+        "color-borda-superior": "#ff455a",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "3cfa01df-66e6-4097-ab19-472e435b88d5": {
+      "type": "personalize-seu-kit-home-progressivo",
+      "blocks": {
+        "6367ccd6-689f-431c-877b-3a0ca10d30de": {
+          "type": "product",
+          "settings": {
+            "sopa": "canja-da-mamae",
+            "image": "shopify:\/\/shop_images\/Canja_da_Mamae_-_Fundo_Branco_-_Frontal_-_Editada_Leandro.png",
+            "subtitle": "(110g \/ Rende 3 Porções inteiras)",
+            "jantas_descomplicadas": "3"
+          }
+        },
+        "dd6d870c-a8d2-46e7-91a4-0be0a784385d": {
+          "type": "product",
+          "settings": {
+            "sopa": "creme-verde-fit",
+            "image": "shopify:\/\/shop_images\/Creme_verde_Fit_-_Fundo_Branco_-_Frontal_-_Editada_Leandro.png",
+            "subtitle": "(110g \/ Rende 3 Porções inteiras)",
+            "jantas_descomplicadas": "3"
+          }
+        },
+        "eb239aaf-8762-4bb5-94d6-ca85070e7fbd": {
+          "type": "product",
+          "settings": {
+            "sopa": "sopa-da-vovo",
+            "image": "shopify:\/\/shop_images\/Sopa_da_Vovo_-_Fundo_Branco_-_Frontal_-_Editada_Leandro.png",
+            "subtitle": "(130g \/ Rende 3 Porções inteiras)",
+            "jantas_descomplicadas": "3"
+          }
+        },
+        "38353e0f-77de-45e5-b9ed-054a0ae720cf": {
+          "type": "product",
+          "settings": {
+            "sopa": "sopa-detox",
+            "image": "shopify:\/\/shop_images\/Sopa_Detox_-_Fundo_Branco_-_Frontal_-_Editada_Leandro.png",
+            "subtitle": "(130g \/ Rende 3 Porções inteiras)",
+            "jantas_descomplicadas": "3"
+          }
+        },
+        "1eaa9cdd-52c9-4cdd-8a2f-60a0572c8f6e": {
+          "type": "product",
+          "settings": {
+            "sopa": "sopa-do-jao",
+            "image": "shopify:\/\/shop_images\/Sopa_do_Jao_-_Fundo_Branco_-_Frontal_-_Editada_Leandro.png",
+            "subtitle": "(190g \/ Rende 3 Porções inteiras)",
+            "jantas_descomplicadas": "3"
+          }
+        },
+        "59d65701-242d-4164-b0f1-55a9e63c200b": {
+          "type": "product",
+          "settings": {
+            "sopa": "sopa-low-carb",
+            "image": "shopify:\/\/shop_images\/Sopa_Low_Carb_-_Fundo_Branco_-_Frontal_-_Editada_Leandro.png",
+            "subtitle": "(160g \/ Rende 3 Porções inteiras)",
+            "jantas_descomplicadas": "3"
+          }
+        },
+        "5d8a9f6b-9a69-419a-af54-5871f972dbff": {
+          "type": "product",
+          "settings": {
+            "sopa": "sopa-imunidade",
+            "image": "shopify:\/\/shop_images\/Sopa_Imunidade_-_Fundo_Branco_-_Frontal_-_Editada_Leandro.png",
+            "subtitle": "(190g \/ Rende 3 Porções inteiras)",
+            "jantas_descomplicadas": "3"
+          }
+        }
+      },
+      "block_order": [
+        "6367ccd6-689f-431c-877b-3a0ca10d30de",
+        "dd6d870c-a8d2-46e7-91a4-0be0a784385d",
+        "eb239aaf-8762-4bb5-94d6-ca85070e7fbd",
+        "38353e0f-77de-45e5-b9ed-054a0ae720cf",
+        "1eaa9cdd-52c9-4cdd-8a2f-60a0572c8f6e",
+        "59d65701-242d-4164-b0f1-55a9e63c200b",
+        "5d8a9f6b-9a69-419a-af54-5871f972dbff"
+      ],
+      "settings": {
+        "desconto_show": true,
+        "brinde_show": true,
+        "frete_show": true,
+        "jantas_show": false,
+        "title": "Personalize seu kit e ganhe até 30%OFF + Frete grátis",
+        "description": "Leve Mais, Pague Menos! Basta adicionar os sabores desejados, na quantidade desejada para adicionar ao carrinho. <highlight>Acima de R$300 você ganha Frete Grátis!<\/highlight>",
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "f60db51b-4f89-46fe-861a-41585eeef311": {
+      "type": "mix-sugeridos-home",
+      "blocks": {
+        "dc56be0f-c682-4707-ac81-a582e9751d75": {
+          "type": "product",
+          "settings": {
+            "color": "#00b45a",
+            "mix": "mix-completo",
+            "title": "Mix Completo",
+            "color_destaque": "",
+            "subtitle": "Kit contém 7 unidades:",
+            "image": "shopify:\/\/shop_images\/Mix_Completo.png",
+            "topics": "1x Sopa da Vovó\n1x Sopa Detox\n1x Sopa Creme Verde Fit\n1x Sopa Canja da Mamãe\n1x Sopa do Jão\n1x Sopa + Imunidade\n1x Sopa Low Carb"
+          }
+        },
+        "e9781e45-6da4-41aa-b45a-dac7617a7621": {
+          "type": "product",
+          "settings": {
+            "color": "#ff7a50",
+            "mix": "mix-iniciante",
+            "title": "Mix<br>\n<destaque>Plant Based<\/destaque>",
+            "color_destaque": "#ffd88a",
+            "subtitle": "Kit contém 6 unidades:",
+            "image": "shopify:\/\/shop_images\/Mix_plant_based.png",
+            "topics": "1x Sopa da Vovó\n1x Sopa Detox\n1x Sopa Creme Verde Fit\n1x Sopa do Jão\n1x Sopa + Imunidade\n1x Sopa Low Carb"
+          }
+        }
+      },
+      "block_order": [
+        "dc56be0f-c682-4707-ac81-a582e9751d75",
+        "e9781e45-6da4-41aa-b45a-dac7617a7621"
+      ],
+      "settings": {
+        "borda-superior": true,
+        "color-borda-superior": "#00814e",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "b3572668-9da5-46c0-ab1b-fa0125217432": {
+      "type": "satisfacao-home",
+      "settings": {
+        "title": "",
+        "description": "",
+        "aviso": "",
+        "borda-superior": true,
+        "color-borda-superior": "#00b45a",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
+    "3db47dd3-fea7-470d-95f3-4b025351f03f": {
+      "type": "faqs-home",
+      "blocks": {
+        "0ceb372c-729f-4c05-bdb1-6a68eb968189": {
+          "type": "faq",
+          "settings": {
+            "title": "Qual a validade? Como ela dura sem conservantes?",
+            "descricao": "<p>para manter as nossas sopas fresquinhas, utilizamos um processo de desidratação em todos os ingredientes das receitas.<\/p>\n<p>esse processo remove toda a água e garante que os nutrientes sejam preservados sem a necessidade de aditivos químicos.<\/p>\n<p>apesar disso, é importante lembrar que a validade das nossas sopas é mais curta do que outros produtos encontrados em supermercados - cada pacote dura 8 meses.<\/p>\n<p>e se preferir, pode congelar as sopas prontas por até 3 meses.<\/p>\n<p>mas não precisa ficar preocupado(a)! Nós nos certificamos de enviar para sua casa apenas lotes recentes e sopas fresquinhas.<\/p>"
+          }
+        },
+        "b4cbd4f5-b3f1-4509-9e99-0d26390862fa": {
+          "type": "faq",
+          "settings": {
+            "title": "As sopas ajudam no emagrecimento?",
+            "descricao": "<p>olha só, o emagrecimento acontece principalmente quando há um déficit calórico (ou seja, quando você ingere menos calorias do que gasta) associado a uma prática de exercícios físicos. E é aí que entram as nossas sopas!<\/p>\n\n<p>ao incluir nossas sopas na sua dieta, você estará ingerindo menos calorias ao longo do dia, o que pode ajudar no processo de emagrecimento. mas não é só isso! Nossas sopas são feitas com ingredientes nutritivos que ajudam a manter o corpo saudável.<\/p>\n\n<p>e tem mais! Nossas sopas são 100% naturais, sem conservantes, sem glutamato, sem sal ou qualquer outro aditivo. Além disso, são ricas em fibras solúveis e insolúveis, o que ajuda no bom funcionamento do intestino.<\/p> \n\n<p>por fim, nossas sopas promovem rápida saciedade, ou seja, você vai consumir pouco e se sentir satisfeito.<\/p>\n\n<p>e sabe o macarrão que usamos em algumas sopas? Ele é feito de biomassa de banana, um alimento funcional com baixo índice glicêmico que ajuda a melhorar a saúde e contribui para um emagrecimento saudável.<\/p>"
+          }
+        },
+        "fff7d8f8-560f-4312-a076-72ebcb152faa": {
+          "type": "faq",
+          "settings": {
+            "title": "Crianças podem consumir?",
+            "descricao": "<p><b>claro!<\/b> nossas sopas são feitas de ingredientes naturais, altamente nutritivos e não possuem nenhum tipo de conservante, espessantes, corantes ou realçadores de sabor! \n<\/p><p>além de   ser livre de glúten, zero sal e baixissímo sódio. Maravilhoso,né?<\/p>\n<p>as sopas mais indicadas para crianças são a Sopa da Vovó, Canja da Mamãe, Detox e LowCarb.<\/p> \n<p>apesar das nossas sopas já serem uma refeição completa, você pode adicionar legumes e proteína que sua criança preferir.<\/p>\n<p>caso a criança tenha alguma intolerância indicamos que verifique nossa lista de ingredientes e tabela nutricional em nosso site e consulte com sua pediatra a possibilidade de ingestão. \n<\/p>"
+          }
+        },
+        "c10b5ff4-2a89-49c2-9d53-57a830497258": {
+          "type": "faq",
+          "settings": {
+            "title": "Cada pacote rende quantas porções?",
+            "descricao": "<p>cada pacote rende até 3 porções e após o cozimento, nossas sopas rendem aproximadamente:<\/p>\n\n<p>Sopa Detox 1 litro - rende 3 pratos de 333g com 113 kcal<\/p>\n<p>Sopa da Vovó 1 litro - rende 3 pratos de 333g com 103 kcal<\/p>\n<p>Sopa Low Carb 1 litro - rende 3 pratos de 333g com 89 kcal<\/p>\n<p>Creme Verde Fit 1 litro - rende 3 pratos de 333g com 76 kcal<\/p>\n<p>Sopa + Imunidade 1 litro - rende 3 pratos de 333g com 135 kcal<\/p>\n<p>Canja da Mamãe 1 litro – rende 3 pratos de 333g com 80 kcal<\/p>\n<p>Sopa do Jão 1 litro - rende 3 pratos de 333g com  109 kcal<\/p>\n\n<p>importante: a porção de sopa conforme a legislação é de 250g. Considerando 3 porções por embalagem, temos 333g cada porção.<\/p>"
+          }
+        },
+        "b5e10cbb-42b8-41cc-904c-af37a98d1ca5": {
+          "type": "faq",
+          "settings": {
+            "title": "Qual o tempo de cozimento das sopas?",
+            "descricao": "<p>cada sopa tem um tempo determinado de cozimento (sinalizado  na embalagem). em média 20 minutos e sua sopa saudável já estará pronta!<\/p>"
+          }
+        },
+        "bea061b6-9638-430a-8a91-0ade134e6c60": {
+          "type": "faq",
+          "settings": {
+            "title": "As sopas contém glúten?",
+            "descricao": "<p>os ingredientes que compõem nossas sopas não contêm glúten, soja, amendoim, amêndoas e nozes.<\/p> \n<p>porém pode conter leves traços de castanha de caju por ser embalado em um local com outros alimentos, ocorrendo contaminação cruzada.<\/p>\n<p>para garantir uma alimentação saudável e segura, para pessoas celíacas nossos produtos são totalmente livres de glúten.😃<\/p>"
+          }
+        },
+        "57db366e-84d0-4715-957f-cce9266aa90f": {
+          "type": "faq",
+          "settings": {
+            "title": "As sopas são veganas?",
+            "descricao": "a <b>Canja da Mamãe<\/b> é a única sopa que não é vegana, pois possui frango liofilizado.<p><\/p>"
+          }
+        },
+        "5501c5ec-f461-4243-a2a4-af5b2109d362": {
+          "type": "faq",
+          "settings": {
+            "title": "Qual a quantidade de sódio nas sopas?",
+            "descricao": "<p>sabia que o sódio e o sal são compostos diferentes? pois é!<\/p>\n<p><\/p>nosso corpo precisa de sódio, um mineral importante para regular o volume sanguíneo, a contração muscular e os impulsos nervosos. Por exemplo, em 100g de sal de cozinha há 40% de sódio!<p><\/p> \n<p>por isso é importante ficar atento à quantidade que consumimos.<\/p>\n<p>mas não se preocupa! Nossas sopas possuem baixíssimo teor de sódio e ele provém dos próprios ingredientes da receita, como a cenoura, que em 100g possui 60mg de sódio.<\/p>\n<p>assim, a quantidade de sódio nas nossas sopas varia entre 12mg e 50mg por porção (dependendo do sabor), sendo apenas 2% da recomendação diária, que é de 5g por dia.<\/p>\n<p>que tal provar uma deliciosa sopa sem se preocupar com o excesso de sódio? 😃<\/p>"
+          }
+        },
+        "04672848-6e6c-4464-8390-831c1f8e63a1": {
+          "type": "faq",
+          "settings": {
+            "title": "Depois de preparadas, as sopas podem ser congeladas?",
+            "descricao": "<p><b>sim!<\/b> você pode congelar as sopas depois de prepará-las. Lembrando que elas duram até 3 meses no congelador.<\/p>"
+          }
+        },
+        "8d2c9c52-d480-4fd0-bcc8-788939f55bac": {
+          "type": "faq",
+          "settings": {
+            "title": "Tenho doença x posso tomar?",
+            "descricao": "Nossas sopas são 100% naturais (com ingredientes de verdade!), sem conservantes ou qualquer aditivo artificial. Recomendamos que consulte seu médico ou nutricionista para melhor te orientar em relação à ingestão dos ingredientes contidos, lembrando que em nosso site, você pode acessar nossa tabela nutricional completa!"
+          }
+        }
+      },
+      "block_order": [
+        "0ceb372c-729f-4c05-bdb1-6a68eb968189",
+        "b4cbd4f5-b3f1-4509-9e99-0d26390862fa",
+        "fff7d8f8-560f-4312-a076-72ebcb152faa",
+        "c10b5ff4-2a89-49c2-9d53-57a830497258",
+        "b5e10cbb-42b8-41cc-904c-af37a98d1ca5",
+        "bea061b6-9638-430a-8a91-0ade134e6c60",
+        "57db366e-84d0-4715-957f-cce9266aa90f",
+        "5501c5ec-f461-4243-a2a4-af5b2109d362",
+        "04672848-6e6c-4464-8390-831c1f8e63a1",
+        "8d2c9c52-d480-4fd0-bcc8-788939f55bac"
+      ],
+      "settings": {
+        "borda-superior": true,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "a8d45234-ff4c-4fb4-ab6d-16d71fbf1a5d",
+    "11d025eb-d332-49cd-ae54-c6243379ae1c",
+    "57fe8019-168b-4953-8dd1-4cb704b6b57d",
+    "586198a2-a4dc-41b9-8e36-8050ad9530d3",
+    "aa6404ca-22ed-4a3a-88bf-43de3ef8588a",
+    "44dc5a22-1f78-453c-ad7f-af218de73592",
+    "be73d693-ba8d-4383-b8e7-92cc6923b117",
+    "e3a9ff10-6902-4baf-a0a2-91ae8874ceb0",
+    "dea073da-72e7-4635-a981-e3e0967f1829",
+    "5d235e29-c066-423a-a51e-aec2ed75ba2e",
+    "3cfa01df-66e6-4097-ab19-472e435b88d5",
+    "f60db51b-4f89-46fe-861a-41585eeef311",
+    "b3572668-9da5-46c0-ab1b-fa0125217432",
+    "3db47dd3-fea7-470d-95f3-4b025351f03f"
+  ]
+}

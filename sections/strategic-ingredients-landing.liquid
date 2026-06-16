@@ -1,0 +1,192 @@
+<div class="strategic-ingredients-landing">
+  <div class="strategic-ingredients-container">
+    <div class="strategic-ingredients-header">
+      {% if section.settings.title != blank %}
+        <h2 class="strategic-ingredients-title">{{ section.settings.title }}</h2>
+      {% endif %}
+    </div>
+
+    <div class="strategic-ingredients-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'ingredient' %}
+          <div class="strategic-ingredient-item" {{ block.shopify_attributes }}>
+            <div class="ingredient-icon-wrapper">
+              {% if block.settings.icon != blank %}
+                {{
+                  block.settings.icon
+                  | image_url: width: 120
+                  | image_tag:
+                    alt: block.settings.title,
+                    loading: 'lazy',
+                    width: 120,
+                    height: 120,
+                    class: 'ingredient-icon'
+                }}
+              {% endif %}
+              {% if block.settings.icon_svg != blank %}
+                <div class="ingredient-svg-wrapper" style="color: {{ section.settings.icon_color }};">
+                  {{ block.settings.icon_svg }}
+                </div>
+              {% endif %}
+            </div>
+
+            {% if block.settings.title != blank %}
+              <h3 class="ingredient-title">{{ block.settings.title }}</h3>
+            {% endif %}
+
+            {% if block.settings.description != blank %}
+              <div class="ingredient-description">{{ block.settings.description }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% style %}
+  #shopify-section-{{ section.id }} .strategic-ingredients-landing {
+    padding: 50px 20px;
+    background-color: {{ section.settings.bg_color }};
+  }
+  #shopify-section-{{ section.id }} .strategic-ingredients-title {
+    color: {{ section.settings.title_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .ingredient-title,
+  #shopify-section-{{ section.id }} .ingredient-title p {
+    color: {{ section.settings.card_title_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .ingredient-icon-wrapper {
+    background-color: {{ section.settings.icon_bg_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .ingredient-svg-wrapper svg,
+  #shopify-section-{{ section.id }} .ingredient-svg-wrapper svg path {
+    fill: {{ section.settings.icon_color }} !important;
+  }
+{% endstyle %}
+
+{{ 'strategic-ingredients-landing.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "Ingredientes Estratégicos",
+  "tag": "section",
+  "class": "strategic-ingredients-landing-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Conteúdo Principal"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Titulo"
+    },
+    {
+      "type": "header",
+      "content": "Estilo Visual (Cores e Ícones)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Cor de Fundo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Cor do Título da Seção",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Cor do Título dos Cards",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "icon_bg_color",
+      "label": "Cor de Fundo do Ícone",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Cor do Ícone (SVG)",
+      "default": "#7BCA0C"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingrediente",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Ícone (Imagem)"
+        },
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Ícone (SVG)",
+          "info": "Paste SVG code here"
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Título",
+          "default": "<p>Titulo</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Descrição",
+          "default": "<p>lorem ipsum</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredientes Estratégicos",
+      "settings": {
+        "title": "Ingredientes do Kit Seca Barriga são estratégicos."
+      },
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "<p>Acelera o<br>Metabolismo</p>",
+            "description": "<p><strong>Quinoa e proteínas</strong> vegetais aumentam termogênese naturalmente.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "<p>Saciedade<br>Inteligente</p>",
+            "description": "<p>6-12g de <strong>fibras</strong> mantêm você satisfeito por horas.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "<p>Combate<br>Retenção</p>",
+            "description": "<p><strong>Zero sódio</strong> adicionado desincha em poucos dias.</p>"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "<p>Energia<br>Sem Fome</p>",
+            "description": "<p><strong>Baixa Calorias</strong>, mas que nutrem de verdade.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

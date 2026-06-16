@@ -1,0 +1,1085 @@
+{% liquid
+  assign minimum_free_shipping_value = settings.minimum_free_shipping_value | default: 0 | times: 100
+  assign minimum_free_gift_value = settings.minimum_free_gift_value | default: 0 | times: 100
+  assign states = 'ac|Acre,al|Alagoas,ap|Amapá,am|Amazonas,ba|Bahia,ce|Ceará,df|Distrito Federal,es|Espírito Santo,go|Goiás,ma|Maranhão,mt|Mato Grosso,ms|Mato Grosso do Sul,mg|Minas Gerais,pa|Pará,pb|Paraíba,pr|Paraná,pe|Pernambuco,pi|Piauí,rj|Rio de Janeiro,rn|Rio Grande do Norte,rs|Rio Grande do Sul,ro|Rondônia,rr|Roraima,sc|Santa Catarina,sp|São Paulo,se|Sergipe,to|Tocantins' | split: ','
+%}
+
+<div
+  class="side-cart"
+  x-data="
+    {
+      loadingCart: false,
+      showCart: false,
+      renderSwiper() {
+        const couponCarousel = new Swiper('.coupon-carousel', {
+          slidesPerView: 1.25,
+          spaceBetween: 10,
+          breakpoints: {
+            400: {
+              slidesPerView: 1.1,
+            },
+          },
+        });
+      },
+      handleCartChange() {
+        this.loadingCart = true;
+        fetch('/?view=cart')
+        .then(response => response.text())
+        .then(sidecartContent => {
+          document.getElementById('sidecartContent').innerHTML = new DOMParser().parseFromString(sidecartContent, 'text/html').getElementById('sidecartContent').innerHTML
+          this.renderSwiper();
+          this.loadingCart = false;
+        })
+      }
+    }
+  "
+  id="side-cart"
+  x-ref="sidecart"
+  @show-cart.window="showCart = true"
+  @cart-change.window="handleCartChange()"
+>
+  <div x-show="showCart">
+    <div
+      x-show="showCart"
+      class="side-bar-overlay opacity-transition"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      @click="showCart = false"
+    ></div>
+    <script>
+      {%- assign entry = shop.metaobjects.frete_por_estado.values | first -%}
+      window.holyfoodsShippingConfig = {
+        ac: {{ entry.ac.value | default: 0 }},
+        al: {{ entry.al.value | default: 0 }},
+        am: {{ entry.am.value | default: 0 }},
+        ap: {{ entry.ap.value | default: 0 }},
+        ba: {{ entry.ba.value | default: 0 }},
+        ce: {{ entry.ce.value | default: 0 }},
+        df: {{ entry.df.value | default: 0 }},
+        es: {{ entry.es.value | default: 0 }},
+        go: {{ entry.go.value | default: 0 }},
+        ma: {{ entry.ma.value | default: 0 }},
+        mg: {{ entry.mg.value | default: 0 }},
+        ms: {{ entry.ms.value | default: 0 }},
+        mt: {{ entry.mt.value | default: 0 }},
+        pa: {{ entry.pa.value | default: 0 }},
+        pb: {{ entry.pb.value | default: 0 }},
+        pe: {{ entry.pe.value | default: 0 }},
+        pi: {{ entry.pi.value | default: 0 }},
+        pr: {{ entry.pr.value | default: 0 }},
+        rj: {{ entry.rj.value | default: 0 }},
+        rn: {{ entry.rn.value | default: 0 }},
+        ro: {{ entry.ro.value | default: 0 }},
+        rr: {{ entry.rr.value | default: 0 }},
+        rs: {{ entry.rs.value | default: 0 }},
+        sc: {{ entry.sc.value | default: 0 }},
+        se: {{ entry.se.value | default: 0 }},
+        sp: {{ entry.sp.value | default: 0 }},
+        to: {{ entry.to.value | default: 0 }}
+      };
+    </script>
+
+    <div
+      id="sidecartContent"
+      x-show="showCart"
+      x-trap.noscroll="showCart"
+      x-transition:enter-start="translate-full"
+      x-transition:enter-end="translate-0"
+      x-transition:leave-start="translate-0"
+      x-transition:leave-end="translate-full"
+      class="side-cart-container translate-transition"
+      @keydown.window.escape="showCart = false"
+    >
+      <div
+        class="side-cart-content"
+        @uf-detected.window="selectedUF = $event.detail.uf"
+        x-data="
+          {
+            items: {{ cart.items | json | escape | replace: '"', "'" }},
+            itemsCount: {{ cart.item_count }},
+            cartTotalPrice: {{ cart.total_price }},
+            freeShippingMinimumValue: {{ minimum_free_shipping_value }},
+            freeShippingRemainingPercentual: 0,
+            freeGiftMinimumValue: {{ minimum_free_gift_value }},
+            freeGiftRemainingPercentual: 0,
+            shipping_calculate: false,
+            selectedUF: sessionStorage.getItem('ufSelecionada') || 'sp',
+            ufDropdownOpen: false,
+            getStateLabel(code) {
+              const states = {
+                ac: 'Acre', al: 'Alagoas', ap: 'Amapá', am: 'Amazonas', ba: 'Bahia', ce: 'Ceará', df: 'Distrito Federal', es: 'Espírito Santo', go: 'Goiás', ma: 'Maranhão', mt: 'Mato Grosso', ms: 'Mato Grosso do Sul', mg: 'Minas Gerais', pa: 'Pará', pb: 'Paraíba', pr: 'Paraná', pe: 'Pernambuco', pi: 'Piauí', rj: 'Rio de Janeiro', rn: 'Rio Grande do Norte', rs: 'Rio Grande do Sul', ro: 'Rondônia', rr: 'Roraima', sc: 'Santa Catarina', sp: 'São Paulo', se: 'Sergipe', to: 'Tocantins'
+              };
+              return states[code.toLowerCase()] || code.toUpperCase();
+            },
+            updateShipping() {
+              const cfg = window.holyfoodsShippingConfig || {};
+              const uf = this.selectedUF.toLowerCase();
+              const val = cfg[uf] ? parseFloat(cfg[uf]) * 100 : {{ minimum_free_shipping_value }};
+              this.freeShippingMinimumValue = val;
+              this.freeShippingRemainingPercentual = val > 0 ? (this.cartTotalPrice / val) * 100 : 100;
+              this.freeGiftRemainingPercentual = this.freeGiftMinimumValue > 0 ? (this.cartTotalPrice / this.freeGiftMinimumValue) * 100 : 100;
+            },
+            formatMoney(cents) {
+              return Shopify.formatMoney(cents, '{{ shop.money_format }}');
+            }
+          }
+        "
+        x-init="
+          $data.updateShipping();
+          $watch('selectedUF', () => {
+            sessionStorage.setItem('ufSelecionada', $data.selectedUF);
+            $data.updateShipping();
+          });
+          $store.cart.refresh(itemsCount, items)
+        "
+      >
+        <div
+          x-show="loadingCart"
+          class="
+            loading-container
+            absolute inset-0 z-50 flex items-center justify-center bg-white/80
+            pt-0 text-white
+          "
+        >
+          <svg
+            x-show="loadingCart"
+            width="72"
+            height="24"
+            viewBox="0 0 72 24"
+            fill="none"
+            class="animate-pulse"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="8" cy="12" r="8" fill="#D1D5DB"/>
+            <circle cx="36" cy="12" r="8" fill="#D1D5DB"/>
+            <circle cx="64" cy="12" r="8" fill="#D1D5DB"/>
+          </svg>
+        </div>
+        <div class="side-cart-close">
+          <svg
+            @click="showCart = false"
+            xmlns="http://www.w3.org/2000/svg"
+            width="14.424"
+            height="14.424"
+            viewBox="0 0 14.424 14.424"
+          >
+            <path id="União_10" data-name="União 10" d="M6.152,6.152,0,12.3,6.152,6.152,0,0,6.152,6.152,12.3,0,6.152,6.152,12.3,12.3Z" transform="translate(1.061 1.061)" fill="rgba(0,0,0,0)" stroke="#ff7a50" stroke-linecap="round" stroke-width="3"/>
+          </svg>
+        </div>
+        <span class="side-cart-title">
+          {{- settings.side_cart_title }}
+          <div
+            x-data="
+              {
+                isClearing: false,
+                async clearCart() {
+                  this.isClearing = true;
+                  try {
+                    const response = await fetch('/cart/clear.js', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                      }
+                    });
+
+                    if (response.ok) {
+                      // Trigger cart change event instead of reloading
+                      window.dispatchEvent(new CustomEvent('cart-change'));
+                    } else {
+                      console.error('Cart clearing failed');
+                    }
+                  } catch (error) {
+                    console.error('Cart clearing error:', error);
+                  } finally {
+                    this.isClearing = false;
+                  }
+                }
+              }
+            "
+          >
+            <button
+              @click="clearCart()"
+              :disabled="isClearing"
+              class="cursor-pointer underline-offset-4"
+            >
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48px" height="48px">
+                  <path d="M6 4H18V21H6z" opacity=".3"/><path d="M11 18H9V7h2V18zM15 18h-2V7h2V18zM4 3H20V5H4z"/><path d="M17 5L14 2 10 2 7 5z"/><path d="M17,22H7c-1.1,0-2-0.9-2-2V3h14v17C19,21.1,18.1,22,17,22z M7,5v15h10V5H7z"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </span>
+        <div class="side-cart-items">
+          {% render 'aomai-shipping-container' %}
+
+          {% if cart.item_count > 0 %}
+            <div class="side-cart-items-container">
+              {% for item in cart.items %}
+                {% render 'side-cart-item', item: item, key: forloop.index %}
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="side-cart-empty">
+              <span class="side-cart-empty-title">{{ settings.side_cart_empty_title }}</span>
+              <span class="side-cart-empty-description">{{ settings.side_cart_empty_description }}</span>
+            </div>
+          {% endif %}
+          {% if cart.item_count > 0 %}
+            <div
+              class="side-cart-buy-together"
+              x-data="
+                {
+                  renderSwiper() {
+                    const recommendationCarousel = new Swiper('.recommendation-carousel', {
+                      slidesPerView: 1.5,
+                      spaceBetween: 10
+                    });
+                  },
+                  showProducts(productId){
+                    fetch(window.Shopify.routes.root + 'recommendations/products?product_id='+ productId +'&limit=4&section_id=side-cart-recommendation&intent=related')
+                    .then(response => response.text())
+                    .then((text) => {
+                        const productRecommendationsSection = document.querySelector('.side-cart-recommendation');
+                        const html = document.createElement('div');
+                        html.innerHTML += text;
+                        const recommendations = html.querySelector('.side-cart-recommendation');
+
+                        if (productRecommendationsSection && recommendations && recommendations.innerHTML.trim().length) {
+                          productRecommendationsSection.innerHTML = recommendations.innerHTML;
+                        }
+
+                        this.renderSwiper()
+                    });
+                  }
+                }
+              "
+              x-init="showProducts('{{ cart.items[0].product_id }}')"
+            >
+              {% section 'side-cart-recommendation' %}
+            </div>
+          {% endif %}
+        </div>
+        {% if cart.item_count < 1 %}
+          {% render 'side-cart-suggestions' %}
+        {% endif %}
+        {% comment %}
+          {% if cart.item_count > 10 %}
+            {% render 'side-cart-coupon' %}
+          {% endif %}
+        {% endcomment %}
+
+        <div class="side-cart-shipping">
+          {% if settings.activate_free_shipping and minimum_free_shipping_value > 0 and cart.item_count != 0 %}
+            <div
+              x-show="freeShippingMinimumValue > 0"
+              class="side-cart-shipping-container free-shipping-container"
+            >
+              <div class="side-cart-shipping-wrapper">
+                <style>
+                  .side-cart-shipping-wrapper {
+                    padding: 0;
+                  }
+                  .side-cart-shipping-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    margin-bottom: 8px;
+                  }
+                  .side-cart-shipping-info {
+                    display: flex;
+                    align-items: center;
+                    flex: 1;
+                  }
+                  .side-cart-shipping-msg {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    margin: 0;
+                    font-size: 13px;
+                    font-weight: 500;
+                    padding: 0;
+                  }
+                  .side-cart-shipping-msg strong {
+                    white-space: nowrap;
+                  }
+                  .side-cart-shipping-msg--success {
+                    color: #00b45a;
+                    font-weight: bold;
+                    padding: 0;
+                  }
+                  .side-cart-shipping-icon {
+                    margin-right: 8px;
+                    flex-shrink: 0;
+                  }
+                  .side-cart-shipping-icon--success {
+                    width: 12px;
+                    height: 12px;
+                    border: 1px solid #00b45a;
+                    border-radius: 50%;
+                    padding: 2px;
+                  }
+                  .side-cart-shipping-icon--regular {
+                    width: 12px;
+                    height: auto;
+                    border-radius: 3px;
+                    padding: 2px;
+                  }
+
+                  @media (max-width: 400px) {
+                    .side-cart-shipping-msg {
+                      font-size: 12px;
+                    }
+                    .side-cart-shipping-icon {
+                      margin-top: 2px;
+                    }
+                  }
+                </style>
+                <div class="side-cart-shipping-header">
+                  <div class="side-cart-shipping-info">
+                    <template x-if="freeShippingRemainingPercentual >= 100">
+                      <p class="side-cart-shipping-msg side-cart-shipping-msg--success">
+                        <svg
+                          class="side-cart-shipping-icon side-cart-shipping-icon--success"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 64 64"
+                        >
+                          <path d="M32,2C15.431,2,2,15.432,2,32c0,16.568,13.432,30,30,30c16.568,0,30-13.432,30-30C62,15.432,48.568,2,32,2z M25.025,50  l-0.02-0.02L24.988,50L11,35.6l7.029-7.164l6.977,7.184l21-21.619L53,21.199L25.025,50z" fill="#00b45a"/>
+                        </svg>
+                        Você ganhou Frete Grátis!
+                      </p>
+                    </template>
+                    <template x-if="freeShippingRemainingPercentual < 100">
+                      <p class="side-cart-shipping-msg">
+                        <svg
+                          class="side-cart-shipping-icon side-cart-shipping-icon--regular"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 23.994 17.144"
+                        >
+                          <path d="M0,8.106Q0,5.4,0,2.7A2.571,2.571,0,0,1,2.689,0Q7.708,0,12.728,0a2.571,2.571,0,0,1,2.7,2.687c0,.741.007,1.481,0,2.222,0,.189.051.237.238.236,1.321-.008,2.641,0,3.962-.005a2.607,2.607,0,0,1,2.205,1.1c.539.722,1.075,1.446,1.619,2.164a2.667,2.667,0,0,1,.55,1.669c0,1.187,0,2.374,0,3.56a1.714,1.714,0,0,1-1.787,1.785.331.331,0,0,1-.053,0,1.1,1.1,0,0,0-1.238.613,2.509,2.509,0,0,1-4.36-.36.382.382,0,0,0-.417-.256q-4.163.01-8.325,0a.333.333,0,0,0-.356.226A2.432,2.432,0,0,1,5.139,17.13a2.431,2.431,0,0,1-2.312-1.49.326.326,0,0,0-.361-.218,7.158,7.158,0,0,1-.936-.01A1.7,1.7,0,0,1,0,13.7C0,11.835,0,9.971,0,8.106m1.714-.065c0,1.811,0,3.622,0,5.433,0,.181.037.259.232.241a3.158,3.158,0,0,1,.561,0c.171.015.24-.057.313-.207a2.443,2.443,0,0,1,2.306-1.5A2.439,2.439,0,0,1,7.461,13.5a.313.313,0,0,0,.333.218q2.823-.012,5.647,0c.227,0,.275-.063.275-.281Q13.706,8.069,13.711,2.7a.877.877,0,0,0-.986-.988H2.715a.877.877,0,0,0-1,1q0,2.663,0,5.326m13.71,2.251c0,1.061,0,2.122,0,3.183,0,.184.042.258.234.238a2.44,2.44,0,0,1,.481,0,.364.364,0,0,0,.419-.254,2.421,2.421,0,0,1,2.119-1.451,2.285,2.285,0,0,1,2.3,1.171.888.888,0,0,0,1.039.532.183.183,0,0,1,.053,0c.182.031.219-.056.218-.224q-.01-1.485,0-2.969c0-.184-.043-.241-.234-.239-1.052.01-2.1.008-3.157,0A1.708,1.708,0,0,1,17.139,8.52c0-.491-.006-.981,0-1.471,0-.151-.041-.2-.195-.2-.428.009-.857.016-1.284,0-.215-.01-.244.071-.242.259.008,1.061,0,2.122,0,3.183m6-1.723c-.392-.516-.74-.986-1.1-1.444a.737.737,0,0,0-.565-.265c-.249-.01-.5,0-.748-.006-.108,0-.162.024-.16.147q.008.708,0,1.417c0,.117.04.153.155.153.784,0,1.568,0,2.423,0M6,14.573a.856.856,0,1,0-.854.851A.859.859,0,0,0,6,14.573m13.71,0a.856.856,0,1,0-.853.851.859.859,0,0,0,.853-.851" fill="#00b45a"/>
+                        </svg>
+                        <span
+                          >Faltam <span x-text="formatMoney(freeShippingMinimumValue - cartTotalPrice)"></span> para
+                          <strong>Frete Grátis</strong></span
+                        >
+                      </p>
+                    </template>
+                  </div>
+
+                  <div class="custom-uf-selector" style="position: relative;">
+                    <style>
+                      .custom-uf-selector {
+                        min-width: 40px;
+                        cursor: pointer;
+                      }
+                      .uf-toggle {
+                        padding: 2px 3px;
+                        font-size: 13px;
+                        font-weight: 600;
+                        border-radius: 6px;
+                        border: 1px solid #00b45a;
+                        background-color: #f7f7f7;
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+                        white-space: nowrap;
+                      }
+                      .uf-toggle svg {
+                        width: 10px !important;
+                        fill: none;
+                        transition: transform 0.3s ease;
+                      }
+                      .uf-toggle.open svg {
+                        transform: rotate(180deg);
+                      }
+                      .uf-dropdown {
+                        position: absolute;
+                        bottom: calc(100% + 5px);
+                        right: 0;
+                        z-index: 100;
+                        background: #fff;
+                        border: 1px solid #e1e1e1;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                        width: 160px;
+                        max-height: 200px;
+                        overflow-y: auto;
+                        padding: 4px 0;
+                      }
+                      .uf-option {
+                        padding: 8px 12px;
+                        font-size: 13px;
+                        color: #333;
+                        transition: background 0.2s;
+                      }
+                      .uf-option:hover {
+                        background: #f0f0f0;
+                      }
+                      .uf-option.selected {
+                        background: #e6f7ef;
+                        color: #00b45a;
+                        font-weight: bold;
+                      }
+                      .uf-label-desktop {
+                        display: inline;
+                      }
+                      .uf-label-mobile {
+                        display: none;
+                      }
+                      @media (max-width: 768px) {
+                        .uf-label-desktop {
+                          display: none;
+                        }
+                        .uf-label-mobile {
+                          display: inline;
+                        }
+                      }
+                      @media (max-width: 400px) {
+                        .uf-toggle {
+                          font-size: 12px;
+                        }
+                        .uf-option {
+                          font-size: 12px;
+                        }
+                      }
+                    </style>
+
+                    <div
+                      class="uf-toggle"
+                      :class="{ 'open': ufDropdownOpen }"
+                      @click="ufDropdownOpen = !ufDropdownOpen"
+                    >
+                      <span class="uf-label-desktop" x-text="getStateLabel(selectedUF)"></span>
+                      <span class="uf-label-mobile" x-text="selectedUF.toUpperCase()"></span>
+                      <svg viewBox="0 0 10 6" fill="none">
+                        <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+
+                    <div
+                      class="uf-dropdown"
+                      x-show="ufDropdownOpen"
+                      @click.away="ufDropdownOpen = false"
+                      x-transition:enter="transition ease-out duration-200"
+                      x-transition:enter-start="opacity-0 translate-y-2"
+                      x-transition:enter-end="opacity-100 translate-y-0"
+                      x-transition:leave="transition ease-in duration-150"
+                      x-transition:leave-start="opacity-100 translate-y-0"
+                      x-transition:leave-end="opacity-0 translate-y-2"
+                      x-cloak
+                    >
+                      {% for state_pair in states %}
+                        {% assign part = state_pair | split: '|' %}
+                        <div
+                          class="uf-option"
+                          :class="{ 'selected': selectedUF === '{{ part[0] }}' }"
+                          @click="selectedUF = '{{ part[0] }}'; ufDropdownOpen = false"
+                        >
+                          {{ part[1] }}
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="side-cart-shipping-bar">
+                  <div
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    class="side-cart-shipping-bar-active"
+                    :style="'width: ' + Math.min(freeShippingRemainingPercentual, 100) + '%'"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% if settings.activate_free_gift and minimum_free_gift_value > 0 and cart.item_count != 0 %}
+            <div
+              x-show="freeGiftMinimumValue > 0"
+              class="side-cart-shipping-container"
+            >
+              <div class="side-cart-shipping-wrapper">
+                <div class="side-cart-shipping-header">
+                  <div class="side-cart-shipping-info">
+                    <template x-if="freeGiftRemainingPercentual >= 100">
+                      <p class="side-cart-shipping-msg side-cart-shipping-msg--success">
+                        <svg
+                          class="side-cart-shipping-icon side-cart-shipping-icon--success"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 64 64"
+                        >
+                          <path d="M32,2C15.431,2,2,15.432,2,32c0,16.568,13.432,30,30,30c16.568,0,30-13.432,30-30C62,15.432,48.568,2,32,2z M25.025,50  l-0.02-0.02L24.988,50L11,35.6l7.029-7.164l6.977,7.184l21-21.619L53,21.199L25.025,50z" fill="#00b45a"/>
+                        </svg>
+                        Você ganhou um Brinde!
+                      </p>
+                    </template>
+                    <template x-if="freeGiftRemainingPercentual < 100">
+                      <p class="side-cart-shipping-msg">
+                        {% if settings.icon_gift != blank %}
+                          {{
+                            settings.icon_gift
+                            | image_url: width: 24
+                            | image_tag:
+                              loading: 'lazy',
+                              class: 'side-cart-shipping-icon side-cart-shipping-icon--regular'
+                          }}
+                        {% else %}
+                          <svg
+                            class="side-cart-shipping-icon side-cart-shipping-icon--regular"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 64 64"
+                          >
+                            <path d="M32,2C15.431,2,2,15.432,2,32c0,16.568,13.432,30,30,30c16.568,0,30-13.432,30-30C62,15.432,48.568,2,32,2z M25.025,50  l-0.02-0.02L24.988,50L11,35.6l7.029-7.164l6.977,7.184l21-21.619L53,21.199L25.025,50z" fill="#00b45a"/>
+                          </svg>
+                        {% endif %}
+                        <span
+                          >Faltam <span x-text="formatMoney(freeGiftMinimumValue - cartTotalPrice)"></span> para
+                          <strong>ganhar um Brinde</strong></span
+                        >
+                      </p>
+                    </template>
+                  </div>
+                </div>
+
+                <div class="side-cart-shipping-bar">
+                  <div
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    class="side-cart-shipping-bar-active"
+                    :style="'width: ' + Math.min(freeGiftRemainingPercentual, 100) + '%'"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% if settings.active_discount_1
+            or settings.active_discount_2
+            or settings.active_discount_3
+            or settings.active_discount_4
+          %}
+            {% liquid
+              assign amount_1 = settings.discount_un_1 | minus: cart.item_count
+              assign amount_2 = settings.discount_un_2 | minus: cart.item_count
+              assign amount_3 = settings.discount_un_3 | minus: cart.item_count
+              assign amount_4 = settings.discount_un_4 | minus: cart.item_count
+            %}
+            <div
+              x-data="
+                {
+                  items: {{ cart.items | json | escape | replace: '"', "'" }},
+                  itemsCount: {{ cart.item_count }},
+                  value1: {{ settings.discount_un_1 }},
+                  value2: {{ settings.discount_un_2 }},
+                  value3: {{ settings.discount_un_3 }},
+                  value4: {{ settings.discount_un_4 }},
+                  maxValue: 0,
+                  valueArray: [],
+                  freeShippingMinimumValue: {{ minimum_free_shipping_value }},
+                  freeShippingRemainingPercentual: 0,
+                  shipping_calculate: false,
+                }
+              "
+              x-init="
+                valueArray = [value1, value2, value3, value4]
+                maxValue = Math.max(...valueArray)
+                freeShippingRemainingPercentual = (itemsCount / maxValue) * 100
+
+                $store.cart.refresh(itemsCount, items)
+              "
+              class="side-cart-shipping-container"
+              style="background: {{ settings.bg_color }};"
+            >
+              <div>
+                <div style="display: flex; gap: 8px; justify-content: center">
+                  {% if settings.icon != blank %}
+                    {{ settings.icon | image_url: width: 100 | image_tag: loading: 'lazy', fetchpriority: 'auto' }}
+                  {% endif %}
+                  <div style="color: {{ settings.text_color }}; --highlightedColor: {{ settings.highlighted_text_color }}">
+                    {% if cart.item_count < settings.discount_un_1 %}
+                      {{
+                        settings.text_label_01
+                        | replace: '[value]', amount_1
+                        | replace: '[discount]', settings.discount_1
+                      }}
+                    {% elsif cart.item_count < settings.discount_un_2 %}
+                      {{
+                        settings.text_label_02
+                        | replace: '[value]', amount_2
+                        | replace: '[discount]', settings.discount_2
+                      }}
+                    {% elsif cart.item_count < settings.discount_un_3 %}
+                      {{
+                        settings.text_label_03
+                        | replace: '[value]', amount_3
+                        | replace: '[discount]', settings.discount_3
+                      }}
+                    {% elsif cart.item_count < settings.discount_un_4 %}
+                      {{
+                        settings.text_label_04
+                        | replace: '[value]', amount_4
+                        | replace: '[discount]', settings.discount_4
+                      }}
+                    {% else %}
+                      {{ settings.after_cart_text }}
+                    {% endif %}
+                  </div>
+                </div>
+                {% if cart.item_count > 0 %}
+                  <template x-if="freeShippingRemainingPercentual >= 100">
+                    <div class="side-cart-shipping-bar">
+                      <div
+                        x-data="{ progressBarWidth: 0 }"
+                        x-init="setTimeout(() => progressBarWidth = freeShippingRemainingPercentual, 500)"
+                        x-show="progressBarWidth >= 100"
+                        role="progressbar"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        class="side-cart-shipping-bar-active"
+                        style="--highlightedColor: {{ settings.highlighted_text_color }}"
+                        :style="{ width: `100%` }"
+                      ></div>
+                    </div>
+                  </template>
+                  <template x-if="freeShippingRemainingPercentual < 100">
+                    <div class="side-cart-shipping-bar">
+                      <div
+                        x-data="{ progressBarWidth: 0 }"
+                        x-init="setTimeout(() => progressBarWidth = freeShippingRemainingPercentual, 500)"
+                        x-show="progressBarWidth < 100"
+                        role="progressbar"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        class="side-cart-shipping-bar-active"
+                        style="--highlightedColor: {{ settings.highlighted_text_color }}"
+                        :style="{ width: `${progressBarWidth}%` }"
+                      ></div>
+                    </div>
+                  </template>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+        {% if cart.item_count > 0 %}
+          <div class="side-cart-infos">
+            <div class="side-cart-cart">
+              <div class="side-cart-cart-info">
+                <div class="side-cart-subtotal">Subtotal de produtos</div>
+                <div class="side-cart-subtotal-group">
+                  {% assign actual_total = 0 %}
+                  {% assign total_adjustment = 0 %}
+                  {%- for item in cart.items -%}
+                    {% if item.final_line_price == 0 %}
+                      {% assign total_adjustment = total_adjustment | plus: 1 %}
+                    {% endif %}
+
+                    {% if item.product.compare_at_price > 0 %}
+                      {% assign total_compare_price = item.product.compare_at_price | times: item.quantity %}
+                      {% assign actual_total = actual_total | plus: total_compare_price %}
+                    {% elsif item.original_price > item.price %}
+                      {% assign total_original_price = item.original_price | times: item.quantity %}
+                      {% assign actual_total = actual_total | plus: total_original_price %}
+                    {% else %}
+                      {% assign actual_total = actual_total | plus: item.line_price %}
+                    {% endif %}
+                  {% endfor %}
+
+                  {% assign adjusted_total = cart.total_price | plus: total_adjustment %}
+
+                  {% if actual_total != adjusted_total %}
+                    <span class="side-cart-original-price">{{ actual_total | money }}</span>
+                    <span class="side-cart-total-price">{{ adjusted_total | money }}</span>
+                  {% else %}
+                    <span class="side-cart-total-price">{{ adjusted_total | money }}</span>
+                  {% endif %}
+                  <span class="side-cart-item-count"
+                    >/{{ cart.item_count }}
+                    {% if cart.item_count > 1 %}itens{% else %}item{% endif -%}
+                  </span>
+                </div>
+              </div>
+
+              {% assign has_free_items = false %}
+              {% for item in cart.items %}
+                {% if item.line_level_discount_allocations.size > 0 %}
+                  {% for discount_allocation in item.line_level_discount_allocations %}
+                    {% if discount_allocation.discount_application.value_type == 'percentage' %}
+                      {% assign discount_value = discount_allocation.discount_application.value | remove: '.0' %}
+                      {% if discount_value == '100' or discount_value == 100 %}
+                        {% assign has_free_items = true %}
+                        {% break %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+                {% if has_free_items %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
+              {% if has_free_items and settings.checkout_redirect_type == 'shopify' %}
+                <a aria-label="Finalizar compra" href="{{ routes.cart_url }}/checkout" class="button-checkout"
+                  >Finalizar compra</a
+                >
+              {% else %}
+                <a href="javascript:void(0)" onclick="yampiClick()" class="button-checkout">Finalizar Compra</a>
+              {% endif %}
+            </div>
+            <a href="{{ routes.root_url }}" @click.prevent="showCart = false">Continuar comprando</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% style %}
+  .opacity-transition {
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 500ms;
+  }
+
+  .translate-transition {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+      transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 500ms;
+  }
+
+  .opacity-0 {
+    opacity: 0;
+  }
+
+  .opacity-100 {
+    opacity: 1;
+  }
+
+  .translate-full {
+    transform: translate(0, 100%);
+  }
+
+  .translate-0 {
+    transform: translate(0, 0%);
+  }
+
+  @media (min-width: 768px) {
+    .translate-full {
+      transform: translate(100%);
+    }
+
+    .translate-0 {
+      transform: translate(0%);
+    }
+  }
+
+  .side-cart {
+    --font-body-family: 'Montserrat' !important;
+    font-family: var(--font-body-family);
+  }
+
+  .side-cart > div {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 101;
+  }
+
+  .side-bar-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgb(0 0 0 / 0.75);
+    display: block;
+  }
+
+  .side-cart-container {
+    position: relative;
+    right: 0;
+    background: #fff;
+    height: 90dvh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-radius: 20px 20px 0 0;
+    padding: 32px 0;
+  }
+
+  .side-cart-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 100%;
+  }
+
+  .side-cart-content .loading-container {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+    color: #fff;
+    background-color: rgb(255 255 255 / 0.8);
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: 0.5;
+    }
+  }
+  .animate-pulse {
+    width: 100px;
+    height: auto;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .side-cart-content .side-cart-close {
+    position: absolute;
+    top: -16px;
+    right: 16px;
+    cursor: pointer;
+    width: 22px;
+    text-align: center;
+  }
+
+  .side-cart-content .side-cart-close svg {
+    height: 12px;
+    width: 12px;
+  }
+
+  .side-cart-items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .side-cart-items {
+    flex: 1 1 0;
+    overflow-y: auto;
+    padding: 0 28px 0 32px;
+  }
+
+  .item-product-image {
+    width: 74px;
+    height: 74px;
+  }
+
+  /* width */
+  .side-cart-items::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* Track */
+  .side-cart-items::-webkit-scrollbar-track {
+    background: #d8d8d8;
+  }
+
+  /* Handle */
+  .side-cart-items::-webkit-scrollbar-thumb {
+    background: #00b45a;
+    border-radius: 9999px;
+  }
+
+  .side-cart-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #3c3c3c;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .side-cart-items .side-cart-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #afafaf;
+    text-align: center;
+    padding: 0 54px;
+  }
+
+  .side-cart-items .side-cart-empty .side-cart-empty-title {
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  .side-cart-items .side-cart-empty .side-cart-empty-description {
+    font-size: 17px;
+    font-weight: 400;
+    margin-top: 16px;
+  }
+
+  .side-cart-buy-together {
+    padding: 0;
+    margin-top: 40px;
+  }
+
+  .side-cart-shipping {
+    padding: 0 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* Mostra o frete grátis apenas quando há classe free-shipping no body */
+  body.free-shipping .side-cart-shipping .free-shipping-container {
+    display: flex;
+    width: 100%;
+  }
+
+  .free-shipping .side-cart-shipping .side-cart-shipping-container > div:first-child > div:last-child {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .side-cart-shipping-container {
+    width: 100%;
+  }
+
+  /* Garante que a div dentro do container tenha 100% de largura */
+  .side-cart-shipping-container > div {
+    width: 100%;
+  }
+
+  /* Quando há apenas um elemento (frete OU brinde), ocupa 100% */
+  .side-cart-shipping > div:only-child .side-cart-shipping-container {
+    width: 100%;
+  }
+
+  /* Quando há dois elementos (frete E brinde), cada um ocupa 50% */
+  .side-cart-shipping > div:first-child:not(:only-child) .side-cart-shipping-container,
+  .side-cart-shipping > div:last-child:not(:only-child) .side-cart-shipping-container {
+    width: 50%;
+  }
+
+  /* Quando o frete está oculto (sem classe free-shipping), o brinde ocupa 100% */
+  body:not(.free-shipping) .side-cart-shipping .side-cart-shipping-container:not(.free-shipping-container) {
+    width: 100%;
+  }
+
+  .side-cart-shipping-container img {
+    width: 25px;
+    height: auto;
+  }
+
+  .side-cart-shipping svg {
+    width: 17px;
+    height: auto;
+    stroke-width: 0.1;
+    margin-right: 3px;
+  }
+
+  .side-cart-shipping-container .gift-text {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .side-cart-shipping-container strong {
+    color: #00b45a;
+    white-space: nowrap;
+  }
+
+  .side-cart-shipping-container .side-cart-shipping-bar {
+    height: 4px;
+    width: 100%;
+    background: #d8d8d8;
+    border-radius: 9999px;
+  }
+
+  .side-cart-shipping-container .side-cart-shipping-bar-active {
+    height: 4px;
+    width: 100%;
+    background: #00b45a;
+    display: block;
+    border-radius: 9999px;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 1s;
+    transition-property: all;
+  }
+
+  .side-cart-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 32px;
+  }
+
+  .side-cart-infos .side-cart-cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .side-cart-infos > a {
+    display: flex;
+    justify-content: center;
+    color: #ff7a50;
+    text-decoration: underline;
+    width: 100%;
+  }
+
+  .side-cart-infos .side-cart-subtotal {
+    font-size: 10px;
+    line-height: 1.2rem;
+  }
+
+  .side-cart-subtotal-group {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 767px) {
+    .side-cart-subtotal-group {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .side-cart-infos .side-cart-cart a {
+    border-radius: 9999px;
+    background: #00b45a;
+    color: #fff;
+    padding: 16px 30px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    font-size: 15px;
+  }
+
+  .side-cart-infos .side-cart-total-price {
+    font-size: 15px;
+    font-weight: 500;
+    color: #00b45a;
+  }
+
+  .side-cart-infos .side-cart-original-price {
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 8px;
+  }
+
+  @media (min-width: 768px) {
+    .side-cart-container {
+      height: 100vh;
+      max-width: 512px;
+      border-radius: 0;
+    }
+  }
+{% endstyle %}

@@ -1,0 +1,189 @@
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+
+<style>
+  .faq-section {
+    padding: 40px 20px 60px 20px;
+  }
+  
+  @media (min-width: 1200px){
+    .faq-section {
+      padding: 40px 120px 60px 120px;
+    }
+
+    /* .faqs-container {
+      display: flex;
+      max-height: 246px;
+      flex-flow: column wrap;
+      column-gap: 10px;
+    } */
+
+    .faqs-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      position: relative;
+      grid-auto-flow: column;
+      column-gap: 10px;
+    }
+
+    {% assign halfColumns = section.blocks.size | divided_by: 2 | floor %}
+    .faqs-container > div:nth-child(-n+{{halfColumns}}) {
+      grid-column: 1;
+    }
+    
+    .faqs-container > div:nth-child(n+{{halfColumns | plus: 1}}) {
+      grid-column: 2;
+    }
+  }
+  
+  .faq {
+    padding: 10px 20px;
+    cursor: pointer;
+    background: #fafafa;
+    margin-bottom: 10px;
+    border-radius: 20px;
+  }
+  
+  .faq.active {
+    background: #e4e4e4;
+  }
+  
+  .faq:last-child {
+    border-bottom: none;
+  }
+  .faq-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid transparent;
+    font-weight: var(--font-weight-semibold);
+    line-height: calc(var(--body-line-height) + 4px);
+    letter-spacing: var(--body-letter-spacing);
+    color: var(--color-text);
+  }
+
+  .faq.active .faq-title {
+    border-bottom: 2px solid #c6c6c6;
+    padding-bottom: 10px;
+  }
+  .faq-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+  }
+  .faq-content {
+    display: none;
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+  .faq.active .faq-content {
+    display: block;
+  }
+
+  .faq-icon {
+    width: 16px;
+    height: auto;
+  }
+  .faqs-container{
+    margin-top: 50px;
+  }
+
+  .faq-section .header-widget h3 {
+    margin-bottom: 0;
+  }
+</style>
+<div class="faq-section">
+  <div class="header-widget custom-font">
+    <h3>Perguntas frequentes</h3>
+    <p>Confira as respostas das possíveis dúvidas<br>
+    que você possa ter</p>
+  </div>
+  <div class="faqs-container">
+  {% for meta in product.metafields.custom.faq_s.value %}
+  <div class="faq">
+    <div class="faq-title">
+      {{ meta.pergunta }}
+      <img class="faq-icon" src="https://cdn.shopify.com/s/files/1/0619/0206/1748/files/downarrow_121316_1_30x.png?v=1692143013" alt="Arrow Down">
+    </div>
+    <div class="faq-content">
+      {% assign description = meta.resposta | newline_to_br | split: '<br />' %}
+      {% for p in description %}
+        <p>{{ p }}</p>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+  </div>
+</div>
+<script>
+  const faqTitles = document.querySelectorAll('.faq-title');
+
+  faqTitles.forEach(title => {
+    title.addEventListener('click', () => {
+      title.parentElement.classList.toggle('active');
+      const icon = title.querySelector('.faq-icon');
+      icon.style.transform = icon.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+  });
+</script>
+
+{% if section.settings.borda-inferior %}
+  {% render 'borda-inferior', cor: section.settings.color-borda-inferior %}
+{% endif %}
+{% schema %}
+  {
+    "name": "Faqs Product",
+    "settings": [{
+      "type": "checkbox",
+      "id": "borda-superior",
+      "default": true,
+      "label": "Ativar divisória superior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-superior",
+      "default": "#fff",
+      "label": "Cor da divisória superior"
+    },
+    {
+      "type": "checkbox",
+      "id": "borda-inferior",
+      "default": false,
+      "label": "Ativar divisória inferior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-inferior",
+      "default": "#fff",
+      "label": "Cor da divisória inferior"
+    }],
+    "blocks":[
+      {
+        "type": "faq",
+        "name": "Faq",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Título"
+          },
+          {
+            "type": "textarea",
+            "id": "descricao",
+            "label": "Descrição"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {"name": "Faqs Home"}
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

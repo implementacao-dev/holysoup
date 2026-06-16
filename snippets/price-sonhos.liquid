@@ -1,0 +1,230 @@
+{%- comment -%}
+    Renders a list of product's price (regular, sale)
+
+    Accepts:
+    - product: {Object} Product Liquid object (optional)
+    - use_variant: {Boolean} Renders selected or first variant price instead of overall product pricing (optional)
+    - show_badges: {Boolean} Renders 'Sale' and 'Sold Out' tags if the product matches the condition (optional)
+    - price_class: {String} Adds a price class to the price element (optional)
+
+    Usage:
+    {% render 'price', product: product %}
+{%- endcomment -%}
+{%- liquid
+     if use_variant
+        assign target = product.selected_or_first_available_variant
+    else
+        assign target = product
+    endif
+
+    assign compare_at_price = target.compare_at_price
+    assign price = target.price | default: 1999
+    assign installment = price | divided_by: installment_number
+    assign available = target.available | default: false
+
+    if settings.currency_format_enable
+        assign money_price = price | money_with_currency
+        assign installment_price = installment | money_with_currency
+    else
+        assign money_price = price | money
+        assign installment_price = installment | money
+    endif 
+
+    if target == product and product.price_varies
+        assign money_price = 'products.product.price.from_price_html' | t: price: money_price
+    endif
+-%}
+
+<div class="price
+    {%- if price_class %} {{ price_class }}{% endif -%}
+    {%- if available == false %} price--sold-out {% endif -%}
+    {%- if compare_at_price > price %} price--on-sale {% endif -%}
+    {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}">
+    <dl>
+        {%- comment -%}
+          Explanation of description list:
+            - div.price__regular: Displayed when there are no variants on sale
+            - div.price__sale: Displayed when a variant is a sale
+            - div.price__availability: Displayed when the product is sold out
+        {%- endcomment -%}
+        <div class="price__regular">
+            {%- comment -%}
+                <dt>
+                    <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+                </dt>
+            {%- endcomment -%}
+            <dd class="price__last">
+              {% if remove_price != true %}
+                <span class="price-item price-item--regular">{{ money_price }}</span>
+              {% endif %}
+              {% if installment_number > 1 %}
+                <div>
+                  <span class="price-installment">{{ installment_number }}x de <span>{{ installment_price }}</span></span>
+                </div>
+              {% endif %}
+            </dd>
+        </div>
+        <div class="price__sale">
+            {%- comment -%}
+                <dt class="price__compare">
+                    <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+                </dt>
+            {%- endcomment -%}
+            <dd class="price__compare"><s class="price-item price-item--regular">{% if settings.currency_format_enable %}{{ compare_at_price | money_with_currency }}{% else %}{{ compare_at_price | money }}{% endif %}</s></dd>
+            {%- comment -%}
+                <dt>
+                    <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
+                </dt>
+            {%- endcomment -%}
+            <dd class="price__last">
+              <span class="price-item price-item--sale">{{ money_price }}</span>
+              {% if installment_number > 1 %}
+                <div>
+                  <span class="price-installment">{{ installment_number }}x de <span>{{ installment_price }}</span></span>
+                </div>
+              {% endif %}
+            </dd>
+            {%- if settings.show_saved_price and price != nil and price != blank and compare_at_price != nil and compare_at_price != blank -%}
+                {%- assign saved_price = compare_at_price | minus: price | money -%}
+                <div class="price__saved"><span class="price-item price-item--saved">{{'products.product.price.saved_price_html' | t: price: saved_price }}</span></div>
+            {%- endif -%}
+            {%- if hasCountdown == true or hasCountdown == 'true' -%}
+            <dd class="price__label_sale">
+                {%- liquid 
+                    assign list_compare = product.variants | where: 'compare_at_price'
+                    assign compare = 0
+                    for variant in list_compare
+                        assign saving = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round
+                        if saving > compare
+                            assign compare = saving
+                        endif
+                    endfor
+                    if compare  < 1
+                        assign compare = product.compare_at_price_min | minus: product.price_min | times: 100.0 | divided_by: product.compare_at_price_min | round
+                    endif
+                -%}<span class="label_sale">-{{ compare | append: '%'}}</span></dd>
+            {%- endif -%}
+        </div>
+        <small class="unit-price caption{% if available == false or product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
+            <dt class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</dt>
+            <dd class="price__last"><span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span><span aria-hidden="true">/</span><span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span><span>{%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+                        {{- product.selected_or_first_available_variant.unit_price_measurement.reference_value -}}{%- endif -%} {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}</span></dd>
+        </small>
+    </dl>
+</div>
+
+{% assign valor = product.selected_or_first_available_variant.price | divided_by: 10  %}
+
+{% if valor > 150 %}
+<div class="portion-container">
+  <div class="portion-icon-container" style="--background: {{ block.settings.color }}">
+    <svg
+      class="portion-icon"
+      width="58"
+      height="46"
+      viewBox="0 0 58 46"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clip-path="url(#clip0_110_5)">
+      <path d="M40.0307 45.2012H17.1945C14.6807 45.2012 12.6354 43.156 12.6354 40.642V39.227C3.31187 33.6118 1.14249 23.5572 0.640666 19.3986C0.514776 18.3536 0.842884 17.3023 1.54148 16.5145C2.24056 15.726 3.2462 15.2734 4.30041 15.2734H52.9248C53.979 15.2734 54.9846 15.726 55.6837 16.5145C56.3823 17.3023 56.7104 18.3536 56.5843 19.3986C56.0827 23.5572 53.9133 33.6118 44.5898 39.227V40.642C44.5898 43.156 42.5446 45.2012 40.0307 45.2012ZM4.30041 18.8407C4.28554 18.8407 4.24638 18.8407 4.2107 18.8809C4.17625 18.9198 4.18071 18.9572 4.1822 18.9711C4.63397 22.7153 6.61847 31.9301 15.2697 36.6253L16.2025 37.1315V40.642C16.2025 41.189 16.6476 41.6341 17.1945 41.6341H40.0307C40.5776 41.6341 41.0227 41.189 41.0227 40.642V37.1315L41.9555 36.6253C50.6067 31.9301 52.5912 22.7153 53.0427 18.9711C53.0445 18.9572 53.0489 18.9198 53.0145 18.8809C52.9788 18.8407 52.9394 18.8407 52.9248 18.8407H4.30041Z" fill="#FFFFFF"/>
+      <path d="M33.7399 24.9196C33.6101 25.6024 33.5546 26.301 33.5782 27.0035C33.6214 28.2699 33.004 30.2863 31.1428 32.1479C29.6386 33.6522 27.716 34.5862 26.1256 34.5862C25.651 34.5862 24.9975 34.4982 24.5775 34.0784C23.5054 33.0064 24.1153 29.9049 26.5075 27.5125C28.0107 26.0093 29.933 25.0753 31.5235 25.0753C31.5666 25.0753 31.6092 25.076 31.6523 25.0773C31.7596 25.081 31.8672 25.083 31.974 25.083C32.5729 25.083 33.1633 25.0277 33.7399 24.9196ZM55.905 0.835938C55.4146 0.835938 54.9249 1.02304 54.5508 1.39674L36.1802 19.7673C35.0623 20.8852 33.5494 21.5156 31.974 21.5156C31.9073 21.5156 31.8402 21.5144 31.7733 21.5122C31.6902 21.5095 31.6072 21.508 31.5235 21.508C29.0679 21.508 26.2569 22.7183 23.9849 24.9903C20.2454 28.7296 19.3817 33.9277 22.0552 36.6009C23.1037 37.6494 24.5403 38.1535 26.1256 38.1535C28.5811 38.1535 31.3926 36.9427 33.6651 34.6702C36.0147 32.3209 37.2287 29.3954 37.1437 26.8823C37.0877 25.2356 37.7233 23.6407 38.8881 22.4757L57.2588 4.10512C58.0068 3.35721 58.0068 2.1449 57.2588 1.39674C56.8849 1.02304 56.3952 0.835938 55.905 0.835938Z" fill="#FFFFFF"/>
+      </g>
+      <defs>
+      <clipPath id="clip0_110_5">
+      <rect width="58" height="46" fill="white"/>
+      </clipPath>
+      </defs>
+    </svg>
+  </div>
+  <div class="portion-text-container">
+    <span>Rende 10 porções</span>
+    <div class="portion-value">
+      <b>
+        /
+        {{- product.selected_or_first_available_variant.price | divided_by: 10 | money }}
+        por porção
+      </b>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="portion-container">
+  <div class="portion-icon-container" style="--background: {{ block.settings.color }}">
+    <svg
+      class="portion-icon"
+      width="58"
+      height="46"
+      viewBox="0 0 58 46"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clip-path="url(#clip0_110_5)">
+      <path d="M40.0307 45.2012H17.1945C14.6807 45.2012 12.6354 43.156 12.6354 40.642V39.227C3.31187 33.6118 1.14249 23.5572 0.640666 19.3986C0.514776 18.3536 0.842884 17.3023 1.54148 16.5145C2.24056 15.726 3.2462 15.2734 4.30041 15.2734H52.9248C53.979 15.2734 54.9846 15.726 55.6837 16.5145C56.3823 17.3023 56.7104 18.3536 56.5843 19.3986C56.0827 23.5572 53.9133 33.6118 44.5898 39.227V40.642C44.5898 43.156 42.5446 45.2012 40.0307 45.2012ZM4.30041 18.8407C4.28554 18.8407 4.24638 18.8407 4.2107 18.8809C4.17625 18.9198 4.18071 18.9572 4.1822 18.9711C4.63397 22.7153 6.61847 31.9301 15.2697 36.6253L16.2025 37.1315V40.642C16.2025 41.189 16.6476 41.6341 17.1945 41.6341H40.0307C40.5776 41.6341 41.0227 41.189 41.0227 40.642V37.1315L41.9555 36.6253C50.6067 31.9301 52.5912 22.7153 53.0427 18.9711C53.0445 18.9572 53.0489 18.9198 53.0145 18.8809C52.9788 18.8407 52.9394 18.8407 52.9248 18.8407H4.30041Z" fill="#FFFFFF"/>
+      <path d="M33.7399 24.9196C33.6101 25.6024 33.5546 26.301 33.5782 27.0035C33.6214 28.2699 33.004 30.2863 31.1428 32.1479C29.6386 33.6522 27.716 34.5862 26.1256 34.5862C25.651 34.5862 24.9975 34.4982 24.5775 34.0784C23.5054 33.0064 24.1153 29.9049 26.5075 27.5125C28.0107 26.0093 29.933 25.0753 31.5235 25.0753C31.5666 25.0753 31.6092 25.076 31.6523 25.0773C31.7596 25.081 31.8672 25.083 31.974 25.083C32.5729 25.083 33.1633 25.0277 33.7399 24.9196ZM55.905 0.835938C55.4146 0.835938 54.9249 1.02304 54.5508 1.39674L36.1802 19.7673C35.0623 20.8852 33.5494 21.5156 31.974 21.5156C31.9073 21.5156 31.8402 21.5144 31.7733 21.5122C31.6902 21.5095 31.6072 21.508 31.5235 21.508C29.0679 21.508 26.2569 22.7183 23.9849 24.9903C20.2454 28.7296 19.3817 33.9277 22.0552 36.6009C23.1037 37.6494 24.5403 38.1535 26.1256 38.1535C28.5811 38.1535 31.3926 36.9427 33.6651 34.6702C36.0147 32.3209 37.2287 29.3954 37.1437 26.8823C37.0877 25.2356 37.7233 23.6407 38.8881 22.4757L57.2588 4.10512C58.0068 3.35721 58.0068 2.1449 57.2588 1.39674C56.8849 1.02304 56.3952 0.835938 55.905 0.835938Z" fill="#FFFFFF"/>
+      </g>
+      <defs>
+      <clipPath id="clip0_110_5">
+      <rect width="58" height="46" fill="white"/>
+      </clipPath>
+      </defs>
+    </svg>
+  </div>
+  <div class="portion-text-container">
+    <span>Rende 1 porções</span>
+    <div class="portion-value">
+      <b>
+        /
+        {{- product.selected_or_first_available_variant.price | divided_by: 1 | money }}
+        por porção
+      </b>
+    </div>
+  </div>
+</div>
+{% endif %}
+        
+<style>
+  .portion-icon-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #02B456;
+    padding: 4px;
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+  }
+
+  svg.portion-icon {
+    color: #fff;
+    width: 28px;
+    height: auto;
+  }
+
+  .portion-text-container {
+    color: #231F20;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+  }
+
+  .portion-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .portion-value {
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+  }
+
+  .portion-value b {
+    color: #02B456;
+  }
+</style>

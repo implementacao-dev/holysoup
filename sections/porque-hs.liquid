@@ -1,0 +1,157 @@
+{%- style -%}
+  .porque-hs-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    position: relative;
+    z-index: 0;
+  }
+
+  .content-porque-hs-{{ section.id }} {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content-porque-hs-{{ section.id }} h3 {
+    color: #00b45a;
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: 0;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  .content-porque-hs-list-{{ section.id }} {
+    text-align: left;
+    max-width: 330px;
+    margin: 0 auto;
+  }
+
+  .porque-hs-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .porque-hs-item svg {
+    width: 18px;
+    height: auto;
+    stroke: none;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  .porque-hs-item span {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+{%- endstyle -%}
+
+<div class="porque-hs-{{ section.id }}">
+  <div class="content-porque-hs-{{ section.id }}">
+    <h3>{{ section.settings.title }}</h3>
+    <div class="content-porque-hs-list-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        <div class="porque-hs-item" {{ block.shopify_attributes }}>
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18.544" height="18.544" viewBox="0 0 18.544 18.544">
+              <path id="Icon_awesome-check-circle" data-name="Icon awesome-check-circle" d="M19.106,9.834A9.272,9.272,0,1,1,9.834.563,9.272,9.272,0,0,1,19.106,9.834ZM8.762,14.744l6.879-6.879a.6.6,0,0,0,0-.846L14.8,6.173a.6.6,0,0,0-.846,0l-5.61,5.61L5.72,9.164a.6.6,0,0,0-.846,0l-.846.846a.6.6,0,0,0,0,.846l3.888,3.888A.6.6,0,0,0,8.762,14.744Z" transform="translate(-0.563 -0.563)" fill="#00b45a"/>
+            </svg>
+          </span>
+          <span>
+            {{ block.settings.text }}
+          </span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Porque HS",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Você precisa da HolyFoods para:"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Cor de Fundo",
+      "default": "#f7f7f7"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item da Lista",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "text",
+          "label": "Texto",
+          "default": "<b>Jantar fácil</b> e saudável em dias cansativos"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Porque HS",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "text": "<b>Jantar fácil</b> e saudável em dias cansativos"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "<b>Escapar do fast-food</b> super calórico"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Manter a <b>dieta sem esforço</b> e com sabor"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Comer bem e <b>não sentir culpa</b>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

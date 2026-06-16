@@ -1,0 +1,108 @@
+<style>
+  {{ 'header-landing.css' | inline_asset_content }}
+</style>
+<script src="{{ 'header-landing.js' | asset_url }}" defer></script>
+
+<header class="header-landing" style="background-color: {{ section.settings.bg_color }};">
+  <div class="header-landing-container">
+    <div class="header-landing-spacer">
+      <span></span>
+    </div>
+    <div class="header-landing-logo">
+      <a href="{{ routes.root_url }}" class="header-logo-link">
+        {% if section.settings.logo != blank %}
+          {{
+            section.settings.logo
+            | image_url: width: 125
+            | image_tag: alt: shop.name, loading: 'eager', width: 125, height: 36, class: 'header-logo-image'
+          }}
+        {% else %}
+          <img
+            src="{{ 'logo_holy.svg' | asset_url }}"
+            alt="{{ shop.name }}"
+            class="header-logo-image"
+            loading="eager"
+            width="125"
+            height="36"
+          >
+        {% endif %}
+      </a>
+    </div>
+
+    {% if section.settings.show_cart %}
+      <div class="header-landing-cart">
+        <button
+          type="button"
+          class="header-cart-link header__icon header__icon--cart link link--text focus-inset cart-icon-bubble"
+          aria-label="Carrinho"
+          {% if settings.show_quick_cart %}
+            data-cart-sidebar
+          {% endif %}
+          style="--text-color: {{ section.settings.cart_color }};"
+        >
+          {% render 'icon-cart-02', class: 'w-h-24', stroke: '' %}
+          <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+          {%- if cart.item_count > 0 -%}
+            <div class="cart-count-bubble">
+              {%- if cart.item_count < 100 -%}
+                <span class="text" aria-hidden="true" data-cart-count>{{ cart.item_count }}</span>
+              {%- endif -%}
+              <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+            </div>
+          {%- endif -%}
+        </button>
+      </div>
+    {% endif %}
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Cabeçalho Landing",
+  "tag": "header",
+  "class": "header-landing-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Design e Cores"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Cor de Fundo",
+      "default": "#005234"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "header",
+      "content": "Funcionalidades e Carrinho"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "Mostrar Ícone do Carrinho",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "cart_color",
+      "label": "Cor do Ícone do Carrinho",
+      "default": "#7ED321"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cabeçalho Landing",
+      "settings": {
+        "bg_color": "#005234",
+        "show_cart": false,
+        "cart_color": "#7ED321"
+      }
+    }
+  ]
+}
+{% endschema %}

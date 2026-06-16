@@ -1,0 +1,121 @@
+<style>
+  .header-rastreio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .header-rastreio h3 {
+    margin: 0;
+    font-family: var(--font-body-family);
+    font-size: 15px;
+    color: #00814e;
+  }
+
+  .content-header-rastreio {
+    padding-right: 20px;
+    position: relative;
+  }
+  
+  span.back-menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  span.back-menu svg {
+    stroke: none;
+    width: 21px;
+    height: auto;
+  }
+  
+  .header-rastreio p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 13px;
+  }
+  
+  .icon-header-rastreio svg {
+    width: 30px;
+    height: auto;
+  }
+  
+  .halo-sidebar_rastreio .rastreio-facil {
+    display: none;
+  }
+  
+  #iumy-app {
+    width: 100%;
+    height: 100%;
+  }
+
+  #iumy-first-loader {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .halo-sidebar-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .iframe-container {
+    flex-grow: 1;
+    width: 100%;
+    height: calc(100% - 50px);
+    overflow: hidden;
+  }
+</style>
+
+<div class="halo-sidebar halo-sidebar-left halo-sidebar_rastreio {% if settings.mobile_menu == 'custom' %}custom-mobile-menu{% endif %}" id="shipping-mobile" style="padding-left: 0; padding-right: 0; padding-bottom: 0;">
+    <div class="halo-sidebar-wrapper custom-scrollbar" style="padding-bottom: 52px;">
+
+      <div class="header-rastreio" style="padding: 0 20px;">
+        <div class="icon-header-rastreio">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25.013" height="25" viewBox="0 0 25.013 25">
+            <g id="Grupo_48">
+              <path id="Caminho_49" d="M22.844,21.617,24.7,23.426a.88.88,0,0,1,.276.912.892.892,0,0,1-1.51.386c-.555-.537-1.1-1.089-1.639-1.637-.071-.071-.13-.156-.2-.245A6.461,6.461,0,0,1,19.5,23.875a6.164,6.164,0,0,1-4.836-.662.373.373,0,0,0-.426-.014c-.983.543-1.978,1.067-2.961,1.61a1.056,1.056,0,0,1-1.106,0Q5.381,22.19.582,19.582A1.021,1.021,0,0,1,0,18.591Q.009,12.467,0,6.344a1.021,1.021,0,0,1,.588-.987Q5.337,2.778,10.078.18a1.179,1.179,0,0,1,1.255,0q4.69,2.575,9.4,5.121a1.2,1.2,0,0,1,.717,1.2c-.023,1.989-.007,3.979-.012,5.969a.415.415,0,0,0,.171.375,6.224,6.224,0,0,1,1.345,8.6c-.02.031-.039.063-.1.168" fill="#00814e"/>
+            </g>
+          </svg>
+        </div>
+        <div class="content-header-rastreio" style="padding-right: 20px; position: relative; width: 100%;">
+          <h3>Rastrear pedido</h3>
+          <span class="back-menu" data-remove-sidebar="rastreio_open" style="position: absolute; right: 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="10.004" viewBox="0 0 15 10.004">
+              <path id="Icon_ionic-ios-arrow-round-back" data-name="Icon ionic-ios-arrow-round-back" d="M13.316,11.443a.681.681,0,0,1,.005.959l-3.163,3.173H22.21a.677.677,0,0,1,0,1.355H10.159L13.327,20.1a.686.686,0,0,1-.005.959.675.675,0,0,1-.953-.005L8.075,16.732h0a.761.761,0,0,1-.141-.214.646.646,0,0,1-.052-.261.679.679,0,0,1,.193-.474l4.293-4.324A.664.664,0,0,1,13.316,11.443Z" transform="translate(-7.882 -11.252)" fill="#3c3c3c"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Iframe do Iumy -->
+      <div class="iframe-container">
+        <div id="iumy-app">
+          <img id="iumy-first-loader" src="https://iumy-assets-bucket.s3.sa-east-1.amazonaws.com/loading.gif">
+        </div>
+      </div>
+
+      <script>
+        window.iumyStoreUuid = '86b1106c-4182-4e11-a3ff-2d29bb7ade6a'; 
+        window.iumyVectorColor = "green";
+        window.iumyTypeOfImage = "default";
+
+        (() => {
+          var a = document.createElement("script");
+          a.type = "module";
+          a.setAttribute("crossorigin", "");
+          a.src = "https://d2dh0wytruw20a.cloudfront.net/plugin/index.js";
+
+          var c = document.createElement("link");
+          c.href = "https://d2dh0wytruw20a.cloudfront.net/plugin/index.css";
+          c.rel = "stylesheet";
+          c.setAttribute("crossorigin", "");
+          document.head.appendChild(c);
+          document.head.appendChild(a);
+        })();
+      </script>
+
+    </div>
+</div>

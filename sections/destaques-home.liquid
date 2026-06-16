@@ -1,0 +1,130 @@
+<style>
+  .slider-destaques-hs {
+    padding: 30px 20px 30px 20px;
+  }
+  @media (min-width: 1200px){
+    .slider-destaques-hs {
+      padding: 30px 20px 30px 20px;
+    }
+
+    .slider-destaques-hs .swiper-wrapper {
+      justify-content: center;
+    }
+  }
+  .destaque-item {
+    display: flex;
+    gap: 7px;
+    width: fit-content;
+    padding: 0 10px;
+  }
+  
+  .destaque-title span {
+    line-height: 1.1;
+    font-weight: 700;
+  }
+  
+  .destaque-title {
+    line-height: 1.1;
+  }
+  
+  .destaque-icon svg {
+    width: 28px;
+    height: auto;
+    stroke: none;
+    color: #14865a;
+  }
+</style>
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+<div class="destaques-home" style="background-color: {{ section.settings.background_color }}">
+  <div class="swiper slider-destaques-hs">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+      <div class="swiper-slide destaque-item">
+        <div class="destaque-icon">
+          {% if block.settings.icon_image != blank %}
+            {{ block.settings.icon_image | image_url: height: 62 | image_tag }}
+          {% else %}
+            {{ block.settings.svg }}
+          {% endif %}
+        </div>
+        <div class="destaque-title"><span>{{ block.settings.title }}</span></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Destaques Home",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Cor do fundo",
+        "default": "#F9F9F9"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-superior",
+        "default": true,
+        "label": "Ativar divisória superior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-superior",
+        "default": "#fff",
+        "label": "Cor da divisória superior"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-inferior",
+        "default": false,
+        "label": "Ativar divisória inferior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-inferior",
+        "default": "#fff",
+        "label": "Cor da divisória inferior"
+      }
+    ],
+    "blocks": [{
+      "type": "feature",
+      "name": "Destaque",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "html",
+          "id": "svg",
+          "label": "SVG (alternative to image)"
+        },
+        {
+          "type": "html",
+          "id": "title",
+          "label": "Título"
+        },
+        {
+          "type": "html",
+          "id": "badge",
+          "label": "Badge"
+        }
+      ]
+    }],
+    "presets": [
+      {"name": "Destaques Home"}
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,137 @@
+{% style %}
+  /* Landing Page Styles */
+
+  /* Serpro Font */
+  @font-face {
+    font-family: 'Serpro';
+    src: url('{{ "serpro.woff2" | asset_url }}') format('woff2'),
+         url('{{ "serpro.woff" | asset_url }}') format('woff'),
+         url('{{ "serpro.ttf" | asset_url }}') format('truetype'),
+         url('{{ "serpro.otf" | asset_url }}') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Serpro';
+    src: url('{{ "serpro-bold.woff2" | asset_url }}') format('woff2'),
+         url('{{ "serpro-bold.woff" | asset_url }}') format('woff'),
+         url('{{ "serpro-bold.ttf" | asset_url }}') format('truetype'),
+         url('{{ "serpro-bold.otf" | asset_url }}') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* Landing Page Base Styles */
+  body.template-landing {
+    font-family: 'Serpro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #686868;
+    background-color: #FFFEF9;
+  }
+
+  /* Global letter-spacing reset for all elements */
+  body.template-landing * {
+    letter-spacing: 0 !important;
+  }
+
+  /* Override titles to use Serpro instead of Krona One */
+  body.template-landing h1,
+  body.template-landing h2,
+  body.template-landing h3,
+  body.template-landing h4,
+  body.template-landing h5,
+  body.template-landing h6,
+  body.template-landing .hero-headline,
+  body.template-landing .hero-subheadline,
+  body.template-landing .kit-selection-title,
+  body.template-landing .faq-title,
+  body.template-landing .strategic-ingredients-title,
+  body.template-landing .cta-headline,
+  body.template-landing .product-comparison-title,
+  body.template-landing .expert-quote,
+  body.template-landing .testimonials-headline,
+      body.template-landing .product-flavors-title,
+  body.template-landing .final-faq-title,
+  body.template-landing .flash-sale-title,
+  body.template-landing .ingredient-title,
+  body.template-landing .testimonial-title,
+  body.template-landing .product-flavor-title {
+    font-family: 'Serpro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    background: #7BCA0C;
+    border: 1px solid #005234;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffffff;
+    height: 44px;
+    border-radius: 22px;
+    width: 410px;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+    box-shadow: 5px 5px 0 0 #005234;
+  }
+
+  .btn-primary:hover,
+  .btn-primary:focus,
+  .btn-primary:active {
+    color: #005234;
+    box-shadow: 5px 5px 0 0 #005234 !important;
+  }
+
+  /* Hide blog section on landing page */
+  #shopify-section-blog-home {
+    display: none !important;
+  }
+
+  /* Hide sections on landing page */
+  #shopify-section-mobile-toolbar {
+    display: none !important;
+  }
+
+  .shopify-section-compra-rapida {
+    display: none !important;
+  }
+
+  #shopify-section-compra-rapida {
+    display: none !important;
+  }
+
+  #image-popup-overlay {
+    display: none !important;
+  }
+
+  .shopify-section-group-header-group {
+    display: none !important;
+  }
+
+  .jdgm-widget {
+    display: none !important;
+  }
+{% endstyle %}
+
+{% javascript %}
+  (function($) {
+    if (typeof $ === 'undefined') return;
+    
+    // Smooth scroll para links âncora
+    $(document).on('click', 'a[href^="#"]', function(e) {
+      var target = $(this.getAttribute('href'));
+      if (target.length) {
+        e.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top - 25
+        }, 600);
+      }
+    });
+  })(typeof jQuery !== 'undefined' ? jQuery : null);
+{% endjavascript %}

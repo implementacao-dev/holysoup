@@ -1,0 +1,43 @@
+.onde-encontrar-section {
+
+  .header-widget h3 {
+    margin-bottom: 25px;
+  }
+}
+
+.onde-encontrar-section  .header-widget.light-font h3 {
+  margin-top: 0;
+}
+
+.onde-encontrar-section .onde-encontrar {
+  padding: 50px 120px 60px 120px;  
+
+  @media (max-width: 1330px) {
+    padding: 50px 30px 60px 30px;  
+  }
+
+  @media (max-width: 1024px) {
+    padding: 50px 60px 30px 60px;
+  }
+
+  .swiper-wrapper {
+
+    @media (max-width: 1024px) {
+      width: 220px;
+    }
+  }
+}
+
+
+
+.onde-encontrar-section .onde-encontrar .swiper-slide{
+  width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
+  a:last-child img {
+    margin-top: 20px;
+  }
+}

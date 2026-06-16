@@ -1,0 +1,307 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header Group",
+  "sections": {
+    "slider_bar_w93DMd": {
+      "type": "slider-bar",
+      "blocks": {
+        "text_block_6n4n8q": {
+          "type": "text_block",
+          "settings": {
+            "block_svg": "<svg width=\"58\" height=\"46\" viewbox=\"0 0 58 46\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><g clip-path=\"url(#clip0_110_5)\"><path d=\"M40.0307 45.2012H17.1945C14.6807 45.2012 12.6354 43.156 12.6354 40.642V39.227C3.31187 33.6118 1.14249 23.5572 0.640666 19.3986C0.514776 18.3536 0.842884 17.3023 1.54148 16.5145C2.24056 15.726 3.2462 15.2734 4.30041 15.2734H52.9248C53.979 15.2734 54.9846 15.726 55.6837 16.5145C56.3823 17.3023 56.7104 18.3536 56.5843 19.3986C56.0827 23.5572 53.9133 33.6118 44.5898 39.227V40.642C44.5898 43.156 42.5446 45.2012 40.0307 45.2012ZM4.30041 18.8407C4.28554 18.8407 4.24638 18.8407 4.2107 18.8809C4.17625 18.9198 4.18071 18.9572 4.1822 18.9711C4.63397 22.7153 6.61847 31.9301 15.2697 36.6253L16.2025 37.1315V40.642C16.2025 41.189 16.6476 41.6341 17.1945 41.6341H40.0307C40.5776 41.6341 41.0227 41.189 41.0227 40.642V37.1315L41.9555 36.6253C50.6067 31.9301 52.5912 22.7153 53.0427 18.9711C53.0445 18.9572 53.0489 18.9198 53.0145 18.8809C52.9788 18.8407 52.9394 18.8407 52.9248 18.8407H4.30041Z\" fill=\"currentColor\"></path><path d=\"M33.7399 24.9196C33.6101 25.6024 33.5546 26.301 33.5782 27.0035C33.6214 28.2699 33.004 30.2863 31.1428 32.1479C29.6386 33.6522 27.716 34.5862 26.1256 34.5862C25.651 34.5862 24.9975 34.4982 24.5775 34.0784C23.5054 33.0064 24.1153 29.9049 26.5075 27.5125C28.0107 26.0093 29.933 25.0753 31.5235 25.0753C31.5666 25.0753 31.6092 25.076 31.6523 25.0773C31.7596 25.081 31.8672 25.083 31.974 25.083C32.5729 25.083 33.1633 25.0277 33.7399 24.9196ZM55.905 0.835938C55.4146 0.835938 54.9249 1.02304 54.5508 1.39674L36.1802 19.7673C35.0623 20.8852 33.5494 21.5156 31.974 21.5156C31.9073 21.5156 31.8402 21.5144 31.7733 21.5122C31.6902 21.5095 31.6072 21.508 31.5235 21.508C29.0679 21.508 26.2569 22.7183 23.9849 24.9903C20.2454 28.7296 19.3817 33.9277 22.0552 36.6009C23.1037 37.6494 24.5403 38.1535 26.1256 38.1535C28.5811 38.1535 31.3926 36.9427 33.6651 34.6702C36.0147 32.3209 37.2287 29.3954 37.1437 26.8823C37.0877 25.2356 37.7233 23.6407 38.8881 22.4757L57.2588 4.10512C58.0068 3.35721 58.0068 2.1449 57.2588 1.39674C56.8849 1.02304 56.3952 0.835938 55.905 0.835938Z\" fill=\"currentColor\"></path></g><defs><clippath id=\"clip0_110_5\"><rect width=\"58\" height=\"46\" fill=\"white\"></rect></clippath></defs></svg>",
+            "block_text": "<strong>Lorem</strong> ipsum dolor sit amet",
+            "block_link": "",
+            "data_inicio": "",
+            "hora_inicio": "",
+            "data_fim": "",
+            "hora_fim": "",
+            "expira": false
+          }
+        },
+        "text_block_xA3EMT": {
+          "type": "text_block",
+          "settings": {
+            "block_svg": "<svg width=\"58\" height=\"46\" viewbox=\"0 0 58 46\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><g clip-path=\"url(#clip0_110_5)\"><path d=\"M40.0307 45.2012H17.1945C14.6807 45.2012 12.6354 43.156 12.6354 40.642V39.227C3.31187 33.6118 1.14249 23.5572 0.640666 19.3986C0.514776 18.3536 0.842884 17.3023 1.54148 16.5145C2.24056 15.726 3.2462 15.2734 4.30041 15.2734H52.9248C53.979 15.2734 54.9846 15.726 55.6837 16.5145C56.3823 17.3023 56.7104 18.3536 56.5843 19.3986C56.0827 23.5572 53.9133 33.6118 44.5898 39.227V40.642C44.5898 43.156 42.5446 45.2012 40.0307 45.2012ZM4.30041 18.8407C4.28554 18.8407 4.24638 18.8407 4.2107 18.8809C4.17625 18.9198 4.18071 18.9572 4.1822 18.9711C4.63397 22.7153 6.61847 31.9301 15.2697 36.6253L16.2025 37.1315V40.642C16.2025 41.189 16.6476 41.6341 17.1945 41.6341H40.0307C40.5776 41.6341 41.0227 41.189 41.0227 40.642V37.1315L41.9555 36.6253C50.6067 31.9301 52.5912 22.7153 53.0427 18.9711C53.0445 18.9572 53.0489 18.9198 53.0145 18.8809C52.9788 18.8407 52.9394 18.8407 52.9248 18.8407H4.30041Z\" fill=\"currentColor\"></path><path d=\"M33.7399 24.9196C33.6101 25.6024 33.5546 26.301 33.5782 27.0035C33.6214 28.2699 33.004 30.2863 31.1428 32.1479C29.6386 33.6522 27.716 34.5862 26.1256 34.5862C25.651 34.5862 24.9975 34.4982 24.5775 34.0784C23.5054 33.0064 24.1153 29.9049 26.5075 27.5125C28.0107 26.0093 29.933 25.0753 31.5235 25.0753C31.5666 25.0753 31.6092 25.076 31.6523 25.0773C31.7596 25.081 31.8672 25.083 31.974 25.083C32.5729 25.083 33.1633 25.0277 33.7399 24.9196ZM55.905 0.835938C55.4146 0.835938 54.9249 1.02304 54.5508 1.39674L36.1802 19.7673C35.0623 20.8852 33.5494 21.5156 31.974 21.5156C31.9073 21.5156 31.8402 21.5144 31.7733 21.5122C31.6902 21.5095 31.6072 21.508 31.5235 21.508C29.0679 21.508 26.2569 22.7183 23.9849 24.9903C20.2454 28.7296 19.3817 33.9277 22.0552 36.6009C23.1037 37.6494 24.5403 38.1535 26.1256 38.1535C28.5811 38.1535 31.3926 36.9427 33.6651 34.6702C36.0147 32.3209 37.2287 29.3954 37.1437 26.8823C37.0877 25.2356 37.7233 23.6407 38.8881 22.4757L57.2588 4.10512C58.0068 3.35721 58.0068 2.1449 57.2588 1.39674C56.8849 1.02304 56.3952 0.835938 55.905 0.835938Z\" fill=\"currentColor\"></path></g><defs><clippath id=\"clip0_110_5\"><rect width=\"58\" height=\"46\" fill=\"white\"></rect></clippath></defs></svg>",
+            "block_text": "<strong>Consectetur</strong> adipiscing elit",
+            "block_link": "",
+            "data_inicio": "",
+            "hora_inicio": "",
+            "data_fim": "",
+            "hora_fim": "",
+            "expira": false
+          }
+        },
+        "text_block_BmHHUK": {
+          "type": "text_block",
+          "settings": {
+            "block_svg": "<svg width=\"58\" height=\"46\" viewbox=\"0 0 58 46\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><g clip-path=\"url(#clip0_110_5)\"><path d=\"M40.0307 45.2012H17.1945C14.6807 45.2012 12.6354 43.156 12.6354 40.642V39.227C3.31187 33.6118 1.14249 23.5572 0.640666 19.3986C0.514776 18.3536 0.842884 17.3023 1.54148 16.5145C2.24056 15.726 3.2462 15.2734 4.30041 15.2734H52.9248C53.979 15.2734 54.9846 15.726 55.6837 16.5145C56.3823 17.3023 56.7104 18.3536 56.5843 19.3986C56.0827 23.5572 53.9133 33.6118 44.5898 39.227V40.642C44.5898 43.156 42.5446 45.2012 40.0307 45.2012ZM4.30041 18.8407C4.28554 18.8407 4.24638 18.8407 4.2107 18.8809C4.17625 18.9198 4.18071 18.9572 4.1822 18.9711C4.63397 22.7153 6.61847 31.9301 15.2697 36.6253L16.2025 37.1315V40.642C16.2025 41.189 16.6476 41.6341 17.1945 41.6341H40.0307C40.5776 41.6341 41.0227 41.189 41.0227 40.642V37.1315L41.9555 36.6253C50.6067 31.9301 52.5912 22.7153 53.0427 18.9711C53.0445 18.9572 53.0489 18.9198 53.0145 18.8809C52.9788 18.8407 52.9394 18.8407 52.9248 18.8407H4.30041Z\" fill=\"currentColor\"></path><path d=\"M33.7399 24.9196C33.6101 25.6024 33.5546 26.301 33.5782 27.0035C33.6214 28.2699 33.004 30.2863 31.1428 32.1479C29.6386 33.6522 27.716 34.5862 26.1256 34.5862C25.651 34.5862 24.9975 34.4982 24.5775 34.0784C23.5054 33.0064 24.1153 29.9049 26.5075 27.5125C28.0107 26.0093 29.933 25.0753 31.5235 25.0753C31.5666 25.0753 31.6092 25.076 31.6523 25.0773C31.7596 25.081 31.8672 25.083 31.974 25.083C32.5729 25.083 33.1633 25.0277 33.7399 24.9196ZM55.905 0.835938C55.4146 0.835938 54.9249 1.02304 54.5508 1.39674L36.1802 19.7673C35.0623 20.8852 33.5494 21.5156 31.974 21.5156C31.9073 21.5156 31.8402 21.5144 31.7733 21.5122C31.6902 21.5095 31.6072 21.508 31.5235 21.508C29.0679 21.508 26.2569 22.7183 23.9849 24.9903C20.2454 28.7296 19.3817 33.9277 22.0552 36.6009C23.1037 37.6494 24.5403 38.1535 26.1256 38.1535C28.5811 38.1535 31.3926 36.9427 33.6651 34.6702C36.0147 32.3209 37.2287 29.3954 37.1437 26.8823C37.0877 25.2356 37.7233 23.6407 38.8881 22.4757L57.2588 4.10512C58.0068 3.35721 58.0068 2.1449 57.2588 1.39674C56.8849 1.02304 56.3952 0.835938 55.905 0.835938Z\" fill=\"currentColor\"></path></g><defs><clippath id=\"clip0_110_5\"><rect width=\"58\" height=\"46\" fill=\"white\"></rect></clippath></defs></svg>",
+            "block_text": "<strong>Sed</strong> do eiusmod tempor incididunt",
+            "block_link": "",
+            "data_inicio": "",
+            "hora_inicio": "",
+            "data_fim": "",
+            "hora_fim": "",
+            "expira": false
+          }
+        }
+      },
+      "block_order": [
+        "text_block_6n4n8q",
+        "text_block_xA3EMT",
+        "text_block_BmHHUK"
+      ],
+      "disabled": true,
+      "name": "Barra deslizante",
+      "settings": {
+        "background_color": "#ff7a50",
+        "text_color": "#ffffff",
+        "font_size": "16px",
+        "show_compre_btn": false,
+        "compre_btn_text": "Compre Agora",
+        "compre_btn_link": "",
+        "compre_btn_bg_color": "#ff7a50",
+        "compre_btn_text_color": "#ffffff"
+      }
+    },
+    "announcement_bar_with_tabs_EYJkFy": {
+      "type": "announcement-bar-with-tabs",
+      "blocks": {
+        "announcement_69VB8q": {
+          "type": "announcement",
+          "disabled": true,
+          "settings": {
+            "text": "Frete Grátis para todo Brasil <u>acima de R$250</u>",
+            "btn_color": "#f84248",
+            "btn_border_color": "#ffffff",
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
+          }
+        },
+        "menu_XGLfCw": {
+          "type": "menu",
+          "settings": {
+            "menu_links": "home-holysoup",
+            "menu_title": "Sopas <strong>Saudáveis</strong>"
+          }
+        },
+        "menu_VyhNUz": {
+          "type": "menu",
+          "settings": {
+            "menu_links": "holymac",
+            "menu_title": "Macarrões <strong>Proteícos</strong>"
+          }
+        }
+      },
+      "block_order": [
+        "announcement_69VB8q",
+        "menu_XGLfCw",
+        "menu_VyhNUz"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_announcement": true,
+        "layout": "slider",
+        "enable_close": false,
+        "color_text": "#ffffff",
+        "bg_color_text": "#ff7a50",
+        "bg_color_text_gradient": "",
+        "font_size_text": 12,
+        "font_style_text": "normal",
+        "font_weight_text": "500",
+        "arrow_active": false,
+        "content_max_width": 38,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "header_navigation_plain_Kekpk4": {
+      "type": "header-navigation-plain",
+      "blocks": {
+        "logo_e3W4c9": {
+          "type": "logo",
+          "settings": {
+            "logo_position": "always",
+            "logo": "shopify://shop_images/logo_principal_verde_escuro_6fcf8cfa-4625-4a30-939f-ff46aa2f2233.png",
+            "logo_width": 140,
+            "logo_width_fixed": 55,
+            "logo_text": "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"complete-logo-holysoup\" width=\"79.556\" height=\"23.216\" viewbox=\"0 0 79.556 23.216\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n  <defs>\n    <clippath id=\"clip-path\">\n      <rect id=\"Retângulo_4\" data-name=\"Retângulo 4\" width=\"79.556\" height=\"23.216\" fill=\"#fff\"></rect>\n    </clippath>\n  </defs>\n  <g id=\"Grupo_3\" data-name=\"Grupo 3\" clip-path=\"url(#clip-path)\">\n    <path id=\"Caminho_16\" data-name=\"Caminho 16\" d=\"M392.02,59.615c-.131,0-.264,0-.4-.012-2.725-.166-3.669-1.643-3.765-1.812a.89.89,0,0,1,.312-1.213.955.955,0,0,1,1.235.3,2.982,2.982,0,0,0,2.328.946,2.89,2.89,0,0,0,1.972-.469.717.717,0,0,0,.239-.568c0-.651-.432-.867-2.311-1.153-1.472-.224-3.7-.562-3.7-2.751a2.469,2.469,0,0,1,.8-1.86,4.29,4.29,0,0,1,3.2-.91,6.15,6.15,0,0,1,2.705.81.886.886,0,0,1,.276,1.231.907.907,0,0,1-1.24.276,4.5,4.5,0,0,0-1.863-.538,2.654,2.654,0,0,0-1.846.434.7.7,0,0,0-.232.557c0,.529.425.723,2.168.988,1.529.233,3.84.584,3.84,2.916a2.489,2.489,0,0,1-.807,1.867,4.278,4.278,0,0,1-2.92.962\" transform=\"translate(-351.099 -45.412)\" fill=\"#fff\"></path>\n    <path id=\"Caminho_17\" data-name=\"Caminho 17\" d=\"M238.817,14.147a.9.9,0,0,1-.9-.894V.895a.9.9,0,0,1,1.806,0V13.254a.9.9,0,0,1-.9.894\" transform=\"translate(-215.432 -0.001)\" fill=\"#fff\"></path>\n    <path id=\"Caminho_18\" data-name=\"Caminho 18\" d=\"M116.159,59.706a4.748,4.748,0,1,1,4.8-4.748,4.779,4.779,0,0,1-4.8,4.748m0-7.709a2.961,2.961,0,1,0,2.992,2.961A2.98,2.98,0,0,0,116.159,52\" transform=\"translate(-100.838 -45.515)\" fill=\"#fff\"></path>\n    <path id=\"Caminho_19\" data-name=\"Caminho 19\" d=\"M745.139,50.217a4.8,4.8,0,0,0-2.992,1.038V51.2a.9.9,0,0,0-1.806,0V63.7a.9.9,0,0,0,1.806,0v-5.03a4.768,4.768,0,1,0,2.992-8.455m0,7.708a2.961,2.961,0,1,1,2.992-2.96,2.98,2.98,0,0,1-2.992,2.96\" transform=\"translate(-670.381 -45.521)\" fill=\"#fff\"></path>\n    <path id=\"Caminho_20\" data-name=\"Caminho 20\" d=\"M287.733,52.492l-5.621,12.5a.906.906,0,0,1-1.192.454.89.89,0,0,1-.457-1.179l1.97-4.379L279.071,52.5a.89.89,0,0,1,.452-1.183.907.907,0,0,1,1.194.448l2.7,5.932,2.665-5.927a.908.908,0,0,1,1.192-.454.889.889,0,0,1,.459,1.18\" transform=\"translate(-252.627 -46.445)\" fill=\"#fff\"></path>\n    <path id=\"Caminho_21\" data-name=\"Caminho 21\" d=\"M8.465,8.745v4.516a.9.9,0,0,1-1.806,0V8.745A2.3,2.3,0,0,0,4.35,6.46,2.534,2.534,0,0,0,1.806,8.978v4.283a.9.9,0,0,1-.9.894.9.9,0,0,1-.9-.894V.9A.9.9,0,0,1,.9.008a.9.9,0,0,1,.9.894V5.489A4.354,4.354,0,0,1,4.35,4.673,4.1,4.1,0,0,1,8.465,8.745\" transform=\"translate(0 -0.007)\" fill=\"#fff\"></path>\n    <path id=\"Caminho_22\" data-name=\"Caminho 22\" d=\"M506.755,172.165a2.006,2.006,0,0,1-.8.053.045.045,0,0,0-.009.006,10.516,10.516,0,0,1-14.777-3.587.908.908,0,0,0-1.231-.337.888.888,0,0,0-.341,1.217,12.319,12.319,0,0,0,19.015,2.9,3.094,3.094,0,0,1-1.853-.25\" transform=\"translate(-443.222 -152.458)\" fill=\"#fff\"></path>\n    <path id=\"Caminho_23\" data-name=\"Caminho 23\" d=\"M672.849,165.225a5.431,5.431,0,0,0-4.471,3.879c1.406-.188,2.6-1.955,2.6-1.955a3.681,3.681,0,0,1-2.2,2.326h0l-.027.007a3.093,3.093,0,0,0,1.852.25l0,0c1.355-.441,2.6-2.123,2.241-4.5\" transform=\"translate(-605.218 -149.776)\" fill=\"#ffd88a\"></path>\n    <path id=\"Caminho_24\" data-name=\"Caminho 24\" d=\"M494.98,50.216a4.748,4.748,0,1,0,4.8,4.747,4.777,4.777,0,0,0-4.8-4.747m0,1.787a2.979,2.979,0,0,1,2.992,2.96,2.921,2.921,0,0,1-.289,1.27,3.974,3.974,0,0,0-5.406,0,2.915,2.915,0,0,1-.289-1.268A2.978,2.978,0,0,1,494.98,52\" transform=\"translate(-443.861 -45.521)\" fill=\"#fff\"></path>\n    <path id=\"Caminho_25\" data-name=\"Caminho 25\" d=\"M620.125,67.393a4.779,4.779,0,0,1-4.8-4.748,4.7,4.7,0,0,1,1.882-3.771.909.909,0,0,1,1.266.166.887.887,0,0,1-.168,1.253,2.931,2.931,0,0,0-1.174,2.352,2.992,2.992,0,0,0,5.984,0,2.931,2.931,0,0,0-1.174-2.352.887.887,0,0,1-.168-1.253.909.909,0,0,1,1.266-.166,4.7,4.7,0,0,1,1.882,3.771,4.779,4.779,0,0,1-4.8,4.748\" transform=\"translate(-557.18 -53.202)\" fill=\"#fff\"></path>\n  </g>\n</svg>",
+            "logo_font_size": 20,
+            "logo_font_weight": "900",
+            "logo_text_transform": "uppercase",
+            "logo_color": "#ffffff"
+          }
+        },
+        "main_menu_HHHXQN": {
+          "type": "main_menu",
+          "settings": {
+            "show_menu_banner_top": false,
+            "menu_banner_top_url": "",
+            "menu": "novo-menu-4-1-sem-aveias",
+            "menu_top_spacing": 11,
+            "menu_bottom_spacing": 12,
+            "grid_gap_menu_item": 20,
+            "alignment": "center",
+            "bg_mega_menu": "#ffffff",
+            "bg_mega_menu_gradient": "",
+            "lv_1_color": "#ffffff",
+            "lv_1_color_hover": "#ffffff",
+            "lv_2_color": "#232323",
+            "lv_2_color_hover": "#232323",
+            "lv_3_color": "#3c3c3c",
+            "lv_3_color_hover": "#3c3c3c",
+            "sale_item_1": "",
+            "sale_item_2": "",
+            "sale_item_3": "",
+            "sale_item_color": "#d12442",
+            "label_position": "main_menu",
+            "show_label_blink": false,
+            "new_label_1": "",
+            "new_label_2": "",
+            "new_label_3": "",
+            "new_label_color": "#ffffff",
+            "new_label_bg": "#bae4ed",
+            "new_label_bg_gradient": "",
+            "sale_label_1": "",
+            "sale_label_2": "",
+            "sale_label_3": "",
+            "sale_label_color": "#ffffff",
+            "sale_label_bg": "#d12442",
+            "sale_label_bg_gradient": "",
+            "hot_label_1": "",
+            "hot_label_2": "",
+            "hot_label_3": "",
+            "hot_label_color": "#ffffff",
+            "hot_label_bg": "#fff993",
+            "hot_label_bg_gradient": "",
+            "show_menu_banner": false,
+            "menu_banner_url": ""
+          }
+        },
+        "header_icons_R7DkY9": {
+          "type": "header_icons",
+          "settings": {
+            "show_language_currency": false,
+            "show_search": true,
+            "show_customer": true,
+            "show_wishlist": false,
+            "show_cart": true,
+            "text_font_size": 14,
+            "show_language_currency_sticky": false,
+            "show_search_sticky": true,
+            "show_customer_sticky": true,
+            "show_wishlist_sticky": false,
+            "show_cart_sticky": true,
+            "header_icons_color": "#ffffff",
+            "header_icons_color_hover": "#ffffff",
+            "header_icons_border_color": "rgba(0,0,0,0)",
+            "header_icons_border_sticky_color": "#232323",
+            "cart_count_bubble_color": "#323232",
+            "cart_count_bubble_bg": "#ffd88a",
+            "cart_count_bubble_bg_gradient": ""
+          }
+        },
+        "menu_image_k89zyK": {
+          "type": "menu_image",
+          "disabled": true,
+          "settings": {
+            "menu_image": "shopify://shop_images/IMG_1460.png",
+            "image_item": "sopas"
+          }
+        }
+      },
+      "block_order": [
+        "logo_e3W4c9",
+        "main_menu_HHHXQN",
+        "header_icons_R7DkY9",
+        "menu_image_k89zyK"
+      ],
+      "settings": {
+        "container": "1370",
+        "padding_full_width": 0,
+        "header_navigation_bg": "#ffffff",
+        "header_navigation_bg_gradient": "",
+        "sticky_header_type": "on_scroll",
+        "sticky_header_width": "default",
+        "enable_transparent": false,
+        "transparent_color": "#ffffff",
+        "transparent_color_hover": "#ffffff"
+      }
+    },
+    "header-mobile": {
+      "type": "header-mobile",
+      "blocks": {
+        "7de2266e-0cd4-4fda-9f09-06f75a17f944": {
+          "type": "menu",
+          "settings": {
+            "color": "#232323"
+          }
+        },
+        "163e2cb5-14f2-4af6-9ac3-77193c082f53": {
+          "type": "search",
+          "disabled": true,
+          "settings": {
+            "color": "#ffffff"
+          }
+        },
+        "550fbd21-75fb-4051-9dee-77d91b5239f0": {
+          "type": "logo",
+          "settings": {
+            "logo_mobile": "shopify://shop_images/logo_principal_verde_escuro_6fcf8cfa-4625-4a30-939f-ff46aa2f2233.png",
+            "logo_width_mobile": 110,
+            "logo_text": "",
+            "logo_font_size": 20,
+            "logo_font_weight": "900",
+            "logo_text_transform": "uppercase",
+            "logo_color": "#232323"
+          }
+        },
+        "20dae707-64c0-4ea3-a05e-561cae9836d8": {
+          "type": "customer",
+          "disabled": true,
+          "settings": {
+            "icon": "1",
+            "color": "#232323"
+          }
+        },
+        "633f9dae-3f65-4bda-9ca8-9d3e231aaf9d": {
+          "type": "cart",
+          "settings": {
+            "icon": "3",
+            "color": "#232323",
+            "color_bubble": "#ffffff",
+            "bg_bubble": "#ff7a50"
+          }
+        }
+      },
+      "block_order": [
+        "7de2266e-0cd4-4fda-9f09-06f75a17f944",
+        "163e2cb5-14f2-4af6-9ac3-77193c082f53",
+        "550fbd21-75fb-4051-9dee-77d91b5239f0",
+        "20dae707-64c0-4ea3-a05e-561cae9836d8",
+        "633f9dae-3f65-4bda-9ca8-9d3e231aaf9d"
+      ],
+      "settings": {
+        "background": "#ffffff",
+        "gradient": "",
+        "sticky_header_type": "on_scroll",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "slider_bar_w93DMd",
+    "announcement_bar_with_tabs_EYJkFy",
+    "header_navigation_plain_Kekpk4",
+    "header-mobile"
+  ]
+}

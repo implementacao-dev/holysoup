@@ -1,0 +1,146 @@
+<style>
+  .slider-promos .swiper-slide{
+    width: 95%;
+  }
+
+  .promo-image img {
+    border-radius: 25px;
+    width: 100%;
+  }
+
+  .slider-promos {
+    padding: 40px 20px 60px 20px;
+  }
+
+  .swiper-slide-active .promo-image img {
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.01);
+  }
+
+  span.badge-promo {
+    background: var(--feature-color);
+    margin: 0 auto;
+    display: block;
+    width: fit-content;
+    margin-top: -13px;
+    position: relative;
+    z-index: 1;
+    border-radius: 9999px;
+    padding: 1px 10px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  @media (min-width: 1200px){
+    .slider-promos .swiper-slide{
+      width: 41%;
+    }
+
+    .slider-promos {
+      padding: 40px 120px 60px 120px;
+    }
+  }
+</style>
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+<div class="swiper slider-promos max-container">
+  {% if section.settings.header_title != blank %}
+    <div class="header-widget custom-font">
+      <h3 style="color: {{ section.settings.header_color }};">{{ section.settings.header_title | newline_to_br }}</h3>
+    </div>
+  {% endif %}
+  <div class="swiper-wrapper">
+  {% for block in section.blocks %}
+    <div class="swiper-slide">
+      {% if block.settings.url != blank %}
+        <a href="{{ block.settings.url }}" class="promo-image">
+          <img src="{{ block.settings.banner | image_url: width: 650 }}" loading="lazy" width="300" height="auto" alt="{{ block.settings.banner.alt }}">
+          {% if block.settings.badge != blank %}<span class="badge-promo">{{ block.settings.badge }}</span>{% endif %}
+        </a>
+      {% else %}
+        <div class="promo-image">
+          <img src="{{ block.settings.banner | image_url: width: 650 }}" loading="lazy" width="300" height="auto" alt="{{ block.settings.banner.alt }}">
+          {% if block.settings.badge != blank %}<span class="badge-promo">{{ block.settings.badge }}</span>{% endif %}
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+{% if section.settings.borda-inferior %}
+  {% render 'borda-inferior', cor: section.settings.color-borda-inferior %}
+{% endif %}
+{% schema %}
+  {
+    "name": "Promos Home",
+    "settings": [
+      {
+        "type": "text",
+        "id": "header_title",
+        "label": "Título do cabeçalho"
+      },
+      {
+        "type": "color",
+        "id": "header_color",
+        "label": "Cor do título",
+        "default": "#3c3c3c"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-superior",
+        "default": true,
+        "label": "Ativar divisória superior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-superior",
+        "default": "#fff",
+        "label": "Cor da divisória superior"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-inferior",
+        "default": false,
+        "label": "Ativar divisória inferior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-inferior",
+        "default": "#fff",
+        "label": "Cor da divisória inferior"
+      }
+    ],
+    "blocks": [{
+      "type": "promotion",
+      "name": "Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner",
+          "label": "Promo imagem"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        }
+      ]
+    }],
+    "presets": [
+      {"name": "Promos Home"}
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,160 @@
+<style>
+  .newsletter-section {
+    padding: 40px 20px 40px 20px;
+  }
+
+  @media (min-width: 1200px){
+    .newsletter-section {
+      padding: 40px 120px 40px 120px;
+    }
+  }
+
+  .newsletter-container {
+    display: flex;
+    align-items: center;
+    background-color: #FF7A50;
+    width: 380px;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 27px;
+    z-index: 1;
+    position: relative;
+    margin-bottom: -30px;
+    z-index: 2;
+  }
+
+  .btn-footer-newsletter {
+    width: 61px;
+    height: 61px;
+    border-radius: 13px;
+    border: none;
+  }
+
+  .btn-footer-newsletter svg {
+    width: 25px;
+    height: 25px;
+    stroke: none;
+  }
+
+  .btn-whatsapp-footer {
+    background-color: #00814E;
+  }
+
+  .content-newsletter {
+    width: calc(100% - 145px);
+    padding: 33px 50px 25px 14px;
+    background: #00814e;
+    border-radius: 27px;
+  }
+
+  .newsletter-options {
+    padding: 0 30px;
+    margin-left: -70px;
+  }
+
+  span.or {
+    color: #fff;
+    padding: 0 5px;
+  }
+
+  @media(max-width: 1024px){
+    .newsletter-options {
+      padding: 0;
+      margin-left: -35px;
+      min-width: 144px;
+    }
+    span.or {
+      padding: 0;
+    }
+    .content-newsletter {
+      min-width: fit-content;
+    }
+
+    .content-newsletter h3 {
+      font-size: 12px !important;
+    }
+
+    .content-newsletter p {
+      font-size: 9px !important;
+    }
+  }
+
+  ul.social-list-footer {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  ul.social-list-footer li svg {
+    width: auto;
+    height: 35px;
+    color: #CBDE59;
+  }
+
+  .newsletter-section h3 {
+    text-align: center;
+    color: #231F20;
+    font-size: 13px;
+  }
+</style>
+
+{% if section.settings['borda-superior'] %}
+  {% render 'borda-superior', cor: section.settings['color-borda-superior'], style: 'waves' %}
+{% endif %}
+<div class="newsletter-section">
+  <h3 class="font-3">SIGA NAS REDES SOCIAIS</h3>
+  <ul class="social-list-footer">
+    <li class="icon-social icon-facebook">
+      <a href="https://www.facebook.com/holysoupbr" target="_blank">{% render 'facebook-icon' %}</a>
+    </li>
+    <li class="icon-social icon-instagram">
+      <a href="https://www.instagram.com/holysoupbr/" target="_blank">{% render 'instagram-icon' %}</a>
+    </li>
+    <li class="icon-social icon-tiktok">
+      <a href="https://www.tiktok.com/@holysoupbr" target="_blank">{% render 'tiktok-icon' %}</a>
+    </li>
+    <li class="icon-social icon-linkedin">
+      <a href="https://www.linkedin.com/company/holysoup/" target="_blank">{% render 'linkedin-icon' %}</a>
+    </li>
+    <li class="icon-social icon-youtube">
+      <a href="https://www.youtube.com/@holysoupbr" target="_blank">{% render 'youtube-icon' %}</a>
+    </li>
+  </ul>
+</div>
+{% if section.settings['borda-inferior'] %}
+  {% render 'borda-inferior', cor: section.settings['color-borda-inferior'] %}
+{% endif %}
+{% schema %}
+{
+  "name": "Newsletter Holymac",
+  "settings": [{
+    "type": "checkbox",
+    "id": "borda-superior",
+    "default": true,
+    "label": "Ativar divisória superior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-superior",
+    "default": "#fff",
+    "label": "Cor da divisória superior"
+  },
+  {
+    "type": "checkbox",
+    "id": "borda-inferior",
+    "default": false,
+    "label": "Ativar divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-inferior",
+    "default": "#fff",
+    "label": "Cor da divisória inferior"
+  }],
+  "presets": [
+    {"name": "Newsletter Holymac"}
+  ]
+}
+{% endschema %}

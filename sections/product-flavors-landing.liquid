@@ -1,0 +1,1074 @@
+<style>
+  {{ 'product-flavors-landing.css' | inline_asset_content }}
+</style>
+<script src="{{ 'product-flavors-landing.js' | asset_url }}" defer></script>
+
+<div class="product-flavors-landing">
+  <div class="product-flavors-container">
+    <div class="product-flavors-header">
+      <div class="product-flavors-title-wrapper">
+        {% if section.settings.title != blank %}
+          <h2 class="product-flavors-title">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.subtitle != blank %}
+          <p class="product-flavors-subtitle">{{ section.settings.subtitle }}</p>
+        {% endif %}
+      </div>
+
+      {% if section.settings.benefits != blank %}
+        <ul class="product-flavors-benefits-list">
+          {% assign benefits_list = section.settings.benefits | newline_to_br | split: '<br />' %}
+          {% for benefit in benefits_list %}
+            {% if benefit != blank %}
+              <li class="product-flavors-benefit-item">
+                {% render 'icon-check-landing', class: 'product-flavors-check' %}
+                <span>{{ benefit | strip }}</span>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    <div class="swiper product-flavors-carousel">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% if block.type == 'product_flavor' %}
+            <div class="swiper-slide" {{ block.shopify_attributes }}>
+              <div class="product-flavor-card">
+                <div class="product-flavor-header">
+                  {% if block.settings.title != blank %}
+                    <h3 class="product-flavor-title">{{ block.settings.title }}</h3>
+                  {% endif %}
+
+                  {% if block.settings.subtitle != blank %}
+                    <p class="product-flavor-subtitle">{{ block.settings.subtitle }}</p>
+                  {% endif %}
+
+                  <div class="product-flavor-badges">
+                    {% if block.settings.badge_1_text != blank %}
+                      <span class="product-flavor-badge">
+                        {% render 'icon-check-landing', class: 'product-flavor-badge-check' %}
+                        {{ block.settings.badge_1_text }}
+                      </span>
+                    {% endif %}
+
+                    {% if block.settings.badge_2_text != blank %}
+                      <span class="product-flavor-badge">
+                        {% render 'icon-check-landing', class: 'product-flavor-badge-check' %}
+                        {{ block.settings.badge_2_text }}
+                      </span>
+                    {% endif %}
+                  </div>
+                </div>
+
+                {% if block.settings.benefits != blank %}
+                  <ul class="product-flavor-benefits">
+                    {% assign flavor_benefits = block.settings.benefits | newline_to_br | split: '<br />' %}
+                    {% for benefit in flavor_benefits %}
+                      {% if benefit != blank %}
+                        <li class="product-flavor-benefit-item">
+                          {% render 'icon-check-2-landing',
+                            class: 'product-flavor-benefit-check',
+                            width: '12',
+                            fill: section.settings.check_icon_color,
+                            stroke: section.settings.check_icon_color
+                          %}
+                          <span>{{ benefit | strip }}</span>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+
+                {% if block.settings.image != blank %}
+                  <div class="product-flavor-image">
+                    {{
+                      block.settings.image
+                      | image_url: width: 400
+                      | image_tag:
+                        alt: block.settings.title,
+                        loading: 'lazy',
+                        width: 400,
+                        height: 400,
+                        class: 'product-flavor-img'
+                    }}
+                  </div>
+                {% endif %}
+
+                {% if block.settings.button_text != blank %}
+                  {% if block.settings.product != blank %}
+                    {% assign selected_product = all_products[block.settings.product] %}
+                    {% if selected_product.metafields.custom.m_ltiplas_tabelas != blank %}
+                      {% assign table_images = selected_product.metafields.custom.m_ltiplas_tabelas.value %}
+                      {% if table_images.size > 0 %}
+                        <button
+                          type="button"
+                          class="btn-primary product-flavor-table-btn"
+                          data-block-id="{{ block.id }}"
+                          data-product-handle="{{ selected_product.handle }}"
+                        >
+                          {{ block.settings.button_text }}
+                        </button>
+                      {% else %}
+                        <a href="{{ block.settings.button_url | default: '#' }}" class="btn-primary">
+                          {{ block.settings.button_text }}
+                        </a>
+                      {% endif %}
+                    {% else %}
+                      <a href="{{ block.settings.button_url | default: '#' }}" class="btn-primary">
+                        {{ block.settings.button_text }}
+                      </a>
+                    {% endif %}
+                  {% else %}
+                    <a href="{{ block.settings.button_url | default: '#' }}" class="btn-primary">
+                      {{ block.settings.button_text }}
+                    </a>
+                  {% endif %}
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% assign flavor_count = 0 %}
+      {% for block in section.blocks %}
+        {% if block.type == 'product_flavor' %}
+          {% assign flavor_count = flavor_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+
+      {% if flavor_count > 1 %}
+        <button type="button" class="product-flavors-nav-btn product-flavors-nav-prev" aria-label="Previous">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#005234">
+            <path fill-rule="evenodd" d="M14.5 8a.5.5 0 0 1-.5.5H2.207l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.207 7.5H14A.5.5 0 0 1 14.5 8z"/>
+          </svg>
+        </button>
+        <button type="button" class="product-flavors-nav-btn product-flavors-nav-next" aria-label="Next">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#005234">
+            <path fill-rule="evenodd" d="M1.5 8a.5.5 0 0 1 .5-.5h11.793L10.646 4.354a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.793 8.5H2A.5.5 0 0 1 1.5 8z"/>
+          </svg>
+        </button>
+      {% endif %}
+    </div>
+
+    <div class="product-flavors-cta-wrapper">
+      {% if section.settings.cta_text != blank %}
+        <a href="#escolha-seu-kit" class="btn-primary">
+          {{ section.settings.cta_text }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.guarantee_text != blank %}
+        <div class="product-flavors-guarantee">
+          {% render 'icon-check-landing', width: 16, height: 16, fill: section.settings.tag_text_color %}
+          <span>{{ section.settings.guarantee_text }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Popup Modal for Nutritional Table -->
+<div id="nutritional-table-popup" class="nutritional-table-popup" style="display: none;">
+  <div class="nutritional-table-popup-overlay"><span></span></div>
+  <div class="nutritional-table-popup-content">
+    <div class="nutritional-table-popup-header">
+      <button type="button" class="nutritional-table-popup-close" aria-label="Fechar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="swiper nutritional-table-popup-carousel">
+      <div class="swiper-wrapper">
+        {% assign global_image_index = 0 %}
+        {% for block in section.blocks %}
+          {% if block.type == 'product_flavor' and block.settings.product != blank %}
+            {% assign selected_product = all_products[block.settings.product] %}
+            {% if selected_product.metafields.custom.m_ltiplas_tabelas != blank %}
+              {% assign table_images = selected_product.metafields.custom.m_ltiplas_tabelas.value %}
+              {% for image in table_images %}
+                <div
+                  class="swiper-slide"
+                  data-product-handle="{{ selected_product.handle }}"
+                  data-image-index="{{ global_image_index }}"
+                >
+                  <div class="nutritional-table-popup-image-wrapper">
+                    <img
+                      src="{{ image | image_url: width: 1200 }}"
+                      alt="Tabela Nutricional"
+                      class="nutritional-table-image"
+                      width="1200"
+                      height="auto"
+                      loading="lazy"
+                    >
+                  </div>
+                </div>
+                {% assign global_image_index = global_image_index | plus: 1 %}
+              {% endfor %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <button
+      type="button"
+      class="nutritional-table-popup-nav-btn nutritional-table-popup-nav-prev"
+      aria-label="Previous"
+    >
+      <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#005234">
+        <path fill-rule="evenodd" d="M14.5 8a.5.5 0 0 1-.5.5H2.207l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.207 7.5H14A.5.5 0 0 1 14.5 8z"/>
+      </svg>
+    </button>
+    <button type="button" class="nutritional-table-popup-nav-btn nutritional-table-popup-nav-next" aria-label="Next">
+      <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#005234">
+        <path fill-rule="evenodd" d="M1.5 8a.5.5 0 0 1 .5-.5h11.793L10.646 4.354a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.793 8.5H2A.5.5 0 0 1 1.5 8z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+{% style %}
+  #shopify-section-{{ section.id }} .product-flavors-landing {
+    padding: 60px 20px;
+    overflow: hidden;
+    background-color: {{ section.settings.bg_color }};
+  }
+  #shopify-section-{{ section.id }} .product-flavors-title,
+  #shopify-section-{{ section.id }} .product-flavor-title {
+    color: {{ section.settings.title_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .product-flavor-badge {
+    background-color: {{ section.settings.tag_bg_color }} !important;
+    color: {{ section.settings.tag_text_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .product-flavor-badge-check path {
+    fill: {{ section.settings.tag_text_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .product-flavor-card {
+    border-color: {{ section.settings.card_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.card_shadow_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .product-flavor-card .btn-primary {
+    background-color: {{ section.settings.card_button_bg_color }} !important;
+    border-color: {{ section.settings.card_button_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.card_button_shadow_color }} !important;
+    color: {{ section.settings.card_button_text_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .product-flavor-card .btn-primary:hover {
+    background-color: {{ section.settings.card_button_hover_bg_color }} !important;
+    color: {{ section.settings.card_button_hover_text_color }} !important;
+    border-color: {{ section.settings.card_button_hover_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.card_button_hover_shadow_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .product-flavors-benefit-item {
+    background-color: {{ section.settings.tag_bg_color }} !important;
+    color: {{ section.settings.tag_text_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .product-flavors-check path {
+    fill: {{ section.settings.tag_text_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .product-flavors-guarantee,
+  #shopify-section-{{ section.id }} .product-flavors-guarantee span {
+    background-color: {{ section.settings.tag_bg_color }} !important;
+    color: {{ section.settings.tag_text_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .product-flavors-guarantee svg path {
+    fill: {{ section.settings.tag_text_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .product-flavor-benefit-check path {
+    fill: {{ section.settings.check_icon_color }} !important;
+    stroke: {{ section.settings.check_icon_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .product-flavors-cta-wrapper .btn-primary {
+    background-color: {{ section.settings.cta_button_bg_color }} !important;
+    border-color: {{ section.settings.cta_button_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.cta_button_shadow_color }} !important;
+    color: {{ section.settings.cta_button_text_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .product-flavors-cta-wrapper .btn-primary:hover {
+    background-color: {{ section.settings.cta_button_hover_bg_color }} !important;
+    color: {{ section.settings.cta_button_hover_text_color }} !important;
+    border-color: {{ section.settings.cta_button_hover_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.cta_button_hover_shadow_color }} !important;
+  }
+{% endstyle %}
+
+{% stylesheet %}
+  .product-flavors-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .product-flavors-header {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .product-flavors-title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0;
+    margin: 0 0 8px 0;
+    color: #006b3c;
+  }
+
+  .product-flavors-title p {
+    margin-top: 0;
+    margin-bottom: 25px;
+    line-height: 1;
+  }
+
+  .product-flavors-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .product-flavors-benefits-list {
+    list-style: none;
+    padding: 0 24px;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    flex-shrink: 0;
+    max-width: 550px;
+  }
+
+  .product-flavors-benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #005234;
+    padding: 5px 10px;
+    background-color: #ebf7da;
+    border-radius: 5px;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .product-flavors-check {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+
+  .product-flavors-check path {
+    fill: #005234;
+  }
+
+  .product-flavors-carousel {
+    position: relative;
+    padding-bottom: 50px;
+    margin-bottom: 40px;
+    overflow: visible !important;
+  }
+
+  .product-flavors-carousel .swiper-slide {
+    width: 370px;
+  }
+
+  .product-flavors-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    z-index: 10;
+  }
+
+  .product-flavors-nav-prev {
+    left: 10px;
+  }
+
+  .product-flavors-nav-next {
+    right: 10px;
+  }
+
+  .product-flavors-nav-btn:disabled,
+  .product-flavors-nav-btn.swiper-button-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .product-flavors-nav-btn svg {
+    width: 100%;
+    height: 26px;
+  }
+
+  .product-flavors-nav-btn svg path {
+    fill: #005234 !important;
+    stroke: none;
+  }
+
+  .product-flavor-card {
+    background: #fff;
+    border: 1px solid #006b3c;
+    border-radius: 20px;
+    padding: 24px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 5px 5px 0 0 #006b3c;
+    position: relative;
+  }
+
+  .product-flavor-header {
+    margin-bottom: 16px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .product-flavor-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #006b3c;
+    margin: 0 0 4px 0;
+    line-height: 1;
+  }
+
+  .product-flavor-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 12px 0;
+  }
+
+  .product-flavor-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .product-flavor-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #005234;
+    padding: 5px 10px;
+    background-color: #ebf7da;
+    border-radius: 5px;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .product-flavor-badge-check {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+
+  .product-flavor-badge-check path {
+    fill: #005234;
+  }
+
+  .product-flavor-benefits {
+    list-style: none;
+    padding: 0 24px;
+    margin: 0 0 20px 0;
+    flex: 1;
+  }
+
+  .product-flavor-benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .product-flavor-benefit-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .product-flavor-benefit-check {
+    flex-shrink: 0;
+    width: 12px;
+    height: auto;
+  }
+
+  .product-flavor-benefit-check path {
+    fill: #7bca0c;
+    stroke: #7bca0c;
+  }
+
+  .product-flavor-image {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product-flavor-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .product-flavor-card .btn-primary {
+    background: #ffffff;
+    color: #005234;
+    border-color: #005234;
+    max-width: 300px;
+    box-shadow: 5px 5px 0 0 #005234;
+  }
+
+  .product-flavor-card .btn-primary:hover,
+  .product-flavor-card .btn-primary:focus,
+  .product-flavor-card .btn-primary:active {
+    background: #7bca0c;
+    color: #ffffff;
+    box-shadow: 5px 5px 0 0 #005234 !important;
+  }
+
+  .product-flavor-table-btn {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .product-flavors-cta-wrapper {
+    text-align: center;
+  }
+
+  .product-flavors-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #005234;
+    padding: 5px 10px;
+    background-color: #ebf7da;
+    border-radius: 5px;
+    letter-spacing: 0;
+    white-space: nowrap;
+    margin: 20px auto 0;
+    width: fit-content;
+  }
+
+  .product-flavors-guarantee svg {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+
+  .product-flavors-guarantee svg path {
+    fill: #005234;
+  }
+
+  /* Nutritional Table Popup Styles */
+  .nutritional-table-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nutritional-table-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    z-index: 9998;
+  }
+
+  .nutritional-table-popup-content {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10000;
+    margin: 0 auto;
+  }
+
+  .nutritional-table-popup-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+
+  .nutritional-table-popup-close {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    padding: 0;
+  }
+
+  .nutritional-table-popup-close svg {
+    width: 24px;
+    height: 24px;
+    color: #005234;
+  }
+
+  .nutritional-table-popup-close svg path {
+    stroke: #005234;
+  }
+
+  .nutritional-table-popup-carousel {
+    width: 100%;
+    position: relative;
+  }
+
+  .nutritional-table-popup-image-wrapper {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .nutritional-table-image {
+    width: fit-content;
+    max-width: 100%;
+    max-height: 90dvh;
+    height: auto;
+    display: block;
+  }
+
+  .nutritional-table-popup-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    z-index: 10;
+  }
+
+  .nutritional-table-popup-nav-prev {
+    left: 10px;
+  }
+
+  .nutritional-table-popup-nav-next {
+    right: 10px;
+  }
+
+  .nutritional-table-popup-nav-btn svg {
+    width: 100%;
+    height: 26px;
+  }
+
+  .nutritional-table-popup-nav-btn svg path {
+    fill: #005234 !important;
+    stroke: none;
+  }
+
+  .nutritional-table-popup-nav-btn:disabled,
+  .nutritional-table-popup-nav-btn.swiper-button-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    .nutritional-table-popup-content {
+      padding-top: 24px;
+      padding-bottom: 24px;
+      padding-left: 0;
+      padding-right: 0;
+      max-width: 90%;
+      justify-content: center;
+    }
+
+    .nutritional-table-popup-close {
+      top: 12px;
+      right: 12px;
+    }
+  }
+
+  @media (min-width: 991px) {
+    .product-flavors-title {
+      font-size: 32px;
+    }
+  }
+
+  @media (max-width: 990px) {
+    .product-flavors-container {
+      max-width: 460px;
+    }
+
+    .product-flavors-title-wrapper {
+      width: 100%;
+    }
+
+    .product-flavors-header {
+      flex-direction: column;
+      gap: 24px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .product-flavors-benefits-list {
+      width: 100%;
+      grid-template-columns: 1fr;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .product-flavors-title {
+      font-size: 32px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .product-flavors-carousel .swiper-slide {
+      width: 330px;
+    }
+
+    .product-flavors-title {
+      font-size: 24px;
+    }
+
+    .product-flavor-title {
+      font-size: 24px;
+    }
+
+    .product-flavors-benefit-item {
+      gap: 5px;
+      padding: 5px;
+      font-size: 11px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sabores Landing",
+  "tag": "section",
+  "class": "product-flavors-landing-section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Título",
+      "default": "<p>Conheça os sabores do<br>Kit Seca Barriga</p>"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "4 sabores 100% estratégicos"
+    },
+    {
+      "type": "textarea",
+      "id": "benefits",
+      "label": "Lista de Benefícios",
+      "info": "Enter one benefit per line",
+      "default": "Regula o Intestino\nPromove Saciedade\nProntas em 2 Passos\nSó Precisam de Água e Sal\nPode Fazer no Micro-ondas"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto do Botão CTA",
+      "default": "Garantir Meu Kit Agora"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "URL do Botão CTA"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_text",
+      "label": "Texto de Garantia",
+      "default": "Garantia De Satisfação Total 30 Dias"
+    },
+    {
+      "type": "header",
+      "content": "Estilo da Seção (Cores)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Cor de Fundo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Cor do Título",
+      "default": "#006B3C"
+    },
+    {
+      "type": "header",
+      "content": "Estilo dos Cards (Cores e Ícones)"
+    },
+    {
+      "type": "color",
+      "id": "tag_bg_color",
+      "label": "Cor de Fundo das Flags/Badges",
+      "default": "#EBF7DA"
+    },
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "Cor do Texto das Flags/Badges",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "check_icon_color",
+      "label": "Cor do Checklist nos Cards",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "card_shadow_color",
+      "label": "Cor da Sombra (Card)",
+      "default": "#006B3C"
+    },
+    {
+      "type": "header",
+      "content": "Botados dos Cards"
+    },
+    {
+      "type": "color",
+      "id": "card_button_bg_color",
+      "label": "Cor de Fundo do Botão (Cards)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_button_text_color",
+      "label": "Cor do Texto do Botão (Cards)",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "card_button_shadow_color",
+      "label": "Cor da Sombra do Botão (Cards)",
+      "default": "#005234"
+    },
+    {
+      "type": "header",
+      "content": "Botados dos Cards (Hover)"
+    },
+    {
+      "type": "color",
+      "id": "card_button_hover_bg_color",
+      "label": "Cor de Fundo (Hover)",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "card_button_hover_text_color",
+      "label": "Cor do Texto (Hover)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_button_hover_shadow_color",
+      "label": "Cor da Sombra (Hover)",
+      "default": "#002b1b"
+    },
+    {
+      "type": "header",
+      "content": "Botão CTA Final"
+    },
+    {
+      "type": "color",
+      "id": "cta_button_bg_color",
+      "label": "Cor de Fundo do Botão (CTA)",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "cta_button_text_color",
+      "label": "Cor do Texto do Botão (CTA)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "cta_button_shadow_color",
+      "label": "Cor da Sombra do Botão (CTA)",
+      "default": "#005234"
+    },
+    {
+      "type": "header",
+      "content": "Botão CTA Final (Hover)"
+    },
+    {
+      "type": "color",
+      "id": "cta_button_hover_bg_color",
+      "label": "Cor de Fundo (Hover)",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "cta_button_hover_text_color",
+      "label": "Cor do Texto (Hover)",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "cta_button_hover_shadow_color",
+      "label": "Cor da Sombra (Hover)",
+      "default": "#005234"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_flavor",
+      "name": "Sabor do Produto",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtítulo",
+          "default": "1 Pacote Rende 4 porções (1 Litro)"
+        },
+        {
+          "type": "text",
+          "id": "badge_1_text",
+          "label": "Texto do Badge 1",
+          "default": "36 Kcal"
+        },
+        {
+          "type": "text",
+          "id": "badge_2_text",
+          "label": "Texto do Badge 2",
+          "default": "9% Fibras"
+        },
+        {
+          "type": "textarea",
+          "id": "benefits",
+          "label": "Benefícios",
+          "info": "Enter one benefit per line"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Produto (para tabela nutricional)"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Texto do Botão",
+          "default": "Ver Tabela Nutricional"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "URL do Botão (alternativa se nenhum produto selecionado)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sabores Landing",
+      "settings": {
+        "title": "<p>Conheça os sabores do<br>Kit Seca Barriga</p>",
+        "subtitle": "4 sabores 100% estratégicos",
+        "benefits": "Regula o Intestino\nPromove Saciedade\nProntas em 2 Passos\nSó Precisam de Água e Sal\nPode Fazer no Micro-ondas",
+        "cta_text": "Garantir Meu Kit Agora",
+        "guarantee_text": "Garantia De Satisfação Total 30 Dias"
+      },
+      "blocks": [
+        {
+          "type": "product_flavor",
+          "settings": {
+            "title": "Sopa Detox",
+            "subtitle": "1 Pacote Rende 4 porções (1 Litro)",
+            "badge_1_text": "36 Kcal",
+            "badge_2_text": "9% Fibras",
+            "benefits": "Macarrão sem glúten mantém saciedade\nCúrcuma + gengibre aceleram metabolismo\nQuinoa fornece proteína completa",
+            "button_text": "Ver Tabela Nutricional"
+          }
+        },
+        {
+          "type": "product_flavor",
+          "settings": {
+            "title": "Sopa Low Carb",
+            "subtitle": "1 Pacote Rende 4 porções (1 Litro)",
+            "badge_1_text": "56 Kcal",
+            "badge_2_text": "30 g de Proteína",
+            "benefits": "Maior proteína: preserva massa magra\nLentilha + quinoa = proteína completa\n23% fibras aceleram intestino",
+            "button_text": "Ver Tabela Nutricional"
+          }
+        },
+        {
+          "type": "product_flavor",
+          "settings": {
+            "title": "Creme Verde Fit",
+            "subtitle": "1 Pacote Rende 4 porções (1 Litro)",
+            "badge_1_text": "23 Kcal",
+            "badge_2_text": "12% Fibras",
+            "benefits": "Menor caloria: ideal para jantar\nErvilha controla glicemia\nZero sódio elimina inchaço",
+            "button_text": "Ver Tabela Nutricional"
+          }
+        },
+        {
+          "type": "product_flavor",
+          "settings": {
+            "title": "Sopa de Legumes",
+            "subtitle": "1 Pacote Rende 4 porções (1 Litro)",
+            "badge_1_text": "40 Kcal",
+            "badge_2_text": "10% Fibras",
+            "benefits": "Rica em vegetais\nVitaminas e minerais\nSabor natural",
+            "button_text": "Ver Tabela Nutricional"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

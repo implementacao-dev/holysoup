@@ -1,0 +1,414 @@
+<style>
+  .slider-influencers-hs .swiper-slide{
+    width: fit-content;
+    height: auto;
+    margin: 0 20px;
+  }
+  
+  .slider-influencers-hs {
+    padding: 40px 20px 60px 20px;
+  }
+
+  .swiper-slide-active .influencer-hs {
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.01);
+  }
+
+  .influencer-image {
+    background: rgb(255,122,80);
+    background: -moz-linear-gradient(214deg, rgba(255,122,80,1) 0%, rgba(255,69,90,1) 100%);
+    background: -webkit-linear-gradient(214deg, rgba(255,122,80,1) 0%, rgba(255,69,90,1) 100%);
+    background: linear-gradient(214deg, rgba(255,122,80,1) 0%, rgba(255,69,90,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7a50",endColorstr="#ff455a",GradientType=1);
+    border-radius: 9999px;
+    padding: 10px;
+  }
+
+  .influencer-image img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 9999px;
+  }
+  
+  @media (min-width: 1200px){
+    .slider-influencers-hs .swiper-slide {
+      width: fit-content;
+    }
+  
+    .slider-influencers-hs {
+      padding: 40px 120px 60px 120px;
+    }
+
+    .swiper.slider-influencers-hs.max-container {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .video-reel-influencer {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    background: #000000c2;
+    backdrop-filter: blur(5px);
+    padding-top: 60px;
+  }
+  
+  .video-slider {
+    max-width: 320px;
+    height: fit-content;
+    margin: 0 auto;
+    aspect-ratio: 1/1.76;
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .responsive-storie {
+    position: relative;
+    padding-top: 176%;
+    aspect-ratio: 1/1.76;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  
+  .responsive-storie video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .video-slider .swiper-pagination-bullet.swiper-pagination-bullet-active, .video-slider .swiper-pagination-clickable .swiper-pagination-bullet {
+    width: 25%;
+    border-radius: 20px;
+    height: 5px;
+  }
+
+  .pagination-video {
+    position: absolute;
+    top: 0;
+    bottom: inherit;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    display: flex;
+    padding: 3px 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .photo-influencer-storie-open img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 999px;
+    object-position: top;
+  }
+
+  .video-slider .swiper-pagination {
+    position: relative;
+    top: 0;
+    bottom: inherit;
+    width: calc(100% - 100px);
+  }
+
+  .influencer-arroba {
+    text-align: center;
+    color: #fff;
+  }
+
+  [close-stories] {
+    position: absolute;
+    z-index: 99;
+    background: #ff455a;
+    color: #fff;
+    padding: 5px 27px;
+    border-radius: 9999px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
+    bottom: 10px;
+  }
+
+  .controls a {
+    width: 20px;
+    height: auto;
+    display: flex;
+    align-items: center;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 10px;
+  }
+
+  .controls svg {
+    width: 15px;
+    height: auto;
+  }
+
+  .video-reel-influencer .swiper-button-next,
+  .video-reel-influencer .swiper-button-prev{
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .video-reel-influencer .swiper-button-next {
+    right: 0;
+  }
+
+  .video-reel-influencer .swiper-button-prev {
+    left: 0;
+  }
+
+  .video-reel-influencer .swiper-button-next:after, .video-reel-influencer .swiper-button-prev:after{
+    display: none;
+  }
+</style>
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+
+<div class="video-reel-influencer" style="display: none">
+  <div class="video-slider swiper">
+    <div class="swiper-wrapper">
+
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <a close-stories href="javascript:void(0)">fechar</a>
+    <div class="pagination-video">
+      <div class="photo-influencer-storie-open">
+        
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="controls">
+        <a href="javascript:void(0)" data-pause="played">
+          <svg class="pausevideo" aria-label="Pausar" color="rgb(255, 255, 255)" fill="rgb(255, 255, 255)" height="16" role="img" viewBox="0 0 48 48" width="16"><title>Pausar</title><path d="M15 1c-3.3 0-6 1.3-6 3v40c0 1.7 2.7 3 6 3s6-1.3 6-3V4c0-1.7-2.7-3-6-3zm18 0c-3.3 0-6 1.3-6 3v40c0 1.7 2.7 3 6 3s6-1.3 6-3V4c0-1.7-2.7-3-6-3z"></path></svg>
+          <svg class="playvideo" style="display:none" aria-label="Reproduzir" color="rgb(255, 255, 255)" fill="rgb(255, 255, 255)" height="16" role="img" viewBox="0 0 24 24" width="16"><title>Reproduzir</title><path d="M5.888 22.5a3.46 3.46 0 0 1-1.721-.46l-.003-.002a3.451 3.451 0 0 1-1.72-2.982V4.943a3.445 3.445 0 0 1 5.163-2.987l12.226 7.059a3.444 3.444 0 0 1-.001 5.967l-12.22 7.056a3.462 3.462 0 0 1-1.724.462Z"></path></svg>
+        </a>
+        <a data-mute="disabled" href="javascript:void(0)">
+          <svg aria-label="O áudio está em reprodução" class="audio" color="rgb(255, 255, 255)" fill="rgb(255, 255, 255)" height="16" role="img" viewBox="0 0 24 24" width="16"><title>O áudio está em reprodução</title><path d="M16.636 7.028a1.5 1.5 0 1 0-2.395 1.807 5.365 5.365 0 0 1 1.103 3.17 5.378 5.378 0 0 1-1.105 3.176 1.5 1.5 0 1 0 2.395 1.806 8.396 8.396 0 0 0 1.71-4.981 8.39 8.39 0 0 0-1.708-4.978Zm3.73-2.332A1.5 1.5 0 1 0 18.04 6.59 8.823 8.823 0 0 1 20 12.007a8.798 8.798 0 0 1-1.96 5.415 1.5 1.5 0 0 0 2.326 1.894 11.672 11.672 0 0 0 2.635-7.31 11.682 11.682 0 0 0-2.635-7.31Zm-8.963-3.613a1.001 1.001 0 0 0-1.082.187L5.265 6H2a1 1 0 0 0-1 1v10.003a1 1 0 0 0 1 1h3.265l5.01 4.682.02.021a1 1 0 0 0 1.704-.814L12.005 2a1 1 0 0 0-.602-.917Z"></path></svg>
+          <svg style="display:none" aria-label="O áudio está silenciado." class="muted" color="rgb(255, 255, 255)" fill="rgb(255, 255, 255)" height="16" role="img" viewBox="0 0 48 48" width="16"><title>O áudio está silenciado.</title><path clip-rule="evenodd" d="M1.5 13.3c-.8 0-1.5.7-1.5 1.5v18.4c0 .8.7 1.5 1.5 1.5h8.7l12.9 12.9c.9.9 2.5.3 2.5-1v-9.8c0-.4-.2-.8-.4-1.1l-22-22c-.3-.3-.7-.4-1.1-.4h-.6zm46.8 31.4-5.5-5.5C44.9 36.6 48 31.4 48 24c0-11.4-7.2-17.4-7.2-17.4-.6-.6-1.6-.6-2.2 0L37.2 8c-.6.6-.6 1.6 0 2.2 0 0 5.7 5 5.7 13.8 0 5.4-2.1 9.3-3.8 11.6L35.5 32c1.1-1.7 2.3-4.4 2.3-8 0-6.8-4.1-10.3-4.1-10.3-.6-.6-1.6-.6-2.2 0l-1.4 1.4c-.6.6-.6 1.6 0 2.2 0 0 2.6 2 2.6 6.7 0 1.8-.4 3.2-.9 4.3L25.5 22V1.4c0-1.3-1.6-1.9-2.5-1L13.5 10 3.3-.3c-.6-.6-1.5-.6-2.1 0L-.2 1.1c-.6.6-.6 1.5 0 2.1L4 7.6l26.8 26.8 13.9 13.9c.6.6 1.5.6 2.1 0l1.4-1.4c.7-.6.7-1.6.1-2.2z" fill-rule="evenodd"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="swiper slider-influencers-hs max-container" style="background-color:{{ section.settings.color-section }}">
+  <div class="head-influencers">
+      <div class="header-widget custom-font text-left  light-font">
+        <h3>{{ section.settings.title }}</h3>
+      </div>
+  </div>
+  <div class="swiper-wrapper">
+  {% for block in section.blocks %}
+    <div class="swiper-slide">
+      <div class="influencer-hs" data-image="{{ block.settings.photo | image_url }}" data-videos="{% for i in (1..4) -%}{% capture video %}video_{{ i }}{% endcapture %}{% if block.settings[video] %}{{ block.settings[video] }}{% unless forloop.last %},{% endunless %}{% endif %}{%- endfor %}">
+        <div class="influencer-image">
+          <img src="{{ block.settings.photo | image_url }}" alt="{{ block.settings.photo.alt }}"/>
+        </div>
+        <div class="influencer-arroba">
+          <p>{{ block.settings.title }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+{% if section.settings.borda-inferior %}
+  {% render 'borda-inferior', cor: section.settings.color-borda-inferior %}
+{% endif %}
+<script>
+  $('[data-videos]').click(function(){
+    var dataAttribute = $(this); // Replace with the actual element containing the data attribute
+    var videoUrls = dataAttribute.data('videos').split(',');
+    var image = dataAttribute.data('image');
+
+    var videosHTML = '';
+    $.each(videoUrls, function(index, url) {
+      if(url.length){
+        videosHTML += '<div class="swiper-slide"><div class="responsive-storie"><video playsinline webkit-playsinline controlsList="nodownload"><source src="' + url + '" type="video/mp4"></video></div></div>';
+      }
+    });
+
+    var imagemInfluencer = '<img src="'+image+'" />'
+
+    $('.video-reel-influencer .swiper-wrapper').html(videosHTML);
+    $('.photo-influencer-storie-open').html(imagemInfluencer);
+    $('.video-reel-influencer').show();
+
+    var prevSlide =  $('.video-reel-influencer').find('.swiper-slide-active');
+    var videoElement = prevSlide.find("video")[0];
+    
+    if (videoElement) {
+      videoElement.play();
+    }
+
+    if (window.videoSliderHome) {
+      window.videoSliderHome.destroy(); // Destruir o Swiper atual
+    }
+    window.videoSliderHome = new Swiper(".video-slider", {
+      slidesPerView: 1,
+      spaceBetween: 15,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+      },
+      navigation: {
+        nextEl: ".video-slider .swiper-button-next",
+        prevEl: ".video-slider .swiper-button-prev",
+      },
+      on: {
+        init: function() {
+          window.playVideoInSlide(this.activeIndex); // Reproduz o vídeo no slide ativo inicial
+          const video = this.slides[this.activeIndex].querySelector("video");
+          video.addEventListener("ended", () => {
+            this.slideNext();
+          });
+        },
+        slideChangeTransitionStart: function() {
+          console.log("Anterior ", this.previousIndex);
+          window.pauseVideoInSlide(this.previousIndex); // Pausa o vídeo no slide anterior
+          const video = this.slides[this.activeIndex].querySelector("video");
+          video.addEventListener("ended", () => {
+            this.slideNext();
+          });
+        },
+        slideChangeTransitionEnd: function() {
+          console.log("Atual transition ", this.activeIndex);
+          window.playVideoInSlide(this.activeIndex); // Reproduz o vídeo no novo slide ativo
+    
+          const isLastSlide = this.activeIndex === this.slides.length - 1;
+          if (isLastSlide) {
+            const video = this.slides[this.activeIndex].querySelector("video");
+            video.addEventListener("ended", () => {
+              $('.video-reel-influencer').hide();
+            });
+            
+          }
+        }
+      }
+    });
+  })
+
+  $(document).on("click", ".video-reel-influencer", function(event) {
+    if (!$(event.target).closest('.video-slider').length) {
+        $('.video-reel-influencer').hide();
+        var prevSlide =  $('.video-reel-influencer').find('.swiper-slide-active');
+        var videoElement = prevSlide.find("video")[0];
+        
+        if (videoElement) {
+          videoElement.pause();
+          videoElement.currentTime = 0;
+        }
+    }
+  });
+
+  $(document).on("click", "[close-stories]", function(event) {
+      $('.video-reel-influencer').hide();
+      var prevSlide = $(this).closest('.video-slider').find('.swiper-slide-active');
+      var videoElement = prevSlide.find("video")[0];
+      
+      if (videoElement) {
+        videoElement.pause();
+        videoElement.currentTime = 0; // Reinicia o vídeo para o início
+      }
+  });
+</script>
+{% schema %}
+  {
+    "name": "Influencers",
+    "class": "pink-section",
+    "settings": [{
+      "type": "checkbox",
+      "id": "borda-superior",
+      "default": true,
+      "label": "Ativar divisória superior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-superior",
+      "default": "#fff",
+      "label": "Cor da divisória superior"
+    },
+    {
+      "type": "checkbox",
+      "id": "borda-inferior",
+      "default": false,
+      "label": "Ativar divisória inferior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-inferior",
+      "default": "#fff",
+      "label": "Cor da divisória inferior"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Quem consome diz que:",
+      "label": "Título"
+    },
+    {
+      "type": "color",
+      "id": "color-section",
+      "default": "#FF455A",
+      "label": "Cor da sessão"
+    }
+    ],
+    "blocks": [{
+      "type": "Nutricionista",
+      "name": "Nutricionista",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Foto"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "IG"
+        },
+        {
+          "type": "url",
+          "id": "video_1",
+          "label": "Vídeo 1"
+        },
+        {
+          "type": "url",
+          "id": "video_2",
+          "label": "Vídeo 2"
+        },
+        {
+          "type": "url",
+          "id": "video_3",
+          "label": "Vídeo 3"
+        },
+        {
+          "type": "url",
+          "id": "video_4",
+          "label": "Vídeo 4"
+        }
+      ]
+    }],
+    "presets": [
+      {"name": "Influencers"}
+    ]
+  }
+{% endschema %}

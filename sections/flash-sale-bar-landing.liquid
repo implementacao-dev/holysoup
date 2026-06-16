@@ -1,0 +1,266 @@
+{% if section.settings.enable_section %}
+  <div class="flash-sale-bar-landing">
+    <div class="flash-sale-bar-container">
+      <div class="flash-sale-content">
+        <div class="flash-sale-header">
+          {% if section.settings.flash_sale_type == 'image' and section.settings.flash_sale_image != blank %}
+            <div class="flash-sale-text-wrapper">
+              {{
+                section.settings.flash_sale_image
+                | image_url: width: 155
+                | image_tag: alt: 'Flash Sale', loading: 'eager', class: 'flash-sale-image'
+              }}
+            </div>
+          {% elsif section.settings.flash_sale_type == 'text' and section.settings.flash_sale_text != blank %}
+            <div class="flash-sale-text-wrapper">
+              <div class="flash-sale-text-content">{{ section.settings.flash_sale_text }}</div>
+            </div>
+          {% elsif section.settings.flash_sale_type == 'svg' and section.settings.flash_sale_svg != blank %}
+            <div class="flash-sale-text-wrapper">
+              <div class="flash-sale-svg-content">{{ section.settings.flash_sale_svg }}</div>
+            </div>
+          {% endif %}
+        </div>
+        {% if section.settings.content_text != blank %}
+          <div class="flash-sale-content-text">
+            {% assign content_with_discount = section.settings.content_text %}
+            {% if section.settings.discount_percentage != blank %}
+              {% assign discount_text = '+' | append: section.settings.discount_percentage | append: '% OFF' %}
+              {% assign discount_span = '<span class="flash-sale-discount">'
+                | append: discount_text
+                | append: '</span>'
+              %}
+              {% assign content_with_discount = content_with_discount | replace: '[DESCONTO]', discount_span %}
+            {% else %}
+              {% assign content_with_discount = content_with_discount | replace: '[DESCONTO]', '' %}
+            {% endif %}
+            {{ content_with_discount }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.coupon_code != blank %}
+          <div class="flash-sale-coupon-code">{{ section.settings.coupon_code }}</div>
+        {% endif %}
+
+        <button
+          type="button"
+          class="btn-primary flash-sale-copy-btn"
+          data-coupon-code="{{ section.settings.coupon_code }}"
+          aria-label="Copiar cupom"
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <path d="M6 6V2c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4v4a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h4zm2 0h4a2 2 0 0 1 2 2v4h4V2H8v4zM2 8v10h10V8H2z"/>
+          </svg>
+          <span>{{ section.settings.copy_button_text | default: 'Copiar Cupom' }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% style %}
+  #shopify-section-{{ section.id }} .flash-sale-bar-landing {
+    background-color: {{ section.settings.bg_color }} !important;
+    color: {{ section.settings.text_color }} !important;
+  }
+
+  #shopify-section-{{ section.id }} .btn-primary.flash-sale-copy-btn {
+    background-color: {{ section.settings.fs_button_bg_color }} !important;
+    color: {{ section.settings.fs_button_text_color }} !important;
+    border-color: {{ section.settings.fs_button_shadow_color }} !important;
+    box-shadow: 4px 4px 0 0 {{ section.settings.fs_button_shadow_color }} !important;
+    transition: all 0.2s ease !important;
+  }
+
+  #shopify-section-{{ section.id }} .btn-primary.flash-sale-copy-btn:hover {
+    background-color: {{ section.settings.fs_button_hover_bg_color }} !important;
+    color: {{ section.settings.fs_button_hover_text_color }} !important;
+    border-color: {{ section.settings.fs_button_hover_shadow_color }} !important;
+    box-shadow: 4px 4px 0 0 {{ section.settings.fs_button_hover_shadow_color }} !important;
+  }
+{% endstyle %}
+
+{{ 'flash-sale-bar-landing.css' | asset_url | stylesheet_tag }}
+
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', function () {
+    var copyButtons = document.querySelectorAll('.flash-sale-copy-btn');
+    copyButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var couponCode = this.getAttribute('data-coupon-code');
+        if (couponCode) {
+          var buttonText = btn.querySelector('span');
+          if (buttonText) {
+            var originalText = buttonText.textContent;
+            navigator.clipboard
+              .writeText(couponCode)
+              .then(function () {
+                buttonText.textContent = 'Copiado!';
+                setTimeout(function () {
+                  buttonText.textContent = originalText;
+                }, 1500);
+              })
+              .catch(function (err) {});
+          }
+        }
+      });
+    });
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Barra de Oferta Relâmpago",
+  "tag": "section",
+  "class": "flash-sale-bar-landing-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_section",
+      "label": "Habilitar Seção",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "flash_sale_type",
+      "label": "Tipo de Cabeçalho da Oferta",
+      "options": [
+        {
+          "value": "image",
+          "label": "Imagem"
+        },
+        {
+          "value": "text",
+          "label": "Texto"
+        },
+        {
+          "value": "svg",
+          "label": "SVG"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "image_picker",
+      "id": "flash_sale_image",
+      "label": "Imagem da Oferta",
+      "info": "Only used when type is 'Image'"
+    },
+    {
+      "type": "richtext",
+      "id": "flash_sale_text",
+      "label": "Texto da Oferta",
+      "info": "Only used when type is 'Text'"
+    },
+    {
+      "type": "html",
+      "id": "flash_sale_svg",
+      "label": "SVG da Oferta",
+      "info": "Paste SVG code here. Only used when type is 'SVG'"
+    },
+    {
+      "type": "richtext",
+      "id": "content_text",
+      "label": "Texto do Conteúdo",
+      "default": "<p>Garanta [DESCONTO]</p><p>usando o cupom:</p>",
+      "info": "Use [DESCONTO] where you want the discount to appear"
+    },
+    {
+      "type": "text",
+      "id": "discount_percentage",
+      "label": "Percentual de Desconto",
+      "default": "15",
+      "info": "Enter only the number (e.g., 15 for 15%)"
+    },
+    {
+      "type": "text",
+      "id": "copy_button_text",
+      "label": "Texto do Botão Copiar",
+      "default": "Copiar Cupom"
+    },
+    {
+      "type": "text",
+      "id": "coupon_code",
+      "label": "Código do Cupom",
+      "default": "CARNA15"
+    },
+    {
+      "type": "header",
+      "content": "Estilo Visual (Cores)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Cor de Fundo",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Cor do Texto",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Botão Copiar (Cores Base)"
+    },
+    {
+      "type": "color",
+      "id": "fs_button_bg_color",
+      "label": "Cor de Fundo do Botão",
+      "default": "#FFC51D"
+    },
+    {
+      "type": "color",
+      "id": "fs_button_text_color",
+      "label": "Cor do Texto do Botão",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "fs_button_shadow_color",
+      "label": "Cor da Sombra do Botão",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "header",
+      "content": "Botão Copiar (Cores Hover)"
+    },
+    {
+      "type": "color",
+      "id": "fs_button_hover_bg_color",
+      "label": "Cor de Fundo (Hover)",
+      "default": "#FFC51D"
+    },
+    {
+      "type": "color",
+      "id": "fs_button_hover_text_color",
+      "label": "Cor do Texto (Hover)",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "fs_button_hover_shadow_color",
+      "label": "Cor da Sombra (Hover)",
+      "default": "#1A1A1A"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Barra de Oferta Relâmpago",
+      "settings": {
+        "enable_section": true,
+        "content_text": "<p>Garanta [DESCONTO]</p><p>usando o cupom:</p>",
+        "discount_percentage": "15",
+        "coupon_code": "CARNA15",
+        "copy_button_text": "Copiar Cupom",
+        "bg_color": "#F45218",
+        "text_color": "#ffffff",
+        "fs_button_bg_color": "#FFC51D",
+        "fs_button_text_color": "#1A1A1A",
+        "fs_button_shadow_color": "#1A1A1A"
+      }
+    }
+  ]
+}
+{% endschema %}

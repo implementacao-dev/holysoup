@@ -1,0 +1,247 @@
+<div class="section" style="--bgColor: {{ section.settings.color }}">
+{% if section.settings['borda-superior'] %}
+  {% render 'borda-superior', cor: section.settings['color-borda-superior'], style: 'waves' %}
+{% endif %}
+
+<style>
+  .section {
+    background: var(--bgColor);
+  }
+  
+  .blog-holymac-section {
+    padding: 60px 20px;
+  }
+  
+  .slider-blog-holymac {
+    padding: 0px 0 60px;
+    max-width: 1280px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .slider-blog-holymac .swiper-slide {
+    width: fit-content;
+    height: auto;
+    display: flex;
+  }
+
+  .post-item-holymac {
+    background: #fff;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-item-holymac .title-post {
+    overflow: hidden;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+  }
+
+  .header-post img {
+    width: 100%;
+    aspect-ratio: 1/0.5;
+    object-fit: cover;
+    border-top-left-radius: 27px;
+    border-top-right-radius: 27px;
+  }
+
+  .blog-holymac-section .body-post {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    flex: 1;
+  }
+
+  .blog-holymac-section .button-blog {
+    display: flex;
+    align-items: center;
+    margin: 32px auto 0;
+    max-width: 300px;
+  }
+
+  .blog-holymac-section .button-blog .button {
+    border-radius: 999px;
+    color: #8355A7;
+    border-color: #8355A7;
+    border-width: 2px;
+    text-transform: initial;
+    font-weight: 400;
+    letter-spacing: 0;
+    padding: 14px 0 !important;
+    display: block;
+  }
+
+  @media (min-width: 1200px){
+    .slider-blog-holymac .swiper-slide {
+      width: fit-content;
+    }
+  }
+
+  @media (min-width: 768px){
+    .slider-blog-holymac .swiper-pagination {
+      display: none!important;
+    }
+  }
+
+  @media (max-width: 768px){
+    .post-item-holymac {
+      max-width: 220px;
+    }
+    
+    .blog-holymac-section {
+      padding: 60px 0px 60px 20px;
+    }
+    
+    .blog-holymac-section .slider-blog-holymac .swiper-button-prev {
+      display: none!important;
+    }
+
+    .blog-holymac-section .slider-blog-holymac .swiper-button-next {
+      display: none!important;
+    }
+  }
+
+  .blog-holymac-section .swiper-button-prev {
+    bottom: 0px;
+    top: auto;
+    left: calc(50% - 50px);
+    border: 2px solid #8355A7;
+    padding: 18px 18px;
+    border-radius: 9999px;
+  }
+  
+  .blog-holymac-section .swiper-button-prev:after {
+    font-size: 14px
+  }
+
+  .blog-holymac-section .swiper-button-next {
+    bottom: 0px;
+    top: auto;
+    right: calc(50% - 50px);
+    border: 2px solid #8355A7;
+    padding: 18px 18px;
+    border-radius: 9999px;
+  }
+
+  .blog-holymac-section .swiper-button-next:after {
+    font-size: 14px
+  }
+
+  .blog-holymac-content h3 {
+    text-align: left;
+    color: #231F20;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .blog-holymac-content .description-post {
+    font-size: 10px;    
+    color: #5A5A5A;
+    line-height: normal;
+    margin: 0;
+  }
+  
+  .blog-holymac-content .title-post {
+    font-size: 11px;   
+    color: #000;
+    font-weight: bold;
+    line-height: normal;
+    margin: 0;
+  }
+
+  .read-more-blog-holymac {
+    font-size: 8px;
+    font-weight: 600;
+    border-bottom: 2px solid #CBDE59;
+    margin-top: auto;
+  }
+</style>
+
+  <div class="blog-holymac-section">
+  <div class="blog-holymac-content">
+    <div class="swiper slider-blog-holymac">
+      <div class="header-widget custom-font">
+        <h3 class="font-3">BLOG</h3>
+      </div>
+      <div class="swiper-wrapper">
+        {% for article in blogs.blog.articles limit: 8 %}
+          <div class="swiper-slide">
+            <div class="post-item-holymac">
+              <div class="header-post">
+                <a href="{{ article.url }}">
+                  <img
+                    loading="lazy"
+                    alt="{{ article.image.alt | default: article.title }}"
+                    src="{{ article.image | image_url: width: 450 }}"
+                  >
+                </a>
+              </div>
+              <div class="body-post">
+                <p class="title-post font-3">
+                  <a href="{{ article.url }}">{{ article.title }}</a>
+                </p>
+                <p class="description-post">{{ article.excerpt_or_content | strip_html | truncatewords: 14 }}</p>
+                <a href="{{ article.url }}" class="read-more-blog-holymac">Ler tudo</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev" style="--swiper-navigation-size: 20px; --swiper-navigation-color: #8355A7"></div>
+      <div class="swiper-button-next" style="--swiper-navigation-size: 20px; --swiper-navigation-color: #8355A7"></div>
+    </div>
+  </div>
+  <div class="button-blog">
+    <a href="{{ blogs['blog'].url }}" class="button button--outline">Acessar blog</a>
+  </div>
+</div>
+  {% if section.settings['borda-inferior'] %}
+    {% render 'borda-inferior', cor: section.settings['color-borda-inferior'] %}
+  {% endif %}
+</div>
+{% schema %}
+{
+  "name": "Blog Holymac",
+  "class": "gray-section",
+  "settings": [{
+    "type": "checkbox",
+    "id": "borda-superior",
+    "default": true,
+    "label": "Ativar divisória superior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-superior",
+    "default": "#fff",
+    "label": "Cor da divisória superior"
+  },
+  {
+    "type": "checkbox",
+    "id": "borda-inferior",
+    "default": false,
+    "label": "Ativar divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-inferior",
+    "default": "#fff",
+    "label": "Cor da divisória inferior"
+  }],
+  "presets": [
+    {"name": "Blog Holymac"}
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

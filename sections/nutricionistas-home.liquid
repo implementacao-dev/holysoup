@@ -1,0 +1,295 @@
+<style>
+  .slider-nutris-hs .swiper-slide{
+    width: 90%;
+    height: auto;
+  }
+  
+  .slider-nutris-hs {
+    padding: 40px 20px 60px 20px;
+  }
+
+  .swiper-slide-active .nutri-hs {
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.01);
+  }
+
+  .nutri-hs {
+    background: #fff;
+    padding: 30px;
+    border-radius: 25px;
+    text-align: center;
+    height: calc(100% - 60px);
+  }
+
+  .photo-nutri img {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    object-fit: cover;
+    border-radius: 9999px;
+    margin-top: -50px;
+    margin-bottom: 15px;
+  }
+
+  .title-nutri span {
+    font-weight: 700;
+    font-size: 13px;
+  }
+  
+  .description-nutri p {
+    font-size: 14px;
+  }
+
+  .avaliacao-nutri svg {
+    stroke: none;
+    width: 14px;
+    height: auto;
+  }
+
+  .avaliacoes-head-nutri {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .avaliacoes-head-nutri .media-avaliacao p {
+    font-size: 33px;
+    line-height: 1;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .avaliacoes-head-nutri .total-avaliacoes {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1;
+    justify-content: center;
+  }
+
+  .head-nutri-review  .header-widget {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .head-nutri-review {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+
+  .head-nutri-review .header-widget h3 {
+    margin-left: inherit !important;
+    margin-right: inherit !important;
+    color: #fff;
+  }
+
+  .avaliacoes-head-nutri * {
+    color: #fff;
+  }
+
+  .avaliacoes-head-nutri .star-icon svg {
+    fill: #ffd88a;
+    stroke: none;
+    width: 16px;
+    height: 16px;
+    margin-top: -5px;
+  }
+
+  .nutri-hs-header{
+    position: relative;
+  }
+
+  .nutri-hs-header::before {
+    content: '';
+    background-image: url("data:image/svg+xml,%3Csvg id='Grupo_21' data-name='Grupo 21' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24.269' height='21.965' viewBox='0 0 24.269 21.965'%3E%3Cdefs%3E%3CclipPath id='clip-path'%3E%3Crect id='Retângulo_11' data-name='Retângulo 11' width='24.269' height='21.965' fill='%2300b45a'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg id='Grupo_20' data-name='Grupo 20' transform='translate(0)' clip-path='url(%23clip-path)'%3E%3Cpath id='Caminho_34' data-name='Caminho 34' d='M0,11.767Q0,9.422,0,7.076A5.884,5.884,0,0,1,.232,5.458,7.662,7.662,0,0,1,.926,3.75,7.316,7.316,0,0,1,1.96,2.35a7.545,7.545,0,0,1,2-1.522A6.821,6.821,0,0,1,5.594.205,7.538,7.538,0,0,1,7.1,0a2.2,2.2,0,0,1,.35.017A.42.42,0,0,1,7.86.446a2.854,2.854,0,0,1,.017.3q0,1.149,0,2.3a2.344,2.344,0,0,1-.031.333.351.351,0,0,1-.27.312,5.034,5.034,0,0,1-.522.106,3.747,3.747,0,0,0-1.74.719A3.815,3.815,0,0,0,3.822,6.871a6.312,6.312,0,0,0-.081.9c-.011.191,0,.383,0,.574,0,.068.024.08.083.08.521,0,1.042,0,1.564,0,.9,0,1.792,0,2.688,0a1.545,1.545,0,0,1,.7.128.982.982,0,0,1,.586.872c.006.1.012.191.012.287q0,3.45,0,6.9a2.322,2.322,0,0,1-.048.482.9.9,0,0,1-.769.721,2.569,2.569,0,0,1-.491.045q-3.406,0-6.813,0A1.54,1.54,0,0,1,.6,17.76a.91.91,0,0,1-.583-.824c-.007-.149-.012-.3-.012-.446q0-2.361,0-4.723' transform='translate(12.898 2.764)' fill='%2300b45a'/%3E%3Cpath id='Caminho_35' data-name='Caminho 35' d='M151.3,27.565c0-1.611-.007-3.223,0-4.834a5.423,5.423,0,0,1,.253-1.471,7.506,7.506,0,0,1,.659-1.61,7.243,7.243,0,0,1,2.241-2.438,6.882,6.882,0,0,1,2.26-1.041,6.6,6.6,0,0,1,1.845-.223c.3.013.456.139.493.405a1.68,1.68,0,0,1,.017.222q0,.694,0,1.388c0,.346,0,.691,0,1.037a2.086,2.086,0,0,1-.04.315.317.317,0,0,1-.254.266,4.646,4.646,0,0,1-.522.107,3.538,3.538,0,0,0-1.467.541,3.806,3.806,0,0,0-1.7,2.427,4.206,4.206,0,0,0-.087.927c0,.191,0,.383,0,.574,0,.068.015.093.088.093q.893,0,1.787,0c.824,0,1.648,0,2.473.01a1.328,1.328,0,0,1,.663.142.969.969,0,0,1,.533.882q.009,1.117.009,2.233,0,2.289,0,4.579a4.8,4.8,0,0,1-.023.573.917.917,0,0,1-.834.858,2.849,2.849,0,0,1-.429.029q-3.354,0-6.708,0a1.574,1.574,0,0,1-.642-.1.952.952,0,0,1-.606-.9c-.009-.287-.009-.574-.009-.861q0-2.066,0-4.132Z' transform='translate(-149.302 -13.946)' fill='%2300b45a'/%3E%3C/g%3E%3C/svg%3E%0A");
+    width: 40px;
+    height: 37px;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 17%;
+    background-repeat: no-repeat;
+  }
+
+  @media(max-width: 1024px){
+    .avaliacoes-head-nutri .media-avaliacao p {
+      font-size: 20px;
+    }
+
+    .avaliacoes-head-nutri .total-avaliacoes {
+      font-size: 7px;
+    }
+
+    .head-nutri-review .header-widget {
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 1200px){
+    .slider-nutris-hs .swiper-slide {
+      width: 30%;
+    }
+  
+    .slider-nutris-hs {
+      padding: 40px 120px 60px 120px;
+    }
+  }
+</style>
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+<div class="swiper slider-nutris-hs max-container" style="background-color: {{ section.settings.background_color }}">
+  <div class="head-nutri-review">
+      <div class="header-widget custom-font text-left">
+        <h3 style="color: {{ section.settings.title_color }}">Confira quem já mudou de vida com a Holy: </h3>
+        <div class="avaliacoes-head-nutri">
+          <div class="star-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="512px" height="512px">    <path d="M10.2,48.6c-0.2,0-0.4-0.1-0.6-0.2c-0.3-0.2-0.5-0.7-0.4-1.1l4.4-16.4L0.4,20.2C0,20-0.1,19.5,0,19.1 c0.1-0.4,0.5-0.7,0.9-0.7l17-0.9l6.1-15.9C24.2,1.3,24.6,1,25,1c0.4,0,0.8,0.3,0.9,0.6l6.1,15.9l17,0.9c0.4,0,0.8,0.3,0.9,0.7 c0.1,0.4,0,0.8-0.3,1.1L36.4,30.9l4.4,16.4c0.1,0.4,0,0.8-0.4,1.1c-0.3,0.2-0.8,0.3-1.1,0L25,39.2l-14.3,9.2 C10.5,48.6,10.4,48.6,10.2,48.6z"></path></svg>
+          </div>
+          <div class="media-avaliacao">
+            <p>4.8</p>
+          </div>
+          <div class="total-avaliacoes">
+            <b>1.500</b>
+            <span>Avaliações</span>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="swiper-wrapper">
+  {% for block in section.blocks %}
+    {% assign content = block.settings.title | split: ": " %}
+    <div class="swiper-slide">
+      <div class="nutri-hs">
+        <div class="nutri-hs-header">
+          <div class="photo-nutri">
+            {% if block.settings.icone %}
+              <img src="{{ block.settings.icone | image_url }}">
+            {% endif %}
+          </div>
+          <div class="title-nutri">
+            <span style="color: {{ section.settings.title_nutri_color }}">
+              {{ block.settings.title }}
+            </span>
+            <div class="avaliacao-nutri">
+              {% assign next = 0 %}
+              {% for i in (1..5) %}
+                {% assign index = i | times: 1.0 %}
+                {% assign next = i | times: 1.0 | plus: 1 %}
+                {% assign prev = i | times: 1.0 | minus: 1 %}
+                {% if block.settings.star_range >= index  %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="9.727" height="9.032" viewBox="0 0 9.727 9.032">
+                    <path data-name="Icon ionic-ios-star" d="M11.608,6.5H8.414l-.971-2.9a.352.352,0,0,0-.66,0L5.813,6.5H2.6a.348.348,0,0,0-.347.347.255.255,0,0,0,.007.059.334.334,0,0,0,.145.245L5.027,9,4.02,11.932a.348.348,0,0,0,.119.391.336.336,0,0,0,.2.085.426.426,0,0,0,.217-.078L7.114,10.5l2.562,1.826a.407.407,0,0,0,.217.078.312.312,0,0,0,.193-.085.344.344,0,0,0,.119-.391L9.2,9l2.6-1.867.063-.054a.332.332,0,0,0-.256-.58Z" transform="translate(-2.25 -3.375)" fill="#ffd88a"/>
+                  </svg>
+                {% elsif block.settings.star_range < index and block.settings.star_range > prev %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="9.727" height="9.032" viewBox="0 0 9.727 9.032">
+                    <path data-name="Icon ionic-ios-star-half" d="M11.608,6.5H8.414l-.971-2.9a.352.352,0,0,0-.66,0L5.813,6.5H2.6a.348.348,0,0,0-.347.347.255.255,0,0,0,.007.059.334.334,0,0,0,.145.245L5.027,9,4.02,11.932a.348.348,0,0,0,.119.391.336.336,0,0,0,.2.085.426.426,0,0,0,.217-.078L7.114,10.5l2.562,1.826a.407.407,0,0,0,.217.078.312.312,0,0,0,.193-.085.344.344,0,0,0,.119-.391L9.2,9l2.6-1.867.063-.054a.332.332,0,0,0-.256-.58Zm-1.029.764L8.846,8.51a.61.61,0,0,0-.221.69l.654,1.9a.087.087,0,0,1-.132.1l-1.681-1.2,0,0a.81.81,0,0,1-.35-.662V4.793A.042.042,0,0,1,7.2,4.78h0l.643,1.915a.607.607,0,0,0,.575.415h2.113A.087.087,0,0,1,10.579,7.266Z" transform="translate(-2.25 -3.375)" fill="#ffd88a"/>
+                  </svg>
+                {% else %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10.327" height="9.632" viewBox="0 0 10.327 9.632">
+                    <path data-name="Icon ionic-ios-star" d="M11.608,6.5H8.414l-.971-2.9a.352.352,0,0,0-.66,0L5.813,6.5H2.6a.348.348,0,0,0-.347.347.255.255,0,0,0,.007.059.334.334,0,0,0,.145.245L5.027,9,4.02,11.932a.348.348,0,0,0,.119.391.336.336,0,0,0,.2.085.426.426,0,0,0,.217-.078L7.114,10.5l2.562,1.826a.407.407,0,0,0,.217.078.312.312,0,0,0,.193-.085.344.344,0,0,0,.119-.391L9.2,9l2.6-1.867.063-.054a.332.332,0,0,0-.256-.58Z" transform="translate(-1.95 -3.075)" fill="none" stroke="#ffd88a" stroke-width="0.6"/>
+                  </svg>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          
+        </div>
+        <div class="description-nutri">
+          <p>{{ block.settings.description }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+{% if section.settings.borda-inferior %}
+  {% render 'borda-inferior', cor: section.settings.color-borda-inferior %}
+{% endif %}
+{% schema %}
+  {
+    "name": "Nutricionistas",
+    "class": "blue-section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "title_color",
+        "label": "Cor do título principal",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Cor do fundo",
+        "default": "#FF6700"
+      },
+      {
+        "type": "color",
+        "id": "title_nutri_color",
+        "label": "Cor do título do nutricionista",
+        "default": "#07b"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-superior",
+        "default": true,
+        "label": "Ativar divisória superior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-superior",
+        "default": "#fff",
+        "label": "Cor da divisória superior"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-inferior",
+        "default": false,
+        "label": "Ativar divisória inferior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-inferior",
+        "default": "#fff",
+        "label": "Cor da divisória inferior"
+      }
+    ],
+    "blocks": [{
+      "type": "Nutricionista",
+      "name": "Nutricionista",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icone",
+          "label": "Icone"
+        },
+        {
+          "type": "range",
+          "id": "star_range",
+          "label": "Estrelas",
+          "min": 0,
+          "max": 5,
+          "step": 0.5,
+          "unit": "✦",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descrição"
+        }
+      ]
+    }],
+    "presets": [
+      {"name": "Nutricionistas"}
+    ]
+  }
+{% endschema %}

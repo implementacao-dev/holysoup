@@ -1,0 +1,590 @@
+<div class="kit-selection-faq-landing">
+  <div class="kit-selection-faq-container">
+    <div id="escolha-seu-kit" class="kit-selection-wrapper">
+      <div class="kit-selection-content">
+        {% if section.settings.kit_title != blank %}
+          <h2 id="kit-selection-title" class="kit-selection-title">{{ section.settings.kit_title }}</h2>
+        {% endif %}
+
+        <div class="kit-options">
+          {% assign action_type = section.settings.action_type | default: 'add_to_cart' %}
+          {% assign kit_option_blocks = section.blocks | where: 'type', 'kit_option' %}
+
+          {% for block in kit_option_blocks %}
+            {% assign block_product = block.settings.product %}
+            {% if block_product != blank %}
+              {% assign block_variant = block_product.selected_or_first_available_variant %}
+              <label class="kit-option" {{ block.shopify_attributes }}>
+                <input
+                  type="radio"
+                  name="kit-option"
+                  value="{{ forloop.index }}"
+                  class="kit-option-radio"
+                  {% if forloop.first %}
+                    checked
+                  {% endif %}
+                  {% if action_type == 'add_to_cart' %}
+                    data-variant-id="{{ block_variant.id }}"
+                    data-quantity="1"
+                    data-action="add_to_cart"
+                  {% else %}
+                    data-yampi-url="{{ block.settings.yampi_url }}"
+                    data-action="redirect_yampi"
+                  {% endif %}
+                >
+                <div class="kit-option-content">
+                  {% if block.settings.discount_badge != blank or block.settings.free_shipping_text != blank %}
+                    <div class="kit-badge-wrapper">
+                      {% if block.settings.discount_badge != blank %}
+                        <span class="kit-discount-badge kit-discount-badge-{{ forloop.index }}">
+                          {{- block.settings.discount_badge -}}
+                        </span>
+                      {% endif %}
+                      {% if block.settings.free_shipping_text != blank %}
+                        <span class="kit-free-shipping">{{ block.settings.free_shipping_text }}</span>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                  <div class="kit-label-header">
+                    <span class="kit-name">{{ block.settings.name }}</span>
+                    <div class="kit-price-badge-wrapper">
+                      <span class="kit-price">
+                        <span class="kit-price-current">
+                          {% if block.settings.current_price != blank %}
+                            {% assign price_value = block.settings.current_price | times: 100 | round %}
+                            {{ price_value | money }}
+                          {% else %}
+                            {{ block_variant.price | money }}
+                          {% endif %}
+                        </span>
+                        {% if block.settings.original_price != blank %}
+                          {% assign original_price_value = block.settings.original_price | times: 100 | round %}
+                          <span class="kit-price-original">{{ original_price_value | money }}</span>
+                        {% endif %}
+                      </span>
+                    </div>
+                  </div>
+                  {% if block.settings.quantity_price_text != blank or block.settings.quantity_yield_text != blank %}
+                    <div class="kit-meal-info">
+                      {% if block.settings.quantity_price_text != blank %}
+                        <span class="kit-meal-price">{{ block.settings.quantity_price_text | replace: '.', ',' }}</span>
+                      {% endif %}
+                      {% if block.settings.quantity_yield_text != blank %}
+                        <span class="kit-meal-yield"> | {{ block.settings.quantity_yield_text }}</span>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                </div>
+              </label>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% if section.settings.benefits != blank %}
+          <ul class="kit-benefits-list">
+            {% assign benefits_list = section.settings.benefits | newline_to_br | split: '<br />' %}
+            {% for benefit in benefits_list %}
+              {% if benefit != blank %}
+                <li class="kit-benefit-item">
+                  {% render 'icon-check-2-landing',
+                    class: 'kit-benefit-check',
+                    width: '12',
+                    fill: section.settings.check_icon_color,
+                    stroke: section.settings.check_icon_color
+                  %}
+                  <span>{{ benefit | strip }}</span>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% assign kit_option_blocks = section.blocks | where: 'type', 'kit_option' %}
+        {% if section.settings.button_text != blank and kit_option_blocks.size > 0 %}
+          <button
+            type="button"
+            class="btn-primary kit-add-to-cart-btn"
+            data-action-type="{{ action_type }}"
+          >
+            {{ section.settings.button_text }}
+          </button>
+        {% endif %}
+
+        {% if section.settings.guarantee_text != blank %}
+          <div class="kit-guarantee">
+            {% render 'icon-check-landing', width: 16, height: 16, fill: section.settings.guarantee_text_color %}
+            <span>{{ section.settings.guarantee_text }}</span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="faq-wrapper">
+      <div class="faq-content">
+        {% if section.settings.faq_title != blank %}
+          <h2 class="faq-title">{{ section.settings.faq_title }}</h2>
+        {% endif %}
+
+        <div class="faqs-list">
+          {% for block in section.blocks %}
+            {% if block.type == 'faq' %}
+              <div class="faq-item" {{ block.shopify_attributes }}>
+                <button type="button" class="faq-question" aria-expanded="false">
+                  <span class="faq-question-text">{{ block.settings.question }}</span>
+                  <span class="faq-icon"><span></span></span>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-content">
+                    {{ block.settings.answer }}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% style %}
+  #shopify-section-{{ section.id }} .kit-selection-faq-landing {
+    padding: 70px 20px;
+    background-color: {{ section.settings.bg_color }};
+  }
+  #shopify-section-{{ section.id }} .kit-selection-title,
+  #shopify-section-{{ section.id }} .faq-title,
+  #shopify-section-{{ section.id }} .kit-name,
+  #shopify-section-{{ section.id }} .kit-price-current,
+  #shopify-section-{{ section.id }} .kit-price-original,
+  #shopify-section-{{ section.id }} .faq-question-text,
+  #shopify-section-{{ section.id }} .faq-answer-content {
+    color: {{ section.settings.title_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .kit-discount-badge {
+    background-color: {{ section.settings.tag_color }} !important;
+    color: #ffffff !important;
+  }
+  #shopify-section-{{ section.id }} .kit-free-shipping,
+  #shopify-section-{{ section.id }} .kit-meal-price {
+    color: {{ section.settings.tag_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .kit-selection-wrapper,
+  #shopify-section-{{ section.id }} .kit-option-content {
+    border-color: {{ section.settings.shadow_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .kit-option-radio:checked + .kit-option-content {
+    border-width: 2px !important;
+  }
+  #shopify-section-{{ section.id }} .kit-add-to-cart-btn {
+    background-color: {{ section.settings.button_bg_color }} !important;
+    color: {{ section.settings.button_text_color }} !important;
+    border-color: {{ section.settings.button_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.button_shadow_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .kit-add-to-cart-btn:hover {
+    background-color: {{ section.settings.button_hover_bg_color }} !important;
+    color: {{ section.settings.button_hover_text_color }} !important;
+    border-color: {{ section.settings.button_hover_shadow_color }} !important;
+    box-shadow: 5px 5px 0 0 {{ section.settings.button_hover_shadow_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .kit-discount-badge {
+    background-color: {{ section.settings.discount_badge_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .kit-option-radio:checked + .kit-option-content .kit-discount-badge {
+    background-color: {{ section.settings.discount_badge_active_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .kit-meal-price {
+    color: {{ section.settings.meal_price_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .kit-benefit-check path {
+    fill: {{ section.settings.check_icon_color }} !important;
+    stroke: {{ section.settings.check_icon_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .kit-guarantee,
+  #shopify-section-{{ section.id }} .kit-guarantee span,
+  #shopify-section-{{ section.id }} .kit-guarantee svg path {
+    background-color: transparent;
+    color: {{ section.settings.guarantee_text_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .kit-guarantee svg path {
+    fill: {{ section.settings.guarantee_text_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .kit-guarantee,
+  #shopify-section-{{ section.id }} .kit-guarantee span {
+    color: {{ section.settings.guarantee_text_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .kit-guarantee {
+    background-color: {{ section.settings.guarantee_bg_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .faq-icon {
+    border-color: {{ section.settings.title_color }} !important;
+  }
+  #shopify-section-{{ section.id }} .faq-icon::before,
+  #shopify-section-{{ section.id }} .faq-icon::after {
+    background-color: {{ section.settings.title_color }} !important;
+  }
+{% endstyle %}
+
+{{ 'kit-selection-faq-landing.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'kit-selection-faq-landing.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Seleção de Kit + FAQ",
+  "tag": "section",
+  "class": "kit-selection-faq-landing-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Cor de Fundo",
+      "default": "#f7f6f1"
+    },
+    {
+      "type": "header",
+      "content": "Seleção de Kit"
+    },
+    {
+      "type": "select",
+      "id": "action_type",
+      "label": "Tipo de Ação",
+      "options": [
+        {
+          "value": "add_to_cart",
+          "label": "Adicionar ao Carrinho"
+        },
+        {
+          "value": "redirect_yampi",
+          "label": "Redirecionar para Yampi"
+        }
+      ],
+      "default": "add_to_cart",
+      "info": "Choose whether to add products to cart or redirect to Yampi link"
+    },
+    {
+      "type": "text",
+      "id": "kit_title",
+      "label": "Título da Seleção de Kit",
+      "default": "Escolha seu Kit"
+    },
+    {
+      "type": "textarea",
+      "id": "benefits",
+      "label": "Benefícios",
+      "info": "Enter one benefit per line",
+      "default": "Baixíssimas calorias por porção\nJantar leve pronto em 15 minutos\nLivre de aditivos, conservantes, 100% natural\nRegula o intestino e desincha"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Texto do Botão",
+      "default": "Comprar Agora"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_text",
+      "label": "Texto de Garantia",
+      "default": "Garantia De Satisfação Total 30 Dias"
+    },
+    {
+      "type": "header",
+      "content": "FAQ"
+    },
+    {
+      "type": "header",
+      "content": "Cores e Estilos"
+    },
+    {
+      "type": "header",
+      "content": "Estilo Visual (Cores e Ícones)"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Cor dos Títulos",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "tag_color",
+      "label": "Cor das Flags/Badges",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "check_icon_color",
+      "label": "Cor do Checklist / Ícones",
+      "default": "#7bca0c"
+    },
+    {
+      "type": "header",
+      "content": "Botão Adicionar ao Carrinho"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Cor de Fundo do Botão",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Cor do Texto do Botão",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_shadow_color",
+      "label": "Cor da Sombra do Botão",
+      "default": "#005234"
+    },
+    {
+      "type": "header",
+      "content": "Cores do Botão (Hover)"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Cor de Fundo (Hover)",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Cor do Texto (Hover)",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_shadow_color",
+      "label": "Cor da Sombra (Hover)",
+      "default": "#005234"
+    },
+    {
+      "type": "header",
+      "content": "Estilo dos Cards de Kit (Cores)"
+    },
+    {
+      "type": "color",
+      "id": "shadow_color",
+      "label": "Cor da Sombra/Borda Ativa",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "discount_badge_color",
+      "label": "Cor da Tag de Desconto (Normal)",
+      "default": "#005234"
+    },
+    {
+      "type": "color",
+      "id": "discount_badge_active_color",
+      "label": "Cor da Tag de Desconto (Ativa)",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "meal_price_color",
+      "label": "Cor do Valor por Refeição",
+      "default": "#7BCA0C"
+    },
+    {
+      "type": "color",
+      "id": "guarantee_bg_color",
+      "label": "Cor de Fundo da Garantia",
+      "default": "#EBF7DA"
+    },
+    {
+      "type": "color",
+      "id": "guarantee_text_color",
+      "label": "Cor do Texto da Garantia",
+      "default": "#005234"
+    },
+    {
+      "type": "text",
+      "id": "faq_title",
+      "label": "Título do FAQ",
+      "default": "Você pode querer saber:"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "kit_option",
+      "name": "Opção de Kit",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Produto",
+          "info": "Select the product for this kit option"
+        },
+        {
+          "type": "url",
+          "id": "yampi_url",
+          "label": "URL Yampi",
+          "info": "Yampi redirect URL (only used if Action Type is 'Redirect to Yampi')"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nome da Opção",
+          "default": "Para 01 Pessoa (1 KIT)"
+        },
+        {
+          "type": "text",
+          "id": "original_price",
+          "label": "Preço Original",
+          "default": "199.00",
+          "info": "Price in format: 199.00 (without currency symbol)"
+        },
+        {
+          "type": "text",
+          "id": "current_price",
+          "label": "Preço Atual",
+          "default": "179.10",
+          "info": "Price in format: 179.10 (without currency symbol)"
+        },
+        {
+          "type": "text",
+          "id": "discount_badge",
+          "label": "Badge de Desconto",
+          "default": "10% off"
+        },
+        {
+          "type": "text",
+          "id": "free_shipping_text",
+          "label": "Texto de Frete Grátis",
+          "info": "Optional: Text for free shipping badge (e.g. '+ Frete Grátis')"
+        },
+        {
+          "type": "text",
+          "id": "quantity_price_text",
+          "label": "Texto de Preço por Quantidade",
+          "default": "R$4.48 Por Refeição",
+          "info": "Optional: Price per meal text"
+        },
+        {
+          "type": "text",
+          "id": "quantity_yield_text",
+          "label": "Texto de Rendimento",
+          "default": "Rende 40 Refeições",
+          "info": "Optional: Yield text"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pergunta",
+          "default": "Titulo"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Resposta",
+          "default": "<p>lorem ipsum</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Seleção de Kit + FAQ",
+      "settings": {
+        "kit_title": "Escolha seu Kit",
+        "benefits": "Baixíssimas calorias por porção\nJantar leve pronto em 15 minutos\nLivre de aditivos, conservantes, 100% natural\nRegula o intestino e desincha",
+        "button_text": "Comprar Agora",
+        "guarantee_text": "Garantia De Satisfação Total 30 Dias",
+        "faq_title": "Você pode querer saber:"
+      },
+      "blocks": [
+        {
+          "type": "kit_option",
+          "settings": {
+            "name": "Para 01 Pessoa (1 KIT)",
+            "original_price": "199.00",
+            "current_price": "179.10",
+            "discount_badge": "10% off",
+            "quantity_price_text": "R$4.48 Por Refeição",
+            "quantity_yield_text": "Rende 40 Refeições"
+          }
+        },
+        {
+          "type": "kit_option",
+          "settings": {
+            "name": "Para 02 Pessoas (2 KITS)",
+            "original_price": "398.00",
+            "current_price": "298.50",
+            "discount_badge": "25% off",
+            "free_shipping_text": "+ Frete Grátis",
+            "quantity_price_text": "R$3.73 Por Refeição",
+            "quantity_yield_text": "Rende 80 Refeições"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Por que HolyFoods",
+            "answer": "<p>É simples.</p><p><strong>Completa:</strong><br>Nutrição de verdade. HolyFoods entrega o que seu corpo precisa em uma única solução, descomplicada, inteligente e acessível.</p><p><strong>Gostosa:</strong><br>Um hábito que dá prazer, não é uma sopa qualquer. Você não precisa se esforçar na cozinha. Você vai querer consumir todos os dias.</p><p><strong>Prático:</strong><br>Feito para acompanhar seu ritmo. Leve, fácil de fazer no fogão ou micro-ondas. Refeição fácil pra te ajudar na dieta, e te manter no foco até fim, longe de preguiça.</p><p><strong>Sem bagunça, sem estresse:</strong><br>Nada de enfrentar fila de mercado pra comprar ingredientes, nem se entupir de conservantes, aditivos e ultra processados. Só nutrição limpa, fácil, simples e eficiente.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Como o Seca Barriga ajuda emagrecer?",
+            "answer": "<p>A combinação de proteína, fibras e poucas calorias cria o cenário ideal para o emagrecimento.</p><p>A proteína aumenta a saciedade e ajuda a manter a massa muscular, fazendo o corpo gastar mais energia ao longo do dia.</p><p>As baixas calorias permitem que você consuma um bom volume de alimento sem estourar o consumo diário de energia.</p><p>As fibras retardam a digestão, controlam a fome e reduzem picos de glicose, o que diminui a vontade por doces e beliscos.</p><p>Além disso todas as sopas do Kit são ricas em fibras solúveis e insolúveis:</p><p>As fibras solúveis e insolúveis trabalham juntas para fazer o intestino funcionar melhor e reduzir o inchaço.</p><p>As fibras solúveis se misturam com a água no intestino, formando um gel que alimenta as bactérias boas e ajuda a controlar gases, diarreia e prisão de ventre.</p><p>As fibras insolúveis dão volume às fezes e fazem o intestino se mover, facilitando a evacuação e evitando o acúmulo de resíduos.</p><p>O resultado é um intestino mais regular, menos gases, menos sensação de barriga estufada, redução do inchaço e do desconforto abdominal.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Quando consumir?",
+            "answer": "<p>Você pode consumir a qualquer momento do dia, mas para melhores resultados recomendamos substituir pelo menos o jantar. Como são sopas leves, nutritivas e que dão saciedade, esse é o melhor momento de consumo.</p><p>Se quiser economizar tempo pode fazer todo o pacote e congelar por até 3 meses, e apenas descongelar na hora do jantar.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "As sopas ficam prontas em quanto tempo?",
+            "answer": "<p>Em média, nossas sopas ficam prontas em apenas 20 minutos, mas cada uma delas vem com um tempo específico de cozimento claramente indicado na embalagem.</p><p>Com exceção do Creme Verde Fit, os outros sabores podem ser preparados no micro ondas seguindo as instruções da embalagem.</p><p>Para preparar você só precisa despejar o conteúdo do pacote na água fervente e sal à gosto.</p><p>Você também pode complementar com mais proteínas ou outros ingredientes.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "As sopas contém glutén?",
+            "answer": "<p>Não! Para garantir uma alimentação saudável e segura para pessoas celíacas, nossos produtos são totalmente livres de glúten e contaminação cruzada.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Como as sopas duram sem conservantes?",
+            "answer": "<p>Cada pacote dura 8 meses. Para garantir que nossas sopas cheguem fresquinhas e sem conservantes, adotamos um cuidadoso processo de desidratação em todos os ingredientes das receitas.</p><p>Este método retira toda a água enquanto preserva os nutrientes essenciais, eliminando a necessidade de aditivos químicos.</p><p>Estamos comprometidos em enviar para a sua casa apenas lotes recém-produzidos, assegurando que cada refeição seja tão fresca e saborosa quanto saudável.</p><p>Para estender o prazo de validade, você pode congelar as sopas já preparadas por até 3 meses.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Tem muito sódio?",
+            "answer": "<p>O único sódio que você encontra são dos próprios alimentos. Não adicionamos sódio em nenhuma sopa.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Qual o rendimento?",
+            "answer": "<p>lorem ipsum</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

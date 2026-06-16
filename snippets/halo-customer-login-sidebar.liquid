@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="{{ 'component-auth.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-auth.css' | asset_url | stylesheet_tag }}</noscript>
+
+<customer-auth class="halo-sidebar halo-sidebar-right halo-auth-sidebar" data-auth-sidebar id="halo-auth-sidebar">
+    <div class="halo-sidebar-header text-left">
+      <span class="title">{%- if customer -%}{{ 'customer.account.welcome' | t : name : customer.name }}{%- else -%}{{ 'customer.login_page.sign_in' | t }}{%- endif -%}</span>
+      <span class="back-menu" data-remove-sidebar="auth-sidebar-show">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="10.004" viewBox="0 0 15 10.004">
+          <path id="Icon_ionic-ios-arrow-round-back" data-name="Icon ionic-ios-arrow-round-back" d="M13.316,11.443a.681.681,0,0,1,.005.959l-3.163,3.173H22.21a.677.677,0,0,1,0,1.355H10.159L13.327,20.1a.686.686,0,0,1-.005.959.675.675,0,0,1-.953-.005L8.075,16.732h0a.761.761,0,0,1-.141-.214.646.646,0,0,1-.052-.261.679.679,0,0,1,.193-.474l4.293-4.324A.664.664,0,0,1,13.316,11.443Z" transform="translate(-7.882 -11.252)" fill="#3c3c3c"></path>
+        </svg>
+      </span>
+      <button type="button" class="halo-sidebar-close button-effect" data-close-auth-sidebar title="{{ 'general.common.close' | t }}">{% render 'icon-close' %}{{ 'general.common.close' | t }}</button>
+      {% comment %}{% render 'borda-inferior', cor: '#fff' %}{% endcomment %}
+    </div>
+    <div class="halo-sidebar-wrapper custom-scrollbar">
+    	{%- if customer -%}
+            <ul class="account-dropdown list-unstyled">
+                <li class="account-item"><a class="link account-action" href="{{ routes.account_url }}"><span class="text">{{ 'customer.account.details' | t }}</span></a></li>
+                <li class="account-item"><a class="link account-action" href="{{ routes.account_addresses_url }}"><span class="text">{{ 'customer.addresses.title' | t }}</span></a></li>
+                <li class="account-item"><a class="link account-action" href="{{ routes.account_login_url }}#recover"><span class="text">{{ 'customer.recover_password.title' | t }}</span></a></li>
+                <li class="account-item"><a class="link account-action" href="{{ routes.account_logout_url }}"><span class="text">{{ 'customer.log_out' | t }}</span></a></li>
+            </ul>
+        {%- else -%}
+            <form accept-charset="UTF-8" action="{{ routes.account_login_url }}" method="post" class="auth-form auth-form-2">
+                <input name="form_type" type="hidden" value="customer_login" />
+                <input name="utf8" type="hidden" value="✓" />
+                <div class="form-field">
+                    <input id="customer_email" class="form-input form-input-placeholder text-left" type="email" value="" name="customer[email]" required placeholder="{{ 'customer.login_page.email' | t }}">
+                </div>
+                <div class="form-field">
+                    <input id="customer_password" class="form-input form-input-placeholder text-left" type="password" value="" required placeholder="{{ 'customer.login_page.password' | t }}" name="customer[password]">
+                </div>
+                <div class="form-actions auth-actions text-center">
+                    <button type="submit" class="button button-{{ settings.customer_login_btn_1 }} button-login text-center" >Acessar <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="32px" viewBox="0 0 32 32" version="1.1"> <defs></defs> <g id="Page-2-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="75" stroke="#979797" fill-rule="nonzero"> <path d="M23.3847763,15 L19.5060967,11.1213203 C19.1155724,10.7307961 19.1155724,10.0976311 19.5060967,9.70710678 C19.8966209,9.31658249 20.5297859,9.31658249 20.9203102,9.70710678 L26.5771645,15.363961 C26.9676888,15.7544853 26.9676888,16.3876503 26.5771645,16.7781746 L20.9203102,22.4350288 C20.5297859,22.8255531 19.8966209,22.8255531 19.5060967,22.4350288 C19.1155724,22.0445046 19.1155724,21.4113396 19.5060967,21.0208153 L23.5269119,17 L1.28757088,17 C0.735549934,17 0.284271247,16.5522847 0.284271247,16 C0.284271247,15.4438648 0.733463795,15 1.28757088,15 L23.3847763,15 L23.3847763,15 Z" id="Rectangle-358" stroke="none" fill="#2A2630"></path> <path d="M31,2 L30,1 L30,7.93554687 L30,23.9785156 L30,31 L31,30 L13,30 C12.4477153,30 12,30.4477153 12,31 C12,31.5522847 12.4477153,32 13,32 L31,32 C31.5522847,32 32,31.5522847 32,31 L32,23.9785156 L32,7.93554687 L32,1 C32,0.44771525 31.5522847,0 31,0 L13,2.22044605e-16 C12.4477153,2.28857485e-16 12,0.44771525 12,1 C12,1.55228475 12.4477153,2 13,2 L31,2 Z" id="Rectangle-508" stroke="none" fill="#95909E"></path> </g> </g> </svg></button>
+                    <a class="auth-link link link-underline" href="{{ routes.account_login_url }}#recover"><span class="text">{{ 'customer.forgot_password' | t }}</span></a>
+                    <a register-inline-menu href="javascript:void(0)" class="button button-{{ settings.customer_login_btn_2 }} button-register">Cadastrar <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 17" class="icon icon-sign-up"><defs><style>.cls-1{fill:#767676;}.cls-2{fill:#5c5c5c;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path d="M10.11,15.67H2.16a1.1,1.1,0,0,1-.26,0,.67.67,0,0,1-.56-.8,7.32,7.32,0,0,1,3.86-5,7.16,7.16,0,0,1,5.08-.58,8.49,8.49,0,0,1,1.39.49.66.66,0,0,0,.9-.49.67.67,0,0,0-.42-.74c-.3-.14-.61-.26-.93-.39l.28-.24a4.25,4.25,0,0,0,1-1.35,4.42,4.42,0,0,0,.15-3.68A4.47,4.47,0,0,0,9.7.16C9.44.09,9.18.08,8.93,0h-.1s0,0-.06,0S8.71,0,8.7,0H8.3s0,0-.07,0-.05,0-.06,0H8a2.44,2.44,0,0,1-.39.05,4.5,4.5,0,0,0-3.17,2.4A4.32,4.32,0,0,0,4,5.07a4.56,4.56,0,0,0,.58,1.72A4.41,4.41,0,0,0,5.58,8c.12.11.12.11,0,.17a8.5,8.5,0,0,0-1.19.54,8.39,8.39,0,0,0-2.49,2,8.13,8.13,0,0,0-1.88,4v.56c0,.12,0,.25.07.37A2,2,0,0,0,1.73,17h8.6s.08,0,.12-.05a.66.66,0,0,0,.35-.87A.67.67,0,0,0,10.11,15.67ZM5.31,4.52A3.19,3.19,0,1,1,8.55,7.7,3.2,3.2,0,0,1,5.31,4.52Z"></path><path d="M16.17,13.18c-.49,0-1,0-1.49,0-.15,0-.18,0-.17-.19V11.43a.79.79,0,0,0-.06-.34.66.66,0,0,0-1.27.27v1.69c0,.11,0,.14-.13.13H11.42a.82.82,0,0,0-.34.06.68.68,0,0,0-.38.72.66.66,0,0,0,.64.55H13c.14,0,.19,0,.19.17,0,.5,0,1,0,1.49a.75.75,0,0,0,.53.83H14a.64.64,0,0,0,.58-.68V14.77c0-.2,0-.21.21-.21H16.3A.65.65,0,0,0,17,14v-.27A.75.75,0,0,0,16.17,13.18Z"></path><path class="cls-1" d="M8.23,0H8.17a.07.07,0,0,0,.06,0Z"></path><path class="cls-1" d="M8.23,0h0a.07.07,0,0,1-.06,0S8.21,0,8.23,0Z"></path><path class="cls-2" d="M8.25,0s0,0,.05,0H8.23Z"></path><path class="cls-2" d="M8.24,0h0s.06,0,.07,0,0,0-.05,0Z"></path><path class="cls-2" d="M8.23,0h0l0,0V0Z"></path><path class="cls-2" d="M8.24,0h0Z"></path><path class="cls-2" d="M8.77,0V0H8.7a.08.08,0,0,0,.07,0Z"></path><path class="cls-2" d="M8.77,0h0A.08.08,0,0,1,8.7,0S8.74,0,8.77,0Z"></path><path class="cls-1" d="M8.78,0s0,0,.05,0H8.77Z"></path><path class="cls-1" d="M8.78,0h0s.05,0,.06,0,0,0-.05,0Z"></path><path class="cls-1" d="M8.78,0V0Z"></path><path class="cls-1" d="M8.78,0Z"></path></g></g></svg></a>
+                </div>
+            </form>
+        {%- endif -%}
+        
+        {% render 'footer-menu-sidebar' %}
+    </div>
+</customer-auth>
+<script src="{{ 'halo-customer-login.js' | asset_url }}" defer="defer"></script>

@@ -1,0 +1,572 @@
+<style>
+  .recommend-container select {
+    padding: 0px 15px 0px 5px;
+    min-height: 30px;
+  }
+
+  img.recommend-item-image {
+    height: 130px;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .infoProduct h4 {
+    font-size: 12px;
+    line-height: 1.2;
+    margin-top: 0px;
+    margin-bottom: 0;
+    overflow: hidden;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+  }
+  
+  .infoProduct .color-selected {
+    font-size: 9px;
+    color: #858585;
+    text-transform: uppercase;
+  }
+
+  .infoProduct select {
+    font-size: 12px;
+/*     color: #ababab; */
+    margin-bottom: 5px;
+    appearance: auto;
+  }
+
+  .infoProduct span.price {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .recommend-btn-add {
+    font-size: 12px;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    background: #000;
+    color: #fff;
+  }
+  
+  .recommend-btn-add[disabled] {background: #c7c7c7}
+
+  .infoProduct .color-selected {
+    font-size: 10px;
+    color: #858585;
+    text-transform: uppercase;
+    display: block;
+    line-height: 1;
+    margin-bottom: 5px;
+    min-height: 10px;
+    margin-top: 10px;
+  }
+
+  .variants-product-selects {
+    min-height: 35px;
+  }
+
+  .recommend-slider >.swiper-scrollbar {
+    opacity: 1 !important;
+    bottom: 0;
+  }
+
+  .recommend-container h3 {
+    font-family: var(--font-body-family);
+    font-weight: inherit;
+    font-size: 14px;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .frete-container h4 {
+    margin-bottom: 5px;
+  }
+
+  .variants-product-selects select option:first-child {
+    color: #888; /* Cinza mais claro */
+  }
+  
+  /* Estilizando a opção selecionada */
+  .variants-product-selects select option:checked {
+    color: #333; /* Cinza mais escuro */
+  }
+
+  .item-recommend a.image:first-child {
+    position: relative;
+    padding-top: 80px;
+    display: block;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .item-recommend a.image img {
+    position: absolute;
+    top: 0;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  .carrinho-middle {
+    margin-bottom: 15px;
+  }
+
+    /* ===== Scrollbar CSS ===== */
+    /* Firefox */
+    .carrinho-middle {
+      scrollbar-width: auto;
+      scrollbar-color: #727272 #e5e5e5;
+    }
+  
+    /* Chrome, Edge, and Safari */
+    .carrinho-middle::-webkit-scrollbar {
+      width: 5px;
+    }
+  
+    .carrinho-middle::-webkit-scrollbar-track {
+      background: #e5e5e5;
+    }
+  
+    .carrinho-middle::-webkit-scrollbar-thumb {
+      background-color: #727272;
+      border-radius: 10px;
+      border: 0px none #ffffff;
+    }
+
+    .carrinho-middle {
+      padding: 0 20px 20px 20px;
+      margin-right: 5px;
+    }
+
+    .carrinho-bottom {
+      padding: 0 20px 10px 20px;
+      box-shadow: 0px -2px 16px 1px #00000029;
+    }
+
+    .carrinho-top {
+      padding: 0 20px;
+      box-shadow: 0px 2px 16px 1px #00000029;
+      margin-bottom: 5px;
+    }
+
+  /*Loading*/
+  #dropdown-cart.updating-cart .mini-products-list .product-image,
+  #dropdown-cart.updating-cart .recommend-container .image{
+    position: relative;
+  }
+  #dropdown-cart.updating-cart .mini-products-list .product-image img,
+  #dropdown-cart.updating-cart .recommend-container .image img{
+    opacity: 0;
+  }
+  #dropdown-cart.updating-cart .mini-products-list .product-image:before,
+  #dropdown-cart.updating-cart .recommend-container .image:before{
+    content: "";
+    max-height: 120px;
+    width: 110px;
+    height: 100%;
+    background: #eee;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+    animation: 1.5s shine linear infinite;
+    position: absolute;
+    top: 0;
+  }
+
+  #dropdown-cart.updating-cart .product-details .product-name,
+  #dropdown-cart.updating-cart .product-details .option,
+  #dropdown-cart.updating-cart .mini-products-list .item .cart-collateral .price,
+  #dropdown-cart.updating-cart .quantity .item-quantity{
+    background: #eee;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+    animation: 1.5s shine linear infinite;
+    line-height: 18px;
+  }
+
+  #dropdown-cart.updating-cart .quantity .item-quantity {
+    font-size: 0;
+    border: none;
+  }
+
+  #dropdown-cart.updating-cart .mini-products-list .item .cart-collateral .price {
+    width: 65px;
+    line-height: 15px;
+  }
+
+  #dropdown-cart.updating-cart .product-details .option{
+    max-width: 100px;
+  }
+
+  #dropdown-cart.updating-cart .product-details .option * {
+    font-size: 0px !important;
+    animation: all 0s;
+    line-height: 4px !important;
+    opacity: 0;
+  }
+
+  #dropdown-cart.updating-cart .product-details .product-name,
+  #dropdown-cart.updating-cart .product-details .poption *,
+  #dropdown-cart.updating-cart .mini-products-list .item .cart-collateral .price{
+    font-size: 0px !important;
+    animation: all 0s;
+  }
+      
+  @keyframes shine {
+    to {
+      background-position-x: -200%;
+    }
+  }
+  .item-recommend {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  
+  .item-recommend .image {
+    width: 30px;
+  }
+  
+  .item-recommend .infoProduct {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 40px);
+  }
+
+  .info-product-upsell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 120px;
+  }
+
+  @media (min-width: 1024px){
+    .info-product-upsell {
+      max-width: 100%;
+      width: calc(100% - 112px);
+    }
+  }
+
+  .infoProduct form input[type=submit] {
+    width: 100%;
+    display: block;
+    min-height: 42px;
+    border-radius: 9999px;
+    background: transparent;
+    border: 2px solid #00b45a;
+    color: #00b45a;
+  }
+
+  form.upsell-form {
+    width: 90px;
+  }
+
+  .recommend-container {
+    background: #F6F6F6;
+    margin-left: -30px;
+    margin-right: -30px;
+    padding: 15px 30px 10px;
+    margin-bottom: 20px;
+  }
+
+  .info-product-upsell h4{
+    margin: 0;
+    font-family: var(--font-body-family);
+    font-size: 11px;
+    font-weight: 400;
+  }
+
+  .info-nav-upsell {
+    line-height: 1.2;
+    width: 60px;
+  }
+
+  .header-upsell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 7px;
+  }
+  
+  .nav-upsell-cart {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    width: 150px;
+  }
+
+  .content-header-upsell {
+    max-width: calc(100% - 160px);
+  }
+
+  .nav-upsell-cart .swiper-button-next, 
+  .nav-upsell-cart .swiper-button-prev {
+    background: #000;
+    height: 27px;
+    width: 27px;
+    border-radius: 999px;
+    top: 77%;
+    color: #fff;
+  }
+  
+  .nav-upsell-cart .swiper-button-next:after, .nav-upsell-cart .swiper-button-prev:after {
+    font-size: 11px;
+    font-weight: 600;
+  }
+  
+  .info-nav-upsell span {
+    font-size: 10px;
+    line-height: 0;
+  }
+
+  @media (max-width: 1024px){
+    .recommend-container {
+      margin-left: -20px;
+      margin-right: -20px;
+    }
+
+    .recommend-container h3 {
+      font-size: 13px;
+    }
+
+    .recommend-container {
+      padding: 15px 15px 10px;
+    }
+
+    .content-header-upsell {
+      max-width: calc(100% - 120px);
+    }
+
+    .nav-upsell-cart .swiper-button-next {
+      right: 0;
+    }
+    
+    .nav-upsell-cart .swiper-button-prev {
+      left: 0;
+    }
+
+    .nav-upsell-cart {
+      gap: 5px;
+      width: 120px;
+    }
+
+    .item-recommend .infoProduct {
+      justify-content: space-between;
+    }
+
+    .infoProduct form input[type=submit] {
+      margin: 0 auto !important;
+      padding: 0;
+    }
+
+    form.upsell-form {
+      min-width: 120px;
+      transform: inherit;
+      margin-right: 5px;
+    }
+
+    .previewCartInfo {
+      padding-top: 0px !important;
+    }
+  }
+
+</style>
+
+<div class="recommend-container">
+   <div class="header-upsell">
+      <div class="content-header-upsell">
+       <h3>Leve junto nossa linha de<br/>
+       <b>temperos 100% naturais</b></h3>
+      </div>
+      <div class="nav-upsell-cart">
+        <div class="swiper-button-prev"></div>
+        <div class="info-nav-upsell"><span>Toque para ver opções</span></div>
+        <div class="swiper-button-next"></div>
+      </div>
+   </div>
+   <div class="cart-recommend scrollbar-x" id="style-1">
+        <div class="swiper recommend-slider">
+          <div class="swiper-wrapper">
+            
+          </div>
+          <div class="swiper-scrollbar"></div>
+        </div>
+   </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    function upsellSliderInit(){
+      var upsellCartSlider = new Swiper(".recommend-slider", {
+        slidesPerView: 1,
+        scrollbar: {
+          el: ".swiper-scrollbar",
+          draggable: true
+        },
+        navigation: {
+          nextEl: ".nav-upsell-cart .swiper-button-next",
+          prevEl: ".nav-upsell-cart .swiper-button-prev",
+        },
+      });
+    }
+
+    $(document).on("change", ".cart-recommend select", (function() {
+      var item = [];
+      var options = [];
+      $(this).parent().find("option:selected").each((function() {
+          options.push($(this).val())
+      }));
+      item['options'] = options;
+      item['handle'] = $(this).closest('.item-recommend').data('handle');
+      console.log(item)
+      checkVaraints(item, $(this))
+    }))
+
+    function checkVaraints(options, select){
+      jQuery.getJSON(options.handle + ".js", function(data) {
+        var foundSize = false;
+      
+        // Percorre todas as variantes do produto para encontrar a que corresponde à opção 'n'
+        for (var e = 0; e < data.variants.length; e++) {
+            // Verifica se a opção atual coincide com a opção 'n'
+            if (JSON.stringify(options.options) === JSON.stringify(data.variants[e].options)) {
+                foundSize = true;
+      
+                // Verifica se o produto está disponível (se o valor 'available' é 0, o produto está indisponível)
+                if (data.variants[e].available === 0) {
+                    foundSize = false;
+                    console.log("Tamanho indisponível");
+                    // Se o tamanho estiver indisponível, adiciona uma mensagem no elemento pai informando isso
+                    // if (!select.parent().parent().find(".unavailable").length) {
+                    //     select.parent().parent().find("h4").append('<span class="unavailable">(Tamanho indisponível)</span>');
+                    // }
+                } else {
+                    // Se o tamanho estiver disponível, remove a mensagem de indisponibilidade, se houver
+                    //select.parent().parent().find(".unavailable").remove();
+      
+                    // Atualiza o preço do produto na página com base na variante encontrada
+                    //select.parent().find(".price").html("R$ " + t(data.variants[e].price));
+      
+                    console.log("Atualizar preço ", data.variants[e]);
+                    select.closest('.infoProduct').find('[name="id"]').val(data.variants[e].id);
+                    // Atualiza a imagem do carrinho para a imagem em destaque da variante encontrada, se houver
+                    if (data.variants[e].featured_image != null) {
+                        console.log("Atualizar imagem");
+                        // var imageSrc = data.variants[e].featured_image.src;
+                        // select.parent().parent().find(".cartImage").attr("src", imageSrc);
+                    }
+                }
+            }
+        }
+      
+        // Se o tamanho foi encontrado, remove a mensagem de indisponibilidade e habilita o botão "Adicionar ao carrinho"
+        if (foundSize) {
+            //select.closest('.infoProduct').find(".unavailable").remove();
+            select.closest('.infoProduct').find(".recommend-btn-add").removeAttr("disabled");
+        } else {
+            // Se o tamanho não foi encontrado, adiciona a mensagem de indisponibilidade e define o atributo 'data-variant-id' como '0'
+            // select.parent().parent().find("h4").append('<span class="unavailable">(Tamanho indisponível)</span>');
+            // select.parent().parent().find("span[data-variant-id]").attr("data-variant-id", "0");
+            select.closest('.infoProduct').find(".recommend-btn-add").attr("disabled","disabled");
+        }
+      });
+    }
+
+    // Função para ação "before send"
+    function beforeSend() {
+      $('#dropdown-cart').addClass('updating-cart');
+    }
+    
+    // Função para ação "after send"
+    function afterSend() {
+      $('#dropdown-cart').removeClass('updating-cart');
+    }
+    
+    $(document).on('submit', '.upsell-form', function(e) {
+      e.preventDefault();
+    
+      const formData = new FormData(this);
+      const serializedData = {};
+      formData.forEach((value, key) => {
+        serializedData[key] = value;
+      });
+      const jsonData = JSON.stringify(serializedData);
+    
+      // URL da API da Shopify para adicionar um item ao carrinho
+      const addToCartUrl = window.Shopify.routes.root + 'cart/add.js';
+    
+      // Opções da requisição
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonData,
+      };
+    
+      beforeSend(); // Ação "before send" antes da requisição
+    
+      // Faz a requisição usando fetch com ação "before send" e "after send"
+      fetch(addToCartUrl, requestOptions)
+        .then((response) => {
+          afterSend(); // Ação "after send" após a conclusão da requisição
+    
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // A requisição foi bem-sucedida, você pode atualizar o carrinho ou fazer outras ações necessárias aqui
+          window.updateCart();
+          //window.updateUpsell();
+        })
+        .catch((error) => {
+          // Houve um erro na requisição, você pode tratar o erro aqui
+          console.error('Error:', error);
+        });
+    });
+
+
+    window.updateUpsell = function(){
+      $.ajax({
+          url: '/search?view=upsell',
+          beforeSend: function () {
+             console.log("Buscando upsells")
+          },
+          success: function (data) {
+              console.log("Upsell encontrado", data)
+              var curUpsell = $('.recommend-slider'),
+                  newUpsell = $(data).find('.recommend-slider');
+
+              if($(data).find('.item-recommend').length > 0){
+                $('.recommend-container').show();
+                $(curUpsell).replaceWith(newUpsell);
+                upsellSliderInit();
+              }else{
+                $('.recommend-container').hide();
+              }
+          },
+  
+          error: function (xhr, text) {
+              console.log("Produtos encontrados")
+              $('.recommend-container').hide();
+          },
+  
+          complete: function () {
+              console.log("Upsell configurado")
+          }
+      })
+    }
+
+    window.updateUpsell();
+    
+ })
+</script>

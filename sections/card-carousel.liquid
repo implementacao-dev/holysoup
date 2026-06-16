@@ -1,0 +1,148 @@
+<style>  
+  .slider-cards .swiper-slide {
+    width: 135px;
+    height: auto;
+  }
+  
+  .slider-cards {
+    padding: 20px 20px 50px;    
+  }
+
+  .slider-cards.max-container {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .slider-cards .card {
+    background: var(--cardColor);
+    border-radius: 24px
+  }
+
+  .slider-cards .image-placeholder {
+    width: 135px;
+    height: 135px;
+  }
+
+  .card-carousel-section .divider  {
+    margin-top: -10px;
+  }
+
+  /* .card-carousel-section .divider.top {
+    display: none;
+  } */
+
+  @media (min-width: 1200px){
+    .card-carousel-section .divider.top {
+      display: block;
+    }
+    
+    .slider-cards {
+      padding: 20px 60px 50px;
+    }
+
+    .card-carousel-section .divider  {
+      margin-top: 0;
+    }
+  }
+</style>
+<div class="section card-carousel-section" style="--bgColor: {{ section.settings.color }}">
+  {% if section.settings.borda-superior %}
+    {% render 'borda-superior', cor: section.settings.color-borda-superior, style: 'waves' %}
+  {% endif %}
+  <div class="swiper slider-cards max-container">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide">
+          <div class="card" style="--cardColor: {{ block.settings.color }}">         
+            {% if block.settings.image == blank %}
+              {{ 'product-1' | placeholder_svg_tag: 'image-placeholder' }}
+            {% else %}
+              <img loading="lazy" src="{{ block.settings.image | image_url: width: block.settings.image.width }}">
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% if section.settings.borda-inferior %}
+    {% render 'borda-inferior', cor: section.settings.color-borda-inferior, style: 'waves' %}
+  {% endif %}
+</div>
+{% schema %}
+  {
+    "name": "Card Carousel",
+    "settings": [{
+      "type": "checkbox",
+      "id": "borda-superior",
+      "default": true,
+      "label": "Ativar divisória superior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-superior",
+      "default": "#fff",
+      "label": "Cor da divisória superior"
+    },
+    {
+      "type": "checkbox",
+      "id": "borda-inferior",
+      "default": false,
+      "label": "Ativar divisória inferior"
+    },
+    {
+      "type": "color",
+      "id": "color-borda-inferior",
+      "default": "#fff",
+      "label": "Cor da divisória inferior"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Cor"
+    }],
+    "blocks":[
+      {
+        "type": "card",
+        "name": "Card",
+        "settings": [
+          {
+            "type": "color",
+            "id": "color",
+            "label": "Cor"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Imagem"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Card Carousel",
+      "blocks": [
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        }
+      ]
+    }]
+  }
+{% endschema %}

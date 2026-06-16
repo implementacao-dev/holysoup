@@ -1,0 +1,318 @@
+<style>
+  .section {
+    background: var(--bgColor);
+  }
+
+  .product-grid.max-container {
+    padding: 60px 30px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .product-grid h3 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #231F20;
+    margin-bottom: 32px;
+  }
+
+  .product-grid h3 p {
+    margin: 0;
+  }
+
+  .product-grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    justify-content: space-between;
+    gap: 40px;
+    padding: 0;
+  }
+
+  .product-grid-container .card {
+    border-radius: 24px;
+  }
+
+  .product-grid-container .image-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+
+  .product-grid-modal {
+    display: none;
+    position: fixed;
+    inset: 0px;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+  }
+
+  .product-grid-modal .grid-modal-content {
+    margin: auto;
+    height: 100vh;
+    max-width: 640px;
+    padding: 20px;
+    position: relative;
+  }
+
+  .product-grid-modal .modal-close-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: absolute;
+    top: 44px;
+    left: 44px;
+    color: white;
+    text-decoration: underline;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  .product-grid-modal .modal-close-button svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 4px;
+  }
+
+  .product-grid-modal.visible {
+    display: flex;
+  }
+
+  @media (min-width: 768px) {
+    .product-grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .product-grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      justify-content: space-between;
+    }
+  }
+</style>
+
+<script>
+  function openModal(modalId) {
+    if (modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.add('visible');
+    }
+  }
+
+  function closeModal(modalId) {
+    if (modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.remove('visible');
+    }
+  }
+</script>
+
+<div class="section" style="--bgColor: {{ section.settings.color }}">
+  {% if section.settings['borda-superior'] %}
+    {% render 'borda-superior', cor: section.settings['color-borda-superior'], style: section.settings.border_style %}
+  {% endif %}
+  <div class="product-grid max-container" style="--bgColor: {{ section.settings.color }}">
+    <h3 class="font-3">
+      {{ section.settings.title }}
+    </h3>
+    <div class="product-grid-container">
+      {% for block in section.blocks %}
+        {% render 'product-card-holymac', section: section, block: block %}
+      {% endfor %}
+    </div>
+  </div>
+  {% if section.settings['borda-inferior'] %}
+    {% render 'borda-inferior', cor: section.settings['color-borda-inferior'] %}
+  {% endif %}
+</div>
+
+{% for block in section.blocks %}
+  <div id="modal-{{ block.settings.product.id }}" class="product-grid-modal">
+    <div
+      style="width: 100%; height: 100%;position: absolute;top: 0;display: block;"
+      onclick="closeModal('modal-{{ block.settings.product.id }}')"
+    ></div>
+    <div class="grid-modal-content">
+      <div class="modal-close-button" onclick="closeModal('modal-{{ block.settings.product.id }}')">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14.424"
+          height="14.424"
+          viewBox="0 0 14.424 14.424"
+        >
+          <path id="União_10" data-name="União 10" d="M6.152,6.152,0,12.3,6.152,6.152,0,0,6.152,6.152,12.3,0,6.152,6.152,12.3,12.3Z" transform="translate(1.061 1.061)" fill="rgba(0,0,0,0)" stroke="#ff7a50" stroke-linecap="round" stroke-width="3"/>
+        </svg>
+      </div>
+      {%  assign product = block.settings.product %}
+      {% for image in product.metafields.custom.m_ltiplas_tabelas.value %}
+        <img
+          loading="lazy"
+          width="100%"
+          height="100%"
+          src="{{ image | image_url: width: image.width }}"
+        >
+      {% endfor %}
+    </div>
+  </div>
+{% endfor %}
+{% schema %}
+{
+  "name": "Product Grid",
+  "class": "section-product-carousel",
+  "settings": [
+  {
+    "type": "select",
+    "id": "border_style",
+    "label": "Selecionar estilo do borda",
+    "options": [
+      {
+        "value": "waves",
+        "label": "Ondas"
+      },
+      {
+        "value": "default",
+        "label": "Padrão"
+      }
+    ],
+    "default": "default"
+  },
+  {
+    "type": "checkbox",
+    "id": "borda-superior",
+    "default": true,
+    "label": "Ativar divisória superior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-superior",
+    "default": "#fff",
+    "label": "Cor da divisória superior"
+  },
+  {
+    "type": "checkbox",
+    "id": "borda-inferior",
+    "default": false,
+    "label": "Ativar divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color-borda-inferior",
+    "default": "#fff",
+    "label": "Cor da divisória inferior"
+  },
+  {
+    "type": "color",
+    "id": "color",
+    "label": "Cor"
+  },
+  {
+    "type": "color",
+    "id": "input_color",
+    "label": "Cor do fundo do input"
+  },
+  {
+    "type": "richtext",
+    "id": "title",
+    "label": "Titulo"
+  }],
+  "blocks":[
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Produto"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_product_image",
+          "label": "Usar imagem do produto",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_product_title",
+          "label": "Usar título do produto",
+          "default": false
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Titulo"
+        },
+        {
+          "id": "subtitle",
+          "type": "text",
+          "label": "Subtítulo"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_product_description",
+          "label": "Usar descrição do produto",
+          "default": false
+        },
+        {
+          "id": "description",
+          "type": "richtext",
+          "label": "Descrição"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Cor"
+        },
+        {
+          "type": "text",
+          "id": "porcoes",
+          "label": "Porções",
+          "default": "2"
+        },
+        {
+          "type": "text",
+          "id": "protein",
+          "label": "Proteina"
+        },
+        {
+          "type": "text",
+          "id": "fibers",
+          "label": "Fibras"
+        },
+        {
+          "type": "text",
+          "id": "ready",
+          "label": "Pronto"
+        },
+        {
+          "type": "image_picker",
+          "id": "modal_image",
+          "label": "Imagem do modal"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Product Grid",
+    "blocks": [
+      {
+        "type": "product"
+      },
+      {
+        "type": "product"
+      },
+      {
+        "type": "product"
+      }
+    ]
+  }]
+}
+{% endschema %}

@@ -1,0 +1,185 @@
+{% if product.metafields.custom.compre_junto.value %}
+{% render 'borda-superior', cor: section.settings.color-borda-superior %}
+<style>
+  .product-list-cj {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .compre-junto-section {
+    width: 425px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 30px;
+    border: 2px solid #00B45A;
+    max-width: 100%;
+    border-radius: 45px;
+  }
+
+  .header-compre-junto h3 span {
+    background-color: #00b45a;
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 5px 10px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: #fff;
+    font-family: "Open sans";
+    line-height: 1;
+  }
+  
+  .header-compre-junto h3 {
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0;
+  }
+  
+  .divisor {
+    position: relative;
+    width: 30px;
+    height: auto;
+  }
+  
+  .divisor svg {
+    position: absolute;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    width: 20.05px;
+    height: auto;
+    stroke: none;
+  }
+  .product-cj {
+    width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-price-cj {
+    font-size: 16px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .product-price-cj newprice {
+    font-size: 25px;
+    font-weight: 700;
+    color: #00b45a;
+    margin-left: 10px;
+  }
+  
+  .product-cj img {
+    width: 125px;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .product-cj h4 {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Open sans";
+  }
+
+  .product-action-cj button {
+    background: #00B45A;
+    border: none;
+    border-radius: 9999px;
+    color: #fff;
+    text-transform: initial;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .compre-junto-container {
+    padding: 50px 20px 60px;
+  }
+</style>
+<div class="compre-junto-container">
+  <div class="compre-junto-section">
+    <div class="header-compre-junto">
+      <h3>Compre junto e ganhe <span>-{{ product.metafields.custom.compre_junto.value.desconto }}%</span></h3>
+    </div>
+    <div class="product-list-cj">
+      <div class="product-cj">
+        <img width="125" height="125" src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}">
+        <h4>{{ product.title }}</h4>
+      </div>
+      <div class="divisor">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20.052" height="20.38" viewBox="0 0 20.052 20.38">
+          <path id="Icon_material-add-circle-outline" data-name="Icon material-add-circle-outline" d="M25.788,13.933h-4.01v8.152H13.757v4.076h8.021v8.152h4.01V26.161h8.021V22.085H25.788Z" transform="translate(-13.757 -13.933)" fill="#00b45a"/>
+        </svg>
+      </div>
+      {% assign productComplementary = product.metafields.custom.compre_junto.value.produto.value | first %}
+      
+      <div class="product-cj">
+        <div class="image-cj-product">
+          <img width="125" height="125" src="{{ productComplementary.featured_image | image_url: width: 300 }}" alt="{{ productComplementary.title }}">
+        </div>
+        <h4>{{ productComplementary.title }}</h4>
+      </div>
+    </div>
+    <div class="product-price-cj">
+      {% assign totalPrice = product.price_min | plus: productComplementary.price_min %}
+      {% assign discount = product.metafields.custom.compre_junto.value.desconto | times: 1.0 %}
+      {% if product.metafields.custom.compre_junto.value.desconto %}De {{ product.price_min | plus: productComplementary.price_min | money }} por <newprice>{{ discount | divided_by: 100 | times: totalPrice | minus: totalPrice | abs | floor | money }}</newprice>{% else %}<newprice>{{ product.price_min | plus: productComplementary.price_min | money }}</newprice>{% endif %}
+    </div>
+    <div class="product-action-cj">
+      <button class="button" add-cj-to-cart>
+        Adicionar ao Carrinho <svg xmlns="http://www.w3.org/2000/svg" width="21.785" height="22.125" viewBox="0 0 21.785 22.125"><path id="Icon_material-add-circle-outline" data-name="Icon material-add-circle-outline" d="M14.432,8.281H12.353v4.225H8.2v2.113h4.157v4.225h2.079V14.619h4.157V12.506H14.432ZM13.393,3A10.483,10.483,0,0,0,3,13.563,10.483,10.483,0,0,0,13.393,24.125,10.483,10.483,0,0,0,23.785,13.563,10.483,10.483,0,0,0,13.393,3Zm0,19.013a8.451,8.451,0,0,1,0-16.9,8.451,8.451,0,0,1,0,16.9Z" transform="translate(-2.5 -2.5)" fill="#fff" stroke="#00b45a" stroke-width="1"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('[add-cj-to-cart]').click(function(){
+    let currentProduct = {'id':{{product.selected_or_first_available_variant.id}}, 'quantity': 1};
+    let additionalProduct = {'id':{{productComplementary.selected_or_first_available_variant.id}}, 'quantity': 1};
+
+    let items = [];
+    items.push(currentProduct);
+    items.push(additionalProduct);
+
+    console.log(items);
+    
+    async function addItemToCart(item) {
+      let formData = { 'items': [item] };
+    
+      try {
+        let response = await fetch(window.Shopify.routes.root + 'cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+    
+        let data = await response.json();
+        return data; // Retornar os dados da resposta se necessário
+      } catch (error) {
+        console.error('Error:', error);
+        throw new Error('Erro ao adicionar item ao carrinho');
+      }
+    }
+    
+    async function addItemsToCartSequentially(items) {
+      for (let i = 0; i < items.length; i++) {
+        try {
+          await addItemToCart(items[i]);
+          console.log(`Item ${i + 1} adicionado ao carrinho.`);
+        } catch (error) {
+          console.error(error.message);
+          // Se desejar, adicione um tratamento de erro específico aqui
+        }
+      }
+    
+      window.updateCart()
+    }
+    
+    addItemsToCartSequentially(items);
+  })
+</script>
+{% endif %}

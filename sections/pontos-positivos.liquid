@@ -1,0 +1,198 @@
+<style>
+  .slider-features-hs .swiper-slide{
+    width: fit-content;
+    height: auto;
+  }
+  
+  .slider-features-hs {
+    padding: 40px 20px 60px 20px;
+  }
+
+  .icon-feature {
+    background: var(--feature-color);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+  }
+
+  .icon-feature svg {
+    color: #fff;
+    width: 20px;
+    height: auto;
+  }
+  
+  .feature-hs-header {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .slider-features-hs:not(.open-description) .feature-hs-header{
+    width: 100%;
+    height: 100%;
+  }
+  
+  .title-feature {
+    width: 60%;
+    max-width: 140px;
+    line-height: 1.2;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .feature-hs {
+    padding: 20px;
+    background: #fff;
+    border-radius: 25px;
+  }
+
+  .swiper-slide-active .feature-hs {
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.01);
+  }
+
+  .feature-hs .descubra-mais {
+    font-size: 9px;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 0;
+  }
+  
+  .feature-hs .descubra-mais svg {
+    color: #00b45a;
+    width: 16px;
+    height: auto;
+    stroke-width: 2px;
+  }
+
+  .description-feature p {
+    line-height: 1.5;
+    font-size: 11px;
+    color: #606060;
+  }
+
+  @media (min-width: 1200px){
+    .slider-features-hs .swiper-slide {
+      width: 25%;
+    }
+  
+    .slider-features-hs {
+      padding: 40px 120px 60px 120px;
+    }
+  }
+
+  @media (max-width: 1024px){
+    .slider-features-hs .swiper-slide {
+      width: 65%;
+    }
+  }
+</style>
+{% if section.settings.borda-superior %}
+  {% render 'borda-superior', cor: section.settings.color-borda-superior %}
+{% endif %}
+<div class="swiper slider-features-hs max-container" style="background-color: {{ section.settings.background_color }}">
+  <div class="swiper-wrapper">
+  {% for block in section.blocks %}
+    {% assign content = block.settings.title | split: ": " %}
+    <div class="swiper-slide">
+      <div class="feature-hs">
+        <div class="feature-hs-header">
+          <div class="icon-feature">
+            {% if block.settings.icone %}
+              <img src="{{ block.settings.icone | image_url }}">
+            {% endif %}
+          </div>
+          <div class="title-feature custom-font">
+            <span>
+              {% if content.size > 1 %}
+              <highlight style="color: {{ section.settings.highlight_color }}">{{ content | first }}:</highlight><br /> {{ content | last }}
+              {% else %}
+              {{ block.settings.title }}
+              {% endif %}
+            </span>
+          </div>
+        </div>
+        <div class="description-feature">
+          <p>{{ block.settings.description }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+{% if section.settings.borda-inferior %}
+  {% render 'borda-inferior', cor: section.settings.color-borda-inferior %}
+{% endif %}
+{% schema %}
+  {
+    "name": "Pontos positivos",
+    "class": "gray-section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#f9f9f9"
+      },
+      {
+        "type": "color",
+        "id": "highlight_color",
+        "label": "Highlight Color",
+        "default": "#FF6700"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-superior",
+        "default": true,
+        "label": "Ativar divisória superior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-superior",
+        "default": "#fff",
+        "label": "Cor da divisória superior"
+      },
+      {
+        "type": "checkbox",
+        "id": "borda-inferior",
+        "default": false,
+        "label": "Ativar divisória inferior"
+      },
+      {
+        "type": "color",
+        "id": "color-borda-inferior",
+        "default": "#fff",
+        "label": "Cor da divisória inferior"
+      }
+    ],
+    "blocks": [{
+      "type": "feature",
+      "name": "Destaque",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icone",
+          "label": "Icone"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descrição"
+        }
+      ]
+    }],
+    "presets": [
+      {"name": "Pontos positivos"}
+    ]
+  }
+{% endschema %}

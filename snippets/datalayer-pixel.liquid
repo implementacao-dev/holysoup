@@ -1,0 +1,737 @@
+<link rel="preconnect" href="https://pixel-events-fqxpwg3smq-ue.a.run.app" crossorigin>
+
+<script>
+
+if(!window.jQuery){
+    var jqueryScript = document.createElement('script');
+    jqueryScript.setAttribute('src','https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'); 
+    document.head.appendChild(jqueryScript); 
+}
+
+__Solomon__jQueryinterval = setInterval(function(){
+    // wait for jQuery to load & run script after jQuery has loaded
+    if(window.jQuery){
+      clearInterval(__Solomon__jQueryinterval);
+        // search parameters
+        getURLParams = function(name, url){
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        };
+
+      // Função para ler um cookie pelo nome
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Verifica se o cookie começa com o nome especificado
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+
+                        if (name === '_fbc') {
+                            const cookieParts = cookieValue.split('.');
+                            if (cookieParts.length >= 3) {
+                                const timestamp = parseInt(cookieParts[2], 10);
+                                const creationDate = new Date(timestamp * 1000);
+                                const now = new Date();
+                                const ageInDays = (now - creationDate) / (1000 * 60 * 60 * 24);
+                                
+                                if (ageInDays >= 89) {
+                                    return null;
+                                }
+                            }
+                        }
+
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        
+        // alterar para cada cliente
+        const pixelIdList = ['1667405126996894', '3575084952744691'];
+        const company_id = 'q3UhJdnfUBhDduLGksZ8';
+        const is_test = false;
+        const fb_index = '2';
+        const fb_domain = '.holyfoods.com.br'
+
+        function setCookie(name, value, days, domain) {
+          var expires = "";
+          if (days) {
+              var date = new Date();
+              date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+              expires = "; expires=" + date.toUTCString();
+          }
+          if (!domain || !isValidDomain(domain)) {
+              domain = getDomainFromHostname();
+          }
+          document.cookie =  name + "=" + (value || "") + expires + "; path=/; SameSite=Lax; domain=" + domain;          
+          
+        }
+
+        function generateUniqueId() {
+            var id = Math.random().toString(36).substr(2, 9) + "_" + new Date().getTime();
+            localStorage.setItem('uniqueId', id);
+            setCookie('uniqueId', id, 365, fb_domain);
+            return id;
+        }
+
+
+        var localStorageKey = 'uniqueId';
+        var cookieKey = 'uniqueId';
+        var uniqueId = localStorage.getItem(localStorageKey) || getCookie(cookieKey) || generateUniqueId();
+
+
+        let ipv4, ipv6;
+        const ipPromise = fetchIpAddresses();
+        
+        async function fetchIpAddresses() {
+            try {
+                ipv6 = await getIpv6();
+                if (!ipv6) {
+                    ipv4 = await getIpv4();
+                }
+            } catch (error) {
+                console.log("Error fetching IP addresses", error);
+            }
+        }
+        
+        async function getIpv4() {
+            try {
+                const response = await fetch("https://api64.ipify.org?format=json");
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                console.log("Error on getIpv4", error);
+                return null;
+            }
+        }
+        
+        async function getIpv6() {
+            try {
+                const response = await fetch("https://api6.ipify.org?format=json");
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                console.log("Error on getIpv6", error);
+                return null;
+            }
+        }
+
+        // Function to remove accents and keep only letters
+        function normalizeString(str) {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z]/g, '').toLowerCase().trim();
+        }
+        
+        // Function to keep only numbers
+        function normalizeNumber(str) {
+            return str.replace(/[^0-9]/g, '').trim();
+        }
+        
+        // Function to hash data using SHA-256
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+        
+        // Example of hashing user parameters
+        async function hashUserData(user) {
+            const hashedData = {};
+            
+            if (user.email) {
+                hashedData.em = await sha256(user.email.toLowerCase().trim());
+            }
+            if (user.phone) {
+                hashedData.ph = await sha256(normalizeNumber(user.phone));
+            }
+            if (user.firstName) {
+                hashedData.fn = await sha256(normalizeString(user.firstName));
+            }
+            if (user.lastName) {
+                hashedData.ln = await sha256(normalizeString(user.lastName));
+            }
+            if (user.city) {
+                hashedData.ct = await sha256(normalizeString(user.city));
+            }
+            if (user.state) {
+                hashedData.st = await sha256(normalizeString(user.state));
+            }
+            if (user.zip) {
+                hashedData.zp = await sha256(normalizeNumber(user.zip));
+            }
+            if (user.country) {
+                hashedData.country = await sha256(normalizeString(user.country));
+            }
+            
+            return hashedData;
+        }
+
+              
+        /**********************
+        * DYNAMIC DEPENDENCIES
+        ***********************/
+        
+        __DL__ = {
+            dynamicCart: true,  // if cart is dynamic (meaning no refresh on cart add) set to true
+            debug: false, // if true, console messages will be displayed
+            cart: null,
+            wishlist: null,
+            removeCart: null
+        };
+        
+        customBindings = {
+            cartTriggers: ['.product-form__add-button', '[data-action="add-to-cart"]'],
+            viewCart: [],
+            removeCartTrigger: [],
+            cartVisableSelector: [],
+            promoSubscriptionsSelectors: [],
+            promoSuccess: [],
+            ctaSelectors: [],
+            newsletterSelectors: [],
+            newsletterSuccess: [],
+            searchPage: [],
+            wishlistSelector: [],
+            removeWishlist: [],
+            wishlistPage: [],
+            searchTermQuery: [getURLParams('q')], // replace var with correct query
+        };
+        
+        /* DO NOT EDIT */
+        defaultBindings = {
+            cartTriggers: ['form[action="/cart/add"] [type="submit"],.add-to-cart,.cart-btn,button[onclick="instantBuy()"],#product-add-to-cart,.product-form__submit,div.toolbar-cart-info + button,.add-to-cart-container button'],
+            viewCart: ['form[action="/cart"],.my-cart,.trigger-cart,#mobileCart'],
+            removeCartTrigger: ['[href*="/cart/change"]'],
+            cartVisableSelector: ['.inlinecart.is-active,.inline-cart.is-active'],
+            promoSubscriptionsSelectors: [],
+            promoSuccess: [],
+            ctaSelectors: [],
+            newsletterSelectors: ['input.contact_email'],
+            newsletterSuccess: ['.success_message'],
+            searchPage: ['search'],
+            wishlistSelector: [],
+            removeWishlist: [],
+            wishlistPage: [],
+            initiateCheckoutTriggers: ['.ymp_mainBtn,.ymp_check_mainBtn,.cartx_check_mainBtn,.cart__checkout-button,form.ymp-CrtpageMainFrm button[type="button"]']
+        };
+        
+        // stitch bindings
+        objectArray = customBindings;
+        outputObject = __DL__;
+        
+        applyBindings = function(objectArray, outputObject){
+            for (var x in objectArray) {  
+                var key = x;
+                var objs = objectArray[x]; 
+                values = [];    
+                if(objs.length > 0){    
+                    values.push(objs);
+                    if(key in outputObject){              
+                        values.push(outputObject[key]); 
+                        outputObject[key] = values.join(", "); 
+                    }else{        
+                        outputObject[key] = values.join(", ");
+                    }   
+                }  
+            }
+        };
+        
+        applyBindings(customBindings, __DL__);
+        applyBindings(defaultBindings, __DL__);
+        
+        /**********************
+        * PREREQUISITE LIBRARIES 
+        ***********************/
+        
+        
+        
+        // jquery-cookies.js
+        if(typeof $.cookie!==undefined){
+            (function(a){if(typeof define==='function'&&define.amd){define(['jquery'],a)}else if(typeof exports==='object'){module.exports=a(require('jquery'))}else{a(jQuery)}}(function($){var g=/\+/g;function encode(s){return h.raw?s:encodeURIComponent(s)}function decode(s){return h.raw?s:decodeURIComponent(s)}function stringifyCookieValue(a){return encode(h.json?JSON.stringify(a):String(a))}function parseCookieValue(s){if(s.indexOf('"')===0){s=s.slice(1,-1).replace(/\\"/g,'"').replace(/\\\\/g,'\\')}try{s=decodeURIComponent(s.replace(g,' '));return h.json?JSON.parse(s):s}catch(e){}}function read(s,a){var b=h.raw?s:parseCookieValue(s);return $.isFunction(a)?a(b):b}var h=$.cookie=function(a,b,c){if(arguments.length>1&&!$.isFunction(b)){c=$.extend({},h.defaults,c);if(typeof c.expires==='number'){var d=c.expires,t=c.expires=new Date();t.setMilliseconds(t.getMilliseconds()+d*864e+5)}return(document.cookie=[encode(a),'=',stringifyCookieValue(b),c.expires?'; expires='+c.expires.toUTCString():'',c.path?'; path='+c.path:'',c.domain?'; domain='+c.domain:'',c.secure?'; secure':''].join(''))}var e=a?undefined:{},cookies=document.cookie?document.cookie.split('; '):[],i=0,l=cookies.length;for(;i<l;i++){var f=cookies[i].split('='),name=decode(f.shift()),cookie=f.join('=');if(a===name){e=read(cookie,b);break}if(!a&&(cookie=read(cookie))!==undefined){e[name]=cookie}}return e};h.defaults={};$.removeCookie=function(a,b){$.cookie(a,'',$.extend({},b,{expires:-1}));return!$.cookie(a)}}))}
+
+
+        /**********************
+        * DATALAYER SECTIONS 
+        ***********************/
+
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){
+            if (arguments[1] === "Purchase" && (
+                typeof arguments[2].order_id === "undefined" || 
+                !arguments[3] || !arguments[3].eventID || !arguments[3].eventID.startsWith("Purchase")
+            )) return;
+            n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)
+        };
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+
+        function generateFbp(index) {
+            return `fb.${index}.${new Date().getTime()}.${Math.floor(1e8 + 9e8 * Math.random())}`;
+        }
+        
+        function generateFbc(fbclid, index) {
+            return `fb.${index}.${new Date().getTime()}.${fbclid}`;
+        }
+
+        function isValidDomain(providedDomain) {
+            var hostname = window.location.hostname;
+            return hostname.includes(providedDomain.replace(/^\./, ''));
+        }
+
+        function getDomainFromHostname(hostname) {
+          const doubleTlds = ['.co.uk', '.com.br', '.myshopify.com']; // Adicione mais TLDs duplos conforme necessário
+          let domainPartsCount = 2; // Número padrão de partes para TLDs simples
+      
+          // Verifica se o hostname termina com um dos TLDs duplos
+          doubleTlds.forEach(tld => {
+              if (hostname.endsWith(tld)) {
+                  domainPartsCount = 3;
+              }
+          });
+      
+          const parts = hostname.split('.');
+          
+          // Se tiver menos ou igual ao número de partes do TLD, retorne o hostname completo com um ponto
+          if (parts.length <= domainPartsCount) {
+              return '.' + hostname;
+          } else {
+              // Retorna o domínio base ou subdomínio relevante com um ponto na frente
+              return '.' + parts.slice(1).join('.');
+          }
+      }
+
+
+        
+
+        let fbp;
+        let fbc;
+
+        function setupFacebookCookies() {
+            console.log('setupFacebookCookies');
+            fbp = getCookie('_fbp');
+            if (!fbp) {
+                fbp = generateFbp(fb_index);
+                setCookie('_fbp', fbp, 730, fb_domain); // 2 years
+            }          
+            fbc = getCookie('_fbc');
+            const fbclid = new URLSearchParams(window.location.search).get('fbclid');
+            if (fbclid) {
+                fbc = generateFbc(fbclid, fb_index);
+                setCookie('_fbc', fbc,  89, fb_domain); // 89 dias
+            }
+        }
+      
+        setupFacebookCookies();
+      
+        
+        // Carregar dados do localStorage quando a pÃ¡gina for carregada
+        function loadSolomonUser() {
+            // Checar cookies primeiro
+            const cookieValues = {};
+            document.cookie.split(';').forEach(cookie => {
+                const [key, value] = cookie.split('=').map(c => c.trim());
+                if (key.startsWith('solomon_')) {
+                    const realKey = key.substring('solomon_'.length);
+                    cookieValues[realKey] = decodeURIComponent(value);
+                }
+            });        
+            // Se encontrou algo nos cookies, retorna isso
+            if (Object.keys(cookieValues).length > 0) {
+                return cookieValues;
+            }        
+            // Senão, carrega do localStorage
+            const storedUser = localStorage.getItem('SolomonUser');
+            if (storedUser) {
+                return JSON.parse(storedUser);                
+            }        
+            return {};
+        }
+        
+        // Salvar dados no localStorage
+        function saveSolomonUser() {
+            localStorage.setItem('SolomonUser', JSON.stringify(SolomonUser));
+            console.log('SolomonUser saved to localStorage:', SolomonUser);
+        }
+
+        // Objeto para armazenar os dados do usuário
+        let SolomonUser = loadSolomonUser();
+        
+        // Função para atualizar SolomonUser com base em inputs específicos
+        function updateSolomonUserFromInput(input) {
+            input.addEventListener('change', () => {
+                // Regex para ignorar maiúsculas/minúsculas
+                console.log('input', input);
+                const emailRegex = /email/i;
+                const phoneRegex = /phone/i;
+                const nameRegex = /name/i;
+                const emailPattern = /^[^@\s]+@[^@\s]+\.[^\s]+$/;
+                const phonePattern = /^(?:\D*\d){9}\D*$|^(?:\D*\d){11}\D*$|^(?:\D*\d){13}\D*$/;                
+        
+                // Verifica se inclui 'email' no id ou no name do input
+                if (emailRegex.test(input.id) || emailRegex.test(input.name)) {
+                  if (emailPattern.test(input.value)){
+                    SolomonUser.email = input.value;
+                  }
+                }
+                // Verifica se inclui 'phone' no id ou no name do input
+                else if (phoneRegex.test(input.id) || phoneRegex.test(input.name)) {
+                  if (phonePattern.test(input.value)){
+                    SolomonUser.phone = input.value;
+                  }
+                }
+                // Verifica se inclui 'name' no id ou no name do input
+                else if (nameRegex.test(input.id) || nameRegex.test(input.name)) {
+                    // Lógica para separar nome e sobrenome
+                    const names = input.value.split(' ');
+                    if (names.length > 1) {
+                        SolomonUser.firstName = names[0];
+                        SolomonUser.lastName = names.slice(1).join(' ');
+                    } else {
+                        SolomonUser.firstName = names[0];
+                        SolomonUser.lastName = '';
+                    }
+                }
+                saveSolomonUser();
+                console.log('SolomonUser updated:', SolomonUser);
+                
+            });
+        }
+        
+        // Função para encontrar e vincular todos os inputs relevantes
+        function bindInputs() {
+            // Selecionar todos os inputs e textareas relevantes
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                if (/email/i.test(input.id) || /email/i.test(input.name) ||
+                    /phone/i.test(input.id) || /phone/i.test(input.name) ||
+                    /name/i.test(input.id) || /name/i.test(input.name)) {
+                    updateSolomonUserFromInput(input);
+                }
+            });
+        }
+        
+        // Observar mudanças no DOM para lidar com inputs que são carregados dinamicamente
+        const solomonObserver = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {               
+                if (mutation.addedNodes) {
+                    mutation.addedNodes.forEach(node => {
+                        if (node.nodeType === 1) {
+                            const root = node.shadowRoot ? node.shadowRoot : node;
+                            root.querySelectorAll('input, textarea').forEach(input => {
+                                if (/email/i.test(input.id) || /email/i.test(input.name) ||
+                                    /phone/i.test(input.id) || /phone/i.test(input.name) ||
+                                    /name/i.test(input.id) || /name/i.test(input.name)) {
+                                    updateSolomonUserFromInput(input);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Configurações do observador para monitorar adição de novos nós
+        const observerOptions = {
+            childList: true,
+            subtree: true
+        };
+        
+        // Iniciar a observação do documento
+        solomonObserver.observe(document.body, observerOptions);
+        
+        // Atualizar SolomonUser para inputs já existentes na página
+        bindInputs();
+
+        function generateEventId(eventName) {
+            const timestamp = Date.now(); // Current timestamp in milliseconds
+            const randomNumber = Math.floor(Math.random() * 1000000); // Random number between 0 and 999999
+            return `${eventName}_${timestamp}_${randomNumber}`;
+        }        
+
+        const pageviewId = generateEventId('PageView')          
+      
+        hashUserData(SolomonUser).then(hashedUser => {
+            console.log('hashedUser', hashedUser);
+            pixelIdList.forEach(pixelId => {
+              // Now you can use hashedUser to send to Facebook Pixel or CAPI
+              var initString = 'init';
+              fbq('set', 'autoConfig', 'false', pixelId);
+              fbq(initString, pixelId, {
+                  external_id: uniqueId,
+                  em: hashedUser.em,
+                  ph: hashedUser.ph,
+                  fn: hashedUser.fn,
+                  ln: hashedUser.ln,
+                  ct: hashedUser.ct,
+                  st: hashedUser.st,
+                  zp: hashedUser.zp,
+                  country: hashedUser.country
+              });
+              fbq('trackSingle',pixelId, 'PageView', {}, {
+                   eventID: pageviewId
+              });
+              
+            });
+            // PageView Event
+            sendEventToServer('PageView', {
+                url: window.location.href,
+                referrer: document.referrer
+            });
+        });
+
+        
+            
+        /** DATALAYER: Product Page
+        * Fire on all Product View pages. */
+        if (window.location.pathname.includes('/products/')) {
+            var ecommerce = {
+                'items': [{
+                    'item_id'        : {{product.id | json}},  
+                    'item_variant'    : {{product.selected_or_first_available_variant.title | json}},             
+                    'item_name'      : {{product.title | json}},
+                    'price'           : {{product.price | money_without_currency | replace: '.', '' | replace: ',', '.' | json}},
+                    'item_brand'      : {{product.vendor | json}},
+                    'item_category'   : {{product.type | json}},
+                    'item_list_name'  : {{collection.title | json}},
+                    'description'     : {{product.description | strip_newlines | strip_html | json}},
+                    'imageURL'        : 'https:{{product.featured_image.src|img_url:'grande'}}', 
+                    'productURL'      : '{{product.url}}',
+                    'item_quantity'   : 1
+                }]
+            };
+
+            console.log("product", {{product | json}});
+            
+            if (!!{{product | json}}){
+                sendEventToServer('ViewContent', ecommerce);
+            }
+
+            $(document).on('click', __DL__.cartTriggers, function(){
+                var clickedForm = $(this).closest('form');
+                var formProductId = clickedForm.find('input[name="product-id"]').val();
+                var pageProductId = {{product.id | json}};
+                pageProductId = pageProductId.toString();
+                if (!formProductId || formProductId === pageProductId) {
+                    sendEventToServer('AddToCart', ecommerce);
+                } else {
+                    // Enviar somente o ID do produto e a quantidade, assumindo quantidade = 1
+                    sendEventToServer('AddToCart', { items: [{
+                        'item_id': formProductId,
+                        'item_quantity': 1
+                    }] });
+                }
+            }); 
+
+        }else {
+            $(document).on('click', __DL__.cartTriggers, function(){
+                var form = $(this).closest('form');
+                var productId = form.find('input[name="product-id"]').val();
+                
+                // Enviar somente o ID do produto e a quantidade, assumindo quantidade = 1
+                sendEventToServer('AddToCart', { items: [{
+                    'item_id': productId,
+                    'item_quantity': 1
+                }] });
+            }); 
+        }
+
+        const originalYmpGetUrlWithUtms = window.ymp_getUrlWithUtms;
+        if (originalYmpGetUrlWithUtms) {
+            window.ymp_getUrlWithUtms = function(url) {
+              // Chamar sua função para disparar o evento de Initiate Checkout
+              try {
+                initiateCheckout();
+              } catch (error) {
+              }
+              const resp = originalYmpGetUrlWithUtms(url);
+              // Continuar com a navegação original
+              return resp;
+            };
+        }
+        // Redefinir a função para incluir o evento de Initiate Checkout
+        
+       
+        var initiateCheckoutSent = true;
+        function initiateCheckout(){
+                if (initiateCheckoutSent) {
+                    return;
+                }
+                initiateCheckoutSent = true;
+                var cart = {{ cart | json }};
+                var product = {{ product | json}}
+                var have_cart = cart.item_count > 0;
+                sendEventToServer('InitiateCheckout', {
+                    item_count: have_cart ? cart.item_count : 1 ,
+                    items: have_cart ? cart.items.map(function(item) {
+                        return {
+                            item_id: item.product_id,
+                            item_name: item.title,
+                            item_variant: item.variant_title,
+                            item_price: item.price,
+                            item_quantity: item.quantity,
+                            item_brand: item.vendor,
+                            item_category: item.product_type
+                        };
+                    }) : [{
+                            item_id: {{product.id | json}},
+                            item_name: product.title,
+                            item_variant: {{product.selected_or_first_available_variant.title | json}},  
+                            item_price: {{product.price | json}},
+                            item_quantity: 1,
+                            item_brand: product.vendor,
+                            item_category: product.type
+                    }],
+                    total_price: have_cart ? (cart.total_price / 100) : product.price,
+                    currency: cart.currency,
+                    total_discount: have_cart ? cart.total_discount : 0,
+                    url: window.location.href,
+                    referrer: document.referrer
+                });
+        }      
+        function getEventTimestamp() {
+            return Math.floor(Date.now() / 1000);
+        }
+
+        var searchPage = new RegExp(__DL__.searchPage, "g");
+        if(document.location.pathname.match(searchPage)){
+            var ecommerce = {
+                items :[{% for product in search.results %}{
+                    'item_id'        : {{product.id | json}},                  
+                    'item_variant'    : {{product.variant.title | json}},             
+                    'item_name'      : {{product.title | json}},
+                    'price'           : {{product.price | money_without_currency | replace: ',', '.' | json}},
+                    'item_brand'      : {{product.vendor | json}},
+                    'item_category'   : {{product.type | json}},
+                    'item_list_name'  : {{product.collection.title | json}},
+                },{% endfor %}],
+            };
+            sendEventToServer('Search', ecommerce);  
+        }
+          
+        async function sendEventToServer(eventName, data) {
+            console.log("EventName:", eventName);
+            console.log("data:", data);
+            // Wait for IP addresses to be fetched
+            let customData = {};
+            let eventId = generateEventId(eventName);
+
+            if (eventName !== 'PageView') {
+                customData = {
+                    content_ids : data.items.length === 1 ? data.items[0].item_id.toString() : data.items.map(item => item.item_id.toString()),
+                    content_name: data.items[0].item_name,
+                    content_type: 'product_group',
+                    value: (eventName === 'InitiateCheckout') ? data.total_price : data.items[0].price,
+                    currency: (eventName === 'InitiateCheckout') ? data.currency : data.items[0].currency,
+                    content_category: data.items[0].item_category,
+                    num_items: (eventName === 'InitiateCheckout') ? data.items.reduce((total, item) => total + item.item_quantity, 0) : 0,
+                    contents: data.items.map(item => ({id: item.item_id.toString(), quantity: item.item_quantity})),
+                };
+            }else {
+              eventId = pageviewId;
+            }            
+            
+            await ipPromise;
+            const clientIpAddress = ipv6 || ipv4;
+
+            let hashedUser = await hashUserData(SolomonUser);
+
+            // Send equivalent event to Facebook Pixel
+            if (window.fbq) {
+                pixelIdList.forEach(pixelId => {
+                    switch (eventName) {
+                        case 'PageView':                        
+                            break;
+                        case 'ViewContent':
+                        case 'AddToCart':
+                        case 'Search':
+                            fbq('trackSingle',pixelId, eventName, {
+                              content_ids: data.items.length === 1 ? data.items[0].item_id.toString() : data.items.map(item => item.item_id.toString()),
+                              content_name: data.items[0].item_name,
+                              content_type: 'product_group',
+                              value: data.items[0].price,
+                              currency: data.items[0].currency,
+                              content_category: data.items[0].item_category,
+                              contents: data.items.map(item => ({id: item.item_id.toString(), quantity: item.item_quantity})),
+                            }, 
+                            {
+                                eventID: eventId
+                            });
+                            //content_ids, content_category, content_name, content_type, contents, currency e value
+                            break;
+                        case 'InitiateCheckout':
+                            fbq('trackSingle', pixelId, 'InitiateCheckout', {
+                              content_ids: data.items.length === 1 ? data.items[0].item_id.toString() : data.items.map(item => item.item_id.toString()),
+                              content_name: data.items[0].item_name,
+                              content_type: 'product_group',
+                              value: data.total_price,
+                              currency: data.currency,
+                              content_category: data.items[0].item_category,
+                              num_items: data.items.reduce((total, item) => total + item.item_quantity, 0),
+                              contents: data.items.map(item => ({id: item.item_id.toString(), quantity: item.item_quantity})),
+                            }, 
+                            {
+                                eventID: eventId
+                            });
+                            //content_category, content_ids, contents, currency, num_items e value
+                            break;
+                    }
+                });
+            } else {
+                  console.log("fbq not found") 
+            }
+        
+            const eventData = {
+              event_name: eventName,
+              event_time: getEventTimestamp(),
+              user_data: {
+                  em: hashedUser.em,
+                  ph: hashedUser.ph,
+                  fn: hashedUser.fn,
+                  ln: hashedUser.ln,
+                  ct: hashedUser.ct,
+                  st: hashedUser.st,
+                  zp: hashedUser.zp,
+                  country:   hashedUser.country,   
+                  external_id: uniqueId,
+                  client_ip_address: clientIpAddress,
+                  client_user_agent: navigator.userAgent,
+                  fbc: getCookie("_fbc") || fbc,
+                  fbp: getCookie("_fbp") || fbp || getCookie("fbp") ,  
+              },
+              custom_data: customData,
+              event_source_url: window.location.href,
+              event_id: eventId ,
+              action_source: 'website',
+              referrer_url: document.referrer, 
+              company_id: company_id,
+              test: is_test              
+            }
+        
+            if (!!data.cart) {
+              console.log("data.cart", data.cart)
+            }
+            
+            // Send data to your server
+            fetch('https://pixel-events-fqxpwg3smq-ue.a.run.app/event', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(eventData),
+                keepalive: true
+            });
+        }          
+    }
+}, 500);
+  
+</script>

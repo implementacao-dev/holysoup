@@ -1,0 +1,141 @@
+.flash-sale-bar-landing {
+  padding: 40px 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.flash-sale-bar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.flash-sale-header {
+  flex-shrink: 0;
+}
+
+.flash-sale-text-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flash-sale-image {
+  width: 155px;
+  height: auto;
+  display: block;
+}
+
+.flash-sale-svg-content {
+  width: 155px;
+  height: auto;
+  display: block;
+}
+
+.flash-sale-svg-content svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.flash-sale-text-content {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.flash-sale-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 991px) {
+  .flash-sale-content {
+    gap: 40px;
+  }
+}
+
+.flash-sale-content-text {
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.flash-sale-content-text p {
+  margin: 0;
+}
+
+.flash-sale-discount {
+  color: #FFC51D;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.flash-sale-coupon-code {
+  font-weight: 700;
+  font-size: 58px;
+  letter-spacing: 4px;
+  color: #ffffff;
+  font-family: sans-serif;
+}
+
+.flash-sale-copy-btn {
+  height: 48px !important;
+  background: #FFC51D !important;
+  box-shadow: 5px 5px 0 0 #1A1A1A !important;
+  color: #1A1A1A !important;
+  font-size: 19px !important;
+  width: 270px !important;
+  margin: 0 !important;
+  border-radius: 24px !important;
+}
+
+.flash-sale-copy-btn svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.flash-sale-copy-btn.copied {
+  background-color: #00b45a !important;
+}
+
+@media (max-width: 990px) {
+  .flash-sale-bar-container {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .flash-sale-header {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .flash-sale-content {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .flash-sale-content-text {
+    font-size: 16px;
+  }
+
+  .flash-sale-coupon-wrapper {
+    padding: 8px 16px;
+  }
+
+  .flash-sale-coupon-code {
+    font-size: 54px;
+    line-height: 1;
+  }
+
+  .flash-sale-svg-content {
+    width: 140px;
+  }
+
+  .flash-sale-text-content {
+    font-size: 20px;
+  }
+}
