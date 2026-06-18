@@ -1,0 +1,101 @@
+<section class="v2-trans" id="trans">
+  <div class="container">
+    <div class="v2-trans-head">
+      <div class="eyebrow">{{ section.settings.eyebrow | escape }}</div>
+      <h2>{{ section.settings.headline | escape }}</h2>
+      <p style="font-size:18px;color:var(--v2-brown-soft);line-height:1.5;margin-top:12px">
+        {{ section.settings.description | escape }}
+      </p>
+    </div>
+
+    <div class="v2-trans-grid">
+      <div class="v2-trans-card">
+        <div class="label">{{ section.settings.yes_label | escape }}</div>
+        <h3>{{ section.settings.yes_title | escape }}</h3>
+        <ul class="v2-trans-list">
+          {%- for block in section.blocks -%}
+            {% if block.type == 'yes_item' %}
+              <li {{ block.shopify_attributes }}><span class="icon yes">✓</span> {{ block.settings.text | escape }}</li>
+            {% endif %}
+          {%- endfor -%}
+        </ul>
+        <div class="v2-trans-stamp">
+          <div class="v2-trans-stamp-badge">
+            {% render 'holy-trans-yes-stamp', image: section.settings.yes_stamp_image %}
+          </div>
+        </div>
+      </div>
+
+      <div class="v2-trans-card bad">
+        <div class="label">{{ section.settings.no_label | escape }}</div>
+        <h3>{{ section.settings.no_title | escape }}</h3>
+        <ul class="v2-trans-list">
+          {%- for block in section.blocks -%}
+            {% if block.type == 'no_item' %}
+              <li {{ block.shopify_attributes }}><span class="icon no">✕</span><span class="text">{{ block.settings.text | escape }}</span></li>
+            {% endif %}
+          {%- endfor -%}
+        </ul>
+        <div class="v2-trans-stamp">
+          <div class="v2-sticker v2-trans-stamp-sticker" style="background:#C5532C;color:#F8EBC8;--rot:12deg;">
+            <div style="text-align:center;line-height:1.05"><div>{{ section.settings.no_sticker | escape }}</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Holy · Transparência",
+  "tag": "section",
+  "class": "holy-section-trans",
+  "limit": 1,
+  "settings": [
+    { "type": "header", "content": "Cabeçalho" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "— Transparência radical —" },
+    { "type": "text", "id": "headline", "label": "Título", "default": "O que tem dentro? Olha aqui." },
+    { "type": "textarea", "id": "description", "label": "Descrição", "default": "Sem letras miúdas. Sem invenção. A lista completa do que entra (e do que NUNCA vai entrar) no Holy." },
+    { "type": "header", "content": "Cards" },
+    { "type": "text", "id": "yes_label", "label": "Label positivo", "default": "✓ O QUE TEM" },
+    { "type": "text", "id": "yes_title", "label": "Título positivo", "default": "A lista curta." },
+    {
+      "type": "image_picker",
+      "id": "yes_stamp_image",
+      "label": "Selo do card positivo (opcional)",
+      "info": "Selo circular no canto do card \"O que tem\". Arquivo quadrado PNG ou SVG. Recomendado: 200 × 200 px (exibido em 100 × 100 px). Se vazio, usa o selo PUREZA · CERTIFICADO padrão."
+    },
+    { "type": "text", "id": "no_label", "label": "Label negativo", "default": "✕ O QUE NÃO TEM" },
+    { "type": "text", "id": "no_title", "label": "Título negativo", "default": "Nunca vai ter." },
+    { "type": "text", "id": "no_sticker", "label": "Sticker negativo", "default": "NUNCA!" }
+  ],
+  "blocks": [
+    { "type": "yes_item", "name": "O que tem", "settings": [
+      { "type": "text", "id": "text", "label": "Texto", "default": "Mel silvestre 100% puro" }
+    ]},
+    { "type": "no_item", "name": "O que não tem", "settings": [
+      { "type": "text", "id": "text", "label": "Texto", "default": "Açúcar refinado" }
+    ]}
+  ],
+  "presets": [
+    {
+      "name": "Holy · Transparência",
+      "blocks": {
+        "yes-1": { "type": "yes_item", "settings": { "text": "Mel silvestre 100% puro" } },
+        "yes-2": { "type": "yes_item", "settings": { "text": "Néctar da flor de laranjeira" } },
+        "yes-3": { "type": "yes_item", "settings": { "text": "Mais 200 nutrientes naturais" } },
+        "yes-4": { "type": "yes_item", "settings": { "text": "Enzimas vivas (não passou pelo fogão)" } },
+        "yes-5": { "type": "yes_item", "settings": { "text": "Antioxidantes naturais" } },
+        "yes-6": { "type": "yes_item", "settings": { "text": "Carinho de urso" } },
+        "no-1": { "type": "no_item", "settings": { "text": "Açúcar refinado" } },
+        "no-2": { "type": "no_item", "settings": { "text": "Xarope de glucose ou frutose" } },
+        "no-3": { "type": "no_item", "settings": { "text": "Corante caramelo" } },
+        "no-4": { "type": "no_item", "settings": { "text": "Conservantes artificiais" } },
+        "no-5": { "type": "no_item", "settings": { "text": "Aromatizantes" } },
+        "no-6": { "type": "no_item", "settings": { "text": "Promessa furada" } }
+      }
+    }
+  ]
+}
+{% endschema %}

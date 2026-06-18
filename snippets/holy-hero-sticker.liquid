@@ -1,0 +1,24 @@
+{%- comment -%}
+  Sticker circular do hero — imagem opcional ou texto padrão.
+  Uso: {% render 'holy-hero-sticker', image: image, line1: 'SEM', line2: 'AÇÚCAR', bg: '#C5532C', color: '#F8EBC8', rotation: 10, size: 88 %}
+{%- endcomment -%}
+{%- liquid
+  assign sticker_size = size | default: 88
+  assign img_url_width = sticker_size | times: 2
+-%}
+{%- if image != blank -%}
+  <img
+    class="hero-sticker-img"
+    src="{{ image | image_url: width: img_url_width }}"
+    width="{{ sticker_size }}"
+    height="{{ sticker_size }}"
+    alt=""
+    loading="lazy"
+    aria-hidden="true"
+  >
+{%- else -%}
+  <div class="v2-sticker hero-stage-sticker" style="background:{{ bg }};color:{{ color }};--rot:{{ rotation }}deg;width:{{ sticker_size }}px;height:{{ sticker_size }}px;">
+    <div>{{ line1 | escape }}</div>
+    <div>{{ line2 | escape }}</div>
+  </div>
+{%- endif -%}
