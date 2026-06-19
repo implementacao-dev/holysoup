@@ -9,7 +9,7 @@
       <span></span>
     </div>
     <div class="header-landing-logo">
-      <a href="{{ routes.root_url }}" class="header-logo-link">
+      {% capture logo_markup %}
         {% if section.settings.logo != blank %}
           {{
             section.settings.logo
@@ -26,7 +26,12 @@
             height="36"
           >
         {% endif %}
-      </a>
+      {% endcapture %}
+      {% if section.settings.logo_clickable %}
+        <a href="{{ routes.root_url }}" class="header-logo-link">{{ logo_markup }}</a>
+      {% else %}
+        <span class="header-logo-link">{{ logo_markup }}</span>
+      {% endif %}
     </div>
 
     {% if section.settings.show_cart %}
@@ -76,6 +81,12 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo"
+    },
+    {
+      "type": "checkbox",
+      "id": "logo_clickable",
+      "label": "Logo clicável",
+      "default": true
     },
     {
       "type": "header",
