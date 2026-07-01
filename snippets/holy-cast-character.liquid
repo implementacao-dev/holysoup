@@ -1,0 +1,17 @@
+{%- comment -%}
+  Ilustração do kit Cast — upload opcional ou pose SVG padrão.
+  Uso: {% render 'holy-cast-character', image: block.settings.character_image, bear_symbol: block.settings.bear_symbol %}
+{%- endcomment -%}
+{%- if image != blank -%}
+  <img
+    class="cast-character-img"
+    src="{{ image | image_url: width: 240 }}"
+    width="120"
+    height="120"
+    alt=""
+    loading="lazy"
+    aria-hidden="true"
+  >
+{%- else -%}
+  {% render 'holy-bear-svg', symbol: bear_symbol, width: 120, class: 'cast-character-svg' %}
+{%- endif -%}

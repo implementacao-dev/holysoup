@@ -1,0 +1,886 @@
+{
+  "sections": {
+    "assets": {
+      "type": "holy-assets",
+      "settings": {}
+    },
+    "shell-open": {
+      "type": "holy-shell-open",
+      "settings": {}
+    },
+    "ticker": {
+      "type": "holy-ticker",
+      "settings": {},
+      "blocks": {
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "text": "🍯 100% PURO"
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "text": "✦ CERTIFICADO BPF · FDA · IFS · SIF"
+          }
+        },
+        "item-3": {
+          "type": "item",
+          "settings": {
+            "text": "🐻 EDIÇÃO SAFRA 2025"
+          }
+        },
+        "item-4": {
+          "type": "item",
+          "settings": {
+            "text": "🚚 FRETE GRÁTIS ACIMA DE R$89"
+          }
+        },
+        "item-5": {
+          "type": "item",
+          "settings": {
+            "text": "❤️ FEITO COM AMOR DE URSO"
+          }
+        },
+        "item-6": {
+          "type": "item",
+          "settings": {
+            "text": "🌼 NÉCTAR DA FLOR DE LARANJEIRA"
+          }
+        }
+      },
+      "block_order": [
+        "item-1",
+        "item-2",
+        "item-3",
+        "item-4",
+        "item-5",
+        "item-6"
+      ]
+    },
+    "nav": {
+      "type": "holy-nav",
+      "settings": {
+        "url_kits": "shopify://pages/kits",
+        "url_mini": "shopify://products/mini-holy",
+        "url_duo": "shopify://products/duo-holy",
+        "url_mamae": "shopify://products/mamae-holy"
+      }
+    },
+    "hero": {
+      "type": "holy-hero",
+      "settings": {
+        "url_kits": "shopify://pages/kits",
+        "url_mini": "shopify://products/mini-holy",
+        "url_duo": "shopify://products/duo-holy",
+        "url_mamae": "shopify://products/mamae-holy"
+      }
+    },
+    "metrics": {
+      "type": "holy-metrics",
+      "settings": {},
+      "blocks": {
+        "metric-1": {
+          "type": "metric",
+          "settings": {
+            "number": "+4.200",
+            "label": "ursos entregues",
+            "description": "Em todo o Brasil, com carinho e mel de verdade."
+          }
+        },
+        "metric-2": {
+          "type": "metric",
+          "settings": {
+            "number": "100%",
+            "label": "puro e natural",
+            "description": "Sem conservantes, sem adição de açúcar, sem mistérios."
+          }
+        },
+        "metric-3": {
+          "type": "metric",
+          "settings": {
+            "number": "4",
+            "label": "certificações",
+            "description": "BPF, FDA, IFS e SIF - qualidade comprovada."
+          }
+        }
+      },
+      "block_order": [
+        "metric-1",
+        "metric-2",
+        "metric-3"
+      ]
+    },
+    "villain": {
+      "type": "holy-villain",
+      "settings": {},
+      "blocks": {
+        "bad-1": {
+          "type": "bad_point",
+          "settings": {
+            "text": "Xarope de glucose adicionado"
+          }
+        },
+        "bad-2": {
+          "type": "bad_point",
+          "settings": {
+            "text": "Açúcar refinado pra \"padronizar\""
+          }
+        },
+        "bad-3": {
+          "type": "bad_point",
+          "settings": {
+            "text": "Corante caramelo pra parecer mel"
+          }
+        },
+        "bad-4": {
+          "type": "bad_point",
+          "settings": {
+            "text": "Origem? Boa pergunta."
+          }
+        },
+        "bad-5": {
+          "type": "bad_point",
+          "settings": {
+            "text": "Embalagem genérica de plástico mole"
+          }
+        },
+        "bad-6": {
+          "type": "bad_point",
+          "settings": {
+            "text": "Nunca cristaliza (não é mel mesmo)"
+          }
+        },
+        "good-1": {
+          "type": "good_point",
+          "settings": {
+            "text": "Néctar puro da flor de laranjeira"
+          }
+        },
+        "good-2": {
+          "type": "good_point",
+          "settings": {
+            "text": "Zero açúcar, zero xarope, zero conservante"
+          }
+        },
+        "good-3": {
+          "type": "good_point",
+          "settings": {
+            "text": "4 certificações (BPF, FDA, IFS, SIF)"
+          }
+        },
+        "good-4": {
+          "type": "good_point",
+          "settings": {
+            "text": "Apiário rastreável (sim, a gente conhece a abelha)"
+          }
+        },
+        "good-5": {
+          "type": "good_point",
+          "settings": {
+            "text": "Embalagem-urso pra abraçar antes de abrir"
+          }
+        },
+        "good-6": {
+          "type": "good_point",
+          "settings": {
+            "text": "Cristaliza com o tempo - porque é puro mesmo"
+          }
+        }
+      },
+      "block_order": [
+        "bad-1",
+        "bad-2",
+        "bad-3",
+        "bad-4",
+        "bad-5",
+        "bad-6",
+        "good-1",
+        "good-2",
+        "good-3",
+        "good-4",
+        "good-5",
+        "good-6"
+      ]
+    },
+    "journey": {
+      "type": "holy-journey",
+      "settings": {},
+      "blocks": {
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "day": "DIA 1-180",
+            "number": "01",
+            "icon": "bee",
+            "title": "Abelhas trabalham",
+            "description": "180 dias de trabalho silencioso. 8 milhões de flores visitadas por colmeia. 🐝"
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "day": "DIA 181",
+            "number": "02",
+            "icon": "harvest",
+            "title": "Coleta cuidadosa",
+            "description": "Apiarista colhe na época certa, com cuidado e sem agitar as colmeias."
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "day": "DIA 182",
+            "number": "03",
+            "icon": "filter",
+            "title": "Filtragem suave",
+            "description": "Filtramos a frio pra preservar enzimas e nutrientes. Nada de pasteurização."
+          }
+        },
+        "step-4": {
+          "type": "step",
+          "settings": {
+            "day": "DIA 183",
+            "number": "04",
+            "icon": "bear",
+            "title": "Engarrafado no urso",
+            "description": "Cada Holy recebe 330g do mel mais puro que a gente conseguiu fazer."
+          }
+        },
+        "step-5": {
+          "type": "step",
+          "settings": {
+            "day": "DIA 184-190",
+            "number": "05",
+            "icon": "delivery",
+            "title": "Chega em casa",
+            "description": "De 3 a 7 dias úteis pra bater na sua porta. Frete grátis acima de R$89."
+          }
+        }
+      },
+      "block_order": [
+        "step-1",
+        "step-2",
+        "step-3",
+        "step-4",
+        "step-5"
+      ]
+    },
+    "versatilidade": {
+      "type": "holy-versatilidade",
+      "settings": {},
+      "blocks": {
+        "card-1": {
+          "type": "card",
+          "settings": {
+            "emoji": "☕",
+            "title": "No café ou chá",
+            "description": "Adoça com propósito - substitua o açúcar refinado por energia natural."
+          }
+        },
+        "card-2": {
+          "type": "card",
+          "settings": {
+            "emoji": "🏋️",
+            "title": "Pré e pós-treino",
+            "description": "Carboidrato natural de absorção eficiente. Combustível pra performance."
+          }
+        },
+        "card-3": {
+          "type": "card",
+          "settings": {
+            "emoji": "🍳",
+            "title": "Em receitas",
+            "description": "Carameliza, equilibra e realça sabores em pratos doces e salgados."
+          }
+        },
+        "card-4": {
+          "type": "card",
+          "settings": {
+            "emoji": "🤒",
+            "title": "Imunidade",
+            "description": "Aliado de gerações pra garganta, gripes e bem-estar do dia a dia."
+          }
+        }
+      },
+      "block_order": [
+        "card-1",
+        "card-2",
+        "card-3",
+        "card-4"
+      ]
+    },
+    "trans": {
+      "type": "holy-trans",
+      "settings": {},
+      "blocks": {
+        "yes-1": {
+          "type": "yes_item",
+          "settings": {
+            "text": "Mel silvestre 100% puro"
+          }
+        },
+        "yes-2": {
+          "type": "yes_item",
+          "settings": {
+            "text": "Néctar da flor de laranjeira"
+          }
+        },
+        "yes-3": {
+          "type": "yes_item",
+          "settings": {
+            "text": "Mais 200 nutrientes naturais"
+          }
+        },
+        "yes-4": {
+          "type": "yes_item",
+          "settings": {
+            "text": "Enzimas vivas (não passou pelo fogão)"
+          }
+        },
+        "yes-5": {
+          "type": "yes_item",
+          "settings": {
+            "text": "Antioxidantes naturais"
+          }
+        },
+        "yes-6": {
+          "type": "yes_item",
+          "settings": {
+            "text": "Carinho de urso"
+          }
+        },
+        "no-1": {
+          "type": "no_item",
+          "settings": {
+            "text": "Açúcar refinado"
+          }
+        },
+        "no-2": {
+          "type": "no_item",
+          "settings": {
+            "text": "Xarope de glucose ou frutose"
+          }
+        },
+        "no-3": {
+          "type": "no_item",
+          "settings": {
+            "text": "Corante caramelo"
+          }
+        },
+        "no-4": {
+          "type": "no_item",
+          "settings": {
+            "text": "Conservantes artificiais"
+          }
+        },
+        "no-5": {
+          "type": "no_item",
+          "settings": {
+            "text": "Aromatizantes"
+          }
+        },
+        "no-6": {
+          "type": "no_item",
+          "settings": {
+            "text": "Promessa furada"
+          }
+        }
+      },
+      "block_order": [
+        "yes-1",
+        "yes-2",
+        "yes-3",
+        "yes-4",
+        "yes-5",
+        "yes-6",
+        "no-1",
+        "no-2",
+        "no-3",
+        "no-4",
+        "no-5",
+        "no-6"
+      ]
+    },
+    "reviews": {
+      "type": "holy-reviews",
+      "settings": {},
+      "blocks": {
+        "filter-1": {
+          "type": "filter",
+          "settings": {
+            "label": "Sabor"
+          }
+        },
+        "filter-2": {
+          "type": "filter",
+          "settings": {
+            "label": "Cristalização"
+          }
+        },
+        "filter-3": {
+          "type": "filter",
+          "settings": {
+            "label": "Família"
+          }
+        },
+        "filter-4": {
+          "type": "filter",
+          "settings": {
+            "label": "Treino"
+          }
+        },
+        "review-1": {
+          "type": "review",
+          "settings": {
+            "tag": "Sabor",
+            "stars": "★ ★ ★ ★ ★",
+            "body": "Gente, não tem comparação com mel de supermercado. O sabor é completamente diferente, parece outro produto. Nunca mais volto atrás.",
+            "avatar": "A",
+            "name": "Ana Paula",
+            "city": "São Paulo, SP"
+          }
+        },
+        "review-2": {
+          "type": "review",
+          "settings": {
+            "tag": "Cristalização",
+            "stars": "★ ★ ★ ★ ★",
+            "body": "O meu cristalizou depois de uns meses e eu amei! Finalmente um mel de verdade. Derrete em banho-maria e fica perfeito de novo.",
+            "avatar": "M",
+            "name": "Mariana",
+            "city": "Belo Horizonte, MG"
+          }
+        },
+        "review-3": {
+          "type": "review",
+          "settings": {
+            "tag": "Família",
+            "stars": "★ ★ ★ ★ ★",
+            "body": "Meus filhos adoram no café da manhã com iogurte. Fico tranquila sabendo que é puro e sem conservantes. Virou item obrigatório em casa.",
+            "avatar": "J",
+            "name": "Juliana",
+            "city": "Rio de Janeiro, RJ"
+          }
+        },
+        "review-4": {
+          "type": "review",
+          "settings": {
+            "tag": "Sabor",
+            "stars": "★ ★ ★ ★ ★",
+            "body": "Uso no chá todas as manhãs. Aroma incrível, o sabor da flor de laranjeira faz toda diferença. Vale cada centavo.",
+            "avatar": "C",
+            "name": "Carla",
+            "city": "Curitiba, PR"
+          }
+        },
+        "review-5": {
+          "type": "review",
+          "settings": {
+            "tag": "Treino",
+            "stars": "★ ★ ★ ★ ★",
+            "body": "Tomo uma colher antes do treino e funciona melhor que qualquer pré-treino caro que já experimentei. Energia limpa, sem queda depois.",
+            "avatar": "R",
+            "name": "Rafael",
+            "city": "Porto Alegre, RS"
+          }
+        },
+        "review-6": {
+          "type": "review",
+          "settings": {
+            "tag": "Família",
+            "stars": "★ ★ ★ ★ ★",
+            "body": "Comprei o Kit Família e durou um mês só. A embalagem de urso fez sucesso com a criançada - virou disputa quem usa primeiro.",
+            "avatar": "F",
+            "name": "Fernanda",
+            "city": "Salvador, BA"
+          }
+        }
+      },
+      "block_order": [
+        "filter-1",
+        "filter-2",
+        "filter-3",
+        "filter-4",
+        "review-1",
+        "review-2",
+        "review-3",
+        "review-4",
+        "review-5",
+        "review-6"
+      ]
+    },
+    "cast": {
+      "type": "holy-cast",
+      "settings": {
+        "url_kits": "shopify://pages/kits",
+        "url_mini": "shopify://products/mini-holy",
+        "url_duo": "shopify://products/duo-holy",
+        "url_mamae": "shopify://products/mamae-holy"
+      },
+      "blocks": {
+        "kit-1": {
+          "type": "kit",
+          "settings": {
+            "featured": false,
+            "ribbon": "",
+            "stage_color": "#F5C5B0",
+            "sticker_bg": "#C5532C",
+            "sticker_color": "#F8EBC8",
+            "sticker_rotation": "-8",
+            "sticker_text": "PRIMEIRA\nVEZ?",
+            "bear_symbol": "bear-stand-happy",
+            "meta": "330G · 1 URSO",
+            "title": "Mini Holy",
+            "tagline": "pra começar a história",
+            "price_now": "R$49,90",
+            "price_was": "R$59,90",
+            "price_meta": "ou 3x de R$16,63 sem juros",
+            "bullets": "<ul><li><span class=\"dot\"></span>100% mel puro</li><li><span class=\"dot\"></span>Frete tradicional</li><li><span class=\"dot\"></span>Sticker exclusivo grátis</li></ul>",
+            "button_class": "v2-btn-honey",
+            "button_text": "Quero o Mini →",
+            "url": "shopify://products/mini-holy"
+          }
+        },
+        "kit-2": {
+          "type": "kit",
+          "settings": {
+            "featured": true,
+            "ribbon": "MAIS AMADO",
+            "stage_color": "#C5532C",
+            "sticker_bg": "#2E1408",
+            "sticker_color": "#F0B232",
+            "sticker_rotation": "-1",
+            "sticker_text": "POPULAR\n⭐",
+            "bear_symbol": "bear-wave-wink",
+            "meta": "660G · 2 URSOS",
+            "title": "Duo Holy",
+            "tagline": "pra família que tá vidrada",
+            "price_now": "R$89,90",
+            "price_was": "R$119,80",
+            "price_meta": "ou 3x de R$29,96 sem juros",
+            "bullets": "<ul><li><span class=\"dot\"></span>Frete grátis 🚚</li><li><span class=\"dot\"></span>Embalagem premium</li><li><span class=\"dot\"></span>Economia de 25%</li><li><span class=\"dot\"></span>2 stickers diferentes</li></ul>",
+            "button_class": "v2-btn-primary",
+            "button_text": "Quero o Duo →",
+            "url": "shopify://products/duo-holy"
+          }
+        },
+        "kit-3": {
+          "type": "kit",
+          "settings": {
+            "featured": true,
+            "ribbon": "MELHOR PREÇO",
+            "stage_color": "#6E1D17",
+            "sticker_bg": "#F0B232",
+            "sticker_color": "#2E1408",
+            "sticker_rotation": "6",
+            "sticker_text": "BEST\nDEAL",
+            "bear_symbol": "bear-point-happy",
+            "meta": "990G · 3 URSOS",
+            "title": "Mamãe Holy",
+            "tagline": "pra abastecer a colmeia",
+            "price_now": "R$119,90",
+            "price_was": "R$179,70",
+            "price_meta": "ou 3x de R$39,96 sem juros",
+            "bullets": "<ul><li><span class=\"dot\"></span>Frete grátis 🚚</li><li><span class=\"dot\"></span>Melhor custo por grama</li><li><span class=\"dot\"></span>Brinde surpresa 🎁</li><li><span class=\"dot\"></span>Kit completo de stickers</li></ul>",
+            "button_class": "v2-btn-honey",
+            "button_text": "Quero a Mamãe →",
+            "url": "shopify://products/mamae-holy"
+          }
+        }
+      },
+      "block_order": [
+        "kit-1",
+        "kit-2",
+        "kit-3"
+      ]
+    },
+    "faq": {
+      "type": "holy-faq",
+      "settings": {},
+      "blocks": {
+        "q-1": {
+          "type": "question",
+          "settings": {
+            "question": "É 100% puro mesmo?",
+            "answer": "<p>Olha nos meus olhinhos: é puro mesmo. Não tem açúcar adicionado, xarope de glucose, água ou nada. Só mel silvestre que veio direto das abelhinhas pra mim, pra você. Tenho 4 certificações (BPF, FDA, IFS, SIF) que provam isso - não confie só na minha cara fofa.</p>"
+          }
+        },
+        "q-2": {
+          "type": "question",
+          "settings": {
+            "question": "Por que meu mel cristalizou?",
+            "answer": "<p>Calma! Cristalização é sinal de pureza. Mel puro cristaliza naturalmente com o tempo, é química mesmo. Pra voltar a ficar líquido: coloca a embalagem em banho-maria com água morna (nunca fervente, eu sou sensível) e pronto.</p>"
+          }
+        },
+        "q-3": {
+          "type": "question",
+          "settings": {
+            "question": "Pode dar pra criança?",
+            "answer": "<p>Pra criança com mais de 1 ano: sim, pode! Sou um lanche saudável pra família toda. Pra bebês com menos de 1 aninho não pode - orientação médica, não é frescura minha.</p>"
+          }
+        },
+        "q-4": {
+          "type": "question",
+          "settings": {
+            "question": "Em quanto tempo chega?",
+            "answer": "<p>De 3 a 7 dias úteis, dependendo da sua cidade. Acima de R$89 o frete é grátis - então capricha no kit que eu vou com mais amigos. 🐻</p>"
+          }
+        },
+        "q-5": {
+          "type": "question",
+          "settings": {
+            "question": "E se eu não gostar?",
+            "answer": "<p>Você tem 7 dias pra devolver se não rolar a química entre a gente. Mas vou te falar: 4.9/5 estrelas em +2.000 avaliações é por algo. Aposto que vamos virar amigos.</p>"
+          }
+        },
+        "q-6": {
+          "type": "question",
+          "settings": {
+            "question": "Posso usar pra cozinhar?",
+            "answer": "<p>Pode e deve! Sou ótimo em receitas - caramelizo lindamente, equilibro pratos salgados e doces. Os chefs amam minha pegada de flor de laranjeira. Tem receitas no nosso blog também.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q-1",
+        "q-2",
+        "q-3",
+        "q-4",
+        "q-5",
+        "q-6"
+      ]
+    },
+    "guarantee": {
+      "type": "holy-guarantee",
+      "settings": {
+        "promise": "<p>Em <strong>7 dias</strong> você não rola química com o Holy, a gente devolve <strong>100% do seu dinheiro</strong>. E ainda manda um abraço de urso pra desculpa. Sério.</p>",
+        "url_kits": "shopify://pages/kits",
+        "url_mini": "shopify://products/mini-holy",
+        "url_duo": "shopify://products/duo-holy",
+        "url_mamae": "shopify://products/mamae-holy"
+      },
+      "blocks": {
+        "bear-1": {
+          "type": "bear",
+          "settings": {
+            "bear_symbol": "bear-wave-happy",
+            "featured": false
+          }
+        },
+        "bear-2": {
+          "type": "bear",
+          "settings": {
+            "bear_symbol": "bear-stand-wink",
+            "featured": true
+          }
+        },
+        "bear-3": {
+          "type": "bear",
+          "settings": {
+            "bear_symbol": "bear-point-happy",
+            "featured": false
+          }
+        },
+        "badge-1": {
+          "type": "badge",
+          "settings": {
+            "text": "✓ Pagamento seguro"
+          }
+        },
+        "badge-2": {
+          "type": "badge",
+          "settings": {
+            "text": "✓ Frete +R$89 grátis"
+          }
+        },
+        "badge-3": {
+          "type": "badge",
+          "settings": {
+            "text": "✓ 7 dias garantia"
+          }
+        },
+        "badge-4": {
+          "type": "badge",
+          "settings": {
+            "text": "✓ +2.000 reviews 4.9★"
+          }
+        }
+      },
+      "block_order": [
+        "bear-1",
+        "bear-2",
+        "bear-3",
+        "badge-1",
+        "badge-2",
+        "badge-3",
+        "badge-4"
+      ]
+    },
+    "footer": {
+      "type": "holy-footer",
+      "settings": {
+        "url_kits": "shopify://pages/kits",
+        "url_mini": "shopify://products/mini-holy",
+        "url_duo": "shopify://products/duo-holy",
+        "url_mamae": "shopify://products/mamae-holy"
+      },
+      "blocks": {
+        "social-1": {
+          "type": "social",
+          "settings": {
+            "label": "IG",
+            "url": "https://www.instagram.com/holyfoods"
+          }
+        },
+        "social-2": {
+          "type": "social",
+          "settings": {
+            "label": "TT",
+            "url": "https://www.tiktok.com/@holyfoods"
+          }
+        },
+        "social-3": {
+          "type": "social",
+          "settings": {
+            "label": "YT",
+            "url": "https://www.youtube.com/@holyfoods"
+          }
+        },
+        "social-4": {
+          "type": "social",
+          "settings": {
+            "label": "WA",
+            "url": "https://wa.me/5500000000000"
+          }
+        },
+        "menu1-1": {
+          "type": "menu1_link",
+          "settings": {
+            "label": "O Mel",
+            "url": "/pages/mel-da-holy#villain"
+          }
+        },
+        "menu1-2": {
+          "type": "menu1_link",
+          "settings": {
+            "label": "A jornada",
+            "url": "/pages/mel-da-holy#jornada"
+          }
+        },
+        "menu1-3": {
+          "type": "menu1_link",
+          "settings": {
+            "label": "Transparência",
+            "url": "/pages/mel-da-holy#trans"
+          }
+        },
+        "menu1-4": {
+          "type": "menu1_link",
+          "settings": {
+            "label": "Os ursos",
+            "url": "/pages/mel-da-holy#cast"
+          }
+        },
+        "menu2-1": {
+          "type": "menu2_link",
+          "settings": {
+            "label": "Mini Holy",
+            "url": "shopify://products/mini-holy"
+          }
+        },
+        "menu2-2": {
+          "type": "menu2_link",
+          "settings": {
+            "label": "Duo Holy",
+            "url": "shopify://products/duo-holy"
+          }
+        },
+        "menu2-3": {
+          "type": "menu2_link",
+          "settings": {
+            "label": "Mamãe Holy",
+            "url": "shopify://products/mamae-holy"
+          }
+        },
+        "menu3-1": {
+          "type": "menu3_link",
+          "settings": {
+            "label": "Central de Ajuda",
+            "url": "/pages/contato"
+          }
+        },
+        "menu3-2": {
+          "type": "menu3_link",
+          "settings": {
+            "label": "Rastrear pedido",
+            "url": "/account"
+          }
+        },
+        "menu3-3": {
+          "type": "menu3_link",
+          "settings": {
+            "label": "Trocas e devoluções",
+            "url": "/policies/refund-policy"
+          }
+        },
+        "menu3-4": {
+          "type": "menu3_link",
+          "settings": {
+            "label": "Fale com o Holy",
+            "url": "/pages/contato"
+          }
+        }
+      },
+      "block_order": [
+        "social-1",
+        "social-2",
+        "social-3",
+        "social-4",
+        "menu1-1",
+        "menu1-2",
+        "menu1-3",
+        "menu1-4",
+        "menu2-1",
+        "menu2-2",
+        "menu2-3",
+        "menu3-1",
+        "menu3-2",
+        "menu3-3",
+        "menu3-4"
+      ]
+    },
+    "sticky-cta": {
+      "type": "holy-sticky-cta",
+      "settings": {
+        "url_kits": "shopify://pages/kits",
+        "url_mini": "shopify://products/mini-holy",
+        "url_duo": "shopify://products/duo-holy",
+        "url_mamae": "shopify://products/mamae-holy"
+      }
+    },
+    "shell-close": {
+      "type": "holy-shell-close",
+      "settings": {}
+    }
+  },
+  "order": [
+    "assets",
+    "shell-open",
+    "ticker",
+    "nav",
+    "hero",
+    "metrics",
+    "villain",
+    "journey",
+    "versatilidade",
+    "trans",
+    "reviews",
+    "cast",
+    "faq",
+    "guarantee",
+    "footer",
+    "sticky-cta",
+    "shell-close"
+  ]
+}

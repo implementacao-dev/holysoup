@@ -1,0 +1,158 @@
+<section class="v2-hero v3-hero" id="hero">
+  <div class="v3-hero-grid">
+    <div>
+      <div class="v2-hero-eyebrow">
+        <span class="pulse"></span>
+        {{ section.settings.eyebrow | escape }}
+      </div>
+      <h1>{{ section.settings.headline | escape }}</h1>
+      <p class="v3-hero-sub">
+        {{ section.settings.subheadline | escape }}
+      </p>
+      <div class="v2-hero-ctas">
+        <a class="v2-btn v2-btn-primary" href="{{ section.settings.url_kits | default: '/pages/kits' }}">{{ section.settings.cta_primary | escape }}</a>
+        <a class="v2-btn v2-btn-ghost" href="#villain">{{ section.settings.cta_secondary | escape }}</a>
+      </div>
+      <div class="v2-hero-proof">
+        <div class="stars">{{ section.settings.stars | escape }}</div>
+        <span>{{ section.settings.proof_text | escape }}</span>
+      </div>
+    </div>
+
+    <div class="v2-hero-stage">
+      <div class="v2-spin sun-rays">
+        {% render 'holy-sun-rays', image: section.settings.sun_rays_image %}
+      </div>
+      <div class="stage-bg"></div>
+
+      <div class="hero-bear-wrap">
+        {% if section.settings.bear_image != blank %}
+          <img
+            class="hero-bear-img"
+            src="{{ section.settings.bear_image | image_url: width: 760 }}"
+            width="380"
+            height="399"
+            alt=""
+            loading="eager"
+            aria-hidden="true"
+          >
+        {% else %}
+          {% render 'holy-bear-svg', symbol: section.settings.bear_symbol, width: 380, class: 'hero-bear-svg' %}
+        {% endif %}
+      </div>
+
+      <div class="hero-stage-deco hero-stage-deco--stamp v2-bob">
+        <div class="hero-stage-deco-inner hero-stage-deco-inner--stamp">
+          {% render 'holy-hero-stamp', image: section.settings.stamp_image %}
+        </div>
+      </div>
+
+      <div class="hero-stage-deco hero-stage-deco--sticker-right v2-bob b2">
+        {% render 'holy-hero-sticker',
+          image: section.settings.sticker_sugar_image,
+          line1: section.settings.sticker_sugar_line1,
+          line2: section.settings.sticker_sugar_line2,
+          bg: '#C5532C',
+          color: '#F8EBC8',
+          rotation: 10,
+          size: 88
+        %}
+      </div>
+
+      <div class="hero-stage-deco hero-stage-deco--sticker-left v2-bob b3">
+        {% render 'holy-hero-sticker',
+          image: section.settings.sticker_love_image,
+          line1: section.settings.sticker_love_line1,
+          line2: section.settings.sticker_love_line2,
+          bg: '#6E1D17',
+          color: '#F0B232',
+          rotation: -15,
+          size: 86
+        %}
+      </div>
+
+      <div class="hero-stage-deco hero-stage-deco--dipper v2-bob b2">
+        {% render 'holy-hero-dipper', image: section.settings.dipper_image %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Holy · Hero",
+  "tag": "section",
+  "class": "holy-section-hero",
+  "limit": 1,
+  "settings": [
+    { "type": "header", "content": "Textos" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "MEL SILVESTRE · 100% PURO · 330G" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "O mel mais fofo da internet." },
+    { "type": "textarea", "id": "subheadline", "label": "Subheadline", "default": "Superalimento puro, direto do apiário até a sua casa — numa embalagem que você vai querer abraçar antes de abrir." },
+    { "type": "text", "id": "cta_primary", "label": "CTA primário", "default": "Quero o meu Urso 🐻" },
+    { "type": "text", "id": "cta_secondary", "label": "CTA secundário", "default": "Saiba mais" },
+    { "type": "text", "id": "stars", "label": "Estrelas", "default": "★★★★★" },
+    { "type": "text", "id": "proof_text", "label": "Prova social", "default": "4.9/5 · +2.000 famílias felizes" },
+    { "type": "header", "content": "Palco visual (urso e decorações)" },
+    {
+      "type": "image_picker",
+      "id": "sun_rays_image",
+      "label": "Raios de sol (opcional)",
+      "info": "Decoração de fundo giratória atrás do palco amarelo. Arquivo quadrado PNG ou SVG. Recomendado: 800 × 800 px. Se vazio, usa os raios SVG animados padrão."
+    },
+    {
+      "type": "image_picker",
+      "id": "bear_image",
+      "label": "Urso principal (opcional)",
+      "info": "Ilustração central do palco amarelo. Se enviar imagem, substitui a pose padrão abaixo. Arquivo quadrado PNG ou SVG com fundo transparente. Recomendado: 760 × 760 px (exibido até 380 px de largura)."
+    },
+    {
+      "type": "select",
+      "id": "bear_symbol",
+      "label": "Pose do urso (padrão)",
+      "default": "bear-wave-happy",
+      "options": [
+        { "value": "bear-stand-happy", "label": "Stand" },
+        { "value": "bear-wave-happy", "label": "Wave" },
+        { "value": "bear-wave-wink", "label": "Wave wink" },
+        { "value": "bear-stand-wink", "label": "Stand wink" },
+        { "value": "bear-point-happy", "label": "Point" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "stamp_image",
+      "label": "Selo 100% puro (opcional)",
+      "info": "Selo circular no canto superior esquerdo do palco. Se enviar imagem, substitui o selo padrão. Arquivo quadrado PNG ou SVG com fundo transparente. Recomendado: 236 × 236 px (exibido em 118 × 118 px)."
+    },
+    {
+      "type": "image_picker",
+      "id": "dipper_image",
+      "label": "Ícone do favo/colher (opcional)",
+      "info": "Ícone decorativo no canto superior direito do palco. Se enviar imagem, substitui o ícone padrão. Arquivo quadrado PNG ou SVG com fundo transparente. Recomendado: 112 × 112 px (exibido em 56 × 56 px)."
+    },
+    {
+      "type": "image_picker",
+      "id": "sticker_sugar_image",
+      "label": "Sticker SEM AÇÚCAR — imagem (opcional)",
+      "info": "Substitui o sticker de texto no canto inferior direito do palco. Arquivo quadrado PNG ou SVG. Recomendado: 176 × 176 px (exibido em 88 × 88 px). Se vazio, usa as linhas de texto abaixo."
+    },
+    { "type": "text", "id": "sticker_sugar_line1", "label": "Sticker SEM AÇÚCAR — linha 1 (padrão)", "default": "SEM" },
+    { "type": "text", "id": "sticker_sugar_line2", "label": "Sticker SEM AÇÚCAR — linha 2 (padrão)", "default": "AÇÚCAR" },
+    {
+      "type": "image_picker",
+      "id": "sticker_love_image",
+      "label": "Sticker 330G — imagem (opcional)",
+      "info": "Substitui o sticker de texto no canto esquerdo do palco. Arquivo quadrado PNG ou SVG. Recomendado: 172 × 172 px (exibido em 86 × 86 px). Se vazio, usa as linhas de texto abaixo."
+    },
+    { "type": "text", "id": "sticker_love_line1", "label": "Sticker 330G — linha 1 (padrão)", "default": "330G" },
+    { "type": "text", "id": "sticker_love_line2", "label": "Sticker 330G — linha 2 (padrão)", "default": "OF LOVE" },
+    { "type": "header", "content": "Links dos kits" },
+    { "type": "url", "id": "url_kits", "label": "URL principal (kits)" },
+    { "type": "url", "id": "url_mini", "label": "URL Mini Holy" },
+    { "type": "url", "id": "url_duo", "label": "URL Duo Holy" },
+    { "type": "url", "id": "url_mamae", "label": "URL Mamãe Holy" }
+  ],
+  "presets": [{ "name": "Holy · Hero" }]
+}
+{% endschema %}

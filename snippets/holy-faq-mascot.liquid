@@ -1,0 +1,17 @@
+{%- comment -%}
+  Mascote da FAQ — upload opcional ou urso SVG padrão.
+  Uso: {% render 'holy-faq-mascot', image: section.settings.mascot_image, bear_symbol: section.settings.mascot_bear %}
+{%- endcomment -%}
+{%- if image != blank -%}
+  <img
+    class="faq-mascot-img"
+    src="{{ image | image_url: width: 240 }}"
+    width="120"
+    height="100"
+    alt=""
+    loading="lazy"
+    aria-hidden="true"
+  >
+{%- else -%}
+  {% render 'holy-bear-svg', symbol: bear_symbol, width: 120, height: 100, class: 'faq-mascot-svg' %}
+{%- endif -%}
