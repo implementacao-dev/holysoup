@@ -97,7 +97,15 @@
                 {% endif %}
 
                 {% if block.settings.button_text != blank %}
-                  {% if block.settings.product != blank %}
+                  {% if block.settings.nutritional_table_image != blank %}
+                    <button
+                      type="button"
+                      class="btn-primary product-flavor-table-btn"
+                      data-block-id="{{ block.id }}"
+                    >
+                      {{ block.settings.button_text }}
+                    </button>
+                  {% elsif block.settings.product != blank %}
                     {% assign selected_product = all_products[block.settings.product] %}
                     {% if selected_product.metafields.custom.m_ltiplas_tabelas != blank %}
                       {% assign table_images = selected_product.metafields.custom.m_ltiplas_tabelas.value %}
@@ -184,29 +192,44 @@
       <div class="swiper-wrapper">
         {% assign global_image_index = 0 %}
         {% for block in section.blocks %}
-          {% if block.type == 'product_flavor' and block.settings.product != blank %}
-            {% assign selected_product = all_products[block.settings.product] %}
-            {% if selected_product.metafields.custom.m_ltiplas_tabelas != blank %}
-              {% assign table_images = selected_product.metafields.custom.m_ltiplas_tabelas.value %}
-              {% for image in table_images %}
-                <div
-                  class="swiper-slide"
-                  data-product-handle="{{ selected_product.handle }}"
-                  data-image-index="{{ global_image_index }}"
-                >
-                  <div class="nutritional-table-popup-image-wrapper">
-                    <img
-                      src="{{ image | image_url: width: 1200 }}"
-                      alt="Tabela Nutricional"
-                      class="nutritional-table-image"
-                      width="1200"
-                      height="auto"
-                      loading="lazy"
-                    >
-                  </div>
+          {% if block.type == 'product_flavor' %}
+            {% if block.settings.nutritional_table_image != blank %}
+              <div class="swiper-slide" data-block-id="{{ block.id }}">
+                <div class="nutritional-table-popup-image-wrapper">
+                  <img
+                    src="{{ block.settings.nutritional_table_image | image_url: width: 1200 }}"
+                    alt="Tabela Nutricional"
+                    class="nutritional-table-image"
+                    width="1200"
+                    height="auto"
+                    loading="lazy"
+                  >
                 </div>
-                {% assign global_image_index = global_image_index | plus: 1 %}
-              {% endfor %}
+              </div>
+            {% elsif block.settings.product != blank %}
+              {% assign selected_product = all_products[block.settings.product] %}
+              {% if selected_product.metafields.custom.m_ltiplas_tabelas != blank %}
+                {% assign table_images = selected_product.metafields.custom.m_ltiplas_tabelas.value %}
+                {% for image in table_images %}
+                  <div
+                    class="swiper-slide"
+                    data-product-handle="{{ selected_product.handle }}"
+                    data-image-index="{{ global_image_index }}"
+                  >
+                    <div class="nutritional-table-popup-image-wrapper">
+                      <img
+                        src="{{ image | image_url: width: 1200 }}"
+                        alt="Tabela Nutricional"
+                        class="nutritional-table-image"
+                        width="1200"
+                        height="auto"
+                        loading="lazy"
+                      >
+                    </div>
+                  </div>
+                  {% assign global_image_index = global_image_index | plus: 1 %}
+                {% endfor %}
+              {% endif %}
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -994,9 +1017,16 @@
           "label": "Imagem"
         },
         {
+          "type": "image_picker",
+          "id": "nutritional_table_image",
+          "label": "Imagem da tabela nutricional",
+          "info": "Opcional. Se preenchida, prevalece sobre o produto vinculado."
+        },
+        {
           "type": "product",
           "id": "product",
-          "label": "Produto (para tabela nutricional)"
+          "label": "Produto (para tabela nutricional)",
+          "info": "Opcional. Usado apenas se nenhuma imagem manual for definida."
         },
         {
           "type": "text",

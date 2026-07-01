@@ -105,16 +105,19 @@
       });
     }
 
-    function openPopup(productHandle) {
-      if (!productHandle || !nutritionalTableSwiperInstance) return;
+    function openPopup(productHandle, blockId) {
+      if ((!productHandle && !blockId) || !nutritionalTableSwiperInstance) return;
 
       const slides = carousel.querySelectorAll('.swiper-slide');
       let targetIndex = 0;
-      
+
       for (let i = 0; i < slides.length; i++) {
         const slide = slides[i];
-        const slideProductHandle = slide.getAttribute('data-product-handle');
-        if (slideProductHandle === productHandle) {
+        if (blockId && slide.getAttribute('data-block-id') === blockId) {
+          targetIndex = i;
+          break;
+        }
+        if (productHandle && slide.getAttribute('data-product-handle') === productHandle) {
           targetIndex = i;
           break;
         }
@@ -135,8 +138,11 @@
         e.preventDefault();
         const button = e.target.closest('.product-flavor-table-btn');
         const productHandle = button.getAttribute('data-product-handle');
+        const blockId = button.getAttribute('data-block-id');
         if (productHandle) {
-          openPopup(productHandle);
+          openPopup(productHandle, null);
+        } else if (blockId) {
+          openPopup(null, blockId);
         }
       }
     });
