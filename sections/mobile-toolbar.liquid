@@ -42,10 +42,16 @@
         }"
         class="toolbar-tags swiper">
         <div class="swiper-wrapper">
+          {% liquid
+            assign excluded_product_ids = '|'
+            for excluded_product in settings.aomai_excluded_products
+              assign excluded_product_ids = excluded_product_ids | append: excluded_product.id | append: '|'
+            endfor
+          %}
           {% for block in section.blocks %}
             {% liquid
               comment
-                Filtra produtos VIP e Exclusivo da contagem
+                Filtra produtos VIP, Exclusivo e kits excluídos da contagem
               endcomment
               assign filtered_item_count = 0
               assign filtered_total_price = 0
@@ -53,12 +59,18 @@
               for item in cart.items
                 assign item_handle_lower = item.product.handle | downcase
                 assign is_vip_product = false
+                assign is_excluded_product = false
+
+                assign item_product_token = '|' | append: item.product_id | append: '|'
+                if excluded_product_ids contains item_product_token
+                  assign is_excluded_product = true
+                endif
                 
                 if item_handle_lower contains 'vip' or item_handle_lower contains 'exclusivo'
                   assign is_vip_product = true
                 endif
                 
-                unless is_vip_product
+                unless is_vip_product or is_excluded_product
                   assign filtered_item_count = filtered_item_count | plus: item.quantity
                   assign filtered_total_price = filtered_total_price | plus: item.final_line_price
                 endunless
@@ -231,6 +243,7 @@
                   </div>
                 </div>
               {% when 'descount' %}
+                {% unless cart.item_count > 0 and filtered_item_count == 0 %}
                 <div class="swiper-slide">
                   <div
                     x-data="
@@ -341,6 +354,7 @@
                     {% endif %}
                   </div>
                 </div>
+                {% endunless %}
             {% endcase %}
           {% endfor %}
         </div>
