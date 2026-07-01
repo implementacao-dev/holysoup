@@ -15,8 +15,8 @@
         "large_img_mYbBqR": {
           "type": "largeImg",
           "settings": {
-            "image": "shopify://shop_images/whatsapp_01_-_festival_cremosidade.png",
-            "mobile_image": "shopify://shop_images/whatsapp_01_-_festival_cremosidade.png",
+            "image": "shopify://shop_images/festival_cremosidade_grupo_segunda_chance_2.png",
+            "mobile_image": "shopify://shop_images/festival_cremosidade_grupo_segunda_chance_2.png",
             "enable_max_width_image": false,
             "custom_width_image": 1170,
             "enable_parallax_image": false,
@@ -105,7 +105,6 @@
       "block_order": [
         "large_img_mYbBqR"
       ],
-      "disabled": true,
       "settings": {
         "container": "fullwidth",
         "padding_full_width": 0,

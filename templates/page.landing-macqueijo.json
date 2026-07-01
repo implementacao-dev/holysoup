@@ -30,6 +30,7 @@
       "type": "header-landing",
       "settings": {
         "bg_color": "#203e89",
+        "logo_clickable": false,
         "show_cart": false,
         "cart_color": "#1b8ace"
       }

@@ -536,6 +536,26 @@
         "product_k8RUaE": {
           "type": "product",
           "settings": {
+            "product": "pack-sopa-da-vovo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11205.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Comfort food de verdade",
+            "show_product_description": false,
+            "description": "<p>Mesmo na versão em sachê, a Sopa da Vovó ainda traz o aconchego da comida de quem amamos, com todo sabor, leveza e praticidade que sua rotina precisa.</p><p><strong>Ingredientes:</strong> Macarrão sem glúten ( farinha de arroz, corantes naturais cúrcuma e urucum e emulsificante INS 471), flocos de batata, quinoa branca, flocos de arroz, cenoura, cebola, tomate, salsa, mandioquinha, alho, pimentão vermelho, cúrcuma, páprica defumada, alho poró e pimenta preta.</p>",
+            "color": "#feebde",
+            "card_color": "",
+            "porcoes": "10",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_9gwLXt": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
             "product": "pack-sopa-low-carb",
             "show_product_image": false,
             "image": "shopify://shop_images/Grupo_11207.png",
@@ -546,7 +566,7 @@
             "description": "<p>Funcional, nutritiva e no sachê, a Sopa Low Carb em sachê chegou pra descomplicar a dieta, entregando mais praticidade, saciedade duradoura e muuuito sabor.<br/></p><p><strong>Ingredientes: </strong>Lentilha vermelha, tomate, quinoa branca, quinoa vermelha, quinoa preta, páprica defumada, cebola, pimentão vermelho, salsa, alho poró e orégano.</p>",
             "color": "#f8e9e4",
             "card_color": "",
-            "porcoes": "1",
+            "porcoes": "10",
             "stamp_text_1": "",
             "stamp_text_2": "",
             "stamp_text_3": ""
@@ -786,6 +806,7 @@
       "block_order": [
         "product_mPRCVC",
         "product_k8RUaE",
+        "product_9gwLXt",
         "product_pEXYUP",
         "product_BwVq3k",
         "product_Qm6WDd",
@@ -1243,7 +1264,7 @@
             "description": "<p>Funcional, nutritiva e no sachê, a Sopa Low Carb em sachê chegou pra descomplicar a dieta, entregando mais praticidade, saciedade duradoura e muuuito sabor.<br/></p><p><strong>Ingredientes: </strong>Lentilha vermelha, tomate, quinoa branca, quinoa vermelha, quinoa preta, páprica defumada, cebola, pimentão vermelho, salsa, alho poró e orégano.</p>",
             "color": "#f8e9e4",
             "card_color": "",
-            "porcoes": "1",
+            "porcoes": "10",
             "stamp_text_1": "",
             "stamp_text_2": "",
             "stamp_text_3": ""
@@ -1262,7 +1283,7 @@
             "description": "<p>Imagine chegar em casa após um dia cansativo, preparar uma sopa no micro-ondas em poucos minutos e jantar comfort food que abraça e cuida igual sua mãe.  <br/><br/><strong>Ingredientes: </strong>Arroz branco, quinoa, proteína de ervilha, cenoura, frango desidratado e desfiado, flocos de batata, cebola, farinha de mandioca, salsa, curcuma, tomate, alho e alho poró.</p>",
             "color": "#ffebeb",
             "card_color": "",
-            "porcoes": "1",
+            "porcoes": "10",
             "stamp_text_1": "",
             "stamp_text_2": "",
             "stamp_text_3": ""
@@ -1281,7 +1302,7 @@
             "description": "<p>Mesmo na versão em sachê, a Sopa da Vovó ainda traz o aconchego da comida de quem amamos, com todo sabor, leveza e praticidade que sua rotina precisa.</p><p><strong>Ingredientes:</strong> Macarrão sem glúten ( farinha de arroz, corantes naturais cúrcuma e urucum e emulsificante INS 471), flocos de batata, quinoa branca, flocos de arroz, cenoura, cebola, tomate, salsa, mandioquinha, alho, pimentão vermelho, cúrcuma, páprica defumada, alho poró e pimenta preta.</p>",
             "color": "#feebde",
             "card_color": "",
-            "porcoes": "1",
+            "porcoes": "10",
             "stamp_text_1": "",
             "stamp_text_2": "",
             "stamp_text_3": ""

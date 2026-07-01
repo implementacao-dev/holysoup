@@ -76,7 +76,8 @@
       "kit-sopa-lovers-9un-vip",
       "3-macs-de-graca",
       "pao-de-batata-sem-gluten-sem-leite-sem-lactose-paozinho-belive",
-      "projeto-21-dias"
+      "projeto-21-dias",
+      "bowl-brinde"
     ],
     "aomaiProgress01": "4",
     "aomaiProgress1Text": "4 itens",
@@ -1813,16 +1814,6 @@
       },
       "4372474792694305445": {
         "type": "shopify://apps/also-bought/blocks/app-embed-block/b94b27b4-738d-4d92-9e60-43c22d1da3f2",
-        "disabled": false,
-        "settings": {}
-      },
-      "17730292167556765394": {
-        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_extra_info/356201f0-7b27-4511-ac69-c1627db6da45",
-        "disabled": false,
-        "settings": {}
-      },
-      "15184704725445319147": {
-        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_pagshield/356201f0-7b27-4511-ac69-c1627db6da45",
         "disabled": false,
         "settings": {}
       },

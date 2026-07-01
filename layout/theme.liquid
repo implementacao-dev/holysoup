@@ -398,20 +398,6 @@
       </style>
     {% endif %}
 
-    {%- if template == 'page.mel-da-holy' or template == 'page.mel-da-holy-editor' -%}
-      <style>
-        main, #MainContent, .main-content, .shopify-section { padding: 0 !important; margin: 0 !important; }
-        body { background: #F8EBC8; }
-        .halo-banner-adv-left, .halo-banner-adv-right { display: none !important; }
-        .jdgm-revs-tab,
-        .jdgm-revs-tab-btn {
-          display: none !important;
-          visibility: hidden !important;
-          pointer-events: none !important;
-        }
-      </style>
-    {%- endif -%}
-
     {% include 'snippet-sol' %}
   
 	{% include "snippet-sol" %}
@@ -424,7 +410,7 @@
         {{- 'accessibility.skip_to_text' | t -}}
       </a>
 
-      {% unless request.path == '/pages/holymac' or request.path == '/pages/holysoup' or template == 'page.mel-da-holy' or template == 'page.mel-da-holy-editor' %}
+      {% unless request.path == '/pages/holymac' or request.path == '/pages/holysoup' %}
         {% sections 'header-group' %}
       {% endunless %}
 
@@ -437,13 +423,13 @@
         class="wrapper-body content-for-layout focus-none"
         role="main"
         tabindex="-1"
-        {% if request.path == '/pages/holymac' or template == 'page.mel-da-holy' or template == 'page.mel-da-holy-editor' %}
+        {% if request.path == '/pages/holymac' %}
           style="padding-bottom: 0;"
         {% endif %}
       >
         {{ content_for_layout }}
       </main>
-      {% unless request.path == '/pages/holymac' or template == 'page.mel-da-holy' or template == 'page.mel-da-holy-editor' %}
+      {% unless request.path == '/pages/holymac' %}
         {% unless template == 'collection.grupovip' %}
           {% section 'blog-home' %}
         {% endunless %}
@@ -452,18 +438,16 @@
         <div class="wrapper-footer">{% sections 'footer-group' %}</div>
       {% endunless %}
 
-      {% unless template == 'page.mel-da-holy' or template == 'page.mel-da-holy-editor' %}
-        {% section 'custom-bundle' %}
-        {% section 'halo-toolbar-mobile' %}
-        {% if request.page_type == 'product' %}
-          {% section 'pdp-toolbar' %}
-        {% else %}
-          {% section 'mobile-toolbar' %}
-        {% endif %}
+      {% section 'custom-bundle' %}
+      {% section 'halo-toolbar-mobile' %}
+      {% if request.page_type == 'product' %}
+        {% section 'pdp-toolbar' %}
+      {% else %}
+        {% section 'mobile-toolbar' %}
+      {% endif %}
 
-        {% section 'custom-combo' %}
-        {% section 'compra-rapida' %}
-      {% endunless %}
+      {% section 'custom-combo' %}
+      {% section 'compra-rapida' %}
 
       <ul hidden>
         <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
