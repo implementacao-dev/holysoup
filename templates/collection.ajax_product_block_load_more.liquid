@@ -20,6 +20,7 @@
 -%}
 
 {%- for product in collections[collection.handle].products limit: end -%}
+    {%- if collection.handle == 'all' and product.metafields.seo.hidden == 1 -%}{%- continue -%}{%- endif -%}
     {%- if forloop.index >= start -%}
         <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}">
             {% render 'product-grid-layout',

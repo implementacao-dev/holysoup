@@ -15,6 +15,7 @@
 {%- endfor -%}
 
 {%- for product in collections[collection.handle].products limit: limit -%}
+    {%- if collection.handle == 'all' and product.metafields.seo.hidden == 1 -%}{%- continue -%}{%- endif -%}
     <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}">
         {% render 'product-grid-layout',
             product_card_product: product,

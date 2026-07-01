@@ -194,6 +194,7 @@
                                 -%}
                                     
                                 {%- for product in collection.products -%}
+                                    {%- if collection.handle == 'all' and product.metafields.seo.hidden == 1 -%}{%- continue -%}{%- endif -%}
                                     {%- if paginate.current_page == 1 and forloop.index == banner_position_1 and section.settings.show_banner -%}
                                         <li class="product">
                                             {% render 'product-grid-layout',

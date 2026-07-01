@@ -187,6 +187,7 @@
                                 </div>                                
                                 <div class="productListing express-order-content t-body product-collection">
                                     {%- for product in collection.products -%}
+                                    {%- if collection.handle == 'all' and product.metafields.seo.hidden == 1 -%}{%- continue -%}{%- endif -%}
                                     <div class="product grid-item">{% render 'product-express-order-item', product: product %}</div>
                                     {%- endfor -%}
                                 </div>
