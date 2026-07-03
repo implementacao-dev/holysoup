@@ -23,6 +23,22 @@
         "coupon_code": ""
       }
     },
+    "promo_popup": {
+      "type": "promo-popup-landing",
+      "disabled": true,
+      "settings": {
+        "enable_section": true,
+        "popup_delay": "2",
+        "overlay_color": "#000000",
+        "overlay_opacity": 60,
+        "loop_duration_hours": "3",
+        "show_frequency": "session",
+        "timer_position": "top",
+        "show_close_button": true,
+        "border_radius": 12,
+        "timer_bg_color": "#f45218"
+      }
+    },
     "header_landing": {
       "type": "header-landing",
       "settings": {
@@ -583,6 +599,7 @@
   },
   "order": [
     "announcement_bar",
+    "promo_popup",
     "header_landing",
     "hero_section",
     "product_flavors",

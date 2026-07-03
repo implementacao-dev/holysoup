@@ -1,0 +1,523 @@
+{{ 'promo-popup-landing.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'promo-popup-landing.js' | asset_url }}" defer></script>
+
+{% if section.settings.enable_section and section.settings.banner_image != blank %}
+  {% liquid
+    assign border_radius = section.settings.border_radius
+    assign overlay_alpha = section.settings.overlay_opacity | divided_by: 100.0
+    assign timer_first = false
+    if section.settings.timer_position == 'top'
+      assign timer_first = true
+    endif
+  %}
+
+  {% style %}
+    #shopify-section-{{ section.id }} .promo-popup-landing__backdrop {
+      background-color: {{ section.settings.overlay_color | color_modify: 'alpha', overlay_alpha }};
+    }
+
+    #shopify-section-{{ section.id }} .promo-popup-landing__dialog {
+      border-radius: {{ border_radius }}px;
+    }
+
+    #shopify-section-{{ section.id }} .promo-popup-landing__timer-bar {
+      background-color: {{ section.settings.timer_bg_color }};
+      justify-content: {{ section.settings.timer_bar_alignment }};
+    }
+
+    #shopify-section-{{ section.id }} .promo-popup-landing__timer-title {
+      color: {{ section.settings.timer_title_color }};
+      font-size: {{ section.settings.timer_title_font_size }}px;
+      font-weight: {{ section.settings.timer_title_font_weight }};
+      line-height: {{ section.settings.timer_title_line_height }};
+    }
+
+    #shopify-section-{{ section.id }} .promo-popup-landing__countdown-num,
+    #shopify-section-{{ section.id }} .promo-popup-landing__countdown-sep {
+      color: {{ section.settings.timer_number_color }};
+      font-size: {{ section.settings.timer_number_font_size }}px;
+      font-weight: {{ section.settings.timer_number_font_weight }};
+    }
+
+    #shopify-section-{{ section.id }} .promo-popup-landing__countdown-label {
+      color: {{ section.settings.timer_label_color }};
+      font-size: {{ section.settings.timer_label_font_size }}px;
+      font-weight: {{ section.settings.timer_label_font_weight }};
+    }
+
+    #shopify-section-{{ section.id }} .promo-popup-landing__close {
+      color: {{ section.settings.close_button_color }};
+    }
+  {% endstyle %}
+
+  {% capture timer_bar %}
+    <div class="promo-popup-landing__timer-bar">
+      {% if section.settings.show_timer_title and section.settings.timer_title != blank %}
+        <p class="promo-popup-landing__timer-title">{{ section.settings.timer_title }}</p>
+      {% endif %}
+
+      <div class="promo-popup-landing__countdown" data-promo-popup-countdown>
+        <div
+          class="promo-popup-landing__countdown-col{% unless section.settings.show_days %} promo-popup-landing__countdown-col--hidden{% endunless %}"
+          data-col="days"
+        >
+          <span class="promo-popup-landing__countdown-num" data-unit="days">00</span>
+          <span class="promo-popup-landing__countdown-label{% unless section.settings.show_labels %} promo-popup-landing__countdown-label--hidden{% endunless %}">
+            {{- section.settings.label_days -}}
+          </span>
+        </div>
+
+        {% if section.settings.show_days %}
+          <span class="promo-popup-landing__countdown-sep" aria-hidden="true">:</span>
+        {% endif %}
+
+        <div class="promo-popup-landing__countdown-col" data-col="hours">
+          <span class="promo-popup-landing__countdown-num" data-unit="hours">00</span>
+          <span class="promo-popup-landing__countdown-label{% unless section.settings.show_labels %} promo-popup-landing__countdown-label--hidden{% endunless %}">
+            {{- section.settings.label_hours -}}
+          </span>
+        </div>
+
+        <span class="promo-popup-landing__countdown-sep" aria-hidden="true">:</span>
+
+        <div class="promo-popup-landing__countdown-col" data-col="minutes">
+          <span class="promo-popup-landing__countdown-num" data-unit="minutes">00</span>
+          <span class="promo-popup-landing__countdown-label{% unless section.settings.show_labels %} promo-popup-landing__countdown-label--hidden{% endunless %}">
+            {{- section.settings.label_minutes -}}
+          </span>
+        </div>
+
+        <span class="promo-popup-landing__countdown-sep" aria-hidden="true">:</span>
+
+        <div class="promo-popup-landing__countdown-col" data-col="seconds">
+          <span class="promo-popup-landing__countdown-num" data-unit="seconds">00</span>
+          <span class="promo-popup-landing__countdown-label{% unless section.settings.show_labels %} promo-popup-landing__countdown-label--hidden{% endunless %}">
+            {{- section.settings.label_seconds -}}
+          </span>
+        </div>
+      </div>
+    </div>
+  {% endcapture %}
+
+  {% capture banner_image %}
+    <div class="promo-popup-landing__media">
+      {% if section.settings.image_link != blank %}
+        <a
+          href="{{ section.settings.image_link }}"
+          class="promo-popup-landing__image-link"
+          {% if section.settings.open_in_new_tab %}
+            target="_blank"
+            rel="noopener noreferrer"
+          {% endif %}
+        >
+          {{
+            section.settings.banner_image
+            | image_url: width: 1360
+            | image_tag:
+              class: 'promo-popup-landing__image',
+              alt: section.settings.image_alt,
+              loading: 'eager'
+          }}
+        </a>
+      {% else %}
+        {{
+          section.settings.banner_image
+          | image_url: width: 1360
+          | image_tag:
+            class: 'promo-popup-landing__image',
+            alt: section.settings.image_alt,
+            loading: 'eager'
+        }}
+      {% endif %}
+    </div>
+  {% endcapture %}
+
+  <div
+    class="promo-popup-landing"
+    data-promo-popup
+    data-section-id="{{ section.id }}"
+    data-delay="{{ section.settings.popup_delay }}"
+    data-frequency="{{ section.settings.show_frequency }}"
+    data-loop-hours="{{ section.settings.loop_duration_hours }}"
+    role="dialog"
+    aria-modal="true"
+    aria-label="{{ section.settings.timer_title | default: 'Popup promocional' | escape }}"
+    aria-hidden="true"
+  >
+    <div class="promo-popup-landing__backdrop" aria-hidden="true"></div>
+
+    <div class="promo-popup-landing__dialog">
+      {% if section.settings.show_close_button %}
+        <button
+          type="button"
+          class="promo-popup-landing__close"
+          data-promo-popup-close
+          aria-label="Fechar"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/>
+          </svg>
+        </button>
+      {% endif %}
+
+      <div class="promo-popup-landing__content">
+        {% if timer_first %}
+          {{ timer_bar }}
+          {{ banner_image }}
+        {% else %}
+          {{ banner_image }}
+          {{ timer_bar }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Popup Cronômetro",
+  "tag": "section",
+  "class": "promo-popup-landing-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Geral"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_section",
+      "label": "Habilitar popup",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Imagem do banner",
+      "info": "Use a arte promocional sem o cronômetro"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Texto alternativo da imagem",
+      "info": "Descrição da imagem para acessibilidade e SEO"
+    },
+    {
+      "type": "url",
+      "id": "image_link",
+      "label": "Link da imagem (opcional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_in_new_tab",
+      "label": "Abrir link em nova aba",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Exibição"
+    },
+    {
+      "type": "select",
+      "id": "popup_delay",
+      "label": "Delay para abrir",
+      "options": [
+        { "value": "0", "label": "Imediato (0s)" },
+        { "value": "1", "label": "1 segundo" },
+        { "value": "2", "label": "2 segundos" },
+        { "value": "3", "label": "3 segundos" },
+        { "value": "4", "label": "4 segundos" },
+        { "value": "5", "label": "5 segundos" },
+        { "value": "6", "label": "6 segundos" },
+        { "value": "7", "label": "7 segundos" },
+        { "value": "8", "label": "8 segundos" },
+        { "value": "9", "label": "9 segundos" },
+        { "value": "10", "label": "10 segundos" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Cor do overlay de fundo",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Opacidade do overlay (%)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60
+    },
+    {
+      "type": "select",
+      "id": "show_frequency",
+      "label": "Frequência de exibição",
+      "options": [
+        { "value": "session", "label": "Uma vez por sessão" },
+        { "value": "day", "label": "Uma vez por dia" },
+        { "value": "week", "label": "Uma vez por semana" },
+        { "value": "15days", "label": "Uma vez a cada 15 dias" },
+        { "value": "month", "label": "Uma vez por mês" }
+      ],
+      "default": "session"
+    },
+    {
+      "type": "header",
+      "content": "Cronômetro"
+    },
+    {
+      "type": "text",
+      "id": "loop_duration_hours",
+      "label": "Duração do loop (horas)",
+      "default": "3",
+      "info": "Aceita decimais: 0.5 = 30 min, 1.5 = 1h30, 3.5 = 3h30"
+    },
+    {
+      "type": "select",
+      "id": "timer_position",
+      "label": "Posição da faixa do cronômetro",
+      "options": [
+        { "value": "top", "label": "Acima da imagem" },
+        { "value": "bottom", "label": "Abaixo da imagem" }
+      ],
+      "default": "top"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_timer_title",
+      "label": "Mostrar texto do cronômetro",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "timer_title",
+      "label": "Texto do cronômetro",
+      "default": "ENCERRA\nEM BREVE"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_days",
+      "label": "Mostrar coluna de dias",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_labels",
+      "label": "Mostrar labels (dias, hrs, min, seg)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "label_days",
+      "label": "Label dias",
+      "default": "dias"
+    },
+    {
+      "type": "text",
+      "id": "label_hours",
+      "label": "Label horas",
+      "default": "hrs"
+    },
+    {
+      "type": "text",
+      "id": "label_minutes",
+      "label": "Label minutos",
+      "default": "min"
+    },
+    {
+      "type": "text",
+      "id": "label_seconds",
+      "label": "Label segundos",
+      "default": "seg"
+    },
+    {
+      "type": "header",
+      "content": "Tipografia da faixa"
+    },
+    {
+      "type": "select",
+      "id": "timer_bar_alignment",
+      "label": "Alinhamento do conteúdo",
+      "options": [
+        { "value": "space-between", "label": "Separado (space-between)" },
+        { "value": "center", "label": "Centralizado (center)" },
+        { "value": "space-evenly", "label": "Espaçado (space-evenly)" }
+      ],
+      "default": "space-evenly"
+    },
+    {
+      "type": "select",
+      "id": "timer_title_font_size",
+      "label": "Tamanho do texto",
+      "options": [
+        { "value": "12", "label": "12px" },
+        { "value": "14", "label": "14px" },
+        { "value": "16", "label": "16px" },
+        { "value": "18", "label": "18px" },
+        { "value": "20", "label": "20px" },
+        { "value": "22", "label": "22px" },
+        { "value": "24", "label": "24px" },
+        { "value": "26", "label": "26px" }
+      ],
+      "default": "14"
+    },
+    {
+      "type": "select",
+      "id": "timer_title_font_weight",
+      "label": "Peso do texto",
+      "options": [
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semibold (600)" },
+        { "value": "700", "label": "Bold (700)" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "timer_title_line_height",
+      "label": "Espaçamento entre linhas do texto",
+      "options": [
+        { "value": "0.85", "label": "Compacto" },
+        { "value": "1.05", "label": "Normal" },
+        { "value": "1.35", "label": "Espaçado" }
+      ],
+      "default": "0.85",
+      "info": "Controla a distância vertical entre as linhas do texto do cronômetro"
+    },
+    {
+      "type": "select",
+      "id": "timer_number_font_size",
+      "label": "Tamanho dos números",
+      "options": [
+        { "value": "12", "label": "12px" },
+        { "value": "14", "label": "14px" },
+        { "value": "16", "label": "16px" },
+        { "value": "18", "label": "18px" },
+        { "value": "20", "label": "20px" },
+        { "value": "22", "label": "22px" },
+        { "value": "24", "label": "24px" },
+        { "value": "26", "label": "26px" }
+      ],
+      "default": "24"
+    },
+    {
+      "type": "select",
+      "id": "timer_number_font_weight",
+      "label": "Peso dos números",
+      "options": [
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semibold (600)" },
+        { "value": "700", "label": "Bold (700)" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "timer_label_font_size",
+      "label": "Tamanho dos labels",
+      "options": [
+        { "value": "10", "label": "10px" },
+        { "value": "12", "label": "12px" },
+        { "value": "14", "label": "14px" },
+        { "value": "16", "label": "16px" }
+      ],
+      "default": "10"
+    },
+    {
+      "type": "select",
+      "id": "timer_label_font_weight",
+      "label": "Peso dos labels",
+      "options": [
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semibold (600)" },
+        { "value": "700", "label": "Bold (700)" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "header",
+      "content": "Cores da faixa"
+    },
+    {
+      "type": "color",
+      "id": "timer_bg_color",
+      "label": "Cor de fundo da faixa",
+      "default": "#f45218"
+    },
+    {
+      "type": "color",
+      "id": "timer_number_color",
+      "label": "Cor dos números",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "timer_label_color",
+      "label": "Cor dos labels",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "timer_title_color",
+      "label": "Cor do texto do cronômetro",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "close_button_color",
+      "label": "Cor do botão fechar",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Estilo"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_close_button",
+      "label": "Mostrar botão fechar (X)",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius (px)",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "default": 12,
+      "info": "Use 0 para cantos retos"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Popup Cronômetro",
+      "settings": {
+        "enable_section": true,
+        "popup_delay": "2",
+        "overlay_opacity": 60,
+        "overlay_color": "#000000",
+        "loop_duration_hours": "3",
+        "show_frequency": "session",
+        "timer_position": "top",
+        "timer_bg_color": "#f45218",
+        "timer_bar_alignment": "space-evenly",
+        "timer_title_font_size": "14",
+        "timer_title_font_weight": "700",
+        "timer_title_line_height": "0.85",
+        "timer_number_font_size": "24",
+        "timer_number_font_weight": "700",
+        "timer_label_font_size": "10",
+        "timer_label_font_weight": "400",
+        "show_close_button": true,
+        "border_radius": 12
+      }
+    }
+  ]
+}
+{% endschema %}
