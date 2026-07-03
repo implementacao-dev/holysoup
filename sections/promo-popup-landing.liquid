@@ -4,7 +4,7 @@
 {% if section.settings.enable_section and section.settings.banner_image != blank %}
   {% liquid
     assign border_radius = section.settings.border_radius
-    assign overlay_alpha = section.settings.overlay_opacity | divided_by: 100.0
+    assign overlay_alpha = section.settings.overlay_opacity | times: 1.0 | divided_by: 100
     assign timer_first = false
     if section.settings.timer_position == 'top'
       assign timer_first = true
@@ -12,10 +12,6 @@
   %}
 
   {% style %}
-    #shopify-section-{{ section.id }} .promo-popup-landing__backdrop {
-      background-color: {{ section.settings.overlay_color | color_modify: 'alpha', overlay_alpha }};
-    }
-
     #shopify-section-{{ section.id }} .promo-popup-landing__dialog {
       border-radius: {{ border_radius }}px;
     }
@@ -144,7 +140,11 @@
     aria-label="{{ section.settings.timer_title | default: 'Popup promocional' | escape }}"
     aria-hidden="true"
   >
-    <div class="promo-popup-landing__backdrop" aria-hidden="true"></div>
+    <div
+      class="promo-popup-landing__backdrop"
+      style="background-color: {{ section.settings.overlay_color | color_modify: 'alpha', overlay_alpha }};"
+      aria-hidden="true"
+    ></div>
 
     <div class="promo-popup-landing__dialog">
       {% if section.settings.show_close_button %}
