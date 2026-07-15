@@ -1,0 +1,25 @@
+{%- comment -%}
+  Urso da seção Garantia — upload opcional ou pose SVG padrão.
+  Uso: {% render 'holy-guarantee-bear', image: block.settings.character_image, bear_symbol: block.settings.bear_symbol, width: 150 %}
+{%- endcomment -%}
+{%- liquid
+  assign bear_w = width | default: 150
+  if height != blank
+    assign bear_h = height
+  else
+    assign bear_h = bear_w | times: 230 | divided_by: 220
+  endif
+-%}
+{%- if image != blank -%}
+  <img
+    class="guarantee-bear-img"
+    src="{{ image | image_url: width: 320 }}"
+    width="{{ bear_w }}"
+    height="{{ bear_h }}"
+    alt=""
+    loading="lazy"
+    aria-hidden="true"
+  >
+{%- else -%}
+  {% render 'holy-bear-svg', symbol: bear_symbol, width: bear_w, height: bear_h, class: 'guarantee-bear-svg' %}
+{%- endif -%}

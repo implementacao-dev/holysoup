@@ -1,0 +1,112 @@
+<section class="v3-faq" id="faq">
+  <div class="container">
+    <div class="v3-faq-grid">
+      <div class="v3-faq-left">
+        <div class="eyebrow">{{ section.settings.eyebrow | escape }}</div>
+        <h2>{{ section.settings.headline | escape }}</h2>
+        <p class="v3-faq-intro">{{ section.settings.intro | escape }}</p>
+        <div class="v3-faq-mascot">
+          <div class="faq-mascot-visual">
+            {% render 'holy-faq-mascot', image: section.settings.mascot_image, bear_symbol: section.settings.mascot_bear %}
+          </div>
+          <div class="label">{{ section.settings.mascot_label | escape }}</div>
+        </div>
+      </div>
+      <div class="v3-faq-list" id="v3-faq-list">
+        {%- for block in section.blocks -%}
+          <div class="v3-faq-item{% if forloop.first %} open{% endif %}" data-faq-item {{ block.shopify_attributes }}>
+            <div class="v3-faq-q">
+              <span class="v3-faq-q-icon" aria-hidden="true">
+                {% render 'holy-hybrid-bear', image: section.settings.question_icon_image, bear_symbol: section.settings.question_bear, width: 36, class: 'v3-faq-q-icon-svg' %}
+              </span>
+              <span>{{ block.settings.question | escape }}</span>
+              <div class="toggle">+</div>
+            </div>
+            <div class="v3-faq-a">
+              <div class="responde">{{ section.settings.answer_badge | escape }}</div>
+              <div>{{ block.settings.answer }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Holy · FAQ",
+  "tag": "section",
+  "class": "holy-section-faq",
+  "limit": 1,
+  "settings": [
+    { "type": "header", "content": "Cabeçalho" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "— O urso responde —" },
+    { "type": "text", "id": "headline", "label": "Título", "default": "Pergunta pro urso." },
+    { "type": "textarea", "id": "intro", "label": "Introdução", "default": "As dúvidas mais comuns, respondidas em primeira pessoa pelo nosso mascote oficial. Spoiler: ele fala muito." },
+    {
+      "type": "image_picker",
+      "id": "mascot_image",
+      "label": "Ilustração do mascote (opcional)",
+      "info": "Imagem do urso exibida ao lado do texto \"manda pergunta!\", abaixo da introdução da seção. Se você enviar uma imagem aqui, ela substitui a pose do urso selecionada abaixo. Envie arquivo quadrado (PNG ou SVG com fundo transparente). Dimensão recomendada do arquivo: 240 × 240 px. Na página, o ícone é exibido em 120 × 100 px."
+    },
+    {
+      "type": "select",
+      "id": "mascot_bear",
+      "label": "Pose do urso mascote (padrão)",
+      "default": "bear-wave-happy",
+      "options": [
+        { "value": "bear-stand-happy", "label": "Stand" },
+        { "value": "bear-wave-happy", "label": "Wave" },
+        { "value": "bear-wave-wink", "label": "Wave wink" },
+        { "value": "bear-stand-wink", "label": "Stand wink" },
+        { "value": "bear-point-happy", "label": "Point" }
+      ]
+    },
+    { "type": "text", "id": "mascot_label", "label": "Label do mascote", "default": "manda pergunta!" },
+    {
+      "type": "image_picker",
+      "id": "question_icon_image",
+      "label": "Ícone das perguntas — imagem (opcional)",
+      "info": "Substitui o urso ao lado de cada pergunta. Arquivo quadrado PNG ou SVG com fundo transparente. Recomendado: 72 × 72 px (exibido em 36 × 38 px). Se vazio, usa a pose padrão abaixo."
+    },
+    {
+      "type": "select",
+      "id": "question_bear",
+      "label": "Ícone das perguntas (padrão)",
+      "default": "bear-stand-happy",
+      "options": [
+        { "value": "bear-stand-happy", "label": "Stand" },
+        { "value": "bear-wave-happy", "label": "Wave" },
+        { "value": "bear-wave-wink", "label": "Wave wink" },
+        { "value": "bear-stand-wink", "label": "Stand wink" },
+        { "value": "bear-point-happy", "label": "Point" }
+      ]
+    },
+    { "type": "text", "id": "answer_badge", "label": "Badge da resposta", "default": "🐻 Urso Holy responde" }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Pergunta",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Pergunta", "default": "É 100% puro mesmo?" },
+        { "type": "richtext", "id": "answer", "label": "Resposta" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Holy · FAQ",
+      "blocks": {
+        "q-1": { "type": "question", "settings": { "question": "É 100% puro mesmo?", "answer": "<p>Olha nos meus olhinhos: é puro mesmo. Não tem açúcar adicionado, xarope de glucose, água ou nada. Só mel silvestre que veio direto das abelhinhas pra mim, pra você. Tenho 4 certificações (BPF, FDA, IFS, SIF) que provam isso — não confie só na minha cara fofa.</p>" } },
+        "q-2": { "type": "question", "settings": { "question": "Por que meu mel cristalizou?", "answer": "<p>Calma! Cristalização é sinal de pureza. Mel puro cristaliza naturalmente com o tempo, é química mesmo. Pra voltar a ficar líquido: coloca a embalagem em banho-maria com água morna (nunca fervente, eu sou sensível) e pronto.</p>" } },
+        "q-3": { "type": "question", "settings": { "question": "Pode dar pra criança?", "answer": "<p>Pra criança com mais de 1 ano: sim, pode! Sou um lanche saudável pra família toda. Pra bebês com menos de 1 aninho não pode — orientação médica, não é frescura minha.</p>" } },
+        "q-4": { "type": "question", "settings": { "question": "Em quanto tempo chega?", "answer": "<p>De 3 a 7 dias úteis, dependendo da sua cidade. Acima de R$89 o frete é grátis — então capricha no kit que eu vou com mais amigos. 🐻</p>" } },
+        "q-5": { "type": "question", "settings": { "question": "E se eu não gostar?", "answer": "<p>Você tem 7 dias pra devolver se não rolar a química entre a gente. Mas vou te falar: 4.9/5 estrelas em +2.000 avaliações é por algo. Aposto que vamos virar amigos.</p>" } },
+        "q-6": { "type": "question", "settings": { "question": "Posso usar pra cozinhar?", "answer": "<p>Pode e deve! Sou ótimo em receitas — caramelizo lindamente, equilibro pratos salgados e doces. Os chefs amam minha pegada de flor de laranjeira. Tem receitas no nosso blog também.</p>" } }
+      }
+    }
+  ]
+}
+{% endschema %}

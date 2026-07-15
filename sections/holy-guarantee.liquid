@@ -1,0 +1,168 @@
+<section class="v2-guarantee">
+  <div class="v2-guarantee-deco v2-guarantee-deco--tl" aria-hidden="true">
+    {% if section.settings.deco_tl_image != blank %}
+      <img
+        class="v2-guarantee-deco-img"
+        src="{{ section.settings.deco_tl_image | image_url: width: 360 }}"
+        width="180"
+        height="180"
+        alt=""
+        loading="lazy"
+      >
+    {% else %}
+      <svg class="v2-guarantee-deco-svg" width="180" height="180" viewBox="0 0 100 100" aria-hidden="true">
+        <polygon points="50,10 80,28 80,62 50,80 20,62 20,28" fill="#F0B232" />
+      </svg>
+    {% endif %}
+  </div>
+  <div class="v2-guarantee-deco v2-guarantee-deco--br" aria-hidden="true">
+    {% if section.settings.deco_br_image != blank %}
+      <img
+        class="v2-guarantee-deco-img"
+        src="{{ section.settings.deco_br_image | image_url: width: 400 }}"
+        width="200"
+        height="200"
+        alt=""
+        loading="lazy"
+      >
+    {% else %}
+      <svg class="v2-guarantee-deco-svg" width="200" height="200" viewBox="0 0 100 100" aria-hidden="true">
+        <polygon points="50,10 80,28 80,62 50,80 20,62 20,28" fill="#F0B232" />
+      </svg>
+    {% endif %}
+  </div>
+
+  <div class="container">
+    <div class="eyebrow">{{ section.settings.eyebrow | escape }}</div>
+    <h2>
+      {{ section.settings.headline_line1 | escape }}<br />
+      <span class="swipe">{{ section.settings.headline_line2 | escape }}</span>
+    </h2>
+    <p class="v2-guarantee-promise">
+      {{ section.settings.promise }}
+    </p>
+
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a class="v2-btn v2-btn-honey" href="{{ section.settings.url_kits | default: '/pages/kits' }}">{{ section.settings.cta_primary | escape }}</a>
+      <a class="v2-btn v2-btn-ghost" href="#reviews" style="color:var(--v2-cream);border-color:var(--v2-cream)">{{ section.settings.cta_secondary | escape }}</a>
+    </div>
+
+    <div class="v2-guarantee-bears">
+      {%- for block in section.blocks -%}
+        {% if block.type == 'bear' %}
+          <div
+            class="v2-guarantee-bear-slot v2-bob{% if block.settings.featured %} is-center{% endif %}{% if forloop.index == 2 %} b2{% elsif forloop.index == 3 %} b3{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            {% liquid
+              if block.settings.featured
+                assign bear_width = 170
+              else
+                assign bear_width = 150
+              endif
+            %}
+            {% render 'holy-guarantee-bear', image: block.settings.character_image, bear_symbol: block.settings.bear_symbol, width: bear_width %}
+          </div>
+        {% endif %}
+      {%- endfor -%}
+    </div>
+
+    <div class="v2-guarantee-badges">
+      {%- for block in section.blocks -%}
+        {% if block.type == 'badge' %}
+          <span {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</span>
+        {% endif %}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Holy · Garantia",
+  "tag": "section",
+  "class": "holy-section-guarantee",
+  "limit": 1,
+  "settings": [
+    { "type": "header", "content": "Textos" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "— Garantia mais fofa do mercado —" },
+    { "type": "text", "id": "headline_line1", "label": "Headline linha 1", "default": "Não amou?" },
+    { "type": "text", "id": "headline_line2", "label": "Headline linha 2", "default": "Sem perrengue." },
+    { "type": "richtext", "id": "promise", "label": "Promessa" },
+    { "type": "text", "id": "cta_primary", "label": "CTA primário", "default": "Quero conhecer o Holy →" },
+    { "type": "text", "id": "cta_secondary", "label": "CTA secundário", "default": "Ver reviews" },
+    { "type": "header", "content": "Decoração de fundo (opcional)" },
+    {
+      "type": "image_picker",
+      "id": "deco_tl_image",
+      "label": "Ícone decorativo superior esquerdo (opcional)",
+      "info": "Elemento decorativo suave no canto superior esquerdo da seção. Se enviar imagem, substitui o hexágono padrão. Arquivo quadrado PNG ou SVG com fundo transparente. Recomendado: 360 × 360 px (exibido em 180 × 180 px)."
+    },
+    {
+      "type": "image_picker",
+      "id": "deco_br_image",
+      "label": "Ícone decorativo inferior direito (opcional)",
+      "info": "Elemento decorativo suave no canto inferior direito da seção. Se enviar imagem, substitui o hexágono padrão. Arquivo quadrado PNG ou SVG com fundo transparente. Recomendado: 400 × 400 px (exibido em 200 × 200 px)."
+    },
+    { "type": "header", "content": "Links dos kits" },
+    { "type": "url", "id": "url_kits", "label": "URL principal (kits)" },
+    { "type": "url", "id": "url_mini", "label": "URL Mini Holy" },
+    { "type": "url", "id": "url_duo", "label": "URL Duo Holy" },
+    { "type": "url", "id": "url_mamae", "label": "URL Mamãe Holy" }
+  ],
+  "blocks": [
+    {
+      "type": "bear",
+      "name": "Urso",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "character_image",
+          "label": "Ilustração do urso (opcional)",
+          "info": "Imagem exibida na fileira de ursos abaixo dos botões. Se enviar, substitui a pose padrão abaixo. Arquivo quadrado PNG ou SVG com fundo transparente. Recomendado: 300 × 300 px (lateral) ou 340 × 340 px (central, maior)."
+        },
+        {
+          "type": "select",
+          "id": "bear_symbol",
+          "label": "Pose do urso (padrão)",
+          "default": "bear-wave-happy",
+          "options": [
+            { "value": "bear-stand-happy", "label": "Stand" },
+            { "value": "bear-wave-happy", "label": "Wave" },
+            { "value": "bear-wave-wink", "label": "Wave wink" },
+            { "value": "bear-stand-wink", "label": "Stand wink" },
+            { "value": "bear-point-happy", "label": "Point" }
+          ]
+        },
+        { "type": "checkbox", "id": "featured", "label": "Urso central (maior)", "default": false }
+      ]
+    },
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texto", "default": "✓ Pagamento seguro" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Holy · Garantia",
+      "settings": {
+        "promise": "<p>Em <strong>7 dias</strong> você não rola química com o Holy, a gente devolve <strong>100% do seu dinheiro</strong>. E ainda manda um abraço de urso pra desculpa. Sério.</p>"
+      },
+      "blocks": {
+        "bear-1": { "type": "bear", "settings": { "bear_symbol": "bear-wave-happy", "featured": false } },
+        "bear-2": { "type": "bear", "settings": { "bear_symbol": "bear-stand-wink", "featured": true } },
+        "bear-3": { "type": "bear", "settings": { "bear_symbol": "bear-point-happy", "featured": false } },
+        "badge-1": { "type": "badge", "settings": { "text": "✓ Pagamento seguro" } },
+        "badge-2": { "type": "badge", "settings": { "text": "✓ Frete +R$89 grátis" } },
+        "badge-3": { "type": "badge", "settings": { "text": "✓ 7 dias garantia" } },
+        "badge-4": { "type": "badge", "settings": { "text": "✓ +2.000 reviews 4.9★" } }
+      },
+      "block_order": ["bear-1", "bear-2", "bear-3", "badge-1", "badge-2", "badge-3", "badge-4"]
+    }
+  ]
+}
+{% endschema %}
