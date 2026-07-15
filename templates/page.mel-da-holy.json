@@ -1,0 +1,182 @@
+{
+  "sections": {
+    "holy_mel_lp": {
+      "type": "holy-mel-lp",
+      "blocks": {
+        "chip_1": {
+          "type": "chip",
+          "settings": {
+            "title": "Açúcar adicionado",
+            "sub": "Não tem",
+            "is_check": false
+          }
+        },
+        "chip_2": {
+          "type": "chip",
+          "settings": {
+            "title": "Xarope de glicose",
+            "sub": "Não tem",
+            "is_check": false
+          }
+        },
+        "chip_3": {
+          "type": "chip",
+          "settings": {
+            "title": "Corante e conservante",
+            "sub": "Não tem",
+            "is_check": false
+          }
+        },
+        "chip_4": {
+          "type": "chip",
+          "settings": {
+            "title": "100% puro Mel silvestre",
+            "sub": "Só isso.",
+            "is_check": true
+          }
+        },
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "quote": "Não tem comparação com o mel do mercado. É outro produto, de verdade.",
+            "author": "Ana Paula · São Paulo"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "quote": "O urso virou disputa em casa. Primeiro mel que minha filha pede sozinha.",
+            "author": "Fernanda · Salvador"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "quote": "Fica na bancada e todo mundo pergunta onde comprei o urso. Vira assunto.",
+            "author": "Carla · Curitiba"
+          }
+        },
+        "kit_1": {
+          "type": "kit",
+          "settings": {
+            "name": "Mini Holy",
+            "desc": "330g · 1 urso",
+            "price": "R$49,90",
+            "old_price": "De R$59,90",
+            "pix_text": "R$44,90 no PIX",
+            "parcel_text": "ou 3x de R$16,63 sem juros",
+            "discount": "-17%",
+            "discount_size": "small",
+            "btn_text": "Quero o Mini",
+            "featured": false,
+            "badge": ""
+          }
+        },
+        "kit_2": {
+          "type": "kit",
+          "settings": {
+            "name": "Duo Holy",
+            "desc": "660g · 2 ursos · economia de 25%",
+            "price": "R$89,90",
+            "old_price": "De R$119,80",
+            "pix_text": "R$80,90 no PIX",
+            "parcel_text": "ou 3x de R$29,97 sem juros",
+            "discount": "-25%",
+            "btn_text": "Quero o Duo",
+            "featured": true,
+            "badge": "Mais vendido"
+          }
+        },
+        "kit_3": {
+          "type": "kit",
+          "settings": {
+            "name": "Mamãe Holy",
+            "desc": "990g · 3 ursos · melhor preço/g",
+            "price": "R$119,90",
+            "old_price": "De R$179,70",
+            "pix_text": "R$107,90 no PIX",
+            "parcel_text": "ou 3x de R$39,97 sem juros",
+            "discount": "-33%",
+            "btn_text": "Quero a Mamãe",
+            "featured": false,
+            "badge": ""
+          }
+        },
+        "why_1": {
+          "type": "why",
+          "settings": {
+            "title": "Fica lindo na cozinha",
+            "text": "Chega numa embalagem que parece enfeite e melhora o visual da bancada sem esforço."
+          }
+        },
+        "why_2": {
+          "type": "why",
+          "settings": {
+            "title": "A criançada disputa",
+            "text": "A criança não vê mel — vê o urso. E pede no iogurte, na panqueca, no pão."
+          }
+        },
+        "why_3": {
+          "type": "why",
+          "settings": {
+            "title": "O presente que não erra",
+            "text": "Bonito, diferente e útil. Já vem pronto pra dar de presente."
+          }
+        },
+        "why_4": {
+          "type": "why",
+          "settings": {
+            "title": "Cristaliza com o tempo",
+            "text": "Sinal de mel de verdade. Um banho-maria e ele volta ao normal."
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "É 100% puro mesmo, sem nenhum aditivo?",
+            "answer": "Sim. Um ingrediente: mel silvestre. Com 4 certificações que provam — BPF, FDA, IFS e SIF."
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Por que cristalizou?",
+            "answer": "Porque é mel de verdade. Mel puro cristaliza naturalmente com o tempo — é sinal de qualidade, não de defeito. Para voltar ao líquido, coloque o urso em banho-maria por alguns minutos."
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Pode dar para criança?",
+            "answer": "Para crianças acima de 1 ano, sim. Abaixo de 1 ano mel não é recomendado por nenhuma marca, inclusive a nossa."
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Em quanto tempo chega?",
+            "answer": "A maioria dos pedidos chega em 3 a 7 dias úteis. Você recebe o código de rastreamento por e-mail assim que o pedido sai."
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "De onde vem esse mel?",
+            "answer": "De apiários rastreáveis. A gente conhece a origem, o apiário e o processo. Mel silvestre, do campo pra sua bancada."
+          }
+        }
+      },
+      "block_order": [
+        "chip_1", "chip_2", "chip_3", "chip_4",
+        "review_1", "review_2", "review_3",
+        "kit_1", "kit_2", "kit_3",
+        "why_1", "why_2", "why_3", "why_4",
+        "faq_1", "faq_2", "faq_3", "faq_4", "faq_5"
+      ],
+      "settings": {
+        "show_ticker": true
+      }
+    }
+  },
+  "order": ["holy_mel_lp"]
+}

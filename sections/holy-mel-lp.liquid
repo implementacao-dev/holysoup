@@ -1,0 +1,555 @@
+{% comment %}
+  HOLY MEL — Landing Page (seção completa, editável no personalizador)
+  Requer os assets hm-*.webp / hm-*.png / hm-superpop*.otf|ttf enviados
+  em Ativos (assets) do tema. Veja o LEIA-ME.txt do pacote.
+{% endcomment %}
+
+{%- liquid
+  assign cta = section.settings.cta_url | default: '#comprar'
+
+  if section.settings.img_logo != blank
+    assign img_logo = section.settings.img_logo | image_url: width: 240
+  else
+    assign img_logo = 'hm-logo-brown.webp' | asset_url
+  endif
+
+  if section.settings.img_bottle != blank
+    assign img_bottle = section.settings.img_bottle | image_url: width: 700
+  else
+    assign img_bottle = 'hm-photo-bottle.webp' | asset_url
+  endif
+
+  if section.settings.img_bear != blank
+    assign img_bear = section.settings.img_bear | image_url: width: 520
+  else
+    assign img_bear = 'hm-bear-brown.webp' | asset_url
+  endif
+
+  if section.settings.img_face != blank
+    assign img_face = section.settings.img_face | image_url: width: 420
+  else
+    assign img_face = 'hm-face-brown.webp' | asset_url
+  endif
+
+  if section.settings.img_girl != blank
+    assign img_girl = section.settings.img_girl | image_url: width: 320
+  else
+    assign img_girl = 'hm-girl-running.webp' | asset_url
+  endif
+
+  if section.settings.img_offer_bg != blank
+    assign img_offer_bg = section.settings.img_offer_bg | image_url: width: 1600
+  else
+    assign img_offer_bg = 'hm-honeycomb-photo.webp' | asset_url
+  endif
+
+  assign img_honeycomb_brown = 'hm-honeycomb-brown.png' | asset_url
+  assign img_honeycomb_cream = 'hm-honeycomb-cream.png' | asset_url
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family:'Superpop'; src:url('{{ 'hm-superpop.otf' | asset_url }}') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Superpop'; src:url('{{ 'hm-superpop-light.ttf' | asset_url }}') format('truetype'); font-weight:300; font-style:normal; font-display:swap; }
+  #holy-mel-lp, #holy-mel-lp * { box-sizing:border-box; }
+  @keyframes hm-ticker { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @keyframes hm-float  { 0%,100%{transform:translateY(0) rotate(-1.5deg);} 50%{transform:translateY(-16px) rotate(1.5deg);} }
+  @keyframes hm-float2 { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-11px);} }
+  @keyframes hm-bob    { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-8px) rotate(3deg);} }
+  @keyframes hm-spin   { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+  @keyframes hm-rise   { from{opacity:0;transform:translateY(46px);} to{opacity:1;transform:none;} }
+  @keyframes hm-pop    { from{opacity:0;transform:scale(.85) translateY(28px);} to{opacity:1;transform:none;} }
+  @keyframes hm-sl     { from{opacity:0;transform:translateX(-46px);} to{opacity:1;transform:none;} }
+  #holy-mel-lp .hm-rise{animation:hm-rise both;animation-timeline:view();animation-range:entry 0% entry 55%;}
+  #holy-mel-lp .hm-pop {animation:hm-pop  both;animation-timeline:view();animation-range:entry 5% entry 60%;}
+  #holy-mel-lp .hm-sl  {animation:hm-sl   both;animation-timeline:view();animation-range:entry 0% entry 55%;}
+  #holy-mel-lp .hm-btn-lift:hover{transform:translateY(-1px);}
+  #holy-mel-lp .hm-btn-cafe:hover{transform:translateY(-2px);}
+  #holy-mel-lp .hm-btn-cafe:active{transform:translateY(3px);}
+  #holy-mel-lp .hm-btn-outline:hover{background:#642713 !important;color:#FFF6E4 !important;}
+  #holy-mel-lp .hm-btn-solid:hover{background:#4A1C0D !important;}
+  @media (max-width:880px){
+    #holy-mel-lp .hm-ing-cols{grid-template-columns:repeat(2,1fr) !important;}
+    #holy-mel-lp .hm-why-cols{grid-template-columns:repeat(2,1fr) !important;}
+    #holy-mel-lp .hm-hero-h1{font-size:64px !important;}
+  }
+</style>
+
+<div id="holy-mel-lp" style="font-family:'Nunito Sans',sans-serif;color:#642713;background:#FFF6E4;overflow-x:hidden">
+
+  {%- if section.settings.show_ticker -%}
+  <!-- TICKER: o separador final é adicionado aqui pra emenda do loop ficar
+       perfeita mesmo se o personalizador remover espaços das pontas -->
+  {%- assign tick = section.settings.ticker_text | strip | append: '  ●  ' | replace: '  ', '&nbsp;&nbsp;' -%}
+  <div style="background:#E29423;overflow:hidden;white-space:nowrap;position:relative;z-index:2">
+    <div style="display:inline-block;padding:9px 0;animation:hm-ticker 34s linear infinite;will-change:transform">
+      <span style="font-family:'Superpop',sans-serif;font-weight:400;font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:#FFCD00">{{ tick }}{{ tick }}</span>
+    </div>
+  </div>
+  {%- endif -%}
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(255,246,228,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)">
+    <div style="max-width:1160px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="#topo" style="display:flex;align-items:center;text-decoration:none"><img src="{{ img_logo }}" alt="Holy Mel" width="211" height="120" style="height:34px;width:auto;display:block"></a>
+      <a href="{{ cta }}" class="hm-btn-lift" style="display:inline-flex;align-items:center;background:#FFCD00;color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:13px;letter-spacing:.3px;padding:11px 22px;border-radius:999px;text-decoration:none;box-shadow:0 3px 0 rgba(100,39,19,.18);transition:transform .12s">{{ section.settings.nav_cta_light }} <span style="font-weight:600">&nbsp;{{ section.settings.nav_cta_bold }}</span></a>
+    </div>
+  </header>
+
+  <!-- 1 · HERO -->
+  <section id="topo" style="background:#FFF6E4;padding:clamp(14px,2vw,22px) 24px 0">
+    <div style="max-width:1160px;margin:0 auto">
+      <div style="background:#FFCD00;border-radius:36px;position:relative;overflow:hidden;min-height:clamp(300px,38vw,440px);display:flex;align-items:center;justify-content:center">
+        <img src="{{ img_honeycomb_brown }}" alt="" aria-hidden="true" width="60" height="35" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.06;pointer-events:none">
+        <div style="position:absolute;top:14%;left:8%;width:18px;height:18px;border-radius:50% 50% 50% 0;background:#642713;opacity:.25;transform:rotate(45deg);animation:hm-float2 5s ease-in-out infinite"></div>
+        <div style="position:absolute;bottom:18%;right:10%;width:26px;height:26px;border-radius:50% 50% 50% 0;background:#642713;opacity:.2;transform:rotate(45deg);animation:hm-float2 6s ease-in-out infinite"></div>
+        <img src="{{ img_bear }}" alt="" width="364" height="520" style="position:absolute;left:6%;bottom:0;height:clamp(150px,20vw,250px);width:auto;animation:hm-bob 4.5s ease-in-out infinite">
+        <img src="{{ img_bottle }}" alt="Pote de mel Holy Mel em formato de urso" width="323" height="800" style="position:relative;z-index:2;height:clamp(240px,30vw,380px);width:auto;filter:drop-shadow(0 22px 26px rgba(100,39,19,.3));animation:hm-float 5.5s ease-in-out infinite">
+        <img src="{{ img_face }}" alt="" width="388" height="320" style="position:absolute;right:7%;top:50%;transform:translateY(-50%);height:clamp(96px,12vw,150px);width:auto;animation:hm-bob 5s ease-in-out infinite">
+      </div>
+      <!-- headline (oculto como no original — mantém o h1 da página;
+           para exibir, troque display:none por display:block) -->
+      <div class="hm-sl" style="padding:clamp(32px,4vw,48px) 4px clamp(40px,5vw,64px);display:none">
+        <div style="display:inline-flex;align-items:center;gap:9px;background:transparent;border:1.5px solid rgba(100,39,19,.35);color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:12px;letter-spacing:.5px;padding:6px 16px;border-radius:999px;margin-bottom:22px">Mel Silvestre &nbsp;·&nbsp; 100% puro &nbsp;·&nbsp; 330g</div>
+        <h1 class="hm-hero-h1" style="font-family:'Superpop',sans-serif;font-weight:600;font-size:clamp(60px,9vw,108px);line-height:.9;letter-spacing:-2px;color:#642713;margin:0 0 20px">MEL.<br><span style="font-weight:400">E só mel.</span></h1>
+        <p style="font-family:'Nunito Sans';font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:rgba(100,39,19,.78);max-width:440px;margin:0 0 28px">Sem xarope. Sem corante. Sem açúcar adicionado. Só o que a abelha fez — dentro de um urso que fica lindo na sua bancada.</p>
+        <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+          <a href="{{ cta }}" class="hm-btn-lift" style="display:inline-flex;align-items:center;justify-content:center;background:#FFCD00;color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:15px;padding:16px 32px;border-radius:999px;text-decoration:none;box-shadow:0 4px 0 rgba(100,39,19,.18);transition:transform .12s">{{ section.settings.nav_cta_light }} <span style="font-weight:600">&nbsp;{{ section.settings.nav_cta_bold }}</span></a>
+          <div>
+            <div style="font-family:'Superpop';font-weight:400;font-size:15px;color:#E29423;letter-spacing:1px">★★★★★ <span style="color:#642713">{{ section.settings.rev_score }}</span></div>
+            <div style="font-family:'Nunito Sans';font-size:13px;color:rgba(100,39,19,.6)">+2.000 avaliações</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · CERTIFICAÇÕES -->
+  <section style="background:#FFF6E4;margin-top:18px;border-top:1px solid rgba(100,39,19,.18);border-bottom:1px solid rgba(100,39,19,.18)">
+    <div style="max-width:1160px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,20px);flex-wrap:wrap">
+      <span style="font-family:'Nunito Sans';font-weight:800;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(100,39,19,.55)">{{ section.settings.cert_label }}</span>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        {%- assign certs = section.settings.cert_badges | split: ',' -%}
+        {%- for cert in certs -%}
+        <span style="clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);width:46px;height:40px;background:#FFCD00;display:flex;align-items:center;justify-content:center;font-family:'Superpop';font-weight:400;font-size:10.5px;color:#642713">{{ cert | strip }}</span>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · PROBLEMA -->
+  <section id="problema" style="background:#FFF6E4">
+    <div class="hm-rise" style="max-width:820px;margin:0 auto;padding:clamp(40px,5vw,64px) 24px 0;text-align:center">
+      <h2 style="font-family:'Superpop',sans-serif;font-weight:600;font-size:clamp(28px,4.2vw,46px);line-height:1.1;letter-spacing:-.5px;text-transform:uppercase;color:#642713;margin:0 0 20px">{{ section.settings.problema_title }}</h2>
+      <p style="font-family:'Nunito Sans';font-size:clamp(16px,1.6vw,18px);line-height:1.65;color:rgba(100,39,19,.78);max-width:640px;margin:0 auto">{{ section.settings.problema_text }}</p>
+    </div>
+  </section>
+
+  <!-- 4 · INGREDIENTES -->
+  <section id="ingredientes" style="background:#FFF6E4">
+    <div style="max-width:1040px;margin:0 auto;padding:clamp(36px,4.5vw,56px) 24px clamp(40px,5vw,70px)">
+      <div class="hm-pop" style="background:#642713;border-radius:34px;padding:clamp(32px,4vw,48px) clamp(24px,3.5vw,44px);position:relative;overflow:hidden">
+        <img src="{{ img_honeycomb_cream }}" alt="" aria-hidden="true" width="60" height="35" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.05;pointer-events:none">
+        <div style="position:relative;text-align:center;margin-bottom:clamp(26px,3.5vw,38px)">
+          <div style="font-family:'Nunito Sans';font-weight:800;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,246,228,.5);margin-bottom:10px">{{ section.settings.ing_kicker }}</div>
+          <div style="font-family:'Superpop',sans-serif;font-weight:600;font-size:clamp(34px,5vw,58px);line-height:1;color:#FFCD00;letter-spacing:-.5px">{{ section.settings.ing_title }}</div>
+        </div>
+        <div class="hm-ing-cols" style="position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+          {%- for block in section.blocks -%}
+          {%- if block.type == 'chip' -%}
+          {%- if block.settings.is_check -%}
+          <div {{ block.shopify_attributes }} style="background:#FFF6E4;border-radius:20px;padding:22px 16px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px">
+            <span style="font-family:'Nunito Sans';font-weight:800;font-size:15px;color:#642713;line-height:1.25;min-height:38px;display:flex;align-items:center">{{ block.settings.title }}</span>
+            <span style="font-family:'Superpop';font-weight:400;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#E29423">{{ block.settings.sub }}</span>
+            <span style="clip-path:polygon(50% 0%,90% 12%,100% 50%,90% 88%,50% 100%,10% 88%,0% 50%,10% 12%);width:32px;height:32px;background:#642713;color:#FFCD00;display:flex;align-items:center;justify-content:center;font-family:'Superpop';font-size:16px;line-height:1;margin-top:2px">✓</span>
+          </div>
+          {%- else -%}
+          <div {{ block.shopify_attributes }} style="background:#FFCD00;border-radius:20px;padding:22px 16px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px">
+            <span style="font-family:'Nunito Sans';font-weight:800;font-size:15px;color:#642713;line-height:1.25;min-height:38px;display:flex;align-items:center">{{ block.settings.title }}</span>
+            <span style="font-family:'Superpop';font-weight:400;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(100,39,19,.6)">{{ block.settings.sub }}</span>
+            <span style="font-family:'Nunito Sans';font-weight:900;font-size:26px;line-height:1;color:#642713;margin-top:2px">✕</span>
+          </div>
+          {%- endif -%}
+          {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+      <div style="position:relative;display:flex;justify-content:center;margin-top:-30px">
+        <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:180px;height:26px;background:radial-gradient(closest-side,rgba(100,39,19,.22),transparent);border-radius:50%"></div>
+        <img src="{{ img_bottle }}" alt="Pote Holy Mel" width="323" height="800" style="position:relative;height:clamp(130px,17vw,210px);width:auto;z-index:3;filter:drop-shadow(0 16px 20px rgba(100,39,19,.22));animation:hm-float2 6.5s ease-in-out infinite">
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · AVALIAÇÕES -->
+  <section id="avaliacoes" style="background:#FFF6E4">
+    <div class="hm-rise" style="max-width:1160px;margin:0 auto;padding:clamp(40px,5vw,72px) 24px">
+      <div style="text-align:center;margin-bottom:8px">
+        <div style="font-family:'Superpop';font-weight:300;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#E29423;margin-bottom:12px">{{ section.settings.rev_kicker }}</div>
+        <h2 style="font-family:'Superpop',sans-serif;font-weight:400;font-size:clamp(30px,4.6vw,54px);line-height:1.02;letter-spacing:-.5px;color:#642713;margin:0">{{ section.settings.rev_title }}</h2>
+        <img src="{{ img_girl }}" alt="" width="275" height="314" style="height:clamp(150px,18vw,220px);width:auto;margin:14px 0 22px;animation:hm-float2 6s ease-in-out infinite">
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px">
+        {%- for block in section.blocks -%}
+        {%- if block.type == 'review' -%}
+        <div {{ block.shopify_attributes }} style="background:#FFCD00;border-radius:24px;padding:28px">
+          <div style="font-family:'Superpop';font-weight:400;font-size:46px;color:rgba(100,39,19,.22);line-height:.6;height:20px;margin-bottom:18px">"</div>
+          <p style="font-family:'Nunito Sans';font-size:16px;line-height:1.6;color:#642713;margin:0 0 16px">{{ block.settings.quote }}</p>
+          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:'Nunito Sans';font-size:13.5px;font-weight:800;color:rgba(100,39,19,.75)">{{ block.settings.author }}</span><span style="font-family:'Superpop';color:#642713;font-size:13px;letter-spacing:1px">★★★★★</span></div>
+        </div>
+        {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:28px;flex-wrap:wrap;font-family:'Superpop';font-weight:400;color:#642713">
+        <span style="font-size:26px;color:#E29423">{{ section.settings.rev_score }}</span>
+        <span style="color:#E29423;font-size:15px;letter-spacing:2px">★★★★★</span>
+        <span style="font-family:'Nunito Sans';font-size:15px;font-weight:600">{{ section.settings.rev_stats }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · OFERTA -->
+  <section id="comprar" style="position:relative;overflow:hidden;background:#E0A23C">
+    <img src="{{ img_offer_bg }}" alt="" aria-hidden="true" width="1400" height="660" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+    <div class="hm-rise" style="position:relative;max-width:1160px;margin:0 auto;padding:clamp(56px,7vw,96px) 24px clamp(48px,6vw,80px)">
+      <div style="text-align:center;margin-bottom:40px">
+        <div style="font-family:'Superpop';font-weight:300;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#FFF6E4;margin-bottom:10px">{{ section.settings.offer_kicker }}</div>
+        <h2 style="font-family:'Superpop',sans-serif;font-weight:700;font-size:clamp(30px,4.6vw,54px);line-height:1.02;letter-spacing:-.5px;text-transform:uppercase;color:#FFF6E4;margin:0;text-shadow:0 3px 16px rgba(0,0,0,.25)">{{ section.settings.offer_title }}</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:stretch">
+        {%- for block in section.blocks -%}
+        {%- if block.type == 'kit' -%}
+        {%- liquid
+          assign kit_url = block.settings.btn_url | default: cta
+          if block.settings.img != blank
+            assign kit_img = block.settings.img | image_url: width: 400
+          else
+            assign kit_img = img_bottle
+          endif
+          if block.settings.discount_size == 'small'
+            assign dsz = '54px'
+            assign dfs = '15px'
+            assign doff = '8px'
+          else
+            assign dsz = '62px'
+            assign dfs = '17px'
+            assign doff = '9px'
+          endif
+        -%}
+        <div {{ block.shopify_attributes }} style="background:#FFF6E4;border-radius:28px;padding:32px 28px;display:flex;flex-direction:column;text-align:center;position:relative;box-shadow:{% if block.settings.featured %}0 24px 46px rgba(0,0,0,.28){% else %}0 18px 40px rgba(74,28,13,.22){% endif %}">
+          {%- if block.settings.featured and block.settings.badge != blank -%}
+          <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#FFCD00;color:#642713;font-family:'Superpop';font-weight:600;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:7px 22px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 10px rgba(0,0,0,.15)">{{ block.settings.badge }}</div>
+          {%- endif -%}
+          {%- if block.settings.discount != blank -%}
+          <div style="position:absolute;top:16px;right:16px;background:{% if block.settings.featured %}#2D6E2D{% else %}#C0392B{% endif %};color:#FFF6E4;font-family:'Superpop',sans-serif;font-weight:600;font-size:{{ dfs }};line-height:1;width:{{ dsz }};height:{{ dsz }};border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(8deg);box-shadow:0 4px 10px rgba(0,0,0,.22)">{{ block.settings.discount }}<span style="font-family:'Nunito Sans';font-weight:700;font-size:{{ doff }};letter-spacing:.5px;text-transform:uppercase;margin-top:1px">off</span></div>
+          {%- endif -%}
+          <img src="{{ kit_img }}" alt="{{ block.settings.name }}" width="323" height="800" style="height:124px;width:auto;margin:{% if block.settings.featured %}12px{% else %}0{% endif %} auto 16px;filter:drop-shadow(0 12px 14px rgba(100,39,19,.2))">
+          <div style="font-family:'Superpop';font-weight:400;font-size:{% if block.settings.featured %}21px{% else %}20px{% endif %};color:#642713">{{ block.settings.name }}</div>
+          <div style="font-family:'Nunito Sans';font-size:13px;color:rgba(100,39,19,{% if block.settings.featured %}.62{% else %}.55{% endif %});margin:3px 0 14px">{{ block.settings.desc }}</div>
+          <div style="font-family:'Superpop';font-weight:400;font-size:{% if block.settings.featured %}44px{% else %}40px{% endif %};color:#642713;line-height:1">{{ block.settings.price }}</div>
+          <div style="font-family:'Nunito Sans';font-size:12.5px;color:rgba(100,39,19,.45);text-decoration:line-through;margin-bottom:10px">{{ block.settings.old_price }}</div>
+          <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:20px;background:{% if block.settings.featured %}#FFCD00{% else %}rgba(100,39,19,.06){% endif %};border-radius:12px;padding:10px 14px">
+            <div style="font-family:'Nunito Sans';font-size:13px;color:{% if block.settings.featured %}#642713{% else %}#2D6E2D{% endif %};font-weight:800">{{ block.settings.pix_text }}</div>
+            <div style="font-family:'Nunito Sans';font-size:12px;color:rgba(100,39,19,{% if block.settings.featured %}.75{% else %}.6{% endif %});font-weight:600">{{ block.settings.parcel_text }}</div>
+          </div>
+          {%- if block.settings.featured -%}
+          <a href="{{ kit_url }}" class="hm-btn-solid" style="margin-top:auto;display:block;background:#642713;color:#FFF6E4;font-family:'Superpop',sans-serif;font-weight:400;font-size:15px;padding:14px;border-radius:999px;text-decoration:none;box-shadow:0 5px 0 rgba(74,28,13,.5);transition:background .15s">{{ block.settings.btn_text }}</a>
+          {%- else -%}
+          <a href="{{ kit_url }}" class="hm-btn-outline" style="margin-top:auto;display:block;background:transparent;color:#642713;border:2px solid #642713;font-family:'Superpop',sans-serif;font-weight:400;font-size:15px;padding:13px;border-radius:999px;text-decoration:none;transition:background .15s,color .15s">{{ block.settings.btn_text }}</a>
+          {%- endif -%}
+        </div>
+        {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVISOR MASCOTE -->
+  <div style="background:#FFF6E4;display:flex;justify-content:center;padding:40px 24px 0">
+    <div style="clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);width:100px;height:88px;border:3px solid #642713;display:flex;align-items:center;justify-content:center;background:#FFF6E4">
+      <img src="{{ img_face }}" alt="" width="388" height="320" style="height:64px;width:auto">
+    </div>
+  </div>
+
+  <!-- 7 · CAFÉ DA MANHÃ -->
+  <section style="background:#FFF6E4">
+    <div class="hm-rise" style="max-width:680px;margin:0 auto;padding:20px 24px clamp(48px,6vw,84px);text-align:center">
+      <h2 style="font-family:'Superpop',sans-serif;font-weight:400;font-size:clamp(30px,4.4vw,50px);line-height:1.02;letter-spacing:-.5px;color:#642713;margin:0 0 16px">{{ section.settings.cafe_title }}</h2>
+      <p style="font-family:'Nunito Sans';font-size:clamp(16px,1.7vw,18px);line-height:1.65;color:rgba(100,39,19,.78);max-width:520px;margin:0 auto 28px">{{ section.settings.cafe_text }}</p>
+      <a href="{{ cta }}" class="hm-btn-cafe" style="display:inline-flex;align-items:center;justify-content:center;background:#FFCD00;color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:15px;padding:15px 34px;border-radius:999px;text-decoration:none;box-shadow:0 5px 0 rgba(100,39,19,.18);transition:transform .12s">{{ section.settings.cafe_cta_light }} <span style="font-weight:600">&nbsp;{{ section.settings.cafe_cta_bold }}</span></a>
+    </div>
+  </section>
+
+  <!-- 8 · POR QUE O URSO -->
+  <section style="background:#FFF6E4;position:relative;overflow:hidden">
+    <img src="{{ img_honeycomb_brown }}" alt="" width="60" height="35" style="position:absolute;top:8%;right:5%;width:48px;opacity:.3;animation:hm-spin 30s linear infinite">
+    <img src="{{ img_honeycomb_brown }}" alt="" width="60" height="35" style="position:absolute;bottom:12%;left:4%;width:36px;opacity:.25;animation:hm-spin 36s linear infinite reverse">
+    <div style="position:relative;max-width:1160px;margin:0 auto;padding:clamp(40px,5vw,64px) 24px clamp(56px,7vw,90px)">
+      <div class="hm-rise" style="text-align:center;margin-bottom:clamp(32px,4vw,48px)">
+        <div style="font-family:'Superpop';font-weight:300;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#E29423;margin-bottom:14px">{{ section.settings.why_kicker }}</div>
+        <h2 style="font-family:'Superpop',sans-serif;font-weight:700;font-size:clamp(34px,5vw,62px);line-height:1;letter-spacing:-1px;text-transform:uppercase;color:#642713;margin:0 0 6px">{{ section.settings.why_title }}</h2>
+        <div style="font-family:'Superpop',sans-serif;font-weight:300;font-style:italic;font-size:clamp(20px,2.6vw,30px);color:#E29423">{{ section.settings.why_subtitle }}</div>
+      </div>
+      <div class="hm-why-cols" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+        {%- assign why_i = 0 -%}
+        {%- for block in section.blocks -%}
+        {%- if block.type == 'why' -%}
+        {%- liquid
+          assign why_i = why_i | plus: 1
+          case why_i
+            when 1
+              assign why_fallback = 'hm-face-brown.webp' | asset_url
+              assign why_h = '84px'
+              assign why_ty = '12px'
+              assign why_w = 388
+              assign why_ih = 320
+            when 2
+              assign why_fallback = 'hm-bear-brown.webp' | asset_url
+              assign why_h = '112px'
+              assign why_ty = '14px'
+              assign why_w = 364
+              assign why_ih = 520
+            when 3
+              assign why_fallback = 'hm-bottle-amber.webp' | asset_url
+              assign why_h = '104px'
+              assign why_ty = '12px'
+              assign why_w = 104
+              assign why_ih = 220
+            else
+              assign why_fallback = 'hm-face-yellow.webp' | asset_url
+              assign why_h = '84px'
+              assign why_ty = '12px'
+              assign why_w = 216
+              assign why_ih = 180
+          endcase
+          if block.settings.img != blank
+            assign why_img = block.settings.img | image_url: width: 400
+          else
+            assign why_img = why_fallback
+          endif
+        -%}
+        <div class="hm-pop" {{ block.shopify_attributes }} style="background:#FFCD00;border-radius:24px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="height:100px;background:#E29423;display:flex;align-items:flex-end;justify-content:center;overflow:hidden"><img src="{{ why_img }}" alt="" width="{{ why_w }}" height="{{ why_ih }}" style="height:{{ why_h }};width:auto;transform:translateY({{ why_ty }})"></div>
+          <div style="padding:20px 20px 24px">
+            <h3 style="font-family:'Superpop',sans-serif;font-weight:400;font-size:18px;color:#642713;margin:0 0 8px">{{ block.settings.title }}</h3>
+            <p style="font-family:'Nunito Sans';font-size:14px;line-height:1.55;color:rgba(100,39,19,.75);margin:0">{{ block.settings.text }}</p>
+          </div>
+        </div>
+        {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · FAQ -->
+  <section style="background:#FFF6E4;padding:0 24px clamp(40px,5vw,64px)">
+    <div class="hm-rise" style="max-width:900px;margin:0 auto;background:#FFCD00;border-radius:34px;padding:clamp(40px,5vw,68px) clamp(28px,4vw,56px)">
+      <div style="text-align:center;margin-bottom:32px">
+        <div style="font-family:'Superpop';font-weight:300;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#FFF6E4;margin-bottom:10px">{{ section.settings.faq_kicker }}</div>
+        <h2 style="font-family:'Superpop',sans-serif;font-weight:400;font-size:clamp(30px,4.4vw,52px);line-height:1.02;letter-spacing:-.5px;color:#FFF6E4;margin:0">{{ section.settings.faq_title }}</h2>
+      </div>
+      {%- for block in section.blocks -%}
+      {%- if block.type == 'faq' -%}
+      <div class="hm-faq-item" {{ block.shopify_attributes }} style="background:#FFF6E4;border-radius:16px;margin-bottom:10px;overflow:hidden">
+        <button type="button" class="hm-faq-btn" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:18px;background:none;border:none;cursor:pointer;padding:18px 22px;text-align:left">
+          <span style="font-family:'Superpop',sans-serif;font-weight:400;font-size:clamp(15px,1.8vw,18px);color:#642713">{{ block.settings.question }}</span>
+          <span class="hm-faq-sign" style="flex-shrink:0;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);width:30px;height:26px;background:#FFCD00;color:#642713;font-family:'Superpop';font-weight:400;font-size:16px;display:flex;align-items:center;justify-content:center;line-height:1">+</span>
+        </button>
+        <div class="hm-faq-ans" style="overflow:hidden;transition:max-height .32s ease,opacity .32s ease;max-height:0;opacity:0">
+          <p style="font-family:'Nunito Sans';font-size:15.5px;line-height:1.65;color:rgba(100,39,19,.78);margin:0;padding:0 22px 20px">{{ block.settings.answer }}</p>
+        </div>
+      </div>
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <!-- FOOTER (oculto como no original — para exibir, troque display:none por display:block) -->
+  <footer style="background:#4A1C0D;display:none">
+    <div style="max-width:1160px;margin:0 auto;padding:44px 28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
+      <img src="{{ 'hm-logo-cream.webp' | asset_url }}" alt="Holy Mel" width="211" height="120" style="height:42px;width:auto">
+      <div style="font-family:'Nunito Sans';font-size:12.5px;letter-spacing:1px;color:rgba(255,246,228,.5);text-align:right;line-height:1.7">
+        MEL SILVESTRE 100% PURO · BPF · FDA · IFS · SIF<br>
+        <span style="opacity:.8">© Holy Mel — feito do campo pra sua bancada.</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script>
+(function () {
+  function initHolyMelFaq(root) {
+    if (root.getAttribute('data-hm-faq-init')) return;
+    root.setAttribute('data-hm-faq-init', '1');
+    var items = root.querySelectorAll('.hm-faq-item');
+    var openIdx = 0;
+    function render() {
+      items.forEach(function (item, i) {
+        var open = i === openIdx;
+        item.querySelector('.hm-faq-sign').textContent = open ? '–' : '+';
+        var ans = item.querySelector('.hm-faq-ans');
+        ans.style.maxHeight = open ? '340px' : '0';
+        ans.style.opacity = open ? '1' : '0';
+      });
+    }
+    items.forEach(function (item, i) {
+      item.querySelector('.hm-faq-btn').addEventListener('click', function () {
+        openIdx = (openIdx === i) ? -1 : i;
+        render();
+      });
+    });
+    render();
+  }
+  var lp = document.getElementById('holy-mel-lp');
+  if (lp) initHolyMelFaq(lp);
+  /* re-inicializa quando o personalizador da Shopify re-renderiza a seção */
+  if (!window.__hmFaqListener) {
+    window.__hmFaqListener = true;
+    document.addEventListener('shopify:section:load', function (e) {
+      var lp = e.target.querySelector('#holy-mel-lp');
+      if (lp) initHolyMelFaq(lp);
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Holy Mel LP",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Geral" },
+    { "type": "url", "id": "cta_url", "label": "Link dos botões de compra (padrão: rola até a oferta)" },
+    { "type": "image_picker", "id": "img_logo", "label": "Logo (topo)" },
+    { "type": "image_picker", "id": "img_bottle", "label": "Foto do pote (hero, ingredientes e kits)" },
+    { "type": "image_picker", "id": "img_bear", "label": "Ilustração urso (hero)" },
+    { "type": "image_picker", "id": "img_face", "label": "Rosto do urso (hero e divisor)" },
+    { "type": "text", "id": "nav_cta_light", "label": "Botão topo — parte leve", "default": "Quero" },
+    { "type": "text", "id": "nav_cta_bold", "label": "Botão topo — parte negrito", "default": "meu urso" },
+    { "type": "header", "content": "Faixa rolante (ticker)" },
+    { "type": "checkbox", "id": "show_ticker", "label": "Mostrar faixa rolante", "default": true },
+    { "type": "text", "id": "ticker_text", "label": "Texto da faixa (o ● final é automático)", "default": "100% puro  ●  sem açúcar adicionado  ●  sem xarope  ●  sem corante  ●  sem conservante  ●  mel de verdade" },
+    { "type": "header", "content": "Certificações" },
+    { "type": "text", "id": "cert_label", "label": "Texto", "default": "4 certificações que provam" },
+    { "type": "text", "id": "cert_badges", "label": "Selos (separados por vírgula)", "default": "BPF, FDA, IFS, SIF" },
+    { "type": "header", "content": "O problema" },
+    { "type": "text", "id": "problema_title", "label": "Título", "default": "O mel que você comprava não era mel." },
+    { "type": "textarea", "id": "problema_text", "label": "Texto", "default": "Quase todo mel de supermercado é xarope de glicose, corante caramelo e um tiquinho de mel pra constar no rótulo. A gente faz o contrário." },
+    { "type": "header", "content": "Ingredientes" },
+    { "type": "text", "id": "ing_kicker", "label": "Rótulo", "default": "Ingredientes" },
+    { "type": "text", "id": "ing_title", "label": "Título", "default": "Mel silvestre. Só." },
+    { "type": "header", "content": "Avaliações" },
+    { "type": "text", "id": "rev_kicker", "label": "Rótulo", "default": "Quem já tem um urso em casa" },
+    { "type": "text", "id": "rev_title", "label": "Título", "default": "Amado em milhares de cozinhas." },
+    { "type": "image_picker", "id": "img_girl", "label": "Ilustração (menina correndo)" },
+    { "type": "text", "id": "rev_score", "label": "Nota", "default": "4.9" },
+    { "type": "text", "id": "rev_stats", "label": "Estatísticas", "default": "· +2.000 avaliações · +4.200 ursos entregues" },
+    { "type": "header", "content": "Oferta" },
+    { "type": "text", "id": "offer_kicker", "label": "Rótulo", "default": "Escolha o seu" },
+    { "type": "text", "id": "offer_title", "label": "Título", "default": "Quantos ursos você quer?" },
+    { "type": "image_picker", "id": "img_offer_bg", "label": "Foto de fundo (favo de mel)" },
+    { "type": "header", "content": "Café da manhã" },
+    { "type": "text", "id": "cafe_title", "label": "Título", "default": "Do café da manhã ao pós-treino." },
+    { "type": "textarea", "id": "cafe_text", "label": "Texto", "default": "Energia de verdade, do jeito que a natureza fez. Mel silvestre puro pra adoçar o dia inteiro — sem culpa, sem letrinha miúda no rótulo." },
+    { "type": "text", "id": "cafe_cta_light", "label": "Botão — parte leve", "default": "levar pra" },
+    { "type": "text", "id": "cafe_cta_bold", "label": "Botão — parte negrito", "default": "todo lugar" },
+    { "type": "header", "content": "Por que o urso" },
+    { "type": "text", "id": "why_kicker", "label": "Rótulo", "default": "Por que o urso" },
+    { "type": "text", "id": "why_title", "label": "Título", "default": "Mel bom demais" },
+    { "type": "text", "id": "why_subtitle", "label": "Subtítulo", "default": "pra ficar escondido no armário" },
+    { "type": "header", "content": "FAQ" },
+    { "type": "text", "id": "faq_kicker", "label": "Rótulo", "default": "Perguntas" },
+    { "type": "text", "id": "faq_title", "label": "Título", "default": "Dúvidas diretas." }
+  ],
+  "blocks": [
+    {
+      "type": "chip",
+      "name": "Ingrediente (card)",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Açúcar adicionado" },
+        { "type": "text", "id": "sub", "label": "Legenda", "default": "Não tem" },
+        { "type": "checkbox", "id": "is_check", "label": "Card positivo (✓ em fundo claro)", "default": false }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Avaliação",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Depoimento", "default": "Não tem comparação com o mel do mercado." },
+        { "type": "text", "id": "author", "label": "Autor", "default": "Cliente · Cidade" }
+      ]
+    },
+    {
+      "type": "kit",
+      "name": "Kit (oferta)",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Nome", "default": "Mini Holy" },
+        { "type": "text", "id": "desc", "label": "Descrição", "default": "330g · 1 urso" },
+        { "type": "text", "id": "price", "label": "Preço", "default": "R$49,90" },
+        { "type": "text", "id": "old_price", "label": "Preço antigo (riscado)", "default": "De R$59,90" },
+        { "type": "text", "id": "pix_text", "label": "Linha PIX", "default": "R$44,90 no PIX" },
+        { "type": "text", "id": "parcel_text", "label": "Linha parcelamento", "default": "ou 3x de R$16,63 sem juros" },
+        { "type": "text", "id": "discount", "label": "Selo de desconto (vazio = sem selo)", "default": "-17%" },
+        {
+          "type": "select",
+          "id": "discount_size",
+          "label": "Tamanho do selo",
+          "options": [
+            { "value": "small", "label": "Pequeno" },
+            { "value": "large", "label": "Grande" }
+          ],
+          "default": "large"
+        },
+        { "type": "text", "id": "btn_text", "label": "Texto do botão", "default": "Quero o Mini" },
+        { "type": "url", "id": "btn_url", "label": "Link do botão (produto ou carrinho)" },
+        { "type": "checkbox", "id": "featured", "label": "Destacado (Mais vendido)", "default": false },
+        { "type": "text", "id": "badge", "label": "Selo do destaque", "default": "Mais vendido" },
+        { "type": "image_picker", "id": "img", "label": "Imagem (vazio = foto do pote)" }
+      ]
+    },
+    {
+      "type": "why",
+      "name": "Por que o urso (card)",
+      "settings": [
+        { "type": "image_picker", "id": "img", "label": "Imagem" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Fica lindo na cozinha" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Chega numa embalagem que parece enfeite." }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "Pergunta (FAQ)",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Pergunta", "default": "É 100% puro mesmo?" },
+        { "type": "textarea", "id": "answer", "label": "Resposta", "default": "Sim. Um ingrediente: mel silvestre." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Holy Mel LP",
+      "blocks": [
+        { "type": "chip" },
+        { "type": "chip" },
+        { "type": "chip" },
+        { "type": "chip", "settings": { "is_check": true, "title": "100% puro Mel silvestre", "sub": "Só isso." } },
+        { "type": "review" },
+        { "type": "review" },
+        { "type": "review" },
+        { "type": "kit" },
+        { "type": "kit", "settings": { "featured": true } },
+        { "type": "kit" },
+        { "type": "why" },
+        { "type": "why" },
+        { "type": "why" },
+        { "type": "why" },
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" }
+      ]
+    }
+  ]
+}
+{% endschema %}
