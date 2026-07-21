@@ -75,6 +75,11 @@
     #holy-mel-lp .hm-why-cols{grid-template-columns:repeat(2,1fr) !important;}
     #holy-mel-lp .hm-hero-h1{font-size:64px !important;}
   }
+  /* Hero banner (mesmo padrão da home / slideshow-hs) */
+  #holy-mel-lp .hm-hero-banner{position:relative;}
+  #holy-mel-lp .hm-hero-banner .hm-hero-slide-item img{width:100%;height:auto;display:block;}
+  #holy-mel-lp .hm-hero-banner .swiper-pagination{bottom:14px !important;}
+  #holy-mel-lp .hm-hero-banner.hm-hero-banner--single .swiper-pagination{display:none;}
 </style>
 
 <div id="holy-mel-lp" style="font-family:'Nunito Sans',sans-serif;color:#642713;background:#FFF6E4;overflow-x:hidden">
@@ -98,7 +103,70 @@
     </div>
   </header>
 
-  <!-- 1 · HERO -->
+  <!-- 1 · HERO
+       Com blocos "Banner hero": full-bleed desk/mob (padrão home).
+       Sem blocos com imagem desktop: mantém a colagem antiga (sem regressão visual). -->
+  {%- liquid
+    assign hm_hero_count = 0
+    for block in section.blocks
+      if block.type == 'hero_slide' and block.settings.image_slide != blank
+        assign hm_hero_count = hm_hero_count | plus: 1
+      endif
+    endfor
+  -%}
+  {%- if hm_hero_count > 0 -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'hero_slide' and block.settings.image_slide != blank -%}
+  <link rel="preload" as="image" href="{{ block.settings.image_slide | image_url: width: 1900 }}">
+    {%- endif -%}
+  {%- endfor -%}
+  <section id="topo" class="hm-hero-banner{% if hm_hero_count == 1 %} hm-hero-banner--single{% endif %}" style="background:#FFF6E4;padding:0">
+    <div class="swiper hm-hero-swiper">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'hero_slide' and block.settings.image_slide != blank -%}
+          <div class="swiper-slide" {{ block.shopify_attributes }}>
+            <div class="hm-hero-slide-item">
+              {%- if block.settings.url != blank -%}
+              <a href="{{ block.settings.url }}">
+                <picture>
+                  {%- if block.settings.image_slide_mb != blank -%}
+                  <source media="(max-width: 1024px)" srcset="{{ block.settings.image_slide_mb | image_url: width: 800 }}">
+                  {%- endif -%}
+                  {{ block.settings.image_slide | image_url: width: 1900 | image_tag: height: 'auto', alt: 'Holy Mel' }}
+                </picture>
+              </a>
+              {%- else -%}
+              <picture>
+                {%- if block.settings.image_slide_mb != blank -%}
+                <source media="(max-width: 1024px)" srcset="{{ block.settings.image_slide_mb | image_url: width: 800 }}">
+                {%- endif -%}
+                {{ block.settings.image_slide | image_url: width: 1900 | image_tag: height: 'auto', alt: 'Holy Mel' }}
+              </picture>
+              {%- endif -%}
+            </div>
+          </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <!-- headline (oculto como no original — mantém o h1 da página;
+         para exibir, troque display:none por display:block) -->
+    <div class="hm-sl" style="padding:clamp(32px,4vw,48px) 4px clamp(40px,5vw,64px);display:none">
+      <div style="display:inline-flex;align-items:center;gap:9px;background:transparent;border:1.5px solid rgba(100,39,19,.35);color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:12px;letter-spacing:.5px;padding:6px 16px;border-radius:999px;margin-bottom:22px">Mel Silvestre &nbsp;·&nbsp; 100% puro &nbsp;·&nbsp; 330g</div>
+      <h1 class="hm-hero-h1" style="font-family:'Superpop',sans-serif;font-weight:600;font-size:clamp(60px,9vw,108px);line-height:.9;letter-spacing:-2px;color:#642713;margin:0 0 20px">MEL.<br><span style="font-weight:400">E só mel.</span></h1>
+      <p style="font-family:'Nunito Sans';font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:rgba(100,39,19,.78);max-width:440px;margin:0 0 28px">Sem xarope. Sem corante. Sem açúcar adicionado. Só o que a abelha fez — dentro de um urso que fica lindo na sua bancada.</p>
+      <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+        <a href="{{ cta }}" class="hm-btn-lift" style="display:inline-flex;align-items:center;justify-content:center;background:#FFCD00;color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:15px;padding:16px 32px;border-radius:999px;text-decoration:none;box-shadow:0 4px 0 rgba(100,39,19,.18);transition:transform .12s">{{ section.settings.nav_cta_light }} <span style="font-weight:600">&nbsp;{{ section.settings.nav_cta_bold }}</span></a>
+        <div>
+          <div style="font-family:'Superpop';font-weight:400;font-size:15px;color:#E29423;letter-spacing:1px">★★★★★ <span style="color:#642713">{{ section.settings.rev_score }}</span></div>
+          <div style="font-family:'Nunito Sans';font-size:13px;color:rgba(100,39,19,.6)">+2.000 avaliações</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {%- else -%}
   <section id="topo" style="background:#FFF6E4;padding:clamp(14px,2vw,22px) 24px 0">
     <div style="max-width:1160px;margin:0 auto">
       <div style="background:#FFCD00;border-radius:36px;position:relative;overflow:hidden;min-height:clamp(300px,38vw,440px);display:flex;align-items:center;justify-content:center">
@@ -125,6 +193,7 @@
       </div>
     </div>
   </section>
+  {%- endif -%}
 
   <!-- 2 · CERTIFICAÇÕES -->
   <section style="background:#FFF6E4;margin-top:18px;border-top:1px solid rgba(100,39,19,.18);border-bottom:1px solid rgba(100,39,19,.18)">
@@ -402,14 +471,36 @@
     });
     render();
   }
+  function initHolyMelHero(root) {
+    var el = root.querySelector('.hm-hero-swiper');
+    if (!el || el.swiper || typeof Swiper === 'undefined') return;
+    var slides = el.querySelectorAll('.swiper-slide');
+    if (!slides.length) return;
+    new Swiper(el, {
+      slidesPerView: 1,
+      autoplay: slides.length > 1 ? { delay: 3000, disableOnInteraction: false } : false,
+      pagination: {
+        el: el.querySelector('.swiper-pagination'),
+        clickable: true
+      }
+    });
+  }
+  function initHolyMel(root) {
+    if (!root) return;
+    initHolyMelFaq(root);
+    initHolyMelHero(root);
+  }
   var lp = document.getElementById('holy-mel-lp');
-  if (lp) initHolyMelFaq(lp);
+  if (lp) initHolyMel(lp);
   /* re-inicializa quando o personalizador da Shopify re-renderiza a seção */
   if (!window.__hmFaqListener) {
     window.__hmFaqListener = true;
     document.addEventListener('shopify:section:load', function (e) {
-      var lp = e.target.querySelector('#holy-mel-lp');
-      if (lp) initHolyMelFaq(lp);
+      var lp = e.target.querySelector('#holy-mel-lp') || (e.target.id === 'holy-mel-lp' ? e.target : null);
+      if (lp) {
+        lp.removeAttribute('data-hm-faq-init');
+        initHolyMel(lp);
+      }
     });
   }
 })();
@@ -423,11 +514,12 @@
     { "type": "header", "content": "Geral" },
     { "type": "url", "id": "cta_url", "label": "Link dos botões de compra (padrão: rola até a oferta)" },
     { "type": "image_picker", "id": "img_logo", "label": "Logo (topo)" },
-    { "type": "image_picker", "id": "img_bottle", "label": "Foto do pote (hero, ingredientes e kits)" },
-    { "type": "image_picker", "id": "img_bear", "label": "Ilustração urso (hero)" },
-    { "type": "image_picker", "id": "img_face", "label": "Rosto do urso (hero e divisor)" },
+    { "type": "image_picker", "id": "img_bottle", "label": "Foto do pote (ingredientes e kits; fallback do hero)" },
+    { "type": "image_picker", "id": "img_bear", "label": "Ilustração urso (só no hero antigo / fallback)" },
+    { "type": "image_picker", "id": "img_face", "label": "Rosto do urso (divisor; fallback do hero)" },
     { "type": "text", "id": "nav_cta_light", "label": "Botão topo — parte leve", "default": "Quero" },
     { "type": "text", "id": "nav_cta_bold", "label": "Botão topo — parte negrito", "default": "meu urso" },
+    { "type": "paragraph", "content": "Banner hero: adicione blocos “Banner hero” (desktop + mobile + link). Sem blocos com imagem, a colagem amarela antiga permanece." },
     { "type": "header", "content": "Faixa rolante (ticker)" },
     { "type": "checkbox", "id": "show_ticker", "label": "Mostrar faixa rolante", "default": true },
     { "type": "text", "id": "ticker_text", "label": "Texto da faixa (o ● final é automático)", "default": "100% puro  ●  sem açúcar adicionado  ●  sem xarope  ●  sem corante  ●  sem conservante  ●  mel de verdade" },
@@ -464,6 +556,15 @@
     { "type": "text", "id": "faq_title", "label": "Título", "default": "Dúvidas diretas." }
   ],
   "blocks": [
+    {
+      "type": "hero_slide",
+      "name": "Banner hero",
+      "settings": [
+        { "type": "image_picker", "id": "image_slide", "label": "Imagem desktop" },
+        { "type": "image_picker", "id": "image_slide_mb", "label": "Imagem mobile" },
+        { "type": "url", "id": "url", "label": "Link do banner" }
+      ]
+    },
     {
       "type": "chip",
       "name": "Ingrediente (card)",
