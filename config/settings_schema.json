@@ -331,6 +331,112 @@
         "id": "highlighted_text_color",
         "label": "Selecione cor do texto destaquado",
         "default": "#FF7A50"
+      },
+      {
+        "type": "header",
+        "content": "Limites de quantidade no carrinho"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_qty_limits_enable",
+        "label": "Ativar limites de quantidade",
+        "default": false,
+        "info": "Quando desativado, nenhum script é carregado (zero impacto)."
+      },
+      {
+        "type": "textarea",
+        "id": "cart_qty_limits_message",
+        "label": "Mensagem ao atingir o limite",
+        "default": "Limite de {{max}} unidades deste produto por pedido.",
+        "info": "Use {{max}} para inserir a quantidade máxima."
+      },
+      {
+        "type": "product",
+        "id": "cart_qty_limit_product_1",
+        "label": "Produto 1"
+      },
+      {
+        "type": "number",
+        "id": "cart_qty_limit_max_1",
+        "label": "Qtd máxima do produto 1",
+        "default": 4
+      },
+      {
+        "type": "product",
+        "id": "cart_qty_limit_product_2",
+        "label": "Produto 2"
+      },
+      {
+        "type": "number",
+        "id": "cart_qty_limit_max_2",
+        "label": "Qtd máxima do produto 2",
+        "default": 4
+      },
+      {
+        "type": "product",
+        "id": "cart_qty_limit_product_3",
+        "label": "Produto 3"
+      },
+      {
+        "type": "number",
+        "id": "cart_qty_limit_max_3",
+        "label": "Qtd máxima do produto 3",
+        "default": 4
+      },
+      {
+        "type": "product",
+        "id": "cart_qty_limit_product_4",
+        "label": "Produto 4"
+      },
+      {
+        "type": "number",
+        "id": "cart_qty_limit_max_4",
+        "label": "Qtd máxima do produto 4",
+        "default": 4
+      },
+      {
+        "type": "product",
+        "id": "cart_qty_limit_product_5",
+        "label": "Produto 5"
+      },
+      {
+        "type": "number",
+        "id": "cart_qty_limit_max_5",
+        "label": "Qtd máxima do produto 5",
+        "default": 4
+      },
+      {
+        "type": "product",
+        "id": "cart_qty_limit_product_6",
+        "label": "Produto 6"
+      },
+      {
+        "type": "number",
+        "id": "cart_qty_limit_max_6",
+        "label": "Qtd máxima do produto 6",
+        "default": 4
+      },
+      {
+        "type": "product",
+        "id": "cart_qty_limit_product_7",
+        "label": "Produto 7"
+      },
+      {
+        "type": "number",
+        "id": "cart_qty_limit_max_7",
+        "label": "Qtd máxima do produto 7",
+        "default": 4
+      },
+      {
+        "type": "product",
+        "id": "cart_qty_limit_product_8",
+        "label": "Produto 8"
+      },
+      {
+        "type": "number",
+        "id": "cart_qty_limit_max_8",
+        "label": "Qtd máxima do produto 8",
+        "default": 4
       }
     ]
   },

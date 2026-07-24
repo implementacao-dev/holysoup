@@ -21,6 +21,44 @@
     
     {% assign descontos_array = descontos_list | split: ';' %}
 
+    {%- liquid
+      assign cart_qty_limit_max = 0
+      if settings.cart_qty_limits_enable
+        if settings.cart_qty_limit_product_1 != blank and settings.cart_qty_limit_product_1.id == product.id and settings.cart_qty_limit_max_1 > 0
+          assign cart_qty_limit_max = settings.cart_qty_limit_max_1
+        elsif settings.cart_qty_limit_product_2 != blank and settings.cart_qty_limit_product_2.id == product.id and settings.cart_qty_limit_max_2 > 0
+          assign cart_qty_limit_max = settings.cart_qty_limit_max_2
+        elsif settings.cart_qty_limit_product_3 != blank and settings.cart_qty_limit_product_3.id == product.id and settings.cart_qty_limit_max_3 > 0
+          assign cart_qty_limit_max = settings.cart_qty_limit_max_3
+        elsif settings.cart_qty_limit_product_4 != blank and settings.cart_qty_limit_product_4.id == product.id and settings.cart_qty_limit_max_4 > 0
+          assign cart_qty_limit_max = settings.cart_qty_limit_max_4
+        elsif settings.cart_qty_limit_product_5 != blank and settings.cart_qty_limit_product_5.id == product.id and settings.cart_qty_limit_max_5 > 0
+          assign cart_qty_limit_max = settings.cart_qty_limit_max_5
+        elsif settings.cart_qty_limit_product_6 != blank and settings.cart_qty_limit_product_6.id == product.id and settings.cart_qty_limit_max_6 > 0
+          assign cart_qty_limit_max = settings.cart_qty_limit_max_6
+        elsif settings.cart_qty_limit_product_7 != blank and settings.cart_qty_limit_product_7.id == product.id and settings.cart_qty_limit_max_7 > 0
+          assign cart_qty_limit_max = settings.cart_qty_limit_max_7
+        elsif settings.cart_qty_limit_product_8 != blank and settings.cart_qty_limit_product_8.id == product.id and settings.cart_qty_limit_max_8 > 0
+          assign cart_qty_limit_max = settings.cart_qty_limit_max_8
+        endif
+      endif
+
+      assign max_qtd_options = 20
+      if cart_qty_limit_max > 0 and cart_qty_limit_max < max_qtd_options
+        assign max_qtd_options = cart_qty_limit_max
+      endif
+    -%}
+
+    {%- if cart_qty_limit_max > 0 -%}
+      {%- assign cart_qty_limit_message = settings.cart_qty_limits_message -%}
+      {%- if cart_qty_limit_message == blank -%}
+        {%- capture cart_qty_limit_message -%}Limite de {{ cart_qty_limit_max }} unidades deste produto por pedido.{%- endcapture -%}
+      {%- else -%}
+        {%- assign cart_qty_limit_message = cart_qty_limit_message | replace: '{{max}}', cart_qty_limit_max -%}
+        {%- assign cart_qty_limit_message = cart_qty_limit_message | replace: '{{ max }}', cart_qty_limit_max -%}
+      {%- endif -%}
+    {%- endif -%}
+
     <style>
       .product-form__buttons {
         margin-top: 15px;
@@ -71,6 +109,14 @@
         font-weight: 600;
         line-height: 1.3;
         margin-bottom: 10px;
+      }
+
+      .cart-qty-limit-note {
+        text-align: center;
+        color: #666;
+        font-size: 13px;
+        line-height: 1.35;
+        margin: 8px 0;
       }
 
       @media (min-width: 1024px){
@@ -125,11 +171,16 @@
       }
     </style>
 
+    {%- if cart_qty_limit_max > 0 -%}
+      <p class="cart-qty-limit-note">{{ cart_qty_limit_message }}</p>
+    {%- endif -%}
+
     <select name="quantity" @change="handleQuantity($event.target.value)" id="qtd-select" style="display:none">
       {% unless product.available %}
       <option data-discount="0" data-unit-price="0" freeshipping value="-1">Indisponível</option>
       {% endunless %}
-      {% for qtd in (1..20) %}
+      {% if max_qtd_options > 0 %}
+      {% for qtd in (1..max_qtd_options) %}
         {% assign loopQtd = forloop.index %}
         {% assign current_discount = 0 %}
 
@@ -170,6 +221,7 @@
         {% endif %}
         
       {% endfor %}
+      {% endif %}
     </select>
 
     <script>

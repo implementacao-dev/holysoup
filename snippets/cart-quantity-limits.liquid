@@ -1,0 +1,144 @@
+{% comment %}
+  Limites de quantidade por produto no carrinho (settings do tema).
+  Só carrega o script quando ativo e com ao menos 1 produto configurado.
+{% endcomment %}
+
+{%- liquid
+  assign has_limits = false
+  if settings.cart_qty_limits_enable
+    if settings.cart_qty_limit_product_1 != blank and settings.cart_qty_limit_max_1 > 0
+      assign has_limits = true
+    endif
+    if settings.cart_qty_limit_product_2 != blank and settings.cart_qty_limit_max_2 > 0
+      assign has_limits = true
+    endif
+    if settings.cart_qty_limit_product_3 != blank and settings.cart_qty_limit_max_3 > 0
+      assign has_limits = true
+    endif
+    if settings.cart_qty_limit_product_4 != blank and settings.cart_qty_limit_max_4 > 0
+      assign has_limits = true
+    endif
+    if settings.cart_qty_limit_product_5 != blank and settings.cart_qty_limit_max_5 > 0
+      assign has_limits = true
+    endif
+    if settings.cart_qty_limit_product_6 != blank and settings.cart_qty_limit_max_6 > 0
+      assign has_limits = true
+    endif
+    if settings.cart_qty_limit_product_7 != blank and settings.cart_qty_limit_max_7 > 0
+      assign has_limits = true
+    endif
+    if settings.cart_qty_limit_product_8 != blank and settings.cart_qty_limit_max_8 > 0
+      assign has_limits = true
+    endif
+  endif
+-%}
+
+{%- if has_limits -%}
+  <script>
+    window.HS_CART_QTY_LIMITS = {
+      enabled: true,
+      message: {{ settings.cart_qty_limits_message | json }},
+      limits: {
+        {%- assign first_limit = true -%}
+        {%- if settings.cart_qty_limit_product_1 != blank and settings.cart_qty_limit_max_1 > 0 -%}
+          {{ settings.cart_qty_limit_product_1.id | json }}: {{ settings.cart_qty_limit_max_1 | json }}
+          {%- assign first_limit = false -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_2 != blank and settings.cart_qty_limit_max_2 > 0 -%}
+          {%- unless first_limit -%},{%- endunless -%}
+          {{ settings.cart_qty_limit_product_2.id | json }}: {{ settings.cart_qty_limit_max_2 | json }}
+          {%- assign first_limit = false -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_3 != blank and settings.cart_qty_limit_max_3 > 0 -%}
+          {%- unless first_limit -%},{%- endunless -%}
+          {{ settings.cart_qty_limit_product_3.id | json }}: {{ settings.cart_qty_limit_max_3 | json }}
+          {%- assign first_limit = false -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_4 != blank and settings.cart_qty_limit_max_4 > 0 -%}
+          {%- unless first_limit -%},{%- endunless -%}
+          {{ settings.cart_qty_limit_product_4.id | json }}: {{ settings.cart_qty_limit_max_4 | json }}
+          {%- assign first_limit = false -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_5 != blank and settings.cart_qty_limit_max_5 > 0 -%}
+          {%- unless first_limit -%},{%- endunless -%}
+          {{ settings.cart_qty_limit_product_5.id | json }}: {{ settings.cart_qty_limit_max_5 | json }}
+          {%- assign first_limit = false -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_6 != blank and settings.cart_qty_limit_max_6 > 0 -%}
+          {%- unless first_limit -%},{%- endunless -%}
+          {{ settings.cart_qty_limit_product_6.id | json }}: {{ settings.cart_qty_limit_max_6 | json }}
+          {%- assign first_limit = false -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_7 != blank and settings.cart_qty_limit_max_7 > 0 -%}
+          {%- unless first_limit -%},{%- endunless -%}
+          {{ settings.cart_qty_limit_product_7.id | json }}: {{ settings.cart_qty_limit_max_7 | json }}
+          {%- assign first_limit = false -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_8 != blank and settings.cart_qty_limit_max_8 > 0 -%}
+          {%- unless first_limit -%},{%- endunless -%}
+          {{ settings.cart_qty_limit_product_8.id | json }}: {{ settings.cart_qty_limit_max_8 | json }}
+        {%- endif -%}
+      },
+      variantToProduct: {
+        {%- assign first_variant = true -%}
+        {%- if settings.cart_qty_limit_product_1 != blank and settings.cart_qty_limit_max_1 > 0 -%}
+          {%- for variant in settings.cart_qty_limit_product_1.variants -%}
+            {%- unless first_variant -%},{%- endunless -%}
+            {{ variant.id | json }}: {{ settings.cart_qty_limit_product_1.id | json }}
+            {%- assign first_variant = false -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_2 != blank and settings.cart_qty_limit_max_2 > 0 -%}
+          {%- for variant in settings.cart_qty_limit_product_2.variants -%}
+            {%- unless first_variant -%},{%- endunless -%}
+            {{ variant.id | json }}: {{ settings.cart_qty_limit_product_2.id | json }}
+            {%- assign first_variant = false -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_3 != blank and settings.cart_qty_limit_max_3 > 0 -%}
+          {%- for variant in settings.cart_qty_limit_product_3.variants -%}
+            {%- unless first_variant -%},{%- endunless -%}
+            {{ variant.id | json }}: {{ settings.cart_qty_limit_product_3.id | json }}
+            {%- assign first_variant = false -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_4 != blank and settings.cart_qty_limit_max_4 > 0 -%}
+          {%- for variant in settings.cart_qty_limit_product_4.variants -%}
+            {%- unless first_variant -%},{%- endunless -%}
+            {{ variant.id | json }}: {{ settings.cart_qty_limit_product_4.id | json }}
+            {%- assign first_variant = false -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_5 != blank and settings.cart_qty_limit_max_5 > 0 -%}
+          {%- for variant in settings.cart_qty_limit_product_5.variants -%}
+            {%- unless first_variant -%},{%- endunless -%}
+            {{ variant.id | json }}: {{ settings.cart_qty_limit_product_5.id | json }}
+            {%- assign first_variant = false -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_6 != blank and settings.cart_qty_limit_max_6 > 0 -%}
+          {%- for variant in settings.cart_qty_limit_product_6.variants -%}
+            {%- unless first_variant -%},{%- endunless -%}
+            {{ variant.id | json }}: {{ settings.cart_qty_limit_product_6.id | json }}
+            {%- assign first_variant = false -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_7 != blank and settings.cart_qty_limit_max_7 > 0 -%}
+          {%- for variant in settings.cart_qty_limit_product_7.variants -%}
+            {%- unless first_variant -%},{%- endunless -%}
+            {{ variant.id | json }}: {{ settings.cart_qty_limit_product_7.id | json }}
+            {%- assign first_variant = false -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if settings.cart_qty_limit_product_8 != blank and settings.cart_qty_limit_max_8 > 0 -%}
+          {%- for variant in settings.cart_qty_limit_product_8.variants -%}
+            {%- unless first_variant -%},{%- endunless -%}
+            {{ variant.id | json }}: {{ settings.cart_qty_limit_product_8.id | json }}
+            {%- assign first_variant = false -%}
+          {%- endfor -%}
+        {%- endif -%}
+      }
+    };
+  </script>
+  <script src="{{ 'cart-quantity-limits.js' | asset_url }}" defer></script>
+{%- endif -%}
