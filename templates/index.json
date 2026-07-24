@@ -12,7 +12,7 @@
     "a8d45234-ff4c-4fb4-ab6d-16d71fbf1a5d": {
       "type": "slideshow-hs",
       "blocks": {
-        "slide_KtnNhF": {
+        "slide_FKGEeW": {
           "type": "Slide",
           "settings": {
             "image_slide": "shopify://shop_images/bannedr_projeto21D_desk.png",
@@ -23,11 +23,33 @@
             "url": "shopify://products/projeto-21-dias"
           }
         },
+        "slide_KtnNhF": {
+          "type": "Slide",
+          "settings": {
+            "image_slide": "shopify://shop_images/banner_mel_deskV2.png",
+            "image_slide_mb": "shopify://shop_images/banner_mel_mobV2.png",
+            "title": "",
+            "rotative": "",
+            "subtitle": "",
+            "url": "shopify://products/mel-holy-330g"
+          }
+        },
         "slide_TEeVm3": {
           "type": "Slide",
           "settings": {
-            "image_slide": "shopify://shop_images/IMG_2168.png",
-            "image_slide_mb": "shopify://shop_images/IMG_2169.png",
+            "image_slide": "shopify://shop_images/BANNER_DESKTOP.png",
+            "image_slide_mb": "shopify://shop_images/BANNER_MOBILE.png",
+            "title": "",
+            "rotative": "",
+            "subtitle": "",
+            "url": "shopify://collections/all"
+          }
+        },
+        "slide_Gj7hQm": {
+          "type": "Slide",
+          "settings": {
+            "image_slide": "shopify://shop_images/03-07-26_HOLYFOODS_banner-operacao-inverno-1920x740.png",
+            "image_slide_mb": "shopify://shop_images/03-07-26_HOLYFOODS_banner-operacao-inverno-1080x1410.png",
             "title": "",
             "rotative": "",
             "subtitle": "",
@@ -60,8 +82,10 @@
         }
       },
       "block_order": [
+        "slide_FKGEeW",
         "slide_KtnNhF",
         "slide_TEeVm3",
+        "slide_Gj7hQm",
         "slide_CMPdFn",
         "slide_XmYgLX"
       ],
@@ -321,6 +345,20 @@
             "porcoes": "21"
           }
         },
+        "product_LPKP4A": {
+          "type": "product",
+          "settings": {
+            "product": "kit-seca-barriga-30-dias-2",
+            "show_product_image": true,
+            "image": "shopify://shop_images/Kit_Emagrecimento_15_dias_DEZ24.png",
+            "show_product_title": true,
+            "title": "Kit Emagrecimento – Programa 30 Dias",
+            "show_product_description": false,
+            "description": "<p>O segredo pra barriga seca e sem inchaço tá aqui.</p>",
+            "color": "",
+            "porcoes": "32"
+          }
+        },
         "product_HqyDQx": {
           "type": "product",
           "settings": {
@@ -332,20 +370,6 @@
             "description": "",
             "color": "",
             "porcoes": "17"
-          }
-        },
-        "product_LPKP4A": {
-          "type": "product",
-          "settings": {
-            "product": "kit-emagrecimento-holysoup-programa-15-dias",
-            "show_product_image": true,
-            "image": "shopify://shop_images/Kit_Emagrecimento_15_dias_DEZ24.png",
-            "show_product_title": true,
-            "title": "Kit Emagrecimento HolySoup – Programa 15 Dias",
-            "show_product_description": false,
-            "description": "<p>O segredo pra barriga seca e sem inchaço tá aqui.</p>",
-            "color": "",
-            "porcoes": "40"
           }
         },
         "product_AXct3t": {
@@ -475,8 +499,8 @@
       },
       "block_order": [
         "product_dDAqbf",
-        "product_HqyDQx",
         "product_LPKP4A",
+        "product_HqyDQx",
         "product_AXct3t",
         "product_JTyrD8",
         "product_wXwV9V",
@@ -535,6 +559,7 @@
         },
         "product_k8RUaE": {
           "type": "product",
+          "disabled": true,
           "settings": {
             "product": "pack-sopa-da-vovo",
             "show_product_image": false,
@@ -554,7 +579,6 @@
         },
         "product_9gwLXt": {
           "type": "product",
-          "disabled": true,
           "settings": {
             "product": "pack-sopa-low-carb",
             "show_product_image": false,
@@ -689,6 +713,7 @@
         },
         "product_EPtgnE": {
           "type": "product",
+          "disabled": true,
           "settings": {
             "product": "sopa-low-carb",
             "show_product_image": false,
@@ -735,7 +760,6 @@
         },
         "product_exwUTQ": {
           "type": "product",
-          "disabled": true,
           "settings": {
             "product": "super-aveia-morango-e-cranberry",
             "show_product_image": false,
@@ -758,7 +782,6 @@
         },
         "product_HCGeAn": {
           "type": "product",
-          "disabled": true,
           "settings": {
             "product": "feijao-carioca",
             "show_product_image": false,
@@ -781,7 +804,6 @@
         },
         "product_JjdQEq": {
           "type": "product",
-          "disabled": true,
           "settings": {
             "product": "feijao-preto",
             "show_product_image": false,
@@ -1211,7 +1233,84 @@
     "product_carousel_v2_QRLFMq": {
       "type": "product-carousel-v2",
       "blocks": {
-        "product_7dK6Lt": {
+        "product_tgj6Un": {
+          "type": "product",
+          "settings": {
+            "product": "mel-holy-330g",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_home_mel.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Mel silvestre 100% puro, néctar da flor de laranjeira",
+            "show_product_description": false,
+            "description": "<p>Nutrientes naturais, enzimas vivas e antioxidantes. </p><p><strong>Zero açúcar, zero xarope e zero conservantes.</strong></p><p>Do café ao pós-treino: adoça com propósito, vira combustível pra performance, realça receitas e reforça a imunidade. </p><p>Versátil de verdade e fofo de quebra na embalagem de urso, você vai querer abraçar antes de abrir. Cristaliza com o tempo? Sim, porque é puro mesmo. </p><p> </p>",
+            "color": "#ffe6e7",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela-nutricional-mel.png"
+          }
+        },
+        "product_HiNTGB": {
+          "type": "product",
+          "settings": {
+            "product": "pack-sopa-low-carb",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11207.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Descomplica qualquer dieta",
+            "show_product_description": false,
+            "description": "<p>Funcional, nutritiva e no sachê, a Sopa Low Carb em sachê chegou pra descomplicar a dieta, entregando mais praticidade, saciedade duradoura e muuuito sabor.<br/></p><p><strong>Ingredientes: </strong>Lentilha vermelha, tomate, quinoa branca, quinoa vermelha, quinoa preta, páprica defumada, cebola, pimentão vermelho, salsa, alho poró e orégano.</p>",
+            "color": "#f8e9e4",
+            "card_color": "",
+            "porcoes": "10",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_a8Atgh": {
+          "type": "product",
+          "settings": {
+            "product": "pack-sopa-da-vovo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11205.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Comfort food de verdade",
+            "show_product_description": false,
+            "description": "<p>Mesmo na versão em sachê, a Sopa da Vovó ainda traz o aconchego da comida de quem amamos, com todo sabor, leveza e praticidade que sua rotina precisa.</p><p><strong>Ingredientes:</strong> Macarrão sem glúten ( farinha de arroz, corantes naturais cúrcuma e urucum e emulsificante INS 471), flocos de batata, quinoa branca, flocos de arroz, cenoura, cebola, tomate, salsa, mandioquinha, alho, pimentão vermelho, cúrcuma, páprica defumada, alho poró e pimenta preta.</p>",
+            "color": "#feebde",
+            "card_color": "",
+            "porcoes": "10",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_RLrKLx": {
+          "type": "product",
+          "settings": {
+            "product": "pack-canja-da-mamae",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11206.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Baixa em calorias, alta em sabor",
+            "show_product_description": false,
+            "description": "<p>Imagine chegar em casa após um dia cansativo, preparar uma sopa no micro-ondas em poucos minutos e jantar comfort food que abraça e cuida igual sua mãe.  <br/><br/><strong>Ingredientes: </strong>Arroz branco, quinoa, proteína de ervilha, cenoura, frango desidratado e desfiado, flocos de batata, cebola, farinha de mandioca, salsa, curcuma, tomate, alho e alho poró.</p>",
+            "color": "#ffebeb",
+            "card_color": "",
+            "porcoes": "10",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": ""
+          }
+        },
+        "product_9yYa8R": {
           "type": "product",
           "settings": {
             "product": "mac-caipira",
@@ -1250,73 +1349,16 @@
             "stamp_text_3": "",
             "modal_image": "shopify://shop_images/tabela_bolonha.png"
           }
-        },
-        "product_HiNTGB": {
-          "type": "product",
-          "settings": {
-            "product": "pack-sopa-low-carb",
-            "show_product_image": false,
-            "image": "shopify://shop_images/Grupo_11207.png",
-            "show_product_title": false,
-            "title": "",
-            "subtitle": "Descomplica qualquer dieta",
-            "show_product_description": false,
-            "description": "<p>Funcional, nutritiva e no sachê, a Sopa Low Carb em sachê chegou pra descomplicar a dieta, entregando mais praticidade, saciedade duradoura e muuuito sabor.<br/></p><p><strong>Ingredientes: </strong>Lentilha vermelha, tomate, quinoa branca, quinoa vermelha, quinoa preta, páprica defumada, cebola, pimentão vermelho, salsa, alho poró e orégano.</p>",
-            "color": "#f8e9e4",
-            "card_color": "",
-            "porcoes": "10",
-            "stamp_text_1": "",
-            "stamp_text_2": "",
-            "stamp_text_3": ""
-          }
-        },
-        "product_RLrKLx": {
-          "type": "product",
-          "settings": {
-            "product": "pack-canja-da-mamae",
-            "show_product_image": false,
-            "image": "shopify://shop_images/Grupo_11206.png",
-            "show_product_title": false,
-            "title": "",
-            "subtitle": "Baixa em calorias, alta em sabor",
-            "show_product_description": false,
-            "description": "<p>Imagine chegar em casa após um dia cansativo, preparar uma sopa no micro-ondas em poucos minutos e jantar comfort food que abraça e cuida igual sua mãe.  <br/><br/><strong>Ingredientes: </strong>Arroz branco, quinoa, proteína de ervilha, cenoura, frango desidratado e desfiado, flocos de batata, cebola, farinha de mandioca, salsa, curcuma, tomate, alho e alho poró.</p>",
-            "color": "#ffebeb",
-            "card_color": "",
-            "porcoes": "10",
-            "stamp_text_1": "",
-            "stamp_text_2": "",
-            "stamp_text_3": ""
-          }
-        },
-        "product_a8Atgh": {
-          "type": "product",
-          "settings": {
-            "product": "pack-sopa-da-vovo",
-            "show_product_image": false,
-            "image": "shopify://shop_images/Grupo_11205.png",
-            "show_product_title": false,
-            "title": "",
-            "subtitle": "Comfort food de verdade",
-            "show_product_description": false,
-            "description": "<p>Mesmo na versão em sachê, a Sopa da Vovó ainda traz o aconchego da comida de quem amamos, com todo sabor, leveza e praticidade que sua rotina precisa.</p><p><strong>Ingredientes:</strong> Macarrão sem glúten ( farinha de arroz, corantes naturais cúrcuma e urucum e emulsificante INS 471), flocos de batata, quinoa branca, flocos de arroz, cenoura, cebola, tomate, salsa, mandioquinha, alho, pimentão vermelho, cúrcuma, páprica defumada, alho poró e pimenta preta.</p>",
-            "color": "#feebde",
-            "card_color": "",
-            "porcoes": "10",
-            "stamp_text_1": "",
-            "stamp_text_2": "",
-            "stamp_text_3": ""
-          }
         }
       },
       "block_order": [
-        "product_7dK6Lt",
-        "product_9BAkxt",
+        "product_tgj6Un",
         "product_HiNTGB",
+        "product_a8Atgh",
         "product_RLrKLx",
-        "product_a8Atgh"
+        "product_9yYa8R",
+        "product_9BAkxt"
       ],
-      "disabled": true,
       "custom_css": [
         ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
         "h3 {text-align: center;}"
@@ -1558,6 +1600,30 @@
             "modal_image": "shopify://shop_images/Grupo_11233_e668991e-4b5f-4bff-8b00-13a0c8193bd7.png"
           }
         },
+        "product_PnLzhb": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "mel-holy-330g",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11235.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "O mais proteico, e favorito das nutris.",
+            "show_product_description": false,
+            "description": "<p>Com incríveis 20 g de proteína de frango suculento, fonte de vitaminas e minerais, fica pronto em 15 minutos e é a escolha número um dos nutricionistas. Praticidade e sabor nos seus dias corridos!<br/><br/><strong>Ingredientes: </strong>Leite, farinha de feijão branco, queijo provolone, frango desidratado, alho, extrato de levedura, cebola, salsa, cebolinha, noz moscada, pimenta branca, vitaminas [ácido ascóbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)]</p>",
+            "color": "#f6ebff",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/Grupo_11242_2c90d4ff-e204-4feb-8434-f98fb4b73d9c.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_11241_da43d555-d3a8-4ec4-a10d-fba05da16d5b.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/Grupo_11240_5f0ed623-c822-4354-a58d-e64c92eee739.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/Grupo_11233_e668991e-4b5f-4bff-8b00-13a0c8193bd7.png"
+          }
+        },
         "product_nxxJYB": {
           "type": "product",
           "settings": {
@@ -1647,6 +1713,7 @@
       },
       "block_order": [
         "product_BaKxrW",
+        "product_PnLzhb",
         "product_nxxJYB",
         "product_jnD8rm",
         "product_PPJ37K",
@@ -2050,7 +2117,6 @@
         "product_8ANtCT",
         "product_8PR4Hi"
       ],
-      "disabled": true,
       "custom_css": [
         ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
         "h3 {text-align: center;}"

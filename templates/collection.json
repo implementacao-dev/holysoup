@@ -237,6 +237,14 @@
         "promotion_bDLn4f": {
           "type": "promotion",
           "settings": {
+            "banner": "shopify://shop_images/banner_mel_deskV2.png",
+            "badge": "",
+            "url": "shopify://products/mel-holy-330g"
+          }
+        },
+        "promotion_UU6Nxb": {
+          "type": "promotion",
+          "settings": {
             "banner": "shopify://shop_images/bannedr_projeto21D_desk.png",
             "badge": "",
             "url": "shopify://products/projeto-21-dias"
@@ -245,9 +253,9 @@
         "promotion_CPzcUq": {
           "type": "promotion",
           "settings": {
-            "banner": "shopify://shop_images/IMG_2168.png",
+            "banner": "shopify://shop_images/BANNER_DESKTOP.png",
             "badge": "",
-            "url": ""
+            "url": "shopify://collections/todos-os-produtos"
           }
         },
         "promotion_jw9c3x": {
@@ -291,6 +299,7 @@
         "promotion_HKHczx",
         "promotion_y4Kfbw",
         "promotion_bDLn4f",
+        "promotion_UU6Nxb",
         "promotion_CPzcUq",
         "promotion_jw9c3x",
         "promotion_9GjLXb",

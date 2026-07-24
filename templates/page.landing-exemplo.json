@@ -35,19 +35,18 @@
         "popup_delay": "2",
         "overlay_color": "#000000",
         "overlay_opacity": 60,
-        "loop_duration_hours": "3",
         "show_frequency": "session",
+        "loop_duration_hours": "3",
         "timer_position": "top",
+        "timer_bg_color": "#f45218",
         "show_close_button": true,
-        "border_radius": 12,
-        "timer_bg_color": "#f45218"
+        "border_radius": 12
       }
     },
     "header_landing": {
       "type": "header-landing",
       "settings": {
         "bg_color": "#7BCA0C",
-        "logo_clickable": false,
         "show_cart": false,
         "cart_color": "#76dc9f"
       }

@@ -28,25 +28,47 @@
     },
     "promo_popup": {
       "type": "promo-popup-landing",
-      "disabled": true,
       "settings": {
         "enable_section": true,
+        "banner_image": "shopify://shop_images/popup_lp_21_dias.png",
+        "image_alt": "",
+        "image_link": "",
+        "open_in_new_tab": false,
         "popup_delay": "2",
         "overlay_color": "#000000",
         "overlay_opacity": 60,
+        "show_frequency": "day",
         "loop_duration_hours": "3",
-        "show_frequency": "session",
         "timer_position": "top",
+        "show_timer_title": true,
+        "timer_title": "ENCERRA\nEM BREVE",
+        "show_days": false,
+        "show_labels": true,
+        "label_days": "dias",
+        "label_hours": "hrs",
+        "label_minutes": "min",
+        "label_seconds": "seg",
+        "timer_bar_alignment": "center",
+        "timer_title_font_size": "22",
+        "timer_title_font_weight": "400",
+        "timer_title_line_height": "0.85",
+        "timer_number_font_size": "26",
+        "timer_number_font_weight": "600",
+        "timer_label_font_size": "10",
+        "timer_label_font_weight": "400",
+        "timer_bg_color": "#f45218",
+        "timer_number_color": "#ffffff",
+        "timer_label_color": "#ffffff",
+        "timer_title_color": "#ffffff",
+        "close_button_color": "#ffffff",
         "show_close_button": true,
-        "border_radius": 12,
-        "timer_bg_color": "#f45218"
+        "border_radius": 20
       }
     },
     "header_landing": {
       "type": "header-landing",
       "settings": {
         "bg_color": "#35a462",
-        "logo_clickable": false,
         "show_cart": false,
         "cart_color": "#76dc9f"
       }
@@ -116,13 +138,13 @@
       "settings": {
         "social_proof": "4.8 de 50.000+ avaliações",
         "star_color": "#ff6523",
-        "social_proof_2": "<p>8+ milhões de sopas vendidas · 650.000+ clientes</p>",
-        "headline": "Emagreça trocando só o jantar.",
+        "social_proof_2": "<p>O sucesso do TikTok chegou no site</p>",
+        "headline": "EMAGREÇA SEM SOFRER!",
         "title_color": "#35a462",
-        "subheadline": "Sem sofrimento. Sem efeito sanfona. Em 21 dias.",
+        "subheadline": "Troque só o jantar por 21 dias, e deixe o hábito se formar sozinho.",
         "subtitle_color": "#ff6523",
-        "description": "<p>A ciência comportamental prova: <strong>21 dias é o tempo mínimo</strong> que seu cérebro precisa pra transformar uma escolha em hábito automático. <br/><br/>O Projeto 21 Dias foi desenhado exatamente pra esse período, sopas leves, práticas e saborosas que criam a rotina por você.</p>",
-        "benefits": "Garantia de Satisfação 30 dias\nZero Glúten\nBaixa Kcal\nRicas em fibras\n100% Natural\nPronta em 12 min",
+        "description": "<p>O problema <strong>nunca foi falta de força de vontade</strong>. Sempre foi falta de praticidade. </p>",
+        "benefits": "Zero Glúten\nBaixa Kcal\nRicas em fibras\n100% Natural\nPronta em 12 min",
         "tag_bg_color": "#ffe7d9",
         "tag_text_color": "#ff6523",
         "primary_button_text": "Garantir Meu Projeto Agora",
@@ -259,10 +281,10 @@
           "type": "kit_option",
           "settings": {
             "product": "projeto-21-dias-1-pack-lp",
-            "yampi_url": "https://seguro.holyfoods.com.br/r/7JTEU1SC31",
+            "yampi_url": "https://seguro.holyfoods.com.br/b/MNO9UX8PCMS8",
             "name": "Projeto 21 Dias",
             "original_price": "126.00",
-            "current_price": "109",
+            "current_price": "109.62",
             "discount_badge": "13% off",
             "free_shipping_text": "",
             "quantity_price_text": "R$5.19 Por Jantar",
@@ -272,13 +294,13 @@
         "kit_option_YMXYNR": {
           "type": "kit_option",
           "settings": {
-            "product": "projeto-21-dias-2-packs",
-            "yampi_url": "https://seguro.holyfoods.com.br/r/T1HQMAUSTB",
+            "product": "projeto-21-dias-1-pack-lp",
+            "yampi_url": "https://seguro.holyfoods.com.br/b/MG6P3DI3OM8K",
             "name": "Projeto 42 Dias",
             "original_price": "252.00",
-            "current_price": "201.60",
+            "current_price": "201.61",
             "discount_badge": "20% off",
-            "free_shipping_text": "",
+            "free_shipping_text": "+ Brinde",
             "quantity_price_text": "R$4.80 Por Jantar",
             "quantity_yield_text": "Rende 42 Refeições"
           }
@@ -286,13 +308,13 @@
         "kit_option_jg8VhE": {
           "type": "kit_option",
           "settings": {
-            "product": "projeto-21-dias-3-packs",
-            "yampi_url": "https://seguro.holyfoods.com.br/r/EDZ7PQEV16",
+            "product": "projeto-21-dias-1-pack-lp",
+            "yampi_url": "https://seguro.holyfoods.com.br/b/6Y92GCBMACCG",
             "name": "Projeto 63 Dias",
             "original_price": "378.00",
-            "current_price": "264.60",
+            "current_price": "264.61",
             "discount_badge": "30% off",
-            "free_shipping_text": "",
+            "free_shipping_text": "+ Brinde",
             "quantity_price_text": "R$4.20 Por Jantar",
             "quantity_yield_text": "Rende 63 Refeições"
           }

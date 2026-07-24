@@ -1,5 +1,4 @@
 <script>
-(() => {
     const mapStyles=[
         {
             name: "streets",
@@ -31,13 +30,29 @@
     const bearing = Number(mapElement.dataset.bearing);
     const accessToken = (mapElement.dataset.mapboxAccessToken || '').trim();
     let boundingBox = mapElement.dataset.boundingBox;
-    let map;
 
     boundingBox = boundingBox.split(',').map(coordinate => Number(coordinate.trim()));
 
     if (boundingBox.length === 0 || boundingBox.some(coordinate => isNaN(coordinate)) || boundingBox == null || boundingBox === '') {
         boundingBox = [-171.791110603, 18.91619, -66.96466, 71.3577635769];
     }
+
+    if (!accessToken) {
+        console.warn('Mapbox access token is missing. Configure it in the Store Locator section settings.');
+        return;
+    }
+
+    mapboxgl.accessToken = accessToken;
+
+    const map = new mapboxgl.Map({
+        container: 'map', 
+        style: style.url,   
+        center: [-77.034084, 38.909671],
+        zoom: 13,       
+        scrollZoom: false,
+        pitch,
+        bearing
+    });
 
     const stores = {
         type: "FeatureCollection",
@@ -69,24 +84,6 @@
     stores.features.forEach((store, index) => {
         store.properties.id = `store_${index}`;
     })
-
-    if (!accessToken) {
-        console.warn('Store locator: missing Mapbox access token.');
-        buildStoreLocationList(stores);
-        return;
-    }
-
-    mapboxgl.accessToken = accessToken;
-
-    map = new mapboxgl.Map({
-        container: 'map', 
-        style: style.url,   
-        center: [-77.034084, 38.909671],
-        zoom: 13,       
-        scrollZoom: false,
-        pitch,
-        bearing
-    });
 
     map.on('style.load', () => {
         map.setFog({});
@@ -180,26 +177,25 @@
             listing.classList.add('item')
 
             const link = listing.appendChild(document.createElement('a'));
+            link.href = '#';
             link.classList.add('title');
             link.id = `link-${store.properties.id}`;
             link.innerHTML = `${store.properties.address}`;
 
-            if (map) {
-                link.href = '#';
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
 
-                    const currentFeature = stores.features.find(feature =>  link.id === `link-${feature.properties.id}`);
-                    flyToLocation(currentFeature);
-                    createPopup(currentFeature);
+                const currentFeature = stores.features.find(feature =>  link.id === `link-${feature.properties.id}`);
+                flyToLocation(currentFeature);
+                createPopup(currentFeature);
 
-                    const activeItem = document.querySelector('.page-find-a-store .item.active');
-                    if (activeItem) activeItem.classList.remove('active');
+                const activeItem = document.querySelector('.page-find-a-store .item.active');
+                if (activeItem) activeItem.classList.remove('active');
 
-                    link.parentNode.classList.add('active');
-                })
-            }
+                link.parentNode.classList.add('active');
+
+            })
 
             const details = listing.appendChild(document.createElement('div'));
             let html = `${store.properties.city}`
@@ -215,8 +211,6 @@
     }
 
     function flyToLocation(currentFeature) {
-        if (!map) return;
-
         map.flyTo({
             center: currentFeature.geometry.coordinates,
             zoom: 15,
@@ -224,8 +218,6 @@
     }
 
     function createPopup(currentFeature) {
-        if (!map) return;
-
         const existingPopups = document.getElementsByClassName('mapboxgl-popup');
 
         if (existingPopups[0]) existingPopups[0].remove();
@@ -274,5 +266,4 @@
             [sortedLons[1], sortedLats[1]]
         ];
     }   
-})();
 </script>
