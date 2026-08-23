@@ -139,12 +139,13 @@
       "blocks": {
         "9f9a1a80-3370-40db-9cd2-836840e2073b": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "show_image_parallax": false,
             "show_bg_overlay": false,
             "type": "full",
-            "image": "shopify://shop_images/banner_fixo_com_cupom_0938a1fb-0a61-4288-be31-00e7b5adf8c2.png",
-            "image_mobile": "shopify://shop_images/banner_fixo_com_cupom_0938a1fb-0a61-4288-be31-00e7b5adf8c2.png",
+            "image": "shopify://shop_images/17-07-26_HOLY_banner-site-super-vovo-1920x740-v5.png",
+            "image_mobile": "shopify://shop_images/17-07-26_HOLY_banner-site-super-vovo-1080x1410-v5.png",
             "bg_overlay": "#000000"
           }
         },

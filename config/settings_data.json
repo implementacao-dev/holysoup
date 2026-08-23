@@ -19,13 +19,13 @@
     "suggestions_tab_name_1": "Mais Vendidos",
     "suggestions_product_1": "kit-mais-vendidos-8un",
     "suggestions_tab_name_2": "Emagrecimento",
-    "suggestions_product_2": "kit-emagrecimento-holysoup-programa-15-dias",
+    "suggestions_product_2": "kit-seca-barriga-30-dias-2",
     "suggestions_tab_name_3": "Proteína",
     "suggestions_product_3": "kit-almoco-proteico-10un",
     "recommendations_title": "Compre junto",
     "activate_free_shipping": false,
     "minimum_free_shipping_value": "199",
-    "activate_free_gift": false,
+    "activate_free_gift": true,
     "icon_gift": "shopify://shop_images/gift.svg",
     "minimum_free_gift_value": "200",
     "icon": "shopify://shop_images/gift.svg",
@@ -40,6 +40,10 @@
     "text_label_03": "<p>Faltam [value] produtos  para um <strong>Brinde </strong></p>",
     "discount_un_3": 10,
     "highlighted_text_color": "#00b45a",
+    "cart_qty_limits_enable": false,
+    "cart_qty_limit_product_1": "sopa-da-vovo",
+    "cart_qty_limit_product_2": "sopa-da-vovo-exclusivo",
+    "cart_qty_limit_product_4": "sopa-da-vovo-vip",
     "aomai_ativar_progressivo": true,
     "aomai_tipo_progresso": "quantidade",
     "aomai_excluded_products": [
@@ -76,7 +80,8 @@
       "kit-sopa-lovers-9un-vip",
       "3-macs-de-graca",
       "pao-de-batata-sem-gluten-sem-leite-sem-lactose-paozinho-belive",
-      "projeto-21-dias"
+      "projeto-21-dias",
+      "docapp-free-gift-free-bowl-brinde"
     ],
     "aomaiProgress01": "4",
     "aomaiProgress1Text": "4 itens",
@@ -887,21 +892,21 @@
           "logo_color": "#232323",
           "brand_logo_width": 30,
           "banner": "shopify://shop_images/banner_desk_padrao_nova_foto.png",
-          "banner_color": "#FFFFFF",
+          "banner_color": "#ffffff",
           "show_newsletter": false,
           "title": "Our store will be opening soon",
           "title_font_size": 24,
           "title_font_size_mb": 24,
-          "title_color": "#FFFFFF",
+          "title_color": "#ffffff",
           "subtitle": "",
           "subtitle_font_size": 12,
-          "subtitle_color": "#FFFFFF",
+          "subtitle_color": "#ffffff",
           "input_color": "#323232",
           "terms_text_color": "#848484",
           "terms_link_color": "#3c3c3c",
           "btn": "1",
           "show_social_media": true,
-          "social_media_color": "#FFFFFF",
+          "social_media_color": "#ffffff",
           "show_copyright": true,
           "copyright_content": "",
           "copyright_color": "#7e7e7e"
@@ -1865,17 +1870,17 @@
         "disabled": false,
         "settings": {}
       },
-      "12657775114333427046": {
-        "type": "shopify://apps/essential-countdown-timer/blocks/app_embed/722378e8-5a70-4eae-aa89-9e44e8e9f6de",
-        "disabled": true,
-        "settings": {}
-      },
       "10605408327587305396": {
         "type": "shopify://apps/eg-auto-add-to-cart/blocks/app-embed/0f7d4f74-1e89-4820-aec4-6564d7e535d2",
         "disabled": false,
         "settings": {
           "version": "v3"
         }
+      },
+      "12657775114333427046": {
+        "type": "shopify://apps/essential-countdown-timer/blocks/app_embed/722378e8-5a70-4eae-aa89-9e44e8e9f6de",
+        "disabled": false,
+        "settings": {}
       }
     }
   }

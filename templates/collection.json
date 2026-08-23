@@ -216,6 +216,15 @@
     "promos_home_QkfzLE": {
       "type": "promos-home",
       "blocks": {
+        "promotion_36kVM7": {
+          "type": "promotion",
+          "disabled": true,
+          "settings": {
+            "banner": "shopify://shop_images/17-07-26_HOLY_banner-site-super-vovo-1080x500-v5.png",
+            "badge": "",
+            "url": ""
+          }
+        },
         "promotion_HKHczx": {
           "type": "promotion",
           "disabled": true,
@@ -296,6 +305,7 @@
         }
       },
       "block_order": [
+        "promotion_36kVM7",
         "promotion_HKHczx",
         "promotion_y4Kfbw",
         "promotion_bDLn4f",

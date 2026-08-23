@@ -726,7 +726,7 @@ $(document).ready(function () {
 
   $("[open-whatsapp]").click(function (e) {
     e.preventDefault();
-    window.open("http://wa.me/551140038025");
+    window.open("http://wa.me/551152835874");
   });
 
   $(".buy-btn-card, [add-kit-sopa]").click(function (e) {

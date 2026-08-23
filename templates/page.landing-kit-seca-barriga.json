@@ -31,13 +31,36 @@
       "disabled": true,
       "settings": {
         "enable_section": true,
+        "image_alt": "",
+        "image_link": "",
+        "open_in_new_tab": false,
         "popup_delay": "2",
         "overlay_color": "#000000",
         "overlay_opacity": 60,
         "show_frequency": "session",
         "loop_duration_hours": "3",
         "timer_position": "top",
+        "show_timer_title": true,
+        "timer_title": "ENCERRA\nEM BREVE",
+        "show_days": true,
+        "show_labels": true,
+        "label_days": "dias",
+        "label_hours": "hrs",
+        "label_minutes": "min",
+        "label_seconds": "seg",
+        "timer_bar_alignment": "space-evenly",
+        "timer_title_font_size": "14",
+        "timer_title_font_weight": "700",
+        "timer_title_line_height": "0.85",
+        "timer_number_font_size": "24",
+        "timer_number_font_weight": "700",
+        "timer_label_font_size": "10",
+        "timer_label_font_weight": "400",
         "timer_bg_color": "#f45218",
+        "timer_number_color": "#ffffff",
+        "timer_label_color": "#ffffff",
+        "timer_title_color": "#ffffff",
+        "close_button_color": "#ffffff",
         "show_close_button": true,
         "border_radius": 12
       }
@@ -56,7 +79,7 @@
         "image_XkNbdJ": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/imagem_principal_d68d68d1-2731-4409-a0da-93a3fd428aa7.png"
+            "image": "shopify://shop_images/imagem_principal_new.png"
           }
         },
         "image_Vtg4JF": {
@@ -74,7 +97,7 @@
         "image_j4dYjm": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/crme_verde_beneficios.png"
+            "image": "shopify://shop_images/KIT_PROMOCIONAL_-_SOPA_DA_VOVO_-_02_2bfc6e48-c3c5-4d6d-a037-975defe830b2.png"
           }
         },
         "image_9y34Te": {
@@ -123,20 +146,6 @@
     "product_flavors": {
       "type": "product-flavors-landing",
       "blocks": {
-        "block_3": {
-          "type": "product_flavor",
-          "settings": {
-            "title": "Creme Verde Fit",
-            "subtitle": "1 Pacote Rende 4 porções (1 Litro)",
-            "badge_1_text": "18 Kcal",
-            "badge_2_text": "12% Fibras",
-            "benefits": "Menor caloria: ideal para jantar\nErvilha controla glicemia\nZero sódio elimina inchaço",
-            "image": "shopify://shop_images/creme_verde_fit_foto_prato_1.png",
-            "product": "creme-verde-fit",
-            "button_text": "Ver Tabela Nutricional",
-            "button_url": ""
-          }
-        },
         "block_1": {
           "type": "product_flavor",
           "settings": {
@@ -147,6 +156,20 @@
             "benefits": "Macarrão sem glúten mantém saciedade\nCúrcuma + gengibre aceleram metabolismo\nQuinoa fornece proteína completa",
             "image": "shopify://shop_images/sopa_detox_foto_prato_1.png",
             "product": "sopa-detox",
+            "button_text": "Ver Tabela Nutricional",
+            "button_url": ""
+          }
+        },
+        "block_3": {
+          "type": "product_flavor",
+          "settings": {
+            "title": "Sopa da Vovó",
+            "subtitle": "1 Pacote Rende 4 porções (1 Litro)",
+            "badge_1_text": "36 Kcal",
+            "badge_2_text": "6% Fibras",
+            "benefits": "Comfort food: a mais saborosa\nRegula o intestino\nZero sódio elimina inchaço",
+            "image": "shopify://shop_images/vovo_prato_crop_9a876d8f-0b1f-481b-af64-2ad49c7a6363.png",
+            "product": "sopa-da-vovo",
             "button_text": "Ver Tabela Nutricional",
             "button_url": ""
           }
@@ -181,8 +204,8 @@
         }
       },
       "block_order": [
-        "block_3",
         "block_1",
+        "block_3",
         "block_4",
         "block_2"
       ],
@@ -219,29 +242,43 @@
         "kit_option_1": {
           "type": "kit_option",
           "settings": {
-            "product": "kit-seca-barriga-15-dias-lp",
-            "yampi_url": "https://seguro.holyfoods.com.br/r/JPWMMH12F7",
-            "name": "Para 01 Pessoa (1 KIT)",
-            "original_price": "199.00",
-            "current_price": "149.25",
-            "discount_badge": "25% off",
+            "product": "kit-seca-barriga-30-dias-2",
+            "yampi_url": "https://seguro.holyfoods.com.br/r/49V6WNFE4K",
+            "name": "Para 01 Mês (1 KIT)",
+            "original_price": "159.20",
+            "current_price": "143.28",
+            "discount_badge": "10% off",
             "free_shipping_text": "",
-            "quantity_price_text": "R$3.73 Por Refeição",
-            "quantity_yield_text": "Rende 40 Refeições"
+            "quantity_price_text": "R$4.48 Por Refeição",
+            "quantity_yield_text": "Rende 32 Refeições"
           }
         },
         "kit_option_YMXYNR": {
           "type": "kit_option",
           "settings": {
-            "product": "kit-seca-barriga-30-dias-lp",
-            "yampi_url": "https://seguro.holyfoods.com.br/r/OF50YAJGVW",
-            "name": "Para 02 Pessoas (2 KITS)",
-            "original_price": "398.00",
-            "current_price": "298.50",
-            "discount_badge": "25% off",
+            "product": "kit-seca-barriga-60-dias",
+            "yampi_url": "https://seguro.holyfoods.com.br/r/DHIHEB2G2D",
+            "name": "Para 02 Meses (2 KITS)",
+            "original_price": "318.00",
+            "current_price": "254.72",
+            "discount_badge": "20% off",
+            "free_shipping_text": "",
+            "quantity_price_text": "R$3.98 Por Refeição",
+            "quantity_yield_text": "Rende 64 Refeições"
+          }
+        },
+        "kit_option_dF9eFJ": {
+          "type": "kit_option",
+          "settings": {
+            "product": "kit-seca-barriga-90-dias",
+            "yampi_url": "https://seguro.holyfoods.com.br/r/M684K29U4W",
+            "name": "Para 03 Meses (2 KITS)",
+            "original_price": "477.60",
+            "current_price": "334.32",
+            "discount_badge": "30% off",
             "free_shipping_text": "+ Frete Grátis",
-            "quantity_price_text": "R$3.73 Por Refeição",
-            "quantity_yield_text": "Rende 80 Refeições"
+            "quantity_price_text": "R$3.48 Por Refeição",
+            "quantity_yield_text": "Rende 96 Refeições"
           }
         },
         "faq_1": {
@@ -297,6 +334,7 @@
       "block_order": [
         "kit_option_1",
         "kit_option_YMXYNR",
+        "kit_option_dF9eFJ",
         "faq_1",
         "faq_2",
         "faq_3",
@@ -546,7 +584,7 @@
         "title_color": "#005234",
         "subtitle": "<p>Nada de milagres ou mentiras.<br/>Apenas nutrição de verdade.</p>",
         "table_image": "shopify://shop_images/tabela.png",
-        "product_image": "shopify://shop_images/kit_secabarriga.png",
+        "product_image": "shopify://shop_images/imagem_tabela_new.png",
         "cta_text": "Garantir Meu Kit Agora",
         "cta_url": "",
         "button_bg_color": "#7bca0c",

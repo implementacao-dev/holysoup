@@ -29,7 +29,6 @@
 
     assign bounding_box = section.settings.bounding_box
     assign map_style = section.settings.map_style
-    assign mapbox_access_token = section.settings.mapbox_access_token
     assign enable_custom_marker = section.settings.enable_custom_marker
     assign custom_marker_image = section.settings.custom_marker_image
     assign marker_width = section.settings.marker_width | append: 'px'
@@ -95,7 +94,6 @@
                                 data-pitch="{{ map_pitch }}" 
                                 data-bearing="{{ map_bearing }}"
                                 data-bounding-box="{{ bounding_box }}"
-                                data-mapbox-access-token="{{ mapbox_access_token | escape }}"
                             ></div>
                         </div>  
                     </div>
@@ -325,12 +323,6 @@
                         "label": "t:sections.store_locator.settings.option__5"
                     }
                 ]
-            },
-            {
-                "type": "text",
-                "id": "mapbox_access_token",
-                "label": "Mapbox access token",
-                "info": "Optional. Configure this in the store when the map is enabled."
             },
             {
                 "type": "range",
