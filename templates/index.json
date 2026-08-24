@@ -12,8 +12,20 @@
     "a8d45234-ff4c-4fb4-ab6d-16d71fbf1a5d": {
       "type": "slideshow-hs",
       "blocks": {
+        "slide_BPeF4h": {
+          "type": "Slide",
+          "settings": {
+            "image_slide": "shopify://shop_images/18-08-26_HOLYFOODS_banner-semana-cliente-1920x740.png",
+            "image_slide_mb": "shopify://shop_images/18-08-26_HOLYFOODS_banner-semana-cliente-1080x1410.png",
+            "title": "",
+            "rotative": "",
+            "subtitle": "",
+            "url": ""
+          }
+        },
         "slide_FKGEeW": {
           "type": "Slide",
+          "disabled": true,
           "settings": {
             "image_slide": "shopify://shop_images/bannedr_projeto21D_desk.png",
             "image_slide_mb": "shopify://shop_images/bannedr_projeto21D_mob.png",
@@ -25,6 +37,7 @@
         },
         "slide_DDYjzj": {
           "type": "Slide",
+          "disabled": true,
           "settings": {
             "image_slide": "shopify://shop_images/BANNER_DESKTOP_feijao_03-08.png",
             "image_slide_mb": "shopify://shop_images/BANNER_MOBILE_feijao_03-08.png",
@@ -36,6 +49,7 @@
         },
         "slide_Gj7hQm": {
           "type": "Slide",
+          "disabled": true,
           "settings": {
             "image_slide": "shopify://shop_images/03-07-26_HOLYFOODS_banner-operacao-inverno-1920x740.png",
             "image_slide_mb": "shopify://shop_images/03-07-26_HOLYFOODS_banner-operacao-inverno-1080x1410.png",
@@ -47,6 +61,7 @@
         },
         "slide_KtnNhF": {
           "type": "Slide",
+          "disabled": true,
           "settings": {
             "image_slide": "shopify://shop_images/banner_mel_deskV2.png",
             "image_slide_mb": "shopify://shop_images/banner_mel_mobV2.png",
@@ -58,6 +73,7 @@
         },
         "slide_TEeVm3": {
           "type": "Slide",
+          "disabled": true,
           "settings": {
             "image_slide": "shopify://shop_images/BANNER_DESKTOP.png",
             "image_slide_mb": "shopify://shop_images/BANNER_MOBILE.png",
@@ -105,6 +121,7 @@
         }
       },
       "block_order": [
+        "slide_BPeF4h",
         "slide_FKGEeW",
         "slide_DDYjzj",
         "slide_Gj7hQm",
@@ -211,82 +228,6 @@
         "color-borda-inferior": "#ffffff"
       }
     },
-    "swiper_bulk_purchase_g3AxMP": {
-      "type": "swiper-bulk-purchase",
-      "blocks": {
-        "slide_4A8aMc": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/card_bronze_2x_b833f478-30ad-4e39-997b-34fab79e1bda.png"
-          }
-        },
-        "slide_gQT44a": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/card_prata_2x_43ade1ac-2b2d-4037-9331-0eb5c651b144.png"
-          }
-        },
-        "slide_afXVDQ": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/card_ouro_2x_41cf74de-fad4-4248-be24-1867d2dd169b.png"
-          }
-        },
-        "slide_Gpr3pj": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/card_diamante_2x_e7802200-5636-4b5f-afc1-c77fa4d6efcc.png"
-          }
-        }
-      },
-      "block_order": [
-        "slide_4A8aMc",
-        "slide_gQT44a",
-        "slide_afXVDQ",
-        "slide_Gpr3pj"
-      ],
-      "disabled": true,
-      "custom_css": [
-        ".product-carousel-container {padding-top: 60px;}",
-        ".product-carousel-container .font-home {margin-right: 40px;}",
-        "@media (min-width: 768px) {.product-carousel-container .font-home {margin-right: 0; }}"
-      ],
-      "name": "Popup Progressivo",
-      "settings": {
-        "rich_title": "<p>QUANTO VOCÊ QUER <strong>ECONOMIZAR HOJE?</strong></p>",
-        "collection_1": "sopas-popup",
-        "collection_2": "macarroes-popup",
-        "collection_3": "risotos-popup",
-        "collection_4": "aveias-popup",
-        "collection_5": "",
-        "tier_0_color": "#afaa7a",
-        "tier_1_qty": 4,
-        "tier_1_pct": 10,
-        "tier_1_gift_text": "",
-        "tier_1_color": "rgba(0,0,0,0)",
-        "tier_1_bar_image": "shopify://shop_images/nivel_barra_bronze_2x_340e5f5c-8bb3-475f-8c24-eb7fc6a2b055.png",
-        "tier_1_badge_bg_image": "shopify://shop_images/nivel_badge_bronze_2x_58077fc8-fce6-4c4b-b84a-0539008c0c4c.png",
-        "tier_2_qty": 8,
-        "tier_2_pct": 15,
-        "tier_2_gift_text": "",
-        "tier_2_color": "rgba(0,0,0,0)",
-        "tier_2_bar_image": "shopify://shop_images/nivel_barra_prata_2x_3f946ecc-902e-406b-b2ef-5400658e495b.png",
-        "tier_2_badge_bg_image": "shopify://shop_images/nivel_badge_prata_2x_56dc1d5e-036d-4e31-86a5-07796fd8e892.png",
-        "tier_3_qty": 12,
-        "tier_3_pct": 20,
-        "tier_3_gift_text": "COPO MEDIDOR",
-        "tier_3_gift_image": "shopify://shop_images/brinde_ouro_2x_cecdb978-7ccd-4675-9d13-7b5f99dfafdb.png",
-        "tier_3_color": "rgba(0,0,0,0)",
-        "tier_3_bar_image": "shopify://shop_images/nivel_barra_ouro_2x_bbc30324-393b-47b0-96b6-580343b5a0f6.png",
-        "tier_3_badge_bg_image": "shopify://shop_images/nivel_badge_ouro_2x_78f17b75-a0cd-420c-a743-f263fa2e047b.png",
-        "tier_4_qty": 18,
-        "tier_4_pct": 25,
-        "tier_4_gift_text": "01 COPO MEDIDOR +01 CAÇAROLA",
-        "tier_4_gift_image": "shopify://shop_images/brinde_diamante_2x_468ca295-e869-4ca7-9be8-eeefb18bc20c.png",
-        "tier_4_color": "rgba(0,0,0,0)",
-        "tier_4_badge_bg_image": "shopify://shop_images/nivel_box_diamante_2x_00ee41f3-57f8-4152-9bfd-dbc54f9f4a60.png"
-      }
-    },
     "e3a9ff10-6902-4baf-a0a2-91ae8874ceb0": {
       "type": "persona-home",
       "blocks": {
@@ -354,38 +295,120 @@
         "default_title_color": "#005234"
       }
     },
+    "swiper_bulk_purchase_g3AxMP": {
+      "type": "swiper-bulk-purchase",
+      "blocks": {
+        "slide_4A8aMc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/card_20un_373995d5-978e-45a0-8adf-b476926bda92.png"
+          }
+        },
+        "slide_gQT44a": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/card_15un_c1ebaf5f-9195-436a-baef-2f275b8191af.png"
+          }
+        },
+        "slide_afXVDQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/card_10un_6847a869-5db7-4718-8140-022036bad847.png"
+          }
+        },
+        "slide_Gpr3pj": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/card_5un_c4f6d09d-c19b-4b4f-9db8-586c39f97fd1.png"
+          }
+        }
+      },
+      "block_order": [
+        "slide_4A8aMc",
+        "slide_gQT44a",
+        "slide_afXVDQ",
+        "slide_Gpr3pj"
+      ],
+      "custom_css": [
+        ".product-carousel-container {padding-top: 60px;}",
+        ".product-carousel-container .font-home {margin-right: 40px;}",
+        "@media (min-width: 768px) {.product-carousel-container .font-home {margin-right: 0; }}"
+      ],
+      "name": "Popup Progressivo",
+      "settings": {
+        "rich_title": "<p>VAI LEVAR QUANTO HOJE FREGUESIA?</p>",
+        "collection_1": "sopas-popup",
+        "collection_2": "macarroes-popup",
+        "collection_3": "risotos-popup",
+        "collection_4": "aveias-popup",
+        "collection_5": "",
+        "tier_0_color": "#afaa7a",
+        "tier_1_qty": 5,
+        "tier_1_pct": 9.5,
+        "tier_1_gift_text": "",
+        "tier_1_color": "#ff0000",
+        "tier_2_qty": 10,
+        "tier_2_pct": 14.6,
+        "tier_2_gift_text": "COPO MEDIDOR",
+        "tier_2_gift_image": "shopify://shop_images/brinde_ouro_2x_cecdb978-7ccd-4675-9d13-7b5f99dfafdb.png",
+        "tier_2_color": "rgba(0,0,0,0)",
+        "tier_3_qty": 15,
+        "tier_3_pct": 19.6,
+        "tier_3_gift_text": "01 COPO MEDIDOR +01 CAÇAROLA",
+        "tier_3_gift_image": "shopify://shop_images/brinde_diamante_2x_468ca295-e869-4ca7-9be8-eeefb18bc20c.png",
+        "tier_3_color": "rgba(0,0,0,0)",
+        "tier_4_qty": 20,
+        "tier_4_pct": 25,
+        "tier_4_gift_text": "",
+        "tier_4_color": "rgba(0,0,0,0)"
+      }
+    },
     "product_carousel_aVP7kr": {
       "type": "product-carousel",
       "blocks": {
+        "product_JTyrD8": {
+          "type": "product",
+          "settings": {
+            "product": "kit-almoco-completo-em-dobro-24un",
+            "show_product_image": true,
+            "show_product_title": false,
+            "title": "",
+            "show_product_description": false,
+            "description": "<p>Macs Clássicos + Lançamentos</p>",
+            "color": "",
+            "porcoes": "24"
+          }
+        },
         "product_dDAqbf": {
           "type": "product",
           "settings": {
-            "product": "projeto-21-dias",
+            "product": "projeto-42-dias-2-packs-1",
             "show_product_image": true,
-            "show_product_title": true,
+            "show_product_title": false,
             "title": "",
             "show_product_description": false,
             "description": "<p>21 sopas nutritivas que vão transformar o seu corpo.</p>",
             "color": "",
-            "porcoes": "21"
+            "porcoes": "42"
           }
         },
         "product_LPKP4A": {
           "type": "product",
           "settings": {
-            "product": "kit-seca-barriga-30-dias-2",
+            "product": "kit-seca-barriga-60-dias-brinde",
             "show_product_image": true,
             "image": "shopify://shop_images/Kit_Emagrecimento_15_dias_DEZ24.png",
-            "show_product_title": true,
-            "title": "Kit Emagrecimento – Programa 30 Dias",
+            "show_product_title": false,
+            "title": "",
             "show_product_description": false,
             "description": "<p>O segredo pra barriga seca e sem inchaço tá aqui.</p>",
             "color": "",
-            "porcoes": "32"
+            "porcoes": "64"
           }
         },
         "product_HqyDQx": {
           "type": "product",
+          "disabled": true,
           "settings": {
             "product": "kit-mais-vendidos-8un",
             "show_product_image": true,
@@ -411,43 +434,30 @@
             "porcoes": "10"
           }
         },
-        "product_JTyrD8": {
-          "type": "product",
-          "settings": {
-            "product": "kit-almoco-completo",
-            "show_product_image": true,
-            "show_product_title": true,
-            "title": "",
-            "show_product_description": false,
-            "description": "<p>Macs Clássicos + Lançamentos</p>",
-            "color": "",
-            "porcoes": "12"
-          }
-        },
         "product_wXwV9V": {
           "type": "product",
           "settings": {
-            "product": "kit-jantar-premium-9un",
+            "product": "kit-jantar-premium-em-dobro-18un",
             "show_product_image": true,
-            "show_product_title": true,
+            "show_product_title": false,
             "title": "",
             "show_product_description": true,
             "description": "",
             "color": "",
-            "porcoes": "9"
+            "porcoes": "18"
           }
         },
         "product_GgirVt": {
           "type": "product",
           "settings": {
-            "product": "kit-feijao-sem-pressao-8un",
+            "product": "kit-feijao-sem-pressao-em-dobro-16un",
             "show_product_image": true,
-            "show_product_title": true,
+            "show_product_title": false,
             "title": "",
             "show_product_description": false,
             "description": "<p>O feijão mais fácil do mundo.: pronto em só 10 minutos!</p>",
             "color": "",
-            "porcoes": "24"
+            "porcoes": "48"
           }
         },
         "product_L9mTAB": {
@@ -466,16 +476,15 @@
         },
         "product_WtNyLi": {
           "type": "product",
-          "disabled": true,
           "settings": {
-            "product": "kit-manha-turbinada-10un",
+            "product": "kit-manha-turbinada-em-dobro-20un",
             "show_product_image": true,
-            "show_product_title": true,
+            "show_product_title": false,
             "title": "",
             "show_product_description": true,
             "description": "",
             "color": "",
-            "porcoes": "9"
+            "porcoes": "20"
           }
         },
         "product_6WUJWw": {
@@ -523,11 +532,11 @@
         }
       },
       "block_order": [
+        "product_JTyrD8",
         "product_dDAqbf",
         "product_LPKP4A",
         "product_HqyDQx",
         "product_AXct3t",
-        "product_JTyrD8",
         "product_wXwV9V",
         "product_GgirVt",
         "product_L9mTAB",
@@ -2633,8 +2642,8 @@
     "a8d45234-ff4c-4fb4-ab6d-16d71fbf1a5d",
     "11d025eb-d332-49cd-ae54-c6243379ae1c",
     "praticidade_home_argKfc",
-    "swiper_bulk_purchase_g3AxMP",
     "e3a9ff10-6902-4baf-a0a2-91ae8874ceb0",
+    "swiper_bulk_purchase_g3AxMP",
     "product_carousel_aVP7kr",
     "product_carousel_v2_Xczirg",
     "product_carousel_v2_AifKKK",
