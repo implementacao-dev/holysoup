@@ -1327,9 +1327,31 @@
   <div class="bulk-modal-container">
     <div class="bulk-modal-close">{% render 'icon-close' %}</div>
 
+    <div class="bulk-campaign-nudge" data-bulk-campaign-nudge></div>
+    <div class="bulk-campaign-alert" data-bulk-campaign-alert></div>
+    <div class="bulk-campaign-coupon" data-bulk-campaign-coupon>
+      <span class="bulk-campaign-coupon__badge" data-coupon-badge></span>
+      <p class="bulk-campaign-coupon__title" data-coupon-title></p>
+      <p class="bulk-campaign-coupon__sub" data-coupon-sub></p>
+      <span class="bulk-campaign-coupon__code" data-coupon-code></span>
+      <button type="button" class="bulk-campaign-coupon__copy" data-bulk-campaign-copy></button>
+      <button type="button" class="bulk-campaign-coupon__checkout" data-bulk-campaign-coupon-checkout></button>
+    </div>
+
     <div class="bulk-modal-header">
       <div class="bulk-progress-wrapper" id="bulk-progress-root">
         <div class="bulk-savings-header">
+          <div class="bulk-campaign-header-msg" data-bulk-campaign-header-msg hidden></div>
+          <div class="bulk-campaign-incentive" data-bulk-campaign-incentive hidden></div>
+          <div class="bulk-campaign-lock-bar" data-bulk-campaign-lock-bar hidden>
+            <span class="bulk-campaign-lock-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 68" width="20" height="20">
+                <path d="M53.4,24.307H47.826V17.336A15.336,15.336,0,0,0,32.49,2H29.7A15.336,15.336,0,0,0,14.365,17.336v6.971H8.788A2.788,2.788,0,0,0,6,27.1V60.557a2.788,2.788,0,0,0,2.788,2.788H53.4a2.788,2.788,0,0,0,2.788-2.788V27.1A2.788,2.788,0,0,0,53.4,24.307ZM19.942,17.336A9.759,9.759,0,0,1,29.7,7.577H32.49a9.759,9.759,0,0,1,9.759,9.759v6.971H19.942ZM50.614,57.768H11.577V29.884H50.614Z" fill="currentColor"/>
+              </svg>
+            </span>
+            <span data-bulk-campaign-lock-text></span>
+          </div>
+          <div class="bulk-campaign-complete-banner" data-bulk-campaign-complete-banner hidden></div>
           <span class="bulk-savings-text level-zero-msg" style="display: none;"
             ><strong>Adicione o primeiro item</strong> no carrinho para começar</span
           >
@@ -1406,6 +1428,7 @@
     </div>
 
     <div class="bulk-modal-body">
+      <div class="bulk-campaign-grid-label" data-bulk-campaign-grid-label hidden></div>
       <div class="bulk-inline-gift" id="bulk-inline-gift">
         <div class="bulk-gift-image">
           <img src="" alt="Brinde" id="inline-gift-visual" width="80" height="80">
@@ -1700,6 +1723,431 @@
       let productsCache = [];
       let cartSyncController = null;
       let lastSelectedHash = '';
+      let campaignMode = null;
+      let campaignStage = null;
+      let campaignTarget = 0;
+      let campaignEligibleQty = 0;
+      let campaignModalTotal = 0;
+      let campaignBaselineQty = {};
+
+      const campaignNudgeEl = document.querySelector('[data-bulk-campaign-nudge]');
+      const campaignAlertEl = document.querySelector('[data-bulk-campaign-alert]');
+      const campaignCouponEl = document.querySelector('[data-bulk-campaign-coupon]');
+      const campaignHeaderMsgEl = document.querySelector('[data-bulk-campaign-header-msg]');
+      const campaignIncentiveEl = document.querySelector('[data-bulk-campaign-incentive]');
+      const campaignLockBarEl = document.querySelector('[data-bulk-campaign-lock-bar]');
+      const campaignLockTextEl = document.querySelector('[data-bulk-campaign-lock-text]');
+      const campaignCompleteBannerEl = document.querySelector('[data-bulk-campaign-complete-banner]');
+      const campaignGridLabelEl = document.querySelector('[data-bulk-campaign-grid-label]');
+
+      function getCampaignCfg() {
+        return window.BulkCampaign && window.BulkCampaign.cfg ? window.BulkCampaign.cfg : null;
+      }
+
+      function campaignFill(str, map) {
+        if (window.BulkCampaign && window.BulkCampaign.fill) return window.BulkCampaign.fill(str, map);
+        let out = str || '';
+        Object.keys(map || {}).forEach(k => {
+          out = out.split('{{' + k + '}}').join(map[k]);
+        });
+        return out;
+      }
+
+      function getTierForQty(qty) {
+        let tier = null;
+        tiers.forEach(t => { if (qty >= t.qty) tier = t; });
+        return tier;
+      }
+
+      function calcCampaignSavings(total, qty, target) {
+        if (!qty || !total) return { economia: 0, economia_meta: 0 };
+        const currentTier = getTierForQty(qty);
+        const targetTier = getTierForQty(target);
+        const currentPct = currentTier ? currentTier.discount : 0;
+        const targetPct = targetTier ? targetTier.discount : 0;
+        const economia = total * (currentPct / 100);
+        const avgUnit = total / qty;
+        const projectedTotal = avgUnit * target;
+        const economiaTarget = projectedTotal * (targetPct / 100);
+        const economia_meta = Math.max(0, economiaTarget - economia);
+        return { economia, economia_meta };
+      }
+
+      function formatCampaignMoney(cents) {
+        return Shopify.formatMoney(Math.round(cents), window.money_format);
+      }
+
+      function buildCampaignFillMap(q, faltam, total) {
+        const savings = calcCampaignSavings(total, q, campaignTarget);
+        const cfg = getCampaignCfg();
+        return {
+          faltam: faltam,
+          economia: formatCampaignMoney(savings.economia),
+          economia_meta: formatCampaignMoney(savings.economia_meta),
+          pct_cupom: cfg && cfg.coupon ? cfg.coupon.pct : 10
+        };
+      }
+
+      function snapshotCampaignBaseline(cart) {
+        campaignBaselineQty = {};
+        (cart && cart.items ? cart.items : []).forEach(function (i) {
+          campaignBaselineQty[String(i.variant_id)] = i.quantity;
+        });
+      }
+
+      function updateQtyHighlight(item, qty) {
+        if (!item || !item.el) return;
+        const baseline = campaignBaselineQty[item.id] || 0;
+        if (campaignMode && campaignMode !== 'coupon' && campaignMode !== 'normal') {
+          item.el.classList.remove('qty-active');
+          item.el.classList.toggle('qty-incremented', qty > baseline);
+          item.el.classList.toggle('qty-in-cart', qty > 0 && qty <= baseline);
+        } else {
+          item.el.classList.remove('qty-incremented', 'qty-in-cart');
+          item.el.classList.toggle('qty-active', qty > 0);
+        }
+      }
+
+      function setCampaignStage(stage) {
+        campaignStage = stage;
+        if (container) {
+          container.classList.remove('is-campaign-intercept', 'is-campaign-complete-stage');
+          if (stage === 'intercept') container.classList.add('is-campaign-intercept');
+          if (stage === 'complete') container.classList.add('is-campaign-complete-stage');
+        }
+      }
+
+      function updateCampaignCta(faltam) {
+        const cfg = getCampaignCfg();
+        const btn = document.querySelector('.bulk-buy-btn');
+        if (!btn) return;
+        const txt = btn.querySelector('.bulk-btn-text');
+        btn.classList.remove('is-cta-intercept', 'is-cta-complete', 'is-campaign-ready');
+        if (campaignStage === 'intercept' && faltam > 0) {
+          btn.classList.add('is-cta-intercept');
+          if (txt && cfg && cfg.btnRefuse) txt.textContent = cfg.btnRefuse.toUpperCase();
+        } else if (faltam <= 0 && campaignMode !== 'coupon') {
+          btn.classList.add('is-cta-complete', 'is-campaign-ready');
+          if (txt) {
+            if (campaignMode === 'offer2' && cfg && cfg.btnCompleteOffer2) {
+              txt.textContent = cfg.btnCompleteOffer2.toUpperCase();
+            } else if (cfg && cfg.btnComplete) {
+              txt.textContent = cfg.btnComplete.toUpperCase();
+            } else {
+              txt.textContent = 'COMPRAR COM DESCONTO';
+            }
+          }
+        } else if (txt) {
+          txt.textContent = 'COMPRAR AGORA';
+        }
+      }
+
+      function applyCampaignGridLayout() {
+        const cfg = getCampaignCfg();
+        const isFlat = campaignStage === 'intercept' || campaignStage === 'complete';
+        if (campaignGridLabelEl) {
+          campaignGridLabelEl.hidden = !isFlat;
+          if (isFlat && cfg) campaignGridLabelEl.textContent = cfg.gridLabel || "HOLY'S NO SEU CARRINHO";
+        }
+        productsCache.forEach(function (item) {
+          const qty = parseInt(item.input ? item.input.value : 0, 10) || 0;
+          if (isFlat) {
+            item.el.style.display = qty > 0 ? '' : 'none';
+          } else {
+            item.el.style.display = '';
+          }
+          updateQtyHighlight(item, qty);
+        });
+      }
+
+      function restoreNativeBulkUI() {
+        campaignStage = null;
+        campaignBaselineQty = {};
+        if (container) {
+          container.classList.remove('is-campaign-intercept', 'is-campaign-complete-stage');
+        }
+        if (savingsHeader) {
+          savingsHeader.classList.remove('is-campaign-progress', 'is-campaign-complete', 'is-campaign-intercept');
+          savingsHeader.style.backgroundColor = '';
+          savingsHeader.style.backgroundImage = '';
+          savingsHeader.style.justifyContent = '';
+        }
+        if (campaignHeaderMsgEl) {
+          campaignHeaderMsgEl.hidden = true;
+          campaignHeaderMsgEl.textContent = '';
+          campaignHeaderMsgEl.innerHTML = '';
+        }
+        if (campaignIncentiveEl) {
+          campaignIncentiveEl.hidden = true;
+          campaignIncentiveEl.textContent = '';
+        }
+        if (campaignLockBarEl) campaignLockBarEl.hidden = true;
+        if (campaignCompleteBannerEl) {
+          campaignCompleteBannerEl.hidden = true;
+          campaignCompleteBannerEl.textContent = '';
+        }
+        if (campaignGridLabelEl) campaignGridLabelEl.hidden = true;
+        if (campaignAlertEl) campaignAlertEl.classList.remove('is-visible');
+        if (progressFill) {
+          progressFill.style.width = '';
+          progressFill.style.backgroundColor = '';
+          progressFill.style.backgroundImage = '';
+        }
+        if (nextTierInfo) {
+          nextTierInfo.style.display = '';
+          nextTierInfo.innerHTML = '';
+        }
+        if (savingsContent) savingsContent.style.display = '';
+        if (savingsActiveMsg) savingsActiveMsg.style.display = '';
+        if (levelMaxMsg) {
+          levelMaxMsg.style.display = '';
+          const pEl = levelMaxMsg.querySelector('.savings-prefix');
+          if (pEl) pEl.textContent = 'Incrível, você já economizou';
+        }
+        if (tierBadge) tierBadge.style.display = '';
+        productsCache.forEach(function (item) {
+          if (item.el) {
+            item.el.style.display = '';
+            item.el.classList.remove('qty-incremented', 'qty-in-cart');
+          }
+        });
+        document.querySelectorAll('.bulk-collection-section').forEach(function (section) {
+          section.style.display = '';
+        });
+        restoreProductGrid();
+        const btn = document.querySelector('.bulk-buy-btn');
+        if (btn) {
+          btn.classList.remove('loading', 'is-campaign-ready', 'is-cta-intercept', 'is-cta-complete');
+          btn.style.display = '';
+          const txt = btn.querySelector('.bulk-btn-text');
+          if (txt) txt.textContent = 'COMPRAR AGORA';
+        }
+      }
+
+      function resetCampaignUI() {
+        campaignMode = null;
+        campaignStage = null;
+        campaignTarget = 0;
+        campaignModalTotal = 0;
+        campaignBaselineQty = {};
+        if (container) container.classList.remove('is-campaign-mode');
+        if (campaignNudgeEl) campaignNudgeEl.classList.remove('is-visible');
+        if (campaignCouponEl) campaignCouponEl.classList.remove('is-visible');
+        const progressRoot = document.getElementById('bulk-progress-root');
+        if (progressRoot) progressRoot.style.display = '';
+        const modalBodyEl = document.querySelector('.bulk-modal-body');
+        if (modalBodyEl) modalBodyEl.style.display = '';
+        const summaryEl = document.querySelector('.bulk-summary');
+        if (summaryEl) summaryEl.style.display = '';
+        const giftsFooter = document.querySelector('.gift-progress-badges-modal');
+        if (giftsFooter) giftsFooter.style.display = '';
+        restoreNativeBulkUI();
+        updateTotals();
+      }
+
+      function updateCampaignProgress(q, faltam, total) {
+        const cfg = getCampaignCfg();
+        if (!cfg || !campaignMode || campaignMode === 'coupon') return;
+
+        if (faltam <= 0 && campaignMode === 'offer2') {
+          campaignMode = 'coupon';
+          if (window.BulkCampaign) window.BulkCampaign.mark(window.BulkCampaign.KEY.couponUi);
+          applyCampaignUI({ items: [] });
+          return;
+        }
+
+        if (faltam <= 0) {
+          setCampaignStage('complete');
+        } else if (!campaignStage) {
+          setCampaignStage('intercept');
+        }
+
+        const map = buildCampaignFillMap(q, faltam, total || campaignModalTotal);
+
+        if (savingsHeader) {
+          savingsHeader.classList.remove('is-campaign-progress', 'is-campaign-complete', 'is-campaign-intercept');
+        }
+        if (campaignNudgeEl) campaignNudgeEl.classList.remove('is-visible');
+        if (campaignAlertEl) campaignAlertEl.classList.remove('is-visible');
+        if (nextTierInfo) nextTierInfo.style.display = 'none';
+        if (tierBadge) tierBadge.style.display = 'none';
+        if (savingsContent) savingsContent.style.display = 'none';
+        if (levelMaxMsg) levelMaxMsg.style.display = 'none';
+
+        if (progressFill) {
+          progressFill.style.width = Math.min((q / campaignTarget) * 100, 100) + '%';
+          progressFill.style.backgroundImage = 'none';
+          progressFill.style.backgroundColor = faltam > 0 ? '#ff5017' : '#7BCA0C';
+        }
+        if (progressBar) progressBar.style.display = q > 0 ? 'block' : 'none';
+
+        if (campaignLockBarEl) campaignLockBarEl.hidden = true;
+        if (campaignIncentiveEl) campaignIncentiveEl.hidden = true;
+        if (campaignCompleteBannerEl) campaignCompleteBannerEl.hidden = true;
+
+        if (campaignStage === 'intercept') {
+          if (savingsHeader) savingsHeader.classList.add('is-campaign-intercept');
+          if (campaignMode === 'offer2' && campaignLockBarEl) {
+            campaignLockBarEl.hidden = false;
+            if (campaignLockTextEl) campaignLockTextEl.textContent = cfg.offer2LockLabel || 'Cupom Secreto';
+            if (progressBar) progressBar.style.display = 'block';
+          } else if (savingsHeader) {
+            savingsHeader.classList.add('is-campaign-progress');
+          }
+          if (campaignHeaderMsgEl) {
+            if (campaignMode === 'offer1') {
+              campaignHeaderMsgEl.innerHTML =
+                '<span class="bulk-campaign-header-msg__progress">' + campaignFill(cfg.progressTemplate, map) + '</span>' +
+                '<strong class="bulk-campaign-header-msg__title">' + campaignFill(cfg.interceptTitle, map) + '</strong>';
+            } else {
+              campaignHeaderMsgEl.innerHTML =
+                '<strong class="bulk-campaign-header-msg__title">' + campaignFill(cfg.interceptTitle, map) + '</strong>';
+            }
+            campaignHeaderMsgEl.hidden = false;
+          }
+          if (campaignIncentiveEl) {
+            campaignIncentiveEl.textContent = campaignFill(cfg.interceptSubtitle, map);
+            campaignIncentiveEl.hidden = false;
+          }
+        } else if (campaignStage === 'complete') {
+          if (savingsHeader) savingsHeader.classList.add('is-campaign-complete');
+          if (campaignHeaderMsgEl) {
+            campaignHeaderMsgEl.textContent = campaignFill(cfg.completeTemplate, map);
+            campaignHeaderMsgEl.hidden = false;
+          }
+          if (campaignCompleteBannerEl && cfg.savingsBanner) {
+            campaignCompleteBannerEl.textContent = campaignFill(cfg.savingsBanner, map);
+            campaignCompleteBannerEl.hidden = false;
+          }
+        }
+
+        updateCampaignCta(faltam);
+        applyCampaignGridLayout();
+      }
+
+      function restoreProductGrid() {
+        document.querySelectorAll('.bulk-product-item').forEach(function (el) {
+          const sid = el.dataset.originalSection;
+          if (!sid) return;
+          const section = document.getElementById(sid);
+          const grid = section ? section.querySelector('.bulk-product-grid') : null;
+          if (grid) grid.appendChild(el);
+        });
+        document.querySelectorAll('.bulk-collection-section').forEach(function (section) {
+          section.style.display = '';
+        });
+      }
+
+      function sortProductsByCartQty(cart) {
+        if (!cart || !cart.items) return;
+        const qtyMap = {};
+        cart.items.forEach(i => { qtyMap[String(i.variant_id)] = i.quantity; });
+        const isFlat = campaignStage === 'intercept' || campaignStage === 'complete';
+        document.querySelectorAll('.bulk-product-item').forEach(function (el) {
+          const section = el.closest('.bulk-collection-section');
+          if (section && !el.dataset.originalSection) {
+            el.dataset.originalSection = section.id || '';
+          }
+        });
+        if (isFlat) {
+          const firstGrid = document.querySelector('.bulk-collection-section .bulk-product-grid');
+          if (!firstGrid) return;
+          const items = Array.from(document.querySelectorAll('.bulk-product-item'));
+          items.sort((a, b) => (qtyMap[b.dataset.id] || 0) - (qtyMap[a.dataset.id] || 0));
+          items.forEach(el => firstGrid.appendChild(el));
+          document.querySelectorAll('.bulk-collection-section').forEach((section, idx) => {
+            section.style.display = idx === 0 ? '' : 'none';
+          });
+          return;
+        }
+        restoreProductGrid();
+        document.querySelectorAll('.bulk-collection-section').forEach(section => {
+          const grid = section.querySelector('.bulk-product-grid');
+          if (!grid) return;
+          const items = Array.from(grid.querySelectorAll('.bulk-product-item'));
+          items.sort((a, b) => (qtyMap[b.dataset.id] || 0) - (qtyMap[a.dataset.id] || 0));
+          items.forEach(el => grid.appendChild(el));
+        });
+      }
+
+      function applyCampaignUI(cart) {
+        const cfg = getCampaignCfg();
+        if (!cfg || !campaignMode || campaignMode === 'normal') return;
+
+        if (campaignCouponEl) {
+          campaignCouponEl.querySelector('[data-coupon-badge]').textContent = cfg.coupon.title || 'PRESENTEADO';
+          campaignCouponEl.querySelector('[data-coupon-title]').textContent = cfg.coupon.title || '';
+          const basePct = tiers.length ? tiers[tiers.length - 1].discount : 25;
+          campaignCouponEl.querySelector('[data-coupon-sub]').textContent = campaignFill(cfg.coupon.subtitle || '', {
+            pct_cupom: cfg.coupon.pct,
+            total_pct: basePct + Number(cfg.coupon.pct || 0)
+          });
+          campaignCouponEl.querySelector('[data-coupon-code]').textContent = cfg.coupon.code || '';
+          campaignCouponEl.querySelector('[data-bulk-campaign-copy]').textContent = cfg.coupon.copy || 'COPIAR CUPOM';
+          campaignCouponEl.querySelector('[data-bulk-campaign-coupon-checkout]').textContent = cfg.coupon.checkout || 'Finalizar';
+        }
+
+        if (campaignMode === 'coupon') {
+          if (campaignCouponEl) campaignCouponEl.classList.add('is-visible');
+          if (savingsHeader && campaignHeaderMsgEl && cfg.couponBanner) {
+            savingsHeader.classList.remove('is-campaign-progress', 'is-campaign-intercept');
+            savingsHeader.classList.add('is-campaign-complete');
+            campaignHeaderMsgEl.textContent = campaignFill(cfg.couponBanner, { pct_cupom: cfg.coupon.pct });
+            campaignHeaderMsgEl.hidden = false;
+          }
+          const progressRoot = document.getElementById('bulk-progress-root');
+          if (progressRoot) progressRoot.style.display = '';
+          if (progressBar) progressBar.style.display = 'none';
+          if (tierBadge) tierBadge.style.display = 'none';
+          const modalBodyEl = document.querySelector('.bulk-modal-body');
+          if (modalBodyEl) modalBodyEl.style.display = 'none';
+          const summaryEl = document.querySelector('.bulk-summary');
+          if (summaryEl) summaryEl.style.display = 'none';
+          const giftsFooter = document.querySelector('.gift-progress-badges-modal');
+          if (giftsFooter) giftsFooter.style.display = 'none';
+          const btn = document.querySelector('.bulk-buy-btn');
+          if (btn) btn.style.display = 'none';
+          return;
+        }
+
+        const q = window.BulkCampaign ? window.BulkCampaign.eligibleQty(cart) : campaignEligibleQty;
+        campaignEligibleQty = q;
+        const faltam = Math.max(0, campaignTarget - q);
+
+        if (faltam > 0) {
+          setCampaignStage('intercept');
+        } else {
+          setCampaignStage('complete');
+        }
+
+        updateCampaignProgress(q, faltam, campaignModalTotal);
+      }
+
+      async function openCampaign(mode, cart) {
+        const cfg = getCampaignCfg();
+        if (!cfg) return;
+        campaignMode = mode;
+        if (mode === 'offer1') {
+          campaignTarget = cfg.offer1.target || 15;
+          if (window.BulkCampaign) window.BulkCampaign.mark(window.BulkCampaign.KEY.o1Seen);
+        } else if (mode === 'offer2') {
+          campaignTarget = cfg.offer2.target || 25;
+          if (window.BulkCampaign) window.BulkCampaign.mark(window.BulkCampaign.KEY.o2Seen);
+        } else if (mode === 'coupon') {
+          if (window.BulkCampaign) window.BulkCampaign.mark(window.BulkCampaign.KEY.couponUi);
+        }
+        if (container) container.classList.add('is-campaign-mode');
+        const btn = document.querySelector('.bulk-buy-btn');
+        if (btn) btn.style.display = '';
+        snapshotCampaignBaseline(cart || { items: [] });
+        await openModal(null, true);
+        if (cart) {
+          campaignEligibleQty = window.BulkCampaign ? window.BulkCampaign.eligibleQty(cart) : 0;
+          sortProductsByCartQty(cart);
+        }
+        applyCampaignUI(cart || { items: [] });
+        updateTotals();
+      }
 
       function updateProductsCache() {
         const items = document.querySelectorAll('.bulk-product-item');
@@ -1724,16 +2172,22 @@
             const cartItem = cart.items.find(i => i.variant_id == item.id);
             const qty = cartItem ? cartItem.quantity : 0;
             if (item.input) item.input.value = qty;
-            if (qty > 0) item.el.classList.add('qty-active'); else item.el.classList.remove('qty-active');
+            updateQtyHighlight(item, qty);
           });
+          if (window.BulkCampaign) campaignEligibleQty = window.BulkCampaign.eligibleQty(cart);
           updateTotals();
+          if (campaignMode && campaignMode !== 'coupon') {
+            const faltam = Math.max(0, campaignTarget - campaignEligibleQty);
+            updateCampaignProgress(campaignEligibleQty, faltam, campaignModalTotal);
+          }
         } catch (e) {
           console.error('Error syncing with cart:', e);
           updateTotals();
         }
       }
 
-      async function openModal(index) {
+      async function openModal(index, keepCampaign) {
+        if (!keepCampaign) resetCampaignUI();
         if (modalBody) {
           modalBody.style.scrollBehavior = 'auto';
           modalBody.scrollTop = 0;
@@ -1757,6 +2211,12 @@
       }
 
       function closeModal() {
+        if (campaignMode === 'offer2' && window.BulkCampaign) {
+          window.BulkCampaign.mark(window.BulkCampaign.KEY.o2X);
+        }
+        if (campaignMode === 'offer1' || campaignMode === 'offer2' || campaignMode === 'coupon') {
+          resetCampaignUI();
+        }
         if (cartSyncController) cartSyncController.abort();
         overlay.classList.remove('active');
         container.classList.remove('active');
@@ -1776,7 +2236,7 @@
 
       const totalPriceEl = document.querySelector('.bulk-total-price');
       const totalQtyEl = document.querySelector('.bulk-total-qty');
-      const buyBtn = document.querySelector('.bulk-buy-btn');
+      let buyBtn = document.querySelector('.bulk-buy-btn');
       const selectedListEl = document.getElementById('bulk-selected-list');
       const oldPriceEl = document.querySelector('.bulk-old-price');
       const savingsEls = document.querySelectorAll('.bulk-savings-amount');
@@ -1799,50 +2259,54 @@
         productsCache.forEach(item => {
           if (item.id === variantId) {
             if (item.input) item.input.value = newQty;
-            if (newQty > 0) item.el.classList.add('qty-active');
-            else item.el.classList.remove('qty-active');
+            updateQtyHighlight(item, newQty);
           }
         });
+        if (campaignMode && campaignMode !== 'coupon') applyCampaignGridLayout();
       }
 
       let cartUpdateTimer = null;
       function debouncedCartUpdate() {
         if (cartUpdateTimer) clearTimeout(cartUpdateTimer);
         cartUpdateTimer = setTimeout(async () => {
-          if (cartSyncController) cartSyncController.abort();
-          cartSyncController = new AbortController();
-          const { signal } = cartSyncController;
-          try {
-            if (buyBtn) buyBtn.classList.add('loading');
-            const cartRes = await fetch(window.Shopify.routes.root + 'cart.js', { signal });
-            const cart = await cartRes.json();
-            const updates = {};
-            let changed = false;
-            productsCache.forEach(item => {
-              const qty = parseInt(item.input.value) || 0;
-              const cartItem = cart.items.find(i => i.variant_id == item.id);
-              const cartQty = cartItem ? cartItem.quantity : 0;
-              if (qty !== cartQty) {
-                updates[item.id] = qty;
-                changed = true;
-              }
-            });
-            if (changed) {
-              await fetch(window.Shopify.routes.root + 'cart/update.js', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ updates }),
-                signal
-              });
-              if (typeof window.updateCart === 'function') window.updateCart();
-              window.dispatchEvent(new CustomEvent('cart-change', { bubbles: true }));
-            }
-          } catch (e) {
-            if (e.name !== 'AbortError') console.error('Cart sync error:', e);
-          } finally {
-            if (buyBtn && !signal.aborted) buyBtn.classList.remove('loading');
-          }
+          await flushCartFromModal();
         }, 600);
+      }
+
+      async function flushCartFromModal() {
+        if (cartSyncController) cartSyncController.abort();
+        cartSyncController = new AbortController();
+        const { signal } = cartSyncController;
+        try {
+          if (buyBtn) buyBtn.classList.add('loading');
+          const cartRes = await fetch(window.Shopify.routes.root + 'cart.js', { signal });
+          const cart = await cartRes.json();
+          const updates = {};
+          let changed = false;
+          productsCache.forEach(item => {
+            const qty = parseInt(item.input.value) || 0;
+            const cartItem = cart.items.find(i => i.variant_id == item.id);
+            const cartQty = cartItem ? cartItem.quantity : 0;
+            if (qty !== cartQty) {
+              updates[item.id] = qty;
+              changed = true;
+            }
+          });
+          if (changed) {
+            await fetch(window.Shopify.routes.root + 'cart/update.js', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ updates }),
+              signal
+            });
+            if (typeof window.updateCart === 'function') window.updateCart();
+            window.dispatchEvent(new CustomEvent('cart-change', { bubbles: true }));
+          }
+        } catch (e) {
+          if (e.name !== 'AbortError') console.error('Cart sync error:', e);
+        } finally {
+          if (buyBtn && !signal.aborted) buyBtn.classList.remove('loading');
+        }
       }
 
       function updateTotals() {
@@ -1927,7 +2391,12 @@
             }
           }
 
-          if (progressFill) {
+          if (campaignMode && campaignMode !== 'coupon' && campaignTarget > 0) {
+            campaignModalTotal = total;
+            campaignEligibleQty = itemsCount;
+            const faltam = Math.max(0, campaignTarget - itemsCount);
+            updateCampaignProgress(itemsCount, faltam, total);
+          } else if (progressFill) {
             const maxQty = tiers[tiers.length - 1]?.qty || 24;
             progressFill.style.width = Math.min((itemsCount / maxQty) * 100, 100) + '%';
             if (currentTier && currentTier.barBgImage) {
@@ -1942,7 +2411,7 @@
             }
           }
 
-          if (nextTier) {
+          if (nextTier && !(campaignMode && campaignMode !== 'coupon')) {
             if (savingsContent && itemsCount > 0) savingsContent.style.display = 'flex';
             if (levelMaxMsg) levelMaxMsg.style.display = 'none';
             if (savingsActiveMsg) savingsActiveMsg.style.display = 'flex';
@@ -1956,7 +2425,7 @@
               nextTierInfo.innerHTML = `${needed === 1 ? 'Falta' : 'Faltam'} <strong class="next-level-qty-text">${needed} ${needed === 1 ? 'item' : 'itens'}</strong> para desbloquear NÍVEL <span class="next-level-num">${tiers.indexOf(nextTier) + 1}</span> <strong class="next-level-name">${nextTier.name}</strong>`;
             }
             if (progressBar) progressBar.style.display = itemsCount > 0 ? 'block' : 'none';
-          } else {
+          } else if (!(campaignMode && campaignMode !== 'coupon')) {
             if (savingsContent) savingsContent.style.display = 'none';
             if (levelMaxMsg) levelMaxMsg.style.display = 'block';
             if (savingsHeader) {
@@ -2274,29 +2743,104 @@
         if (!buyBtn) return;
         
         const newBtn = buyBtn.cloneNode(true);
+        newBtn.removeAttribute('onclick');
+        newBtn.setAttribute('href', 'javascript:void(0)');
         buyBtn.parentNode.replaceChild(newBtn, buyBtn);
-        const currentBuyBtn = document.querySelector('.bulk-buy-btn');
+        buyBtn = document.querySelector('.bulk-buy-btn');
+        if (!buyBtn) return;
 
-        currentBuyBtn.addEventListener('click', function (e) {
-          if (currentBuyBtn.hasAttribute('disabled')) {
+        buyBtn.addEventListener('click', async function (e) {
+          if (buyBtn.hasAttribute('disabled')) {
              e.preventDefault();
              return;
           }
 
-          e.preventDefault(); 
-          currentBuyBtn.classList.add('loading');
+          e.preventDefault();
 
-          setTimeout(() => {
-            window.location.href = buyBtn.href;
-          }, 2000);
+          try {
+            if (cartUpdateTimer) {
+              clearTimeout(cartUpdateTimer);
+              cartUpdateTimer = null;
+            }
+            if (cartSyncController) cartSyncController.abort();
+            await flushCartFromModal();
+            const cartRes = await fetch(window.Shopify.routes.root + 'cart.js');
+            const cart = await cartRes.json();
+
+            if (window.BulkCampaign) {
+              const action = window.BulkCampaign.decide(cart);
+              const q = window.BulkCampaign.eligibleQty(cart);
+              const cfg = window.BulkCampaign.cfg;
+
+              if (campaignMode === 'coupon' || action === 'coupon') {
+                buyBtn.classList.add('loading');
+                window.BulkCampaign.copyCoupon();
+                window.BulkCampaign.proceedCheckout();
+                return;
+              }
+
+              if (campaignMode === 'offer1' || campaignMode === 'offer2') {
+                if (campaignStage === 'intercept' && q < campaignTarget) {
+                  buyBtn.classList.add('loading');
+                  if (campaignMode === 'offer1' && window.BulkCampaign) {
+                    window.BulkCampaign.mark(window.BulkCampaign.KEY.o1Refuse);
+                  }
+                  if (campaignMode === 'offer2' && window.BulkCampaign) {
+                    window.BulkCampaign.mark(window.BulkCampaign.KEY.o2Refuse);
+                  }
+                  window.BulkCampaign.proceedCheckout();
+                  return;
+                }
+                buyBtn.classList.add('loading');
+                window.BulkCampaign.proceedCheckout();
+                return;
+              }
+
+              if (action === 'offer1' || action === 'offer2') {
+                openCampaign(action, cart);
+                return;
+              }
+              if (action === 'coupon') {
+                openCampaign('coupon', cart);
+                return;
+              }
+
+              buyBtn.classList.add('loading');
+              window.BulkCampaign.proceedCheckout();
+              return;
+            }
+
+            buyBtn.classList.add('loading');
+            setTimeout(() => {
+              if (typeof window.yampiClick === 'function') window.yampiClick();
+              else window.location.href = '/checkout';
+            }, 500);
+          } catch (err) {
+            console.error('Bulk buy error:', err);
+          } finally {
+            buyBtn.classList.remove('loading');
+          }
         });
       }
 
+      setupBuyBtnClickHandler();
       updateProductsCache();
       attachListeners();
       updateTotals();
 
-      if (window.location.search.includes('cart-popup')) {
+      window.BulkPurchase = {
+        openModal: openModal,
+        openCampaign: openCampaign,
+        closeModal: closeModal
+      };
+
+      var pendingCampaign = sessionStorage.getItem('bulkCampaignPending');
+      if (pendingCampaign && window.BulkCampaign) {
+        sessionStorage.removeItem('bulkCampaignPending');
+        window.BulkCampaign.fetchCart().then(function (cart) {
+          openCampaign(pendingCampaign, cart);
+        });
+      } else if (window.location.search.includes('cart-popup')) {
         openModal();
       }
     }

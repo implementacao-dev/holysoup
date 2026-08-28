@@ -1,0 +1,56 @@
+{%- liquid
+  assign excluded_ids = settings.bulk_campaign_excluded_products | map: 'id' | compact
+  if excluded_ids == blank
+    assign excluded_ids = empty
+  endif
+-%}
+{%- if settings.bulk_campaign_enable -%}
+  {{ 'bulk-campaign.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'bulk-campaign.js' | asset_url }}" defer></script>
+  <script type="application/json" id="bulk-campaign-config">
+    {
+      "enable": true,
+      "debug": {{ settings.bulk_campaign_debug | json }},
+      "moneyFormat": {{ shop.money_format | json }},
+      "sideCartMaxTier": {{ settings.discount_un_4 | default: 20 }},
+      "sideCartMaxMsg": {{ settings.bulk_campaign_side_max_msg | json }},
+      "progressTemplate": {{ settings.bulk_campaign_progress_template | json }},
+      "completeTemplate": {{ settings.bulk_campaign_complete_template | json }},
+      "interceptTitle": {{ settings.bulk_campaign_intercept_title | json }},
+      "interceptSubtitle": {{ settings.bulk_campaign_intercept_subtitle | json }},
+      "couponBanner": {{ settings.bulk_campaign_coupon_banner | json }},
+      "gridLabel": {{ settings.bulk_campaign_grid_label | json }},
+      "offer2LockLabel": {{ settings.bulk_campaign_offer2_lock_label | json }},
+      "savingsBanner": {{ settings.bulk_campaign_savings_banner | json }},
+      "offer1": {
+        "from": {{ settings.bulk_campaign_offer1_from | default: 10 }},
+        "to": {{ settings.bulk_campaign_offer1_to | default: 14 }},
+        "target": {{ settings.bulk_campaign_offer1_target | default: 15 }},
+        "title": {{ settings.bulk_campaign_offer1_title | json }},
+        "subtitle": {{ settings.bulk_campaign_offer1_subtitle | json }},
+        "nudge": {{ settings.bulk_campaign_offer1_nudge | json }}
+      },
+      "offer2": {
+        "from": {{ settings.bulk_campaign_offer2_from | default: 20 }},
+        "to": {{ settings.bulk_campaign_offer2_to | default: 24 }},
+        "target": {{ settings.bulk_campaign_offer2_target | default: 25 }},
+        "title": {{ settings.bulk_campaign_offer2_title | json }},
+        "subtitle": {{ settings.bulk_campaign_offer2_subtitle | json }},
+        "nudge": {{ settings.bulk_campaign_offer2_nudge | json }}
+      },
+      "btnRefuse": {{ settings.bulk_campaign_btn_refuse | json }},
+      "btnComplete": {{ settings.bulk_campaign_btn_complete | json }},
+      "btnCompleteOffer2": {{ settings.bulk_campaign_btn_complete_offer2 | json }},
+      "coupon": {
+        "code": {{ settings.bulk_campaign_coupon_code | default: 'CUPOMSECRETO' | json }},
+        "pct": {{ settings.bulk_campaign_coupon_pct | default: 10 }},
+        "title": {{ settings.bulk_campaign_coupon_title | json }},
+        "subtitle": {{ settings.bulk_campaign_coupon_subtitle | json }},
+        "copy": {{ settings.bulk_campaign_coupon_copy | json }},
+        "copied": {{ settings.bulk_campaign_coupon_copied | json }},
+        "checkout": {{ settings.bulk_campaign_coupon_checkout | json }}
+      },
+      "excludedIds": {{ excluded_ids | json }}
+    }
+  </script>
+{%- endif -%}

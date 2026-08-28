@@ -1,0 +1,301 @@
+/* Campaign elements hidden unless in campaign mode */
+.bulk-campaign-nudge,
+.bulk-campaign-alert,
+.bulk-campaign-coupon,
+.bulk-campaign-header-msg,
+.bulk-campaign-incentive,
+.bulk-campaign-lock-bar,
+.bulk-campaign-complete-banner,
+.bulk-campaign-grid-label {
+  display: none;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-nudge,
+.bulk-modal-container.is-campaign-mode .bulk-campaign-alert {
+  display: none !important;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon.is-visible {
+  display: block;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-current-tier-display,
+.bulk-modal-container.is-campaign-mode .bulk-tier-badge-gem,
+.bulk-modal-container.is-campaign-mode .bulk-next-tier-info {
+  display: none !important;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-collection-title-container {
+  display: none !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-collection-title-container,
+.bulk-modal-container.is-campaign-mode.is-campaign-complete-stage .bulk-collection-title-container {
+  display: none !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-campaign-grid-label,
+.bulk-modal-container.is-campaign-mode.is-campaign-complete-stage .bulk-campaign-grid-label {
+  display: block;
+  font-family: Montserrat, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin: 0 0 12px;
+  padding: 0 4px;
+}
+
+/* Unified header message */
+.bulk-modal-container.is-campaign-mode .bulk-campaign-header-msg {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  padding: 4px 8px 8px;
+  color: #1a1a1a;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-header-msg[hidden],
+.bulk-modal-container.is-campaign-mode .bulk-campaign-incentive[hidden],
+.bulk-modal-container.is-campaign-mode .bulk-campaign-lock-bar[hidden],
+.bulk-modal-container.is-campaign-mode .bulk-campaign-complete-banner[hidden],
+.bulk-modal-container.is-campaign-mode .bulk-campaign-grid-label[hidden] {
+  display: none !important;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-header-msg__progress {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-header-msg__title {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-incentive {
+  display: block;
+  margin: 8px 12px 0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #e8f8ef;
+  color: #00814e;
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-lock-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-family: Montserrat, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-transform: uppercase;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-complete-banner {
+  display: block;
+  margin: 6px 12px 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #00b45a;
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-savings-header.is-campaign-progress {
+  background-color: #fff0eb !important;
+  background-image: none !important;
+  border-radius: 12px;
+  justify-content: center !important;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-savings-header.is-campaign-complete {
+  background-color: #e8f8ef !important;
+  background-image: none !important;
+  border-radius: 12px;
+  justify-content: center !important;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-savings-header.is-campaign-complete .bulk-campaign-header-msg {
+  color: #00814e;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-savings-header.is-campaign-intercept {
+  background-color: #f9f8ea !important;
+  background-image: none !important;
+  border-radius: 12px;
+  justify-content: center !important;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-savings-content,
+.bulk-modal-container.is-campaign-mode .level-max-msg,
+.bulk-modal-container.is-campaign-mode .savings-active-msg {
+  display: none !important;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-progress-bar-container {
+  display: block;
+  margin-top: 8px;
+}
+
+/* Footer: CTA above total in intercept stage */
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-modal-footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-buy-btn {
+  order: 1;
+  margin-bottom: 10px;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-summary {
+  order: 2;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .gift-progress-badges-modal,
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-selected-list,
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-continue-shopping {
+  order: 3;
+}
+
+/* CTA states — single bulk-buy-btn */
+.bulk-modal-container.is-campaign-mode .bulk-buy-btn.is-cta-intercept {
+  background: #e8e8e8 !important;
+  color: #4a4a4a !important;
+  box-shadow: none !important;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-buy-btn.is-cta-intercept:hover {
+  background: #dcdcdc !important;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-buy-btn.is-cta-complete,
+.bulk-modal-container.is-campaign-mode .bulk-buy-btn.is-campaign-ready {
+  background: #00b45a !important;
+  box-shadow: 0 4px 15px rgba(0, 180, 90, 0.35) !important;
+}
+
+/* Coupon card — dark green XD */
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon {
+  margin: 0 0 14px;
+  padding: 20px 16px;
+  border: none;
+  border-radius: 12px;
+  background: #00814e;
+  text-align: center;
+  font-family: Montserrat, sans-serif;
+  color: #fff;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__badge {
+  background: transparent;
+  color: #fff;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__title {
+  display: none;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__sub {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__code {
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__copy {
+  background: #fff;
+  color: #00814e;
+  border: 2px solid #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 12px 24px;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__checkout {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Qty highlight — green only on increments since campaign open */
+.bulk-modal-container.is-campaign-mode .bulk-product-item.qty-incremented {
+  box-shadow: 0 0 0 2px #00b45a;
+  border-radius: 8px;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-product-item.qty-incremented .bulk-qty-input {
+  color: #00b45a;
+  font-weight: 700;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-product-item.qty-in-cart .bulk-qty-input {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* Side-cart coupon banner (unchanged scope) */
+.bulk-campaign-banner {
+  border: 1px dashed #00b45a;
+  background: #e8f8ef;
+  color: #00b45a;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-family: Montserrat, sans-serif;
+}
+
+.bulk-campaign-banner code {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.bulk-campaign-banner__copy {
+  border: 0;
+  background: #fff;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+}

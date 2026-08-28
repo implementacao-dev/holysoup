@@ -809,6 +809,238 @@
     ]
   },
   {
+    "name": "Campanha bulk-modal",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Kill switch"
+      },
+      {
+        "type": "checkbox",
+        "id": "bulk_campaign_enable",
+        "label": "Ativar campanha de quantidade",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "bulk_campaign_debug",
+        "label": "Modo debug (console)",
+        "default": false
+      },
+      {
+        "type": "product_list",
+        "id": "bulk_campaign_excluded_products",
+        "label": "Produtos excluídos da contagem"
+      },
+      {
+        "type": "header",
+        "content": "Oferta 1 (10–14 → meta 15)"
+      },
+      {
+        "type": "number",
+        "id": "bulk_campaign_offer1_from",
+        "label": "Qtd. mínima oferta 1",
+        "default": 10
+      },
+      {
+        "type": "number",
+        "id": "bulk_campaign_offer1_to",
+        "label": "Qtd. máxima oferta 1",
+        "default": 14
+      },
+      {
+        "type": "number",
+        "id": "bulk_campaign_offer1_target",
+        "label": "Meta oferta 1",
+        "default": 15
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_offer1_title",
+        "label": "Título oferta 1 (legado)",
+        "default": "TEM CERTEZA QUE JÁ VAI FINALIZAR?"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_offer1_subtitle",
+        "label": "Subtítulo oferta 1",
+        "default": "Faltam {{faltam}} itens para o próximo nível de desconto."
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_offer1_nudge",
+        "label": "Nudge ao tentar finalizar antes da meta",
+        "default": "Adicione mais {{faltam}} itens para aproveitar o desconto máximo."
+      },
+      {
+        "type": "header",
+        "content": "Oferta 2 (20–24 → meta 25 + cupom)"
+      },
+      {
+        "type": "number",
+        "id": "bulk_campaign_offer2_from",
+        "label": "Qtd. mínima oferta 2",
+        "default": 20
+      },
+      {
+        "type": "number",
+        "id": "bulk_campaign_offer2_to",
+        "label": "Qtd. máxima oferta 2",
+        "default": 24
+      },
+      {
+        "type": "number",
+        "id": "bulk_campaign_offer2_target",
+        "label": "Meta oferta 2",
+        "default": 25
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_offer2_title",
+        "label": "Título oferta 2",
+        "default": "Tem certeza que já vai finalizar?"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_offer2_subtitle",
+        "label": "Subtítulo oferta 2",
+        "default": "Faltam {{faltam}} itens para desbloquear o cupom secreto."
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_offer2_nudge",
+        "label": "Nudge oferta 2",
+        "default": "Complete {{faltam}} itens para ganhar o cupom extra."
+      },
+      {
+        "type": "header",
+        "content": "Cupom"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_coupon_code",
+        "label": "Código do cupom",
+        "default": "CUPOMSECRETO"
+      },
+      {
+        "type": "number",
+        "id": "bulk_campaign_coupon_pct",
+        "label": "Percentual extra do cupom",
+        "default": 10
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_coupon_title",
+        "label": "Título cupom",
+        "default": "PRESENTEADO"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_coupon_subtitle",
+        "label": "Subtítulo cupom",
+        "default": "25% + {{pct_cupom}}% = 35% de desconto total"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_coupon_copy",
+        "label": "Botão copiar cupom",
+        "default": "COPIAR CUPOM"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_coupon_copied",
+        "label": "Texto após copiar",
+        "default": "Copiado!"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_coupon_checkout",
+        "label": "Botão checkout com cupom",
+        "default": "Finalizar com desconto"
+      },
+      {
+        "type": "header",
+        "content": "Barra de progresso campanha (XD)"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_progress_template",
+        "label": "Texto em progresso",
+        "default": "Já economizou {{economia}} / Faltam {{faltam}} para ganhar mais {{economia_meta}}"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_complete_template",
+        "label": "Texto meta atingida",
+        "default": "PARABÉNS! LIBEROU MAIS {{economia_meta}}"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_intercept_title",
+        "label": "Título intercept (clique abaixo da meta)",
+        "default": "TEM CERTEZA QUE JÁ VAI FINALIZAR?"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_intercept_subtitle",
+        "label": "Subtítulo intercept",
+        "default": "Faltam {{faltam}} un para economizar {{economia_meta}}"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_coupon_banner",
+        "label": "Banner cupom liberado",
+        "default": "LIBEROU +{{pct_cupom}}% OFF COM CUPOM"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_grid_label",
+        "label": "Label grid campanha (flat)",
+        "default": "HOLY'S NO SEU CARRINHO"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_offer2_lock_label",
+        "label": "Label barra cadeado offer2",
+        "default": "Cupom Secreto"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_savings_banner",
+        "label": "Banner economia meta atingida",
+        "default": "Você economizou {{economia}}"
+      },
+      {
+        "type": "header",
+        "content": "CTAs e carrinho lateral"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_btn_refuse",
+        "label": "Botão recusar oferta",
+        "default": "SIM, FINALIZAR AGORA"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_btn_complete",
+        "label": "Botão meta atingida (offer1)",
+        "default": "Comprar com desconto"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_btn_complete_offer2",
+        "label": "Botão meta atingida (offer2)",
+        "default": "Comprar agora"
+      },
+      {
+        "type": "text",
+        "id": "bulk_campaign_side_max_msg",
+        "label": "Mensagem carrinho 20+ un (só economia)",
+        "default": "Você já está no nível máximo de desconto progressivo!"
+      }
+    ]
+  },
+  {
     "name": "Brinde",
     "settings": [
       {

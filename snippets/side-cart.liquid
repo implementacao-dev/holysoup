@@ -594,13 +594,20 @@
               "
               class="side-cart-shipping-container"
               style="background: {{ settings.bg_color }};"
+              {% if settings.bulk_campaign_enable %}
+                data-bulk-campaign-side-progress
+                data-savings-template="{{ settings.bulk_campaign_side_max_msg | escape }}"
+              {% endif %}
             >
-              <div>
+              <div data-bulk-campaign-side-default>
                 <div style="display: flex; gap: 8px; justify-content: center">
                   {% if settings.icon != blank %}
                     {{ settings.icon | image_url: width: 100 | image_tag: loading: 'lazy', fetchpriority: 'auto' }}
                   {% endif %}
-                  <div style="color: {{ settings.text_color }}; --highlightedColor: {{ settings.highlighted_text_color }}">
+                  <div
+                    style="color: {{ settings.text_color }}; --highlightedColor: {{ settings.highlighted_text_color }}"
+                    data-bulk-campaign-side-msg
+                  >
                     {% if cart.item_count < settings.discount_un_1 %}
                       {{
                         settings.text_label_01
@@ -668,6 +675,9 @@
         </div>
         {% if cart.item_count > 0 %}
           <div class="side-cart-infos">
+            {% if settings.bulk_campaign_enable %}
+              <div data-bulk-campaign-banner-slot></div>
+            {% endif %}
             <div class="side-cart-cart">
               <div class="side-cart-cart-info">
                 <div class="side-cart-subtotal">Subtotal de produtos</div>
