@@ -855,6 +855,12 @@
         "default": 15
       },
       {
+        "type": "checkbox",
+        "id": "bulk_campaign_offer1_unified_header",
+        "label": "Header offer1 unificado no bulk (10–14 un)",
+        "default": true
+      },
+      {
         "type": "text",
         "id": "bulk_campaign_offer1_title",
         "label": "Título oferta 1 (legado)",
@@ -972,7 +978,7 @@
         "type": "text",
         "id": "bulk_campaign_complete_template",
         "label": "Texto meta atingida",
-        "default": "PARABÉNS! LIBEROU MAIS {{economia_meta}}"
+        "default": "PARABÉNS LIBEROU HOLYS POR R$16"
       },
       {
         "type": "text",
@@ -984,7 +990,7 @@
         "type": "text",
         "id": "bulk_campaign_intercept_subtitle",
         "label": "Subtítulo intercept",
-        "default": "Faltam {{faltam}} un para economizar {{economia_meta}}"
+        "default": "Falta só {{faltam}} un para economizar {{economia_meta}}"
       },
       {
         "type": "text",
@@ -996,7 +1002,7 @@
         "type": "text",
         "id": "bulk_campaign_grid_label",
         "label": "Label grid campanha (flat)",
-        "default": "HOLY'S NO SEU CARRINHO"
+        "default": "HOLYS NO SEU CARRINHO"
       },
       {
         "type": "text",

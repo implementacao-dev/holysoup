@@ -102,7 +102,7 @@
     left: 0;
     width: 100%;
     height: 100dvh;
-    background: #fffef5;
+    background: var(--bulk-modal-bg, #ffffff);
     z-index: 100000;
     border-radius: 21px;
     transform: translateY(100%);
@@ -169,8 +169,8 @@
     font-family: 'HatchwayUltraCondensed', sans-serif;
     font-weight: 600;
     font-size: 21px;
-    color: #afaa7a;
-    border: 1px solid #afaa7a;
+    color: var(--bulk-category-color, #afaa7a);
+    border: 1px solid var(--bulk-category-border, #afaa7a);
     border-radius: 21px;
     text-align: center;
     padding: 10px 20px;
@@ -192,8 +192,8 @@
     top: 5px;
     cursor: pointer;
     z-index: 100;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     background: #005234;
     color: white;
     border-radius: 50%;
@@ -203,21 +203,22 @@
   }
 
   .bulk-modal-close svg {
-    width: 13px;
-    height: 13px;
+    width: 10px;
+    height: 10px;
     fill: currentColor;
   }
 
   .bulk-modal-header {
     padding: 20px 20px 0 20px;
     z-index: 60;
+    background: var(--bulk-modal-bg, #ffffff);
   }
 
   .bulk-modal-body {
     flex: 1;
     overflow-y: auto;
     padding: 0 20px 20px 20px;
-    background: #fffef5;
+    background: var(--bulk-modal-bg, #ffffff);
     position: relative;
   }
 
@@ -263,7 +264,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f9f8ea;
+    background: var(--bulk-savings-card-bg, #ffffff);
     border-radius: 20px;
     position: relative;
     box-shadow: none;
@@ -272,7 +273,7 @@
   }
 
   .bulk-savings-content {
-    width: 500px;
+    width: 100%;
     max-width: 100%;
     margin: 0 auto;
     text-align: left;
@@ -286,6 +287,32 @@
 
   .bulk-active-wrapper {
     flex: 1;
+    width: 100%;
+  }
+
+  .bulk-progress-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .bulk-progress-copy {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .bulk-progress-copy .bulk-progress-bar-container {
+    width: 100%;
+    margin: 0;
+  }
+
+  .bulk-progress-row .bulk-tier-badge-gem {
+    flex-shrink: 0;
+    align-self: center;
   }
 
   .bulk-savings-text {
@@ -336,7 +363,7 @@
   }
 
   .bulk-tier-badge-gem {
-    --s: 76px; 
+    --s: 64px; 
     width: var(--s);
     height: var(--s);
     transform: rotate(8deg);
@@ -385,9 +412,23 @@
     font-weight: 600;
   }
 
+  .bulk-tier-badge-gem.is-unit-price {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .bulk-tier-badge-gem.is-unit-price strong {
+    font-size: 1em;
+    letter-spacing: -0.02em;
+  }
+
+  .bulk-modal-container.is-hide-current-tier .bulk-current-tier-display {
+    display: none !important;
+  }
+
   .bulk-modal-footer {
     padding: 10px 24px 24px 24px;
-    background: #f9f8ea;
+    background: var(--bulk-footer-bg, #ffffff);
     border-top: 1px solid #eee;
     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
     font-family: 'SF Pro Display', sans-serif;
@@ -403,10 +444,10 @@
 
   .bulk-summary-total {
     font-size: 16px;
-    color: #1a1a1a;
+    color: var(--bulk-footer-text, #1a1a1a);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
   }
 
   .bulk-old-price {
@@ -419,25 +460,25 @@
   .bulk-summary-prices {
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: 4px;
   }
 
   .bulk-total-price {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 900;
-    color: #1a1a1a;
+    color: var(--bulk-footer-text, #1a1a1a);
   }
 
   .bulk-summary-right {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
   }
 
   .bulk-summary-items {
     font-size: 17px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: var(--bulk-footer-text, #1a1a1a);
   }
 
   .bulk-view-list {
@@ -493,7 +534,7 @@
 
   .bulk-buy-btn {
     width: 100%;
-    height: 80px; 
+    height: 64px; 
     background: #ff5017;
     color: #fff;
     border: none;
@@ -607,7 +648,7 @@
     font-weight: 400;
     font-family: 'HatchwayUltraCondensed', sans-serif;
     color: #1a1a1a;
-    background: #fffef5;
+    background: var(--bulk-modal-bg, #ffffff);
   }
 
   .bulk-current-tier-display strong {
@@ -788,7 +829,7 @@
     height: 100%;
     position: relative;
     z-index: 2;
-    background: #f2f1da;
+    background: var(--bulk-modal-bg, #ffffff);
     align-items: center;
   }
   .bulk-product-info h4 {
@@ -851,23 +892,22 @@
     .bulk-old-price,
     .bulk-summary-items,
     .bulk-view-list {
-      font-size: 14px; 
+      font-size: 12px; 
     }
     .bulk-total-price {
-      font-size: 18px;
+      font-size: 16px;
     }
     .bulk-summary-prices {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2px;
+      align-items: center;
+      gap: 4px;
     }
     .bulk-summary-total {
-      gap: 5px;
+      gap: 4px;
     }
     .bulk-summary,
     .bulk-summary-right {
-      gap: 5px;
+      gap: 4px;
     }
     .bulk-summary {
       margin-bottom: 10px;
@@ -897,7 +937,7 @@
   }
   .bulk-product-image {
     width: 100%;
-    background: #f0f0f0;
+    background: var(--bulk-modal-bg, #ffffff);
     overflow: hidden;
     margin: 0;
     flex-shrink: 0;
@@ -1109,14 +1149,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
-    gap: 5px;
+    gap: 2px;
     margin-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
   }
 
   .bulk-gift-card-progress-modal {
-    background: #fffef5;
+    background: var(--bulk-modal-bg, #ffffff);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -1183,16 +1223,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 3px;
+    gap: 4px;
+    padding-right: 4px;
     width: 100%;
     overflow: hidden;
   }
 
-  @media (min-width: 768px) {
-    .bulk-gift-card-progress-modal.is-unlocked .bulk-gift-info-progress-modal {
-      flex-direction: row;
-      align-items: center;
-      gap: 3px;
+  .bulk-gift-status-name-wrapper-modal {
+    display: flex;
+    flex-wrap: wrap;
+
+    @media (min-width: 767px) {
+      gap: 4px;
+      flex-wrap: nowrap;
     }
   }
 
@@ -1217,6 +1260,12 @@
     white-space: nowrap;
   }
 
+  .bulk-gift-card-progress-modal.is-unlocked .bulk-gift-name-progress-modal {
+    font-weight: 900;
+    display: inline;
+    width: auto;
+  }
+
   @media (max-width: 767px) {
     .bulk-gift-status-progress-modal {
       font-size: 13px;
@@ -1237,6 +1286,10 @@
   }
 
   .bulk-gift-card-progress-modal.is-locked .bulk-gift-progress-bar-modal {
+    display: block;
+  }
+
+  .bulk-gift-card-progress-modal.is-unlocked .bulk-gift-progress-bar-modal {
     display: block;
   }
 
@@ -1324,7 +1377,40 @@
   </div>
 
   <div class="bulk-modal-overlay"><span></span></div>
-  <div class="bulk-modal-container">
+  {%- liquid
+    assign bulk_modal_bg = section.settings.bulk_modal_bg
+    if bulk_modal_bg == blank
+      assign bulk_modal_bg = '#ffffff'
+    endif
+    assign bulk_savings_card_bg = section.settings.bulk_savings_card_bg
+    if bulk_savings_card_bg == blank
+      assign bulk_savings_card_bg = '#ffffff'
+    endif
+    assign bulk_footer_bg = section.settings.bulk_footer_bg
+    if bulk_footer_bg == blank
+      assign bulk_footer_bg = '#ffffff'
+    endif
+    assign bulk_category_color = section.settings.bulk_category_title_color
+    if bulk_category_color == blank
+      assign bulk_category_color = '#afaa7a'
+    endif
+    assign bulk_category_border = section.settings.bulk_category_title_border
+    if bulk_category_border == blank
+      assign bulk_category_border = '#afaa7a'
+    endif
+    assign bulk_footer_text = section.settings.bulk_footer_text_color
+    if bulk_footer_text == blank
+      assign bulk_footer_text = '#1a1a1a'
+    endif
+    assign bulk_hide_tier = section.settings.bulk_hide_current_tier
+    if bulk_hide_tier == nil
+      assign bulk_hide_tier = true
+    endif
+  -%}
+  <div
+    class="bulk-modal-container{% if bulk_hide_tier %} is-hide-current-tier{% endif %}"
+    style="--bulk-modal-bg: {{ bulk_modal_bg }}; --bulk-savings-card-bg: {{ bulk_savings_card_bg }}; --bulk-footer-bg: {{ bulk_footer_bg }}; --bulk-category-color: {{ bulk_category_color }}; --bulk-category-border: {{ bulk_category_border }}; --bulk-footer-text: {{ bulk_footer_text }}; --offer1-bar-fill: {{ section.settings.tier_3_color | default: '#E3B760' }}; --bulk-tier-4-color: {{ section.settings.tier_4_color | default: '#ff5017' }};"
+  >
     <div class="bulk-modal-close">{% render 'icon-close' %}</div>
 
     <div class="bulk-campaign-nudge" data-bulk-campaign-nudge></div>
@@ -1341,43 +1427,34 @@
     <div class="bulk-modal-header">
       <div class="bulk-progress-wrapper" id="bulk-progress-root">
         <div class="bulk-savings-header">
-          <div class="bulk-campaign-header-msg" data-bulk-campaign-header-msg hidden></div>
-          <div class="bulk-campaign-incentive" data-bulk-campaign-incentive hidden></div>
-          <div class="bulk-campaign-lock-bar" data-bulk-campaign-lock-bar hidden>
-            <span class="bulk-campaign-lock-icon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 68" width="20" height="20">
-                <path d="M53.4,24.307H47.826V17.336A15.336,15.336,0,0,0,32.49,2H29.7A15.336,15.336,0,0,0,14.365,17.336v6.971H8.788A2.788,2.788,0,0,0,6,27.1V60.557a2.788,2.788,0,0,0,2.788,2.788H53.4a2.788,2.788,0,0,0,2.788-2.788V27.1A2.788,2.788,0,0,0,53.4,24.307ZM19.942,17.336A9.759,9.759,0,0,1,29.7,7.577H32.49a9.759,9.759,0,0,1,9.759,9.759v6.971H19.942ZM50.614,57.768H11.577V29.884H50.614Z" fill="currentColor"/>
-              </svg>
-            </span>
-            <span data-bulk-campaign-lock-text></span>
-          </div>
           <div class="bulk-campaign-complete-banner" data-bulk-campaign-complete-banner hidden></div>
           <span class="bulk-savings-text level-zero-msg" style="display: none;"
             ><strong>Adicione o primeiro item</strong> no carrinho para começar</span
           >
           <div class="bulk-savings-content">
             <div class="bulk-active-wrapper">
-              <span class="bulk-savings-text savings-active-msg" style="display: none;">
-                <span class="savings-prefix">Já economizou</span>
-                <span class="bulk-savings-amount">R$ 0,00</span>
-              </span>
-              <div class="bulk-progress-bar-container">
-                <div class="bulk-progress-bar">
-                  <div class="bulk-progress-fill"><span></span></div>
+              <div class="bulk-progress-row">
+                <div class="bulk-progress-copy">
+                  <span class="bulk-savings-text savings-active-msg" style="display: none;">
+                    <span class="savings-prefix">Já economizou</span>
+                    <span class="bulk-savings-amount">R$ 0,00</span>
+                  </span>
+                  <div class="bulk-progress-bar-container">
+                    <div class="bulk-progress-bar">
+                      <div class="bulk-progress-fill"><span></span></div>
+                    </div>
+                  </div>
+                  <div class="bulk-next-tier-info"></div>
+                </div>
+                <div
+                  class="bulk-tier-badge-gem current-tier-pct"
+                  style="display: flex; background-color: {{ section.settings.tier_1_color | default: '#C15C30' }}; color: #fff;"
+                >
+                  <span style="display:inline-block; transform: rotate(-8deg);"
+                    ><strong>{{ section.settings.tier_1_pct | default: 10 }}</strong>%</span
+                  >
                 </div>
               </div>
-              <div class="bulk-next-tier-info">
-                Faltam <strong class="next-level-qty-text">3 itens</strong> para desbloquear NÍVEL
-                <span class="next-level-num">1</span> <strong class="next-level-name">BRONZE</strong>
-              </div>
-            </div>
-            <div
-              class="bulk-tier-badge-gem current-tier-pct"
-              style="display: flex; background-color: {{ section.settings.tier_1_color | default: '#C15C30' }}; color: #fff;"
-            >
-              <span style="display:inline-block; transform: rotate(-8deg);"
-                ><strong>{{ section.settings.tier_1_pct | default: 10 }}</strong>%</span
-              >
             </div>
           </div>
           <span class="bulk-savings-text level-max-msg" style="display: none;">
@@ -1428,6 +1505,10 @@
     </div>
 
     <div class="bulk-modal-body">
+      <div class="bulk-campaign-intercept-panel" data-bulk-campaign-intercept-panel hidden>
+        <div class="bulk-campaign-header-msg" data-bulk-campaign-header-msg hidden></div>
+        <div class="bulk-campaign-incentive" data-bulk-campaign-incentive hidden></div>
+      </div>
       <div class="bulk-campaign-grid-label" data-bulk-campaign-grid-label hidden></div>
       <div class="bulk-inline-gift" id="bulk-inline-gift">
         <div class="bulk-gift-image">
@@ -1563,10 +1644,14 @@
                 <div class="bulk-gift-progress-bar-modal">
                   <div class="bulk-gift-progress-fill-modal"><span></span></div>
                 </div>
-                <span class="bulk-gift-status-progress-modal"><span class="status-txt">Bloqueado</span></span>
-                <span class="bulk-gift-name-progress-modal">
-                  {{- gift_text | default: 'Brinde Especial' -}}
-                </span>
+
+                <div class="bulk-gift-status-name-wrapper-modal">
+                  <span class="bulk-gift-status-progress-modal"><span class="status-txt">Bloqueado</span></span>
+                  <span class="bulk-gift-name-progress-modal">
+                    {{- gift_text | default: 'Brinde Especial' -}}
+                  </span>
+                </div>
+
               </div>
             </div>
           {% endif %}
@@ -1677,9 +1762,11 @@
 
       const tiers = [
         { 
-          qty: {{ section.settings.tier_1_qty | default: 3 }}, 
+          qty: {{ section.settings.tier_1_qty | default: 4 }}, 
           discount: {{ section.settings.tier_1_pct | default: 10 }}, 
           name: 'BRONZE',
+          unitBadge: {{ section.settings.tier_1_unit_badge | default: '18' | json }},
+          unitText: {{ section.settings.tier_1_unit_text | default: '18,00' | json }},
           color: '{{ section.settings.tier_1_color | default: "#C15C30" }}',
           barBgImage: '{{ section.settings.tier_1_bar_image | image_url: width: 1000 }}',
           badgeBgImage: '{{ section.settings.tier_1_badge_bg_image | image_url: width: 400 }}',
@@ -1687,9 +1774,11 @@
           giftImg: "{{ section.settings.tier_1_gift_image | image_url: width: 200 }}"
         },
         { 
-          qty: {{ section.settings.tier_2_qty | default: 6 }}, 
+          qty: {{ section.settings.tier_2_qty | default: 8 }}, 
           discount: {{ section.settings.tier_2_pct | default: 15 }}, 
           name: 'PRATA',
+          unitBadge: {{ section.settings.tier_2_unit_badge | default: '17' | json }},
+          unitText: {{ section.settings.tier_2_unit_text | default: '17,00' | json }},
           color: '{{ section.settings.tier_2_color | default: "#777371" }}',
           barBgImage: '{{ section.settings.tier_2_bar_image | image_url: width: 1000 }}',
           badgeBgImage: '{{ section.settings.tier_2_badge_bg_image | image_url: width: 400 }}',
@@ -1700,6 +1789,8 @@
           qty: {{ section.settings.tier_3_qty | default: 12 }}, 
           discount: {{ section.settings.tier_3_pct | default: 20 }}, 
           name: 'OURO',
+          unitBadge: {{ section.settings.tier_3_unit_badge | default: '16' | json }},
+          unitText: {{ section.settings.tier_3_unit_text | default: '16,00' | json }},
           color: '{{ section.settings.tier_3_color | default: "#E3B760" }}',
           barBgImage: '{{ section.settings.tier_3_bar_image | image_url: width: 1000 }}',
           badgeBgImage: '{{ section.settings.tier_3_badge_bg_image | image_url: width: 400 }}',
@@ -1710,6 +1801,8 @@
           qty: {{ section.settings.tier_4_qty | default: 15 }}, 
           discount: {{ section.settings.tier_4_pct | default: 25 }}, 
           name: 'DIAMANTE',
+          unitBadge: {{ section.settings.tier_4_unit_badge | default: '14' | json }},
+          unitText: {{ section.settings.tier_4_unit_text | default: '14,90' | json }},
           color: '{{ section.settings.tier_4_color | default: "#7BCA0C" }}',
           barBgImage: '{{ section.settings.tier_4_bar_image | image_url: width: 1000 }}',
           badgeBgImage: '{{ section.settings.tier_4_badge_bg_image | image_url: width: 1000 }}',
@@ -1717,6 +1810,42 @@
           giftImg: "{{ section.settings.tier_4_gift_image | image_url: width: 200 }}"
         }
       ];
+
+      const bulkUi = {
+        displayMode: {{ section.settings.bulk_display_mode | default: 'unit_price' | json }}
+      };
+
+      function formatTierBadgeInner(tier) {
+        if (!tier) return '';
+        if (bulkUi.displayMode === 'percentage') {
+          return '<span style="display:flex; transform: rotate(-8deg);"><strong>' + tier.discount + '</strong>%</span>';
+        }
+        return '<span style="display:flex; transform: rotate(-8deg);"><strong>R$ ' + tier.unitBadge + '</strong></span>';
+      }
+
+      function buildNextTierHtml(needed, nextTier) {
+        const qtyLabel = needed + ' ' + (needed === 1 ? 'item' : 'itens');
+        const prefix = needed === 1 ? 'Falta' : 'Faltam';
+        if (bulkUi.displayMode === 'percentage') {
+          const tierNum = tiers.indexOf(nextTier) + 1;
+          return prefix + ' <strong class="next-level-qty-text">' + qtyLabel + '</strong> para desbloquear NÍVEL <span class="next-level-num">' + tierNum + '</span> <strong class="next-level-name">' + nextTier.name + '</strong>';
+        }
+        return prefix + ' <strong class="next-level-qty-text">' + qtyLabel + '</strong> para desbloquear Holy\'s por <strong>R$ ' + nextTier.unitText + '</strong> cada';
+      }
+
+      function applyTierBadgeEl(el, tier) {
+        if (!el || !tier) return;
+        el.classList.toggle('is-unit-price', bulkUi.displayMode === 'unit_price');
+        if (tier.badgeBgImage) {
+          el.style.backgroundImage = 'url(' + tier.badgeBgImage + ')';
+          el.style.backgroundSize = tiers.indexOf(tier) === tiers.length - 1 ? 'initial' : '100% 100%';
+        } else {
+          el.style.backgroundColor = tier.color;
+          el.style.backgroundImage = 'none';
+        }
+        el.style.color = (tier.name === 'DIAMANTE' || tier.name === 'SUPREMO') ? '#344F53' : '#fff';
+        el.innerHTML = formatTierBadgeInner(tier);
+      }
 
       const neutralColor = '{{ section.settings.tier_0_color | default: "#AFAA7A" }}';
 
@@ -1729,14 +1858,15 @@
       let campaignEligibleQty = 0;
       let campaignModalTotal = 0;
       let campaignBaselineQty = {};
+      let lastCartEligibleQty = 0;
+      let completeBannerHome = null;
 
       const campaignNudgeEl = document.querySelector('[data-bulk-campaign-nudge]');
       const campaignAlertEl = document.querySelector('[data-bulk-campaign-alert]');
       const campaignCouponEl = document.querySelector('[data-bulk-campaign-coupon]');
       const campaignHeaderMsgEl = document.querySelector('[data-bulk-campaign-header-msg]');
       const campaignIncentiveEl = document.querySelector('[data-bulk-campaign-incentive]');
-      const campaignLockBarEl = document.querySelector('[data-bulk-campaign-lock-bar]');
-      const campaignLockTextEl = document.querySelector('[data-bulk-campaign-lock-text]');
+      const campaignInterceptPanelEl = document.querySelector('[data-bulk-campaign-intercept-panel]');
       const campaignCompleteBannerEl = document.querySelector('[data-bulk-campaign-complete-banner]');
       const campaignGridLabelEl = document.querySelector('[data-bulk-campaign-grid-label]');
 
@@ -1811,10 +1941,248 @@
       function setCampaignStage(stage) {
         campaignStage = stage;
         if (container) {
-          container.classList.remove('is-campaign-intercept', 'is-campaign-complete-stage');
-          if (stage === 'intercept') container.classList.add('is-campaign-intercept');
-          if (stage === 'complete') container.classList.add('is-campaign-complete-stage');
+          container.classList.remove('is-campaign-intercept', 'is-campaign-complete-stage', 'is-campaign-offer2-intercept', 'is-campaign-offer1-intercept', 'is-campaign-offer1-complete', 'is-offer1-progress-preview', 'is-offer1-progress-complete');
+          if (stage === 'intercept') {
+            container.classList.add('is-campaign-intercept');
+            if (campaignMode === 'offer2') container.classList.add('is-campaign-offer2-intercept');
+            if (campaignMode === 'offer1') container.classList.add('is-campaign-offer1-intercept');
+          }
+          if (stage === 'complete') {
+            container.classList.add('is-campaign-complete-stage');
+            if (campaignMode === 'offer1') container.classList.add('is-campaign-offer1-complete');
+          }
         }
+      }
+
+      function getOffer1PromoTier() {
+        const match = tiers.find(function (t) { return t.unitBadge === '16'; });
+        return match || tiers[Math.max(0, tiers.length - 2)];
+      }
+
+      function getOffer1OuroTier() {
+        return tiers[2] || getOffer1PromoTier();
+      }
+
+      function getOffer1DiamanteTier() {
+        return tiers[tiers.length - 1] || getOffer1PromoTier();
+      }
+
+      function isOffer1PreviewContext(qty) {
+        const cfg = getCampaignCfg();
+        if (!cfg || !cfg.offer1 || campaignMode) return false;
+        const q = qty != null ? qty : lastCartEligibleQty;
+        if (cfg.offer1UnifiedHeader === false) return false;
+        const target = cfg.offer1.target || 15;
+        return q >= cfg.offer1.from && q < target;
+      }
+
+      function isOffer1NativeHeaderContext(qty) {
+        const cfg = getCampaignCfg();
+        if (!cfg || !cfg.offer1 || campaignMode) return false;
+        const q = qty != null ? qty : lastCartEligibleQty;
+        if (cfg.offer1UnifiedHeader === false) return false;
+        return q >= cfg.offer1.from;
+      }
+
+      function getOffer1NativeHeaderVariant(qty) {
+        const cfg = getCampaignCfg();
+        const target = (cfg && cfg.offer1) ? (cfg.offer1.target || 15) : 15;
+        return qty >= target ? 'complete' : 'preview';
+      }
+
+      function isOffer1ProgressContext(qty) {
+        const cfg = getCampaignCfg();
+        if (!cfg || !cfg.offer1) return false;
+        const q = qty != null ? qty : (campaignMode === 'offer1' ? campaignEligibleQty : lastCartEligibleQty);
+        const inCampaignOffer1 = campaignMode === 'offer1';
+        const inComplete = campaignMode === 'offer1' && campaignStage === 'complete';
+        const preview = isOffer1PreviewContext(q);
+        const nativeHeader = isOffer1NativeHeaderContext(q);
+        return inCampaignOffer1 || preview || nativeHeader || inComplete;
+      }
+
+      function applyOffer1BarFill(tier) {
+        if (!progressFill || !tier) return;
+        progressFill.style.backgroundImage = 'none';
+        if (tier.barBgImage) {
+          progressFill.style.backgroundImage = 'url(' + tier.barBgImage + ')';
+          progressFill.style.backgroundSize = 'cover';
+        } else {
+          progressFill.style.backgroundColor = tier.color || '#E3B760';
+        }
+      }
+
+      function applyOffer1CompleteBarFill() {
+        if (!progressFill) return;
+        const tier = getOffer1DiamanteTier();
+        progressFill.style.backgroundImage = 'none';
+        if (tier.barBgImage) {
+          progressFill.style.backgroundImage = 'url(' + tier.barBgImage + ')';
+          progressFill.style.backgroundSize = 'cover';
+        } else {
+          progressFill.style.backgroundColor = '#ff5017';
+        }
+      }
+
+      function applyOffer1CompleteBadge(el) {
+        if (!el) return;
+        const tier = getOffer1DiamanteTier();
+        el.classList.remove('is-lock-badge');
+        el.classList.add('is-offer1-complete-badge');
+        el.style.backgroundImage = 'none';
+        el.style.backgroundColor = '#005234';
+        el.style.color = '#fff';
+        el.classList.toggle('is-unit-price', bulkUi.displayMode === 'unit_price');
+        el.innerHTML = formatTierBadgeInner(tier);
+      }
+
+      function buildOffer1CompleteProgressText(faltam) {
+        const tier = getOffer1DiamanteTier();
+        const qtyLabel = faltam + ' ' + (faltam === 1 ? 'item' : 'itens');
+        const prefix = faltam === 1 ? 'Falta' : 'Faltam';
+        return prefix + ' <strong>' + qtyLabel + '</strong> para desbloquear Holy\'s por <strong>R$ ' + tier.unitText + '</strong> cada';
+      }
+
+      function renderOffer1ProgressHeader(opts) {
+        const cfg = getCampaignCfg();
+        if (!cfg) return;
+        const variant = (opts && opts.variant) || 'preview';
+        const target = cfg.offer1.target || 15;
+        const q = opts && opts.q != null ? opts.q : campaignEligibleQty;
+        const faltam = opts && opts.faltam != null ? opts.faltam : Math.max(0, target - q);
+        const diamante = getOffer1DiamanteTier();
+
+        if (container) {
+          container.classList.toggle('is-offer1-progress-preview', variant === 'preview');
+          container.classList.toggle('is-offer1-progress-complete', variant === 'complete' && !campaignMode);
+        }
+        if (savingsHeader) {
+          savingsHeader.classList.remove('is-campaign-progress', 'is-campaign-complete', 'is-campaign-intercept', 'is-campaign-offer2-progress');
+          savingsHeader.classList.toggle('is-campaign-offer1-progress', variant !== 'complete');
+          savingsHeader.classList.toggle('is-campaign-offer1-complete-progress', variant === 'complete');
+        }
+        if (levelMaxMsg) levelMaxMsg.style.display = 'none';
+        if (savingsContent) savingsContent.style.display = 'flex';
+        if (savingsActiveMsg) savingsActiveMsg.style.display = 'flex';
+        if (progressBar) progressBar.style.display = q > 0 ? 'block' : 'none';
+
+        if (progressFill) {
+          if (variant === 'complete') {
+            const tierQty = diamante.qty || target;
+            progressFill.style.width = (tierQty > 0 ? Math.min((q / tierQty) * 100, 100) : 0) + '%';
+            applyOffer1CompleteBarFill();
+          } else {
+            progressFill.style.width = (target > 0 ? Math.min((q / target) * 100, 100) : 0) + '%';
+            applyOffer1BarFill(getOffer1OuroTier());
+          }
+        }
+
+        if (tierBadge) {
+          tierBadge.style.display = 'flex';
+          if (variant === 'complete') {
+            applyOffer1CompleteBadge(tierBadge);
+          } else {
+            tierBadge.classList.remove('is-offer1-complete-badge');
+            tierBadge.classList.remove('is-lock-badge');
+            applyTierBadgeEl(tierBadge, getOffer1PromoTier());
+          }
+        }
+
+        if (nextTierInfo) {
+          if (variant === 'complete') {
+            const faltamTier = Math.max(0, (diamante.qty || target) - q);
+            if (faltamTier > 0) {
+              nextTierInfo.style.display = 'block';
+              nextTierInfo.innerHTML = buildOffer1CompleteProgressText(faltamTier);
+            } else {
+              nextTierInfo.style.display = 'none';
+              nextTierInfo.innerHTML = '';
+            }
+          } else {
+            nextTierInfo.style.display = 'block';
+            nextTierInfo.innerHTML = buildOffer1ProgressText(faltam);
+          }
+        }
+      }
+
+      function buildOffer1CompleteTitle(template) {
+        const raw = (template || 'PARABÉNS LIBEROU HOLYS POR R$16').trim();
+        const highlight = 'HOLYS POR R$16';
+        const idx = raw.indexOf(highlight);
+        if (idx > -1) {
+          return '<span class="bulk-campaign-header-msg__title--rest">' + raw.slice(0, idx) + '</span>' +
+            '<strong class="bulk-campaign-header-msg__title--highlight">' + highlight + '</strong>';
+        }
+        return '<strong class="bulk-campaign-header-msg__title--lead">' + raw + '</strong>';
+      }
+
+      function buildOffer1SavingsBannerHtml(map) {
+        return '<span class="bulk-campaign-complete-banner__prefix">Você economizou</span> ' +
+          '<strong class="bulk-campaign-complete-banner__amount">' + map.economia + '</strong>';
+      }
+
+      function mountOffer1CompleteBanner() {
+        if (!campaignCompleteBannerEl || !campaignInterceptPanelEl) return;
+        if (!completeBannerHome) {
+          completeBannerHome = campaignCompleteBannerEl.parentElement;
+        }
+        if (campaignCompleteBannerEl.parentElement !== campaignInterceptPanelEl) {
+          campaignInterceptPanelEl.appendChild(campaignCompleteBannerEl);
+        }
+      }
+
+      function restoreCompleteBannerHome() {
+        if (!campaignCompleteBannerEl || !completeBannerHome) return;
+        if (campaignCompleteBannerEl.parentElement !== completeBannerHome) {
+          completeBannerHome.appendChild(campaignCompleteBannerEl);
+        }
+        campaignCompleteBannerEl.hidden = true;
+        campaignCompleteBannerEl.innerHTML = '';
+        campaignCompleteBannerEl.classList.remove('is-offer1-savings-box');
+      }
+
+      function buildOffer1ProgressText(faltam) {
+        const tier = getOffer1PromoTier();
+        const qtyLabel = faltam + ' ' + (faltam === 1 ? 'item' : 'itens');
+        const prefix = faltam === 1 ? 'Falta' : 'Faltam';
+        if (bulkUi.displayMode === 'percentage') {
+          const tierNum = tiers.indexOf(tier) + 1;
+          return prefix + ' <strong>' + qtyLabel + '</strong> para desbloquear NÍVEL <span class="next-level-num">' + tierNum + '</span> <strong class="next-level-name">' + tier.name + '</strong>';
+        }
+        return prefix + ' <strong>' + qtyLabel + '</strong> para desbloquear Holy\'s por <strong>R$ ' + tier.unitText + '</strong> cada';
+      }
+
+      function buildOffer1IncentiveHtml(faltam, map) {
+        return '<span class="bulk-campaign-incentive__text">Falta só <strong class="bulk-campaign-incentive__qty">' + faltam + ' un</strong> para economizar <strong class="bulk-campaign-incentive__savings">' + map.economia_meta + '</strong></span>';
+      }
+
+      function applyOffer2LockBadge(el) {
+        if (!el) return;
+        el.classList.add('is-lock-badge');
+        el.style.backgroundColor = '#005234';
+        el.style.color = '#fff';
+        el.innerHTML = '<span class="bulk-tier-badge-gem__lock" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 68"><g transform="translate(8.743 4.058)"><path d="M53.4,24.307H47.826V17.336A15.336,15.336,0,0,0,32.49,2H29.7A15.336,15.336,0,0,0,14.365,17.336v6.971H8.788A2.788,2.788,0,0,0,6,27.1V60.557a2.788,2.788,0,0,0,2.788,2.788H53.4a2.788,2.788,0,0,0,2.788-2.788V27.1A2.788,2.788,0,0,0,53.4,24.307ZM19.942,17.336A9.759,9.759,0,0,1,29.7,7.577H32.49a9.759,9.759,0,0,1,9.759,9.759v6.971H19.942ZM50.614,57.768H11.577V29.884H50.614Z" transform="translate(-6 -2)" fill="currentColor"/><path d="M31.054,31.463a5.577,5.577,0,1,0-8.365,4.88v3.486a2.788,2.788,0,0,0,5.577,0V36.342A5.577,5.577,0,0,0,31.054,31.463Z" transform="translate(-0.521 7.436)" fill="currentColor"/></g></svg></span>';
+      }
+
+      function buildOffer2ProgressText(faltam, cfg) {
+        const qty = faltam + ' ' + (faltam === 1 ? 'item' : 'itens');
+        const lock = (cfg && cfg.offer2LockLabel) ? cfg.offer2LockLabel : 'Cupom Secreto';
+        return 'Falta <strong>' + qty + '</strong> para desbloquear <strong>' + lock + '</strong>';
+      }
+
+      function buildOffer2InterceptTitle(title) {
+        const raw = (title || 'TEM CERTEZA QUE JÁ VAI FINALIZAR?').trim();
+        const splitAt = raw.indexOf(' QUE ');
+        if (splitAt > -1) {
+          return '<strong class="bulk-campaign-header-msg__title--lead">' + raw.slice(0, splitAt) + '</strong>' +
+            '<span class="bulk-campaign-header-msg__title--rest">' + raw.slice(splitAt) + '</span>';
+        }
+        return '<strong class="bulk-campaign-header-msg__title--lead">' + raw + '</strong>';
+      }
+
+      function buildOffer2IncentiveHtml(faltam, cfg) {
+        const lock = (cfg && cfg.offer2LockLabel) ? cfg.offer2LockLabel : 'Cupom Secreto';
+        return '<span class="bulk-campaign-incentive__text">Com <strong class="bulk-campaign-incentive__qty">+' + faltam + ' un</strong> você libera o <strong class="bulk-campaign-incentive__lock">' + lock + '</strong>.</span>';
       }
 
       function updateCampaignCta(faltam) {
@@ -1847,7 +2215,7 @@
         const isFlat = campaignStage === 'intercept' || campaignStage === 'complete';
         if (campaignGridLabelEl) {
           campaignGridLabelEl.hidden = !isFlat;
-          if (isFlat && cfg) campaignGridLabelEl.textContent = cfg.gridLabel || "HOLY'S NO SEU CARRINHO";
+          if (isFlat && cfg) campaignGridLabelEl.textContent = cfg.gridLabel || 'HOLYS NO SEU CARRINHO';
         }
         productsCache.forEach(function (item) {
           const qty = parseInt(item.input ? item.input.value : 0, 10) || 0;
@@ -1864,14 +2232,15 @@
         campaignStage = null;
         campaignBaselineQty = {};
         if (container) {
-          container.classList.remove('is-campaign-intercept', 'is-campaign-complete-stage');
+          container.classList.remove('is-campaign-intercept', 'is-campaign-complete-stage', 'is-campaign-offer2-intercept', 'is-campaign-offer1-intercept', 'is-campaign-offer1-complete', 'is-offer1-progress-preview', 'is-offer1-progress-complete');
         }
         if (savingsHeader) {
-          savingsHeader.classList.remove('is-campaign-progress', 'is-campaign-complete', 'is-campaign-intercept');
+          savingsHeader.classList.remove('is-campaign-progress', 'is-campaign-complete', 'is-campaign-intercept', 'is-campaign-offer2-progress', 'is-campaign-offer1-progress', 'is-campaign-offer1-complete-progress');
           savingsHeader.style.backgroundColor = '';
           savingsHeader.style.backgroundImage = '';
           savingsHeader.style.justifyContent = '';
         }
+        if (campaignInterceptPanelEl) campaignInterceptPanelEl.hidden = true;
         if (campaignHeaderMsgEl) {
           campaignHeaderMsgEl.hidden = true;
           campaignHeaderMsgEl.textContent = '';
@@ -1880,14 +2249,20 @@
         if (campaignIncentiveEl) {
           campaignIncentiveEl.hidden = true;
           campaignIncentiveEl.textContent = '';
+          campaignIncentiveEl.innerHTML = '';
+          campaignIncentiveEl.classList.remove('bulk-campaign-incentive--outline');
         }
-        if (campaignLockBarEl) campaignLockBarEl.hidden = true;
         if (campaignCompleteBannerEl) {
-          campaignCompleteBannerEl.hidden = true;
-          campaignCompleteBannerEl.textContent = '';
+          restoreCompleteBannerHome();
         }
         if (campaignGridLabelEl) campaignGridLabelEl.hidden = true;
         if (campaignAlertEl) campaignAlertEl.classList.remove('is-visible');
+        if (tierBadge) {
+          tierBadge.classList.remove('is-lock-badge', 'is-offer1-complete-badge');
+          tierBadge.style.backgroundColor = '';
+          tierBadge.style.backgroundImage = '';
+          tierBadge.style.color = '';
+        }
         if (progressFill) {
           progressFill.style.width = '';
           progressFill.style.backgroundColor = '';
@@ -1965,59 +2340,114 @@
         const map = buildCampaignFillMap(q, faltam, total || campaignModalTotal);
 
         if (savingsHeader) {
-          savingsHeader.classList.remove('is-campaign-progress', 'is-campaign-complete', 'is-campaign-intercept');
+          savingsHeader.classList.remove('is-campaign-progress', 'is-campaign-complete', 'is-campaign-intercept', 'is-campaign-offer2-progress', 'is-campaign-offer1-progress', 'is-campaign-offer1-complete-progress');
         }
         if (campaignNudgeEl) campaignNudgeEl.classList.remove('is-visible');
         if (campaignAlertEl) campaignAlertEl.classList.remove('is-visible');
-        if (nextTierInfo) nextTierInfo.style.display = 'none';
-        if (tierBadge) tierBadge.style.display = 'none';
-        if (savingsContent) savingsContent.style.display = 'none';
-        if (levelMaxMsg) levelMaxMsg.style.display = 'none';
-
-        if (progressFill) {
-          progressFill.style.width = Math.min((q / campaignTarget) * 100, 100) + '%';
-          progressFill.style.backgroundImage = 'none';
-          progressFill.style.backgroundColor = faltam > 0 ? '#ff5017' : '#7BCA0C';
+        if (campaignInterceptPanelEl) campaignInterceptPanelEl.hidden = true;
+        if (campaignHeaderMsgEl) campaignHeaderMsgEl.hidden = true;
+        if (campaignIncentiveEl) {
+          campaignIncentiveEl.hidden = true;
+          campaignIncentiveEl.classList.remove('bulk-campaign-incentive--outline');
         }
-        if (progressBar) progressBar.style.display = q > 0 ? 'block' : 'none';
-
-        if (campaignLockBarEl) campaignLockBarEl.hidden = true;
-        if (campaignIncentiveEl) campaignIncentiveEl.hidden = true;
         if (campaignCompleteBannerEl) campaignCompleteBannerEl.hidden = true;
 
+        const isOffer2Intercept = campaignStage === 'intercept' && campaignMode === 'offer2';
+        const isOffer1Intercept = campaignStage === 'intercept' && campaignMode === 'offer1';
+        const isOffer1Complete = campaignStage === 'complete' && campaignMode === 'offer1';
+        const isFlatIntercept = isOffer1Intercept || isOffer2Intercept;
+        const isOffer1FlatProgress = isOffer1Intercept || isOffer1Complete;
+
+        if (!isFlatIntercept && !isOffer1Complete) {
+          if (nextTierInfo) nextTierInfo.style.display = 'none';
+          if (tierBadge) tierBadge.style.display = 'none';
+          if (savingsContent) savingsContent.style.display = 'none';
+          if (levelMaxMsg) levelMaxMsg.style.display = 'none';
+        }
+
+        if (progressFill && !isOffer1FlatProgress) {
+          progressFill.style.width = Math.min((q / campaignTarget) * 100, 100) + '%';
+          progressFill.style.backgroundImage = 'none';
+          progressFill.style.backgroundColor = isOffer2Intercept ? '#005234' : (faltam > 0 ? '#ff5017' : '#7BCA0C');
+        }
+        if (progressBar && !isOffer1FlatProgress) progressBar.style.display = q > 0 ? 'block' : 'none';
+
         if (campaignStage === 'intercept') {
-          if (savingsHeader) savingsHeader.classList.add('is-campaign-intercept');
-          if (campaignMode === 'offer2' && campaignLockBarEl) {
-            campaignLockBarEl.hidden = false;
-            if (campaignLockTextEl) campaignLockTextEl.textContent = cfg.offer2LockLabel || 'Cupom Secreto';
-            if (progressBar) progressBar.style.display = 'block';
-          } else if (savingsHeader) {
-            savingsHeader.classList.add('is-campaign-progress');
-          }
-          if (campaignHeaderMsgEl) {
-            if (campaignMode === 'offer1') {
-              campaignHeaderMsgEl.innerHTML =
-                '<span class="bulk-campaign-header-msg__progress">' + campaignFill(cfg.progressTemplate, map) + '</span>' +
-                '<strong class="bulk-campaign-header-msg__title">' + campaignFill(cfg.interceptTitle, map) + '</strong>';
-            } else {
-              campaignHeaderMsgEl.innerHTML =
-                '<strong class="bulk-campaign-header-msg__title">' + campaignFill(cfg.interceptTitle, map) + '</strong>';
+          if (isOffer2Intercept) {
+            if (savingsHeader) savingsHeader.classList.add('is-campaign-offer2-progress');
+            if (savingsContent) savingsContent.style.display = 'flex';
+            if (savingsActiveMsg) savingsActiveMsg.style.display = 'flex';
+            if (levelMaxMsg) levelMaxMsg.style.display = 'none';
+            if (tierBadge) {
+              tierBadge.style.display = 'flex';
+              applyOffer2LockBadge(tierBadge);
             }
-            campaignHeaderMsgEl.hidden = false;
-          }
-          if (campaignIncentiveEl) {
-            campaignIncentiveEl.textContent = campaignFill(cfg.interceptSubtitle, map);
-            campaignIncentiveEl.hidden = false;
+            if (nextTierInfo) {
+              nextTierInfo.style.display = 'block';
+              nextTierInfo.innerHTML = buildOffer2ProgressText(faltam, cfg);
+            }
+            if (campaignInterceptPanelEl) campaignInterceptPanelEl.hidden = false;
+            if (campaignHeaderMsgEl) {
+              campaignHeaderMsgEl.innerHTML = buildOffer2InterceptTitle(campaignFill(cfg.interceptTitle, map));
+              campaignHeaderMsgEl.hidden = false;
+            }
+            if (campaignIncentiveEl) {
+              campaignIncentiveEl.innerHTML = buildOffer2IncentiveHtml(faltam, cfg);
+              campaignIncentiveEl.classList.add('bulk-campaign-incentive--outline');
+              campaignIncentiveEl.hidden = false;
+            }
+          } else if (isOffer1Intercept) {
+            renderOffer1ProgressHeader({ variant: 'intercept', q: q, faltam: faltam, total: total });
+            if (campaignInterceptPanelEl) campaignInterceptPanelEl.hidden = false;
+            if (campaignHeaderMsgEl) {
+              campaignHeaderMsgEl.innerHTML = buildOffer2InterceptTitle(campaignFill(cfg.interceptTitle, map));
+              campaignHeaderMsgEl.hidden = false;
+            }
+            if (campaignIncentiveEl) {
+              campaignIncentiveEl.innerHTML = buildOffer1IncentiveHtml(faltam, map);
+              campaignIncentiveEl.classList.add('bulk-campaign-incentive--outline');
+              campaignIncentiveEl.hidden = false;
+            }
+          } else {
+            if (savingsHeader) savingsHeader.classList.add('is-campaign-intercept', 'is-campaign-progress');
+            if (campaignInterceptPanelEl) campaignInterceptPanelEl.hidden = false;
+            if (campaignHeaderMsgEl) {
+              campaignHeaderMsgEl.innerHTML =
+                '<strong class="bulk-campaign-header-msg__title">' + campaignFill(cfg.interceptTitle, map) + '</strong>';
+              campaignHeaderMsgEl.hidden = false;
+            }
+            if (campaignIncentiveEl) {
+              campaignIncentiveEl.textContent = campaignFill(cfg.interceptSubtitle, map);
+              campaignIncentiveEl.classList.remove('bulk-campaign-incentive--outline');
+              campaignIncentiveEl.hidden = false;
+            }
           }
         } else if (campaignStage === 'complete') {
-          if (savingsHeader) savingsHeader.classList.add('is-campaign-complete');
-          if (campaignHeaderMsgEl) {
-            campaignHeaderMsgEl.textContent = campaignFill(cfg.completeTemplate, map);
-            campaignHeaderMsgEl.hidden = false;
-          }
-          if (campaignCompleteBannerEl && cfg.savingsBanner) {
-            campaignCompleteBannerEl.textContent = campaignFill(cfg.savingsBanner, map);
-            campaignCompleteBannerEl.hidden = false;
+          if (isOffer1Complete) {
+            renderOffer1ProgressHeader({ variant: 'complete', q: q, faltam: faltam, total: total });
+            if (campaignInterceptPanelEl) campaignInterceptPanelEl.hidden = false;
+            if (campaignHeaderMsgEl) {
+              campaignHeaderMsgEl.innerHTML = buildOffer1CompleteTitle(campaignFill(cfg.completeTemplate, map));
+              campaignHeaderMsgEl.hidden = false;
+            }
+            if (campaignIncentiveEl) campaignIncentiveEl.hidden = true;
+            if (campaignCompleteBannerEl && cfg.savingsBanner) {
+              mountOffer1CompleteBanner();
+              campaignCompleteBannerEl.innerHTML = buildOffer1SavingsBannerHtml(map);
+              campaignCompleteBannerEl.classList.add('is-offer1-savings-box');
+              campaignCompleteBannerEl.hidden = false;
+            }
+          } else {
+            if (savingsHeader) savingsHeader.classList.add('is-campaign-complete');
+            if (campaignInterceptPanelEl) campaignInterceptPanelEl.hidden = false;
+            if (campaignHeaderMsgEl) {
+              campaignHeaderMsgEl.textContent = campaignFill(cfg.completeTemplate, map);
+              campaignHeaderMsgEl.hidden = false;
+            }
+            if (campaignCompleteBannerEl && cfg.savingsBanner) {
+              campaignCompleteBannerEl.textContent = campaignFill(cfg.savingsBanner, map);
+              campaignCompleteBannerEl.hidden = false;
+            }
           }
         }
 
@@ -2089,11 +2519,14 @@
 
         if (campaignMode === 'coupon') {
           if (campaignCouponEl) campaignCouponEl.classList.add('is-visible');
-          if (savingsHeader && campaignHeaderMsgEl && cfg.couponBanner) {
-            savingsHeader.classList.remove('is-campaign-progress', 'is-campaign-intercept');
+          if (campaignInterceptPanelEl) campaignInterceptPanelEl.hidden = true;
+          if (savingsHeader) {
+            savingsHeader.classList.remove('is-campaign-progress', 'is-campaign-intercept', 'is-campaign-offer2-progress', 'is-campaign-offer1-progress');
             savingsHeader.classList.add('is-campaign-complete');
-            campaignHeaderMsgEl.textContent = campaignFill(cfg.couponBanner, { pct_cupom: cfg.coupon.pct });
-            campaignHeaderMsgEl.hidden = false;
+          }
+          if (campaignCompleteBannerEl && cfg.couponBanner) {
+            campaignCompleteBannerEl.textContent = campaignFill(cfg.couponBanner, { pct_cupom: cfg.coupon.pct });
+            campaignCompleteBannerEl.hidden = false;
           }
           const progressRoot = document.getElementById('bulk-progress-root');
           if (progressRoot) progressRoot.style.display = '';
@@ -2174,7 +2607,10 @@
             if (item.input) item.input.value = qty;
             updateQtyHighlight(item, qty);
           });
-          if (window.BulkCampaign) campaignEligibleQty = window.BulkCampaign.eligibleQty(cart);
+          if (window.BulkCampaign) {
+            lastCartEligibleQty = window.BulkCampaign.eligibleQty(cart);
+            campaignEligibleQty = lastCartEligibleQty;
+          }
           updateTotals();
           if (campaignMode && campaignMode !== 'coupon') {
             const faltam = Math.max(0, campaignTarget - campaignEligibleQty);
@@ -2369,19 +2805,24 @@
           }
           savingsEls.forEach(el => el.textContent = Shopify.formatMoney(savingsAmount, window.money_format));
 
+          const headerQty = itemsCount > 0 ? itemsCount : lastCartEligibleQty;
+
           if (itemsCount === 0) {
             if (levelZeroMsg) levelZeroMsg.style.display = 'block';
             if (savingsContent) savingsContent.style.display = 'none';
             if (levelMaxMsg) levelMaxMsg.style.display = 'none';
             if (savingsHeader) {
-               savingsHeader.style.backgroundColor = '#F9F8EA';
+               savingsHeader.style.backgroundColor = '';
                savingsHeader.style.backgroundImage = 'none';
                savingsHeader.style.justifyContent = 'center';
             }
           } else {
             if (levelZeroMsg) levelZeroMsg.style.display = 'none';
-            if (savingsHeader) {
-               savingsHeader.style.backgroundColor = '#F9F8EA';
+            const isFlatIntercept = campaignStage === 'intercept' && (campaignMode === 'offer1' || campaignMode === 'offer2');
+            const isOffer1ProgressActive = isOffer1NativeHeaderContext(headerQty) ||
+              (campaignMode === 'offer1' && (campaignStage === 'intercept' || campaignStage === 'complete'));
+            if (savingsHeader && !isFlatIntercept && !isOffer1ProgressActive) {
+               savingsHeader.style.backgroundColor = '';
                savingsHeader.style.backgroundImage = 'none';
                savingsHeader.style.justifyContent = 'space-between';
                const sTxt = savingsHeader.querySelector('.savings-prefix');
@@ -2391,12 +2832,38 @@
             }
           }
 
+          const offer1NativeHeader = isOffer1NativeHeaderContext(headerQty);
+          const skipNativeProgress = offer1NativeHeader ||
+            (campaignMode === 'offer1') ||
+            (campaignMode === 'offer2' && campaignStage === 'intercept');
+
+          if (offer1NativeHeader && itemsCount > 0) {
+            const cfgPreview = getCampaignCfg();
+            const target = cfgPreview && cfgPreview.offer1 ? (cfgPreview.offer1.target || 15) : 15;
+            const diamanteQty = getOffer1DiamanteTier().qty || target;
+            const variant = getOffer1NativeHeaderVariant(headerQty);
+            const faltamHeader = variant === 'complete'
+              ? Math.max(0, diamanteQty - headerQty)
+              : Math.max(0, target - headerQty);
+            renderOffer1ProgressHeader({ variant: variant, q: headerQty, faltam: faltamHeader, total: total });
+          } else if (!campaignMode) {
+            if (container) {
+              container.classList.remove('is-offer1-progress-preview', 'is-offer1-progress-complete');
+            }
+            if (savingsHeader) {
+              savingsHeader.classList.remove(
+                'is-campaign-offer1-progress',
+                'is-campaign-offer1-complete-progress'
+              );
+            }
+          }
+
           if (campaignMode && campaignMode !== 'coupon' && campaignTarget > 0) {
             campaignModalTotal = total;
             campaignEligibleQty = itemsCount;
             const faltam = Math.max(0, campaignTarget - itemsCount);
             updateCampaignProgress(itemsCount, faltam, total);
-          } else if (progressFill) {
+          } else if (progressFill && !skipNativeProgress) {
             const maxQty = tiers[tiers.length - 1]?.qty || 24;
             progressFill.style.width = Math.min((itemsCount / maxQty) * 100, 100) + '%';
             if (currentTier && currentTier.barBgImage) {
@@ -2411,7 +2878,7 @@
             }
           }
 
-          if (nextTier && !(campaignMode && campaignMode !== 'coupon')) {
+          if (nextTier && !skipNativeProgress && !(campaignMode && campaignMode !== 'coupon')) {
             if (savingsContent && itemsCount > 0) savingsContent.style.display = 'flex';
             if (levelMaxMsg) levelMaxMsg.style.display = 'none';
             if (savingsActiveMsg) savingsActiveMsg.style.display = 'flex';
@@ -2422,10 +2889,13 @@
             if (nextLevelNum) nextLevelNum.textContent = tiers.indexOf(nextTier) + 1;
             if (nextTierInfo) {
               nextTierInfo.style.display = itemsCount > 0 ? 'block' : 'none';
-              nextTierInfo.innerHTML = `${needed === 1 ? 'Falta' : 'Faltam'} <strong class="next-level-qty-text">${needed} ${needed === 1 ? 'item' : 'itens'}</strong> para desbloquear NÍVEL <span class="next-level-num">${tiers.indexOf(nextTier) + 1}</span> <strong class="next-level-name">${nextTier.name}</strong>`;
+              nextTierInfo.innerHTML = buildNextTierHtml(needed, nextTier);
+            }
+            if (tierBadge && itemsCount > 0) {
+              applyTierBadgeEl(tierBadge, nextTier);
             }
             if (progressBar) progressBar.style.display = itemsCount > 0 ? 'block' : 'none';
-          } else if (!(campaignMode && campaignMode !== 'coupon')) {
+          } else if (!skipNativeProgress && !(campaignMode && campaignMode !== 'coupon')) {
             if (savingsContent) savingsContent.style.display = 'none';
             if (levelMaxMsg) levelMaxMsg.style.display = 'block';
             if (savingsHeader) {
@@ -2451,34 +2921,29 @@
           if (currentTierNameEl) currentTierNameEl.textContent = currentTier ? currentTier.name : 'NENHUM';
           currentTierPctEls.forEach(el => {
             const isGem = el.classList.contains('bulk-tier-badge-gem');
-            const targetTier = isGem ? (nextTier || currentTier || tiers[0]) : (currentTier || { discount: 0, color: neutralColor });
             if (isGem) {
-              if (targetTier.badgeBgImage) {
-                el.style.backgroundImage = `url(${targetTier.badgeBgImage})`;
-                el.style.backgroundSize = tiers.indexOf(targetTier) === tiers.length - 1 ? 'initial' : '100% 100%';
-              } else {
-                el.style.backgroundColor = targetTier.color;
-                el.style.backgroundImage = 'none';
-              }
-              el.style.color = (targetTier.name === 'DIAMANTE' || targetTier.name === 'SUPREMO') ? '#344F53' : '#fff';
-              el.innerHTML = `<span style="display:flex; transform: rotate(-8deg);"><strong>${targetTier.discount}</strong>%</span>`;
-            } else {
-              el.textContent = `${discountPct}%`;
-              if (currentTier) {
-                if (currentTier.badgeBgImage) {
-                  el.style.backgroundImage = `url(${currentTier.badgeBgImage})`;
-                  el.style.backgroundSize = tiers.indexOf(currentTier) === tiers.length - 1 ? 'initial' : '100% 100%';
-                } else {
-                  el.style.backgroundColor = currentTier.color;
-                  el.style.backgroundImage = 'none';
-                }
-                el.style.color = (currentTier.name === 'DIAMANTE' || currentTier.name === 'SUPREMO') ? '#344F53' : '#fff';
-              } else {
-                el.style.backgroundColor = neutralColor;
-                el.style.backgroundImage = 'none';
-                el.style.color = '#fff';
-              }
+              if (isOffer1ProgressContext(headerQty)) return;
+              if (campaignMode === 'offer2' && campaignStage === 'intercept') return;
+              const targetTier = nextTier || currentTier || tiers[0];
+              applyTierBadgeEl(el, targetTier);
+              return;
             }
+            if (!currentTier) {
+              el.textContent = bulkUi.displayMode === 'unit_price' ? '' : '0%';
+              el.style.backgroundColor = neutralColor;
+              el.style.backgroundImage = 'none';
+              el.style.color = '#fff';
+              return;
+            }
+            el.textContent = bulkUi.displayMode === 'unit_price' ? ('R$ ' + currentTier.unitBadge) : (discountPct + '%');
+            if (currentTier.badgeBgImage) {
+              el.style.backgroundImage = 'url(' + currentTier.badgeBgImage + ')';
+              el.style.backgroundSize = tiers.indexOf(currentTier) === tiers.length - 1 ? 'initial' : '100% 100%';
+            } else {
+              el.style.backgroundColor = currentTier.color;
+              el.style.backgroundImage = 'none';
+            }
+            el.style.color = (currentTier.name === 'DIAMANTE' || currentTier.name === 'SUPREMO') ? '#344F53' : '#fff';
           });
 
           productsCache.forEach(item => {
@@ -2530,7 +2995,7 @@
               
               if (statusTxt) {
                 if (isUnlocked) {
-                  statusTxt.innerHTML = '<strong>Ganhou</strong>';
+                  statusTxt.innerHTML = 'Ganhou';
                 } else {
                   const relativeIdx = modalGift.dataset.relativeIndex || i;
                   const giftNum = relativeIdx.toString().padStart(2, '0');
@@ -2539,7 +3004,7 @@
               }
 
               if (giftName) {
-                giftName.style.display = isUnlocked ? 'block' : 'none';
+                giftName.style.display = isUnlocked ? 'inline' : 'none';
               }
               
               if (progressFill) {
@@ -2921,6 +3386,118 @@
     },
     {
       "type": "header",
+      "content": "Aparência e textos (preço unitário)"
+    },
+    {
+      "type": "select",
+      "id": "bulk_display_mode",
+      "label": "Exibição do selo",
+      "options": [
+        { "value": "unit_price", "label": "Preço unitário (R$)" },
+        { "value": "percentage", "label": "Percentual (%)" }
+      ],
+      "default": "unit_price"
+    },
+    {
+      "type": "paragraph",
+      "content": "Texto do próximo nível: Falta(m) X itens para desbloquear Holy's por R$ X,XX cada — gerado automaticamente com os preços unitários abaixo."
+    },
+    {
+      "type": "checkbox",
+      "id": "bulk_hide_current_tier",
+      "label": "Ocultar bloco Nível Atual",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "bulk_modal_bg",
+      "label": "Cor de fundo do modal",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "bulk_savings_card_bg",
+      "label": "Cor do card de progresso (topo)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "bulk_footer_bg",
+      "label": "Cor de fundo do rodapé",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "bulk_category_title_color",
+      "label": "Cor do título de categoria",
+      "default": "#afaa7a"
+    },
+    {
+      "type": "color",
+      "id": "bulk_category_title_border",
+      "label": "Cor da borda do título de categoria",
+      "default": "#afaa7a"
+    },
+    {
+      "type": "color",
+      "id": "bulk_footer_text_color",
+      "label": "Cor dos textos do rodapé (total, itens)",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "header",
+      "content": "Preços unitários comunicados (selo / texto)"
+    },
+    {
+      "type": "text",
+      "id": "tier_1_unit_badge",
+      "label": "Nível 1 — valor no selo (sem R$)",
+      "default": "18"
+    },
+    {
+      "type": "text",
+      "id": "tier_1_unit_text",
+      "label": "Nível 1 — valor no texto (com centavos)",
+      "default": "18,00"
+    },
+    {
+      "type": "text",
+      "id": "tier_2_unit_badge",
+      "label": "Nível 2 — valor no selo (sem R$)",
+      "default": "17"
+    },
+    {
+      "type": "text",
+      "id": "tier_2_unit_text",
+      "label": "Nível 2 — valor no texto (com centavos)",
+      "default": "17,00"
+    },
+    {
+      "type": "text",
+      "id": "tier_3_unit_badge",
+      "label": "Nível 3 — valor no selo (sem R$)",
+      "default": "16"
+    },
+    {
+      "type": "text",
+      "id": "tier_3_unit_text",
+      "label": "Nível 3 — valor no texto (com centavos)",
+      "default": "16,00"
+    },
+    {
+      "type": "text",
+      "id": "tier_4_unit_badge",
+      "label": "Nível 4 — valor no selo (sem R$)",
+      "default": "14"
+    },
+    {
+      "type": "text",
+      "id": "tier_4_unit_text",
+      "label": "Nível 4 — valor no texto (com centavos)",
+      "default": "14,90"
+    },
+    {
+      "type": "header",
       "content": "Configuração de Descontos"
     },
     {
@@ -3117,6 +3694,19 @@
         "collection_3": "risotos-popup",
         "collection_4": "aveias-popup",
         "collection_5": "",
+        "bulk_display_mode": "unit_price",
+        "bulk_hide_current_tier": true,
+        "bulk_modal_bg": "#ffffff",
+        "bulk_savings_card_bg": "#ffffff",
+        "bulk_footer_bg": "#ffffff",
+        "tier_1_unit_badge": "18",
+        "tier_1_unit_text": "18,00",
+        "tier_2_unit_badge": "17",
+        "tier_2_unit_text": "17,00",
+        "tier_3_unit_badge": "16",
+        "tier_3_unit_text": "16,00",
+        "tier_4_unit_badge": "14",
+        "tier_4_unit_text": "14,90",
         "tier_0_color": "#afaa7a",
         "tier_1_qty": 4,
         "tier_1_pct": 10,

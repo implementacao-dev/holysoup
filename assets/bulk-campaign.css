@@ -2,9 +2,9 @@
 .bulk-campaign-nudge,
 .bulk-campaign-alert,
 .bulk-campaign-coupon,
+.bulk-campaign-intercept-panel,
 .bulk-campaign-header-msg,
 .bulk-campaign-incentive,
-.bulk-campaign-lock-bar,
 .bulk-campaign-complete-banner,
 .bulk-campaign-grid-label {
   display: none;
@@ -20,8 +20,8 @@
 }
 
 .bulk-modal-container.is-campaign-mode .bulk-current-tier-display,
-.bulk-modal-container.is-campaign-mode .bulk-tier-badge-gem,
-.bulk-modal-container.is-campaign-mode .bulk-next-tier-info {
+.bulk-modal-container.is-campaign-mode:not(.is-campaign-offer2-intercept):not(.is-campaign-offer1-intercept):not(.is-campaign-offer1-complete) .bulk-tier-badge-gem,
+.bulk-modal-container.is-campaign-mode:not(.is-campaign-offer2-intercept):not(.is-campaign-offer1-intercept):not(.is-campaign-offer1-complete) .bulk-next-tier-info {
   display: none !important;
 }
 
@@ -34,8 +34,8 @@
   display: none !important;
 }
 
-.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-campaign-grid-label,
-.bulk-modal-container.is-campaign-mode.is-campaign-complete-stage .bulk-campaign-grid-label {
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept:not(.is-campaign-offer2-intercept):not(.is-campaign-offer1-intercept):not(.is-campaign-offer1-complete) .bulk-campaign-grid-label,
+.bulk-modal-container.is-campaign-mode.is-campaign-complete-stage:not(.is-campaign-offer2-intercept):not(.is-campaign-offer1-intercept):not(.is-campaign-offer1-complete) .bulk-campaign-grid-label {
   display: block;
   font-family: Montserrat, sans-serif;
   font-size: 13px;
@@ -62,10 +62,15 @@
 
 .bulk-modal-container.is-campaign-mode .bulk-campaign-header-msg[hidden],
 .bulk-modal-container.is-campaign-mode .bulk-campaign-incentive[hidden],
-.bulk-modal-container.is-campaign-mode .bulk-campaign-lock-bar[hidden],
 .bulk-modal-container.is-campaign-mode .bulk-campaign-complete-banner[hidden],
-.bulk-modal-container.is-campaign-mode .bulk-campaign-grid-label[hidden] {
+.bulk-modal-container.is-campaign-mode .bulk-campaign-grid-label[hidden],
+.bulk-modal-container.is-campaign-mode .bulk-campaign-intercept-panel[hidden] {
   display: none !important;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-intercept-panel:not([hidden]) {
+  display: block;
+  padding: 0 4px;
 }
 
 .bulk-modal-container.is-campaign-mode .bulk-campaign-header-msg__progress {
@@ -97,17 +102,109 @@
   line-height: 1.35;
 }
 
-.bulk-modal-container.is-campaign-mode .bulk-campaign-lock-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 8px;
-  font-family: Montserrat, sans-serif;
-  font-size: 13px;
+.bulk-modal-container.is-campaign-mode .bulk-campaign-incentive--outline {
+  background: #fff !important;
+  border: 2px solid #7bca0c;
+  color: #1a1a1a !important;
+  border-radius: 24px;
+  margin: 10px 4px 0;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-incentive--outline strong {
   font-weight: 700;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-incentive__qty-campaign-incentive--outline .bulk-campaign-incentive__qty {
   color: #1a1a1a;
-  text-transform: uppercase;
+  font-weight: 700;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 18px;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-incentive--outline .bulk-campaign-incentive__lock {
+  color: #7bca0c;
+  font-weight: 700;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+}
+
+/* Offer 2 intercept — base overrides (detailed rules below) */
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-progress-fill {
+  background-color: #005234 !important;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-tier-badge-gem.is-lock-badge {
+  background-color: #005234 !important;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-product-grid {
+  gap: 12px;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-product-item {
+  max-width: none;
+  border: 0;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-product-item .bulk-product-info {
+  min-height: 48px;
+  padding: 0;
+  background: #fff;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-product-item .bulk-product-info h4,
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-product-item .bulk-product-price {
+  display: none;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-product-item .bulk-qty-selector {
+  position: static;
+  transform: none;
+  visibility: visible;
+  opacity: 1;
+  gap: 18px;
+  padding: 8px 12px 10px;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-product-item .bulk-qty-btn {
+  width: 34px;
+  height: 34px;
+  border-color: #9a9a9a;
+  color: #8d8d8d;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-product-item .bulk-qty-btn.plus {
+  border-color: #ff5017;
+  color: #ff5017;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-product-item .bulk-qty-btn svg {
+  color: currentColor;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-product-item .bulk-qty-input {
+  width: 28px;
+  font-size: 22px;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-modal-footer {
+  padding-top: 8px;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-buy-btn.is-cta-intercept {
+  min-height: 54px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 767px) {
+  .bulk-modal-container.is-campaign-offer2-intercept .bulk-product-grid {
+    gap: 10px;
+  }
 }
 
 .bulk-modal-container.is-campaign-mode .bulk-campaign-complete-banner {
@@ -156,9 +253,172 @@
   display: none !important;
 }
 
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-savings-content {
+  display: flex !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .savings-active-msg {
+  display: flex !important;
+}
+
+.bulk-modal-container.is-offer1-progress-preview .bulk-savings-content,
+.bulk-modal-container.is-offer1-progress-complete .bulk-savings-content,
+.bulk-modal-container.is-offer1-progress-preview .savings-active-msg,
+.bulk-modal-container.is-offer1-progress-complete .savings-active-msg,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .bulk-savings-content,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .savings-active-msg,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-savings-content,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .savings-active-msg {
+  display: flex !important;
+}
+
+.bulk-modal-container.is-offer1-progress-preview .bulk-next-tier-info,
+.bulk-modal-container.is-offer1-progress-complete .bulk-next-tier-info,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .bulk-next-tier-info,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-next-tier-info {
+  display: block !important;
+}
+
+.bulk-modal-container.is-offer1-progress-preview .bulk-tier-badge-gem,
+.bulk-modal-container.is-offer1-progress-complete .bulk-tier-badge-gem,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .bulk-tier-badge-gem,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-tier-badge-gem {
+  display: flex !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-modal-header,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-progress-wrapper {
+  background: #ffffff !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-savings-content,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-active-wrapper {
+  background: transparent !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-savings-content {
+  display: flex !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .savings-active-msg {
+  display: flex !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-next-tier-info {
+  display: block !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-progress-bar-container {
+  margin-top: 0 !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-tier-badge-gem {
+  display: flex !important;
+  --s: 64px;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-tier-badge-gem.is-lock-badge {
+  background-color: #005234 !important;
+  background-image: none !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-tier-badge-gem__lock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transform: none;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-tier-badge-gem__lock svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-progress-fill {
+  background-color: #005234 !important;
+  background-image: none !important;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept {
+  background: #fff;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-modal-body {
+  background: #fff;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg {
+  padding: 22px 8px 10px;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--lead,
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--rest {
+  display: inline;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 24px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--lead {
+  font-weight: 600;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--rest {
+  font-weight: 400;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-in-cart,
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-in-cart .bulk-product-info,
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented .bulk-product-info {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  background: #fff;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-in-cart .bulk-product-info h4,
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented .bulk-product-info h4,
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-in-cart .bulk-product-info .bulk-product-price,
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented .bulk-product-info .bulk-product-price {
+  display: none;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-in-cart .bulk-qty-selector,
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented .bulk-qty-selector {
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: static !important;
+  transform: none !important;
+  width: 100%;
+  justify-content: center;
+  padding: 10px 12px 12px;
+  background: #fff;
+  border-top: 1px solid #eee;
+  box-sizing: border-box;
+}
+
 .bulk-modal-container.is-campaign-mode .bulk-progress-bar-container {
   display: block;
   margin-top: 8px;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .bulk-progress-bar-container,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-progress-bar-container {
+  margin-top: 0 !important;
 }
 
 /* Footer: CTA above total in intercept stage */
@@ -179,6 +439,23 @@
 .bulk-modal-container.is-campaign-mode.is-campaign-intercept .gift-progress-badges-modal,
 .bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-selected-list,
 .bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-continue-shopping {
+  order: 3;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept.is-campaign-intercept .gift-progress-badges-modal {
+  order: 0;
+  margin-bottom: 12px;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept.is-campaign-intercept .bulk-buy-btn {
+  order: 1;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept.is-campaign-intercept .bulk-summary {
+  order: 2;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept.is-campaign-intercept .bulk-continue-shopping {
   order: 3;
 }
 
@@ -298,4 +575,553 @@
   font-size: 12px;
   cursor: pointer;
   font-family: inherit;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-progress-bar-container {
+  margin-top: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .bulk-modal-container.is-campaign-offer2-intercept .bulk-tier-badge-gem__lock svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg {
+    padding: 24px 8px 16px;
+  }
+
+  .bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--lead,
+  .bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--rest {
+    font-size: 32px;
+  }
+
+  .bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-incentive--outline {
+    margin: 6px 12px 0;
+    padding: 22px 28px;
+    font-size: 20px;
+  }
+
+  .bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-grid-label {
+    margin: 24px 12px 18px;
+    padding: 13px 24px;
+    font-size: 18px;
+  }
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-incentive--outline {
+  margin: 4px 6px 0;
+  padding: 18px;
+  border: 3px solid #72cb00;
+  border-radius: 24px;
+  background: #fff;
+  font-family: Montserrat, sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+  display: block;
+  text-align: center;
+  white-space: normal;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-incentive--outline .bulk-campaign-incentive__text {
+  display: inline;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-incentive--outline .bulk-campaign-incentive__qty {
+  color: #1a1a1a;
+  font-weight: 700;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 18px;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-incentive--outline .bulk-campaign-incentive__lock {
+  color: #72cb00;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-weight: 700;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-grid-label {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 6px 14px;
+  padding: 11px 20px;
+  border: 1px solid #b7b7b7;
+  border-radius: 999px;
+  background: #fff;
+  color: #adadad;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-grid-label::before,
+.bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-grid-label::after {
+  display: none !important;
+  content: none !important;
+}
+
+@media (max-width: 767px) {
+  .bulk-modal-container.is-campaign-offer2-intercept .bulk-tier-badge-gem__lock svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg {
+    padding: 20px 6px 8px;
+  }
+
+  .bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--lead,
+  .bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--rest {
+    font-size: 24px;
+  }
+
+  .bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-incentive--outline {
+    margin: 4px 4px 0;
+    padding: 16px 12px;
+    border-width: 3px;
+    font-size: 14px;
+  }
+
+  .bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-grid-label {
+    margin: 18px 4px 12px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
+/* Offer 1 progress — preview / intercept (gold bar) — color only for native preview */
+.bulk-modal-container.is-offer1-progress-preview .bulk-progress-fill,
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-progress-fill {
+  background-color: #e3b760 !important;
+  background-image: none !important;
+}
+
+/* Offer 1 progress — complete / tier 15+ (orange bar) — color only for native complete */
+.bulk-modal-container.is-offer1-progress-complete .bulk-progress-fill,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-progress-fill,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-savings-header.is-campaign-offer1-complete-progress .bulk-progress-fill {
+  background-color: #ff5017 !important;
+  background-image: none !important;
+}
+
+/* Native preview/complete: inherit base modal composition (header/bar/type).
+   Campaign intercept/complete keep card layout below. */
+
+.bulk-modal-container.is-offer1-progress-preview .bulk-savings-content,
+.bulk-modal-container.is-offer1-progress-complete .bulk-savings-content,
+.bulk-modal-container.is-offer1-progress-preview .savings-active-msg,
+.bulk-modal-container.is-offer1-progress-complete .savings-active-msg {
+  display: flex !important;
+}
+
+.bulk-modal-container.is-offer1-progress-preview .bulk-next-tier-info,
+.bulk-modal-container.is-offer1-progress-complete .bulk-next-tier-info {
+  display: block !important;
+}
+
+.bulk-modal-container.is-offer1-progress-preview .bulk-tier-badge-gem,
+.bulk-modal-container.is-offer1-progress-complete .bulk-tier-badge-gem {
+  display: flex !important;
+}
+
+/* Campaign offer1 intercept/complete — visibility + colors only (layout = native) */
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .bulk-savings-content,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-savings-content,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .savings-active-msg,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .savings-active-msg {
+  display: flex !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .bulk-next-tier-info,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-next-tier-info {
+  display: block !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .bulk-tier-badge-gem,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-tier-badge-gem {
+  display: flex !important;
+  --s: 64px;
+  flex-shrink: 0;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .bulk-progress-bar-container,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-progress-bar-container {
+  margin-top: 0 !important;
+}
+
+/* Offer 1 intercept — product grid and panel */
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-progress-fill {
+  background: var(--offer1-bar-fill, #e3b760) !important;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-grid {
+  gap: 12px;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item {
+  max-width: none;
+  border: 0;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-product-info {
+  min-height: 48px;
+  padding: 0;
+  background: #fff;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-product-info h4,
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-product-info .bulk-product-price {
+  display: none;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-selector {
+  position: static;
+  transform: none;
+  visibility: visible;
+  opacity: 1;
+  gap: 18px;
+  padding: 8px 12px 10px;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-btn {
+  width: 34px;
+  height: 34px;
+  border-color: #9a9a9a;
+  color: #8d8d8d;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-btn.plus {
+  border-color: #ff5017;
+  color: #ff5017;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-btn svg {
+  color: currentColor;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-input {
+  width: 28px;
+  font-size: 22px;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-modal-footer {
+  padding-top: 8px;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-buy-btn.is-cta-intercept {
+  min-height: 54px;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .savings-active-msg {
+  display: flex !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .bulk-next-tier-info {
+  display: block !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .bulk-tier-badge-gem {
+  display: flex !important;
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-intercept .bulk-progress-bar-container {
+  margin-top: 0 !important;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept {
+  background: #fff;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-modal-body {
+  background: #fff;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg {
+  padding: 22px 8px 10px;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--lead,
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--rest {
+  display: inline;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 24px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--lead {
+  font-weight: 600;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--rest {
+  font-weight: 400;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept.is-campaign-intercept .gift-progress-badges-modal {
+  order: 0;
+  margin-bottom: 12px;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept.is-campaign-intercept .bulk-buy-btn {
+  order: 1;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept.is-campaign-intercept .bulk-summary {
+  order: 2;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept.is-campaign-intercept .bulk-continue-shopping {
+  order: 3;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-incentive--outline {
+  margin: 4px 6px 0;
+  padding: 18px;
+  border: 3px solid #72cb00;
+  border-radius: 24px;
+  background: #fff;
+  font-family: Montserrat, sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+  display: block;
+  text-align: center;
+  white-space: normal;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-incentive--outline .bulk-campaign-incentive__text {
+  display: inline;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-incentive--outline .bulk-campaign-incentive__qty {
+  color: #1a1a1a;
+  font-weight: 700;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 18px;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-incentive--outline .bulk-campaign-incentive__savings {
+  color: #72cb00;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-weight: 700;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-grid-label {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 6px 14px;
+  padding: 11px 20px;
+  border: 1px solid #b7b7b7;
+  border-radius: 999px;
+  background: #fff;
+  color: #adadad;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-grid-label::before,
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-grid-label::after {
+  display: none !important;
+  content: none !important;
+}
+
+@media (min-width: 768px) {
+  .bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg {
+    padding: 24px 8px 16px;
+  }
+
+  .bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--lead,
+  .bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--rest {
+    font-size: 32px;
+  }
+
+  .bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-incentive--outline {
+    margin: 6px 12px 0;
+    padding: 22px 28px;
+    font-size: 20px;
+  }
+
+  .bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-grid-label {
+    margin: 24px 12px 18px;
+    padding: 13px 24px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 767px) {
+  .bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg {
+    padding: 20px 6px 8px;
+  }
+
+  .bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--lead,
+  .bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--rest {
+    font-size: 24px;
+  }
+
+  .bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-incentive--outline {
+    margin: 4px 4px 0;
+    padding: 16px 12px;
+    border-width: 3px;
+    font-size: 14px;
+  }
+
+  .bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-grid-label {
+    margin: 18px 4px 12px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-tier-badge-gem.is-offer1-complete-badge,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-tier-badge-gem.is-offer1-complete-badge,
+.bulk-modal-container.is-offer1-progress-complete .bulk-tier-badge-gem.is-offer1-complete-badge {
+  background-color: #005234 !important;
+  background-image: none !important;
+  color: #fff !important;
+}
+
+.bulk-modal-container.is-campaign-offer1-complete .bulk-tier-badge-gem.is-offer1-complete-badge strong,
+.bulk-modal-container.is-offer1-progress-complete .bulk-tier-badge-gem.is-offer1-complete-badge strong {
+  color: #fff !important;
+}
+
+/* Offer 1 complete stage */
+.bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-intercept-panel .bulk-campaign-header-msg {
+  padding: 22px 8px 12px;
+}
+
+.bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--lead,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--rest,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--highlight {
+  display: inline;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 24px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--lead,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--rest {
+  font-weight: 400;
+}
+
+.bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--highlight {
+  font-weight: 600;
+  color: #72cb00;
+}
+
+.bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-complete-banner.is-offer1-savings-box {
+  display: block !important;
+  margin: 8px 6px 0;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: #005234 !important;
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-complete-banner__amount {
+  color: #72cb00;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-grid-label {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 6px 14px;
+  padding: 11px 20px;
+  border: 1px solid #b7b7b7;
+  border-radius: 999px;
+  background: #fff;
+  color: #adadad;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+.bulk-modal-container.is-campaign-offer1-complete.is-campaign-intercept .gift-progress-badges-modal,
+.bulk-modal-container.is-campaign-offer1-complete.is-campaign-complete-stage .gift-progress-badges-modal {
+  order: 0;
+  margin-bottom: 12px;
+}
+
+.bulk-modal-container.is-campaign-offer1-complete .bulk-buy-btn {
+  order: 1;
+}
+
+.bulk-modal-container.is-campaign-offer1-complete .bulk-summary {
+  order: 2;
+}
+
+.bulk-modal-container.is-campaign-offer1-complete .bulk-continue-shopping {
+  order: 3;
+}
+
+.bulk-modal-container.is-offer1-progress-preview .bulk-product-item.qty-active .bulk-qty-input,
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item.qty-incremented .bulk-qty-input,
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item.qty-in-cart .bulk-qty-input {
+  color: #ff5017;
+  font-weight: 700;
+}
+
+.bulk-modal-container.is-offer1-progress-complete .bulk-product-item.qty-active .bulk-qty-input,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-product-item.qty-incremented .bulk-qty-input,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-product-item.qty-in-cart .bulk-qty-input {
+  color: #72cb00;
+  font-weight: 700;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 24px;
+}
+
+@media (min-width: 768px) {
+  .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--lead,
+  .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--rest,
+  .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--highlight {
+    font-size: 32px;
+  }
+
+  .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-complete-banner.is-offer1-savings-box {
+    margin: 12px 12px 0;
+    padding: 20px 28px;
+    font-size: 20px;
+  }
+
+  .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-complete-banner__amount {
+    font-size: 28px;
+  }
+
+  .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-grid-label {
+    margin: 24px 12px 18px;
+    padding: 13px 24px;
+    font-size: 18px;
+  }
 }
