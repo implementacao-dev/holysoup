@@ -2,6 +2,7 @@
 .bulk-campaign-nudge,
 .bulk-campaign-alert,
 .bulk-campaign-coupon,
+.bulk-campaign-coupon-savings,
 .bulk-campaign-intercept-panel,
 .bulk-campaign-header-msg,
 .bulk-campaign-incentive,
@@ -16,12 +17,12 @@
 }
 
 .bulk-modal-container.is-campaign-mode .bulk-campaign-coupon.is-visible {
-  display: block;
+  display: block !important;
 }
 
 .bulk-modal-container.is-campaign-mode .bulk-current-tier-display,
-.bulk-modal-container.is-campaign-mode:not(.is-campaign-offer2-intercept):not(.is-campaign-offer1-intercept):not(.is-campaign-offer1-complete) .bulk-tier-badge-gem,
-.bulk-modal-container.is-campaign-mode:not(.is-campaign-offer2-intercept):not(.is-campaign-offer1-intercept):not(.is-campaign-offer1-complete) .bulk-next-tier-info {
+.bulk-modal-container.is-campaign-mode:not(.is-campaign-offer2-intercept):not(.is-campaign-offer1-intercept):not(.is-campaign-offer1-complete):not(.is-campaign-coupon) .bulk-tier-badge-gem,
+.bulk-modal-container.is-campaign-mode:not(.is-campaign-offer2-intercept):not(.is-campaign-offer1-intercept):not(.is-campaign-offer1-complete):not(.is-campaign-coupon) .bulk-next-tier-info {
   display: none !important;
 }
 
@@ -35,16 +36,25 @@
 }
 
 .bulk-modal-container.is-campaign-mode.is-campaign-intercept:not(.is-campaign-offer2-intercept):not(.is-campaign-offer1-intercept):not(.is-campaign-offer1-complete) .bulk-campaign-grid-label,
-.bulk-modal-container.is-campaign-mode.is-campaign-complete-stage:not(.is-campaign-offer2-intercept):not(.is-campaign-offer1-intercept):not(.is-campaign-offer1-complete) .bulk-campaign-grid-label {
-  display: block;
-  font-family: Montserrat, sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+.bulk-modal-container.is-campaign-mode.is-campaign-complete-stage:not(.is-campaign-offer2-intercept):not(.is-campaign-offer1-intercept):not(.is-campaign-offer1-complete) .bulk-campaign-grid-label,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-campaign-grid-label:not([hidden]) {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 6px 14px;
+  padding: 11px 20px;
+  border: 1px solid #b7b7b7;
+  border-radius: 999px;
+  background: #fff;
+  color: #adadad;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-align: center;
   text-transform: uppercase;
-  color: #1a1a1a;
-  margin: 0 0 12px;
-  padding: 0 4px;
+  box-sizing: border-box;
 }
 
 /* Unified header message */
@@ -375,7 +385,12 @@
 }
 
 .bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-in-cart,
-.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented {
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-product-item.qty-in-cart,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-product-item.qty-incremented,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-active,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-in-cart,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-incremented {
   background: #fff;
   border: 1px solid #e8e8e8;
   border-radius: 12px;
@@ -383,7 +398,12 @@
 }
 
 .bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-in-cart .bulk-product-info,
-.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented .bulk-product-info {
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented .bulk-product-info,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-product-item.qty-in-cart .bulk-product-info,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-product-item.qty-incremented .bulk-product-info,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-active .bulk-product-info,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-in-cart .bulk-product-info,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-incremented .bulk-product-info {
   flex-direction: column;
   align-items: stretch;
   padding: 0;
@@ -393,12 +413,27 @@
 .bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-in-cart .bulk-product-info h4,
 .bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented .bulk-product-info h4,
 .bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-in-cart .bulk-product-info .bulk-product-price,
-.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented .bulk-product-info .bulk-product-price {
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented .bulk-product-info .bulk-product-price,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-product-item.qty-in-cart .bulk-product-info h4,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-product-item.qty-incremented .bulk-product-info h4,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-product-item.qty-in-cart .bulk-product-info .bulk-product-price,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-product-item.qty-incremented .bulk-product-info .bulk-product-price,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-active .bulk-product-info h4,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-in-cart .bulk-product-info h4,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-incremented .bulk-product-info h4,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-active .bulk-product-info .bulk-product-price,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-in-cart .bulk-product-info .bulk-product-price,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-incremented .bulk-product-info .bulk-product-price {
   display: none;
 }
 
 .bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-in-cart .bulk-qty-selector,
-.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented .bulk-qty-selector {
+.bulk-modal-container.is-campaign-mode.is-campaign-intercept .bulk-product-item.qty-incremented .bulk-qty-selector,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-product-item.qty-in-cart .bulk-qty-selector,
+.bulk-modal-container.is-campaign-mode.is-campaign-offer1-complete .bulk-product-item.qty-incremented .bulk-qty-selector,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-active .bulk-qty-selector,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-in-cart .bulk-qty-selector,
+.bulk-modal-container.is-campaign-mode.is-campaign-coupon .bulk-product-item.qty-incremented .bulk-qty-selector {
   opacity: 1 !important;
   visibility: visible !important;
   position: static !important;
@@ -476,74 +511,166 @@
   box-shadow: 0 4px 15px rgba(0, 180, 90, 0.35) !important;
 }
 
-/* Coupon card — dark green XD */
-.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon {
-  margin: 0 0 14px;
-  padding: 20px 16px;
-  border: none;
-  border-radius: 12px;
-  background: #00814e;
+/* Coupon stage — incentive layout (print 2), not PRESENTEADO end-screen */
+.bulk-modal-container.is-campaign-coupon #bulk-progress-root,
+.bulk-modal-container.is-campaign-coupon .bulk-modal-header {
+  display: none !important;
+}
+
+.bulk-modal-container.is-campaign-coupon .bulk-campaign-intercept-panel {
+  display: block !important;
+}
+
+.bulk-modal-container.is-campaign-coupon .bulk-campaign-header-msg {
+  display: block !important;
   text-align: center;
+  padding: 8px 8px 16px;
+}
+
+.bulk-modal-container.is-campaign-coupon .bulk-campaign-header-msg__title--lead {
+  display: inline;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  letter-spacing: 0.02em;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon {
+  margin: 0 6px 12px;
+  padding: 16px 18px;
+  border: none;
+  border-radius: 16px;
+  background: #005234;
+  text-align: left;
   font-family: Montserrat, sans-serif;
   color: #fff;
 }
 
-.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__badge {
-  background: transparent;
-  color: #fff;
-  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
-  font-size: 28px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  padding: 0;
-  margin-bottom: 12px;
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__title {
-  display: none;
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
 }
 
-.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__sub {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 13px;
-  margin-bottom: 14px;
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__icon {
+  flex-shrink: 0;
+  display: flex;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
 .bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__code {
-  color: #fff;
-  font-size: 20px;
-  margin-bottom: 14px;
+  color: #72cb00;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__hint {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
 }
 
 .bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__copy {
-  background: #fff;
-  color: #00814e;
-  border: 2px solid #fff;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 12px 24px;
-}
-
-.bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__checkout {
+  flex-shrink: 0;
   background: transparent;
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1.5px solid #72cb00;
+  border-radius: 999px;
+  font-family: Montserrat, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 10px 14px;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-/* Qty highlight — green only on increments since campaign open */
-.bulk-modal-container.is-campaign-mode .bulk-product-item.qty-incremented {
-  box-shadow: 0 0 0 2px #00b45a;
-  border-radius: 8px;
+.bulk-modal-container.is-campaign-coupon .bulk-campaign-coupon-savings:not([hidden]) {
+  display: block !important;
+  margin: 0 6px 8px;
+  padding: 16px 18px;
+  border: 1px solid #cfe3d9;
+  border-radius: 14px;
+  background: #fff;
+  text-align: center;
+  font-family: Montserrat, sans-serif;
+  color: #1a1a1a;
 }
 
-.bulk-modal-container.is-campaign-mode .bulk-product-item.qty-incremented .bulk-qty-input {
-  color: #00b45a;
+.bulk-modal-container.is-campaign-coupon .bulk-campaign-coupon-savings__line {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.bulk-modal-container.is-campaign-coupon .bulk-campaign-coupon-savings__line + .bulk-campaign-coupon-savings__line {
+  margin-top: 4px;
+}
+
+.bulk-modal-container.is-campaign-coupon .bulk-campaign-coupon-savings__line strong {
   font-weight: 700;
 }
 
-.bulk-modal-container.is-campaign-mode .bulk-product-item.qty-in-cart .bulk-qty-input {
+.bulk-modal-container.is-campaign-coupon .bulk-campaign-grid-label::before,
+.bulk-modal-container.is-campaign-coupon .bulk-campaign-grid-label::after {
+  display: none !important;
+  content: none !important;
+}
+
+.bulk-modal-container.is-campaign-coupon .bulk-product-item.qty-incremented .bulk-qty-input,
+.bulk-modal-container.is-campaign-coupon .bulk-product-item.qty-in-cart .bulk-qty-input {
   color: #1a1a1a;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .bulk-modal-container.is-campaign-coupon .bulk-campaign-header-msg__title--lead {
+    font-size: 32px;
+  }
+
+  .bulk-modal-container.is-campaign-mode .bulk-campaign-coupon__code {
+    font-size: 34px;
+  }
+
+  .bulk-modal-container.is-campaign-coupon .bulk-campaign-coupon-savings__line {
+    font-size: 16px;
+  }
+}
+
+/* Qty highlight — same border as other cart cards (no green ring) */
+.bulk-modal-container.is-campaign-mode:not(.is-campaign-coupon) .bulk-product-item.qty-incremented {
+  box-shadow: none;
+  border-radius: 12px;
+}
+
+.bulk-modal-container.is-campaign-mode:not(.is-campaign-coupon) .bulk-product-item.qty-incremented .bulk-qty-input,
+.bulk-modal-container.is-campaign-mode:not(.is-campaign-coupon) .bulk-product-item.qty-in-cart .bulk-qty-input {
+  color: #1a1a1a;
+  font-weight: 700;
 }
 
 /* Side-cart coupon banner (unchanged scope) */
@@ -761,11 +888,15 @@
   background: var(--offer1-bar-fill, #e3b760) !important;
 }
 
-.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-grid {
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-grid,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-product-grid,
+.bulk-modal-container.is-campaign-coupon .bulk-product-grid {
   gap: 12px;
 }
 
-.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item {
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-product-item,
+.bulk-modal-container.is-campaign-coupon .bulk-product-item {
   max-width: none;
   border: 0;
   border-radius: 14px;
@@ -773,18 +904,26 @@
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
 
-.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-product-info {
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-product-info,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-product-item .bulk-product-info,
+.bulk-modal-container.is-campaign-coupon .bulk-product-item .bulk-product-info {
   min-height: 48px;
   padding: 0;
   background: #fff;
 }
 
 .bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-product-info h4,
-.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-product-info .bulk-product-price {
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-product-info .bulk-product-price,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-product-item .bulk-product-info h4,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-product-item .bulk-product-info .bulk-product-price,
+.bulk-modal-container.is-campaign-coupon .bulk-product-item .bulk-product-info h4,
+.bulk-modal-container.is-campaign-coupon .bulk-product-item .bulk-product-info .bulk-product-price {
   display: none;
 }
 
-.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-selector {
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-selector,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-product-item .bulk-qty-selector,
+.bulk-modal-container.is-campaign-coupon .bulk-product-item .bulk-qty-selector {
   position: static;
   transform: none;
   visibility: visible;
@@ -793,23 +932,31 @@
   padding: 8px 12px 10px;
 }
 
-.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-btn {
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-btn,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-product-item .bulk-qty-btn,
+.bulk-modal-container.is-campaign-coupon .bulk-product-item .bulk-qty-btn {
   width: 34px;
   height: 34px;
   border-color: #9a9a9a;
   color: #8d8d8d;
 }
 
-.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-btn.plus {
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-btn.plus,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-product-item .bulk-qty-btn.plus,
+.bulk-modal-container.is-campaign-coupon .bulk-product-item .bulk-qty-btn.plus {
   border-color: #ff5017;
   color: #ff5017;
 }
 
-.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-btn svg {
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-btn svg,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-product-item .bulk-qty-btn svg,
+.bulk-modal-container.is-campaign-coupon .bulk-product-item .bulk-qty-btn svg {
   color: currentColor;
 }
 
-.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-input {
+.bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item .bulk-qty-input,
+.bulk-modal-container.is-campaign-offer1-complete .bulk-product-item .bulk-qty-input,
+.bulk-modal-container.is-campaign-coupon .bulk-product-item .bulk-qty-input {
   width: 28px;
   font-size: 22px;
 }
@@ -1086,10 +1233,11 @@
   order: 3;
 }
 
+/* Qty number: always bold black; green only at offer1 complete (15+) */
 .bulk-modal-container.is-offer1-progress-preview .bulk-product-item.qty-active .bulk-qty-input,
 .bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item.qty-incremented .bulk-qty-input,
 .bulk-modal-container.is-campaign-offer1-intercept .bulk-product-item.qty-in-cart .bulk-qty-input {
-  color: #ff5017;
+  color: #1a1a1a;
   font-weight: 700;
 }
 
@@ -1098,8 +1246,6 @@
 .bulk-modal-container.is-campaign-offer1-complete .bulk-product-item.qty-in-cart .bulk-qty-input {
   color: #72cb00;
   font-weight: 700;
-  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
-  font-size: 24px;
 }
 
 @media (min-width: 768px) {

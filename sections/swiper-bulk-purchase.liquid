@@ -527,9 +527,15 @@
     margin-top: -3px;
     width: 12px;
     height: 12px;
-    border-right: 2px solid rgb(123, 202, 12);
-    border-bottom: 2px solid rgb(123, 202, 12);
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
     transform: rotate(45deg);
+    transition: transform 0.2s ease;
+  }
+
+  .bulk-selected-list.active + .bulk-summary .bulk-view-list .bulk-arrow-icon::after {
+    margin-top: 3px;
+    transform: rotate(225deg);
   }
 
   .bulk-buy-btn {
@@ -988,7 +994,7 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    border: 2px solid #1a1a1a;
+    border: 3px solid #9a9a9a;
     background: transparent;
     cursor: pointer;
     font-size: 24px;
@@ -996,7 +1002,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #1a1a1a;
+    color: #9a9a9a;
     transition: all 0.2s ease;
   }
   @media (min-width: 968px) {
@@ -1006,15 +1012,22 @@
       color: #fff;
     }
     .bulk-qty-btn:hover svg {
-      color: #fff;
+      color: #fff !important;
     }
   }
   .bulk-qty-btn svg {
-    color: #1a1a1a;
+    color: #9a9a9a;
     fill: currentColor;
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     transition: color 0.2s ease;
+  }
+  .bulk-qty-btn.plus {
+    border-color: #ff5017;
+    color: #ff5017;
+  }
+  .bulk-qty-btn.plus svg {
+    color: #ff5017;
   }
   .bulk-qty-input {
     width: 40px;
@@ -1022,6 +1035,8 @@
     border: none;
     font-weight: 700;
     font-size: 18px;
+    color: #1a1a1a;
+    font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
     background: transparent;
   }
 
@@ -1415,14 +1430,6 @@
 
     <div class="bulk-campaign-nudge" data-bulk-campaign-nudge></div>
     <div class="bulk-campaign-alert" data-bulk-campaign-alert></div>
-    <div class="bulk-campaign-coupon" data-bulk-campaign-coupon>
-      <span class="bulk-campaign-coupon__badge" data-coupon-badge></span>
-      <p class="bulk-campaign-coupon__title" data-coupon-title></p>
-      <p class="bulk-campaign-coupon__sub" data-coupon-sub></p>
-      <span class="bulk-campaign-coupon__code" data-coupon-code></span>
-      <button type="button" class="bulk-campaign-coupon__copy" data-bulk-campaign-copy></button>
-      <button type="button" class="bulk-campaign-coupon__checkout" data-bulk-campaign-coupon-checkout></button>
-    </div>
 
     <div class="bulk-modal-header">
       <div class="bulk-progress-wrapper" id="bulk-progress-root">
@@ -1508,6 +1515,25 @@
       <div class="bulk-campaign-intercept-panel" data-bulk-campaign-intercept-panel hidden>
         <div class="bulk-campaign-header-msg" data-bulk-campaign-header-msg hidden></div>
         <div class="bulk-campaign-incentive" data-bulk-campaign-incentive hidden></div>
+        <div class="bulk-campaign-coupon" data-bulk-campaign-coupon hidden>
+          <div class="bulk-campaign-coupon__main">
+            <div class="bulk-campaign-coupon__left">
+              <span class="bulk-campaign-coupon__icon" aria-hidden="true">
+                <svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="4" y="10" width="32" height="20" rx="4" stroke="#72cb00" stroke-width="2" stroke-dasharray="3 3"/>
+                  <circle cx="14" cy="20" r="3" stroke="#72cb00" stroke-width="2"/>
+                  <path d="M20 14l6 12M24 14l-6 12" stroke="#72cb00" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <div class="bulk-campaign-coupon__text">
+                <span class="bulk-campaign-coupon__code" data-coupon-code></span>
+                <span class="bulk-campaign-coupon__hint">Aplicado em todo o carrinho</span>
+              </div>
+            </div>
+            <button type="button" class="bulk-campaign-coupon__copy" data-bulk-campaign-copy></button>
+          </div>
+        </div>
+        <div class="bulk-campaign-coupon-savings" data-bulk-campaign-coupon-savings hidden></div>
       </div>
       <div class="bulk-campaign-grid-label" data-bulk-campaign-grid-label hidden></div>
       <div class="bulk-inline-gift" id="bulk-inline-gift">
@@ -1864,6 +1890,7 @@
       const campaignNudgeEl = document.querySelector('[data-bulk-campaign-nudge]');
       const campaignAlertEl = document.querySelector('[data-bulk-campaign-alert]');
       const campaignCouponEl = document.querySelector('[data-bulk-campaign-coupon]');
+      const campaignCouponSavingsEl = document.querySelector('[data-bulk-campaign-coupon-savings]');
       const campaignHeaderMsgEl = document.querySelector('[data-bulk-campaign-header-msg]');
       const campaignIncentiveEl = document.querySelector('[data-bulk-campaign-incentive]');
       const campaignInterceptPanelEl = document.querySelector('[data-bulk-campaign-intercept-panel]');
@@ -1941,7 +1968,7 @@
       function setCampaignStage(stage) {
         campaignStage = stage;
         if (container) {
-          container.classList.remove('is-campaign-intercept', 'is-campaign-complete-stage', 'is-campaign-offer2-intercept', 'is-campaign-offer1-intercept', 'is-campaign-offer1-complete', 'is-offer1-progress-preview', 'is-offer1-progress-complete');
+          container.classList.remove('is-campaign-intercept', 'is-campaign-complete-stage', 'is-campaign-offer2-intercept', 'is-campaign-offer1-intercept', 'is-campaign-offer1-complete', 'is-campaign-coupon', 'is-offer1-progress-preview', 'is-offer1-progress-complete');
           if (stage === 'intercept') {
             container.classList.add('is-campaign-intercept');
             if (campaignMode === 'offer2') container.classList.add('is-campaign-offer2-intercept');
@@ -1950,6 +1977,7 @@
           if (stage === 'complete') {
             container.classList.add('is-campaign-complete-stage');
             if (campaignMode === 'offer1') container.classList.add('is-campaign-offer1-complete');
+            if (campaignMode === 'coupon') container.classList.add('is-campaign-coupon');
           }
         }
       }
@@ -2205,14 +2233,31 @@
               txt.textContent = 'COMPRAR COM DESCONTO';
             }
           }
+        } else if (campaignMode === 'coupon') {
+          btn.classList.add('is-campaign-ready');
+          if (txt) txt.textContent = 'COMPRAR AGORA';
         } else if (txt) {
           txt.textContent = 'COMPRAR AGORA';
         }
       }
 
+      function countUnlockedGifts(qty) {
+        let n = 0;
+        tiers.forEach(function (t) {
+          if (t.gift && qty >= t.qty) n += 1;
+        });
+        return n;
+      }
+
+      function buildCouponSavingsHtml(economiaText, giftsCount) {
+        const giftsLabel = giftsCount + ' ' + (giftsCount === 1 ? 'brinde' : 'brindes');
+        return '<p class="bulk-campaign-coupon-savings__line">Usando o cupom você vai economizar <strong>' + economiaText + '</strong></p>' +
+          '<p class="bulk-campaign-coupon-savings__line">E ainda tá levando pra casa <strong>' + giftsLabel + '</strong></p>';
+      }
+
       function applyCampaignGridLayout() {
         const cfg = getCampaignCfg();
-        const isFlat = campaignStage === 'intercept' || campaignStage === 'complete';
+        const isFlat = campaignStage === 'intercept' || campaignStage === 'complete' || campaignMode === 'coupon';
         if (campaignGridLabelEl) {
           campaignGridLabelEl.hidden = !isFlat;
           if (isFlat && cfg) campaignGridLabelEl.textContent = cfg.gridLabel || 'HOLYS NO SEU CARRINHO';
@@ -2232,7 +2277,7 @@
         campaignStage = null;
         campaignBaselineQty = {};
         if (container) {
-          container.classList.remove('is-campaign-intercept', 'is-campaign-complete-stage', 'is-campaign-offer2-intercept', 'is-campaign-offer1-intercept', 'is-campaign-offer1-complete', 'is-offer1-progress-preview', 'is-offer1-progress-complete');
+          container.classList.remove('is-campaign-intercept', 'is-campaign-complete-stage', 'is-campaign-offer2-intercept', 'is-campaign-offer1-intercept', 'is-campaign-offer1-complete', 'is-campaign-coupon', 'is-offer1-progress-preview', 'is-offer1-progress-complete');
         }
         if (savingsHeader) {
           savingsHeader.classList.remove('is-campaign-progress', 'is-campaign-complete', 'is-campaign-intercept', 'is-campaign-offer2-progress', 'is-campaign-offer1-progress', 'is-campaign-offer1-complete-progress');
@@ -2252,11 +2297,27 @@
           campaignIncentiveEl.innerHTML = '';
           campaignIncentiveEl.classList.remove('bulk-campaign-incentive--outline');
         }
+        if (campaignCouponEl) {
+          campaignCouponEl.hidden = true;
+          campaignCouponEl.classList.remove('is-visible');
+        }
+        if (campaignCouponSavingsEl) {
+          campaignCouponSavingsEl.hidden = true;
+          campaignCouponSavingsEl.innerHTML = '';
+        }
         if (campaignCompleteBannerEl) {
           restoreCompleteBannerHome();
         }
         if (campaignGridLabelEl) campaignGridLabelEl.hidden = true;
         if (campaignAlertEl) campaignAlertEl.classList.remove('is-visible');
+        const progressRoot = document.getElementById('bulk-progress-root');
+        if (progressRoot) progressRoot.style.display = '';
+        const modalBodyEl = document.querySelector('.bulk-modal-body');
+        if (modalBodyEl) modalBodyEl.style.display = '';
+        const summaryEl = document.querySelector('.bulk-summary');
+        if (summaryEl) summaryEl.style.display = '';
+        const giftsFooter = document.querySelector('.gift-progress-badges-modal');
+        if (giftsFooter) giftsFooter.style.display = '';
         if (tierBadge) {
           tierBadge.classList.remove('is-lock-badge', 'is-offer1-complete-badge');
           tierBadge.style.backgroundColor = '';
@@ -2308,6 +2369,11 @@
         if (container) container.classList.remove('is-campaign-mode');
         if (campaignNudgeEl) campaignNudgeEl.classList.remove('is-visible');
         if (campaignCouponEl) campaignCouponEl.classList.remove('is-visible');
+        if (campaignCouponEl) campaignCouponEl.hidden = true;
+        if (campaignCouponSavingsEl) {
+          campaignCouponSavingsEl.hidden = true;
+          campaignCouponSavingsEl.innerHTML = '';
+        }
         const progressRoot = document.getElementById('bulk-progress-root');
         if (progressRoot) progressRoot.style.display = '';
         const modalBodyEl = document.querySelector('.bulk-modal-body');
@@ -2472,7 +2538,7 @@
         if (!cart || !cart.items) return;
         const qtyMap = {};
         cart.items.forEach(i => { qtyMap[String(i.variant_id)] = i.quantity; });
-        const isFlat = campaignStage === 'intercept' || campaignStage === 'complete';
+        const isFlat = campaignStage === 'intercept' || campaignStage === 'complete' || campaignMode === 'coupon';
         document.querySelectorAll('.bulk-product-item').forEach(function (el) {
           const section = el.closest('.bulk-collection-section');
           if (section && !el.dataset.originalSection) {
@@ -2504,42 +2570,101 @@
         const cfg = getCampaignCfg();
         if (!cfg || !campaignMode || campaignMode === 'normal') return;
 
-        if (campaignCouponEl) {
-          campaignCouponEl.querySelector('[data-coupon-badge]').textContent = cfg.coupon.title || 'PRESENTEADO';
-          campaignCouponEl.querySelector('[data-coupon-title]').textContent = cfg.coupon.title || '';
-          const basePct = tiers.length ? tiers[tiers.length - 1].discount : 25;
-          campaignCouponEl.querySelector('[data-coupon-sub]').textContent = campaignFill(cfg.coupon.subtitle || '', {
-            pct_cupom: cfg.coupon.pct,
-            total_pct: basePct + Number(cfg.coupon.pct || 0)
-          });
-          campaignCouponEl.querySelector('[data-coupon-code]').textContent = cfg.coupon.code || '';
-          campaignCouponEl.querySelector('[data-bulk-campaign-copy]').textContent = cfg.coupon.copy || 'COPIAR CUPOM';
-          campaignCouponEl.querySelector('[data-bulk-campaign-coupon-checkout]').textContent = cfg.coupon.checkout || 'Finalizar';
-        }
-
         if (campaignMode === 'coupon') {
-          if (campaignCouponEl) campaignCouponEl.classList.add('is-visible');
-          if (campaignInterceptPanelEl) campaignInterceptPanelEl.hidden = true;
+          const q = window.BulkCampaign ? window.BulkCampaign.eligibleQty(cart) : campaignEligibleQty;
+          campaignEligibleQty = q || campaignEligibleQty;
+          setCampaignStage('complete');
+
           if (savingsHeader) {
-            savingsHeader.classList.remove('is-campaign-progress', 'is-campaign-intercept', 'is-campaign-offer2-progress', 'is-campaign-offer1-progress');
-            savingsHeader.classList.add('is-campaign-complete');
+            savingsHeader.classList.remove(
+              'is-campaign-progress',
+              'is-campaign-intercept',
+              'is-campaign-complete',
+              'is-campaign-offer2-progress',
+              'is-campaign-offer1-progress',
+              'is-campaign-offer1-complete-progress'
+            );
           }
-          if (campaignCompleteBannerEl && cfg.couponBanner) {
-            campaignCompleteBannerEl.textContent = campaignFill(cfg.couponBanner, { pct_cupom: cfg.coupon.pct });
-            campaignCompleteBannerEl.hidden = false;
+          if (campaignCompleteBannerEl) {
+            restoreCompleteBannerHome();
           }
+
           const progressRoot = document.getElementById('bulk-progress-root');
-          if (progressRoot) progressRoot.style.display = '';
+          if (progressRoot) progressRoot.style.display = 'none';
           if (progressBar) progressBar.style.display = 'none';
           if (tierBadge) tierBadge.style.display = 'none';
+          if (savingsContent) savingsContent.style.display = 'none';
+          if (nextTierInfo) nextTierInfo.style.display = 'none';
+
           const modalBodyEl = document.querySelector('.bulk-modal-body');
-          if (modalBodyEl) modalBodyEl.style.display = 'none';
+          if (modalBodyEl) modalBodyEl.style.display = '';
           const summaryEl = document.querySelector('.bulk-summary');
-          if (summaryEl) summaryEl.style.display = 'none';
+          if (summaryEl) summaryEl.style.display = '';
           const giftsFooter = document.querySelector('.gift-progress-badges-modal');
-          if (giftsFooter) giftsFooter.style.display = 'none';
+          if (giftsFooter) giftsFooter.style.display = '';
           const btn = document.querySelector('.bulk-buy-btn');
-          if (btn) btn.style.display = 'none';
+          if (btn) btn.style.display = '';
+
+          if (campaignInterceptPanelEl) campaignInterceptPanelEl.hidden = false;
+          if (campaignIncentiveEl) {
+            campaignIncentiveEl.hidden = true;
+            campaignIncentiveEl.classList.remove('bulk-campaign-incentive--outline');
+          }
+
+          if (campaignHeaderMsgEl) {
+            const title = campaignFill(cfg.couponBanner || 'LIBEROU +{{pct_cupom}}%OFF COM CUPOM', {
+              pct_cupom: cfg.coupon.pct
+            });
+            campaignHeaderMsgEl.innerHTML = '<strong class="bulk-campaign-header-msg__title--lead">' + title + '</strong>';
+            campaignHeaderMsgEl.hidden = false;
+          }
+
+          if (campaignCouponEl) {
+            const codeEl = campaignCouponEl.querySelector('[data-coupon-code]');
+            const copyEl = campaignCouponEl.querySelector('[data-bulk-campaign-copy]');
+            if (codeEl) codeEl.textContent = cfg.coupon.code || '';
+            if (copyEl) copyEl.textContent = cfg.coupon.copy || 'COPIAR CUPOM';
+            campaignCouponEl.hidden = false;
+            campaignCouponEl.classList.add('is-visible');
+          }
+
+          if (campaignCouponSavingsEl) {
+            let itemsCount = 0;
+            let total = campaignModalTotal || 0;
+            if (!total && productsCache.length) {
+              productsCache.forEach(function (item) {
+                const qty = parseInt(item.input ? item.input.value : 0, 10) || 0;
+                if (qty > 0 && item.price > 0) {
+                  itemsCount += qty;
+                  total += item.price * qty;
+                }
+              });
+            } else {
+              productsCache.forEach(function (item) {
+                const qty = parseInt(item.input ? item.input.value : 0, 10) || 0;
+                if (qty > 0 && item.price > 0) itemsCount += qty;
+              });
+            }
+            const qtyForGifts = Math.max(campaignEligibleQty || 0, itemsCount);
+            let currentTier = null;
+            tiers.forEach(function (t) { if (qtyForGifts >= t.qty) currentTier = t; });
+            const discountPct = currentTier ? currentTier.discount : 0;
+            const discountedTotal = total * (1 - discountPct / 100);
+            const couponPct = Number(cfg.coupon.pct || 10);
+            const couponSavings = discountedTotal * (couponPct / 100);
+            const economiaText = formatCampaignMoney
+              ? formatCampaignMoney(couponSavings)
+              : (Shopify.formatMoney(couponSavings, window.money_format) || '');
+            campaignCouponSavingsEl.innerHTML = buildCouponSavingsHtml(
+              economiaText,
+              countUnlockedGifts(qtyForGifts)
+            );
+            campaignCouponSavingsEl.hidden = false;
+          }
+
+          updateCampaignCta(0);
+          applyCampaignGridLayout();
+          if (cart && cart.items) sortProductsByCartQty(cart);
           return;
         }
 
@@ -2835,7 +2960,8 @@
           const offer1NativeHeader = isOffer1NativeHeaderContext(headerQty);
           const skipNativeProgress = offer1NativeHeader ||
             (campaignMode === 'offer1') ||
-            (campaignMode === 'offer2' && campaignStage === 'intercept');
+            (campaignMode === 'offer2' && campaignStage === 'intercept') ||
+            (campaignMode === 'coupon');
 
           if (offer1NativeHeader && itemsCount > 0) {
             const cfgPreview = getCampaignCfg();
