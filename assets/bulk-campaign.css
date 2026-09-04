@@ -875,10 +875,10 @@
   }
 }
 
-/* Offer 1 progress — preview / intercept (gold bar) — color only for native preview */
+/* Offer 1 progress — preview / intercept (barra amarela R$16) */
 .bulk-modal-container.is-offer1-progress-preview .bulk-progress-fill,
 .bulk-modal-container.is-campaign-offer1-intercept .bulk-progress-fill {
-  background-color: #e3b760 !important;
+  background-color: #FFB609 !important;
   background-image: none !important;
 }
 
@@ -937,7 +937,7 @@
 
 /* Offer 1 intercept — product grid and panel */
 .bulk-modal-container.is-campaign-offer1-intercept .bulk-progress-fill {
-  background: var(--offer1-bar-fill, #e3b760) !important;
+  background: #FFB609 !important;
 }
 
 .bulk-modal-container.is-campaign-offer1-intercept .bulk-product-grid,

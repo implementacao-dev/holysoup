@@ -352,7 +352,7 @@
   }
 
   .bulk-savings-amount {
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 900;
     display: inline-block;
     margin-left: 3.5px;
@@ -1895,6 +1895,21 @@
         el.innerHTML = formatTierBadgeInner(tier);
       }
 
+      /* → R$18 / R$17: badge amarelo; → R$16: badge laranja (14 segue applyTierBadgeEl) */
+      function applyNextTierBadgeEl(el, nextTier) {
+        if (!el || !nextTier) return;
+        const nextIdx = tiers.indexOf(nextTier);
+        if (nextIdx === 0 || nextIdx === 1 || nextIdx === 2) {
+          el.classList.toggle('is-unit-price', bulkUi.displayMode === 'unit_price');
+          el.style.backgroundImage = 'none';
+          el.style.backgroundColor = nextIdx === 2 ? '#ff5017' : '#FFB609';
+          el.style.color = '#fff';
+          el.innerHTML = formatTierBadgeInner(nextTier);
+          return;
+        }
+        applyTierBadgeEl(el, nextTier);
+      }
+
       const neutralColor = '{{ section.settings.tier_0_color | default: "#AFAA7A" }}';
 
       let productsCache = [];
@@ -2123,7 +2138,8 @@
             applyOffer1CompleteBarFill();
           } else {
             progressFill.style.width = (target > 0 ? Math.min((q / target) * 100, 100) : 0) + '%';
-            applyOffer1BarFill(getOffer1OuroTier());
+            progressFill.style.backgroundImage = 'none';
+            progressFill.style.backgroundColor = '#FFB609';
           }
         }
 
@@ -2132,9 +2148,14 @@
           if (variant === 'complete') {
             applyOffer1CompleteBadge(tierBadge);
           } else {
+            const promoTier = getOffer1PromoTier();
             tierBadge.classList.remove('is-offer1-complete-badge');
             tierBadge.classList.remove('is-lock-badge');
-            applyTierBadgeEl(tierBadge, getOffer1PromoTier());
+            tierBadge.classList.toggle('is-unit-price', bulkUi.displayMode === 'unit_price');
+            tierBadge.style.backgroundImage = 'none';
+            tierBadge.style.backgroundColor = '#ff5017';
+            tierBadge.style.color = '#fff';
+            tierBadge.innerHTML = formatTierBadgeInner(promoTier);
           }
         }
 
@@ -3028,7 +3049,17 @@
           } else if (progressFill && !skipNativeProgress) {
             const maxQty = tiers[tiers.length - 1]?.qty || 24;
             progressFill.style.width = Math.min((itemsCount / maxQty) * 100, 100) + '%';
-            if (currentTier && currentTier.barBgImage) {
+            const nextIdxForBar = nextTier ? tiers.indexOf(nextTier) : -1;
+            if (nextIdxForBar === 0) {
+              progressFill.style.backgroundImage = 'none';
+              progressFill.style.backgroundColor = '#ff5017';
+            } else if (nextIdxForBar === 1) {
+              progressFill.style.backgroundImage = 'none';
+              progressFill.style.backgroundColor = '#005234';
+            } else if (nextIdxForBar === 2) {
+              progressFill.style.backgroundImage = 'none';
+              progressFill.style.backgroundColor = '#FFB609';
+            } else if (currentTier && currentTier.barBgImage) {
                progressFill.style.backgroundImage = `url(${currentTier.barBgImage})`;
                progressFill.style.backgroundSize = 'cover';
             } else if (currentTier) {
@@ -3054,7 +3085,7 @@
               nextTierInfo.innerHTML = buildNextTierHtml(needed, nextTier);
             }
             if (tierBadge && itemsCount > 0) {
-              applyTierBadgeEl(tierBadge, nextTier);
+              applyNextTierBadgeEl(tierBadge, nextTier);
             }
             if (progressBar) progressBar.style.display = itemsCount > 0 ? 'block' : 'none';
           } else if (!skipNativeProgress && !(campaignMode && campaignMode !== 'coupon')) {
@@ -3087,7 +3118,11 @@
               if (isOffer1ProgressContext(headerQty)) return;
               if (campaignMode === 'offer2' && campaignStage === 'intercept') return;
               const targetTier = nextTier || currentTier || tiers[0];
-              applyTierBadgeEl(el, targetTier);
+              if (nextTier && targetTier === nextTier) {
+                applyNextTierBadgeEl(el, nextTier);
+              } else {
+                applyTierBadgeEl(el, targetTier);
+              }
               return;
             }
             if (!currentTier) {
