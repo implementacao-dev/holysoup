@@ -335,6 +335,7 @@
   background-image: none !important;
   align-items: center;
   justify-content: center;
+  transform: rotate(12deg);
 }
 
 .bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-tier-badge-gem__lock {
@@ -343,6 +344,7 @@
   justify-content: center;
   color: #fff;
   transform: none;
+  transform: rotate(-12deg);
 }
 
 .bulk-modal-container.is-campaign-mode.is-campaign-offer2-intercept .bulk-tier-badge-gem__lock svg {
