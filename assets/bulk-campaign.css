@@ -68,6 +68,7 @@
   line-height: 1.4;
   padding: 4px 8px 8px;
   color: #1a1a1a;
+  letter-spacing: 0;
 }
 
 .bulk-modal-container.is-campaign-mode .bulk-campaign-header-msg[hidden],
@@ -1223,7 +1224,7 @@
 
 .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-intercept-panel .bulk-campaign-header-msg__title--highlight {
   font-weight: 600;
-  color: #72cb00;
+  color: #1a1a1a;
 }
 
 .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-complete-banner.is-offer1-savings-box {
@@ -1243,7 +1244,7 @@
 .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-complete-banner__amount {
   color: #72cb00;
   font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -1258,7 +1259,7 @@
   background: #fff;
   color: #adadad;
   font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.04em;
