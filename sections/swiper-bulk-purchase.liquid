@@ -2120,10 +2120,14 @@
         const q = opts && opts.q != null ? opts.q : campaignEligibleQty;
         const faltam = opts && opts.faltam != null ? opts.faltam : Math.max(0, target - q);
         const diamante = getOffer1DiamanteTier();
+        const diamanteQty = (diamante && diamante.qty) || target;
 
         if (container) {
           container.classList.toggle('is-offer1-progress-preview', variant === 'preview');
-          container.classList.toggle('is-offer1-progress-complete', variant === 'complete' && !campaignMode);
+          container.classList.toggle(
+            'is-offer1-progress-complete',
+            variant === 'complete' && !campaignMode && q >= diamanteQty
+          );
         }
         if (savingsHeader) {
           savingsHeader.classList.remove('is-campaign-progress', 'is-campaign-complete', 'is-campaign-intercept', 'is-campaign-offer2-progress');
@@ -2132,7 +2136,7 @@
         }
         if (levelMaxMsg) levelMaxMsg.style.display = 'none';
 
-        const showSavingsOnly = variant === 'complete' && !campaignMode;
+        const showSavingsOnly = variant === 'complete' && !campaignMode && q >= diamanteQty;
         if (showSavingsOnly) {
           if (savingsContent) savingsContent.style.display = 'flex';
           if (savingsActiveMsg) savingsActiveMsg.style.display = 'none';
@@ -2217,9 +2221,13 @@
         }
       }
 
-      function buildOffer1CompleteTitle(template) {
-        const raw = (template || 'PARABÉNS LIBEROU HOLYS POR R$16').trim();
-        const highlight = 'HOLYS POR R$16';
+      function buildOffer1CompleteTitle(template, q) {
+        const tier = getTierForQty(q != null ? q : campaignEligibleQty) || getOffer1OuroTier();
+        const priceLabel = 'R$' + (tier.unitBadge || '16');
+        const raw = (template || 'PARABÉNS LIBEROU HOLYS POR R$16')
+          .trim()
+          .replace(/R\$\s*\d+(?:[.,]\d+)?/i, priceLabel);
+        const highlight = 'HOLYS POR ' + priceLabel;
         const idx = raw.indexOf(highlight);
         if (idx > -1) {
           return '<span class="bulk-campaign-header-msg__title--rest">' + raw.slice(0, idx) + '</span>' +
@@ -2265,7 +2273,7 @@
       }
 
       function buildOffer1IncentiveHtml(faltam, map) {
-        return '<span class="bulk-campaign-incentive__text">Falta só <strong class="bulk-campaign-incentive__qty">' + faltam + ' un</strong> para economizar <strong class="bulk-campaign-incentive__savings">' + map.economia_meta + '</strong></span>';
+        return '<span class="bulk-campaign-incentive__text">Falta só <strong class="bulk-campaign-incentive__qty">' + faltam + ' un</strong> para economizar <strong class="bulk-campaign-incentive__savings">+ ' + map.economia_meta + '</strong></span>';
       }
 
       function applyOffer2LockBadge(el) {
@@ -2348,7 +2356,7 @@
 
       function buildCouponSavingsHtml(economiaText, giftsCount) {
         const giftsLabel = giftsCount + ' ' + (giftsCount === 1 ? 'brinde' : 'brindes');
-        return '<p class="bulk-campaign-coupon-savings__line">Usando o cupom você vai economizar <strong>' + economiaText + '</strong></p>' +
+        return '<p class="bulk-campaign-coupon-savings__line">Usando o cupom você vai economizar no total <strong>' + economiaText + '</strong></p>' +
           '<p class="bulk-campaign-coupon-savings__line">E ainda tá levando pra casa <strong>' + giftsLabel + '</strong></p>';
       }
 
@@ -2517,7 +2525,7 @@
 
         if (faltam <= 0) {
           setCampaignStage('complete');
-        } else if (!campaignStage) {
+        } else {
           setCampaignStage('intercept');
         }
 
@@ -2611,7 +2619,7 @@
             renderOffer1ProgressHeader({ variant: 'complete', q: q, faltam: faltam, total: total });
             if (campaignInterceptPanelEl) campaignInterceptPanelEl.hidden = false;
             if (campaignHeaderMsgEl) {
-              campaignHeaderMsgEl.innerHTML = buildOffer1CompleteTitle(campaignFill(cfg.completeTemplate, map));
+              campaignHeaderMsgEl.innerHTML = buildOffer1CompleteTitle(campaignFill(cfg.completeTemplate, map), q);
               campaignHeaderMsgEl.hidden = false;
             }
             if (campaignIncentiveEl) campaignIncentiveEl.hidden = true;
@@ -2771,9 +2779,11 @@
             const discountedTotal = total * (1 - discountPct / 100);
             const couponPct = Number(cfg.coupon.pct || 10);
             const couponSavings = discountedTotal * (couponPct / 100);
+            const tierSavings = Math.max(0, total - discountedTotal);
+            const totalSavings = tierSavings + couponSavings;
             const economiaText = formatCampaignMoney
-              ? formatCampaignMoney(couponSavings)
-              : (Shopify.formatMoney(couponSavings, window.money_format) || '');
+              ? formatCampaignMoney(totalSavings)
+              : (Shopify.formatMoney(totalSavings, window.money_format) || '');
             campaignCouponSavingsEl.innerHTML = buildCouponSavingsHtml(
               economiaText,
               countUnlockedGifts(qtyForGifts)
