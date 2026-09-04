@@ -140,20 +140,6 @@
     if (btn) btn.textContent = cfg.coupon.copied || 'Copiado';
   }
 
-  function injectBanner() {
-    if (!flag(KEY.couponOn) || !cfg.coupon.code) return;
-    var slot = document.querySelector('[data-bulk-campaign-banner-slot]');
-    if (!slot || slot.querySelector('.bulk-campaign-banner')) return;
-    var bar = document.createElement('div');
-    bar.className = 'bulk-campaign-banner';
-    bar.innerHTML =
-      '<span>Cupom: <code></code></span><button type="button" class="bulk-campaign-banner__copy"></button>';
-    bar.querySelector('code').textContent = cfg.coupon.code;
-    bar.querySelector('button').textContent = cfg.coupon.copy || 'Copiar';
-    bar.querySelector('button').addEventListener('click', copyCoupon);
-    slot.insertBefore(bar, slot.firstChild);
-  }
-
   function handleCheckoutIntent(source) {
     return fetchCart().then(function (cart) {
       var action = decide(cart);
@@ -219,7 +205,6 @@
     fetchCart().then(function (cart) {
       updateSideCartProgress(cart);
       maybeUnlockCoupon(cart);
-      injectBanner();
     });
   }
 
@@ -227,7 +212,6 @@
     var q = eligibleQty(cart);
     if (flag(KEY.o2Seen) && !flag(KEY.o2Refuse) && q >= cfg.offer2.target) {
       mark(KEY.couponOn);
-      injectBanner();
       if (!flag(KEY.couponUi) && window.BulkPurchase && window.BulkPurchase.openCampaign) {
         window.BulkPurchase.openCampaign('coupon', cart);
       }
@@ -273,7 +257,6 @@
     proceedCheckout: proceedCheckout,
     handleCheckoutIntent: handleCheckoutIntent,
     copyCoupon: copyCoupon,
-    injectBanner: injectBanner,
     maybeUnlockCoupon: maybeUnlockCoupon,
     refreshSideCartState: refreshSideCartState,
     setSkip: function (v) {
@@ -281,7 +264,6 @@
     },
   };
 
-  injectBanner();
   refreshSideCartState();
   log('ready');
 })();

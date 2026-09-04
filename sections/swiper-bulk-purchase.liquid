@@ -268,7 +268,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--bulk-savings-card-bg, #ffffff);
+    background: var(--bulk-savings-card-bg, #fafafa);
     border-radius: 20px;
     position: relative;
     box-shadow: none;
@@ -370,7 +370,6 @@
     --s: 64px; 
     width: var(--s);
     height: var(--s);
-    transform: rotate(8deg);
     background-color: #c15c30;
     --g: /calc(var(--s) * 0.279) calc(var(--s) * 0.279) radial-gradient(50% 50%, #000 99%, #0000 101%) no-repeat;
     -webkit-mask: calc(50% + var(--s) * 0.26) calc(50% + var(--s) * 0.204) var(--g),
@@ -1407,7 +1406,7 @@
     endif
     assign bulk_savings_card_bg = section.settings.bulk_savings_card_bg
     if bulk_savings_card_bg == blank
-      assign bulk_savings_card_bg = '#ffffff'
+      assign bulk_savings_card_bg = '#fafafa'
     endif
     assign bulk_footer_bg = section.settings.bulk_footer_bg
     if bulk_footer_bg == blank

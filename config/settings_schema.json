@@ -926,7 +926,7 @@
         "type": "text",
         "id": "bulk_campaign_coupon_code",
         "label": "Código do cupom",
-        "default": "CUPOMSECRETO"
+        "default": "FREGUES10"
       },
       {
         "type": "number",
