@@ -168,16 +168,20 @@
   .bulk-collection-title {
     font-family: 'HatchwayUltraCondensed', sans-serif;
     font-weight: 600;
-    font-size: 21px;
+    font-size: 20px;
     color: var(--bulk-category-color, #afaa7a);
     border: 1px solid var(--bulk-category-border, #afaa7a);
-    border-radius: 21px;
+    border-radius: 20px;
     text-align: center;
     padding: 10px 20px;
     display: block;
     margin: 0 0 10px 0;
     width: 100%;
     text-transform: uppercase;
+
+    @media (max-width: 767px) {
+      font-size: 18px;
+    }
   }
 
   .bulk-collection-title-container {
@@ -188,14 +192,13 @@
 
   .bulk-modal-close {
     position: absolute;
-    right: 16px;
-    top: 5px;
+    right: 4px;
+    top: 4px;
     cursor: pointer;
     z-index: 100;
-    width: 24px;
-    height: 24px;
-    background: #005234;
-    color: white;
+    width: 20px;
+    height: 20px;
+    color: #005234;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2128,6 +2131,34 @@
           savingsHeader.classList.toggle('is-campaign-offer1-complete-progress', variant === 'complete');
         }
         if (levelMaxMsg) levelMaxMsg.style.display = 'none';
+
+        const showSavingsOnly = variant === 'complete' && !campaignMode;
+        if (showSavingsOnly) {
+          if (savingsContent) savingsContent.style.display = 'none';
+          if (savingsActiveMsg) savingsActiveMsg.style.display = 'none';
+          if (progressBar) progressBar.style.display = 'none';
+          if (tierBadge) tierBadge.style.display = 'none';
+          if (nextTierInfo) {
+            nextTierInfo.style.display = 'none';
+            nextTierInfo.innerHTML = '';
+          }
+          if (campaignCompleteBannerEl) {
+            const savings = calcCampaignSavings(opts.total || 0, q, diamante.qty || target);
+            campaignCompleteBannerEl.innerHTML = buildOffer1SavingsBannerHtml({
+              economia: formatCampaignMoney(savings.economia)
+            });
+            campaignCompleteBannerEl.classList.add('is-offer1-savings-box');
+            campaignCompleteBannerEl.hidden = false;
+          }
+          return;
+        }
+
+        if (campaignCompleteBannerEl && !campaignMode) {
+          campaignCompleteBannerEl.hidden = true;
+          campaignCompleteBannerEl.classList.remove('is-offer1-savings-box');
+          campaignCompleteBannerEl.innerHTML = '';
+        }
+
         if (savingsContent) savingsContent.style.display = 'flex';
         if (savingsActiveMsg) savingsActiveMsg.style.display = 'flex';
         if (progressBar) progressBar.style.display = q > 0 ? 'block' : 'none';

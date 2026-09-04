@@ -48,7 +48,7 @@
   background: #fff;
   color: #adadad;
   font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.04em;
@@ -832,7 +832,7 @@
   background: #fff;
   color: #adadad;
   font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.04em;
@@ -872,7 +872,7 @@
   .bulk-modal-container.is-campaign-offer2-intercept .bulk-campaign-grid-label {
     margin: 18px 4px 12px;
     padding: 10px 16px;
-    font-size: 14px;
+    font-size: 18px;
   }
 }
 
@@ -909,6 +909,43 @@
 .bulk-modal-container.is-offer1-progress-preview .bulk-tier-badge-gem,
 .bulk-modal-container.is-offer1-progress-complete .bulk-tier-badge-gem {
   display: flex !important;
+}
+
+/* Native R$14 complete (antes do offer2): bloco verde no lugar da barra/selo */
+.bulk-modal-container.is-offer1-progress-complete .bulk-savings-content,
+.bulk-modal-container.is-offer1-progress-complete .bulk-tier-badge-gem,
+.bulk-modal-container.is-offer1-progress-complete .bulk-next-tier-info,
+.bulk-modal-container.is-offer1-progress-complete .bulk-progress-bar-container,
+.bulk-modal-container.is-offer1-progress-complete .savings-active-msg {
+  display: none !important;
+}
+
+.bulk-modal-container.is-offer1-progress-complete .bulk-campaign-complete-banner.is-offer1-savings-box {
+  display: block !important;
+  margin: 8px 6px 0;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: #005234 !important;
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.bulk-modal-container.is-offer1-progress-complete .bulk-campaign-complete-banner__amount {
+  color: #72cb00;
+  font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.bulk-modal-container.is-offer1-progress-complete .bulk-savings-header {
+  height: auto;
+  min-height: 0;
+  padding: 4px 0;
+  justify-content: center;
 }
 
 /* Campaign offer1 intercept/complete — visibility + colors only (layout = native) */
@@ -1127,7 +1164,7 @@
   background: #fff;
   color: #adadad;
   font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.04em;
@@ -1185,7 +1222,7 @@
   .bulk-modal-container.is-campaign-offer1-intercept .bulk-campaign-grid-label {
     margin: 18px 4px 12px;
     padding: 10px 16px;
-    font-size: 14px;
+    font-size: 18px;
   }
 }
 
@@ -1259,7 +1296,7 @@
   background: #fff;
   color: #adadad;
   font-family: 'HatchwayUltraCondensed', Montserrat, sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.04em;
@@ -1308,12 +1345,14 @@
     font-size: 32px;
   }
 
+  .bulk-modal-container.is-offer1-progress-complete .bulk-campaign-complete-banner.is-offer1-savings-box,
   .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-complete-banner.is-offer1-savings-box {
     margin: 12px 12px 0;
     padding: 20px 28px;
     font-size: 20px;
   }
 
+  .bulk-modal-container.is-offer1-progress-complete .bulk-campaign-complete-banner__amount,
   .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-complete-banner__amount {
     font-size: 28px;
   }
