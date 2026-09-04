@@ -192,7 +192,7 @@
 
   .bulk-modal-close {
     position: absolute;
-    right: 4px;
+    right: 8px;
     top: 4px;
     cursor: pointer;
     z-index: 100;
@@ -2134,7 +2134,7 @@
 
         const showSavingsOnly = variant === 'complete' && !campaignMode;
         if (showSavingsOnly) {
-          if (savingsContent) savingsContent.style.display = 'none';
+          if (savingsContent) savingsContent.style.display = 'flex';
           if (savingsActiveMsg) savingsActiveMsg.style.display = 'none';
           if (progressBar) progressBar.style.display = 'none';
           if (tierBadge) tierBadge.style.display = 'none';
@@ -2143,6 +2143,12 @@
             nextTierInfo.innerHTML = '';
           }
           if (campaignCompleteBannerEl) {
+            if (!completeBannerHome) {
+              completeBannerHome = campaignCompleteBannerEl.parentElement;
+            }
+            if (savingsContent && campaignCompleteBannerEl.parentElement !== savingsContent) {
+              savingsContent.appendChild(campaignCompleteBannerEl);
+            }
             const savings = calcCampaignSavings(opts.total || 0, q, diamante.qty || target);
             campaignCompleteBannerEl.innerHTML = buildOffer1SavingsBannerHtml({
               economia: formatCampaignMoney(savings.economia)
@@ -2154,6 +2160,9 @@
         }
 
         if (campaignCompleteBannerEl && !campaignMode) {
+          if (completeBannerHome && campaignCompleteBannerEl.parentElement !== completeBannerHome) {
+            completeBannerHome.appendChild(campaignCompleteBannerEl);
+          }
           campaignCompleteBannerEl.hidden = true;
           campaignCompleteBannerEl.classList.remove('is-offer1-savings-box');
           campaignCompleteBannerEl.innerHTML = '';
@@ -2476,7 +2485,28 @@
 
       function updateCampaignProgress(q, faltam, total) {
         const cfg = getCampaignCfg();
-        if (!cfg || !campaignMode || campaignMode === 'coupon') return;
+        if (!cfg || !campaignMode) return;
+
+        if (campaignMode === 'coupon') {
+          if (faltam > 0) {
+            campaignMode = 'offer2';
+            campaignTarget = cfg.offer2.target || 25;
+            if (campaignCouponEl) {
+              campaignCouponEl.hidden = true;
+              campaignCouponEl.classList.remove('is-visible');
+            }
+            if (campaignCouponSavingsEl) {
+              campaignCouponSavingsEl.hidden = true;
+              campaignCouponSavingsEl.innerHTML = '';
+            }
+            if (container) container.classList.remove('is-campaign-coupon');
+            const progressRoot = document.getElementById('bulk-progress-root');
+            if (progressRoot) progressRoot.style.display = '';
+            setCampaignStage('intercept');
+            updateCampaignProgress(q, faltam, total);
+          }
+          return;
+        }
 
         if (faltam <= 0 && campaignMode === 'offer2') {
           campaignMode = 'coupon';
@@ -3073,7 +3103,7 @@
             }
           }
 
-          if (campaignMode && campaignMode !== 'coupon' && campaignTarget > 0) {
+          if (campaignMode && campaignTarget > 0) {
             campaignModalTotal = total;
             campaignEligibleQty = itemsCount;
             const faltam = Math.max(0, campaignTarget - itemsCount);

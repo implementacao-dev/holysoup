@@ -911,8 +911,9 @@
   display: flex !important;
 }
 
-/* Native R$14 complete (antes do offer2): bloco verde no lugar da barra/selo */
-.bulk-modal-container.is-offer1-progress-complete .bulk-savings-content,
+/* Native R$14 complete (antes do offer2): bloco verde no miolo do card (mesmo header 90px) */
+.bulk-modal-container.is-offer1-progress-complete .bulk-active-wrapper,
+.bulk-modal-container.is-offer1-progress-complete .bulk-progress-copy,
 .bulk-modal-container.is-offer1-progress-complete .bulk-tier-badge-gem,
 .bulk-modal-container.is-offer1-progress-complete .bulk-next-tier-info,
 .bulk-modal-container.is-offer1-progress-complete .bulk-progress-bar-container,
@@ -920,9 +921,18 @@
   display: none !important;
 }
 
+.bulk-modal-container.is-offer1-progress-complete .bulk-savings-content {
+  display: flex !important;
+  width: 100%;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
 .bulk-modal-container.is-offer1-progress-complete .bulk-campaign-complete-banner.is-offer1-savings-box {
   display: block !important;
-  margin: 8px 6px 0;
+  flex: 1;
+  margin: 0;
   padding: 16px 20px;
   border-radius: 16px;
   background: #005234 !important;
@@ -942,9 +952,6 @@
 }
 
 .bulk-modal-container.is-offer1-progress-complete .bulk-savings-header {
-  height: auto;
-  min-height: 0;
-  padding: 4px 0;
   justify-content: center;
 }
 
@@ -1345,16 +1352,24 @@
     font-size: 32px;
   }
 
-  .bulk-modal-container.is-offer1-progress-complete .bulk-campaign-complete-banner.is-offer1-savings-box,
   .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-complete-banner.is-offer1-savings-box {
     margin: 12px 12px 0;
     padding: 20px 28px;
     font-size: 20px;
   }
 
-  .bulk-modal-container.is-offer1-progress-complete .bulk-campaign-complete-banner__amount,
+  .bulk-modal-container.is-offer1-progress-complete .bulk-campaign-complete-banner.is-offer1-savings-box {
+    margin: 0;
+    padding: 12px 16px;
+    font-size: 18px;
+  }
+
   .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-complete-banner__amount {
     font-size: 28px;
+  }
+
+  .bulk-modal-container.is-offer1-progress-complete .bulk-campaign-complete-banner__amount {
+    font-size: 22px;
   }
 
   .bulk-modal-container.is-campaign-offer1-complete .bulk-campaign-grid-label {
