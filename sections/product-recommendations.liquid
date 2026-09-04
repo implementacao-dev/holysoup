@@ -329,6 +329,7 @@
                         >
                     {%- endif -%}
                         {%- for product in recommendations.products limit: limit -%}
+                            {%- if product.metafields.seo.hidden == 1 -%}{%- continue -%}{%- endif -%}
                             <div class="product{% if swipe %} slider__slide grid__item{% endif %}">
                                 {% render 'product-grid-layout',
                                     product_card_product: product,

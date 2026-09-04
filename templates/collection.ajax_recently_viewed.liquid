@@ -19,6 +19,7 @@
     {%- for handle in list_handle limit: limit -%}
         {% assign product = all_products[handle] %}
         {%- if product != blank -%}
+            {%- if product.metafields.seo.hidden == 1 -%}{%- continue -%}{%- endif -%}
             <div class="product{% if swipe == 'true' %} slider__slide grid__item{% endif %}">
                 {% render 'product-grid-layout',
                     product_card_product: product,

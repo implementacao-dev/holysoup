@@ -1910,6 +1910,7 @@
                             >
                               {%- if complementary_product_layout == '1' -%}
                                 {%- for product in recommendations.products limit: limit -%}
+                                  {%- if product.metafields.seo.hidden == 1 -%}{%- continue -%}{%- endif -%}
                                   <div class="product">
                                     {% render 'product-grid-layout',
                                       product_card_product: product,
@@ -1926,6 +1927,7 @@
 
                               {%- if complementary_product_layout == '2' -%}
                                 {%- for product in recommendations.products limit: limit offset: continue -%}
+                                  {%- if product.metafields.seo.hidden == 1 -%}{%- continue -%}{%- endif -%}
                                   <div class="product">
                                     {% render 'product-card-custom', product_card_product: product %}
                                   </div>
