@@ -2,6 +2,11 @@
   HOLY MEL — Landing Page (seção completa, editável no personalizador)
   Requer os assets hm-*.webp / hm-*.png / hm-superpop*.otf|ttf enviados
   em Ativos (assets) do tema. Veja o LEIA-ME.txt do pacote.
+
+  Estrutura:
+    ticker · nav · hero (banner) · pills+CTA · problema+cards · você sabia ·
+    certificações · avaliações · oferta+countdown · divisor · mel silvestre. só. ·
+    FAQ · fechamento
 {% endcomment %}
 
 {%- liquid
@@ -45,6 +50,32 @@
 
   assign img_honeycomb_brown = 'hm-honeycomb-brown.png' | asset_url
   assign img_honeycomb_cream = 'hm-honeycomb-cream.png' | asset_url
+
+  comment
+    Logo: logo_visible corta a partir da direita quando < 100%.
+  endcomment
+  assign logo_h = 34
+  assign logo_ratio = 1.758
+  if section.settings.img_logo != blank and section.settings.img_logo.aspect_ratio > 0
+    assign logo_ratio = section.settings.img_logo.aspect_ratio
+  endif
+  assign logo_pct = section.settings.logo_visible | default: 100
+  assign logo_full_w = logo_ratio | times: logo_h
+  assign logo_w = logo_full_w | times: logo_pct | divided_by: 100.0 | round: 1
+
+  comment
+    O painel 'Mel silvestre. Só.' tem fundo #642713; o urso marrom
+    (hm-bear-brown) tem exatamente a mesma cor e desaparece nele.
+    Padrao passa a ser a foto do pote, que contrasta.
+  endcomment
+  if section.settings.only_image != blank
+    assign img_only = section.settings.only_image | image_url: width: 700
+  else
+    assign img_only = 'hm-photo-bottle.webp' | asset_url
+  endif
+
+  assign hex = 'polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)'
+  assign oct = 'polygon(50% 0%,90% 12%,100% 50%,90% 88%,50% 100%,10% 88%,0% 50%,10% 12%)'
 -%}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,27 +93,59 @@
   @keyframes hm-rise   { from{opacity:0;transform:translateY(46px);} to{opacity:1;transform:none;} }
   @keyframes hm-pop    { from{opacity:0;transform:scale(.85) translateY(28px);} to{opacity:1;transform:none;} }
   @keyframes hm-sl     { from{opacity:0;transform:translateX(-46px);} to{opacity:1;transform:none;} }
-  #holy-mel-lp .hm-rise{animation:hm-rise both;animation-timeline:view();animation-range:entry 0% entry 55%;}
-  #holy-mel-lp .hm-pop {animation:hm-pop  both;animation-timeline:view();animation-range:entry 5% entry 60%;}
-  #holy-mel-lp .hm-sl  {animation:hm-sl   both;animation-timeline:view();animation-range:entry 0% entry 55%;}
+  #holy-mel-lp .hm-rise, #holy-mel-lp .hm-pop, #holy-mel-lp .hm-sl { opacity:1; }
+  @supports (animation-timeline: view()) {
+    #holy-mel-lp .hm-rise{animation:hm-rise both;animation-timeline:view();animation-range:entry 0% entry 55%;}
+    #holy-mel-lp .hm-pop {animation:hm-pop  both;animation-timeline:view();animation-range:entry 5% entry 60%;}
+    #holy-mel-lp .hm-sl  {animation:hm-sl   both;animation-timeline:view();animation-range:entry 0% entry 55%;}
+  }
   #holy-mel-lp .hm-btn-lift:hover{transform:translateY(-1px);}
   #holy-mel-lp .hm-btn-cafe:hover{transform:translateY(-2px);}
   #holy-mel-lp .hm-btn-cafe:active{transform:translateY(3px);}
   #holy-mel-lp .hm-btn-outline:hover{background:#642713 !important;color:#FFF6E4 !important;}
   #holy-mel-lp .hm-btn-solid:hover{background:#4A1C0D !important;}
   @media (max-width:880px){
-    #holy-mel-lp .hm-ing-cols{grid-template-columns:repeat(2,1fr) !important;}
-    #holy-mel-lp .hm-why-cols{grid-template-columns:repeat(2,1fr) !important;}
+    #holy-mel-lp .hm-cards-3{grid-template-columns:repeat(2,1fr) !important;}
+    #holy-mel-lp .hm-cert-cols{grid-template-columns:repeat(2,1fr) !important;}
+    #holy-mel-lp .hm-only-cols{grid-template-columns:1fr !important;text-align:center;}
     #holy-mel-lp .hm-hero-h1{font-size:64px !important;}
   }
+  @media (max-width:640px){
+    #holy-mel-lp .hm-cards-3{grid-template-columns:1fr !important;}
+    #holy-mel-lp .hm-fact-cols{grid-template-columns:1fr !important;}
+    #holy-mel-lp .hm-nav-inner{padding:12px 18px !important;}
+    #holy-mel-lp .hm-nav-cta{padding:13px 15px !important;font-size:11.5px !important;}
+    #holy-mel-lp .hm-nav-logo{padding:5px 2px !important;}
+    /* empilhado no telefone, o kit destacado vem primeiro */
+    #holy-mel-lp .hm-kit--featured{order:-1;margin-top:18px;}
+  }
+  /* REVELAÇÃO CIRCULAR (pin + clip-path) — scroll-driven em CSS puro.
+     Sem suporte a animation-timeline o bloco vira uma seção normal de 100vh
+     com o vídeo já visível: degrada sem buraco de rolagem. */
+  /* BARRA DE COMPRA FIXA — entra depois do banner e some quando a oferta
+     esta na tela (nao faz sentido oferecer o que ja esta a vista). */
+  #holy-mel-lp .hm-buybar{position:fixed;left:0;right:0;bottom:0;z-index:60;transform:translateY(115%);transition:transform .28s ease;}
+  #holy-mel-lp .hm-buybar.hm-buybar--on{transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){ #holy-mel-lp .hm-buybar{transition:none;} }
   /* Hero banner (mesmo padrão da home / slideshow-hs) */
   #holy-mel-lp .hm-hero-banner{position:relative;}
   #holy-mel-lp .hm-hero-banner .hm-hero-slide-item img{width:100%;height:auto;display:block;}
   #holy-mel-lp .hm-hero-banner .swiper-pagination{bottom:14px !important;}
   #holy-mel-lp .hm-hero-banner.hm-hero-banner--single .swiper-pagination{display:none;}
+  {%- if section.settings.footer_bg != blank -%}
+  /* RODAPÉ — só nesta página. Duas travas: o seletor exige
+     body.template-mel-da-holy, e este <style> só existe onde a seção
+     Holy Mel LP está aplicada. Nenhuma outra página é alcançada.
+     Original do tema: fundo #00B45A, .btn-loja-fisica #00814E,
+     .btn-whatsapp #FFD88A com texto #00814E. */
+  body.template-mel-da-holy footer{background:{{ section.settings.footer_bg }} !important;}
+  body.template-mel-da-holy footer .btn-loja-fisica{background:#FFCD00 !important;border-color:#FFCD00 !important;color:#642713 !important;}
+  body.template-mel-da-holy footer .btn-revendedor{border-color:#FFF6E4 !important;color:#FFF6E4 !important;}
+  body.template-mel-da-holy footer .btn-whatsapp{color:#642713 !important;}
+  {%- endif -%}
 </style>
 
-<div id="holy-mel-lp" style="font-family:'Nunito Sans',sans-serif;color:#642713;background:#FFF6E4;overflow-x:hidden">
+<div id="holy-mel-lp" style="font-family:'Nunito Sans',sans-serif;color:#642713;background:#FFF6E4;overflow-x:clip{% if section.settings.show_buybar %};padding-bottom:84px{% endif %}">
 
   {%- if section.settings.show_ticker -%}
   <!-- TICKER: o separador final é adicionado aqui pra emenda do loop ficar
@@ -96,10 +159,14 @@
   {%- endif -%}
 
   <!-- NAV -->
-  <header style="position:sticky;top:0;z-index:50;background:rgba(255,246,228,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)">
-    <div style="max-width:1160px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px">
-      <a href="#topo" style="display:flex;align-items:center;text-decoration:none"><img src="{{ img_logo }}" alt="Holy Mel" width="211" height="120" style="height:34px;width:auto;display:block"></a>
-      <a href="{{ cta }}" class="hm-btn-lift" style="display:inline-flex;align-items:center;background:#FFCD00;color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:13px;letter-spacing:.3px;padding:11px 22px;border-radius:999px;text-decoration:none;box-shadow:0 3px 0 rgba(100,39,19,.18);transition:transform .12s">{{ section.settings.nav_cta_light }} <span style="font-weight:600">&nbsp;{{ section.settings.nav_cta_bold }}</span></a>
+  <header style="{% if section.settings.sticky_nav %}position:sticky;top:0;z-index:50;{% endif %}background:rgba(255,246,228,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)">
+    <div class="hm-nav-inner" style="position:relative;max-width:1160px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:flex-end;min-height:44px">
+      <a href="#topo" class="hm-nav-logo" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;padding:5px 8px;text-decoration:none">
+        <span style="display:block;{% if logo_pct < 100 %}width:{{ logo_w }}px;height:{{ logo_h }}px;overflow:hidden{% endif %}"><img src="{{ img_logo }}" alt="Holy Mel" style="height:{{ logo_h }}px;width:auto;max-width:none;display:block"></span>
+      </a>
+      {%- if section.settings.show_nav_cta -%}
+      <a href="{{ cta }}" class="hm-btn-lift hm-nav-cta" style="position:relative;z-index:1;display:inline-flex;align-items:center;background:#FFCD00;color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:13px;letter-spacing:.3px;padding:11px 22px;border-radius:999px;text-decoration:none;box-shadow:0 3px 0 rgba(100,39,19,.18);transition:transform .12s;white-space:nowrap">{{ section.settings.nav_cta_light }}<span style="font-weight:600">&nbsp;{{ section.settings.nav_cta_bold }}</span></a>
+      {%- endif -%}
     </div>
   </header>
 
@@ -118,51 +185,29 @@
   {%- for block in section.blocks -%}
     {%- if block.type == 'hero_slide' and block.settings.image_slide != blank -%}
   <link rel="preload" as="image" href="{{ block.settings.image_slide | image_url: width: 1900 }}">
+      {%- break -%}
     {%- endif -%}
   {%- endfor -%}
-  <section id="topo" class="hm-hero-banner{% if hm_hero_count == 1 %} hm-hero-banner--single{% endif %}" style="background:#FFF6E4;padding:0">
-    <div class="swiper hm-hero-swiper">
-      <div class="swiper-wrapper">
-        {%- for block in section.blocks -%}
+  <section id="topo" style="background:#FFF6E4;padding:clamp(14px,2vw,22px) 24px 0">
+    <div style="max-width:1160px;margin:0 auto">
+      <div class="hm-hero-banner hm-hero-swiper swiper{% if hm_hero_count == 1 %} hm-hero-banner--single{% endif %}" style="border-radius:36px;overflow:hidden;background:#FFCD00;box-shadow:0 18px 40px rgba(74,28,13,.16)">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
           {%- if block.type == 'hero_slide' and block.settings.image_slide != blank -%}
-          <div class="swiper-slide" {{ block.shopify_attributes }}>
-            <div class="hm-hero-slide-item">
-              {%- if block.settings.url != blank -%}
-              <a href="{{ block.settings.url }}">
-                <picture>
-                  {%- if block.settings.image_slide_mb != blank -%}
-                  <source media="(max-width: 1024px)" srcset="{{ block.settings.image_slide_mb | image_url: width: 800 }}">
-                  {%- endif -%}
-                  {{ block.settings.image_slide | image_url: width: 1900 | image_tag: height: 'auto', alt: 'Holy Mel' }}
-                </picture>
-              </a>
-              {%- else -%}
-              <picture>
-                {%- if block.settings.image_slide_mb != blank -%}
-                <source media="(max-width: 1024px)" srcset="{{ block.settings.image_slide_mb | image_url: width: 800 }}">
-                {%- endif -%}
-                {{ block.settings.image_slide | image_url: width: 1900 | image_tag: height: 'auto', alt: 'Holy Mel' }}
-              </picture>
+          <div class="swiper-slide hm-hero-slide-item" {{ block.shopify_attributes }}>
+            {%- if block.settings.url != blank -%}<a href="{{ block.settings.url }}" style="display:block">{%- endif -%}
+            <picture>
+              {%- if block.settings.image_slide_mb != blank -%}
+              <source media="(max-width: 1024px)" srcset="{{ block.settings.image_slide_mb | image_url: width: 800 }}">
               {%- endif -%}
-            </div>
+              {{ block.settings.image_slide | image_url: width: 1900 | image_tag: height: 'auto', alt: 'Holy Mel' }}
+            </picture>
+            {%- if block.settings.url != blank -%}</a>{%- endif -%}
           </div>
           {%- endif -%}
-        {%- endfor -%}
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
-    <!-- headline (oculto como no original — mantém o h1 da página;
-         para exibir, troque display:none por display:block) -->
-    <div class="hm-sl" style="padding:clamp(32px,4vw,48px) 4px clamp(40px,5vw,64px);display:none">
-      <div style="display:inline-flex;align-items:center;gap:9px;background:transparent;border:1.5px solid rgba(100,39,19,.35);color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:12px;letter-spacing:.5px;padding:6px 16px;border-radius:999px;margin-bottom:22px">Mel Silvestre &nbsp;·&nbsp; 100% puro &nbsp;·&nbsp; 330g</div>
-      <h1 class="hm-hero-h1" style="font-family:'Superpop',sans-serif;font-weight:600;font-size:clamp(60px,9vw,108px);line-height:.9;letter-spacing:-2px;color:#642713;margin:0 0 20px">MEL.<br><span style="font-weight:400">E só mel.</span></h1>
-      <p style="font-family:'Nunito Sans';font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:rgba(100,39,19,.78);max-width:440px;margin:0 0 28px">Sem xarope. Sem corante. Sem açúcar adicionado. Só o que a abelha fez — dentro de um urso que fica lindo na sua bancada.</p>
-      <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
-        <a href="{{ cta }}" class="hm-btn-lift" style="display:inline-flex;align-items:center;justify-content:center;background:#FFCD00;color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:15px;padding:16px 32px;border-radius:999px;text-decoration:none;box-shadow:0 4px 0 rgba(100,39,19,.18);transition:transform .12s">{{ section.settings.nav_cta_light }} <span style="font-weight:600">&nbsp;{{ section.settings.nav_cta_bold }}</span></a>
-        <div>
-          <div style="font-family:'Superpop';font-weight:400;font-size:15px;color:#E29423;letter-spacing:1px">★★★★★ <span style="color:#642713">{{ section.settings.rev_score }}</span></div>
-          <div style="font-family:'Nunito Sans';font-size:13px;color:rgba(100,39,19,.6)">+2.000 avaliações</div>
+          {%- endfor -%}
         </div>
+        <div class="swiper-pagination"></div>
       </div>
     </div>
   </section>
@@ -171,76 +216,55 @@
     <div style="max-width:1160px;margin:0 auto">
       <div style="background:#FFCD00;border-radius:36px;position:relative;overflow:hidden;min-height:clamp(300px,38vw,440px);display:flex;align-items:center;justify-content:center">
         <img src="{{ img_honeycomb_brown }}" alt="" aria-hidden="true" width="60" height="35" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.06;pointer-events:none">
-        <div style="position:absolute;top:14%;left:8%;width:18px;height:18px;border-radius:50% 50% 50% 0;background:#642713;opacity:.25;transform:rotate(45deg);animation:hm-float2 5s ease-in-out infinite"></div>
-        <div style="position:absolute;bottom:18%;right:10%;width:26px;height:26px;border-radius:50% 50% 50% 0;background:#642713;opacity:.2;transform:rotate(45deg);animation:hm-float2 6s ease-in-out infinite"></div>
         <img src="{{ img_bear }}" alt="" width="364" height="520" style="position:absolute;left:6%;bottom:0;height:clamp(150px,20vw,250px);width:auto;animation:hm-bob 4.5s ease-in-out infinite">
         <img src="{{ img_bottle }}" alt="Pote de mel Holy Mel em formato de urso" width="323" height="800" style="position:relative;z-index:2;height:clamp(240px,30vw,380px);width:auto;filter:drop-shadow(0 22px 26px rgba(100,39,19,.3));animation:hm-float 5.5s ease-in-out infinite">
         <img src="{{ img_face }}" alt="" width="388" height="320" style="position:absolute;right:7%;top:50%;transform:translateY(-50%);height:clamp(96px,12vw,150px);width:auto;animation:hm-bob 5s ease-in-out infinite">
-      </div>
-      <!-- headline (oculto como no original — mantém o h1 da página;
-           para exibir, troque display:none por display:block) -->
-      <div class="hm-sl" style="padding:clamp(32px,4vw,48px) 4px clamp(40px,5vw,64px);display:none">
-        <div style="display:inline-flex;align-items:center;gap:9px;background:transparent;border:1.5px solid rgba(100,39,19,.35);color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:12px;letter-spacing:.5px;padding:6px 16px;border-radius:999px;margin-bottom:22px">Mel Silvestre &nbsp;·&nbsp; 100% puro &nbsp;·&nbsp; 330g</div>
-        <h1 class="hm-hero-h1" style="font-family:'Superpop',sans-serif;font-weight:600;font-size:clamp(60px,9vw,108px);line-height:.9;letter-spacing:-2px;color:#642713;margin:0 0 20px">MEL.<br><span style="font-weight:400">E só mel.</span></h1>
-        <p style="font-family:'Nunito Sans';font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:rgba(100,39,19,.78);max-width:440px;margin:0 0 28px">Sem xarope. Sem corante. Sem açúcar adicionado. Só o que a abelha fez — dentro de um urso que fica lindo na sua bancada.</p>
-        <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
-          <a href="{{ cta }}" class="hm-btn-lift" style="display:inline-flex;align-items:center;justify-content:center;background:#FFCD00;color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:15px;padding:16px 32px;border-radius:999px;text-decoration:none;box-shadow:0 4px 0 rgba(100,39,19,.18);transition:transform .12s">{{ section.settings.nav_cta_light }} <span style="font-weight:600">&nbsp;{{ section.settings.nav_cta_bold }}</span></a>
-          <div>
-            <div style="font-family:'Superpop';font-weight:400;font-size:15px;color:#E29423;letter-spacing:1px">★★★★★ <span style="color:#642713">{{ section.settings.rev_score }}</span></div>
-            <div style="font-family:'Nunito Sans';font-size:13px;color:rgba(100,39,19,.6)">+2.000 avaliações</div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
   {%- endif -%}
 
-  <!-- 2 · CERTIFICAÇÕES -->
-  <section style="background:#FFF6E4;margin-top:18px;border-top:1px solid rgba(100,39,19,.18);border-bottom:1px solid rgba(100,39,19,.18)">
-    <div style="max-width:1160px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,20px);flex-wrap:wrap">
-      <span style="font-family:'Nunito Sans';font-weight:800;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(100,39,19,.55)">{{ section.settings.cert_label }}</span>
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        {%- assign certs = section.settings.cert_badges | split: ',' -%}
-        {%- for cert in certs -%}
-        <span style="clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);width:46px;height:40px;background:#FFCD00;display:flex;align-items:center;justify-content:center;font-family:'Superpop';font-weight:400;font-size:10.5px;color:#642713">{{ cert | strip }}</span>
-        {%- endfor -%}
-      </div>
+  <!-- 2 · PILLS + CTA -->
+  {%- assign pill_count = 0 -%}
+  {%- for block in section.blocks -%}{%- if block.type == 'pill' -%}{%- assign pill_count = pill_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+  {%- if pill_count > 0 or section.settings.show_hero_cta -%}
+  <section style="background:#FFF6E4">
+    {%- if pill_count > 0 -%}
+    <div style="max-width:1160px;margin:0 auto;padding:clamp(20px,2.6vw,30px) 24px 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px">
+      {%- for block in section.blocks -%}
+      {%- if block.type == 'pill' -%}
+      <span {{ block.shopify_attributes }} style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(100,39,19,.35);border-radius:999px;padding:10px 20px;font-family:'Superpop',sans-serif;font-weight:300;font-size:13.5px;letter-spacing:.3px;color:#642713;white-space:nowrap">{%- if block.settings.icon != blank -%}<span style="font-size:15px;line-height:1">{{ block.settings.icon }}</span>{%- endif -%}{{ block.settings.text }}</span>
+      {%- endif -%}
+      {%- endfor -%}
     </div>
+    {%- endif -%}
+    {%- if section.settings.show_hero_cta -%}
+    <div style="max-width:1160px;margin:0 auto;padding:clamp(18px,2.2vw,26px) 24px 0;display:flex;flex-direction:column;align-items:center;gap:10px">
+      <a href="{{ cta }}" class="hm-btn-cafe" style="display:inline-flex;align-items:center;justify-content:center;background:#FFCD00;color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:16px;padding:16px 36px;border-radius:999px;text-decoration:none;box-shadow:0 5px 0 rgba(100,39,19,.18);transition:transform .12s">{{ section.settings.hero_cta_light }}<span style="font-weight:600">&nbsp;{{ section.settings.hero_cta_bold }}</span></a>
+      {%- if section.settings.hero_cta_note != blank -%}
+      <div style="font-size:13px;font-weight:700;color:rgba(100,39,19,.62);text-align:center">{{ section.settings.hero_cta_note }}</div>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
   </section>
+  {%- endif -%}
 
-  <!-- 3 · PROBLEMA -->
+  <!-- 3 · PROBLEMA + CARDS -->
   <section id="problema" style="background:#FFF6E4">
     <div class="hm-rise" style="max-width:820px;margin:0 auto;padding:clamp(40px,5vw,64px) 24px 0;text-align:center">
       <h2 style="font-family:'Superpop',sans-serif;font-weight:600;font-size:clamp(28px,4.2vw,46px);line-height:1.1;letter-spacing:-.5px;text-transform:uppercase;color:#642713;margin:0 0 20px">{{ section.settings.problema_title }}</h2>
       <p style="font-family:'Nunito Sans';font-size:clamp(16px,1.6vw,18px);line-height:1.65;color:rgba(100,39,19,.78);max-width:640px;margin:0 auto">{{ section.settings.problema_text }}</p>
     </div>
-  </section>
-
-  <!-- 4 · INGREDIENTES -->
-  <section id="ingredientes" style="background:#FFF6E4">
     <div style="max-width:1040px;margin:0 auto;padding:clamp(36px,4.5vw,56px) 24px clamp(40px,5vw,70px)">
       <div class="hm-pop" style="background:#642713;border-radius:34px;padding:clamp(32px,4vw,48px) clamp(24px,3.5vw,44px);position:relative;overflow:hidden">
         <img src="{{ img_honeycomb_cream }}" alt="" aria-hidden="true" width="60" height="35" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.05;pointer-events:none">
-        <div style="position:relative;text-align:center;margin-bottom:clamp(26px,3.5vw,38px)">
-          <div style="font-family:'Nunito Sans';font-weight:800;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,246,228,.5);margin-bottom:10px">{{ section.settings.ing_kicker }}</div>
-          <div style="font-family:'Superpop',sans-serif;font-weight:600;font-size:clamp(34px,5vw,58px);line-height:1;color:#FFCD00;letter-spacing:-.5px">{{ section.settings.ing_title }}</div>
-        </div>
-        <div class="hm-ing-cols" style="position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+        <div class="hm-cards-3" style="position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
           {%- for block in section.blocks -%}
           {%- if block.type == 'chip' -%}
-          {%- if block.settings.is_check -%}
-          <div {{ block.shopify_attributes }} style="background:#FFF6E4;border-radius:20px;padding:22px 16px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px">
-            <span style="font-family:'Nunito Sans';font-weight:800;font-size:15px;color:#642713;line-height:1.25;min-height:38px;display:flex;align-items:center">{{ block.settings.title }}</span>
-            <span style="font-family:'Superpop';font-weight:400;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#E29423">{{ block.settings.sub }}</span>
-            <span style="clip-path:polygon(50% 0%,90% 12%,100% 50%,90% 88%,50% 100%,10% 88%,0% 50%,10% 12%);width:32px;height:32px;background:#642713;color:#FFCD00;display:flex;align-items:center;justify-content:center;font-family:'Superpop';font-size:16px;line-height:1;margin-top:2px">✓</span>
+          <div {{ block.shopify_attributes }} style="background:#FFCD00;border-radius:20px;padding:26px 20px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px">
+            <span style="font-family:'Nunito Sans';font-weight:800;font-size:16px;color:#642713;line-height:1.3">{{ block.settings.title }}</span>
+            <span style="font-family:'Nunito Sans';font-size:14px;line-height:1.55;color:rgba(100,39,19,.7)">{{ block.settings.sub }}</span>
           </div>
-          {%- else -%}
-          <div {{ block.shopify_attributes }} style="background:#FFCD00;border-radius:20px;padding:22px 16px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px">
-            <span style="font-family:'Nunito Sans';font-weight:800;font-size:15px;color:#642713;line-height:1.25;min-height:38px;display:flex;align-items:center">{{ block.settings.title }}</span>
-            <span style="font-family:'Superpop';font-weight:400;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(100,39,19,.6)">{{ block.settings.sub }}</span>
-            <span style="font-family:'Nunito Sans';font-weight:900;font-size:26px;line-height:1;color:#642713;margin-top:2px">✕</span>
-          </div>
-          {%- endif -%}
           {%- endif -%}
           {%- endfor -%}
         </div>
@@ -252,7 +276,61 @@
     </div>
   </section>
 
-  <!-- 5 · AVALIAÇÕES -->
+  <!-- 4 · VOCÊ SABIA -->
+  {%- assign fact_count = 0 -%}
+  {%- for block in section.blocks -%}{%- if block.type == 'fact' -%}{%- assign fact_count = fact_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+  {%- if fact_count > 0 -%}
+  <section style="background:#FFF6E4">
+    <div class="hm-rise" style="max-width:1040px;margin:0 auto;padding:0 24px clamp(44px,5.5vw,72px)">
+      <div style="text-align:center;margin-bottom:clamp(26px,3.5vw,38px)">
+        {%- if section.settings.fact_kicker != blank -%}
+        <div style="font-family:'Superpop';font-weight:300;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#E29423;margin-bottom:12px">{{ section.settings.fact_kicker }}</div>
+        {%- endif -%}
+        <h2 style="font-family:'Superpop',sans-serif;font-weight:400;font-size:clamp(30px,4.6vw,54px);line-height:1.02;letter-spacing:-.5px;color:#642713;margin:0">{{ section.settings.fact_title }}</h2>
+      </div>
+      <div class="hm-fact-cols" style="display:grid;grid-template-columns:repeat({{ fact_count | at_most: 2 }},minmax(0,1fr));gap:18px">
+        {%- for block in section.blocks -%}
+        {%- if block.type == 'fact' -%}
+        <div class="hm-pop" {{ block.shopify_attributes }} style="background:#FFCD00;border-radius:24px;padding:30px 28px 32px;display:flex;flex-direction:column;gap:14px">
+          {%- if block.settings.icon != blank -%}
+          <span style="clip-path:{{ hex }};width:54px;height:47px;background:#642713;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1">{{ block.settings.icon }}</span>
+          {%- endif -%}
+          <h3 style="font-family:'Superpop',sans-serif;font-weight:400;font-size:clamp(19px,2.2vw,23px);color:#642713;margin:0">{{ block.settings.title }}</h3>
+          <p style="font-family:'Nunito Sans';font-size:15px;line-height:1.6;color:rgba(100,39,19,.78);margin:0">{{ block.settings.text }}</p>
+        </div>
+        {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+  {%- endif -%}
+
+  <!-- 5 · CERTIFICAÇÕES -->
+  {%- assign cert_count = 0 -%}
+  {%- for block in section.blocks -%}{%- if block.type == 'cert' -%}{%- assign cert_count = cert_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+  {%- if cert_count > 0 -%}
+  <section style="background:#FFF6E4;border-top:1px solid rgba(100,39,19,.18);border-bottom:1px solid rgba(100,39,19,.18)">
+    <div class="hm-rise" style="max-width:1160px;margin:0 auto;padding:clamp(36px,4.5vw,56px) 24px">
+      {%- if section.settings.cert_label != blank -%}
+      <div style="text-align:center;margin-bottom:clamp(24px,3vw,34px)">
+        <div style="font-family:'Nunito Sans';font-weight:800;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(100,39,19,.55)">{{ section.settings.cert_label }}</div>
+      </div>
+      {%- endif -%}
+      <div class="hm-cert-cols" style="display:grid;grid-template-columns:repeat({{ cert_count | at_most: 4 }},minmax(0,1fr));gap:16px">
+        {%- for block in section.blocks -%}
+        {%- if block.type == 'cert' -%}
+        <div {{ block.shopify_attributes }} style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
+          <span style="clip-path:{{ hex }};width:68px;height:59px;background:#FFCD00;display:flex;align-items:center;justify-content:center;font-family:'Superpop';font-weight:600;font-size:17px;color:#642713;line-height:1">{{ block.settings.sigla }}</span>
+          <span style="font-family:'Nunito Sans';font-size:13.5px;line-height:1.5;color:rgba(100,39,19,.72);max-width:180px">{{ block.settings.text }}</span>
+        </div>
+        {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+  {%- endif -%}
+
+  <!-- 6 · AVALIAÇÕES -->
   <section id="avaliacoes" style="background:#FFF6E4">
     <div class="hm-rise" style="max-width:1160px;margin:0 auto;padding:clamp(40px,5vw,72px) 24px">
       <div style="text-align:center;margin-bottom:8px">
@@ -264,9 +342,9 @@
         {%- for block in section.blocks -%}
         {%- if block.type == 'review' -%}
         <div {{ block.shopify_attributes }} style="background:#FFCD00;border-radius:24px;padding:28px">
-          <div style="font-family:'Superpop';font-weight:400;font-size:46px;color:rgba(100,39,19,.22);line-height:.6;height:20px;margin-bottom:18px">"</div>
+          <div style="font-family:'Superpop';font-weight:400;font-size:46px;color:rgba(100,39,19,.22);line-height:.6;height:20px;margin-bottom:18px">&ldquo;</div>
           <p style="font-family:'Nunito Sans';font-size:16px;line-height:1.6;color:#642713;margin:0 0 16px">{{ block.settings.quote }}</p>
-          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:'Nunito Sans';font-size:13.5px;font-weight:800;color:rgba(100,39,19,.75)">{{ block.settings.author }}</span><span style="font-family:'Superpop';color:#642713;font-size:13px;letter-spacing:1px">★★★★★</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><span style="font-family:'Nunito Sans';font-size:13.5px;font-weight:800;color:rgba(100,39,19,.75)">{{ block.settings.author }}</span><span style="font-family:'Superpop';color:#642713;font-size:13px;letter-spacing:1px">★★★★★</span></div>
         </div>
         {%- endif -%}
         {%- endfor -%}
@@ -279,14 +357,32 @@
     </div>
   </section>
 
-  <!-- 6 · OFERTA -->
+  <!-- 7 · OFERTA -->
   <section id="comprar" style="position:relative;overflow:hidden;background:#E0A23C">
     <img src="{{ img_offer_bg }}" alt="" aria-hidden="true" width="1400" height="660" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
     <div class="hm-rise" style="position:relative;max-width:1160px;margin:0 auto;padding:clamp(56px,7vw,96px) 24px clamp(48px,6vw,80px)">
-      <div style="text-align:center;margin-bottom:40px">
+      <div style="text-align:center;margin-bottom:30px">
         <div style="font-family:'Superpop';font-weight:300;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#FFF6E4;margin-bottom:10px">{{ section.settings.offer_kicker }}</div>
         <h2 style="font-family:'Superpop',sans-serif;font-weight:700;font-size:clamp(30px,4.6vw,54px);line-height:1.02;letter-spacing:-.5px;text-transform:uppercase;color:#FFF6E4;margin:0;text-shadow:0 3px 16px rgba(0,0,0,.25)">{{ section.settings.offer_title }}</h2>
       </div>
+
+      {%- comment -%}
+        COUNTDOWN — só aparece com uma data futura preenchida.
+        Sem data (ou com data passada) ele some: contador que reinicia a
+        cada carregamento é contagem falsa e queima a confiança.
+      {%- endcomment -%}
+      {%- if section.settings.countdown_end != blank -%}
+      <div class="hm-countdown" data-hm-end="{{ section.settings.countdown_end | escape }}" style="display:none;flex-direction:column;align-items:center;gap:10px;margin-bottom:34px">
+        <div style="display:inline-flex;align-items:center;gap:12px;background:#642713;border-radius:999px;padding:11px 22px;box-shadow:0 6px 18px rgba(0,0,0,.22)">
+          <span style="font-family:'Nunito Sans';font-weight:800;font-size:11.5px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,246,228,.72)">{{ section.settings.countdown_label }}</span>
+          <span class="hm-timer" style="font-family:'Superpop',sans-serif;font-weight:600;font-size:20px;letter-spacing:1px;color:#FFCD00;line-height:1;font-variant-numeric:tabular-nums">--:--:--</span>
+        </div>
+        {%- if section.settings.stock_text != blank -%}
+        <div style="font-family:'Nunito Sans';font-weight:700;font-size:13px;color:#FFF6E4;text-shadow:0 1px 6px rgba(0,0,0,.3)">{{ section.settings.stock_text }}</div>
+        {%- endif -%}
+      </div>
+      {%- endif -%}
+
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:stretch">
         {%- for block in section.blocks -%}
         {%- if block.type == 'kit' -%}
@@ -307,7 +403,7 @@
             assign doff = '9px'
           endif
         -%}
-        <div {{ block.shopify_attributes }} style="background:#FFF6E4;border-radius:28px;padding:32px 28px;display:flex;flex-direction:column;text-align:center;position:relative;box-shadow:{% if block.settings.featured %}0 24px 46px rgba(0,0,0,.28){% else %}0 18px 40px rgba(74,28,13,.22){% endif %}">
+        <div {{ block.shopify_attributes }} class="{% if block.settings.featured %}hm-kit--featured{% endif %}" style="background:#FFF6E4;border-radius:28px;padding:32px 28px;display:flex;flex-direction:column;text-align:center;position:relative;box-shadow:{% if block.settings.featured %}0 24px 46px rgba(0,0,0,.28){% else %}0 18px 40px rgba(74,28,13,.22){% endif %}">
           {%- if block.settings.featured and block.settings.badge != blank -%}
           <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#FFCD00;color:#642713;font-family:'Superpop';font-weight:600;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:7px 22px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 10px rgba(0,0,0,.15)">{{ block.settings.badge }}</div>
           {%- endif -%}
@@ -318,10 +414,19 @@
           <div style="font-family:'Superpop';font-weight:400;font-size:{% if block.settings.featured %}21px{% else %}20px{% endif %};color:#642713">{{ block.settings.name }}</div>
           <div style="font-family:'Nunito Sans';font-size:13px;color:rgba(100,39,19,{% if block.settings.featured %}.62{% else %}.55{% endif %});margin:3px 0 14px">{{ block.settings.desc }}</div>
           <div style="font-family:'Superpop';font-weight:400;font-size:{% if block.settings.featured %}44px{% else %}40px{% endif %};color:#642713;line-height:1">{{ block.settings.price }}</div>
-          <div style="font-family:'Nunito Sans';font-size:12.5px;color:rgba(100,39,19,.45);text-decoration:line-through;margin-bottom:10px">{{ block.settings.old_price }}</div>
-          <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:20px;background:{% if block.settings.featured %}#FFCD00{% else %}rgba(100,39,19,.06){% endif %};border-radius:12px;padding:10px 14px">
+          {%- if block.settings.old_price != blank -%}
+          <div style="font-family:'Nunito Sans';font-size:12.5px;color:rgba(100,39,19,.45);text-decoration:line-through;margin-top:6px">{{ block.settings.old_price }}</div>
+          {%- endif -%}
+          <div style="display:flex;flex-direction:column;gap:5px;margin:12px 0 20px;background:{% if block.settings.featured %}#FFCD00{% else %}rgba(100,39,19,.06){% endif %};border-radius:12px;padding:10px 14px">
+            {%- if block.settings.pix_text != blank -%}
             <div style="font-family:'Nunito Sans';font-size:13px;color:{% if block.settings.featured %}#642713{% else %}#2D6E2D{% endif %};font-weight:800">{{ block.settings.pix_text }}</div>
+            {%- endif -%}
+            {%- if block.settings.parcel_text != blank -%}
             <div style="font-family:'Nunito Sans';font-size:12px;color:rgba(100,39,19,{% if block.settings.featured %}.75{% else %}.6{% endif %});font-weight:600">{{ block.settings.parcel_text }}</div>
+            {%- endif -%}
+            {%- if block.settings.extra_text != blank -%}
+            <div style="font-family:'Nunito Sans';font-size:12px;color:#2D6E2D;font-weight:800;letter-spacing:.3px;text-transform:uppercase">{{ block.settings.extra_text }}</div>
+            {%- endif -%}
           </div>
           {%- if block.settings.featured -%}
           <a href="{{ kit_url }}" class="hm-btn-solid" style="margin-top:auto;display:block;background:#642713;color:#FFF6E4;font-family:'Superpop',sans-serif;font-weight:400;font-size:15px;padding:14px;border-radius:999px;text-decoration:none;box-shadow:0 5px 0 rgba(74,28,13,.5);transition:background .15s">{{ block.settings.btn_text }}</a>
@@ -337,80 +442,49 @@
 
   <!-- DIVISOR MASCOTE -->
   <div style="background:#FFF6E4;display:flex;justify-content:center;padding:40px 24px 0">
-    <div style="clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);width:100px;height:88px;border:3px solid #642713;display:flex;align-items:center;justify-content:center;background:#FFF6E4">
+    <div style="clip-path:{{ hex }};width:100px;height:88px;border:3px solid #642713;display:flex;align-items:center;justify-content:center;background:#FFF6E4">
       <img src="{{ img_face }}" alt="" width="388" height="320" style="height:64px;width:auto">
     </div>
   </div>
 
-  <!-- 7 · CAFÉ DA MANHÃ -->
+  <!-- 8 · MEL SILVESTRE. SÓ. -->
+  {%- assign only_count = 0 -%}
+  {%- for block in section.blocks -%}{%- if block.type == 'only_line' -%}{%- assign only_count = only_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+  {%- if only_count > 0 -%}
   <section style="background:#FFF6E4">
-    <div class="hm-rise" style="max-width:680px;margin:0 auto;padding:20px 24px clamp(48px,6vw,84px);text-align:center">
-      <h2 style="font-family:'Superpop',sans-serif;font-weight:400;font-size:clamp(30px,4.4vw,50px);line-height:1.02;letter-spacing:-.5px;color:#642713;margin:0 0 16px">{{ section.settings.cafe_title }}</h2>
-      <p style="font-family:'Nunito Sans';font-size:clamp(16px,1.7vw,18px);line-height:1.65;color:rgba(100,39,19,.78);max-width:520px;margin:0 auto 28px">{{ section.settings.cafe_text }}</p>
-      <a href="{{ cta }}" class="hm-btn-cafe" style="display:inline-flex;align-items:center;justify-content:center;background:#FFCD00;color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:15px;padding:15px 34px;border-radius:999px;text-decoration:none;box-shadow:0 5px 0 rgba(100,39,19,.18);transition:transform .12s">{{ section.settings.cafe_cta_light }} <span style="font-weight:600">&nbsp;{{ section.settings.cafe_cta_bold }}</span></a>
-    </div>
-  </section>
-
-  <!-- 8 · POR QUE O URSO -->
-  <section style="background:#FFF6E4;position:relative;overflow:hidden">
-    <img src="{{ img_honeycomb_brown }}" alt="" width="60" height="35" style="position:absolute;top:8%;right:5%;width:48px;opacity:.3;animation:hm-spin 30s linear infinite">
-    <img src="{{ img_honeycomb_brown }}" alt="" width="60" height="35" style="position:absolute;bottom:12%;left:4%;width:36px;opacity:.25;animation:hm-spin 36s linear infinite reverse">
-    <div style="position:relative;max-width:1160px;margin:0 auto;padding:clamp(40px,5vw,64px) 24px clamp(56px,7vw,90px)">
-      <div class="hm-rise" style="text-align:center;margin-bottom:clamp(32px,4vw,48px)">
-        <div style="font-family:'Superpop';font-weight:300;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#E29423;margin-bottom:14px">{{ section.settings.why_kicker }}</div>
-        <h2 style="font-family:'Superpop',sans-serif;font-weight:700;font-size:clamp(34px,5vw,62px);line-height:1;letter-spacing:-1px;text-transform:uppercase;color:#642713;margin:0 0 6px">{{ section.settings.why_title }}</h2>
-        <div style="font-family:'Superpop',sans-serif;font-weight:300;font-style:italic;font-size:clamp(20px,2.6vw,30px);color:#E29423">{{ section.settings.why_subtitle }}</div>
-      </div>
-      <div class="hm-why-cols" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
-        {%- assign why_i = 0 -%}
-        {%- for block in section.blocks -%}
-        {%- if block.type == 'why' -%}
-        {%- liquid
-          assign why_i = why_i | plus: 1
-          case why_i
-            when 1
-              assign why_fallback = 'hm-face-brown.webp' | asset_url
-              assign why_h = '84px'
-              assign why_ty = '12px'
-              assign why_w = 388
-              assign why_ih = 320
-            when 2
-              assign why_fallback = 'hm-bear-brown.webp' | asset_url
-              assign why_h = '112px'
-              assign why_ty = '14px'
-              assign why_w = 364
-              assign why_ih = 520
-            when 3
-              assign why_fallback = 'hm-bottle-amber.webp' | asset_url
-              assign why_h = '104px'
-              assign why_ty = '12px'
-              assign why_w = 104
-              assign why_ih = 220
-            else
-              assign why_fallback = 'hm-face-yellow.webp' | asset_url
-              assign why_h = '84px'
-              assign why_ty = '12px'
-              assign why_w = 216
-              assign why_ih = 180
-          endcase
-          if block.settings.img != blank
-            assign why_img = block.settings.img | image_url: width: 400
-          else
-            assign why_img = why_fallback
-          endif
-        -%}
-        <div class="hm-pop" {{ block.shopify_attributes }} style="background:#FFCD00;border-radius:24px;overflow:hidden;display:flex;flex-direction:column">
-          <div style="height:100px;background:#E29423;display:flex;align-items:flex-end;justify-content:center;overflow:hidden"><img src="{{ why_img }}" alt="" width="{{ why_w }}" height="{{ why_ih }}" style="height:{{ why_h }};width:auto;transform:translateY({{ why_ty }})"></div>
-          <div style="padding:20px 20px 24px">
-            <h3 style="font-family:'Superpop',sans-serif;font-weight:400;font-size:18px;color:#642713;margin:0 0 8px">{{ block.settings.title }}</h3>
-            <p style="font-family:'Nunito Sans';font-size:14px;line-height:1.55;color:rgba(100,39,19,.75);margin:0">{{ block.settings.text }}</p>
+    <div style="max-width:1040px;margin:0 auto;padding:clamp(30px,4vw,44px) 24px clamp(48px,6vw,80px)">
+      <div class="hm-pop" style="background:#642713;border-radius:34px;padding:clamp(36px,4.5vw,56px) clamp(24px,3.5vw,48px);position:relative;overflow:hidden">
+        <img src="{{ img_honeycomb_cream }}" alt="" aria-hidden="true" width="60" height="35" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.05;pointer-events:none">
+        <div class="hm-only-cols" style="position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,48px);align-items:center">
+          <div>
+            <h2 style="font-family:'Superpop',sans-serif;font-weight:600;font-size:clamp(34px,5vw,58px);line-height:1;letter-spacing:-.5px;color:#FFCD00;margin:0 0 26px">{{ section.settings.only_title }}</h2>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px">
+              {%- for block in section.blocks -%}
+              {%- if block.type == 'only_line' -%}
+              {%- if block.settings.is_check -%}
+              <div {{ block.shopify_attributes }} style="display:flex;align-items:center;gap:14px;background:rgba(255,205,0,.14);border-radius:14px;padding:12px 14px;margin-top:6px">
+                <span style="flex-shrink:0;clip-path:{{ oct }};width:32px;height:32px;background:#FFCD00;color:#642713;display:flex;align-items:center;justify-content:center;font-family:'Superpop';font-size:16px;line-height:1">✓</span>
+                <span style="font-family:'Nunito Sans';font-size:clamp(15px,1.7vw,17px);font-weight:800;color:#FFCD00">{{ block.settings.text }}</span>
+              </div>
+              {%- else -%}
+              <div {{ block.shopify_attributes }} style="display:flex;align-items:center;gap:14px">
+                <span style="flex-shrink:0;font-family:'Nunito Sans';font-weight:900;font-size:20px;line-height:1;color:#E29423;width:26px;text-align:center">✕</span>
+                <span style="font-family:'Nunito Sans';font-size:clamp(15px,1.7vw,17px);font-weight:600;color:rgba(255,246,228,.9)">{{ block.settings.text }}</span>
+              </div>
+              {%- endif -%}
+              {%- endif -%}
+              {%- endfor -%}
+            </div>
+            <a href="{{ cta }}" class="hm-btn-cafe" style="display:inline-flex;align-items:center;justify-content:center;background:#FFCD00;color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:16px;padding:16px 34px;border-radius:999px;text-decoration:none;box-shadow:0 5px 0 rgba(0,0,0,.28);transition:transform .12s">{{ section.settings.only_cta_light }}<span style="font-weight:600">&nbsp;{{ section.settings.only_cta_bold }}</span></a>
+          </div>
+          <div style="display:flex;justify-content:center;align-items:flex-end">
+            <img src="{{ img_only }}" alt="" width="323" height="800" style="height:clamp(190px,26vw,300px);width:auto;filter:drop-shadow(0 16px 22px rgba(0,0,0,.35));animation:hm-float2 6.5s ease-in-out infinite">
           </div>
         </div>
-        {%- endif -%}
-        {%- endfor -%}
       </div>
     </div>
   </section>
+  {%- endif -%}
 
   <!-- 9 · FAQ -->
   <section style="background:#FFF6E4;padding:0 24px clamp(40px,5vw,64px)">
@@ -424,7 +498,7 @@
       <div class="hm-faq-item" {{ block.shopify_attributes }} style="background:#FFF6E4;border-radius:16px;margin-bottom:10px;overflow:hidden">
         <button type="button" class="hm-faq-btn" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:18px;background:none;border:none;cursor:pointer;padding:18px 22px;text-align:left">
           <span style="font-family:'Superpop',sans-serif;font-weight:400;font-size:clamp(15px,1.8vw,18px);color:#642713">{{ block.settings.question }}</span>
-          <span class="hm-faq-sign" style="flex-shrink:0;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);width:30px;height:26px;background:#FFCD00;color:#642713;font-family:'Superpop';font-weight:400;font-size:16px;display:flex;align-items:center;justify-content:center;line-height:1">+</span>
+          <span class="hm-faq-sign" style="flex-shrink:0;clip-path:{{ hex }};width:30px;height:26px;background:#FFCD00;color:#642713;font-family:'Superpop';font-weight:400;font-size:16px;display:flex;align-items:center;justify-content:center;line-height:1">+</span>
         </button>
         <div class="hm-faq-ans" style="overflow:hidden;transition:max-height .32s ease,opacity .32s ease;max-height:0;opacity:0">
           <p style="font-family:'Nunito Sans';font-size:15.5px;line-height:1.65;color:rgba(100,39,19,.78);margin:0;padding:0 22px 20px">{{ block.settings.answer }}</p>
@@ -435,18 +509,31 @@
     </div>
   </section>
 
-  <!-- FOOTER (oculto como no original — para exibir, troque display:none por display:block) -->
-  <footer style="background:#4A1C0D;display:none">
-    <div style="max-width:1160px;margin:0 auto;padding:44px 28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
-      <img src="{{ 'hm-logo-cream.webp' | asset_url }}" alt="Holy Mel" width="211" height="120" style="height:42px;width:auto">
-      <div style="font-family:'Nunito Sans';font-size:12.5px;letter-spacing:1px;color:rgba(255,246,228,.5);text-align:right;line-height:1.7">
-        MEL SILVESTRE 100% PURO · BPF · FDA · IFS · SIF<br>
-        <span style="opacity:.8">© Holy Mel — feito do campo pra sua bancada.</span>
-      </div>
+  <!-- 10 · FECHAMENTO — CTA depois do FAQ, para quem leu tudo -->
+  {%- if section.settings.show_close -%}
+  <section style="background:#FFF6E4;border-top:1px solid rgba(100,39,19,.18)">
+    <div class="hm-rise" style="max-width:1160px;margin:0 auto;padding:clamp(40px,5vw,64px) 24px clamp(48px,6vw,76px);display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
+      {%- if section.settings.close_title != blank -%}
+      <div style="font-family:'Superpop',sans-serif;font-weight:400;font-size:clamp(24px,3.4vw,38px);line-height:1.05;letter-spacing:-.5px;color:#642713">{{ section.settings.close_title }}</div>
+      {%- endif -%}
+      <a href="{{ cta }}" class="hm-btn-cafe" style="display:inline-flex;align-items:center;justify-content:center;background:#FFCD00;color:#642713;font-family:'Superpop',sans-serif;font-weight:300;font-size:16px;padding:16px 36px;border-radius:999px;text-decoration:none;box-shadow:0 5px 0 rgba(100,39,19,.18);transition:transform .12s">{{ section.settings.close_cta_light }}<span style="font-weight:600">&nbsp;{{ section.settings.close_cta_bold }}</span></a>
+      {%- if section.settings.close_note != blank -%}
+      <div style="font-family:'Nunito Sans';font-size:13px;font-weight:700;color:rgba(100,39,19,.62)">{{ section.settings.close_note }}</div>
+      {%- endif -%}
     </div>
-  </footer>
+  </section>
+  {%- endif -%}
+
+  {%- if section.settings.show_buybar -%}
+  <div class="hm-buybar" style="background:rgba(255,246,228,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(100,39,19,.18);box-shadow:0 -6px 20px rgba(100,39,19,.10);padding:10px 16px calc(10px + env(safe-area-inset-bottom))">
+    <div style="max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:center">
+      <a href="{{ cta }}" class="hm-btn-cafe" style="flex:1;max-width:520px;display:inline-flex;align-items:center;justify-content:center;background:#FFCD00;color:#642713;font-family:'Superpop',sans-serif;font-weight:600;font-size:16px;letter-spacing:.3px;padding:16px 28px;border-radius:999px;text-decoration:none;box-shadow:0 4px 0 rgba(100,39,19,.22);transition:transform .12s">{{ section.settings.buybar_text }}</a>
+    </div>
+  </div>
+  {%- endif -%}
 
 </div>
+
 <script>
 (function () {
   function initHolyMelFaq(root) {
@@ -485,10 +572,77 @@
       }
     });
   }
+  /* Countdown honesto: precisa de uma data futura real.
+     Data ausente, inválida ou já vencida => o bloco não aparece. */
+  function initHolyMelCountdown(root) {
+    var box = root.querySelector('.hm-countdown');
+    if (!box || box.getAttribute('data-hm-cd-init')) return;
+    var raw = (box.getAttribute('data-hm-end') || '').trim();
+    if (!raw) return;
+    var end = new Date(raw.replace(' ', 'T'));
+    if (isNaN(end.getTime())) return;
+    box.setAttribute('data-hm-cd-init', '1');
+    var out = box.querySelector('.hm-timer');
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function tick() {
+      var diff = end.getTime() - Date.now();
+      if (diff <= 0) { box.style.display = 'none'; clearInterval(timer); return; }
+      var s = Math.floor(diff / 1000);
+      var d = Math.floor(s / 86400);
+      var h = Math.floor((s % 86400) / 3600);
+      var m = Math.floor((s % 3600) / 60);
+      var sec = s % 60;
+      out.textContent = (d > 0 ? d + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(sec);
+      box.style.display = 'flex';
+    }
+    tick();
+    var timer = setInterval(tick, 1000);
+  }
+  /* Barra de compra: aparece depois que o banner sai da tela e recolhe
+     enquanto a oferta esta visivel. Dois observers, nenhum listener de scroll. */
+  function initHolyMelBuybar(root) {
+    var bar = root.querySelector('.hm-buybar');
+    if (!bar || bar.getAttribute('data-hm-bar-init')) return;
+    var hero = root.querySelector('#topo');
+    var oferta = root.querySelector('#comprar');
+    if (!('IntersectionObserver' in window) || !hero || !oferta) {
+      bar.classList.add('hm-buybar--on');
+      return;
+    }
+    bar.setAttribute('data-hm-bar-init', '1');
+    var passouHero = false, naOferta = false;
+    function aplica() {
+      bar.classList.toggle('hm-buybar--on', passouHero && !naOferta);
+    }
+    /* estado inicial por geometria: cobre o caso de a página abrir já
+       rolada (link com âncora, F5 no meio) e serve de rede se o
+       observer demorar a reportar */
+    function sincroniza() {
+      var vh = window.innerHeight;
+      var hr = hero.getBoundingClientRect(), orf = oferta.getBoundingClientRect();
+      passouHero = !(hr.bottom > 0 && hr.top < vh);
+      naOferta = (orf.bottom > 0 && orf.top < vh);
+      aplica();
+    }
+    /* depois do parse: durante ele o navegador ainda não pulou para a âncora
+       e a medição sairia toda com scrollY = 0 */
+    setTimeout(sincroniza, 0);
+    window.addEventListener('load', sincroniza, { once: true });
+    new IntersectionObserver(function (es) {
+      passouHero = !es[0].isIntersecting;
+      aplica();
+    }, { threshold: 0 }).observe(hero);
+    new IntersectionObserver(function (es) {
+      naOferta = es[0].isIntersecting;
+      aplica();
+    }, { threshold: 0 }).observe(oferta);
+  }
   function initHolyMel(root) {
     if (!root) return;
     initHolyMelFaq(root);
     initHolyMelHero(root);
+    initHolyMelCountdown(root);
+    initHolyMelBuybar(root);
   }
   var lp = document.getElementById('holy-mel-lp');
   if (lp) initHolyMel(lp);
@@ -514,46 +668,81 @@
     { "type": "header", "content": "Geral" },
     { "type": "url", "id": "cta_url", "label": "Link dos botões de compra (padrão: rola até a oferta)" },
     { "type": "image_picker", "id": "img_logo", "label": "Logo (topo)" },
-    { "type": "image_picker", "id": "img_bottle", "label": "Foto do pote (ingredientes e kits; fallback do hero)" },
-    { "type": "image_picker", "id": "img_bear", "label": "Ilustração urso (só no hero antigo / fallback)" },
-    { "type": "image_picker", "id": "img_face", "label": "Rosto do urso (divisor; fallback do hero)" },
+    { "type": "range", "id": "logo_visible", "label": "Parte visível do logo (%)", "info": "100% mostra o logo inteiro. Valores menores cortam a partir da direita — o corte pega a última letra antes de chegar no urso.", "min": 40, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "checkbox", "id": "show_nav_cta", "label": "Mostrar botão no topo", "info": "Desligado, o logo fica sozinho e centralizado. Ligado, o botão volta à direita — ele repete o CTA que fica logo abaixo do banner.", "default": false },
+    { "type": "image_picker", "id": "img_bottle", "label": "Foto do pote (cards e kits)" },
+    { "type": "image_picker", "id": "img_bear", "label": "Ilustração urso (seção final e hero antigo)" },
+    { "type": "image_picker", "id": "img_face", "label": "Rosto do urso (divisor)" },
     { "type": "text", "id": "nav_cta_light", "label": "Botão topo — parte leve", "default": "Quero" },
     { "type": "text", "id": "nav_cta_bold", "label": "Botão topo — parte negrito", "default": "meu urso" },
     { "type": "paragraph", "content": "Banner hero: adicione blocos “Banner hero” (desktop + mobile + link). Sem blocos com imagem, a colagem amarela antiga permanece." },
+
+    { "type": "checkbox", "id": "sticky_nav", "label": "Fixar o topo ao rolar", "info": "Desligado, a barra do logo some ao rolar a página.", "default": false },
+    { "type": "image_picker", "id": "only_image", "label": "Imagem do painel “Mel silvestre. Só.”", "info": "Vazio usa a foto do pote. Evite a ilustração marrom do urso: ela tem a mesma cor do fundo do painel e desaparece." },
+
+    { "type": "header", "content": "Rodapé nesta página" },
+    { "type": "paragraph", "content": "Troca a cor do rodapé apenas nesta página — as demais continuam com o verde da Holy Foods. Deixe vazio para não mexer em nada." },
+    { "type": "color", "id": "footer_bg", "label": "Cor de fundo do rodapé", "default": "#642713" },
+
+    { "type": "header", "content": "Barra de compra fixa" },
+    { "type": "checkbox", "id": "show_buybar", "label": "Mostrar barra fixa no rodapé", "info": "Aparece depois que o banner sai da tela e recolhe enquanto a oferta está visível.", "default": true },
+    { "type": "text", "id": "buybar_text", "label": "Texto do botão", "default": "Comprar agora" },
+
     { "type": "header", "content": "Faixa rolante (ticker)" },
     { "type": "checkbox", "id": "show_ticker", "label": "Mostrar faixa rolante", "default": true },
     { "type": "text", "id": "ticker_text", "label": "Texto da faixa (o ● final é automático)", "default": "100% puro  ●  sem açúcar adicionado  ●  sem xarope  ●  sem corante  ●  sem conservante  ●  mel de verdade" },
+
+    { "type": "header", "content": "Pills e CTA abaixo do banner" },
+    { "type": "paragraph", "content": "As pills são blocos “Pill (selo abaixo do banner)”." },
+    { "type": "checkbox", "id": "show_hero_cta", "label": "Mostrar botão abaixo das pills", "default": true },
+    { "type": "text", "id": "hero_cta_light", "label": "Botão — parte leve", "default": "Quero o meu" },
+    { "type": "text", "id": "hero_cta_bold", "label": "Botão — parte negrito", "default": "Urso 🐻" },
+    { "type": "text", "id": "hero_cta_note", "label": "Linha de apoio abaixo do botão (vazio = some)" },
+
+    { "type": "header", "content": "O mel que não fica escondido" },
+    { "type": "text", "id": "problema_title", "label": "Título", "default": "O mel que não vai ficar escondido no armário" },
+    { "type": "textarea", "id": "problema_text", "label": "Texto", "default": "Mel lindo demais pra ficar escondido no armário." },
+
+    { "type": "header", "content": "Você sabia?" },
+    { "type": "text", "id": "fact_kicker", "label": "Rótulo (vazio = some)", "default": "Mel de verdade tem história" },
+    { "type": "text", "id": "fact_title", "label": "Título", "default": "Você Sabia?" },
+
     { "type": "header", "content": "Certificações" },
-    { "type": "text", "id": "cert_label", "label": "Texto", "default": "4 certificações que provam" },
-    { "type": "text", "id": "cert_badges", "label": "Selos (separados por vírgula)", "default": "BPF, FDA, IFS, SIF" },
-    { "type": "header", "content": "O problema" },
-    { "type": "text", "id": "problema_title", "label": "Título", "default": "O mel que você comprava não era mel." },
-    { "type": "textarea", "id": "problema_text", "label": "Texto", "default": "Quase todo mel de supermercado é xarope de glicose, corante caramelo e um tiquinho de mel pra constar no rótulo. A gente faz o contrário." },
-    { "type": "header", "content": "Ingredientes" },
-    { "type": "text", "id": "ing_kicker", "label": "Rótulo", "default": "Ingredientes" },
-    { "type": "text", "id": "ing_title", "label": "Título", "default": "Mel silvestre. Só." },
+    { "type": "text", "id": "cert_label", "label": "Rótulo (vazio = some)", "default": "Certificações" },
+
     { "type": "header", "content": "Avaliações" },
     { "type": "text", "id": "rev_kicker", "label": "Rótulo", "default": "Quem já tem um urso em casa" },
     { "type": "text", "id": "rev_title", "label": "Título", "default": "Amado em milhares de cozinhas." },
     { "type": "image_picker", "id": "img_girl", "label": "Ilustração (menina correndo)" },
     { "type": "text", "id": "rev_score", "label": "Nota", "default": "4.9" },
     { "type": "text", "id": "rev_stats", "label": "Estatísticas", "default": "· +2.000 avaliações · +4.200 ursos entregues" },
+
     { "type": "header", "content": "Oferta" },
-    { "type": "text", "id": "offer_kicker", "label": "Rótulo", "default": "Escolha o seu" },
+    { "type": "text", "id": "offer_kicker", "label": "Rótulo", "default": "Escolha o seu urso" },
     { "type": "text", "id": "offer_title", "label": "Título", "default": "Quantos ursos você quer?" },
     { "type": "image_picker", "id": "img_offer_bg", "label": "Foto de fundo (favo de mel)" },
-    { "type": "header", "content": "Café da manhã" },
-    { "type": "text", "id": "cafe_title", "label": "Título", "default": "Do café da manhã ao pós-treino." },
-    { "type": "textarea", "id": "cafe_text", "label": "Texto", "default": "Energia de verdade, do jeito que a natureza fez. Mel silvestre puro pra adoçar o dia inteiro — sem culpa, sem letrinha miúda no rótulo." },
-    { "type": "text", "id": "cafe_cta_light", "label": "Botão — parte leve", "default": "levar pra" },
-    { "type": "text", "id": "cafe_cta_bold", "label": "Botão — parte negrito", "default": "todo lugar" },
-    { "type": "header", "content": "Por que o urso" },
-    { "type": "text", "id": "why_kicker", "label": "Rótulo", "default": "Por que o urso" },
-    { "type": "text", "id": "why_title", "label": "Título", "default": "Mel bom demais" },
-    { "type": "text", "id": "why_subtitle", "label": "Subtítulo", "default": "pra ficar escondido no armário" },
+
+    { "type": "header", "content": "Contador da oferta" },
+    { "type": "paragraph", "content": "Preencha com a data e hora reais do fim da campanha, no formato AAAA-MM-DD HH:MM (ex.: 2026-09-15 23:59). Vazio, inválido ou já vencido: o contador não aparece. Não use contador que reinicia sozinho — quem volta ao site percebe." },
+    { "type": "text", "id": "countdown_end", "label": "Fim da oferta (AAAA-MM-DD HH:MM)" },
+    { "type": "text", "id": "countdown_label", "label": "Rótulo do contador", "default": "Oferta válida por" },
+    { "type": "text", "id": "stock_text", "label": "Linha de escassez (vazio = some)", "default": "Estoque limitado de ursinhos 🐻" },
+
+    { "type": "header", "content": "Mel silvestre. Só." },
+    { "type": "text", "id": "only_title", "label": "Título", "default": "Mel silvestre. Só." },
+    { "type": "text", "id": "only_cta_light", "label": "Botão — parte leve", "default": "Quero o meu" },
+    { "type": "text", "id": "only_cta_bold", "label": "Botão — parte negrito", "default": "Urso 🐻" },
+
     { "type": "header", "content": "FAQ" },
     { "type": "text", "id": "faq_kicker", "label": "Rótulo", "default": "Perguntas" },
-    { "type": "text", "id": "faq_title", "label": "Título", "default": "Dúvidas diretas." }
+    { "type": "text", "id": "faq_title", "label": "Título", "default": "Dúvidas diretas." },
+
+    { "type": "header", "content": "Fechamento (depois do FAQ)" },
+    { "type": "checkbox", "id": "show_close", "label": "Mostrar bloco de fechamento", "default": true },
+    { "type": "text", "id": "close_title", "label": "Título (vazio = some)", "default": "Mel de verdade." },
+    { "type": "text", "id": "close_cta_light", "label": "Botão — parte leve", "default": "Quero o meu" },
+    { "type": "text", "id": "close_cta_bold", "label": "Botão — parte negrito", "default": "Urso 🐻" },
+    { "type": "text", "id": "close_note", "label": "Linha de apoio abaixo do botão (vazio = some)" }
   ],
   "blocks": [
     {
@@ -566,12 +755,36 @@
       ]
     },
     {
-      "type": "chip",
-      "name": "Ingrediente (card)",
+      "type": "pill",
+      "name": "Pill (abaixo do banner)",
       "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Açúcar adicionado" },
-        { "type": "text", "id": "sub", "label": "Legenda", "default": "Não tem" },
-        { "type": "checkbox", "id": "is_check", "label": "Card positivo (✓ em fundo claro)", "default": false }
+        { "type": "text", "id": "icon", "label": "Ícone / emoji (vazio = só texto)", "default": "🍯" },
+        { "type": "text", "id": "text", "label": "Texto", "default": "Superalimento" }
+      ]
+    },
+    {
+      "type": "chip",
+      "name": "Card (3 destaques)",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Embalagem exclusiva no Brasil" },
+        { "type": "textarea", "id": "sub", "label": "Texto", "default": "Fica lindo na sua cozinha e todo mundo pergunta onde comprou." }
+      ]
+    },
+    {
+      "type": "fact",
+      "name": "Card (você sabia?)",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Ícone / emoji", "default": "🍯" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Cristaliza com o tempo" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Mel puro cristaliza, e é sinal que ninguém mexeu na composição." }
+      ]
+    },
+    {
+      "type": "cert",
+      "name": "Certificação",
+      "settings": [
+        { "type": "text", "id": "sigla", "label": "Sigla (dentro do hexágono)", "default": "BPF" },
+        { "type": "text", "id": "text", "label": "Descrição", "default": "Padrões de higiene ANVISA" }
       ]
     },
     {
@@ -586,12 +799,13 @@
       "type": "kit",
       "name": "Kit (oferta)",
       "settings": [
-        { "type": "text", "id": "name", "label": "Nome", "default": "Mini Holy" },
-        { "type": "text", "id": "desc", "label": "Descrição", "default": "330g · 1 urso" },
-        { "type": "text", "id": "price", "label": "Preço", "default": "R$49,90" },
-        { "type": "text", "id": "old_price", "label": "Preço antigo (riscado)", "default": "De R$59,90" },
-        { "type": "text", "id": "pix_text", "label": "Linha PIX", "default": "R$44,90 no PIX" },
-        { "type": "text", "id": "parcel_text", "label": "Linha parcelamento", "default": "ou 3x de R$16,63 sem juros" },
+        { "type": "text", "id": "name", "label": "Nome", "default": "🐻 1 Urso Holy" },
+        { "type": "text", "id": "desc", "label": "Descrição", "default": "330g" },
+        { "type": "text", "id": "price", "label": "Preço", "default": "R$ 49,90" },
+        { "type": "text", "id": "old_price", "label": "Preço antigo riscado (vazio = some)", "default": "De R$ 59,90" },
+        { "type": "text", "id": "pix_text", "label": "Linha PIX (vazio = some)", "default": "R$ 44,90 no PIX" },
+        { "type": "text", "id": "parcel_text", "label": "Linha parcelamento (vazio = some)", "default": "ou 3x de R$ 16,63 sem juros" },
+        { "type": "text", "id": "extra_text", "label": "Linha extra em verde (ex.: frete — vazio = some)" },
         { "type": "text", "id": "discount", "label": "Selo de desconto (vazio = sem selo)", "default": "-17%" },
         {
           "type": "select",
@@ -601,22 +815,21 @@
             { "value": "small", "label": "Pequeno" },
             { "value": "large", "label": "Grande" }
           ],
-          "default": "large"
+          "default": "small"
         },
-        { "type": "text", "id": "btn_text", "label": "Texto do botão", "default": "Quero o Mini" },
+        { "type": "text", "id": "btn_text", "label": "Texto do botão", "default": "Quero o meu" },
         { "type": "url", "id": "btn_url", "label": "Link do botão (produto ou carrinho)" },
-        { "type": "checkbox", "id": "featured", "label": "Destacado (Mais vendido)", "default": false },
-        { "type": "text", "id": "badge", "label": "Selo do destaque", "default": "Mais vendido" },
+        { "type": "checkbox", "id": "featured", "label": "Destacado (Mais pedido)", "default": false },
+        { "type": "text", "id": "badge", "label": "Selo do destaque", "default": "⭐ Mais pedido" },
         { "type": "image_picker", "id": "img", "label": "Imagem (vazio = foto do pote)" }
       ]
     },
     {
-      "type": "why",
-      "name": "Por que o urso (card)",
+      "type": "only_line",
+      "name": "Linha (mel silvestre)",
       "settings": [
-        { "type": "image_picker", "id": "img", "label": "Imagem" },
-        { "type": "text", "id": "title", "label": "Título", "default": "Fica lindo na cozinha" },
-        { "type": "textarea", "id": "text", "label": "Texto", "default": "Chega numa embalagem que parece enfeite." }
+        { "type": "text", "id": "text", "label": "Texto", "default": "Açúcar adicionado? Não tem." },
+        { "type": "checkbox", "id": "is_check", "label": "Linha positiva (✓ em destaque)", "default": false }
       ]
     },
     {
@@ -632,20 +845,30 @@
     {
       "name": "Holy Mel LP",
       "blocks": [
+        { "type": "pill" },
+        { "type": "pill" },
+        { "type": "pill" },
         { "type": "chip" },
         { "type": "chip" },
         { "type": "chip" },
-        { "type": "chip", "settings": { "is_check": true, "title": "100% puro Mel silvestre", "sub": "Só isso." } },
+        { "type": "fact" },
+        { "type": "fact" },
+        { "type": "cert" },
+        { "type": "cert" },
+        { "type": "cert" },
+        { "type": "cert" },
         { "type": "review" },
         { "type": "review" },
         { "type": "review" },
         { "type": "kit" },
         { "type": "kit", "settings": { "featured": true } },
         { "type": "kit" },
-        { "type": "why" },
-        { "type": "why" },
-        { "type": "why" },
-        { "type": "why" },
+        { "type": "only_line" },
+        { "type": "only_line" },
+        { "type": "only_line" },
+        { "type": "only_line", "settings": { "is_check": true, "text": "Mel silvestre 100% puro? Só isso." } },
+        { "type": "faq" },
+        { "type": "faq" },
         { "type": "faq" },
         { "type": "faq" },
         { "type": "faq" }

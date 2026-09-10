@@ -28,6 +28,7 @@
     },
     "promo_popup": {
       "type": "promo-popup-landing",
+      "disabled": true,
       "settings": {
         "enable_section": true,
         "banner_image": "shopify://shop_images/popup_lp_21_dias.png",
@@ -283,9 +284,9 @@
             "product": "projeto-21-dias-1-pack-lp",
             "yampi_url": "https://seguro.holyfoods.com.br/b/MNO9UX8PCMS8",
             "name": "Projeto 21 Dias",
-            "original_price": "126.00",
-            "current_price": "109.62",
-            "discount_badge": "13% off",
+            "original_price": "147.00",
+            "current_price": "126",
+            "discount_badge": "14% off",
             "free_shipping_text": "",
             "quantity_price_text": "R$5.19 Por Jantar",
             "quantity_yield_text": "Rende 21 Refeições"

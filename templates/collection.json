@@ -216,6 +216,38 @@
     "promos_home_QkfzLE": {
       "type": "promos-home",
       "blocks": {
+        "promotion_zBzmpb": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify://shop_images/08-09-26_HOLYFOODS_banner-semana-cliente-1080x500.png",
+            "badge": "",
+            "url": ""
+          }
+        },
+        "promotion_nwmFyt": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify://shop_images/10-09-26_HOLYFOODS_banner-projeto-42-1920x740.png",
+            "badge": "",
+            "url": "shopify://products/projeto-42-dias-2-packs-1"
+          }
+        },
+        "promotion_7BfyVF": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify://shop_images/10-09-26_HOLY_banner-promocional-aveia-feijao_1.png",
+            "badge": "",
+            "url": "shopify://collections/ofertas"
+          }
+        },
+        "promotion_jPJEdC": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify://shop_images/10-09-26_HOLY_banner-promocional-brindes.png",
+            "badge": "",
+            "url": "shopify://collections/ofertas"
+          }
+        },
         "promotion_36kVM7": {
           "type": "promotion",
           "disabled": true,
@@ -245,6 +277,7 @@
         },
         "promotion_bDLn4f": {
           "type": "promotion",
+          "disabled": true,
           "settings": {
             "banner": "shopify://shop_images/banner_mel_deskV2.png",
             "badge": "",
@@ -253,6 +286,7 @@
         },
         "promotion_UU6Nxb": {
           "type": "promotion",
+          "disabled": true,
           "settings": {
             "banner": "shopify://shop_images/bannedr_projeto21D_desk.png",
             "badge": "",
@@ -261,6 +295,7 @@
         },
         "promotion_CPzcUq": {
           "type": "promotion",
+          "disabled": true,
           "settings": {
             "banner": "shopify://shop_images/BANNER_DESKTOP.png",
             "badge": "",
@@ -305,6 +340,10 @@
         }
       },
       "block_order": [
+        "promotion_zBzmpb",
+        "promotion_nwmFyt",
+        "promotion_7BfyVF",
+        "promotion_jPJEdC",
         "promotion_36kVM7",
         "promotion_HKHczx",
         "promotion_y4Kfbw",
@@ -373,6 +412,22 @@
         "collection_3": "risotos-popup",
         "collection_4": "aveias-popup",
         "collection_5": "",
+        "bulk_display_mode": "unit_price",
+        "bulk_hide_current_tier": true,
+        "bulk_modal_bg": "#ffffff",
+        "bulk_savings_card_bg": "#ffffff",
+        "bulk_footer_bg": "#ffffff",
+        "bulk_category_title_color": "#afaa7a",
+        "bulk_category_title_border": "#afaa7a",
+        "bulk_footer_text_color": "#1a1a1a",
+        "tier_1_unit_badge": "18",
+        "tier_1_unit_text": "18,00",
+        "tier_2_unit_badge": "17",
+        "tier_2_unit_text": "17,00",
+        "tier_3_unit_badge": "16",
+        "tier_3_unit_text": "16,00",
+        "tier_4_unit_badge": "14",
+        "tier_4_unit_text": "14,90",
         "tier_0_color": "#afaa7a",
         "tier_1_qty": 4,
         "tier_1_pct": 10,

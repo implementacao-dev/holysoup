@@ -12,15 +12,26 @@
     "a8d45234-ff4c-4fb4-ab6d-16d71fbf1a5d": {
       "type": "slideshow-hs",
       "blocks": {
-        "slide_BPeF4h": {
+        "slide_zyT4XK": {
           "type": "Slide",
           "settings": {
-            "image_slide": "shopify://shop_images/18-08-26_HOLYFOODS_banner-semana-cliente-1920x740.png",
-            "image_slide_mb": "shopify://shop_images/18-08-26_HOLYFOODS_banner-semana-cliente-1080x1410.png",
+            "image_slide": "shopify://shop_images/10-09-26_HOLYFOODS_banner-projeto-42-1920x740.png",
+            "image_slide_mb": "shopify://shop_images/10-09-26_HOLYFOODS_banner-projeto-42-1080x1410.png",
             "title": "",
             "rotative": "",
             "subtitle": "",
-            "url": ""
+            "url": "shopify://products/projeto-42-dias-2-packs-1"
+          }
+        },
+        "slide_BPeF4h": {
+          "type": "Slide",
+          "settings": {
+            "image_slide": "shopify://shop_images/08-09-26_HOLYFOODS_banner-semana-cliente-1920x740.png",
+            "image_slide_mb": "shopify://shop_images/08-09-26_HOLYFOODS_banner-semana-cliente-1080x1410.png",
+            "title": "",
+            "rotative": "",
+            "subtitle": "",
+            "url": "https://holyfoods.com.br/#shopify-section-template--17893834883252__swiper_bulk_purchase_g3AxMP"
           }
         },
         "slide_FKGEeW": {
@@ -121,6 +132,7 @@
         }
       },
       "block_order": [
+        "slide_zyT4XK",
         "slide_BPeF4h",
         "slide_FKGEeW",
         "slide_DDYjzj",
@@ -298,36 +310,36 @@
     "swiper_bulk_purchase_g3AxMP": {
       "type": "swiper-bulk-purchase",
       "blocks": {
-        "slide_4A8aMc": {
+        "slide_Gpr3pj": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/card_20un_373995d5-978e-45a0-8adf-b476926bda92.png"
-          }
-        },
-        "slide_gQT44a": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/card_15un_c1ebaf5f-9195-436a-baef-2f275b8191af.png"
+            "image": "shopify://shop_images/9_064fb74d-a364-4824-b11d-30ca972af543.png"
           }
         },
         "slide_afXVDQ": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/card_10un_6847a869-5db7-4718-8140-022036bad847.png"
+            "image": "shopify://shop_images/14.png"
           }
         },
-        "slide_Gpr3pj": {
+        "slide_gQT44a": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/card_5un_c4f6d09d-c19b-4b4f-9db8-586c39f97fd1.png"
+            "image": "shopify://shop_images/19.png"
+          }
+        },
+        "slide_4A8aMc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/25_d28e17d8-b856-46dc-a0f7-fe1670d41433.png"
           }
         }
       },
       "block_order": [
-        "slide_4A8aMc",
-        "slide_gQT44a",
+        "slide_Gpr3pj",
         "slide_afXVDQ",
-        "slide_Gpr3pj"
+        "slide_gQT44a",
+        "slide_4A8aMc"
       ],
       "custom_css": [
         ".product-carousel-container {padding-top: 60px;}",
@@ -340,25 +352,41 @@
         "collection_1": "sopas-popup",
         "collection_2": "macarroes-popup",
         "collection_3": "risotos-popup",
-        "collection_4": "aveias-popup",
+        "collection_4": "",
         "collection_5": "",
+        "bulk_display_mode": "unit_price",
+        "bulk_hide_current_tier": true,
+        "bulk_modal_bg": "#ffffff",
+        "bulk_savings_card_bg": "#ffffff",
+        "bulk_footer_bg": "#ffffff",
+        "bulk_category_title_color": "#bcbcbc",
+        "bulk_category_title_border": "#bcbcbc",
+        "bulk_footer_text_color": "#1a1a1a",
+        "tier_1_unit_badge": "18",
+        "tier_1_unit_text": "18,00",
+        "tier_2_unit_badge": "17",
+        "tier_2_unit_text": "17,00",
+        "tier_3_unit_badge": "16",
+        "tier_3_unit_text": "16,00",
+        "tier_4_unit_badge": "14",
+        "tier_4_unit_text": "14,90",
         "tier_0_color": "#afaa7a",
         "tier_1_qty": 5,
         "tier_1_pct": 9.5,
         "tier_1_gift_text": "",
         "tier_1_color": "#ff0000",
         "tier_2_qty": 10,
-        "tier_2_pct": 14.6,
+        "tier_2_pct": 14.5,
         "tier_2_gift_text": "COPO MEDIDOR",
         "tier_2_gift_image": "shopify://shop_images/brinde_ouro_2x_cecdb978-7ccd-4675-9d13-7b5f99dfafdb.png",
         "tier_2_color": "rgba(0,0,0,0)",
         "tier_3_qty": 15,
         "tier_3_pct": 19.6,
-        "tier_3_gift_text": "01 COPO MEDIDOR +01 CAÇAROLA",
+        "tier_3_gift_text": "01 COPO MEDIDOR +01 PANELINHA",
         "tier_3_gift_image": "shopify://shop_images/brinde_diamante_2x_468ca295-e869-4ca7-9be8-eeefb18bc20c.png",
         "tier_3_color": "rgba(0,0,0,0)",
         "tier_4_qty": 20,
-        "tier_4_pct": 25,
+        "tier_4_pct": 25.1,
         "tier_4_gift_text": "",
         "tier_4_color": "rgba(0,0,0,0)"
       }
@@ -366,19 +394,6 @@
     "product_carousel_aVP7kr": {
       "type": "product-carousel",
       "blocks": {
-        "product_JTyrD8": {
-          "type": "product",
-          "settings": {
-            "product": "kit-almoco-completo-em-dobro-24un",
-            "show_product_image": true,
-            "show_product_title": false,
-            "title": "",
-            "show_product_description": false,
-            "description": "<p>Macs Clássicos + Lançamentos</p>",
-            "color": "",
-            "porcoes": "24"
-          }
-        },
         "product_dDAqbf": {
           "type": "product",
           "settings": {
@@ -390,6 +405,19 @@
             "description": "<p>21 sopas nutritivas que vão transformar o seu corpo.</p>",
             "color": "",
             "porcoes": "42"
+          }
+        },
+        "product_HqyDQx": {
+          "type": "product",
+          "settings": {
+            "product": "kit-mais-vendidos-em-dobro-16un",
+            "show_product_image": true,
+            "show_product_title": false,
+            "title": "",
+            "show_product_description": false,
+            "description": "<p>A seleção dos queridinhos dos nosso clientes</p>",
+            "color": "",
+            "porcoes": "34"
           }
         },
         "product_LPKP4A": {
@@ -406,7 +434,33 @@
             "porcoes": "64"
           }
         },
-        "product_HqyDQx": {
+        "product_JTyrD8": {
+          "type": "product",
+          "settings": {
+            "product": "kit-almoco-completo-em-dobro-24un",
+            "show_product_image": true,
+            "show_product_title": false,
+            "title": "",
+            "show_product_description": false,
+            "description": "<p>Macs Clássicos + Lançamentos</p>",
+            "color": "",
+            "porcoes": "24"
+          }
+        },
+        "product_wXwV9V": {
+          "type": "product",
+          "settings": {
+            "product": "kit-jantar-premium-em-dobro-18un",
+            "show_product_image": true,
+            "show_product_title": false,
+            "title": "",
+            "show_product_description": true,
+            "description": "",
+            "color": "",
+            "porcoes": "18"
+          }
+        },
+        "product_dKUFVE": {
           "type": "product",
           "disabled": true,
           "settings": {
@@ -434,21 +488,9 @@
             "porcoes": "10"
           }
         },
-        "product_wXwV9V": {
-          "type": "product",
-          "settings": {
-            "product": "kit-jantar-premium-em-dobro-18un",
-            "show_product_image": true,
-            "show_product_title": false,
-            "title": "",
-            "show_product_description": true,
-            "description": "",
-            "color": "",
-            "porcoes": "18"
-          }
-        },
         "product_GgirVt": {
           "type": "product",
+          "disabled": true,
           "settings": {
             "product": "kit-feijao-sem-pressao-em-dobro-16un",
             "show_product_image": true,
@@ -532,12 +574,13 @@
         }
       },
       "block_order": [
-        "product_JTyrD8",
         "product_dDAqbf",
-        "product_LPKP4A",
         "product_HqyDQx",
-        "product_AXct3t",
+        "product_LPKP4A",
+        "product_JTyrD8",
         "product_wXwV9V",
+        "product_dKUFVE",
+        "product_AXct3t",
         "product_GgirVt",
         "product_L9mTAB",
         "product_WtNyLi",
@@ -565,31 +608,43 @@
         "custom_color": "#005234"
       }
     },
+    "57fe8019-168b-4953-8dd1-4cb704b6b57d": {
+      "type": "promos-home",
+      "blocks": {
+        "promotion_wicPdz": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify://shop_images/10-09-26_HOLY_banner-promocional-aveia-feijao_1.png",
+            "badge": "",
+            "url": "shopify://collections/ofertas"
+          }
+        },
+        "promotion_9crP4K": {
+          "type": "promotion",
+          "settings": {
+            "banner": "shopify://shop_images/10-09-26_HOLY_banner-promocional-brindes.png",
+            "badge": "",
+            "url": "shopify://collections/ofertas"
+          }
+        }
+      },
+      "block_order": [
+        "promotion_wicPdz",
+        "promotion_9crP4K"
+      ],
+      "custom_css": [],
+      "settings": {
+        "header_title": "",
+        "header_color": "#3c3c3c",
+        "borda-superior": false,
+        "color-borda-superior": "#ffffff",
+        "borda-inferior": false,
+        "color-borda-inferior": "#ffffff"
+      }
+    },
     "product_carousel_v2_Xczirg": {
       "type": "product-carousel-v2",
       "blocks": {
-        "product_HCGeAn": {
-          "type": "product",
-          "settings": {
-            "product": "feijao-carioca",
-            "show_product_image": false,
-            "image": "shopify://shop_images/sabores_feijao_carioca.png",
-            "show_product_title": false,
-            "title": "",
-            "subtitle": "O feijão mais fácil do mundo!",
-            "show_product_description": false,
-            "description": "<p><strong>Pronto em 10 minutos com sabor caseiro de verdade! </strong></p><p>Pode esquecer: panela de pressão, deixar de molho ou temperar. </p><p>Você só precisa de água e sal pra ter feijão fresquinho quando quiser!</p><p><strong>Ingredientes: </strong>feijão carioca, páprica defumada, cebola, páprica picante, cominho, louro, pimenta preta, fécula de mandioca, vitaminas [ácido ascórbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)].</p>",
-            "color": "#fff2ed",
-            "card_color": "",
-            "porcoes": "3",
-            "stamp_image_1": "shopify://shop_images/carioca_pressao.svg",
-            "stamp_text_1": "",
-            "stamp_image_2": "shopify://shop_images/carioca_10min.svg",
-            "stamp_text_2": "",
-            "stamp_text_3": "",
-            "modal_image": "shopify://shop_images/tabela_completa_feijao_carioca_b48dd568-47d3-4b4c-bf7f-50a636349945.png"
-          }
-        },
         "product_Qm6WDd": {
           "type": "product",
           "settings": {
@@ -636,6 +691,97 @@
             "modal_image": "shopify://shop_images/Grupo_11232_70d26778-fb11-4a0e-93e5-8a72272fed08.png"
           }
         },
+        "product_pEXYUP": {
+          "type": "product",
+          "settings": {
+            "product": "risoto-de-queijo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_risoto_queijo.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Risoto com queijo provolone de verdade",
+            "show_product_description": false,
+            "description": "<p>Feito com queijo de qualidade, é o sabor que agrada a todos, acompanhando bem qualquer proteína. Muuuito cremoso, derrete na boca, confortando a cada garfada.   </p><p><strong>Ingredientes: </strong>queijo provolone, arroz arbóreo, leite integral em pó, colágeno, queijo em pó, alho, noz moscada, orégano.</p>",
+            "color": "#fffbf5",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/queijo_vitaminas.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/queijo_colageno.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/queijo_saborinedito.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_risoto_queijo.png"
+          }
+        },
+        "product_HCGeAn": {
+          "type": "product",
+          "settings": {
+            "product": "feijao-carioca",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_feijao_carioca.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "O feijão mais fácil do mundo!",
+            "show_product_description": false,
+            "description": "<p><strong>Pronto em 10 minutos com sabor caseiro de verdade! </strong></p><p>Pode esquecer: panela de pressão, deixar de molho ou temperar. </p><p>Você só precisa de água e sal pra ter feijão fresquinho quando quiser!</p><p><strong>Ingredientes: </strong>feijão carioca, páprica defumada, cebola, páprica picante, cominho, louro, pimenta preta, fécula de mandioca, vitaminas [ácido ascórbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)].</p>",
+            "color": "#fff2ed",
+            "card_color": "",
+            "porcoes": "3",
+            "stamp_image_1": "shopify://shop_images/carioca_pressao.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/carioca_10min.svg",
+            "stamp_text_2": "",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_feijao_carioca_b48dd568-47d3-4b4c-bf7f-50a636349945.png"
+          }
+        },
+        "product_hkAPEH": {
+          "type": "product",
+          "settings": {
+            "product": "risoto-funghi",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_risoto_funghi.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Risoto com cogumelos selecionados que não sai de moda",
+            "show_product_description": false,
+            "description": "<p>Releitura caseira do risoto clássico, elegante e irresistível de restaurante. Esse prato suculento é uma experiência profunda, suave e reconfortante. </p><p><strong>Ingredientes: </strong>cogumelo funghi, cogumelo shiitake, arroz arbório, colágeno, cebola, alho, alho poró, salsa, e vitaminas e minerais.</p>",
+            "color": "#f5fff5",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/funghi_vitaminas.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/funghi_colageno.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/funghi_cogumelos.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_risoto_funghi.png"
+          }
+        },
+        "product_BwVq3k": {
+          "type": "product",
+          "settings": {
+            "product": "novo-mac-alfredo",
+            "show_product_image": false,
+            "image": "shopify://shop_images/Grupo_11235.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "O mais proteico, e favorito das nutris.",
+            "show_product_description": false,
+            "description": "<p>Com incríveis 20 g de proteína de frango suculento, fonte de vitaminas e minerais, fica pronto em 15 minutos e é a escolha número um dos nutricionistas. Praticidade e sabor nos seus dias corridos!<br/><br/><strong>Ingredientes: </strong>Leite, farinha de feijão branco, queijo provolone, frango desidratado, alho, extrato de levedura, cebola, salsa, cebolinha, noz moscada, pimenta branca, vitaminas [ácido ascóbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)]</p>",
+            "color": "#f6ebff",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/Grupo_11242_2c90d4ff-e204-4feb-8434-f98fb4b73d9c.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_11241_da43d555-d3a8-4ec4-a10d-fba05da16d5b.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/Grupo_11240_5f0ed623-c822-4354-a58d-e64c92eee739.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/Grupo_11233_e668991e-4b5f-4bff-8b00-13a0c8193bd7.png"
+          }
+        },
         "product_k8RUaE": {
           "type": "product",
           "disabled": true,
@@ -675,54 +821,9 @@
             "stamp_text_3": ""
           }
         },
-        "product_pEXYUP": {
-          "type": "product",
-          "settings": {
-            "product": "risoto-de-queijo",
-            "show_product_image": false,
-            "image": "shopify://shop_images/card_risoto_queijo.png",
-            "show_product_title": false,
-            "title": "",
-            "subtitle": "Risoto com queijo provolone de verdade",
-            "show_product_description": false,
-            "description": "<p>Feito com queijo de qualidade, é o sabor que agrada a todos, acompanhando bem qualquer proteína. Muuuito cremoso, derrete na boca, confortando a cada garfada.   </p><p><strong>Ingredientes: </strong>queijo provolone, arroz arbóreo, leite integral em pó, colágeno, queijo em pó, alho, noz moscada, orégano.</p>",
-            "color": "#fffbf5",
-            "card_color": "",
-            "porcoes": "1",
-            "stamp_image_1": "shopify://shop_images/queijo_vitaminas.svg",
-            "stamp_text_1": "",
-            "stamp_image_2": "shopify://shop_images/queijo_colageno.svg",
-            "stamp_text_2": "",
-            "stamp_image_3": "shopify://shop_images/queijo_saborinedito.svg",
-            "stamp_text_3": "",
-            "modal_image": "shopify://shop_images/tabela_risoto_queijo.png"
-          }
-        },
-        "product_BwVq3k": {
-          "type": "product",
-          "settings": {
-            "product": "novo-mac-alfredo",
-            "show_product_image": false,
-            "image": "shopify://shop_images/Grupo_11235.png",
-            "show_product_title": false,
-            "title": "",
-            "subtitle": "O mais proteico, e favorito das nutris.",
-            "show_product_description": false,
-            "description": "<p>Com incríveis 20 g de proteína de frango suculento, fonte de vitaminas e minerais, fica pronto em 15 minutos e é a escolha número um dos nutricionistas. Praticidade e sabor nos seus dias corridos!<br/><br/><strong>Ingredientes: </strong>Leite, farinha de feijão branco, queijo provolone, frango desidratado, alho, extrato de levedura, cebola, salsa, cebolinha, noz moscada, pimenta branca, vitaminas [ácido ascóbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)]</p>",
-            "color": "#f6ebff",
-            "card_color": "",
-            "porcoes": "1",
-            "stamp_image_1": "shopify://shop_images/Grupo_11242_2c90d4ff-e204-4feb-8434-f98fb4b73d9c.svg",
-            "stamp_text_1": "",
-            "stamp_image_2": "shopify://shop_images/Grupo_11241_da43d555-d3a8-4ec4-a10d-fba05da16d5b.svg",
-            "stamp_text_2": "",
-            "stamp_image_3": "shopify://shop_images/Grupo_11240_5f0ed623-c822-4354-a58d-e64c92eee739.svg",
-            "stamp_text_3": "",
-            "modal_image": "shopify://shop_images/Grupo_11233_e668991e-4b5f-4bff-8b00-13a0c8193bd7.png"
-          }
-        },
         "product_mRPK3M": {
           "type": "product",
+          "disabled": true,
           "settings": {
             "product": "canja-da-mamae",
             "show_product_image": false,
@@ -742,29 +843,6 @@
             "stamp_image_3": "shopify://shop_images/regula_intestino.svg",
             "stamp_text_3": "",
             "modal_image": "shopify://shop_images/tabela_completa_canja.png"
-          }
-        },
-        "product_hkAPEH": {
-          "type": "product",
-          "settings": {
-            "product": "risoto-funghi",
-            "show_product_image": false,
-            "image": "shopify://shop_images/card_risoto_funghi.png",
-            "show_product_title": false,
-            "title": "",
-            "subtitle": "Risoto com cogumelos selecionados que não sai de moda",
-            "show_product_description": false,
-            "description": "<p>Releitura caseira do risoto clássico, elegante e irresistível de restaurante. Esse prato suculento é uma experiência profunda, suave e reconfortante. </p><p><strong>Ingredientes: </strong>cogumelo funghi, cogumelo shiitake, arroz arbório, colágeno, cebola, alho, alho poró, salsa, e vitaminas e minerais.</p>",
-            "color": "#f5fff5",
-            "card_color": "",
-            "porcoes": "1",
-            "stamp_image_1": "shopify://shop_images/funghi_vitaminas.svg",
-            "stamp_text_1": "",
-            "stamp_image_2": "shopify://shop_images/funghi_colageno.svg",
-            "stamp_text_2": "",
-            "stamp_image_3": "shopify://shop_images/funghi_cogumelos.svg",
-            "stamp_text_3": "",
-            "modal_image": "shopify://shop_images/tabela_risoto_funghi.png"
           }
         },
         "product_EPtgnE": {
@@ -860,15 +938,15 @@
         }
       },
       "block_order": [
-        "product_HCGeAn",
         "product_Qm6WDd",
         "product_mPRCVC",
+        "product_pEXYUP",
+        "product_HCGeAn",
+        "product_hkAPEH",
+        "product_BwVq3k",
         "product_k8RUaE",
         "product_9gwLXt",
-        "product_pEXYUP",
-        "product_BwVq3k",
         "product_mRPK3M",
-        "product_hkAPEH",
         "product_EPtgnE",
         "product_RKKFUi",
         "product_exwUTQ",
@@ -890,7 +968,7 @@
         "title_color": "#005234",
         "custom_color": "#005234",
         "title": "<p>MAIS VENDIDOS</p>",
-        "subtitle": "<p>Os favoritos de +400.000 clientes</p>"
+        "subtitle": "<p>Os favoritos de +500.000 clientes</p>"
       }
     },
     "product_carousel_v2_AifKKK": {
@@ -1138,132 +1216,6 @@
         "subtitle": "<p>Linha de R$19,90 por R$14,90</p>"
       }
     },
-    "product_carousel_v2_wjQbrc": {
-      "type": "product-carousel-v2",
-      "blocks": {
-        "product_acaM8W": {
-          "type": "product",
-          "settings": {
-            "product": "kit-s-o-s-carnaval-6un",
-            "show_product_image": true,
-            "show_product_title": true,
-            "title": "",
-            "subtitle": "",
-            "show_product_description": false,
-            "description": "",
-            "color": "",
-            "card_color": "",
-            "porcoes": "24",
-            "stamp_text_1": "",
-            "stamp_text_2": "",
-            "stamp_text_3": ""
-          }
-        },
-        "product_YBzg88": {
-          "type": "product",
-          "settings": {
-            "product": "kit-carnaval-em-casa-10un",
-            "show_product_image": true,
-            "show_product_title": true,
-            "title": "",
-            "subtitle": "",
-            "show_product_description": false,
-            "description": "",
-            "color": "",
-            "card_color": "",
-            "porcoes": "10",
-            "stamp_text_1": "",
-            "stamp_text_2": "",
-            "stamp_text_3": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_acaM8W",
-        "product_YBzg88"
-      ],
-      "disabled": true,
-      "custom_css": [
-        ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
-        "h3 {text-align: center;}"
-      ],
-      "settings": {
-        "section_id": "",
-        "border_style": "default",
-        "borda-superior": true,
-        "color-borda-superior": "#ffffff",
-        "borda-inferior": false,
-        "color-borda-inferior": "#ffffff",
-        "color": "rgba(0,0,0,0)",
-        "title_color": "#005234",
-        "custom_color": "#005234",
-        "title": "<p>CARNA HOLY</p>",
-        "subtitle": "<p>A Holy vai com você, na folia ou em casa</p>"
-      }
-    },
-    "product_carousel_v2_aQiQHV": {
-      "type": "product-carousel-v2",
-      "blocks": {
-        "product_y4hHWw": {
-          "type": "product",
-          "settings": {
-            "product": "kit-santo-recomeco-15d-10un",
-            "show_product_image": true,
-            "show_product_title": true,
-            "title": "",
-            "subtitle": "",
-            "show_product_description": false,
-            "description": "",
-            "color": "",
-            "card_color": "",
-            "porcoes": "28",
-            "stamp_text_1": "",
-            "stamp_text_2": "",
-            "stamp_text_3": ""
-          }
-        },
-        "product_FPLg8Q": {
-          "type": "product",
-          "settings": {
-            "product": "kit-montijo-13un-1",
-            "show_product_image": true,
-            "show_product_title": true,
-            "title": "",
-            "subtitle": "",
-            "show_product_description": false,
-            "description": "",
-            "color": "",
-            "card_color": "",
-            "porcoes": "40",
-            "stamp_text_1": "",
-            "stamp_text_2": "",
-            "stamp_text_3": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_y4hHWw",
-        "product_FPLg8Q"
-      ],
-      "disabled": true,
-      "custom_css": [
-        ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
-        "h3 {text-align: center;}"
-      ],
-      "settings": {
-        "section_id": "",
-        "border_style": "default",
-        "borda-superior": true,
-        "color-borda-superior": "#ffffff",
-        "borda-inferior": false,
-        "color-borda-inferior": "#ffffff",
-        "color": "rgba(0,0,0,0)",
-        "title_color": "#005234",
-        "custom_color": "#005234",
-        "title": "<p>NUTRI INDICA!</p>",
-        "subtitle": "<p>Escolha especial das nossas nutris </p>"
-      }
-    },
     "product_carousel_v2_QRLFMq": {
       "type": "product-carousel-v2",
       "blocks": {
@@ -1463,50 +1415,6 @@
         "color-borda-inferior": "#f6f6f6"
       }
     },
-    "57fe8019-168b-4953-8dd1-4cb704b6b57d": {
-      "type": "promos-home",
-      "blocks": {
-        "promotion_LcErRY": {
-          "type": "promotion",
-          "settings": {
-            "banner": "shopify://shop_images/BANNER_PROMOCIONAL_PRO_SITE.png",
-            "badge": "",
-            "url": ""
-          }
-        },
-        "promotion_UCnNKN": {
-          "type": "promotion",
-          "settings": {
-            "banner": "shopify://shop_images/IMG_5678.png",
-            "badge": "",
-            "url": "shopify://collections/aveias"
-          }
-        },
-        "promotion_j9g6mG": {
-          "type": "promotion",
-          "settings": {
-            "banner": "shopify://shop_images/2506-25_25HS291_holyfoods_site_banner_-_risoto-lancamento_PROMO.png",
-            "badge": "",
-            "url": "shopify://collections/risotos"
-          }
-        }
-      },
-      "block_order": [
-        "promotion_LcErRY",
-        "promotion_UCnNKN",
-        "promotion_j9g6mG"
-      ],
-      "disabled": true,
-      "custom_css": [],
-      "settings": {
-        "header_title": "NOVIDADES QUENTINHAS!",
-        "header_color": "#3c3c3c",
-        "borda-superior": false,
-        "color-borda-superior": "#ffffff",
-        "borda-inferior": false,
-        "color-borda-inferior": "#ffffff"
-      }
-    },
     "1732882966940526c4": {
       "type": "apps",
       "settings": {
@@ -1538,28 +1446,6 @@
             "stamp_text_3": ""
           }
         },
-        "product_FHXH7d": {
-          "type": "product",
-          "settings": {
-            "product": "risoto-al-mare",
-            "show_product_image": false,
-            "image": "shopify://shop_images/card_risoto_almare.png",
-            "show_product_title": false,
-            "title": "",
-            "subtitle": "Primeiro risoto com camarão desidratado do Brasil",
-            "show_product_description": false,
-            "description": "<p>Com camarão desidratado e azeite de dendê, é um prato potente, mas equilibrado, despertando a sensação de estar mergulhando nas praias do Nordeste brasileiro. </p><p><strong>Ingredientes: </strong>camarão desidratado, arroz arbóreo, proteína de ervilha, pimentão vermelho, pimentão verde, azeite de dendê, tomate, salsa, cebola, alho, cúrcuma, caldo de peixe.</p>",
-            "color": "#f5fbff",
-            "card_color": "",
-            "porcoes": "1",
-            "stamp_image_1": "shopify://shop_images/almare_vitaminas.svg",
-            "stamp_text_1": "",
-            "stamp_image_2": "shopify://shop_images/almare_colageno.svg",
-            "stamp_text_2": "",
-            "stamp_image_3": "shopify://shop_images/almare_saborinedito.svg",
-            "stamp_text_3": ""
-          }
-        },
         "product_pVwGJ4": {
           "type": "product",
           "settings": {
@@ -1581,12 +1467,34 @@
             "stamp_image_3": "shopify://shop_images/funghi_cogumelos.svg",
             "stamp_text_3": ""
           }
+        },
+        "product_FHXH7d": {
+          "type": "product",
+          "settings": {
+            "product": "risoto-al-mare",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_risoto_almare.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Primeiro risoto com camarão desidratado do Brasil",
+            "show_product_description": false,
+            "description": "<p>Com camarão desidratado e azeite de dendê, é um prato potente, mas equilibrado, despertando a sensação de estar mergulhando nas praias do Nordeste brasileiro. </p><p><strong>Ingredientes: </strong>camarão desidratado, arroz arbóreo, proteína de ervilha, pimentão vermelho, pimentão verde, azeite de dendê, tomate, salsa, cebola, alho, cúrcuma, caldo de peixe.</p>",
+            "color": "#f5fbff",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/almare_vitaminas.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/almare_colageno.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/almare_saborinedito.svg",
+            "stamp_text_3": ""
+          }
         }
       },
       "block_order": [
         "product_3agypb",
-        "product_FHXH7d",
-        "product_pVwGJ4"
+        "product_pVwGJ4",
+        "product_FHXH7d"
       ],
       "custom_css": [
         ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
@@ -1658,29 +1566,6 @@
             "modal_image": "shopify://shop_images/Grupo_11233_e668991e-4b5f-4bff-8b00-13a0c8193bd7.png"
           }
         },
-        "product_nxxJYB": {
-          "type": "product",
-          "settings": {
-            "product": "novo-mac-alfredo",
-            "show_product_image": false,
-            "image": "shopify://shop_images/Grupo_11235.png",
-            "show_product_title": false,
-            "title": "",
-            "subtitle": "O mais proteico, e favorito das nutris.",
-            "show_product_description": false,
-            "description": "<p>Com incríveis 20 g de proteína de frango suculento, fonte de vitaminas e minerais, fica pronto em 15 minutos e é a escolha número um dos nutricionistas. Praticidade e sabor nos seus dias corridos!<br/><br/><strong>Ingredientes: </strong>Leite, farinha de feijão branco, queijo provolone, frango desidratado, alho, extrato de levedura, cebola, salsa, cebolinha, noz moscada, pimenta branca, vitaminas [ácido ascóbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)]</p>",
-            "color": "#f6ebff",
-            "card_color": "",
-            "porcoes": "1",
-            "stamp_image_1": "shopify://shop_images/Grupo_11242_2c90d4ff-e204-4feb-8434-f98fb4b73d9c.svg",
-            "stamp_text_1": "",
-            "stamp_image_2": "shopify://shop_images/Grupo_11241_da43d555-d3a8-4ec4-a10d-fba05da16d5b.svg",
-            "stamp_text_2": "",
-            "stamp_image_3": "shopify://shop_images/Grupo_11240_5f0ed623-c822-4354-a58d-e64c92eee739.svg",
-            "stamp_text_3": "",
-            "modal_image": "shopify://shop_images/Grupo_11233_e668991e-4b5f-4bff-8b00-13a0c8193bd7.png"
-          }
-        },
         "product_jnD8rm": {
           "type": "product",
           "settings": {
@@ -1704,24 +1589,27 @@
             "modal_image": "shopify://shop_images/Grupo_11232_70d26778-fb11-4a0e-93e5-8a72272fed08.png"
           }
         },
-        "product_PPJ37K": {
+        "product_nxxJYB": {
           "type": "product",
           "settings": {
-            "product": "mac-bolonha",
+            "product": "novo-mac-alfredo",
             "show_product_image": false,
-            "image": "shopify://shop_images/card_home_bolonha.png",
+            "image": "shopify://shop_images/Grupo_11235.png",
             "show_product_title": false,
             "title": "",
-            "subtitle": "Almoço de domingo que diz: “mamma mia!” do jeitinho brasileir",
+            "subtitle": "O mais proteico, e favorito das nutris.",
             "show_product_description": false,
-            "description": "<p>A receita que você já ama, agora ainda mais saborosa, nutritiva e prática. São <strong>20g de proteína, fibras, vitaminas, minerais e um molho bolonhesa encorpado</strong> que combina o melhor da carne com tomates selecionados tudo pronto em poucos minutos pra um almoço bem prático.</p><p><br/><strong>Ingredientes:</strong> Tomate, carne bovina desidratada, proteína isolada de ervilha, cebola, páprica defumada, cenoura, extrato de levedura, alho, açúcar, manjericão, orégano, pimenta preta, vitaminas (Vitamina C, B6, A, D2, B12) e minerais (Ferro e Zinco).<br/></p>",
-            "color": "#f7e6e1",
+            "description": "<p>Com incríveis 20 g de proteína de frango suculento, fonte de vitaminas e minerais, fica pronto em 15 minutos e é a escolha número um dos nutricionistas. Praticidade e sabor nos seus dias corridos!<br/><br/><strong>Ingredientes: </strong>Leite, farinha de feijão branco, queijo provolone, frango desidratado, alho, extrato de levedura, cebola, salsa, cebolinha, noz moscada, pimenta branca, vitaminas [ácido ascóbico (Vitamina C), cloridrato de piridoxina (Vitamina B6), acetato de retinol (Vitamina A), ergocalciferol (Vitamina D2), cianocobalamina (Vitamina B12)] e minerais [pirofosfato férrico (Ferro) e sulfato de zinco (Zinco)]</p>",
+            "color": "#f6ebff",
             "card_color": "",
             "porcoes": "1",
+            "stamp_image_1": "shopify://shop_images/Grupo_11242_2c90d4ff-e204-4feb-8434-f98fb4b73d9c.svg",
             "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_11241_da43d555-d3a8-4ec4-a10d-fba05da16d5b.svg",
             "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/Grupo_11240_5f0ed623-c822-4354-a58d-e64c92eee739.svg",
             "stamp_text_3": "",
-            "modal_image": "shopify://shop_images/tabela_bolonha.png"
+            "modal_image": "shopify://shop_images/Grupo_11233_e668991e-4b5f-4bff-8b00-13a0c8193bd7.png"
           }
         },
         "product_4f93aB": {
@@ -1743,15 +1631,35 @@
             "stamp_text_3": "",
             "modal_image": "shopify://shop_images/tabela_caipora.png"
           }
+        },
+        "product_PPJ37K": {
+          "type": "product",
+          "settings": {
+            "product": "mac-bolonha",
+            "show_product_image": false,
+            "image": "shopify://shop_images/card_home_bolonha.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Almoço de domingo que diz: “mamma mia!” do jeitinho brasileir",
+            "show_product_description": false,
+            "description": "<p>A receita que você já ama, agora ainda mais saborosa, nutritiva e prática. São <strong>20g de proteína, fibras, vitaminas, minerais e um molho bolonhesa encorpado</strong> que combina o melhor da carne com tomates selecionados tudo pronto em poucos minutos pra um almoço bem prático.</p><p><br/><strong>Ingredientes:</strong> Tomate, carne bovina desidratada, proteína isolada de ervilha, cebola, páprica defumada, cenoura, extrato de levedura, alho, açúcar, manjericão, orégano, pimenta preta, vitaminas (Vitamina C, B6, A, D2, B12) e minerais (Ferro e Zinco).<br/></p>",
+            "color": "#f7e6e1",
+            "card_color": "",
+            "porcoes": "1",
+            "stamp_text_1": "",
+            "stamp_text_2": "",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_bolonha.png"
+          }
         }
       },
       "block_order": [
         "product_BaKxrW",
         "product_PnLzhb",
-        "product_nxxJYB",
         "product_jnD8rm",
-        "product_PPJ37K",
-        "product_4f93aB"
+        "product_nxxJYB",
+        "product_4f93aB",
+        "product_PPJ37K"
       ],
       "custom_css": [
         ".product-card-item .product-infos span {font-size: 10px; line-height: normal; font-weight: bold; white-space: wrap;}",
@@ -1834,29 +1742,6 @@
             "stamp_text_3": ""
           }
         },
-        "product_nkKTh4": {
-          "type": "product",
-          "settings": {
-            "product": "canja-da-mamae",
-            "show_product_image": false,
-            "image": "shopify://shop_images/sabores_canja_e582ccbf-b223-4c09-8e31-091fb9858577.png",
-            "show_product_title": false,
-            "title": "",
-            "subtitle": "Uma receita clássica e mega proteica",
-            "show_product_description": false,
-            "description": "<p>Sou um delicioso frango com arroz proteico que se encaixa em qualquer plano alimentar e cuida da sua saúde como carinho de mãe.<br/><br/><strong>Ingredientes:</strong> Arroz branco, quinoa, proteína de ervilha, cenoura, frango desidratado e desfiado, flocos de batata, cebola, farinha de mandioca, salsa, cúrcuma, tomate, alho e alho poró.</p>",
-            "color": "#ffeff1",
-            "card_color": "",
-            "porcoes": "4",
-            "stamp_image_1": "shopify://shop_images/20g_proteina.svg",
-            "stamp_text_1": "",
-            "stamp_image_2": "shopify://shop_images/Grupo_4206.svg",
-            "stamp_text_2": "",
-            "stamp_image_3": "shopify://shop_images/regula_intestino.svg",
-            "stamp_text_3": "",
-            "modal_image": "shopify://shop_images/tabela_completa_canja.png"
-          }
-        },
         "product_8YiExa": {
           "type": "product",
           "settings": {
@@ -1878,6 +1763,29 @@
             "stamp_image_3": "shopify://shop_images/baixas_calorias.svg",
             "stamp_text_3": "",
             "modal_image": "shopify://shop_images/tabela_completa_vovo.png"
+          }
+        },
+        "product_nkKTh4": {
+          "type": "product",
+          "settings": {
+            "product": "canja-da-mamae",
+            "show_product_image": false,
+            "image": "shopify://shop_images/sabores_canja_e582ccbf-b223-4c09-8e31-091fb9858577.png",
+            "show_product_title": false,
+            "title": "",
+            "subtitle": "Uma receita clássica e mega proteica",
+            "show_product_description": false,
+            "description": "<p>Sou um delicioso frango com arroz proteico que se encaixa em qualquer plano alimentar e cuida da sua saúde como carinho de mãe.<br/><br/><strong>Ingredientes:</strong> Arroz branco, quinoa, proteína de ervilha, cenoura, frango desidratado e desfiado, flocos de batata, cebola, farinha de mandioca, salsa, cúrcuma, tomate, alho e alho poró.</p>",
+            "color": "#ffeff1",
+            "card_color": "",
+            "porcoes": "4",
+            "stamp_image_1": "shopify://shop_images/20g_proteina.svg",
+            "stamp_text_1": "",
+            "stamp_image_2": "shopify://shop_images/Grupo_4206.svg",
+            "stamp_text_2": "",
+            "stamp_image_3": "shopify://shop_images/regula_intestino.svg",
+            "stamp_text_3": "",
+            "modal_image": "shopify://shop_images/tabela_completa_canja.png"
           }
         },
         "product_qtPGBw": {
@@ -2051,8 +1959,8 @@
         "product_yNgWjj",
         "product_MLA6Ng",
         "product_GAadEi",
-        "product_nkKTh4",
         "product_8YiExa",
+        "product_nkKTh4",
         "product_qtPGBw",
         "product_cMkqrW",
         "product_DMAH4M",
@@ -2641,17 +2549,15 @@
   "order": [
     "a8d45234-ff4c-4fb4-ab6d-16d71fbf1a5d",
     "11d025eb-d332-49cd-ae54-c6243379ae1c",
+    "57fe8019-168b-4953-8dd1-4cb704b6b57d",
     "praticidade_home_argKfc",
     "e3a9ff10-6902-4baf-a0a2-91ae8874ceb0",
     "swiper_bulk_purchase_g3AxMP",
     "product_carousel_aVP7kr",
     "product_carousel_v2_Xczirg",
     "product_carousel_v2_AifKKK",
-    "product_carousel_v2_wjQbrc",
-    "product_carousel_v2_aQiQHV",
     "product_carousel_v2_QRLFMq",
     "586198a2-a4dc-41b9-8e36-8050ad9530d3",
-    "57fe8019-168b-4953-8dd1-4cb704b6b57d",
     "1732882966940526c4",
     "product_carousel_v2_F9FerG",
     "product_carousel_v2_6c3ngN",

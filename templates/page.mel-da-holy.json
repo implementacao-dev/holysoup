@@ -1,38 +1,109 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "holy_mel_lp": {
       "type": "holy-mel-lp",
       "blocks": {
+        "hero_1": {
+          "type": "hero_slide",
+          "settings": {
+            "image_slide": "shopify://shop_images/Prancheta_1_1.png",
+            "image_slide_mb": "shopify://shop_images/Prancheta_2.png",
+            "url": ""
+          }
+        },
+        "pill_1": {
+          "type": "pill",
+          "settings": {
+            "icon": "🍯",
+            "text": "Superalimento"
+          }
+        },
+        "pill_2": {
+          "type": "pill",
+          "settings": {
+            "icon": "💛",
+            "text": "100% Puro"
+          }
+        },
+        "pill_3": {
+          "type": "pill",
+          "settings": {
+            "icon": "🐻",
+            "text": "Embalagem exclusiva no Brasil"
+          }
+        },
         "chip_1": {
           "type": "chip",
           "settings": {
-            "title": "Açúcar adicionado",
-            "sub": "Não tem",
-            "is_check": false
+            "title": "Embalagem exclusiva no Brasil",
+            "sub": "Fica lindo na sua cozinha e todo mundo pergunta onde comprou."
           }
         },
         "chip_2": {
           "type": "chip",
           "settings": {
-            "title": "Xarope de glicose",
-            "sub": "Não tem",
-            "is_check": false
+            "title": "A criançada ama",
+            "sub": "A criança não vê mel, vê o urso e pede no iogurte, na panqueca, no pão."
           }
         },
         "chip_3": {
           "type": "chip",
           "settings": {
-            "title": "Corante e conservante",
-            "sub": "Não tem",
-            "is_check": false
+            "title": "Do café ao pós-treino",
+            "sub": "Adoça o café, entra na receita, ajuda na imunidade. Mel pra toda rotina e pra toda família."
           }
         },
-        "chip_4": {
-          "type": "chip",
+        "fact_1": {
+          "type": "fact",
           "settings": {
-            "title": "100% puro Mel silvestre",
-            "sub": "Só isso.",
-            "is_check": true
+            "icon": "🍯",
+            "title": "Cristaliza com o tempo",
+            "text": "Mel puro cristaliza, e é sinal que ninguém mexeu na composição. Se o seu nunca cristalizou em anos… bom, agora você sabe. Um banho-maria e ele volta ao normal."
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "icon": "🏋️",
+            "title": "Mel no pós-treino?",
+            "text": "O mel é uma das melhores fontes de carboidrato natural de absorção rápida. Repõe glicogênio sem os aditivos dos géis industriais, e é uma delícia."
+          }
+        },
+        "cert_1": {
+          "type": "cert",
+          "settings": {
+            "sigla": "BPF",
+            "text": "Padrões de higiene ANVISA"
+          }
+        },
+        "cert_2": {
+          "type": "cert",
+          "settings": {
+            "sigla": "FDA",
+            "text": "Aprovado pelo padrão americano"
+          }
+        },
+        "cert_3": {
+          "type": "cert",
+          "settings": {
+            "sigla": "IFS",
+            "text": "Segurança alimentar internacional"
+          }
+        },
+        "cert_4": {
+          "type": "cert",
+          "settings": {
+            "sigla": "SIF",
+            "text": "Inspeção do Ministério da Agricultura"
           }
         },
         "review_1": {
@@ -52,22 +123,24 @@
         "review_3": {
           "type": "review",
           "settings": {
-            "quote": "Fica na bancada e todo mundo pergunta onde comprei o urso. Vira assunto.",
+            "quote": "Fica na bancada e todo mundo pergunta onde comprei. Vira assunto.",
             "author": "Carla · Curitiba"
           }
         },
         "kit_1": {
           "type": "kit",
           "settings": {
-            "name": "Mini Holy",
-            "desc": "330g · 1 urso",
-            "price": "R$49,90",
-            "old_price": "De R$59,90",
-            "pix_text": "R$44,90 no PIX",
-            "parcel_text": "ou 3x de R$16,63 sem juros",
+            "name": "🐻 1 Urso Holy",
+            "desc": "330g",
+            "price": "R$ 49,90",
+            "old_price": "De R$ 59,90",
+            "pix_text": "R$ 44,90 no PIX",
+            "parcel_text": "ou 3x de R$ 16,63 sem juros",
+            "extra_text": "",
             "discount": "-17%",
             "discount_size": "small",
-            "btn_text": "Quero o Mini",
+            "btn_text": "Quero o meu",
+            "btn_url": "",
             "featured": false,
             "badge": ""
           }
@@ -75,59 +148,65 @@
         "kit_2": {
           "type": "kit",
           "settings": {
-            "name": "Duo Holy",
-            "desc": "660g · 2 ursos · economia de 25%",
-            "price": "R$89,90",
-            "old_price": "De R$119,80",
-            "pix_text": "R$80,90 no PIX",
-            "parcel_text": "ou 3x de R$29,97 sem juros",
+            "name": "🐻🐻 Kit 2 Ursos",
+            "desc": "660g",
+            "price": "R$ 89,90",
+            "old_price": "De R$ 119,80",
+            "pix_text": "R$ 80,90 no PIX",
+            "parcel_text": "ou 3x de R$ 29,96 sem juros",
+            "extra_text": "",
             "discount": "-25%",
-            "btn_text": "Quero o Duo",
+            "discount_size": "large",
+            "btn_text": "Quero o Kit 2",
+            "btn_url": "",
             "featured": true,
-            "badge": "Mais vendido"
+            "badge": "⭐ Mais pedido"
           }
         },
         "kit_3": {
           "type": "kit",
           "settings": {
-            "name": "Mamãe Holy",
-            "desc": "990g · 3 ursos · melhor preço/g",
-            "price": "R$119,90",
-            "old_price": "De R$179,70",
-            "pix_text": "R$107,90 no PIX",
-            "parcel_text": "ou 3x de R$39,97 sem juros",
+            "name": "🐻🐻🐻 Kit Família",
+            "desc": "990g · melhor custo por grama",
+            "price": "R$ 119,90",
+            "old_price": "De R$ 179,70",
+            "pix_text": "R$ 107,90 no PIX",
+            "parcel_text": "ou 3x de R$ 39,96 sem juros",
+            "extra_text": "",
             "discount": "-33%",
-            "btn_text": "Quero a Mamãe",
+            "discount_size": "small",
+            "btn_text": "Quero o Kit Família",
+            "btn_url": "",
             "featured": false,
             "badge": ""
           }
         },
-        "why_1": {
-          "type": "why",
+        "only_1": {
+          "type": "only_line",
           "settings": {
-            "title": "Fica lindo na cozinha",
-            "text": "Chega numa embalagem que parece enfeite e melhora o visual da bancada sem esforço."
+            "text": "Açúcar adicionado? Não tem.",
+            "is_check": false
           }
         },
-        "why_2": {
-          "type": "why",
+        "only_2": {
+          "type": "only_line",
           "settings": {
-            "title": "A criançada disputa",
-            "text": "A criança não vê mel — vê o urso. E pede no iogurte, na panqueca, no pão."
+            "text": "Xarope de glicose? Não tem.",
+            "is_check": false
           }
         },
-        "why_3": {
-          "type": "why",
+        "only_3": {
+          "type": "only_line",
           "settings": {
-            "title": "O presente que não erra",
-            "text": "Bonito, diferente e útil. Já vem pronto pra dar de presente."
+            "text": "Corante e conservante? Não tem.",
+            "is_check": false
           }
         },
-        "why_4": {
-          "type": "why",
+        "only_4": {
+          "type": "only_line",
           "settings": {
-            "title": "Cristaliza com o tempo",
-            "text": "Sinal de mel de verdade. Um banho-maria e ele volta ao normal."
+            "text": "Mel silvestre 100% puro? Só isso.",
+            "is_check": true
           }
         },
         "faq_1": {
@@ -167,16 +246,79 @@
         }
       },
       "block_order": [
-        "chip_1", "chip_2", "chip_3", "chip_4",
-        "review_1", "review_2", "review_3",
-        "kit_1", "kit_2", "kit_3",
-        "why_1", "why_2", "why_3", "why_4",
-        "faq_1", "faq_2", "faq_3", "faq_4", "faq_5"
+        "hero_1",
+        "pill_1",
+        "pill_2",
+        "pill_3",
+        "chip_1",
+        "chip_2",
+        "chip_3",
+        "fact_1",
+        "fact_2",
+        "cert_1",
+        "cert_2",
+        "cert_3",
+        "cert_4",
+        "review_1",
+        "review_2",
+        "review_3",
+        "kit_1",
+        "kit_2",
+        "kit_3",
+        "only_1",
+        "only_2",
+        "only_3",
+        "only_4",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5"
       ],
       "settings": {
-        "show_ticker": true
+        "cta_url": "#comprar",
+        "logo_visible": 100,
+        "show_nav_cta": false,
+        "nav_cta_light": "Quero",
+        "nav_cta_bold": "meu urso",
+        "sticky_nav": false,
+        "footer_bg": "#642713",
+        "show_buybar": true,
+        "buybar_text": "Comprar agora",
+        "show_ticker": true,
+        "ticker_text": "100% puro  ●  sem açúcar adicionado  ●  sem xarope  ●  sem corante  ●  sem conservante  ●  mel de verdade",
+        "show_hero_cta": true,
+        "hero_cta_light": "Quero o meu",
+        "hero_cta_bold": "Urso 🐻",
+        "hero_cta_note": "",
+        "problema_title": "O mel que não vai ficar escondido no armário",
+        "problema_text": "Mel lindo demais pra ficar escondido no armário.",
+        "fact_kicker": "Mel de verdade tem história",
+        "fact_title": "Você Sabia?",
+        "cert_label": "Certificações",
+        "rev_kicker": "Quem já tem um urso em casa",
+        "rev_title": "Amado em milhares de cozinhas.",
+        "rev_score": "4.9",
+        "rev_stats": "· +2.000 avaliações · +4.200 ursos entregues",
+        "offer_kicker": "Escolha o seu urso",
+        "offer_title": "Quantos ursos você quer?",
+        "countdown_end": "",
+        "countdown_label": "Oferta válida por",
+        "stock_text": "Estoque limitado de ursinhos 🐻",
+        "only_title": "Mel silvestre. Só.",
+        "only_cta_light": "Quero o meu",
+        "only_cta_bold": "Urso 🐻",
+        "faq_kicker": "Perguntas",
+        "faq_title": "Dúvidas diretas.",
+        "show_close": true,
+        "close_title": "Mel de verdade.",
+        "close_cta_light": "Quero o meu",
+        "close_cta_bold": "Urso 🐻",
+        "close_note": ""
       }
     }
   },
-  "order": ["holy_mel_lp"]
+  "order": [
+    "holy_mel_lp"
+  ]
 }
