@@ -6,7 +6,7 @@
         endif
     endif
 -%}
-<li class="menu-lv-item menu-lv-1 has-megamenu dropdown{% if sale_item_lv1 contains title %} menu-sale{% endif %} block_layout--{{container}}">
+<li class="menu-lv-item menu-lv-1 has-megamenu dropdown{% if sale_item_lv1 contains title %} menu-sale{% endif %}{% if menu_highlight %} menu-highlight{% endif %} block_layout--{{container}}"{% if menu_highlight %} style="{{ highlight_style }}"{% endif %}>
     {%- if link.links != blank -%}
         <a class="menu-lv-1__action header__menu-item list-menu__item link focus-inset menu_mobile_link link-effect" href="{{ link.url }}">{% if check_vertical == true %}{% assign img = link.handle | downcase | replace: ' ', '-' | append: '.png' | file_url %}<span class="icon-img"><img src="{{ img }}" alt="{{ link.title }}" onError="style.display = 'none';"></span>{% endif %}
             <span class="text{% if link.child_active %} header__active-menu-item{% endif %} p-relative">{{ link.title | escape }}</span>

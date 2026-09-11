@@ -2375,7 +2375,7 @@ span.jdgm-rev__buyer-badge {
   margin-top: -10px;
 }
 
-#review-col .jdgm-prev-badge {
+#review-col .jdgm-prev-badge:not([data-number-of-reviews="0"]):not([data-average-rating="0.00"]) {
    display: flex !important;
    gap: .5rem;
 }
@@ -2410,8 +2410,43 @@ span.jdgm-rev__buyer-badge {
   display: flex;
 }
 
+/* Esconde badge Judge.me sem avaliações (loja toda) */
+.jdgm-prev-badge[data-number-of-reviews="0"],
+.jdgm-prev-badge[data-average-rating="0.00"],
+#review-collections .jdgm-prev-badge[data-number-of-reviews="0"],
+#review-collections .jdgm-prev-badge[data-average-rating="0.00"],
+#review-col .jdgm-prev-badge[data-number-of-reviews="0"],
+#review-col .jdgm-prev-badge[data-average-rating="0.00"] {
+  display: none !important;
+}
+
+/* Menu lv1 — padding/display iguais para alinhar itens (incl. destacados) */
+.menu-lv-1 > .menu-lv-1__action .text {
+  padding: 0.4rem 1.2rem;
+  display: inline-block;
+}
+
+/* Menu item destacado — cores via Theme Editor; padding herdado do lv1 */
+.menu-highlight > .menu-lv-1__action .text {
+  background: var(--highlight_bg);
+  color: var(--highlight_text);
+  border-radius: 2rem;
+  border-bottom: none;
+}
+.menu-highlight:hover > .menu-lv-1__action .text {
+  color: var(--highlight_text);
+  border-bottom: none;
+}
+.menu-highlight > .menu-lv-1__action .text:before,
+.menu-highlight:hover > .menu-lv-1__action .text:before,
+.menu-highlight > .menu-lv-1__action .text:after,
+.menu-highlight:hover > .menu-lv-1__action .text:after {
+  content: none !important;
+  display: none !important;
+}
+
 @media(max-width: 768px){
-  #review-collections .jdgm-prev-badge {
+  #review-collections .jdgm-prev-badge:not([data-number-of-reviews="0"]):not([data-average-rating="0.00"]) {
     display: flex !important;
     align-items: center;
     gap: 1rem;

@@ -25,7 +25,22 @@
             assign sale_item_lv1 = block.settings.sale_item_1 | split: "," | strip | downcase | handle
             assign sale_item_lv2 = block.settings.sale_item_2 | split: "," | strip | downcase | handle
             assign sale_item_lv3 = block.settings.sale_item_3 | split: "," | strip | downcase | handle
+            assign highlight_item_lv1 = block.settings.highlight_item_1 | split: "," | strip | downcase | handle
             assign title = link.title | escape | downcase | handle
+
+            assign highlight_style = ''
+            if block.settings.highlight_bg != blank and block.settings.highlight_bg != 'rgba(0,0,0,0)'
+              assign highlight_style = highlight_style | append: '--highlight_bg: ' | append: block.settings.highlight_bg | append: ';'
+            endif
+            if block.settings.highlight_text != blank and block.settings.highlight_text != 'rgba(0,0,0,0)'
+              assign highlight_style = highlight_style | append: '--highlight_text: ' | append: block.settings.highlight_text | append: ';'
+            endif
+
+            assign menu_highlight = false
+            if highlight_item_lv1 contains title and highlight_style != blank
+              assign menu_highlight = true
+            endif
+
             if block.settings.label_position != 'none'
                 assign show_label_blink = block.settings.show_label_blink
                 assign new_label_1 = block.settings.new_label_1 | split: "," | strip | downcase | handle
@@ -113,6 +128,8 @@
                 sale_item_lv1: sale_item_lv1,
                 sale_item_lv2: sale_item_lv2,
                 sale_item_lv3: sale_item_lv3,
+                menu_highlight: menu_highlight,
+                highlight_style: highlight_style,
                 show_label_blink: show_label_blink,
                 new_label_1: new_label_1,
                 new_label_2: new_label_2,
@@ -167,6 +184,8 @@
                 sale_item_lv1: sale_item_lv1,
                 sale_item_lv2: sale_item_lv2,
                 sale_item_lv3: sale_item_lv3,
+                menu_highlight: menu_highlight,
+                highlight_style: highlight_style,
                 show_label_blink: show_label_blink,
                 new_label_1: new_label_1,
                 new_label_2: new_label_2,

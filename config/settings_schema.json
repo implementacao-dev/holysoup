@@ -30,6 +30,16 @@
       },
       {
         "type": "header",
+        "content": "Brindes destacados no carrinho lateral"
+      },
+      {
+        "type": "color",
+        "id": "side_cart_gift_bg",
+        "label": "Cor de fundo",
+        "default": "#e6f3ff"
+      },
+      {
+        "type": "header",
         "content": "Cupom"
       },
       {

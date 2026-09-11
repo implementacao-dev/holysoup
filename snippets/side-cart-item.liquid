@@ -3,9 +3,9 @@
   assign quantity_id = 'quantity_' | append: key
   assign final_price = item.quantity | times: item.final_price
 
-  assign gift = ''
-  if item.final_line_price == 0
-    assign gift = 'Brinde'
+  assign is_gift = false
+  if item.final_price <= 1
+    assign is_gift = true
   endif
 
   assign loading = 'eager'
@@ -42,7 +42,7 @@
       },
     }
   "
-  class="side-cart-item-product{% if is_bundle_item %} side-cart-item-product--bundle{% endif %}"
+  class="side-cart-item-product{% if is_bundle_item %} side-cart-item-product--bundle{% endif %}{% if is_gift %} side-cart-item-product--gift{% endif %}"
 >
   <div class="side-cart-item-product-container">
     <div class="item-product-image">
@@ -128,7 +128,7 @@
     </div>
   </div>
   <div class="item-product-quantity">
-    {% if final_price > 0 %}
+    {% if final_price > 0 and is_gift == false %}
       <div class="product-quantity-input-container">
         <div
           class="product-quantity-input"
@@ -206,6 +206,12 @@
     align-items: center;
   }
 
+  .side-cart-item-product--gift {
+    background: {{ settings.side_cart_gift_bg | default: '#e6f3ff' }};
+    border-radius: 1rem;
+    padding: 0 0.25rem;
+  }
+
   .side-cart-item-product--bundle {
     align-items: flex-start;
   }
@@ -219,6 +225,8 @@
   .side-cart-item-product .item-product-image img {
     width: 74px;
     height: auto;
+    max-height: 100%;
+    object-fit: contain;
   }
 
   .side-cart-item-product .item-product-info {

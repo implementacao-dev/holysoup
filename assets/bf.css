@@ -1116,7 +1116,7 @@ button.mobileMenu-toggle {
 }
 
 #review-collections .jdgm-prev-badge[data-average-rating='0.00'] {
-  display: block!important;
+  display: none !important;
 }
 
 #review-collections .jdgm-widget.jdgm-widget {
